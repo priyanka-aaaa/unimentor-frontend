@@ -1,194 +1,122 @@
-
+import React, { useState } from "react";
 import './css/style.css';
-import React from 'react';
+
 import logo from './img/logo.png';
-import { Component } from 'react';
+
 import axios from 'axios';
+import 'react-phone-number-input/style.css'
+import { isValidPhoneNumber } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
-class Studentregister extends Component {
 
-    constructor(props) {
-        super(props);
-        this.onChangeName = this.onChangeName.bind(this);
-        this.onChangeEmail = this.onChangeEmail.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
-
-        this.onSubmit = this.onSubmit.bind(this);
-
-        this.state = {
-            name: '',
-            email: '',
-            phone: '',
-            errors: {},
-
+export default function Studentregister() {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [nameError, setnameError] = useState("");
+    const [emailError, setemailError] = useState("");
+    const [phoneError, setphoneError] = useState("");
+    function handleSubmit(event) {
+        setnameError("");
+        setemailError("");
+        setphoneError("");
+        event.preventDefault();
+        if (name === "") {
+            setnameError("Please enter name");
         }
-    }
-    handleValidation() {
-        let fields = this.state;
-        let errors = {};
-        let formIsValid = true;
-
-        //Name
-        if (!fields["name"]) {
-            formIsValid = false;
-            errors["name"] = "Please enter name";
+        if (email === "") {
+            setemailError("Please enter email");
         }
-
-
-        //Email
-        if (!fields["email"]) {
-            formIsValid = false;
-            errors["email"] = "Please enter a email";
+        if (phone === "") {
+            setphoneError("Please enter phone number");
         }
-
-        if (typeof fields["email"] !== "undefined") {
-            let lastAtPos = fields["email"].lastIndexOf("@");
-            let lastDotPos = fields["email"].lastIndexOf(".");
-
-            if (
-                !(
-                    lastAtPos < lastDotPos &&
-                    lastAtPos > 0 &&
-                    fields["email"].indexOf("@@") == -1 &&
-                    lastDotPos > 2 &&
-                    fields["email"].length - lastDotPos > 2
-                )
-            ) {
-                formIsValid = false;
-                errors["email"] = "Email is not valid";
-            }
+        if (isValidPhoneNumber(phone) === false) {
+            setphoneError("Please enter correct phone number");
         }
-
-        if (!fields["phone"]) {
-            formIsValid = false;
-            errors["phone"] = "Please enter a phone";
-        }
-
-        this.setState({ errors: errors });
-        return formIsValid;
-    }
-
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value
-        });
-    }
-
-    onChangeEmail(e) {
-        this.setState({
-            email: e.target.value
-        });
-    }
-
-    onChangePhone(e) {
-        this.setState({
-            phone: e.target.value
-        });
-    }
-
-
-
-
-
-    onSubmit(e) {
-        e.preventDefault();
-        if (this.handleValidation()) {
-
-
+        else {
             const obj = {
-                name: this.state.name,
-                email: this.state.email,
-                phone: this.state.phone
+                name: name,
+                email: email,
+                phone: phone
 
             };
-
             axios.post('https://uni-mentor-backend.vercel.app/student/register', obj)
-                .then(res => console.log(res.data))
+                .then(function (res) {
+                    console.log(res.data);
+                    if (res.data.success === true) {
+                        alert("register successfully");
+                        setName("");
+                        setEmail("");
+                        setPhone("");
+
+                    }
+                    else if (res.data.message === "Student already exist") {
+                        setemailError("Email already exist");
+                    }
+                    else {
+
+                    }
+                })
                 .catch(error => {
                     console.log(error.response)
                 });
-            this.setState({
-                name: '',
-                email: '',
-                phone: ''
-
-
-            })
-            alert("register successfully");
         }
 
-
-
-        const obj = {
-            name: this.state.name,
-            email: this.state.email,
-            phone: this.state.phone,
-
-
-        };
-
     }
-    render() {
-        return (
-            <div >
+    return (
+        <div>
+            <section className="Form-block">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="form-centerblock">
+                                <p className="logo"><img src={logo} alt="logo" /></p>
 
+                                <div className="from-start">
+                                    <form onSubmit={handleSubmit}>
+                                        <div className="mb-3 mt-3">
+                                            <label className="form-label">Name</label>
+                                            <input required type="text" className="form-control form-control-lg" id="uname"
+                                                placeholder="Full Name" name="name"
+                                                value={name}
+                                                onChange={(e) => setName(e.target.value)}
+                                            />
+                                        </div>
+                                        <span style={{ color: "red" }}> {nameError}</span>
+                                        <div className="mb-3 mt-3">
+                                            <label className="form-label">Email</label>
+                                            <input required type="email" className="form-control form-control-lg" id="email"
+                                                placeholder="Enter email" name="email"
 
-                <section className="Form-block">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-12">
-                                <div className="form-centerblock">
-                                    <a href="#" className="logo"><img src={logo} /></a>
-                                    <div className="from-start">
-                                        <form>
-                                            <div className="mb-3 mt-3">
-                                                <label className="form-label">Name</label>
-                                                <input type="text" className="form-control form-control-lg" id="uname"
-                                                    placeholder="Full Name" name="name"
-                                                    value={this.state.name}
-                                                    onChange={this.onChangeName}
-                                                />
+                                                value={email}
+                                                onChange={(e) => setEmail(e.target.value)}
+                                            />
 
-                                            </div>
+                                        </div>
+                                        <span style={{ color: "red" }}>{emailError}</span>
+                                        <div className="mb-3 mt-3">
+                                            <label className="form-label">Phone</label>
 
-                                            <span style={{ color: "red" }}>{this.state.errors["name"]}</span>
+                                            <PhoneInput
+                                                placeholder="Enter phone number"
+                                                required
+                                                value={phone}
+                                                onChange={setPhone} />
 
-                                            <div className="mb-3 mt-3">
-                                                <label className="form-label">Email</label>
-                                                <input type="email" className="form-control form-control-lg" id="email"
-                                                    placeholder="Enter email" name="email"
-                                                    value={this.state.email}
-                                                    onChange={this.onChangeEmail}
-                                                />
-                                            </div>
-
-                                            <span style={{ color: "red" }}>{this.state.errors["email"]}</span>
-                                            <div className="mb-3 mt-3">
-                                                <label className="form-label">Phone</label>
-                                                <input type="tel" className="form-control form-control-lg" id="tel"
-                                                    placeholder="Phone No" name="phone"
-                                                    value={this.state.phone}
-                                                    onChange={this.onChangePhone}
-                                                />
-                                            </div>
-
-                                            <span style={{ color: "red" }}>{this.state.errors["phone"]}</span>
-
-
-                                            <button type="submit" onClick={this.onSubmit} className="btn btn-website">Register</button>
-                                        </form>
-                                    </div>
-
+                                            <span style={{ color: "red" }}> {phoneError}</span>
+                                        </div>
+                                        <button type="submit" className="btn btn-website">Register</button>
+                                    </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
+                </div>
 
-                </section>
-            </div >
-        );
-    }
+            </section>
+        </div>
+    );
 }
-
-
-export default Studentregister;
