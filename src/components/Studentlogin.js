@@ -33,7 +33,7 @@ export default function Studentlogin() {
                 email: email,
                 password: password
             };
-            axios.post('https://uni-mentor-backend.vercel.app/student/login', obj)
+            axios.post('/student/login', obj)
                 .then(result => {
                     let responseJson = result;
                     console.log(responseJson.data.success);

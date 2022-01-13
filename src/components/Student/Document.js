@@ -1,13 +1,45 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
+import axios from 'axios';
 import Topbar from './Topbar';
 import Index from './Index';
 import Footer from './Footer';
 import Main from './Main';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+// import DragAndDrop from './DragAndDrop';
+import '../css/style.css';
+import '../css/dashboard.css';
+import "./drag.css";
+
+
+import EducationDocument from './EducationDocument';
+import ExtraCurricular from './ExtraCurricular';
+import WorkExperience from './WorkExperience';
+import OtherDocument from './OtherDocument';
+import EnglishProficiency from './EnglishProficiency';
+import IdentityDocument from './IdentityDocument';
 class Document extends Component {
+    state = {
+        mounted: "",
+    }
+    componentWillMount() {
+        if (localStorage.getItem("userData")) {
+            var a = localStorage.getItem('userData');
+            var mydata = JSON.parse(a);
+            var user_email = mydata.data.student.email;
+            var mytoken = mydata.data.token;
+            this.setState({ mounted: mytoken });
+        }
+    }
     render() {
+        var i = 0;
+
         return (
             <div id="page-top">
+                {/* {this.state.files.map((file, index) => (
+                    <h2 key={index}>{file}</h2>
+                ))} */}
 
 
                 {/*
@@ -35,301 +67,41 @@ class Document extends Component {
                             <div className="container">
 
                                 <div className=" align-items-center justify-content-between mb-4">
+
+                                    <i className="fa fa-trash-alt"></i>
+                                    <i className="fa fa-sun-o" />
+
                                     <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
                                     <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
 
                                     <div className="row">
                                         <div className="col-xl-12 col-lg-7">
                                             <div id="accordion">
-                                                <div className="card">
+                                                <IdentityDocument/>
+                                                {/* start for identity document */}
+                                                {/* <div className="card">
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
-                                                        Identity Documents
+                                                        <strong>1</strong>   Identity Documents
                                                     </a>
                                                     <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
                                                         <div className="card-body">
                                                             <div className="form form_doc">
-                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                        <p className="pl-4 pr-4 pt-0 pb-0">Passport <span className="text-danger"> *</span></p>
-                                                                    </div>
-                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                            </div>
-                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                    <input type="file" accept="" />
-                                                                                    <p>
-                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                </span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                    </div>
-                                                                </div>
-                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                        <p className="pl-4 pr-4 pt-0 pb-0">Passport Back <span className="text-danger"> *</span></p>
-                                                                    </div>
-                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                            </div>
-                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                    <input type="file" accept="" />
-                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                </span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                    </div>
-                                                                </div>
-                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                        <p className="pl-4 pr-4 pt-0 pb-0">CV <span className="text-danger">
-                                                                            *</span></p>
-                                                                    </div>
-                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                            </div>
-                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                    <input type="file" accept="" />
-                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                </span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                    </div>
-                                                                </div>
+                                                                <Passport />
+
+                                                                <Passportback />
+                                                                <Cv />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapse2">
-                                                        Education Documents
-                                                    </a>
-                                                    <div id="collapse2" className="collapse" data-bs-parent="#accordion">
-                                                        <div className="card-body">
-                                                            <div className="form form_doc">
-                                                                <div className="form form_doc">
-                                                                    <div className="row pl-4 pr-4 mt-3">
-                                                                        <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                                                                            <p>I haven't completed or pursuing Secondary Education</p>
-                                                                            <div className="form form_doc marksheet">
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">10th Marksheet <span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>
-                                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">12th Marksheet * <span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
+                                                </div> */}
 
-                                                                            </div>
-                                                                        </div>
 
-                                                                        <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-                                                                            <label className="switch">
-                                                                                <input type="checkbox" />
-                                                                                <span className="slider round"></span>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                    <div className="row pl-4 pr-4">
-                                                                        <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                                                                            <p>I haven't completed or pursuing any UG course</p>
-                                                                            <div className="form form_doc degree">
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">UG Degree Certificate<span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>
-                                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">UG Consolidated Marksheet<span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">UG Marksheet <span className="text-danger">
-                                                                                            *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-                                                                            <label className="switch2">
-                                                                                <input type="checkbox" />
-                                                                                <span className="slider2 round2"></span>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <hr />
-                                                                    <div className="row pl-4 pr-4">
-                                                                        <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                                                                            <p>I haven't completed or pursuing any PG course</p>
 
-                                                                            <div className="form form_doc document">
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">PG Degree Certificate<span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>
-                                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">PG Consolidated Marksheet<span className="text-danger"> *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                                        <p className="pl-4 pr-4 pt-0 pb-0">PG Marksheet<span className="text-danger">
-                                                                                            *</span></p>
-                                                                                    </div>
-                                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                                            </div>
-                                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                                    <input type="file" accept="" />
-                                                                                                    <p>Upload/Drag &amp; Drop here</p>
-                                                                                                </span>
-                                                                                            </div>
-                                                                                        </span>
-                                                                                    </div>
-                                                                                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-                                                                            <label className="switch3">
-                                                                                <input type="checkbox" />
-                                                                                <span className="slider3 round3"></span>
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
+                                                <EducationDocument />
                                                 <div className="card">
 
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapse3">
-                                                        Work Experience Documents
+                                                        <strong>3</strong> Work Experience Documents
                                                     </a>
                                                     <div id="collapse3" className="collapse" data-bs-parent="#accordion">
                                                         <div className="card-body">
@@ -360,7 +132,7 @@ class Document extends Component {
                                                                                 <div className="upload_doc d-flex flex-wrap align-items-center row">
                                                                                     <div className="col-3 col-sm-3 col-md-3 col-lg-3">
                                                                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                                                            <input className="ant-input w-100 form-control" placeholder="Enter Company Name" type="text" defaultValue="" />
+                                                                                            <input className="ant-input w-100 form-control" placeholder="Enter Company Name" type="text" value="" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div className="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -384,8 +156,7 @@ class Document extends Component {
                                                                                         </span>
                                                                                     </div>
                                                                                     <div className="col-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                                                                        <span className="cursor_pointer icon_delete">
-                                                                                            {/* <i className="fas fa-trash-alt" style="font-size: 24px;"></i> */}
+                                                                                        <span className="cursor_pointer icon_delete"><i className="fas fa-trash-alt"></i>
                                                                                         </span>
                                                                                     </div>
                                                                                 </div>
@@ -401,7 +172,7 @@ class Document extends Component {
                                                                                 <div className="upload_doc d-flex flex-wrap align-items-center row">
                                                                                     <div className="col-3 col-sm-3 col-md-3 col-lg-3">
                                                                                         <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                                                            <input className="ant-input w-100 form-control" placeholder="Enter Company Name" type="text" defaultValue="" />
+                                                                                            <input className="ant-input w-100 form-control" placeholder="Enter Company Name" type="text" value="" />
                                                                                         </div>
                                                                                     </div>
                                                                                     <div className="col-2 col-sm-2 col-md-2 col-lg-2">
@@ -425,29 +196,25 @@ class Document extends Component {
                                                                                         </span>
                                                                                     </div>
                                                                                     <div className="col-1 col-sm-1 col-md-1 col-lg-1 text-center">
-                                                                                        <span className="cursor_pointer icon_delete">
-                                                                                            {/* <i className="fas fa-trash-alt" style="font-size: 24px;"></i> */}
+                                                                                        <span className="cursor_pointer icon_delete"><i className="fas fa-trash-alt" ></i>
                                                                                         </span>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
 
 
-                                                                            {/*
-                        <!-- The Modal --> */}
+                                                                            {/* <!-- The Modal --> */}
                                                                             <div className="modal" id="workexpModal">
                                                                                 <div className="modal-dialog modal-lg">
                                                                                     <div className="modal-content">
 
-                                                                                        {/*
-                                    <!-- Modal Header --> */}
+                                                                                        {/* <!-- Modal Header --> */}
                                                                                         <div className="modal-header">
                                                                                             <h4 className="modal-title">Add Work Experience Details</h4>
                                                                                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                                                         </div>
 
-                                                                                        {/*
-                                    <!-- Modal body --> */}
+                                                                                        {/* <!-- Modal body --> */}
                                                                                         <div className="modal-body">
                                                                                             <div className="form-block">
                                                                                                 <form>
@@ -457,35 +224,35 @@ class Document extends Component {
                                                                                                                 <label>Work Status <span className="text-danger">
                                                                                                                     *</span></label><br />
                                                                                                                 <label className="ant-radio-wrapper"><span className="ant-radio">
-                                                                                                                    <input name="is_current_job_0" type="radio" className="ant-radio-input" defaultValue="1" />
+                                                                                                                    <input name="is_current_job_0" type="radio" className="ant-radio-input" value="1" />
                                                                                                                     <span className="ant-radio-inner"></span></span><span>Ongoing</span></label>
-                                                                                                                <label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input name="is_current_job_0" type="radio" className="ant-radio-input" defaultValue="0" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
+                                                                                                                <label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input name="is_current_job_0" type="radio" className="ant-radio-input" value="0" checked="" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
                                                                                                                 <br />
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div className="col-12 col-sm-4 col-md-4 col-lg-4">
-                                                                                                            <div className="form-group"><label>Work Type <span className="text-danger"> *</span></label><select className="form-control" id="work_type" name="work_type">
-                                                                                                                <option defaultValue="">Select</option>
-                                                                                                                <option defaultValue="Full-time">Full-time</option>
-                                                                                                                <option defaultValue="Part-time">Part-time</option>
-                                                                                                                <option defaultValue="Internship">Internship</option>
+                                                                                                            <div className="form-group"><label htmlFor="work_type">Work Type <span className="text-danger"> *</span></label><select className="form-control" id="work_type" name="work_type">
+                                                                                                                <option value="">Select</option>
+                                                                                                                <option value="Full-time">Full-time</option>
+                                                                                                                <option value="Part-time">Part-time</option>
+                                                                                                                <option value="Internship">Internship</option>
                                                                                                             </select></div>
                                                                                                         </div>
                                                                                                         <div className="col-12 col-sm-4 col-md-4 col-lg-4">
-                                                                                                            <div className="form-group"><label>Name of
+                                                                                                            <div className="form-group"><label htmlFor="company_name">Name of
                                                                                                                 Organization <span className="text-danger">
-                                                                                                                    *</span></label><input type="text" className="form-control" id="company_name" name="company_name" placeholder="Name of Organization" defaultValue="" /></div>
+                                                                                                                    *</span></label><input type="text" className="form-control" id="company_name" name="company_name" placeholder="Name of Organization" value="" /></div>
                                                                                                         </div>
                                                                                                     </div>
 
                                                                                                     <div className="row">
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                                                            <div className="form-group"><label>Designation</label><input type="text" className="form-control" id="work_designation" name="designation" placeholder="Designation" defaultValue="" />
+                                                                                                            <div className="form-group"><label htmlFor="work_designation">Designation</label><input type="text" className="form-control" id="work_designation" name="designation" placeholder="Designation" value="" />
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                                                            <div className="form-group"><label>Job
-                                                                                                                Role</label><input type="text" className="form-control" id="role_description" name="role_description" placeholder="Job Role" defaultValue="" /></div>
+                                                                                                            <div className="form-group"><label htmlFor="role_description">Job
+                                                                                                                Role</label><input type="text" className="form-control" id="role_description" name="role_description" placeholder="Job Role" value="" /></div>
                                                                                                         </div>
                                                                                                     </div>
 
@@ -493,13 +260,13 @@ class Document extends Component {
                                                                                                     <div className="row">
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                                                             <div className="form-group">
-                                                                                                                <label>Started From</label>
+                                                                                                                <label htmlFor="start_from">Started From</label>
                                                                                                                 <input type="date" className="form-control" />
                                                                                                             </div>
                                                                                                         </div>
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                                                             <div className="form-group">
-                                                                                                                <label>Ended On</label>
+                                                                                                                <label htmlFor="start_from">Ended On</label>
                                                                                                                 <input type="date" className="form-control" />
                                                                                                             </div>
                                                                                                         </div>
@@ -509,16 +276,16 @@ class Document extends Component {
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                                                             <label>Country</label>
                                                                                                             <select className="form-control" id="job_country" name="job_country">
-                                                                                                                <option defaultValue="">Select Country</option>
-                                                                                                                <option defaultValue="India">India</option>
-                                                                                                                <option defaultValue="Afghanistan">Afghanistan</option>
-                                                                                                                <option defaultValue="Albania">Albania</option>
-                                                                                                                <option defaultValue="Algeria">Algeria</option>
-                                                                                                                <option defaultValue="American Samoa">American Samoa</option>
+                                                                                                                <option value="">Select Country</option>
+                                                                                                                <option value="India">India</option>
+                                                                                                                <option value="Afghanistan">Afghanistan</option>
+                                                                                                                <option value="Albania">Albania</option>
+                                                                                                                <option value="Algeria">Algeria</option>
+                                                                                                                <option value="American Samoa">American Samoa</option>
                                                                                                             </select>
                                                                                                         </div>
                                                                                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                                                            <div className="form-group"><label>City/Town</label><input type="text" className="form-control" id="job_city" placeholder="City/Town" name="job_city" defaultValue="" /></div>
+                                                                                                            <div className="form-group"><label htmlFor="job_city">City/Town</label><input type="text" className="form-control" id="job_city" placeholder="City/Town" name="job_city" value="" /></div>
                                                                                                         </div>
 
                                                                                                     </div>
@@ -538,8 +305,7 @@ class Document extends Component {
                                                                                             </div>
                                                                                         </div>
 
-                                                                                        {/*
-                                    <!-- Modal footer --> */}
+                                                                                        {/* <!-- Modal footer --> */}
                                                                                         <div className="modal-footer">
                                                                                             <button type="button" className="btn  btn-success">Save
                                                                                             </button>
@@ -564,101 +330,13 @@ class Document extends Component {
 
 
                                                 </div>
+                                                <WorkExperience />
+                                                <EnglishProficiency />
 
-                                                <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapse4">
-                                                        English Proficiency Test Document
-                                                    </a>
+                                                <ExtraCurricular />
 
-                                                    <div id="collapse4" className="collapse" data-bs-parent="#accordion">
-                                                        <div className="card-body">
-                                                            <div className="row">
-                                                                <div className="col-md-8">
-                                                                    <p>I don't have any work experience</p>
-                                                                </div>
-                                                                <div className="col-md-4 text-right">
-                                                                    <label className="switch3">
-                                                                        <input type="checkbox" />
-                                                                        <span className="slider3 round3"></span>
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div className="form form_doc document">
-                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="col-12 col-sm-12 col-md-12 col-lg-12">
-                                                                            <label>Please select English Proficiency Test</label><br />
-                                                                            <div role="group" className="doc_choice btn-group">
-                                                                                <button type="button" className="selected btn btn-secondary">IELTS</button>
-                                                                                <button type="button" className="btn btn-secondary">TOEFL</button>
-                                                                                <button type="button" className="btn btn-secondary">PTE</button>
-                                                                                <button type="button" className="btn btn-secondary">Duolingo</button>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
-                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                            </div>
-                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                    <input type="file" accept="" />
-                                                                                    <p>
-                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                </span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
-                                                    </div>
 
-                                                </div>
-                                                <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapse5">
-                                                        Extra Curricular Document
-                                                    </a>
-
-                                                    <div id="collapse5" className="collapse" data-bs-parent="#accordion">
-                                                        <div className="card-body">
-                                                            <div className="row">
-                                                                <div className="col-md-4">
-                                                                    <label>Search Activity<input list="search" name="cars" type="text" className="form-control" />
-                                                                    </label>
-                                                                    <datalist id="search">
-                                                                        <option>Search Activity</option>
-                                                                        <option>Student Government</option>
-                                                                        <option>Academic Teams and Clubs</option>
-                                                                        <option>The Debate Team students</option>
-                                                                        <option>The Arts Team students</option>
-                                                                        <option>Internships</option>
-                                                                    </datalist>
-                                                                </div>
-                                                                <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
-                                                                    <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                        <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                        </div>
-                                                                        <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                            <span tabIndex="0" className="ant-upload" role="button">
-                                                                                <input type="file" accept="" />
-                                                                                <p>
-                                                                                    Upload/Drag &amp; Drop here</p>
-                                                                            </span>
-                                                                        </div>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="w-100 text-right row p-0">
-                                                                <div className="col-12 pl-2 pb-2 pt-2 pr-0 upload_doc">
-                                                                    <div role="group" className="doc_choice btn-group"><button type="button" className="btn btn-secondary">Add more</button></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                                 <div className="card">
 
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapse6" aria-expanded="true">
@@ -669,7 +347,7 @@ class Document extends Component {
                                                             <div className="form form_doc">
                                                                 <div className="row">
                                                                     <div className="col-md-8">
-                                                                        <p>I don't have any work experience</p>
+                                                                        <p>I don't have any recommender</p>
                                                                     </div>
                                                                     <div className="col-md-4 text-right">
                                                                         <label className="switch3">
@@ -825,37 +503,7 @@ class Document extends Component {
 
 
                                                 </div>
-                                                <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapse7" aria-expanded="true">
-                                                        Other Documents
-                                                    </a>
-                                                    <div id="collapse7" className="collapse" data-bs-parent="#accordion" >
-                                                        <div className="card-body">
-                                                            <div className="form form_doc">
-                                                                <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                                                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                                                                        <input className="form-control" placeholder="Enter document name to upload" type="text" defaultValue="" />
-                                                                    </div>
-                                                                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                                        <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                                            <div className="ant-upload-list ant-upload-list-picture-card">
-                                                                            </div>
-                                                                            <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                                                    <input type="file" accept="" />
-                                                                                    <p>
-                                                                                        Upload/Drag &amp; Drop here</p>
-                                                                                </span>
-                                                                            </div>
-                                                                        </span>
-                                                                    </div>
-                                                                    <div className="col-1">&nbsp;</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                                <OtherDocument />
                                             </div>
                                         </div>
                                     </div>
@@ -890,7 +538,7 @@ class Document extends Component {
                     {/* <i className="fas fa-angle-up"></i> */}
                 </a>
 
-   
+
             </div>
 
 

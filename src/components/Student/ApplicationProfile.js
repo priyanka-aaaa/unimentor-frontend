@@ -1290,34 +1290,34 @@ export default function Studentregister() {
 
 
 
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="start_from">Started From</label>
+                                                        <div className="row">
+                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div className="form-group">
+                                                                    <label htmlFor="start_from">Started From</label>
                                                                     <input
                                                                         value={experiencestarted}
                                                                         onChange={(e) => setexperiencestarted(e.target.value)}
-                                                                        type="date" class="form-control" />
+                                                                        type="date" className="form-control" />
                                                                 </div>
                                                             </div>
-                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div class="form-group">
-                                                                    <label for="start_from">Ended On</label>
+                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div className="form-group">
+                                                                    <label htmlFor="start_from">Ended On</label>
                                                                     <input
                                                                         value={experienceended}
                                                                         onChange={(e) => setexperienceended(e.target.value)}
-                                                                        type="date" class="form-control" />
+                                                                        type="date" className="form-control" />
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                        <div className="row">
+                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                 <label>Country</label>
                                                                 <select
                                                                     value={experiencecountry}
                                                                     onChange={(e) => setexperiencecountry(e.target.value)}
-                                                                    class="form-control" id="job_country"
+                                                                    className="form-control" id="job_country"
                                                                     name="job_country">
                                                                     <option value="">Select Country</option>
                                                                     <option value="India">India</option>
@@ -1327,24 +1327,24 @@ export default function Studentregister() {
                                                                     <option value="American Samoa">American Samoa</option>
                                                                 </select>
                                                             </div>
-                                                            <div class="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div class="form-group"><label
-                                                                    for="job_city">City/Town</label><input
+                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                <div className="form-group"><label
+                                                                    htmlFor="job_city">City/Town</label><input
                                                                         value={experiencecity}
                                                                         onChange={(e) => setexperiencecity(e.target.value)}
                                                                         type="text"
-                                                                        class="form-control" id="job_city"
+                                                                        className="form-control" id="job_city"
                                                                         placeholder="City/Town" name="job_city" value="" /></div>
                                                             </div>
 
                                                         </div>
-                                                        <div class="mb-3">
-                                                            <div class="row">
-                                                                <div class="col-md-6"></div>
-                                                                <div class="col-md-6 text-right">
-                                                                    <button type="button" class="btn btn-success ">Add New
+                                                        <div className="mb-3">
+                                                            <div className="row">
+                                                                <div className="col-md-6"></div>
+                                                                <div className="col-md-6 text-right">
+                                                                    <button type="button" className="btn btn-success ">Add New
                                                                     </button>
-                                                                    <button type="submit" class="btn btn-secondary">Save
+                                                                    <button type="submit" className="btn btn-secondary">Save
                                                                     </button>
                                                                     <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse7">Save
                                                                         Next</button>

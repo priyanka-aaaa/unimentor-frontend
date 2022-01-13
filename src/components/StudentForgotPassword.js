@@ -63,7 +63,7 @@ class StudentForgotPassword extends Component {
                 email: this.state.email
 
             };
-            axios.post('https://uni-mentor-backend.vercel.app/student/forgotPassword ', obj)
+            axios.post('/student/forgotPassword ', obj)
                 .then(result => {
                     let responseJson = result;
                     // console.log(responseJson.data.success);

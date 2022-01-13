@@ -2,12 +2,11 @@
 import './App.css';
 import Studentregister from './components/Studentregister';
 import Studentlogin from './components/Studentlogin';
-
+import './components/css/dashboard.css';
+import './components/css/style.css';
 import StudentDashboard from './components/StudentDashboard';
 import Home from './components/Home';
 import StudentForgotPassword from './components/StudentForgotPassword';
-
-
 import Dashboard from './components/Student/Dashboard';
 import ApplicationProfile from './components/Student/ApplicationProfile';
 import Profile from './components/Student/Profile';
@@ -15,14 +14,16 @@ import Document from './components/Student/Document';
 import StudentPersonalInformation from './StudentPersonalInformation';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
+import UniversityDashboard from './components/university/Dashboard';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+import UniversityCourses from './components/university/UniversityCourses';
+import UniversityProfile from './components/university/UniversityProfile';
+// import Counter from './components/Student/Counter';
 function App() {
   return (
     <div>
 
-
-
+      {/* <Counter /> */}
 
 
       <Router>
@@ -61,7 +62,13 @@ function App() {
 
 
 
+            {/* start for university dashboard */}
+            <Route path='/UniversityDashboard' component={UniversityDashboard} />
+            <Route path='/UniversityCourses' component={UniversityCourses} />
+            <Route path='/UniversityProfile' component={UniversityProfile} />
 
+            
+            {/* end for university dashboard */}
 
           </Switch>
         </div>

@@ -42,7 +42,7 @@ export default function Studentregister() {
                 phone: phone
 
             };
-            axios.post('https://uni-mentor-backend.vercel.app/student/register', obj)
+            axios.post('/student/register', obj)
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {
