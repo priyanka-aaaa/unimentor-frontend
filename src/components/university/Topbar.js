@@ -13,16 +13,16 @@ class Topbar extends Component {
         }
     }
     logout = () => {
-        localStorage.removeItem("userData");
+        localStorage.removeItem("universityData");
         localStorage.clear(); 
     }
     componentWillMount() {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
             var b = JSON.parse(a);
             console.log(b);
-            console.log(b.data.student.email);
-            var user_email = b.data.student.email;
+            console.log(b.data.university.email);
+            var user_email = b.data.university.email;
             this.setState({ email: user_email });
         }
         else {
@@ -33,7 +33,7 @@ class Topbar extends Component {
     }
     render() {
         if (this.state.redirectToReferrer) {
-            return (<Redirect to={'/Studentlogin'} />)
+            return (<Redirect to={'/Universitylogin'} />)
         }
         return (
             <div>

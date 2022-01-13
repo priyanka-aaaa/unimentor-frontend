@@ -18,6 +18,9 @@ import UniversityDashboard from './components/university/Dashboard';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import UniversityCourses from './components/university/UniversityCourses';
 import UniversityProfile from './components/university/UniversityProfile';
+import Universitylogin from './components/Universitylogin';
+import Universityregister from './components/Universityregister';
+
 // import Counter from './components/Student/Counter';
 function App() {
   return (
@@ -61,8 +64,10 @@ function App() {
             <Route path='/StudentPersonalInformation' component={StudentPersonalInformation} />
 
 
-
+            <Route path='/Universitylogin' component={Universitylogin} />
+            <Route path='/Universityregister' component={Universityregister} />
             {/* start for university dashboard */}
+
             <Route path='/UniversityDashboard' component={UniversityDashboard} />
             <Route path='/UniversityCourses' component={UniversityCourses} />
             <Route path='/UniversityProfile' component={UniversityProfile} />
