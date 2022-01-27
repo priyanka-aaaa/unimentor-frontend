@@ -7,11 +7,6 @@ import Footer from './Footer';
 class Dashboard extends Component {
 
     render() {
-
-
-
-
-
         return (
             <div id="page-top">
 

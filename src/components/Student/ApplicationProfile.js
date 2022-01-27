@@ -32,7 +32,7 @@ export default function Studentregister() {
     const [city, setcity] = useState();
     const [address, setaddress] = useState();
     const [zipcode, setzipcode] = useState();
-    const [communication_address, setcommunication_address] = useState();
+    const [communication_address, setcommunication_address] = useState("no");
     // end for address
     // start for family
     const [familyRelationship, setfamilyRelationship] = useState();
@@ -98,6 +98,9 @@ export default function Studentregister() {
     const [recommendationnumber, setrecommendationnumber] = useState();
     const [recommendationaddress, setrecommendationaddress] = useState();
     const [recommendationletter, setrecommendationletter] = useState();
+
+
+
     //end for recommendation
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -108,6 +111,214 @@ export default function Studentregister() {
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
+        //start for fetch personal information
+        axios.get('/student/personalInformation', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    var student_personal = res.data.studentPersonalInformation;
+                    setsalutation(student_personal.salutation);
+                    setfirstName(student_personal.firstName);
+                    setmiddleName(student_personal.middleName);
+                    setlastName(student_personal.lastName);
+                    setotherName(student_personal.otherName);
+                    setgender(student_personal.gender);
+                    setdateOfBirth(student_personal.dateOfBirth);
+                    setcountryOfBirth(student_personal.countryOfBirth);
+                    setnationality(student_personal.nationality);
+                    setdualNationality(student_personal.dualNationality);
+                    setmaritalStatus(student_personal.maritalStatus);
+                    setdifferentlyAble(student_personal.differentlyAble);
+                    setpassport(student_personal.passport);
+                    setaadharCard(student_personal.aadharCard);
+                    setfirstLanguage(student_personal.firstLanguage);
+                    setvisa(student_personal.visa);
+                    setrefusedVisa(student_personal.refusedVisa);
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for fetch personal information
+        //start for address
+        axios.get('/student/address', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+
+                    var studentAddress = res.data.studentAddress;
+                    setcountry(studentAddress.country);
+                    setstate(studentAddress.state);
+                    setcity(studentAddress.city);
+                    setaddress(studentAddress.address);
+                    setzipcode(studentAddress.zipcode);
+                    setcommunication_address(studentAddress.communication_address);
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for address
+        //start for family
+        axios.get('/student/family', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var MystudentFamily = res.data.studentFamily;
+                    setfamilyRelationship(MystudentFamily.relationship);
+                    setfamilySalutation(MystudentFamily.salutation);
+                    setfamilyfirstName(MystudentFamily.firstName);
+                    setfamilymiddleName(MystudentFamily.middleName);
+                    setfamilylastName(MystudentFamily.lastName);
+                    setfamilyemail(MystudentFamily.email);
+                    setfamilymobile(MystudentFamily.mobile);
+                    setfamilyoccupation(MystudentFamily.occupation);
+                    setfamilyqualification(MystudentFamily.qualification);
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for family
+        //start for education
+        axios.get('/student/education', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var ResultstudentEducation = res.data.studentEducation;
+                    seteducationhighestEducation(ResultstudentEducation.highestEducation);
+                    seteducationstatus(ResultstudentEducation.status);
+                    seteducationspecialization(ResultstudentEducation.specialization);
+                    seteducationdegree(ResultstudentEducation.degree);
+                    seteducationgradePercentage(ResultstudentEducation.gradePercentage);
+                    seteducationmarks(ResultstudentEducation.marks);
+                    seteducationattendedForm(ResultstudentEducation.attendedForm);
+                    seteducationinstitution(ResultstudentEducation.institution);
+                    seteducationaffiliationUniversity(ResultstudentEducation.affiliationUniversity);
+                    seteducationlanguage(ResultstudentEducation.language);
+                    seteducationcountry(ResultstudentEducation.country);
+                    seteducationstate(ResultstudentEducation.state);
+                    seteducationcity(ResultstudentEducation.city);
+                    seteducationaddress(ResultstudentEducation.address);
+                    seteducationzipcode(ResultstudentEducation.zipcode);
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for education
+        //start for score
+        axios.get('/student/score', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var resultStudentScore = res.data.studentScore;
+                    setscoremarks(resultStudentScore.marks);
+                    setscoreenglishProficiency(resultStudentScore.englishProficiency);
+                    setscoregre(resultStudentScore.gre);
+                    setscoresat(resultStudentScore.sat);
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for score
+        //start for work experience
+        axios.get('/student/experience', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var resultstudentExperience = res.data.studentExperience;
+                    setexperiencestatus(resultstudentExperience.status);
+                    setexperiencetype(resultstudentExperience.type);
+                    setexperienceorganization(resultstudentExperience.organization);
+                    setexperiencedesignation(resultstudentExperience.designation);
+                    setexperiencerole(resultstudentExperience.role);
+                    setexperiencestarted(resultstudentExperience.started);
+                    setexperienceended(resultstudentExperience.ended);
+                    setexperiencecountry(resultstudentExperience.country);
+                    setexperiencecity(resultstudentExperience.city);
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for work experience
+        //start for activity
+        axios.get('/student/activity', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var resultActivity = res.data.studentActivity;
+                    setactivityactivityStatus(resultActivity.activityStatus);
+                    setactivityactivity(resultActivity.activity);
+                    setactivityposition(resultActivity.position);
+                    setactivitydescription(resultActivity.description);
+                    setactivitystarted(resultActivity.started);
+                    setactivityended(resultActivity.ended);
+                    setactivityapply(resultActivity.apply);
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for activity
+        //start for recommendation
+        axios.get('/student/profileRecommendation', { headers: { 'Authorization': mytoken } })
+            .then(function (res) {
+                console.log(res.data);
+                if (res.data.success === true) {
+                    var resultstudentProfileRecommendation = res.data.studentProfileRecommendation;
+                    setrecommendationtype(resultstudentProfileRecommendation.type);
+                    setrecommendationorganization(resultstudentProfileRecommendation.organization);
+                    setrecommendationrecommenderName(resultstudentProfileRecommendation.recommenderName);
+                    setrecommendationemail(resultstudentProfileRecommendation.email);
+                    setrecommendationrelation(resultstudentProfileRecommendation.relation);
+                    setrecommendationdesignation(resultstudentProfileRecommendation.designation);
+                    setrecommendationnumber(resultstudentProfileRecommendation.number);
+                    setrecommendationaddress(resultstudentProfileRecommendation.address);
+                    setrecommendationletter(resultstudentProfileRecommendation.letter);
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for recommendation
     }, [])
     function Personal_Information(event) {
         event.preventDefault();
@@ -146,11 +357,9 @@ export default function Studentregister() {
             });
     }
     function application_address(event) {
-
         event.preventDefault();
+        console.log(communication_address);
         const obj = {
-
-
             country: country,
             state: state,
             city: city,
@@ -383,7 +592,7 @@ export default function Studentregister() {
 
                                             <div className="card">
                                                 <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
-                                                    Personal Information
+                                                <strong>1</strong>  Personal Information
 
                                                 </a>
                                                 <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
@@ -658,7 +867,7 @@ export default function Studentregister() {
                                         </div>
                                         <div className="card">
                                             <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo">
-                                                Address & Contact
+                                            <strong>2</strong>   Address & Contact
                                             </a>
                                             <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
                                                 <div className="card-body">
@@ -735,7 +944,15 @@ export default function Studentregister() {
                                                                         <input
                                                                             value={communication_address}
                                                                             onChange={(e) => setcommunication_address(e.target.value)}
-                                                                            type="radio" name="address_check" checked="" /> Yes</label><label htmlFor="0" className="m-3"><input type="radio" name="address_check" /> No</label>
+                                                                            checked={communication_address === "yes"}
+                                                                            value="yes"
+                                                                            type="radio" name="address_check" /> Yes</label>
+                                                                    <label htmlFor="0" className="m-3"><input type="radio" name="address_check"
+                                                                        value={communication_address}
+                                                                        onChange={(e) => setcommunication_address(e.target.value)}
+                                                                        checked={communication_address === "no"}
+                                                                        value="no"
+                                                                    /> No</label>
                                                                 </div>
                                                             </div>
                                                             <div className="clearfix"></div>
@@ -761,7 +978,7 @@ export default function Studentregister() {
                                         </div>
                                         <div className="card">
                                             <a className="card-header" data-bs-toggle="collapse" href="#collapse3">
-                                                Family Information
+                                            <strong>3</strong> Family Information
                                             </a>
                                             <div id="collapse3" className="collapse" data-bs-parent="#accordion">
                                                 <div className="card-body">
@@ -913,7 +1130,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse4">
-                                            Education
+                                        <strong>4</strong>  Education
                                         </a>
                                         <div id="collapse4" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -947,7 +1164,14 @@ export default function Studentregister() {
                                                                         <span className="ant-radio ant-radio-checked"><input
                                                                             value={educationstatus}
                                                                             onChange={(e) => seteducationstatus(e.target.value)}
-                                                                            name="education_status_0" type="radio" className="ant-radio-input" value="Pursuing" checked="" /><span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input name="education_status_0" type="radio" className="ant-radio-input" value="Completed" /><span className="ant-radio-inner"></span></span>
+                                                                            checked={educationstatus === "Pursuing"}
+                                                                            name="education_status_0" type="radio" className="ant-radio-input" value="Pursuing" />
+                                                                            <span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                                                value={educationstatus}
+                                                                                onChange={(e) => seteducationstatus(e.target.value)}
+                                                                                checked={educationstatus === "Completed"}
+                                                                                value="Completed"
+                                                                                name="education_status_0" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
                                                                         <span>Completed</span></label> <br />
                                                                 </div>
                                                             </div>
@@ -1145,7 +1369,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse5">
-                                            Test Scores
+                                        <strong>5</strong>  Test Scores
                                         </a>
                                         <div id="collapse5" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1169,10 +1393,12 @@ export default function Studentregister() {
                                                                     English Proficiency Test?</label><br /><input
                                                                         value={scoreenglishProficiency}
                                                                         onChange={(e) => setscoreenglishProficiency(e.target.value)}
-                                                                        type="radio" id="1" name="has_eng" value="1" /><label className="mr-1" htmlFor="1">Yes</label>&nbsp;&nbsp;<input
+                                                                        checked={scoreenglishProficiency === "yes"}
+                                                                        type="radio" id="1" name="has_eng" value="yes" /><label className="mr-1" htmlFor="1">Yes</label>&nbsp;&nbsp;<input
                                                                         value={scoreenglishProficiency}
                                                                         onChange={(e) => setscoreenglishProficiency(e.target.value)}
-                                                                        type="radio" id="0" name="has_eng" value="0" checked="" /><label className="mr-1" htmlFor="0">No</label>&nbsp;&nbsp;<br /></div>
+                                                                        checked={scoreenglishProficiency === "no"}
+                                                                        type="radio" id="0" name="has_eng" value="no" /><label className="mr-1" htmlFor="0">No</label>&nbsp;&nbsp;<br /></div>
                                                             </div>
                                                         </div>
 
@@ -1182,10 +1408,12 @@ export default function Studentregister() {
                                                                     GRE/GMAT?</label><br /><input
                                                                         value={scoregre}
                                                                         onChange={(e) => setscoregre(e.target.value)}
+                                                                        checked={scoregre === "yes"}
                                                                         type="radio" id="has_pg_1" name="has_pg" value="yes" /><label className="mr-1" htmlFor="has_pg_1">Yes</label>&nbsp;&nbsp;<input
                                                                         value={scoregre}
                                                                         onChange={(e) => setscoregre(e.target.value)}
-                                                                        type="radio" id="has_pg_0" name="has_pg" value="no" checked="" /><label className="mr-1" htmlFor="has_pg_0">No</label>&nbsp;&nbsp;<br /></div>
+                                                                        checked={scoregre === "no"}
+                                                                        type="radio" id="has_pg_0" name="has_pg" value="no" /><label className="mr-1" htmlFor="has_pg_0">No</label>&nbsp;&nbsp;<br /></div>
                                                             </div>
                                                         </div>
 
@@ -1195,10 +1423,13 @@ export default function Studentregister() {
                                                                     SAT/ACT?</label><br /><input
                                                                         value={scoresat}
                                                                         onChange={(e) => setscoresat(e.target.value)}
-                                                                        type="radio" id="has_ug_1" name="has_ug" value="yes" /><label className="mr-1" htmlFor="has_ug_1">Yes</label>&nbsp;&nbsp;<input
+                                                                        checked={scoresat === "yes"}
+                                                                        type="radio" id="has_ug_1" name="has_ug" value="yes" /><label className="mr-1" htmlFor="has_ug_1">Yes</label>&nbsp;&nbsp;
+                                                                    <input
                                                                         value={scoresat}
                                                                         onChange={(e) => setscoresat(e.target.value)}
-                                                                        type="radio" id="has_ug_0" name="has_ug" value="no" checked="" /><label className="mr-1" htmlFor="has_ug_0">No</label>&nbsp;&nbsp;<br /></div>
+                                                                        checked={scoresat === "yes"}
+                                                                        type="radio" id="has_ug_0" name="has_ug" value="no" /><label className="mr-1" htmlFor="has_ug_0">No</label>&nbsp;&nbsp;<br /></div>
                                                             </div>
                                                         </div>
 
@@ -1227,7 +1458,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse6">
-                                            Work Experience
+                                        <strong>6</strong>  Work Experience
                                         </a>
                                         <div id="collapse6" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1246,7 +1477,7 @@ export default function Studentregister() {
                                                                         <span className="ant-radio-inner"></span></span><span>Ongoing</span></label>
                                                                     <label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
                                                                         value={experiencestatus}
-                                                                        onChange={(e) => setexperiencestatus(e.target.value)} name="is_current_job_0" type="radio" className="ant-radio-input" value="Completed" checked="" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
+                                                                        onChange={(e) => setexperiencestatus(e.target.value)} name="is_current_job_0" type="radio" className="ant-radio-input" value="Completed" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
                                                                     <br />
                                                                 </div>
                                                             </div>
@@ -1362,7 +1593,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse7">
-                                            Extra Curricular Activities
+                                        <strong>7</strong>  Extra Curricular Activities
                                         </a>
                                         <div id="collapse7" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1385,7 +1616,7 @@ export default function Studentregister() {
                                                                             <input
                                                                                 value={activityactivityStatus}
                                                                                 onChange={(e) => setactivityactivityStatus(e.target.value)}
-                                                                                name="activity_status_0" type="radio" className="ant-radio-input" value="Completed" checked="" />
+                                                                                name="activity_status_0" type="radio" className="ant-radio-input" value="Completed" />
                                                                             <span className="ant-radio-inner"></span></span>
                                                                         <span>Completed</span></label> <br />
                                                                 </div>
@@ -1473,7 +1704,7 @@ export default function Studentregister() {
                                                                                 value={activityapply}
                                                                                 onChange={(e) => setactivityapply(e.target.value)}
 
-                                                                                name="participation_interested_0" type="radio" className="ant-radio-input" value="no" checked="" /><span className="ant-radio-inner"></span></span><span>No</span></label>
+                                                                                name="participation_interested_0" type="radio" className="ant-radio-input" value="no" /><span className="ant-radio-inner"></span></span><span>No</span></label>
                                                                     <br />
                                                                 </div>
                                                             </div>
@@ -1487,7 +1718,11 @@ export default function Studentregister() {
                                                                     </button>
                                                                     <button type="submit" className="btn btn-secondary">Save
                                                                     </button>
-                                                                    <button type="submit" data-bs-toggle="collapse8" className="btn btn-success " href="#collapse8">Save
+                                                                    <button
+                                                                     data-bs-toggle="collapse" href="#collapse8"
+                                                                    
+                                                                    
+                                                                    type="submit"  className="btn btn-success " >Save
                                                                         Next</button>
                                                                 </div>
 
@@ -1502,7 +1737,7 @@ export default function Studentregister() {
                                     </div>
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse8">
-                                            Recommendation
+                                        <strong>8</strong>    Recommendation
                                         </a>
                                         <div id="collapse8" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1513,7 +1748,7 @@ export default function Studentregister() {
                                                                 <div className="form-group"><label>Reference Type <span className="text-danger"> *</span></label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
                                                                     value={recommendationtype}
                                                                     onChange={(e) => setrecommendationtype(e.target.value)}
-                                                                    name="reference_type_0" type="radio" className="ant-radio-input" value="Professional" checked="" /><span className="ant-radio-inner"></span></span><span>Professional</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                                    name="reference_type_0" type="radio" className="ant-radio-input" value="Professional" /><span className="ant-radio-inner"></span></span><span>Professional</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
                                                                         value={recommendationtype}
                                                                         onChange={(e) => setrecommendationtype(e.target.value)}
                                                                         name="reference_type_0" type="radio" className="ant-radio-input" value="Academic" /><span className="ant-radio-inner"></span></span><span>Academic</span></label>
@@ -1583,7 +1818,7 @@ export default function Studentregister() {
                                                                 <div className="form-group"><label>Do you have letter of recommendation?</label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
                                                                     value={recommendationletter}
                                                                     onChange={(e) => setrecommendationletter(e.target.value)}
-                                                                    name="has_lor_0" type="radio" className="ant-radio-input" value="yes" checked="" /><span className="ant-radio-inner"></span></span><span>Yes</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                                    name="has_lor_0" type="radio" className="ant-radio-input" value="yes" /><span className="ant-radio-inner"></span></span><span>Yes</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
                                                                         value={recommendationletter}
                                                                         onChange={(e) => setrecommendationletter(e.target.value)}
                                                                         name="has_lor_0" type="radio" className="ant-radio-input" value="no" /><span className="ant-radio-inner"></span></span><span>No</span></label> <br /></div>

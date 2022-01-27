@@ -10,7 +10,7 @@ import '../css/dashboard.css';
 import axios from 'axios';
 import DragAndDrop from './DragAndDrop';
 class SecondaryEducation extends React.Component {
- render() {
+    render() {
         return (
             <div className="row pl-4 pr-4 mt-3">
                 <Button text="Hello from GFG"> </Button>
@@ -200,34 +200,34 @@ class Button extends React.Component {
                 <div className="col-8 col-sm-8 col-md-8 col-lg-10">
 
                     <div className="form form_doc marksheet">
-                  
-                        {/* <TenMarksheet /> */}
-                  {/* start for ten */}
-                  <div className="upload_doc d-flex flex-wrap align-items-center row">
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <p className="pl-4 pr-4 pt-0 pb-0">10th Marksheet <span className="text-danger"> *</span></p>
-                    </div>
-                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                        {this.renderElementTenMarksheet()}
 
-                    </div>
-                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                    </div>
-                </div>
-                {/* end for ten */}
-  {/* <TwelveMarksheet /> */}
+                        {/* <TenMarksheet /> */}
+                        {/* start for ten */}
+                        <div className="upload_doc d-flex flex-wrap align-items-center row">
+                            <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <p className="pl-4 pr-4 pt-0 pb-0">10th Marksheet <span className="text-danger"> *</span></p>
+                            </div>
+                            <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                                {this.renderElementTenMarksheet()}
+
+                            </div>
+                            <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
+                            </div>
+                        </div>
+                        {/* end for ten */}
+                        {/* <TwelveMarksheet /> */}
                         {/* start for twelve marksheet */}
                         <div className="upload_doc d-flex flex-wrap align-items-center row">
-                    <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                        <p className="pl-4 pr-4 pt-0 pb-0">12th Marksheet <span className="text-danger"> *</span></p>
-                    </div>
-                    <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                        {this.renderElementpassport()}
+                            <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                                <p className="pl-4 pr-4 pt-0 pb-0">12th Marksheet <span className="text-danger"> *</span></p>
+                            </div>
+                            <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                                {this.renderElementpassport()}
 
-                    </div>
-                    <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                    </div>
-                </div>
+                            </div>
+                            <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
+                            </div>
+                        </div>
                         {/* end for tweleve marksheet */}
                     </div>
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { BrowserRouter as Redirect} from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
-
+import undraw_profile from '../img/undraw_profile.svg';
 class Topbar extends Component {
     constructor(props) {
         super(props);
@@ -14,14 +14,13 @@ class Topbar extends Component {
     }
     logout = () => {
         localStorage.removeItem("universityData");
-        localStorage.clear(); 
+        localStorage.clear();
     }
     componentWillMount() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var b = JSON.parse(a);
             console.log(b);
-            console.log(b.data.university.email);
             var user_email = b.data.university.email;
             this.setState({ email: user_email });
         }
@@ -37,7 +36,7 @@ class Topbar extends Component {
         }
         return (
             <div>
-             
+
                 {/* <!-- Topbar --> */}
                 <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -86,6 +85,8 @@ class Topbar extends Component {
                                 </form>
                             </div>
                         </li>
+                     
+
 
                         {/* <!-- Nav Item - Alerts --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
@@ -208,14 +209,23 @@ class Topbar extends Component {
 
                         {/* <!-- Nav Item - User Information --> */}
                         <li className="nav-item dropdown no-arrow">
-                     
-                            <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span className="mr-2 d-none d-lg-inline text-gray-600 small">{this.state.email}</span>
-                                <button type='button' onClick={this.logout}>Log Out</button>
-                               {/* <img className="img-profile rounded-circle" src={require('../img/undraw_profile.svg')} /> */}
-                               
+
+                            <a className="nav-link dropdown-toggle" href="#collapseEleven" id="userDropdown" role="button" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">
+
+                                <img className="img-profile rounded-circle" src={undraw_profile}
+
+                                />
                             </a>
+                            <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" id="collapseEleven" data-bs-parent="#accordion" >
+                                <a className="dropdown-item" onClick={this.logout} href="" data-toggle="modal" data-target="#logoutModal">
+                                    <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+
+
+
+
                             {/* <!-- Dropdown - User Information --> */}
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">

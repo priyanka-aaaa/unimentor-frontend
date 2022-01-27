@@ -23,7 +23,7 @@ class Sidebar extends Component {
                     <hr className="sidebar-divider my-0" />
 
                     {/* <!-- Nav Item - Dashboard --> */}
-          
+
                     <li className="nav-item">
                         {/* <a className="nav-link" href="personal-profile.html">
                             <i className="fas fa-user"></i>
@@ -39,12 +39,43 @@ class Sidebar extends Component {
                             <i className="fas fa-file-alt"></i>
                             <span>Coures Listing</span></Link>
                     </li>
+
+
                     <li className="nav-item ">
-                        <Link to={'/Document'} className="nav-link" href="#">
+                        <Link to={'/UniversitySummary'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
-                            <span>FAQ</span></Link>
+                            <span>Summary Information</span></Link>
                     </li>
-                  
+                    {/* <li className="nav-item ">
+                        <Link to={'/UniversitySetting'} className="nav-link" href="#">
+                            <i className="fas fa-file-upload"></i>
+                            <span>Setting</span></Link>
+                    </li> */}
+
+                    <li className="nav-item">
+                        <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                            <i className="fas fa-user-tie"></i>
+                            <span>Setting </span>
+                        </a>
+                        <div id="collapseTen" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >
+                            <div className="bg-white py-2 collapse-inner rounded">
+                                <Link to={'/UniversityPassword'} className="collapse-item" href="#">
+
+                                    <span>Change Password</span></Link>
+                                <Link to={'/UniversityIntake'} className="collapse-item" href="#">
+
+                                    <span>Intake</span></Link>
+
+
+                            </div>
+                        </div>
+                    </li>
+
+                    <li className="nav-item ">
+                        <Link to={'/UniversitySetcommission'} className="nav-link" href="#">
+                            <i className="fas fa-file-upload"></i>
+                            <span>Set Commission</span></Link>
+                    </li>
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">
                         <button className="rounded-circle border-0" id="sidebarToggle"></button>

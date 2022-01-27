@@ -70,7 +70,7 @@ class Document extends Component {
 
                                     <i className="fa fa-trash-alt"></i>
                                     <i className="fa fa-sun-o" />
-
+                                    <i class="fas fa-pen"></i>
                                     <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
                                     <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
 

@@ -45,6 +45,18 @@ div.flex-nowrap img:hover .close {
 #uploadmyotherdocument{
     display:none;
 }
+#uploadlogo{
+    display:none;
+}
+#uploadUniversitylogo{
+    display:none;
+}
+#uploaduniversityImage{
+    display:none;
+}
+#uploadcoverpik{
+    display:none;
+}
 #uploadselectEnglish{
     display:none;
 }
