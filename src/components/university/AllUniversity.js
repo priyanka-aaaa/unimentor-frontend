@@ -27,9 +27,9 @@ export default function AllUniversity() {
 
 
         // start for fetch university
-
-        const url = "universities";
-
+        var dummy = process.env.NODE_ENV=="NODE_ENV" ? "" : "https://unimentor-backend.herokuapp.com/"
+        const url = dummy+"universities";
+        console.log()
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
