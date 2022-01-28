@@ -14,20 +14,36 @@ import FrontendFooter from './FrontendFooter';
 // start for personal information
 export default function AllUniversity() {
     let { id } = useParams();
-    // console.log(id);
     const [mounted, setMounted] = useState();
-
-
     const [data, setdata] = useState([]);
-
     const [foundedYear, setfoundedYear] = useState("");
-  
+
     //start for fetching faq
     const [formValues, setFormValues] = useState([{
         question: "", answer: ""
-     
+
     }])
+
     //end for fetching faq
+    //start for fetching admission
+    const [FormAdmissionValues, setFormAdmissionValues] = useState([{
+        point: ""
+
+    }])
+
+
+    //end for fetching admission
+
+    const [FormDocumentValues, setFormDocumentValues] = useState([{
+        document: ""
+
+    }])
+    const [FormOverviewValues, setFormOverviewValues] = useState([{
+        english: "",acceptanceRate:"",cgpa:"",course:"",courseNo:"",foundedYear:"",month:"",
+        ranking:"",rate:"",year:""
+
+    }])
+    
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -40,8 +56,8 @@ export default function AllUniversity() {
         }
         setMounted(mytoken)
         //start for fetching faq
-        const url = "/university/61dab27e05671a193cca5f81/faqs";
-        fetch(url, {
+        const url1 = '/university/' + id + '/faqs';
+        fetch(url1, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
@@ -52,9 +68,39 @@ export default function AllUniversity() {
                 setFormValues(data.universityFaqs)
             })
         //end for fetching faq
-
-
-
+        //start for fetching admission
+        const url2 = '/university/' + id + '/admissions';
+        fetch(url2, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setFormAdmissionValues(data.universityAdmissions)
+            })
+        //end for fetching admission
+        //start for fetching document
+        const url3 = '/university/' + id + '/documents';
+        fetch(url3, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setFormDocumentValues(data.universityDocuments)
+            })
+        //end for fetching document
+          //start for fetching document
+          const url4 = '/university/' + id + '/overview';
+          fetch(url4, {
+              method: 'GET',
+              headers: { 'Authorization': mytoken }
+          })
+              .then(response => response.json())
+              .then(data => {
+                  setFormOverviewValues(data.universityOverview)
+              })
+          //end for fetching document
 
     }, [])
 
@@ -159,8 +205,7 @@ export default function AllUniversity() {
                                             </div>
                                             <iframe
                                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.8351609729093!2d-113.44840898415342!3d53.56070998002452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a022e091c0b0f7%3A0xe88f7efea9cde181!2sConcordia%20University%20of%20Edmonton!5e0!3m2!1sen!2sin!4v1642487984751!5m2!1sen!2sin"
-                                                width="100%" height="450"
-                                                allowFullScreen=""
+                                                width="100%" height="450" allowFullScreen=""
                                                 loading="lazy"></iframe>
                                         </div>
                                     </div>
@@ -209,31 +254,31 @@ export default function AllUniversity() {
                                                     <h3 className="blog-title"><a href="#">Overview</a></h3>
                                                     <div className="blog-meta">
                                                         <h5>Founded year</h5>
-                                                        <p>2021</p>
+                                                        <p>{FormOverviewValues.foundedYear}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5>International Student Rate</h5>
-                                                        <p>5.5 percent in 2019/20</p>
+                                                        <p>{FormOverviewValues.rate}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5>Popular Courses</h5>
-                                                        <p>Product Design and Management(Management)</p>
+                                                        <p>{FormOverviewValues.course}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5>No. of courses</h5>
-                                                        <p>5</p>
+                                                        <p>{FormOverviewValues.courseNo}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5>English Proficiency</h5>
-                                                        <p>Four levels</p>
+                                                        <p>{FormOverviewValues.english}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5>CGPA</h5>
-                                                        <p>A+ or O</p>
+                                                        <p>{FormOverviewValues.cgpa}</p>
                                                     </div>
                                                     <div className="blog-meta">
                                                         <h5> Acceptance rate</h5>
-                                                        <p>55-60%</p>
+                                                        <p>{FormOverviewValues.acceptanceRate}</p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,11 +402,11 @@ export default function AllUniversity() {
                                                     <div className="admission-list">
                                                         <ul className="nav nav-tabs" role="tablist">
                                                             <li className="nav-item">
-                                                                <a className="nav-link active" data-toggle="tab"
+                                                                <a className="nav-link active" data-bs-toggle="tab"
                                                                     href="#home">Application</a>
                                                             </li>
                                                             <li className="nav-item">
-                                                                <a className="nav-link" data-toggle="tab" href="#menu1">Documents</a>
+                                                                <a className="nav-link" data-bs-toggle="tab" href="#menu1">Documents</a>
                                                             </li>
                                                         </ul>
 
@@ -369,41 +414,28 @@ export default function AllUniversity() {
                                                         <div className="tab-content">
                                                             <div id="home" className="container tab-pane active"><br />
                                                                 <h5>Application</h5>
-                                                                <ul>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Visit the
-                                                                        official website of the institution.</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Click on
-                                                                        'Apply Now' or 'Register Here'</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Complete
-                                                                        filling your education history with all the qualifications.
-                                                                    </li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Fill in the
-                                                                        details of your employment history.</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Fill in your
-                                                                        personal statement.</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Submit the
-                                                                        application form by paying the mentioned fees.</li>
-                                                                </ul>
+                                                                {/* start for fetching admission */}
+                                                                {FormAdmissionValues.map((element, index) => (
+
+                                                                    <ul key={index}>
+                                                                        <li><span><i className="fa fa-check-circle"></i></span>{element.point || ""}</li>
+
+                                                                    </ul>
+                                                                ))}
+                                                                {/* start for fetching admission */}
                                                             </div>
                                                             <div id="menu1" className="container tab-pane fade"><br />
                                                                 <h5>Documents</h5>
-                                                                <ul>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>All official
-                                                                        academic Transcripts and grade cards</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Passport size
-                                                                        photographs </li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Passport
-                                                                        photocopy</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Visa</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Updated
-                                                                        CV/Resume</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>English
-                                                                        Language Proficiency Test Scores</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Letter of
-                                                                        Recommendations</li>
-                                                                    <li><span><i className="fa fa-check-circle"></i></span>Statement of
-                                                                        Purpose</li>
-                                                                </ul>
+                                                                {/* start for fetching admission */}
+                                                                {FormDocumentValues.map((element, index) => (
+
+                                                                    <ul key={index}>
+                                                                        <li><span><i className="fa fa-check-circle"></i></span>{element.document || ""}</li>
+
+                                                                    </ul>
+                                                                ))}
+                                                                {/* start for fetching admission */}
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -439,14 +471,13 @@ export default function AllUniversity() {
                                             <div className="blog-item" id="brow-coures">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Browse Courses</a></h3>
-                                                    <div className="row mb-3" >
+                                                    <div className="row mb-3">
                                                         <div className="col-sm-6 mb-4">
                                                             <div className="subcourses_courseBox__3deGG">
                                                                 <div className="subcourses_program__3pkFj col-sm-12 p-0"><img
                                                                     src="https://leverageedunew.s3.us-east-1.amazonaws.com/leverageapp/assets/CoursesImage/project-management.png"
                                                                     alt="leverage" />
-                                                                    <div ><span
-                                                                        className="subcourses_h-title__sLV10">Bachelor of
+                                                                    <div><span className="subcourses_h-title__sLV10">Bachelor of
                                                                         Business</span><span
                                                                             className="subcourses_subHeading__zdEIg">Management</span>
                                                                     </div>
@@ -456,7 +487,6 @@ export default function AllUniversity() {
                                                                     <div className="col-6 col-sm-4 clearfix">
                                                                         <div className="subcourses_details__3g8AB">
                                                                             <h3 className="subcourses_c-desc__Dzhnk">AUD
-
                                                                                 120960
                                                                             </h3>
                                                                             <p className="subcourses_c-title__2MKAy">Fee</p>
@@ -495,7 +525,7 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-sm-12">
-                                                                        <div className="subcourses_line__T3g-V" >
+                                                                        <div className="subcourses_line__T3g-V">
                                                                         </div>
                                                                         <p className="subcourses_description__1v-2y">This flexible
                                                                             cross-disciplinary business degree allows you to develop
@@ -507,10 +537,8 @@ export default function AllUniversity() {
                                                             </div>
                                                             <div className="text-right w-100">
                                                                 <button className="btn btn-primary  w-100">Apply Now
-
                                                                     <img
-                                                                        src="https://images.leverageedu.com/university/whitearrow.svg"
-                                                                    />
+                                                                        src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -519,8 +547,7 @@ export default function AllUniversity() {
                                                                 <div className="subcourses_program__3pkFj col-sm-12 p-0"><img
                                                                     src="https://leverageedunew.s3.us-east-1.amazonaws.com/leverageapp/assets/CoursesImage/project-management.png"
                                                                     alt="leverage" />
-                                                                    <div ><span
-                                                                        className="subcourses_h-title__sLV10">Master of Global
+                                                                    <div><span className="subcourses_h-title__sLV10">Master of Global
                                                                         Studies</span><span
                                                                             className="subcourses_subHeading__zdEIg">Management</span>
                                                                     </div>
@@ -538,7 +565,6 @@ export default function AllUniversity() {
                                                                     <div className="col-6 col-sm-4">
                                                                         <div className="subcourses_details__3g8AB">
                                                                             <h3 className="subcourses_c-desc__Dzhnk">24
-
                                                                                 Months
                                                                             </h3>
                                                                             <p className="subcourses_c-title__2MKAy">Duration</p>
@@ -569,7 +595,7 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-sm-12">
-                                                                        <div className="subcourses_line__T3g-V" >
+                                                                        <div className="subcourses_line__T3g-V">
                                                                         </div>
                                                                         <p className="subcourses_description__1v-2y">The Master of
                                                                             Global Studies has been designed to prepare you to
@@ -582,8 +608,7 @@ export default function AllUniversity() {
                                                             <div className="text-right w-100"><button
                                                                 className="btn btn-primary  w-100">Apply Now
                                                                 <img
-                                                                    src="https://images.leverageedu.com/university/whitearrow.svg"
-                                                                />
+                                                                    src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                             </button></div>
                                                         </div>
                                                         <div className="col-sm-6 mb-4">
@@ -591,8 +616,7 @@ export default function AllUniversity() {
                                                                 <div className="subcourses_program__3pkFj col-sm-12 p-0"><img
                                                                     src="https://leverageedunew.s3.us-east-1.amazonaws.com/leverageapp/assets/CoursesImage/project-management.png"
                                                                     alt="leverage" />
-                                                                    <div ><span
-                                                                        className="subcourses_h-title__sLV10">Bachelor of
+                                                                    <div><span className="subcourses_h-title__sLV10">Bachelor of
                                                                         International Studies</span><span
                                                                             className="subcourses_subHeading__zdEIg">Management</span>
                                                                     </div>
@@ -640,7 +664,7 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-sm-12">
-                                                                        <div className="subcourses_line__T3g-V" >
+                                                                        <div className="subcourses_line__T3g-V">
                                                                         </div>
                                                                         <p className="subcourses_description__1v-2y">A degree in
                                                                             international studies will guide you toward a multitude
@@ -653,8 +677,7 @@ export default function AllUniversity() {
                                                             <div className="text-right w-100"><button
                                                                 className="btn btn-primary  w-100">Apply Now
                                                                 <img
-                                                                    src="https://images.leverageedu.com/university/whitearrow.svg"
-                                                                />
+                                                                    src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                             </button></div>
                                                         </div>
                                                         <div className="col-sm-6 mb-4">
@@ -662,8 +685,7 @@ export default function AllUniversity() {
                                                                 <div className="subcourses_program__3pkFj col-sm-12 p-0"><img
                                                                     src="https://leverageedunew.s3.us-east-1.amazonaws.com/leverageapp/assets/CoursesImage/engineering.png"
                                                                     alt="leverage" />
-                                                                    <div ><span
-                                                                        className="subcourses_h-title__sLV10">Bachelor of
+                                                                    <div><span className="subcourses_h-title__sLV10">Bachelor of
                                                                         Engineering (Honours)</span><span
                                                                             className="subcourses_subHeading__zdEIg">Engineering</span>
                                                                     </div>
@@ -711,7 +733,7 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-sm-12">
-                                                                        <div className="subcourses_line__T3g-V" >
+                                                                        <div className="subcourses_line__T3g-V">
                                                                         </div>
                                                                         <p className="subcourses_description__1v-2y">Studying the
                                                                             Bachelor of Engineering (Honours) gives you a number of
@@ -726,65 +748,44 @@ export default function AllUniversity() {
                                                             <div className="text-right w-100"><button
                                                                 className="btn btn-primary  w-100">Apply Now
                                                                 <img
-                                                                    src="https://images.leverageedu.com/university/whitearrow.svg"
-                                                                />
+                                                                    src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                             </button></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* start for fetching faq */}
-                                        {formValues.map((element, index) => (
 
-                                            <div className="mb-12" key={index}>
-                                                <div className="row">
-                                                    <div className="col">
-                                                        <label htmlFor="fname" className="form-label">Question</label>
-                                                        <input type="text" className="form-control" placeholder="" name="question"
-                                                            value={element.question || ""} 
-                                                            // onChange={e => (index, e)}handleChange
-                                                        />
-                                                    </div>
-                                                </div>
-                                                <div className="row">
-                                                    <div className="col">
-                                                        <label htmlFor="fname" className="form-label">Answer</label>
-                                                        <input type="text" className="form-control" placeholder="" name="answer"
-                                                            value={element.answer || ""} 
-                                                            // onChange={e => handleChange(index, e)}
-
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        ))}
-                                        {/* end for fetching faq */}
                                         <div className="col-lg-12 mb-3 mt-5">
+
+                                            {/* start for fetching faq */}
 
                                             <div id="accordion" className="blog-item">
                                                 <div className=" blog-content">
                                                     <h3 className="blog-title"><a href="#">FAQ</a></h3>
                                                     {formValues.map((element, index) => (
                                                         <div key={index}>
-                                                    <div className="card">
-                                                        <a className="card-header  card-link" data-toggle="collapse" href="#collapseOne">
-                                                        {element.question || ""} 
-                                                        </a>
-                                                        <div id="collapseOne" className="collapse" data-parent="#accordion">
-                                                            <div className="card-body">
-                                                            {element.answer || ""} 
+                                                            <div className="card">
+                                                                <a className="card-header  card-link"
+
+                                                                    data-bs-toggle="collapse" href={"#collapse" + index}
+                                                                >
+                                                                    {element.question || ""}
+                                                                </a>
+                                                                <div id={"collapse" + index} className="collapse" data-bs-parent="#accordion">
+                                                                    <div className="card-body">
+                                                                        {element.answer || ""}
+                                                                    </div>
+                                                                </div>
                                                             </div>
+
+
                                                         </div>
-                                                    </div>
-                                                   
-                                                  
-                                                    </div>
-                                                      ))}
+                                                    ))}
                                                 </div>
                                             </div>
 
+                                            {/* end for fetching faq */}
                                         </div>
 
 
@@ -797,10 +798,9 @@ export default function AllUniversity() {
                                                         <div className="slick-list">
                                                             <div className="slick-track">
                                                                 <div data-index="0" className="slick-slide slick-active slick-current"
-                                                                    tabIndex="-1" aria-hidden="false"
-                                                                >
+                                                                    tabIndex="-1" aria-hidden="false">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08">
                                                                                 <img className="similar_boxImage__2xy_q"
                                                                                     src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/us/notredameuniversity.png"
@@ -821,9 +821,9 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
                                                                 <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
-                                                                    aria-hidden="false" >
+                                                                    aria-hidden="false">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08"><img
                                                                                 className="similar_boxImage__2xy_q"
                                                                                 src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/standrewsuniversity.png"
@@ -845,9 +845,9 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
                                                                 <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
-                                                                    aria-hidden="false" >
+                                                                    aria-hidden="false">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08"><img
                                                                                 className="similar_boxImage__2xy_q"
                                                                                 src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/canada/dalhousie.jpg"
@@ -869,9 +869,9 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
                                                                 <div data-index="3" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true" >
+                                                                    aria-hidden="true">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08"><img
                                                                                 className="similar_boxImage__2xy_q"
                                                                                 src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/2019-10-25_45_StaffordshireUniversity-cover.jpg"
@@ -895,9 +895,9 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
                                                                 <div data-index="4" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true" >
+                                                                    aria-hidden="true">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08"><img
                                                                                 className="similar_boxImage__2xy_q"
                                                                                 src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/2019-10-19_44_universityofreading.jpg"
@@ -921,9 +921,9 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
                                                                 <div data-index="5" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true" >
+                                                                    aria-hidden="true">
                                                                     <div>
-                                                                        <div tabIndex="-1" >
+                                                                        <div tabIndex="-1">
                                                                             <div className="similar_box__2Lq08"><img
                                                                                 className="similar_boxImage__2xy_q"
                                                                                 src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/australia/2020-04-02_09_uow211846.jpg"
@@ -964,7 +964,6 @@ export default function AllUniversity() {
                         </div>
                     </div>
                     {/* <!-- Blog Section End --> */}
-
                 </div>
                 {/* <!-- Main content End --> */}
 
@@ -996,7 +995,7 @@ export default function AllUniversity() {
                     </div>
                 </div>
 
-            </body>
+            </body >
 
 
 
@@ -1006,7 +1005,7 @@ export default function AllUniversity() {
 
 
 
-        </div>
+        </div >
 
 
     );

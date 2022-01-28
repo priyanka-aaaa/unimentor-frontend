@@ -166,7 +166,7 @@ h6 {
   padding-right: 220px;
 }
 .offwrap {
-  cursor: url(assets/images/close.png), auto;
+  
   width: 100%;
   left: 100%;
   transition: all 0.8s ease-out 0s;
@@ -302,7 +302,7 @@ ul {
   background-color: #000060;
 }
 .bg2 {
-  background: url(assets/images/bg/counter-bg.png);
+
   background-color: #fff;
   background-size: cover;
   background-repeat: no-repeat;
@@ -6587,7 +6587,7 @@ body .search-modal .close:hover {
   bottom: 150px;
 }
 .rs-services-single .services-add {
-  /* background: url(assets/images/services/single/contact-phone.jpg); */
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -11585,69 +11585,4 @@ span.btn.btn-primary.loct {
     opacity: 1;
     transform: none;
   }
-}
-
-
-
-.subcourses_courseBox__3deGG {
-  min-height: 250px;
-  padding: 24px 24px 16px;
-  border: 1px solid #f5f6f8;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  -webkit-box-shadow: 0 16px 32px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 2%);
-  box-shadow: 0 16px 32px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 2%);
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
-  width: 100%;
-}
-
-.subcourses_courseBox__3deGG .subcourses_program__3pkFj {
-  display: -moz-box;
-  display: flex;
-  -moz-box-align: center;
-  align-items: center;
-}
-
-.subcourses_courseBox__3deGG .subcourses_h-title__sLV10 {
-  color: #002147;
-  display: inline-block;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  margin-bottom: 8px;
-}
-
-.subcourses_subHeading__zdEIg {
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 20px;
-  display: -moz-box;
-  display: flex;
-  -moz-box-align: center;
-  align-items: center;
-  color: #8594a7;
-}
-
-.subcourses_courseBox__3deGG .subcourses_line__T3g-V {
-  border: 1px solid #e0e4e9;
-  margin: 16px 0 12px;
-}
-
-.subcourses_courseBox__3deGG .subcourses_details__3g8AB {
-  float: left;
-}
-
-.subcourses_courseBox__3deGG .subcourses_details__3g8AB .subcourses_c-desc__Dzhnk {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 20px;
-  margin-bottom: 0;
-  color: #002147;
-}
-.subcourses_program__3pkFj img {
-  margin-right: 12px;
 }

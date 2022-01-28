@@ -34,25 +34,8 @@ const CoursesFee = () => {
         })
             .then(response => response.json())
             .then(data => {
-
+                setFormValues(data.universityCourses)
                 // this.setState({ data: data.universityCourses })
-                console.log("asd");
-                console.log(data.universityCourses);
-                var myresults = data.universityCourses;
-                if (Object.keys(myresults).length === 0) {
-                    // setFormValues([...formValues, {
-                    //     // courseName: "", duration: "", tuitionFee: "", studyField: "",
-                    //     // fee: "", courseLevel: "", cgpa: "", eligibility: "", english: "", website: "", description: "", exam: "",
-                    //     // _id: "null"
-                    // }])
-                }
-                else {
-                    setFormValues(data.universityCourses)
-                }
-
-console.log("formValues");
-console.log(formValues);
-
             })
 
     }, [])
