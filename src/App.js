@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './App.css';
 import './components/css/dashboard.css';
 import './components/css/style.css';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 
 import Studentregister from './components/Studentregister';
 import Studentlogin from './components/Studentlogin';
@@ -27,7 +27,7 @@ import Commission from './components/university/Commission';
 import Summary from './components/university/Summary';
 import AllUniversity from './components/university/AllUniversity';
 import UniveristyPage from './components/university/UniveristyPage';
-
+import UniversityFilter from './components/universityFilter'
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminLogin from './components/AdminLogin';
 import AdminStudent from './components/admin/AdminStudent';
@@ -105,8 +105,8 @@ function App() {
             <Route path='/Profile' component={Profile} />
             <Route path='/Document' component={Document} />
             <Route path='/StudentPersonalInformation' component={StudentPersonalInformation} />
-
-
+          
+            <Route path='/FilterUniversity' component ={UniversityFilter} />
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />
             <Route path='/UniversitySetcommission' component={Commission} />
