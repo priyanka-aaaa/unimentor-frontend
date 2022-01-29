@@ -35,7 +35,7 @@ export default function Universitylogin() {
             };
             var myurl = process.env.REACT_APP_SERVER_URL;
          
-            axios.post(myurl + '/university/login', obj)
+            axios.post(myurl + 'university/login', obj)
                 .then(result => {
                     
                     let responseJson = result;

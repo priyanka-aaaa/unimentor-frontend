@@ -111,8 +111,9 @@ export default function Studentregister() {
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
+        var myurl = process.env.REACT_APP_SERVER_URL;
         //start for fetch personal information
-        axios.get('/student/personalInformation', { headers: { 'Authorization': mytoken } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'student/personalInformation', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
                 if (res.data.success === true) {
                     var student_personal = res.data.studentPersonalInformation;
