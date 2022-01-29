@@ -1,9 +1,5 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import './App.css';
-import './components/css/dashboard.css';
-import './components/css/style.css';
+
 import Home from './components/Home/Home';
 
 import Studentregister from './components/Studentregister';

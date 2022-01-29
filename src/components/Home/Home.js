@@ -1279,7 +1279,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        {/* Search Modal End */}
+      {/* Search Modal End */}
         {/* modernizr js */}
         {/* jquery latest version */}
         {/* Bootstrap v4.4.1 js */}
