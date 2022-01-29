@@ -27,8 +27,7 @@ export default function AllUniversity() {
 
 
         // start for fetch university
-        var dummy = process.env.NODE_ENV == "1development" ? "" : "http://127.0.0.1:5000/universities"
-        const url = dummy+"universities";
+        const url = process.env.REACT_APP_SERVER_URL+"universities";
         console.log(url)
         fetch(url, {
             method: 'GET',
