@@ -34,7 +34,7 @@ const UniversityCourses = () => {
         console.log(value);
         seteditId(value);
         setwidth("1600px");
-        axios.get('/university/61dab27e05671a193cca5f81/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);

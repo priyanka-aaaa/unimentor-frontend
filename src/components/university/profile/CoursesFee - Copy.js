@@ -73,7 +73,7 @@ const CoursesFee = () => {
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-                await axios.post('/university/courses', item, { headers: { 'Authorization': mounted } })
+                await axios.post(process.env.REACT_APP_SERVER_URL+'university/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
                         console.log(res.data);
                         if (res.data.success === true) {
@@ -89,7 +89,7 @@ const CoursesFee = () => {
 
             }
             else {
-                await axios.put('/university/courses/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL+'university/courses/' + item._id, item, { headers: { 'Authorization': mounted } })
                     // await axios.put('/university/61dab27e05671a193cca5f81/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
                         console.log(res.data);

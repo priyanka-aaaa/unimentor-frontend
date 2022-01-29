@@ -82,7 +82,7 @@ const Document = () => {
         };
 
         console.log(obj);
-        axios.post('/university/admissions', obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL+'university/admissions', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {

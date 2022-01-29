@@ -54,7 +54,7 @@ const Faq = () => {
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-                await axios.post('/university/faqs', item, { headers: { 'Authorization': mounted } })
+                await axios.post(process.env.REACT_APP_SERVER_URL+'university/faqs', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
 
                         if (res.data.success === true) {
@@ -72,7 +72,7 @@ const Faq = () => {
                 // await axios.put('
                 // university/faqs/61f243ed8353023b49271293
                 // /university/faqs', item, { headers: { 'Authorization': mounted } })
-                await axios.put('/university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL+'university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
 

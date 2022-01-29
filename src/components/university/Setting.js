@@ -39,7 +39,7 @@ export default function Setting() {
 
 
             };
-            axios.post('/university/changePassword', obj, { headers: { 'Authorization': mounted } })
+            axios.post(process.env.REACT_APP_SERVER_URL+'university/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {

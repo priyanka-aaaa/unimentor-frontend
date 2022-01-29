@@ -27,7 +27,7 @@ export default function Overview() {
         setMounted(mytoken)
         //start for fetch personal information
         // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
-        axios.get('/university/'+myuniversityid+'/overview')
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+myuniversityid+'/overview')
 
             .then(function (res) {
             
@@ -75,7 +75,7 @@ export default function Overview() {
 
         };
       
-        axios.put('/university/overview', obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/overview', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
             
                 if (res.data.success === true) {

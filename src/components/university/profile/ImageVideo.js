@@ -61,7 +61,7 @@ class ImageVideo extends Component {
 
 
 
-        axios.put('/university/image ', obj1, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/image ', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
              
                 if (res.data.success === true) {

@@ -109,7 +109,7 @@ const AdmissionProcess = () => {
         };
 
         console.log(obj);
-        axios.put('/university/admissions/'+editId, obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/admissions/'+editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -173,7 +173,7 @@ const AdmissionProcess = () => {
         };
 
         console.log(obj);
-        axios.post('/university/admissions', obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL+'university/admissions', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -197,7 +197,7 @@ const AdmissionProcess = () => {
 
         seteditId(value);
         setwidth("1600px");
-        axios.get('/university/61dab27e05671a193cca5f81/admissions/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);

@@ -30,7 +30,7 @@ export default function PrimaryInfo() {
         setMounted(mytoken)
         setuniversityId(myuniversityid);
         //start for fetch personal information
-        axios.get('/university/' + myuniversityid + '/primaryInformation')
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/' + myuniversityid + '/primaryInformation')
 
         
             .then(function (res) {
@@ -78,7 +78,7 @@ export default function PrimaryInfo() {
 
         };
 
-        axios.put('/university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {

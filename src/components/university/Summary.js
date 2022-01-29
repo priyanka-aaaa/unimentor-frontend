@@ -55,7 +55,7 @@ export default function Summary() {
         }
         setMounted(mytoken)
         //start for fetch personal information
-        axios.get('/university/summary', { headers: { 'Authorization': mytoken } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/summary', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
                 if (res.data.success === true) {
                     console.log(res.data);

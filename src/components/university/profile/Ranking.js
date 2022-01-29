@@ -57,7 +57,7 @@ class Ranking extends Component {
         obj1.append("certificate", this.state.certificate);
 
 
-        axios.put('/university/61dab27e05671a193cca5f81/ranking', obj1, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/ranking', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
            
                 if (res.data.success === true) {

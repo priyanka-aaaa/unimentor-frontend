@@ -109,7 +109,7 @@ class UniversityProfile extends Component {
         obj1.append("cgpa", this.state.cgpa);
         obj1.append("acceptanceRate", this.state.acceptanceRate);
 
-        axios.put('/university/overview', obj1, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/overview', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
