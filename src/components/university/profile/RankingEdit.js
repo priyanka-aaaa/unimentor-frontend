@@ -38,8 +38,8 @@ class RankingEdit extends Component {
         { console.log("this.props.editId") }
         { console.log(this.props.editId) }
         var rankingId = this.props.editId
-        this.setState({  
-            rankingId:rankingId
+        this.setState({
+            rankingId: rankingId
         });
         var myuniversityId = this.state.universityId;
         //start for call api
@@ -86,23 +86,15 @@ class RankingEdit extends Component {
     submitRanking(event) {
         event.preventDefault();
         const obj1 = new FormData();
-        // agencyName
-        // rank
-        // year
-        // onFileChangeLogo
-
-        obj1.append("agencyName", this.state.agencyName);
+     obj1.append("agencyName", this.state.agencyName);
         obj1.append("rank", this.state.rank);
         obj1.append("year", this.state.year);
         obj1.append("certificate", this.state.certificate);
-
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + this.state.rankingId, { headers: { 'Authorization': this.state.mounted } })
-
-        // axios.put(process.env.REACT_APP_SERVER_URL + 'university/rankings/'+, obj1, { headers: { 'Authorization': this.state.mounted } })
+       axios.put(process.env.REACT_APP_SERVER_URL +'university/rankings/'+ this.state.rankingId, obj1, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByaXlhbmthLmNhbGluZm81MDBAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NSIsImlhdCI6MTY0MzYyOTc4Mjc0MCwiZXhwIjoxNjQzNjI5Nzk3MTQwfQ.P7TZof9JUpZJmjAwEMKmal7m_nHTdGZGiIsxpctJpFo' } })
             .then(function (res) {
-
+                console.log(res.data);
                 if (res.data.success === true) {
-                    alert("address update successfully");
+                    alert("rasnking update successfully");
                 }
                 else {
                     alert("error");

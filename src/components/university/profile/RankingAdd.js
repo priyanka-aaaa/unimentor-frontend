@@ -50,12 +50,7 @@ class RankingAdd extends Component {
     submitRanking(event) {
         event.preventDefault();
         const obj1 = new FormData();
-        // agencyName
-        // rank
-        // year
-        // onFileChangeLogo
-
-        obj1.append("agencyName", this.state.agencyName);
+      obj1.append("agencyName", this.state.agencyName);
         obj1.append("rank", this.state.rank);
         obj1.append("year", this.state.year);
         obj1.append("certificate", this.state.certificate);
