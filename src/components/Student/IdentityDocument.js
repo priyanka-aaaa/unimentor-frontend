@@ -38,7 +38,7 @@ class IdentityDocument extends Component {
         }
     }
     componentDidMount() {    //start for call api
-        axios.get('/student/identityDocument', { headers: { 'Authorization': this.state.mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'student/identityDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 this.setState({
                     mypassport: res.data.studentIdentityDocument.passport,
@@ -64,7 +64,7 @@ class IdentityDocument extends Component {
 
         obj2.append("passport", eventpassport.target.files[0]);
 
-        axios.put('/student/identityDocument', obj2, {
+        axios.put(process.env.REACT_APP_SERVER_URL+'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted,
                 "Content-Type": "multipart/form-data"
@@ -87,7 +87,7 @@ class IdentityDocument extends Component {
         const obj4 = new FormData();
         obj4.append("passport", myfiles[0]);
 
-        axios.put('/student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     alert("Personal Profile update successfully");

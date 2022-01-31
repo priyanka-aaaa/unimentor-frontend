@@ -1,122 +1,242 @@
-import React, { Component } from 'react';
 
-class Scholarship extends Component {
-    render() {
-        return (
-            <div>
-                <div className="card">
-                    <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>8</strong>
-                        Scholarship
-                    </a>
-                    <div id="collapse8" className="collapse" data-bs-parent="#accordion">
-                        <div className="card-body">
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked="" />
-                                <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                    YES
-                                </label>
-                            </div>
-                            <div className="form-check form-check-inline">
-                                <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" />
-                                <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                    NO
-                                </label>
-                            </div>
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+import ScholarshipProcessAdd from './ScholarshipProcessAdd';
+import ScholarshipProcessEdit from './ScholarshipProcessEdit';
+
+// import './my.css'
+const Document = () => {
+
+    const [FormValues, setFormValues] = useState([{
+        point: ""
+
+    }])
+
+    const [editnewcomponent, seteditnewcomponent] = useState(0);
+
+    const [addnewcomponent, setaddnewcomponent] = useState(0);
+    const [mounted, setMounted] = useState();
+    const [data, setdata] = useState([]);
+    const [tempp, settempp] = useState("0");
+    const [myapplication, setmyapplication] = useState();
+    const [addWidth, setaddWidth] = useState("");
+    const [editId, seteditId] = useState([]);
+    const [width, setwidth] = useState("");
+    const [editPoint, seteditPoint] = useState("");
+    const [universityid, setuniversityid] = useState("");
 
 
+    useEffect(() => {
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
+            var mydata = JSON.parse(a);
+
+            var myuniversityid = mydata.data.university._id;
+
+            var user_email = mydata.data.university.email;
+            var mytoken = mydata.data.token;
+        }
+        setMounted(mytoken)
+        setuniversityid(myuniversityid)
+        //start for getting university 
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/scholarships';
+        console.log("url1")
+        console.log(url1)
+        fetch(url1, {
+            method: 'GET'
+        })
+            .then(response => response.json())
+            .then(data => {
+
+
+                setFormValues(data.universityScholarships)
+
+
+            })
+        //end for getting university 
+    }, [])
+
+    function closeaddbox(value) {
+
+        setaddWidth("0px");
+    }
+    function closebox(value) {
+        setwidth("0px");
+
+    }
+
+    function handleAdd() {
+        setaddWidth("1600px");
+        setaddnewcomponent(1);
+
+    }
+    function handleClick(value) {
+
+        seteditId(value);
+        setwidth("1600px");
+        seteditnewcomponent(1)
+       
+
+    }
+    let props = {
+        editId: editId,
+
+    }
+
+    return (
+        <div>
+
+            <input id="x" type="hidden" />
+
+            <div className="card">
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>6</strong>
+                    Scholarship
+                </a>
+                <div id="collapse6" className="collapse" data-bs-parent="#accordion">
+
+                    <div className="card-body">
+                        <div className="formbody">
                             <div className="row">
-
-                                <div className="col-lg-12">
-                                    <div className="row">
-                                        <div className="col-xl-6 col-md-12 " >
-                                            <div className="form-group ">
-                                                <label htmlFor="comment">Documents:</label>
-                                                <textarea className="form-control editarea" row="5" col="7"></textarea>
-                                            </div>
-
-
-                                        </div>
-                                        <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                            <div className="form-group">
-                                                <div className="EditorSide">
-                                                    <p>Choose your relevant pre-written examples. </p>
-                                                </div>
-
-
-                                                <div className="row">
-                                                    <div className="col-md-12">
-                                                        <div className="WriterPoints">
-                                                            {/* <!--  --> */}
-                                                            <div className="HelpPoint des_help " id="help">
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_1">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">I am keen to continue my career and prepared to work hard in order to achieve my organization objectives and I hereby declare that the information furnished above is true to the best of my knowledge.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_2">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">I hereby declare that all the above mentioned information given by me is true and correct to the best of my knowledge and belief.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_3">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">I do hereby declare that above particulars of information and facts stated are true, correct and complete to the best of my knowledge and belief.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_4">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">I do hereby declare that the above statements mentioned in my resume are true and correct to the best of my knowledge and belief.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_5">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">I solemnly declare that all the above furnished information is free from error to the best of my knowledge and belief.</p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="rowx mt-3 ml-2 border border-secondary help_content" onClick="insert_text(this.id)" id="content_6">
-                                                                    <div className="col-sm-2x ">
-                                                                        <p className="VerticalText m-0"> ADD </p>
-                                                                    </div>
-                                                                    <div className="col-sm-10x p-0 ">
-                                                                        <p className="m-0 help_text">All the information mentioned in the resume are correct to the best of my knowledge and believe.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div className="col-lg-12 col-12 ">
+                                    <h3>Scholarship</h3>
+                                </div>
+                                <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                    <h1 className="h3 mb-0 text-gray-800"></h1>
+                                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
 
                                 </div>
 
+                                <div className="card shadow mb-4">
+                                    <div className="table-responsive-sm">
+                                        <table className="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+
+                                                    <th>Action</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+
+
+                                                {FormValues.map((element, index) => {
+
+                                                    return (
+
+                                                        <tr key={index}>
+                                                            <td> {element.scholarship}</td>
+
+                                                            <td>
+
+
+                                                                <button className="btn" onClick={() => handleClick(element._id)}><i className="fas fa-pen "></i></button>
+
+                                                            </td>
+                                                        </tr>
+
+                                                    )
+                                                })}
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+                                {/* start for add */}
+                                <div className="card-body sidenav" id="mySideAdd"
+                                    style={{ width: addWidth }}
+                                >
+
+                                    <div className="student-view">
+                                        <div className="row">
+                                            <div className="col-md-6">
+
+                                            </div>
+                                            <div className="col-md-6">
+                                                <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                            </div>
+                                        </div>
+
+
+
+                                        {/* start for real */}
+
+                                        {addnewcomponent ?
+                                            <ScholarshipProcessAdd />
+                                            :
+                                            <p>hh</p>
+                                        }
+                                        {/* end for real */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                                {/* end for add */}
+                                {/* start for view */}
+                                <div className="card-body sidenav" id="mySidenav"
+                                    style={{ width: width }}
+                                >
+
+                                    <div className="student-view">
+                                        <div className="row">
+                                            <div className="col-md-6">
+
+                                            </div>
+                                            <div className="col-md-6">
+                                                <a className="closebtn" onClick={closebox} >&times;</a>
+                                            </div>
+                                        </div>
+
+                                        {/* start for real */}
+
+                                        {editnewcomponent ?
+                                            <ScholarshipProcessEdit {...props} />
+
+                                            :
+                                            <p>hh</p>
+                                        }
+
+
+
+
+                                        {/* end for real */}
+
+
+                                    </div>
+                                </div>
+                                {/* end for view */}
 
                             </div>
-
                         </div>
                     </div>
+
+
                 </div>
             </div>
-        );
-    }
+        </div >
+    );
 }
 
-export default Scholarship;
+export default Document

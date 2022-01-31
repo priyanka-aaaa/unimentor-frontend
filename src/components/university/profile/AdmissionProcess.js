@@ -56,149 +56,26 @@ const AdmissionProcess = () => {
             })
         //end for getting university 
 
-        //start for getting admin 
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/admissions/61ebe571481b8d50d1e005ec';
-        fetch(url, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                setformAdminValues(data.adminApplications)
-
-            })
-        //end for getting admin 
+       
 
     }, [])
-    let handleAddSubmit = (event) => {
-        event.preventDefault();
-        // const obj = {
-
-        // };
-        // axios.post('/university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
-        //     .then(function (res) {
-        //         console.log(res.data);
-        //         if (res.data.success === true) {
-        //             alert("courses Add successfully");
-        //         }
-        //         else {
-        //             alert("error");
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error.response)
-        //     });
-    }
+    
     function closeaddbox(value) {
 
         setaddWidth("0px");
     }
 
-    let addFormFields = () => {
-        setFormValues([...FormValues, {
-            point: ""
-        }])
-    }
+
 
     function closebox(value) {
         setwidth("0px");
 
     }
-    function handleEditSubmit() {
-        let originalString = document.getElementById("x").value;
-
-        var div = document.createElement("div");
-        div.innerHTML = originalString;
-
-        var InsetApplication = div.innerText;
-
-        const obj = {
-            // point: InsetApplication
-            point: originalString
-
-        };
-
-        console.log(obj);
-        axios.put('/university/admissions/' + editId, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-
-                if (res.data.success === true) {
-                    alert("courses update successfully");
-                }
-                else {
-                    alert("error");
-                }
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    }
+   
 
     //start for course
-    let clickHandler = (datum) => {
-        setaddnewcomponent(1);
-        // if (tempp !== 1) {
+ 
 
-        //     var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
-        //     settempp(1);
-        // }
-        // else {
-        //     var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
-        // }
-        // var element = document.querySelector(".help")
-        // element.editor.insertHTML(datum);
-        // // console.log("datum");
-        // // console.log(datum);
-        // setmyapplication(datum)
-        // //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
-    }
-    let clickEditHandler = (datum) => {
-
-        if (tempp !== 1) {
-
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
-            settempp(1);
-        }
-        else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
-        }
-        // var element = document.querySelector(".helpedit")
-        var element = document.getElementsByClassName("help");
-        console.log("element");
-        console.log(element);
-        // element.editor.insertHTML(datum);
-        setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
-    }
-
-    let handleSubmit = () => {
-        let originalString = document.getElementById("x").value;
-
-        var div = document.createElement("div");
-        div.innerHTML = originalString;
-
-        var InsetApplication = div.innerText;
-
-        const obj = {
-            // point: InsetApplication
-            point: originalString
-
-        };
-
-        console.log(obj);
-        axios.post('/university/admissions', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-
-                if (res.data.success === true) {
-                    alert("courses update successfully");
-                }
-                else {
-                    alert("error");
-                }
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    }
 
     //end for course
     //start for dummy
@@ -254,7 +131,7 @@ const AdmissionProcess = () => {
     //end for dummy
     return (
         <div>
-            <div greeting="fghfghgf">gfgfgfgf</div>
+           
             <input id="x" type="hidden" />
 
             <div className="card">
@@ -382,6 +259,7 @@ const AdmissionProcess = () => {
 
                                         {editnewcomponent ?
                                             <AdmissionProcessEdit {...props} />
+                                           
                                             :
                                             <p>hh</p>
                                         }

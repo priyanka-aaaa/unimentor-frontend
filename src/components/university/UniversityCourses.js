@@ -26,15 +26,45 @@ const UniversityCourses = () => {
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [editId, seteditId] = useState([]);
+    const [universityId, setuniversityId] = useState([]);
 
+    
     //START FOR
+    useEffect(() => {
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
+            var mydata = JSON.parse(a);
+            console.log(mydata);
+            var user_email = mydata.data.university.email;
+            var universityId = mydata.data.university._id;
 
+            var mytoken = mydata.data.token;
+        }
+        setMounted(mytoken)
+        setuniversityId(universityId)
+
+        // const url = "university/courses";
+        const url = process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses';
+
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setdata(data.universityCourses)
+                // this.setState({ data: data.universityCourses })
+            })
+
+
+
+    }, [])
     function handleClick(value) {
 
         console.log(value);
         seteditId(value);
         setwidth("1600px");
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);
@@ -73,7 +103,7 @@ const UniversityCourses = () => {
 
     function handleDelete(value) {
         console.log(value);
-        axios.delete('/university/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.delete(process.env.REACT_APP_SERVER_URL+'university/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);
@@ -94,13 +124,14 @@ const UniversityCourses = () => {
     }
     //end for delete 
     //start for view
+
     function handleView(value) {
 
         console.log(value);
         seteditId(value);
         setviewWidth("1600px");
         // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
-        axios.get('/university/61dab27e05671a193cca5f81/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses/' + value, { headers: { 'Authorization': mounted } })
           
         .then(function (res) {
                 console.log("jj");
@@ -151,31 +182,7 @@ const UniversityCourses = () => {
     }
 
     //END FOR
-    useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            console.log(mydata);
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
-        // const url = "university/courses";
-        const url = "university/61dab27e05671a193cca5f81/courses";
-
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setdata(data.universityCourses)
-                // this.setState({ data: data.universityCourses })
-            })
-
-
-
-    }, [])
+ 
 
     let handleSubmit = (event) => {
         event.preventDefault();
@@ -193,7 +200,7 @@ const UniversityCourses = () => {
             description: description,
             exam: exam
         };
-        axios.put('/university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
@@ -223,7 +230,7 @@ const UniversityCourses = () => {
             description: description,
             exam: exam
         };
-        axios.post('/university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL+'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {

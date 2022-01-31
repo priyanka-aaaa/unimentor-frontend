@@ -42,7 +42,7 @@ export default function Universityregister() {
                 phone: phone
 
             };
-            axios.post('/university/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL+'university/register', obj)
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {

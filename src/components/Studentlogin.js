@@ -33,7 +33,7 @@ export default function Studentlogin() {
                 email: email,
                 password: password
             };
-            axios.post('/student/login', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL+'student/login', obj)
                 .then(result => {
                     let responseJson = result;
                     console.log(responseJson.data.success);

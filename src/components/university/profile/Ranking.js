@@ -1,180 +1,251 @@
-import React, { Component } from 'react';
-import DragAndDrop from './DragAndDrop';
+
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-class Ranking extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            //start for primary information
-            agencyName: "",
-            rank: "",
-            year: "",
-            onFileChangeLogo: "",
-            certificate: "",
-        };
-        //start for primary information
-        this.changeagencyName = this.changeagencyName.bind(this);
-        this.changerank = this.changerank.bind(this);
-        this.changeyear = this.changeyear.bind(this);
-        this.onFileChangeLogo = this.onFileChangeLogo.bind(this);
-        this.submitRanking = this.submitRanking.bind(this);
-    }
-    componentWillMount() {
+import RankingAdd from './RankingAdd';
+import RankingEdit from './RankingEdit';
+
+import Faq from './Faq';
+const UniversityCourses = () => {
+    const [courseName, setcourseName] = useState("");
+    const [duration, setduration] = useState("");
+    const [tuitionFee, settuitionFee] = useState("");
+    const [studyField, setstudyField] = useState("");
+    const [fee, setfee] = useState("");
+    const [courseLevel, setcourseLevel] = useState("");
+    const [cgpa, setcgpa] = useState("");
+    const [eligibility, seteligibility] = useState("");
+    const [english, setenglish] = useState("");
+    const [website, setwebsite] = useState("");
+    const [description, setdescription] = useState("");
+    const [exam, setexam] = useState("");
+    const [courseId, setcourseId] = useState("");
+
+    const [width, setwidth] = useState("");
+    const [viewWidth, setviewWidth] = useState("");
+    const [addWidth, setaddWidth] = useState("");
+    const [mounted, setMounted] = useState();
+    const [data, setdata] = useState([]);
+    const [editId, seteditId] = useState([]);
+    const [universityId, setuniversityId] = useState([]);
+    const [addnewcomponent, setaddnewcomponent] = useState("");
+    const [editnewcomponent, seteditnewcomponent] = useState("");
+
+
+
+    //START FOR
+    useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
+            console.log(mydata);
             var user_email = mydata.data.university.email;
+            var universityId = mydata.data.university._id;
+
             var mytoken = mydata.data.token;
-            this.setState({ mounted: mytoken });
         }
-    }
-    logoHandleDrop = (myfiles) => {
-        this.setState({ certificate: myfiles[0] });
-    }
-    onFileChangeLogo = eventpassportback => {
-        this.setState({ certificate: eventpassportback.target.files[0] });
-    };
-    changeagencyName(event) {
-        this.setState({ agencyName: event.target.value });
-    }
-    changerank(event) {
-        this.setState({ rank: event.target.value });
-    }
-    changeyear(event) {
-        this.setState({ year: event.target.value });
-    }
-    submitRanking(event) {
-        event.preventDefault();
-        const obj1 = new FormData();
-        // agencyName
-        // rank
-        // year
-        // onFileChangeLogo
+        setMounted(mytoken)
+        setuniversityId(universityId)
 
-        obj1.append("agencyName", this.state.agencyName);
-        obj1.append("rank", this.state.rank);
-        obj1.append("year", this.state.year);
-        obj1.append("certificate", this.state.certificate);
+        // const url = "university/courses";
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
 
-
-        axios.put(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/ranking', obj1, { headers: { 'Authorization': this.state.mounted } })
-            .then(function (res) {
-           
-                if (res.data.success === true) {
-                    alert("address update successfully");
-                }
-                else {
-                    alert("error");
-                }
-
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setdata(data.universityRankings)
+                // this.setState({ data: data.universityCourses })
             })
-            .catch(error => {
-                console.log(error.response)
-            });
+
+
+
+    }, [])
+    function handleClick(value) {
+
+
+        seteditId(value);
+        setwidth("1600px");
+        seteditnewcomponent(1);
+
+
     }
-    render() {
-        return (
-            <div>
-                <div className="card">
-                    <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>6</strong>
-                        Ranking
-                    </a>
-                    <div id="collapse6" className="collapse" data-bs-parent="#accordion">
-                        <div className="card-body">
-                            <div className="from-block">
-                                <form>
-                                    <div className="mb-3">
-                                        <div className="row">
-                                            <div className="col">
-                                                <label htmlFor="fname" className="form-label">Agency Name</label>
-                                                <input type="text" className="form-control" placeholder="" name="agname"
-                                                    value={this.state.agencyName} onChange={this.changeagencyName}
-                                                />
-                                            </div>
-                                            <div className="col">
-                                                <label htmlFor="lname" className="form-label">Rank</label>
-                                                <input type="text" className="form-control" placeholder="" name="rank"
-                                                    value={this.state.rank} onChange={this.changerank}
-                                                />
-                                            </div>
-                                            <div className="col">
-                                                <label htmlFor="lname" className="form-label">Year</label>
-                                                <input type="text" className="form-control" placeholder="" name="rank"
-                                                    value={this.state.year} onChange={this.changeyear}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="mb-3">
-                                        <div className="row">
-                                            <DragAndDrop handleDrop={this.logoHandleDrop}>
-                                                <section className="drag-and-drop-new-section">
-                                                    <div className="containerx" id="drop_section">
-                                                        <label htmlFor="files">
-                                                            <div id="drag" className="drag-and-drop-new class_add">
-                                                                <div className="row">
-                                                                    <div className="col-md-12 email-con">
-                                                                        <label htmlFor="uploadlogo">
-                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
-                                                                            <input type="file" onChange={this.onFileChangeLogo} id="uploadlogo" />
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </label>
+    function handleAdd() {
+        // alert("fhgf")
+        setaddWidth("1600px");
 
-                                                    </div>
-                                                    <section className="file-upload">
-                                                        <div className="container">
-                                                            <div className="uploads">
-                                                                <div className="drop_lower" id="gallery"></div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </section>
-                                            </DragAndDrop>
-                                            {/* <div className="col">
-                                                <span className="documentUpload ant-upload-picture-card-wrapper">
-                                                    <div className="ant-upload-list ant-upload-list-picture-card">
-                                                    </div>
-                                                    <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                        <span tabIndex="0" className="ant-upload" role="button">
-                                                            <input type="file" accept="" />
-                                                            <p>
-                                                                Upload/Drag &amp; Drop here</p>
-                                                        </span>
-                                                    </div>
-                                                </span>
-                                            </div> */}
+        setaddnewcomponent(1);
 
-                                        </div>
-                                    </div>
+    }
+    //start for delete
 
-                                    <div className="mb-3">
-                                        <div className="row">
-                                            <div className="col-md-6"></div>
-                                            <div className="col-md-6 text-right">
-                                                <button type="button" className="btn btn-success ">Add New
-                                                </button>
-                                                <button type="submit"
-                                                    onClick={this.submitRanking}
-                                                    className="btn btn-secondary">Save
-                                                </button>
-                                                <button type="button" className="btn btn-success " data-bs-toggle="collapse" href="#collapse7">Save &
-                                                    Next</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+
+    //end for delete 
+    //start for view
+
+
+    //end for view
+
+    function closebox(value) {
+        setwidth("0px");
+
+    }
+    function closeviewbox(value) {
+
+        setviewWidth("0px");
+    }
+    function closeaddbox(value) {
+        setwidth("0px");
+        setaddWidth("0px");
+    }
+
+    //END FOR
+
+    let props = {
+        editId: editId,
+       
+    }
+
+
+    return (
+        <div id="page-top">
+            <div className="card">
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse7"><strong>7</strong>
+                    Ranking
+                </a>
+                <div id="collapse7" className="collapse" data-bs-parent="#accordion">
+                    <div className="container">
+
+                        {/* <!-- Page Heading --> */}
+                        <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                            <h1 className="h3 mb-0 text-gray-800">Ranking</h1>
+                            <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Ranking</button>
+
                         </div>
+
+
+                        {/* <!-- Content Row --> */}
+
+                        <div className="row">
+
+                            {/* <!-- Area Chart --> */}
+                            <div className="col-xl-12 col-lg-7">
+                                <div className="card shadow mb-4">
+                                    {/* <!-- Card Header - Dropdown --> */}
+                                    <div className="card shadow mb-4">
+                                        <div className="table-responsive-sm">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Agency Name</th>
+                                                        <th>Rank</th>
+                                                        <th>Year</th>
+                                                        <th>Image</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+
+
+
+                                                    {data.map((object, i) => {
+
+                                                        return (
+
+                                                            <tr key={i}>
+                                                                <td>{object._id}</td>
+                                                                <td>{object.agencyName}</td>
+                                                                <td>{object.rank}</td>
+                                                                <td>{object.year}</td>
+                                                                <td>  <img src={object.certificate} alt="passportback" /> </td>
+
+                                                                <td>
+
+
+                                                                    <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+
+                                                                </td>
+                                                            </tr>
+
+                                                        )
+                                                    })}
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+
+
+
+                                    {/* start for add ranking */}
+                                    <div className="card-body sidenav" id="mySideAdd"
+                                        style={{ width: addWidth }}>
+
+                                        <div className="student-view">
+                                            <div className="row">
+                                                <div className="col-md-6">
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                </div>
+                                            </div>
+
+                                            {addnewcomponent ?
+                                              
+                                                <RankingAdd />
+                                                :
+                                                <p></p>
+                                            }
+                                        </div>
+                                    </div>
+                                    {/* end for add ranking */}
+
+                                    {/* start for edit ranking */}
+                                    <div className="card-body sidenav" id="mySideAdd"
+                                        style={{ width: width }}>
+
+                                        <div className="student-view">
+                                            <div className="row">
+                                                <div className="col-md-6">
+
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                </div>
+                                            </div>
+
+                                            {editnewcomponent ?
+                                                <RankingEdit {...props}/>
+                                                :
+                                                <p></p>
+                                            }
+                                        </div>
+                                    </div>
+                                    {/* end for edit ranking */}
+
+
+
+
+
+                                    {/* end for edit */}
+                                </div>
+                            </div>
+
+
+                        </div>
+                        {/* <!-- Card Body --> */}
+
                     </div>
-
-
                 </div>
             </div>
-        );
-    }
+        </div>
+
+    );
 }
 
-export default Ranking;
+export default UniversityCourses;

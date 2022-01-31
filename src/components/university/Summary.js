@@ -18,6 +18,9 @@ export default function Summary() {
     const [ugPTE, setugPTE] = useState("");
     const [pgPTE, setpgPTE] = useState("");
     const [intake, setintake] = useState("");
+    const [UniversityId, setUniversityId] = useState("");
+
+    
     useEffect(() => {
 
         var ddlYears = document.getElementById("ddlYears");
@@ -51,11 +54,14 @@ export default function Summary() {
             var mydata = JSON.parse(a);
             console.log(mydata);
             var user_email = mydata.data.university.email;
+            var UniversityId = mydata.data.university._id;
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
+        setUniversityId(UniversityId)
+        
         //start for fetch personal information
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/summary', { headers: { 'Authorization': mytoken } })
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+UniversityId+'/summary', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
                 if (res.data.success === true) {
                     console.log(res.data);
@@ -102,7 +108,7 @@ export default function Summary() {
             intake: intake
 
         };
-        axios.put('/university/summary', obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/summary', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {

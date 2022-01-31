@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const AdmissionProcessEdit = (props) => {
+const DocumentProcessAdd = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
 
@@ -28,35 +28,14 @@ const AdmissionProcessEdit = (props) => {
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
-        //start for getting university 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/admissions';
-        fetch(url1, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log("data");
-                console.log(data.universityAdmissions[0].point);
-                setFormValues(data.universityAdmissions)
-
-
-            })
-        //end for getting university 
-
         //start for getting admin 
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/61ebe571481b8d50d1e005ec';
-        // const url = "https://unimentor-backend.herokuapp.com/admin/applications/61ebe571481b8d50d1e005ec";
-
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/61ebe571481b8d50d1e005ec';
         fetch(url, {
             method: 'GET'
         })
             .then(response => response.json())
             .then(data => {
-                console.log("iiii");
-                console.log(data.adminApplications)
-                console.log("hhh");
-                setformAdminValues(data.adminApplications)
-
+                setformAdminValues(data.adminDocuments)
             })
         //end for getting admin 
 
@@ -64,11 +43,6 @@ const AdmissionProcessEdit = (props) => {
 
 
 
-    let addFormFields = () => {
-        setFormValues([...FormValues, {
-            point: ""
-        }])
-    }
 
 
     //start for course
@@ -97,26 +71,13 @@ const AdmissionProcessEdit = (props) => {
         var InsetApplication = div.innerText;
 
         const obj = {
-            // point: InsetApplication
-            point: originalString
+            document: InsetApplication
+            // point: originalString
 
         };
 
         console.log(obj);
-        // axios.post(process.env.REACT_APP_SERVER_URL + 'university/admissions', obj, { headers: { 'Authorization': mounted } })
-        //     .then(function (res) {
-
-        //         if (res.data.success === true) {
-        //             alert("courses update successfully");
-        //         }
-        //         else {
-        //             alert("error");
-        //         }
-        //     })
-        //     .catch(error => {
-        //         console.log(error.response)
-        //     });
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + props.editId, obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL + 'university/documents', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -135,12 +96,10 @@ const AdmissionProcessEdit = (props) => {
 
     return (
         <div>
-            {props.editId}
-
 
             <div className="row">
                 <div className="col-lg-12 col-12 ">
-                    <h3>Application Process</h3>
+                    <h3>Document</h3>
                 </div>
 
                 <div className="trix_form_adjustement" >
@@ -152,14 +111,14 @@ const AdmissionProcessEdit = (props) => {
                             <div className="row">
                                 <div className="col-xl-6 col-md-12 " >
                                     <div className="form-group ">
-                                        <label htmlFor="comment">Application:</label>
+                                        <label htmlFor="comment">Document:</label>
                                         <input id="x" type="hidden" />
 
                                         <trix-editor
                                             name="universityApplication"
 
 
-                                            onChange={event => this.changeHandler(event)} class="form-control editarea help"
+                                            onChange={event => this.changeHandler(event)} class="help"
                                             input="x"
                                         >
 
@@ -176,9 +135,9 @@ const AdmissionProcessEdit = (props) => {
                                         <div className="EditorSide">
                                             <p>Choose your relevant pre-written examples. </p>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="WriterPoints">
+                                        <div className="row">
+                                            <div className="col-md-12">
+                                                <div className="WriterPoints">
                                                     {formAdminValues.map((element, index) => (
 
 
@@ -186,13 +145,13 @@ const AdmissionProcessEdit = (props) => {
                                                             <div className="col-sm-2x ">
                                                                 <button
                                                                     className="VerticalText m-0"
-                                                                    onClick={() => clickHandler(element.application)}
+                                                                    onClick={() => clickHandler(element.document)}
 
 
                                                                 >  add</button>
                                                             </div>
                                                             <div className="col-sm-10x p-0 ">
-                                                                <p className="m-0 help_text">{element.application || ""}.</p>
+                                                                <p className="m-0 help_text">{element.document || ""}.</p>
                                                             </div>
                                                         </div>
 
@@ -218,12 +177,12 @@ const AdmissionProcessEdit = (props) => {
                 <div className="row">
                     <div className="col-md-6"></div>
                     <div className="col-md-6 text-right">
-
+                    
                         <button type="button"
                             onClick={() => handleSubmit()}
                             className="btn btn-secondary">Save
                         </button>
-
+                  
                     </div>
 
                 </div>
@@ -234,4 +193,4 @@ const AdmissionProcessEdit = (props) => {
     );
 }
 
-export default AdmissionProcessEdit
+export default DocumentProcessAdd

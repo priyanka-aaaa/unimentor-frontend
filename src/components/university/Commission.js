@@ -47,7 +47,7 @@ export default function Commission() {
 
 
         // const url = "university/courses";
-        const url = "university/61dab27e05671a193cca5f81/courses";
+        const url = process.env.REACT_APP_SERVER_URL+"university/61dab27e05671a193cca5f81/courses";
 
         fetch(url, {
             method: 'GET',

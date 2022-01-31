@@ -168,16 +168,16 @@ class UniversityProfile extends Component {
                                             <Overview />
                                             <CoursesFee />
                                             <AdmissionProcess />
-                                            <Ranking />
-                                            {/* <Document />
-
-                                            <Ranking /> */}
-
-                                            {/* <ImageVideo />
+                                          
+                                            <Document />
                                             <Scholarship />
-                                           */}
+                                            <Ranking />
+
+                                            <ImageVideo />
+                                         
+                                          
                                             <Faq />
-                                            {/* <SetCommission /> */}
+                                           
 
 
 

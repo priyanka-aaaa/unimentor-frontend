@@ -89,16 +89,16 @@ const AdmissionProcessAdd = () => {
     }
     let handleSubmit = () => {
         let originalString = document.getElementById("x").value;
-console.log("originalString");
-console.log(originalString)
+        console.log("originalString");
+        console.log(originalString)
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
         var InsetApplication = div.innerText;
 
         const obj = {
-            // point: InsetApplication
-            point: originalString
+            point: InsetApplication
+            // point: originalString
 
         };
 
@@ -144,8 +144,8 @@ console.log(originalString)
                                             name="universityApplication"
 
 
-                                            onChange={event => this.changeHandler(event)} className="form-control editarea help"
-                                         input="x"
+                                            onChange={event => this.changeHandler(event)} class="help"
+                                            input="x"
                                         >
 
                                         </trix-editor>
