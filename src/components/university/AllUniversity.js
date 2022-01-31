@@ -86,10 +86,9 @@ export default function AllUniversity() {
 
                                     <tr key={i}>
                                         <td>{object._id}</td>
-                                        <td><a href="object.name">{object.name}</a></td>
-                                        <Link to={'/UniveristyPage/'+object._id} className="nav-link" >
-                                            <i className="fas fa-file-alt"></i>
-                                            <span>Partner Team</span></Link>
+                                        {/* <td><a href="object.name">{object.name}</a></td> */}
+                                        <td> <Link to={'/UniveristyPage/'+object._id} className="nav-link" >{object.name}</Link></td>
+                                      
 
                                     </tr>
 

@@ -1,7 +1,10 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import './my.css'
+import AdmissionProcessAdd from './AdmissionProcessAdd';
+import AdmissionProcessEdit from './AdmissionProcessEdit';
+
+// import './my.css'
 const AdmissionProcess = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
@@ -11,9 +14,10 @@ const AdmissionProcess = () => {
         point: ""
 
     }])
-   
 
- 
+    const [editnewcomponent, seteditnewcomponent] = useState(0);
+
+    const [addnewcomponent, setaddnewcomponent] = useState(0);
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [tempp, settempp] = useState("0");
@@ -22,7 +26,9 @@ const AdmissionProcess = () => {
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
     const [editPoint, seteditPoint] = useState("");
+    const [universityid, setuniversityid] = useState("");
 
+    
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -34,8 +40,9 @@ const AdmissionProcess = () => {
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
+        setuniversityid(myuniversityid)
         //start for getting university 
-        const url1 = 'university/'+myuniversityid+'/admissions';
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/admissions';
         fetch(url1, {
             method: 'GET'
         })
@@ -50,7 +57,7 @@ const AdmissionProcess = () => {
         //end for getting university 
 
         //start for getting admin 
-        const url = ' admin/applications/61ebe571481b8d50d1e005ec';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/admissions/61ebe571481b8d50d1e005ec';
         fetch(url, {
             method: 'GET'
         })
@@ -111,7 +118,7 @@ const AdmissionProcess = () => {
         };
 
         console.log(obj);
-        axios.put(process.env.REACT_APP_SERVER_URL+'university/admissions/'+editId, obj, { headers: { 'Authorization': mounted } })
+        axios.put('/university/admissions/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -128,21 +135,21 @@ const AdmissionProcess = () => {
 
     //start for course
     let clickHandler = (datum) => {
+        setaddnewcomponent(1);
+        // if (tempp !== 1) {
 
-        if (tempp !== 1) {
-
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
-            settempp(1);
-        }
-        else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
-        }
-        var element = document.querySelector(".help")
-        element.editor.insertHTML(datum);
-        // console.log("datum");
-        // console.log(datum);
-        setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+        //     var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+        //     settempp(1);
+        // }
+        // else {
+        //     var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+        // }
+        // var element = document.querySelector(".help")
+        // element.editor.insertHTML(datum);
+        // // console.log("datum");
+        // // console.log(datum);
+        // setmyapplication(datum)
+        // //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
     let clickEditHandler = (datum) => {
 
@@ -154,12 +161,15 @@ const AdmissionProcess = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
         }
-        var element = document.querySelector(".helpedit")
-        element.editor.insertHTML(datum);
+        // var element = document.querySelector(".helpedit")
+        var element = document.getElementsByClassName("help");
+        console.log("element");
+        console.log(element);
+        // element.editor.insertHTML(datum);
         setmyapplication(datum)
         //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
-    
+
     let handleSubmit = () => {
         let originalString = document.getElementById("x").value;
 
@@ -175,7 +185,7 @@ const AdmissionProcess = () => {
         };
 
         console.log(obj);
-        axios.post(process.env.REACT_APP_SERVER_URL+'university/admissions', obj, { headers: { 'Authorization': mounted } })
+        axios.post('/university/admissions', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -194,12 +204,15 @@ const AdmissionProcess = () => {
     //start for dummy
     function handleAdd() {
         setaddWidth("1600px");
+        setaddnewcomponent(1);
+
     }
     function handleClick(value) {
 
         seteditId(value);
         setwidth("1600px");
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/61dab27e05671a193cca5f81/admissions/' + value, { headers: { 'Authorization': mounted } })
+        seteditnewcomponent(1)
+        axios.get('/university/'+universityid+'/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);
@@ -231,13 +244,19 @@ const AdmissionProcess = () => {
             });
 
     }
-
+    let props = {
+        editId: editId,
+        // imageText:"food"
+    }
     //end for delete 
     //start for view
 
     //end for dummy
     return (
         <div>
+            <div greeting="fghfghgf">gfgfgfgf</div>
+            <input id="x" type="hidden" />
+
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse4"><strong>4</strong>
                     Admissions Process
@@ -313,88 +332,12 @@ const AdmissionProcess = () => {
 
 
                                         {/* start for real */}
-                                        <div className="card-body">
-                                            <div className="formbody">
-                                                <div className="row">
-                                                    <div className="col-lg-12 col-12 ">
-                                                        <h3>Application Process</h3>
-                                                    </div>
-                                                    <div className="trix_form_adjustement">
 
-
-                                                        <div className="row">
-
-                                                            <div className="col-lg-12">
-                                                                <div className="row">
-                                                                    <div className="col-xl-6 col-md-12 " >
-                                                                        <div className="form-group ">
-                                                                            <label htmlFor="comment">Application:</label>
-                                                                            <input id="x" type="hidden" />
-
-                                                                            <trix-editor onChange={event => this.changeHandler(event)} class="form-control editarea help" input="x"></trix-editor>
-
-                                                                        </div>
-
-
-
-                                                                    </div>
-                                                                    <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                                                        <div className="form-group">
-                                                                            <div className="EditorSide">
-                                                                                <p>Choose your relevant pre-written examples. </p>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="WriterPoints">
-                                                                                        {formAdminValues.map((element, index) => (
-
-
-                                                                                            <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
-                                                                                                <div className="col-sm-2x ">
-                                                                                                    <button
-                                                                                                        className="VerticalText m-0"
-                                                                                                        onClick={() => clickHandler(element.application)}
-
-
-                                                                                                    >  add</button>
-                                                                                                </div>
-                                                                                                <div className="col-sm-10x p-0 ">
-                                                                                                    <p className="m-0 help_text">{element.application || ""}.</p>
-                                                                                                </div>
-                                                                                            </div>
-
-
-                                                                                        ))}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div> </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mb-3">
-                                            <div className="row">
-                                                <div className="col-md-6"></div>
-                                                <div className="col-md-6 text-right">
-
-                                                    <button type="button"
-                                                        onClick={() => handleSubmit()}
-                                                        className="btn btn-secondary">Save
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
+                                        {addnewcomponent ?
+                                            <AdmissionProcessAdd />
+                                            :
+                                            <p>hh</p>
+                                        }
                                         {/* end for real */}
 
 
@@ -436,91 +379,16 @@ const AdmissionProcess = () => {
                                         </div>
 
                                         {/* start for real */}
-                                        <div className="card-body">
-                                            <div className="formbody">
-                                                <div className="row">
-                                                    <div className="col-lg-12 col-12 ">
-                                                        <h3>Application Process</h3>
-                                                    </div>
-                                                    <div className="trix_form_adjustement">
 
-
-                                                        <div className="row">
-
-                                                            <div className="col-lg-12">
-                                                                <div className="row">
-                                                                    <div className="col-xl-6 col-md-12 " >
-                                                                        <div className="form-group ">
-                                                                            <label htmlFor="comment">Application:</label>
-                                                                            <input id="x" type="hidden" />
-
-                                                                            <trix-editor onChange={event => this.changeHandler(event)} class="form-control editarea helpedit" input="x">
-                                                                                {editPoint}
-                                                                            </trix-editor>
-
-                                                                        </div>
+                                        {editnewcomponent ?
+                                            <AdmissionProcessEdit {...props} />
+                                            :
+                                            <p>hh</p>
+                                        }
 
 
 
 
-                                                                    </div>
-                                                                    <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                                                        <div className="form-group">
-                                                                            <div className="EditorSide">
-                                                                                <p>Choose your relevant pre-written examples. </p>
-                                                                            </div>
-                                                                            <div class="row">
-                                                                                <div class="col-md-12">
-                                                                                    <div class="WriterPoints">
-                                                                                        {formAdminValues.map((element, index) => (
-
-
-                                                                                            <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
-                                                                                                <div className="col-sm-2x ">
-                                                                                                    <button
-                                                                                                        className="VerticalText m-0"
-                                                                                                        onClick={() => clickEditHandler(element.application)}
-
-
-                                                                                                    >  add</button>
-                                                                                                </div>
-                                                                                                <div className="col-sm-10x p-0 ">
-                                                                                                    <p className="m-0 help_text">{element.application || ""}.</p>
-                                                                                                </div>
-                                                                                            </div>
-
-
-                                                                                        ))}
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div> </div>
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="mb-3">
-                                            <div className="row">
-                                                <div className="col-md-6"></div>
-                                                <div className="col-md-6 text-right">
-
-                                                    <button type="button"
-                                                        onClick={() => handleEditSubmit()}
-                                                        className="btn btn-secondary">Save
-                                                    </button>
-
-                                                </div>
-
-                                            </div>
-
-                                        </div>
                                         {/* end for real */}
 
 
