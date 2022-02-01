@@ -16,27 +16,23 @@ export default function PrimaryInfo() {
     const [website, setwebsite] = useState("");
     const [phone, setphone] = useState("no");
     const [organization, setorganization] = useState("");
-    const [successMessage, setsuccessMessage] = useState("");
-    const [submitSuccess, setsubmitSuccess] = useState("0");
-
-
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
+         var  myuniversityid = mydata.data.university._id;
 
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
-
+            
         }
-
+    
         setMounted(mytoken)
         setuniversityId(myuniversityid);
         //start for fetch personal information
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/primaryInformation')
+        axios.get(process.env.REACT_APP_SERVER_URL+'university/' + myuniversityid + '/primaryInformation')
 
-
+        
             .then(function (res) {
                 if (res.data.success === true) {
                     var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
@@ -82,14 +78,11 @@ export default function PrimaryInfo() {
 
         };
 
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL+'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
-                    setsuccessMessage("Primary Information Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-
+                    alert("Personal Profile update successfully");
                 }
                 else {
                     alert("error");
@@ -102,11 +95,6 @@ export default function PrimaryInfo() {
     }
     return (
         <div>
-
-            {submitSuccess === 1 ? <div className="Show_success_message">
-                <strong>Success!</strong> {successMessage}
-            </div> : null}
-
             <div className="card">
 
                 <div className="card">
@@ -116,10 +104,6 @@ export default function PrimaryInfo() {
                     </a>
                     <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
                         <div className="card-body">
-                            {/* start for shwongi popup */}
-
-                            {/* end for showing popup */}
-
                             <form onSubmit={Personal_Information}>
                                 <div className="from-block">
 

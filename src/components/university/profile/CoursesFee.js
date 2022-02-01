@@ -15,7 +15,7 @@ const CoursesFee = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+        
             var myuniversityid = mydata.data.university._id;
 
             var user_email = mydata.data.university.email;
@@ -26,7 +26,7 @@ const CoursesFee = () => {
 
 
         // const url = "university/courses";
-        const url = 'university/' + myuniversityid + '/courses';
+        const url = process.env.REACT_APP_SERVER_URL+'university/' + myuniversityid + '/courses';
 
         fetch(url, {
             method: 'GET'
@@ -36,22 +36,17 @@ const CoursesFee = () => {
             .then(data => {
 
                 // this.setState({ data: data.universityCourses })
-                console.log("asd");
-                console.log(data.universityCourses);
+             
+              
                 var myresults = data.universityCourses;
                 if (Object.keys(myresults).length === 0) {
-                    // setFormValues([...formValues, {
-                    //     // courseName: "", duration: "", tuitionFee: "", studyField: "",
-                    //     // fee: "", courseLevel: "", cgpa: "", eligibility: "", english: "", website: "", description: "", exam: "",
-                    //     // _id: "null"
-                    // }])
+                  
                 }
                 else {
                     setFormValues(data.universityCourses)
                 }
 
-                console.log("formValues");
-                console.log(formValues);
+               
 
             })
 
@@ -78,16 +73,8 @@ const CoursesFee = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        // const obj = {
-        //     courseName: coursename,
-        //     duration: duration,
-        //     tuitionFee: tuitionfee,
-        //   };
-        console.log(formValues);
-        console.log(JSON.stringify(formValues));
-        var myvalues = JSON.stringify(formValues);
-        console.log(formValues[0].courseName);
-
+      var myvalues = JSON.stringify(formValues);
+     
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses', item, { headers: { 'Authorization': mounted } })

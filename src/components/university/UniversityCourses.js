@@ -27,9 +27,9 @@ const UniversityCourses = () => {
     const [data, setdata] = useState([]);
     const [editId, seteditId] = useState([]);
     const [universityId, setuniversityId] = useState([]);
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
 
-    
-    //START FOR
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -38,33 +38,36 @@ const UniversityCourses = () => {
             var user_email = mydata.data.university.email;
             var universityId = mydata.data.university._id;
 
-            var mytoken = mydata.data.token;
+            var mounted = mydata.data.token;
         }
-        setMounted(mytoken)
+        setMounted(mounted)
         setuniversityId(universityId)
 
-        // const url = "university/courses";
-        const url = process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses';
 
+
+        //start for fetching course
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {
                 setdata(data.universityCourses)
-                // this.setState({ data: data.universityCourses })
             })
+        // end for fetching course
+
 
 
 
     }, [])
+
     function handleClick(value) {
 
         console.log(value);
         seteditId(value);
         setwidth("1600px");
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 console.log(res.data.universityCourse);
@@ -102,15 +105,25 @@ const UniversityCourses = () => {
     //start for delete
 
     function handleDelete(value) {
-        console.log(value);
-        axios.delete(process.env.REACT_APP_SERVER_URL+'university/courses/' + value, { headers: { 'Authorization': mounted } })
+       
+        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
-                console.log(res.data.universityCourse);
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
-                    alert("Course delete successfully");
-
+                    setsuccessMessage("course delete")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    //start for fetching course
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setdata(data.universityCourses)
+            })
+        // end for fetching course
                 }
                 else {
                     alert("error");
@@ -131,9 +144,9 @@ const UniversityCourses = () => {
         seteditId(value);
         setviewWidth("1600px");
         // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+universityId+'/courses/' + value, { headers: { 'Authorization': mounted } })
-          
-        .then(function (res) {
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
+
+            .then(function (res) {
                 console.log("jj");
                 console.log(res.data.universityCourse);
                 var myuniversityCourse = res.data.universityCourse;
@@ -182,9 +195,9 @@ const UniversityCourses = () => {
     }
 
     //END FOR
- 
 
-    let handleSubmit = (event) => {
+
+    let handleEditSubmit = (event) => {
         event.preventDefault();
         const obj = {
             courseName: courseName,
@@ -200,11 +213,25 @@ const UniversityCourses = () => {
             description: description,
             exam: exam
         };
-        axios.put(process.env.REACT_APP_SERVER_URL+'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
-                    alert("courses update successfully");
+                    setwidth(0)
+                    setsuccessMessage("course update")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    //start for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityCourses)
+                        })
+                    // end for fetching course
                 }
                 else {
                     alert("error");
@@ -230,11 +257,36 @@ const UniversityCourses = () => {
             description: description,
             exam: exam
         };
-        axios.post(process.env.REACT_APP_SERVER_URL+'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
-                    alert("courses Add successfully");
+                    setsuccessMessage("course add")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    setaddWidth(0)
+                    setcourseName("");
+                    settuitionFee("");
+                    setstudyField("");
+                    setfee("");
+                    setcourseLevel("");
+                    setcgpa("");
+                    seteligibility("");
+                    setenglish("");
+                    setwebsite("");
+                    setdescription("");
+                    setexam("");
+                    //start for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityCourses)
+                        })
+                    // end for fetching course
                 }
                 else {
                     alert("error");
@@ -266,7 +318,11 @@ const UniversityCourses = () => {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
-
+                            {/* start for showing add message */}
+                            {submitSuccess === 1 ? <div className="Show_success_message">
+                                <strong>Success!</strong> {successMessage}
+                            </div> : null}
+                            {/* start for showing add message */}
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Coures</h1>
@@ -348,7 +404,8 @@ const UniversityCourses = () => {
 
                                                     <div className="row">
                                                         <div className="col-sm-12">
-                                                            <form onSubmit={handleSubmit}>
+                                                            <p><b>Edit Course</b></p>
+                                                            <form onSubmit={handleEditSubmit}>
                                                                 <div className="card-body" >
 
                                                                     <div className="from-block" >

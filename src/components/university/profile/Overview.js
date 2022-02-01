@@ -14,23 +14,26 @@ export default function Overview() {
     const [english, setenglish] = useState("");
     const [cgpa, setcgpa] = useState("");
     const [acceptanceRate, setacceptanceRate] = useState("");
+    const [successMessage, setsuccessMessage] = useState("");
+
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-         var  myuniversityid = mydata.data.university._id;
-          
+            var myuniversityid = mydata.data.university._id;
+
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
-           
+
         }
         setMounted(mytoken)
         //start for fetch personal information
         // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+myuniversityid+'/overview')
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/overview')
 
             .then(function (res) {
-            
+
                 if (res.data.success === true) {
                     var student_universityOverview = res.data.universityOverview;
 
@@ -74,12 +77,15 @@ export default function Overview() {
             acceptanceRate: acceptanceRate
 
         };
-      
-        axios.put(process.env.REACT_APP_SERVER_URL+'university/overview', obj, { headers: { 'Authorization': mounted } })
+
+        axios.put(process.env.REACT_APP_SERVER_URL + 'university/overview', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-            
+
                 if (res.data.success === true) {
-                    alert("overview update successfully");
+                    setsuccessMessage("Overview Updated")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                  
                 }
                 else {
                     alert("error");
@@ -92,6 +98,9 @@ export default function Overview() {
     }
     return (
         <div>
+              {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             <div className="card">
 
                 <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo"><strong>2</strong>

@@ -4128,9 +4128,24 @@ body .search-modal .close:hover {
 .rs-breadcrumbs.img3 {
   background: url(assets/images/breadcrumbs/3.jpg);
 }
-.rs-breadcrumbs.img4 {
-  background: url(assets/images/breadcrumbs/4.jpg);
+.Show_success_message{
+  color: #fff;
+  background-color: #44e68c !important;
+  border-color: #e64844 !important;
+  width: 23%;
+  position: fixed;
+  top: 7%;
+  right: 31%;
+  border-radius: 4px;
+  z-index: 1;
+  font-weight: 700;
+  padding: 14px 0px;
+  text-align: center;
+
 }
+/* .rs-breadcrumbs.img4 {
+  background: url(assets/images/breadcrumbs/4.jpg);
+} */
 /* ------------------------------------
     08. Slider Section CSS
 ---------------------------------------*/
