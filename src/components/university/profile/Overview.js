@@ -15,8 +15,7 @@ export default function Overview() {
     const [cgpa, setcgpa] = useState("");
     const [acceptanceRate, setacceptanceRate] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
-
-    const [submitSuccess, setsubmitSuccess] = useState("0");
+ const [submitSuccess, setsubmitSuccess] = useState("0");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
