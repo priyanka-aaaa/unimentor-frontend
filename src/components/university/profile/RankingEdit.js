@@ -20,7 +20,7 @@ class RankingEdit extends Component {
         this.changerank = this.changerank.bind(this);
         this.changeyear = this.changeyear.bind(this);
         this.onFileChangeLogo = this.onFileChangeLogo.bind(this);
-        this.submitRanking = this.submitRanking.bind(this);
+        this.submitEditRanking = this.submitEditRanking.bind(this);
     }
     componentWillMount() {
         if (localStorage.getItem("universityData")) {
@@ -35,8 +35,7 @@ class RankingEdit extends Component {
         }
     }
     componentDidMount() {
-        { console.log("this.props.editId") }
-        { console.log(this.props.editId) }
+     
         var rankingId = this.props.editId
         this.setState({
             rankingId: rankingId
@@ -83,14 +82,14 @@ class RankingEdit extends Component {
     changeyear(event) {
         this.setState({ year: event.target.value });
     }
-    submitRanking(event) {
+    submitEditRanking(event) {
         event.preventDefault();
         const obj1 = new FormData();
-     obj1.append("agencyName", this.state.agencyName);
+        obj1.append("agencyName", this.state.agencyName);
         obj1.append("rank", this.state.rank);
         obj1.append("year", this.state.year);
         obj1.append("certificate", this.state.certificate);
-       axios.put(process.env.REACT_APP_SERVER_URL +'university/rankings/'+ this.state.rankingId, obj1, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByaXlhbmthLmNhbGluZm81MDBAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NSIsImlhdCI6MTY0MzYyOTc4Mjc0MCwiZXhwIjoxNjQzNjI5Nzk3MTQwfQ.P7TZof9JUpZJmjAwEMKmal7m_nHTdGZGiIsxpctJpFo' } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.rankingId, obj1, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByaXlhbmthLmNhbGluZm81MDBAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NSIsImlhdCI6MTY0MzYyOTc4Mjc0MCwiZXhwIjoxNjQzNjI5Nzk3MTQwfQ.P7TZof9JUpZJmjAwEMKmal7m_nHTdGZGiIsxpctJpFo' } })
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
@@ -176,7 +175,7 @@ class RankingEdit extends Component {
                             <div className="col-md-6 text-right">
 
                                 <button type="submit"
-                                    onClick={this.submitRanking}
+                                    onClick={this.submitEditRanking}
                                     className="btn btn-secondary">Add
                                 </button>
 

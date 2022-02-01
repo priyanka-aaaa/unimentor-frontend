@@ -32,10 +32,8 @@ const AdminScholarship = () => {
         setAdminId(adminId)
         
         //start for select course
-        const url = "admin/scholarships/"+adminId;
-        // const url = "admin/applications/"+"61ebe571481b8d50d1e005ec";
-        console.log("my url");
-        console.log(url);
+        const url = process.env.REACT_APP_SERVER_URL+"admin/scholarships/"+adminId;
+        
         fetch(url, {
             method: 'GET',
             
@@ -45,9 +43,7 @@ const AdminScholarship = () => {
                 console.log("data.scholarship");
               
                 setFormValues(data.adminScholarships)
-              
-                // this.setState({ data: data.universityCourses })
-            })
+              })
 
     }, [])
     let handleChange = (i, e) => {
@@ -71,16 +67,9 @@ const AdminScholarship = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        console.log("formvalues");
-        console.log(formValues);
-        // console.log(JSON.stringify(formValues));
-        // var myvalues = JSON.stringify(formValues);
-        console.log("ITEM");
-        console.log(formValues._id==="null");
-
-        formValues.map(async (item) => {
+       formValues.map(async (item) => {
             if(item._id==="null"){
-            await axios.post('/admin/scholarships', item, { headers: { 'Authorization': mounted } })
+            await axios.post(process.env.REACT_APP_SERVER_URL+'admin/scholarships', item, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {
@@ -96,7 +85,7 @@ const AdminScholarship = () => {
             // alert("application update successfully");
             }
             else{
-                await axios.put('/admin/scholarships/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL+'admin/scholarships/' + item._id, item, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {

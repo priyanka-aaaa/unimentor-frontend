@@ -31,8 +31,8 @@ const AdminApplication = () => {
         setAdminId(adminId)
         
         //start for select course
-        const url = "admin/applications/"+adminId;
-        // const url = "admin/applications/"+"61ebe571481b8d50d1e005ec";
+        const url = process.env.REACT_APP_SERVER_URL+"admin/applications/"+adminId;
+      
        
         fetch(url, {
             method: 'GET',
@@ -72,7 +72,7 @@ const AdminApplication = () => {
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-            await axios.post('/admin/applications', item, { headers: { 'Authorization': mounted } })
+            await axios.post(process.env.REACT_APP_SERVER_URL+'admin/applications', item, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {
@@ -88,7 +88,7 @@ const AdminApplication = () => {
            
             }
             else{
-                await axios.put('/admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL+'admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {

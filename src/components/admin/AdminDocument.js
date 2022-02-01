@@ -31,10 +31,8 @@ const AdminDocument = () => {
         setAdminId(adminId)
 
         //start for select course
-        const url = "admin/documents/" + adminId;
-        // const url = "admin/applications/"+"61ebe571481b8d50d1e005ec";
-        console.log("my url");
-        console.log(url);
+        const url = process.env.REACT_APP_SERVER_URL+"admin/documents/" + adminId;
+ 
         fetch(url, {
             method: 'GET',
 
@@ -69,14 +67,9 @@ const AdminDocument = () => {
         event.preventDefault();
         console.log("formvalues");
         console.log(formValues);
-        // console.log(JSON.stringify(formValues));
-        // var myvalues = JSON.stringify(formValues);
-        // console.log("my application");
-        // console.log(formValues[0].application);
-
         formValues.map(async (item) => {
             if (item._id === "null") {
-                await axios.post('/admin/documents', item, { headers: { 'Authorization': mounted } })
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/documents', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
                         console.log(res.data);
                         if (res.data.success === true) {
@@ -92,7 +85,7 @@ const AdminDocument = () => {
 
             }
             else {
-                await axios.put('/admin/documents/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/documents/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
                         console.log(res.data);
                         if (res.data.success === true) {
