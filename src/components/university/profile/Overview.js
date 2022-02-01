@@ -15,7 +15,7 @@ export default function Overview() {
     const [cgpa, setcgpa] = useState("");
     const [acceptanceRate, setacceptanceRate] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
- const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -84,7 +84,7 @@ export default function Overview() {
                     setsuccessMessage("Overview Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                  
+
                 }
                 else {
                     alert("error");
@@ -97,7 +97,7 @@ export default function Overview() {
     }
     return (
         <div>
-              {submitSuccess === 1 ? <div className="Show_success_message">
+            {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
