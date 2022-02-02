@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-const AdmissionProcess = () => {
+const Application = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
 
@@ -233,7 +233,7 @@ const AdmissionProcess = () => {
 
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse4"><strong>4</strong>
-                    Admissions Process
+                    Application Process
                 </a>
                 <div id="collapse4" className="collapse" data-bs-parent="#accordion">
 
@@ -486,4 +486,4 @@ const AdmissionProcess = () => {
     );
 }
 
-export default AdmissionProcess
+export default Application

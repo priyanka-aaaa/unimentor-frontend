@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 import "../Student/drag.css";
 
 import Footer from './Footer';
-import AdmissionProcess from './profile/AdmissionProcess';
+import Application from './profile/Application';
 import CoursesFee from './profile/CoursesFee';
 import PrimaryInfo from './profile/PrimaryInfo';
 import Overview from './profile/Overview';
@@ -167,7 +167,7 @@ class UniversityProfile extends Component {
                                             <PrimaryInfo />
                                             <Overview />
                                             <CoursesFee />
-                                            <AdmissionProcess />
+                                            <Application />
                                           
                                             <Document />
                                             <Scholarship />
