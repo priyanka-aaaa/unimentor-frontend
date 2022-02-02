@@ -15,6 +15,8 @@ import ApplicationProfile from './components/Student/ApplicationProfile';
 import Profile from './components/Student/Profile';
 import Document from './components/Student/Document';
 import StudentPersonalInformation from './StudentPersonalInformation';
+import Bookmark from './components/Student/Bookmark';
+
 
 import UniversityPassword from './components/university/UniversityPassword';
 import UniversityIntake from './components/university/UniversityIntake';
@@ -49,6 +51,9 @@ import AgentTeam from './components/agent/AgentTeam';
 import AgentStudent from './components/agent/AgentStudent';
 import AgentEvaluate from './components/agent/AgentEvaluate';
 import AgentCertificate from './components/agent/AgentCertificate';
+import AddStudent from './components/agent/AddStudent';
+import AgentApplication from './components/agent/AgentApplication';
+import AgentCommission from './components/agent/AgentCommission';
 
 
 
@@ -91,9 +96,11 @@ function App() {
             <Route path='/AgentStudent' component={AgentStudent} />
             <Route path='/AgentEvaluate' component={AgentEvaluate} />
             <Route path='/AgentCertificate' component={AgentCertificate} />
+            <Route path='/AgentApplication' component={AgentApplication} />
 
-
-
+            <Route path='/AgentCommission' component={AgentCommission} />
+            
+            
 
             <Route exact path='/' component={Home} />
             <Route path='/Studentlogin' component={Studentlogin} />
@@ -105,7 +112,10 @@ function App() {
             <Route path='/Profile' component={Profile} />
             <Route path='/Document' component={Document} />
             <Route path='/StudentPersonalInformation' component={StudentPersonalInformation} />
-          
+            <Route path='/Bookmark' component={Bookmark} />
+            <Route path='/AddStudent' component={AddStudent} />
+            
+            
             <Route path='/FilterUniversity' component ={UniversityFilter} />
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />

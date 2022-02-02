@@ -31,29 +31,39 @@ class Sidebar extends Component {
                             <i className="fas fa-file-alt"></i>
                             <span>Partner Team</span></Link>
                     </li>
-                
+
                     <li className="nav-item">
-                        <a className="nav-link collapsed"   data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <i className="fas fa-user-tie"></i>
+                        <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <i className="fas fa-user-tie"></i>
                             <span>my Student </span>
                         </a>
                         <div id="collapseTwo" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >
                             <div className="bg-white py-2 collapse-inner rounded">
-                                <a className="collapse-item" href="#aa">Add Student</a>
-                                <a className="collapse-item" href="#">Student</a>
-                                <a className="collapse-item" href="#">Student Application</a>
+                                <Link to={'/AddStudent'} className="collapse-item">
+                                    <span>Add Student</span></Link>
+                                    <Link to={'/AgentStudent'} className="collapse-item">
+                                    <span>Student</span></Link>
+                                    <Link to={'/AgentApplication'} className="collapse-item">
+                                    <span>Student Application</span></Link>
+                     
+                              
                             </div>
                         </div>
                     </li>
 
 
-                 
+
                     <li className="nav-item ">
                         <Link to={'/AgentEvaluate'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Evaluate Profile</span></Link>
                     </li>
-
+                    <li className="nav-item ">
+                        <Link to={'/AgentCommission'} className="nav-link" href="#">
+                            <i className="fas fa-file-upload"></i>
+                            <span>Commissions</span></Link>
+                    </li>
+                    
 
                     <li className="nav-item ">
                         <Link to={'/AgentCertificate'} className="nav-link" href="#">

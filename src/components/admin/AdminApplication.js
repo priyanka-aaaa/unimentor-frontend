@@ -13,30 +13,30 @@ const AdminApplication = () => {
     const [mounted, setMounted] = useState();
     const [myAdminId, setAdminId] = useState();
 
-    
+
     const [data, setdata] = useState([]);
     useEffect(() => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
-            
-           
+
+
 
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
             // setAdminId(adminId)
         }
         setMounted(mytoken)
-     
+
         setAdminId(adminId)
-        
+
         //start for select course
-        const url = process.env.REACT_APP_SERVER_URL+"admin/applications/";
-      
-       
+        const url = process.env.REACT_APP_SERVER_URL + "admin/applications/";
+
+
         fetch(url, {
             method: 'GET',
-            
+
         })
             .then(response => response.json())
             .then(data => {
@@ -68,39 +68,39 @@ const AdminApplication = () => {
         event.preventDefault();
         console.log("formvalues");
         console.log(formValues);
-  
+
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-            await axios.post(process.env.REACT_APP_SERVER_URL+'admin/applications', item, { headers: { 'Authorization': mounted } })
-                .then(function (res) {
-                    console.log(res.data);
-                    if (res.data.success === true) {
-                        console.log("courses update successfully");
-                    }
-                    else {
-                        alert("error");
-                    }
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
-           
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/applications', item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            console.log("courses update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+
             }
-            else{
-                await axios.put(process.env.REACT_APP_SERVER_URL+'admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
-                .then(function (res) {
-                    console.log(res.data);
-                    if (res.data.success === true) {
-                        console.log("courses update successfully");
-                    }
-                    else {
-                        alert("error");
-                    }
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
+            else {
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            console.log("courses update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
             }
 
         })

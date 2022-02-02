@@ -16,7 +16,7 @@ class Sidebar extends Component {
                         {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
 <i className="fas fa-graduation-cap"></i>
 </div> --> */}
-                        <div className="sidebar-brand-text mx-3">Coursementor </div>
+                        <div className="sidebar-brand-text mx-3">University Coursementor </div>
                     </a>
 
                     {/* <!-- Divider --> */}

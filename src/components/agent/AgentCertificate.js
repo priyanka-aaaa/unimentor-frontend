@@ -53,8 +53,8 @@ export default function AgentEvaluate() {
                                         {/* <!-- Card Header - Dropdown --> */}
                                         <div class="card shadow mb-4">
                                             <div class="certificate">
-                                                <img src={certificate} class="img-fluid"/>
-                            
+                                                <img src={certificate} class="img-fluid" />
+
 
                                             </div>
                                         </div>

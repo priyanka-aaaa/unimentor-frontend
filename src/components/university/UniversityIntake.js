@@ -26,21 +26,104 @@ export default function UniversityPassword() {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
+
                             {/* <!-- Page Heading --> */}
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">Setting</h1>
+                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 className="h3 mb-0 text-gray-800">Student</h1>
 
 
                             </div>
+
 
                             {/* <!-- Content Row --> */}
 
-                            <div class="row">
+                            <p>Admin Application</p>
+                            {/* <form onSubmit={handleSubmit}> */}
+                            <form>
+                                <div className="card-body" >
 
-                             <p>Intakes</p>
+                                    <div className="from-block" >
 
 
-                            </div>
+                                        <div className="row" >
+
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="form-label">Address
+                                                    *</label>
+                                                <input type="text" className="form-control"
+                                                    placeholder="Address" name="Address"
+
+                                                    // value={address}
+                                                    // onChange={(e) => setaddress(e.target.value)}
+                                                    required />
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="form-label">Address
+                                                    *</label>
+                                                <input type="text" className="form-control"
+                                                    placeholder="Address" name="Address"
+
+                                                    // value={address}
+                                                    // onChange={(e) => setaddress(e.target.value)}
+                                                    required />
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                            {/* <div className="mb-3">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <label className="form-label">application
+                                                            *</label>
+                                                        <input type="text" className="form-control"
+                                                            placeholder="application" name="application"
+                                                        // value={element.application || ""} onChange={e => handleChange(index, e)}
+
+                                                        // value={courseName}
+                                                        // onChange={(e) => setcourseName(e.target.value)}
+                                                        />
+                                                    </div>
+
+
+                                                </div>
+                                            </div> */}
+
+
+
+                                        </div>
+
+
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col-md-6"></div>
+                                                <div className="col-md-6 text-right">
+
+                                                    <button className="button add" type="button" className="btn btn-success "
+                                                    // onClick={() => addFormFields()}
+                                                    >Add New</button>
+
+                                                    <button type="submit" className="btn btn-secondary">Save
+                                                    </button>
+                                                    <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
+                                                        Next</button>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </form>
                             {/* <!-- Card Body --> */}
 
                         </div>
