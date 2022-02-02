@@ -48,7 +48,7 @@ const AdmissionProcess = () => {
             })
         //end  for getting university 
         //start for getting admin 
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/61ebe571481b8d50d1e005ec';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/';
         fetch(url, {
             method: 'GET'
         })

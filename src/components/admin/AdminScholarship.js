@@ -7,20 +7,20 @@ import Footer from './Footer';
 const AdminScholarship = () => {
     const [formValues, setFormValues] = useState([{
         scholarship: "",
-        
-        _id:"null"
+
+        _id: "null"
 
     }])
     const [mounted, setMounted] = useState();
     const [myAdminId, setAdminId] = useState();
 
-    
+
     const [data, setdata] = useState([]);
     useEffect(() => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
-            
+
             // console.log(mydata);
 
             var mytoken = mydata.data.token;
@@ -28,22 +28,22 @@ const AdminScholarship = () => {
             // setAdminId(adminId)
         }
         setMounted(mytoken)
-     
+
         setAdminId(adminId)
-        
+
         //start for select course
-        const url = process.env.REACT_APP_SERVER_URL+"admin/scholarships/"+adminId;
-        
+        const url = process.env.REACT_APP_SERVER_URL + "admin/scholarships/";
+
         fetch(url, {
             method: 'GET',
-            
+
         })
             .then(response => response.json())
             .then(data => {
                 console.log("data.scholarship");
-              
+
                 setFormValues(data.adminScholarships)
-              })
+            })
 
     }, [])
     let handleChange = (i, e) => {
@@ -67,37 +67,37 @@ const AdminScholarship = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-       formValues.map(async (item) => {
-            if(item._id==="null"){
-            await axios.post(process.env.REACT_APP_SERVER_URL+'admin/scholarships', item, { headers: { 'Authorization': mounted } })
-                .then(function (res) {
-                    console.log(res.data);
-                    if (res.data.success === true) {
-                        // alert("courses update successfully");
-                    }
-                    else {
-                        alert("error");
-                    }
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
-            // alert("application update successfully");
+        formValues.map(async (item) => {
+            if (item._id === "null") {
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/scholarships', item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            // alert("courses update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+                // alert("application update successfully");
             }
-            else{
-                await axios.put(process.env.REACT_APP_SERVER_URL+'admin/scholarships/' + item._id, item, { headers: { 'Authorization': mounted } })
-                .then(function (res) {
-                    console.log(res.data);
-                    if (res.data.success === true) {
-                        console.log(" update successfully");
-                    }
-                    else {
-                        alert("error");
-                    }
-                })
-                .catch(error => {
-                    console.log(error.response)
-                });
+            else {
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/scholarships/' + item._id, item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            console.log(" update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
             }
         })
 

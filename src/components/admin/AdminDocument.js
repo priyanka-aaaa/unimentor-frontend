@@ -31,7 +31,7 @@ const AdminDocument = () => {
         setAdminId(adminId)
 
         //start for select course
-        const url = process.env.REACT_APP_SERVER_URL+"admin/documents/" + adminId;
+        const url = process.env.REACT_APP_SERVER_URL+"admin/documents/";
  
         fetch(url, {
             method: 'GET',

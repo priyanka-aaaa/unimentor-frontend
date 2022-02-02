@@ -1,21 +1,30 @@
-
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
 import Footer from './Footer';
 const Commission = () => {
-
     const [mounted, setMounted] = useState();
     const [Percentage, setPercentage] = useState();
-    const [commissionChecked, setcommissionChecked] = useState("");
+    const [commissionChecked, setcommissionChecked] = useState();
+
+
     const [commissionTimeChecked, setcommissionTimeChecked] = useState("");
     const [displayAmount, setdisplayAmount] = useState("none");
     const [displayPercentage, setdisplayPercentage] = useState("none");
     const [displayone, setdisplayone] = useState("none");
     const [displaymany, setdisplaymany] = useState("none");
+    //start for edit
+    const [Editid, setEditid] = useState([]);
 
+    const [EditcommissionType, setEditcommissionType] = useState([]);
+
+    const [EdittimeType, setEdittimeType] = useState([]);
+
+    const [displayEditAmount, setdisplayEditAmount] = useState("none");
+    const [displayEditPercentage, setdisplayEditPercentage] = useState("none");
+    const [displayEditone, setdisplayEditone] = useState("none");
+    const [displayEditmany, setdisplayEditmany] = useState("none");
+    //end for edit commission
 
 
     const [courseName, setcourseName] = useState("");
@@ -25,7 +34,6 @@ const Commission = () => {
     const [width, setwidth] = useState("");
     const [viewWidth, setviewWidth] = useState("");
     const [addWidth, setaddWidth] = useState("");
-
     const [data, setdata] = useState([]);
     const [commissionData, setcommissionData] = useState([]);
 
@@ -33,6 +41,40 @@ const Commission = () => {
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    //start for edit
+    function setEditCommissionTime(value) {
+
+        setEdittimeType(value)
+        if (value === "one time") {
+            setdisplayEditone("inline");
+            setdisplayEditmany("none");
+        }
+        else {
+            setdisplayEditone("none");
+            setdisplayEditmany("inline");
+        }
+    }
+    function setEditcommissionData(value) {
+
+        console.log("ff")
+        console.log("ff")
+        console.log("ff")
+        console.log("ff")
+        console.log("ff")
+
+        setEditcommissionType(value)
+
+        console.log("value")
+        if (value === "fixed") {
+            setdisplayEditAmount("inline");
+            setdisplayEditPercentage("none");
+        }
+        else {
+            setdisplayEditPercentage("inline");
+            setdisplayEditAmount("none");
+        }
+    }
+    //end for edit
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -109,23 +151,46 @@ const Commission = () => {
     }
 
     function handleEditClick(value) {
-        console.log(value);
         seteditId(value);
         setwidth("1600px");
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                console.log(res.data.universityCourse);
-                var myuniversityCourse = res.data.universityCourse;
-                if (res.data.success === true) {
+
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions/' + value;
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("myf");
+                console.log("data.universityCommission.commissionType")
+                console.log(data.universityCommission.commissionType)
+                setEditid(data.universityCommission._id)
+                setcourseName(data.universityCommission.courseName)
+                setfee(data.universityCommission.fee)
+                setEditcommissionType(data.universityCommission.commissionType)
+                setcommissionValue(data.universityCommission.commissionValue)
+                setEdittimeType(data.universityCommission.timeType)
+                settimeValue(data.universityCommission.timeValue)
+                if (data.universityCommission.commissionType === "fixed") {
+                    setdisplayEditAmount("inline");
+                    setdisplayEditPercentage("none");
                 }
                 else {
-                    alert("error");
+                    setdisplayEditPercentage("inline");
+                    setdisplayEditAmount("none");
+                }
+                if (data.universityCommission.timeType === "one time") {
+                    setdisplayEditone("inline");
+                    setdisplayEditmany("none");
+                }
+                else {
+                    setdisplayEditmany("inline");
+                    setdisplayEditone("none");
                 }
 
+
+
             })
-            .catch(error => {
-                console.log(error.response)
-            });
 
     }
     function handleAdd() {
@@ -134,24 +199,14 @@ const Commission = () => {
     //start for delete
 
     function handleDelete(value) {
-        console.log(value);
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-
-                console.log(res.data.universityCourse);
-                var myuniversityCourse = res.data.universityCourse;
-                if (res.data.success === true) {
-                    alert("Course delete successfully");
-                }
-                else {
-                    alert("error");
-                }
-
+        const url = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + value;
+        fetch(url, {
+            method: 'delete',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
             })
-            .catch(error => {
-                console.log(error.response)
-            });
-
     }
     //end for delete 
     function closebox(value) {
@@ -165,16 +220,21 @@ const Commission = () => {
     function closeaddbox(value) {
 
         setaddWidth("0px");
+        setwidth("0px");
     }
     let handleAddSubmit = (event) => {
         event.preventDefault();
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
+        // obj1.append("commissionType", commissionChecked);
         obj1.append("commissionType", commissionChecked);
+
         obj1.append("commissionValue", commissionValue);
         obj1.append("timeType", commissionTimeChecked);
         obj1.append("timeValue", timeValue);
+        console.log("obj1obj1");
+        console.log(obj1)
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions'
         fetch(url2, {
             method: 'post',
@@ -200,6 +260,47 @@ const Commission = () => {
                 //end for get commission
             })
     }
+    let handleEditSubmit = (event) => {
+        event.preventDefault();
+        const obj1 = new FormData();
+        // obj1.append("courseName", courseName);
+        // obj1.append("fee", fee);
+        // obj1.append("commissionType", commissionChecked);
+        // obj1.append("commissionValue", commissionValue);
+        // obj1.append("timeType", commissionTimeChecked);
+        // obj1.append("timeValue", timeValue);
+        obj1.append("courseName", courseName);
+        obj1.append("fee", fee);
+        obj1.append("commissionType", EditcommissionType);
+        obj1.append("commissionValue", commissionValue);
+        obj1.append("timeType", EdittimeType);
+        obj1.append("timeValue", timeValue);
+        const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + Editid
+        fetch(url2, {
+            method: 'put',
+            headers: { 'Authorization': mounted },
+            body: obj1
+        })
+            .then(response => response.json())
+            .then(data => {
+                setaddWidth("0");
+                setsuccessMessage("Commisssion Added")
+                setTimeout(() => setsubmitSuccess(""), 3000);
+                setsubmitSuccess(1)
+                //start for get commission
+                const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+                fetch(url, {
+                    method: 'GET',
+                    headers: { 'Authorization': mounted }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setcommissionData(data.universityCommissions)
+                    })
+                //end for get commission
+            })
+    }
+
     return (
         <div id="page-top">
 
@@ -289,31 +390,7 @@ const Commission = () => {
                                         </div>
 
 
-                                        <div className="card-body sidenav" id="mySidenav"
-                                            style={{ width: width }}
-                                        >
 
-                                            <div className="student-view">
-                                                <div className="row">
-                                                    <div className="col-md-6">
-
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closebox} >&times;</a>
-                                                    </div>
-                                                </div>
-                                                <div className="row mt-3">
-
-                                                </div>
-                                                <div className="table-responsive mt-5">
-
-                                                    <div className="row">
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                         <div className="card-body sidenav" id="mySideAdd"
                                             style={{ width: addWidth }}
                                         >
@@ -344,7 +421,7 @@ const Commission = () => {
                                                                         <div className="card shadow mb-4">
                                                                             <div id="accordion">
 
-
+                                                                                <p>Add Commission</p>
                                                                                 <div className="card-body">
 
                                                                                     <div className="from-block">
@@ -392,7 +469,8 @@ const Commission = () => {
 
                                                                                                 <div className="col-md-6">
                                                                                                     <fieldset
-                                                                                                        onChange={(e) => setcommission(e.target.value)}
+
+                                                                                                        onChange={(e) => setcommissionChecked(e.target.value)}
 
                                                                                                     >
                                                                                                         <label className="form-label">Commision</label><br />
@@ -511,7 +589,7 @@ const Commission = () => {
                                             </div>
                                         </div>
                                         <div className="card-body sidenav" id="mySideview"
-                                            style={{ width: viewWidth }}
+                                            style={{ width: width }}
                                         >
 
                                             <div className="student-view">
@@ -520,7 +598,8 @@ const Commission = () => {
                                                         <h6 className="mt-2 font-weight-bold text-primary"></h6>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closeviewbox} >&times;</a>
+                                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
@@ -529,12 +608,195 @@ const Commission = () => {
                                                 </div>
                                                 <div className="table-responsive mt-5">
 
+                                                    <div className="row">
+                                                        <div className="col-sm-12">
 
+                                                            <div className="row">
+
+                                                                {/* <!-- Area Chart --> */}
+                                                                <div className="col-xl-12 col-lg-7">
+                                                                    <p>Edit Commission</p>
+                                                                    <div className="card shadow mb-4">
+                                                                        {/* <!-- Card Header - Dropdown --> */}
+                                                                        <div className="card shadow mb-4">
+                                                                            <div id="accordion">
+
+
+                                                                                <div className="card-body">
+
+                                                                                    <div className="from-block">
+
+                                                                                    </div>
+
+                                                                                    <form onSubmit={handleEditSubmit}>
+                                                                                        <div className="mb-3">
+                                                                                            <div className="row">
+                                                                                                <div className="col-md-6">
+                                                                                                    <label className="form-label">Course Name</label>
+
+
+                                                                                                    <select className="form-control" onChange={(e) => handleChange(e.target.value)}>
+
+                                                                                                        {/* <option value="" >Select course name</option> */}
+                                                                                                        <option value={courseName} >{courseName}</option>
+                                                                                                        {data.map((object, i) => {
+                                                                                                            return (
+
+                                                                                                                <option
+                                                                                                                    onClick={(e) => handleClick(object.fee)}
+
+                                                                                                                    value={object.courseName + "&&" + object.fee} key={i}>{object.courseName}</option>
+                                                                                                            )
+                                                                                                        })}
+                                                                                                    </select>
+                                                                                                </div>
+
+                                                                                                <div className="col-md-6">
+                                                                                                    <label className="form-label">Select Fee</label>
+                                                                                                    <select className="form-control" >
+                                                                                                        <option> {fee}</option>
+
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+
+                                                                                            <div className="row mt-3">
+
+
+                                                                                                <div className="col-md-6">
+                                                                                                    <fieldset
+
+                                                                                                        onChange={(e) => setEditcommissionData(e.target.value)
+                                                                                                        }
+
+                                                                                                    >
+                                                                                                        <label className="form-label">Commision</label><br />
+
+                                                                                                        {commissionChecked}
+                                                                                                        {EditcommissionType}
+                                                                                                        <div className="form-check form-check-inline">
+
+
+                                                                                                            <input className="form-check-input" type="radio"
+                                                                                                                onChange={(e) => setEditcommissionData(e.target.value)}
+                                                                                                                value="fixed"
+                                                                                                                checked={EditcommissionType === "fixed"}
+
+
+                                                                                                            />
+                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault1">
+                                                                                                                Fixed
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <div className="form-check form-check-inline">
+                                                                                                            <input className="form-check-input" type="radio"
+                                                                                                                onChange={(e) => setEditcommissionData(e.target.value)}
+                                                                                                                value="variable"
+
+                                                                                                                checked={EditcommissionType === "variable"}
+
+
+                                                                                                            />
+                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault2">
+                                                                                                                Variable
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </fieldset>
+                                                                                                </div>
+
+
+
+                                                                                                <div className="col-md-6">
+                                                                                                    <div style={{ display: displayEditAmount }}>
+                                                                                                        <label className="form-label" >Enter Amount</label>
+                                                                                                        <input type="text"
+                                                                                                            value={commissionValue}
+                                                                                                            onChange={e => amountcommissionValue(e.target.value)}
+                                                                                                            className="form-control" placeholder="" name="enteramount" />
+                                                                                                    </div>
+                                                                                                    <div style={{ display: displayEditPercentage }}>
+                                                                                                        <label className="form-label" >Enter Percentage(%)</label>
+                                                                                                        <input type="text" className="form-control" placeholder="" name="enter Percentage"
+                                                                                                            onChange={e => percentagecommissionValue(e.target.value)}
+                                                                                                        />
+                                                                                                    </div>
+                                                                                                    <span>The Total commission is {Percentage}</span>
+                                                                                                </div>
+                                                                                            </div>
+
+
+                                                                                            <div className="row mt-3">
+                                                                                                <div className="col-md-6">
+                                                                                                    <fieldset
+                                                                                                        onChange={(e) => setEditCommissionTime(e.target.value)}>
+                                                                                                        <label className="form-label">Commision Set is</label><br />
+                                                                                                        <div className="form-check form-check-inline">
+                                                                                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                                                                                                                value="one time"
+
+                                                                                                                checked={EdittimeType === "one time"}
+                                                                                                                onChange={(e) => setEditCommissionTime(e.target.value)}
+                                                                                                            />
+                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault3">
+                                                                                                                Only One time
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                        <div className="form-check form-check-inline">
+                                                                                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
+                                                                                                                value="every time"
+                                                                                                                checked={EdittimeType === "every time"}
+
+
+                                                                                                                onChange={(e) => setEditCommissionTime(e.target.value)}
+                                                                                                            />
+                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault4">
+                                                                                                                On Every Time
+                                                                                                            </label>
+                                                                                                        </div>
+                                                                                                    </fieldset>
+                                                                                                </div>
+                                                                                                <div className="col-md-6">
+                                                                                                    <div style={{ display: displayEditone }}>
+                                                                                                        <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
+                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                            value={timeValue}
+                                                                                                            onChange={(e) => settimeValue(e.target.value)}
+                                                                                                        />
+                                                                                                    </div>
+                                                                                                    <div style={{ display: displayEditmany }}>
+                                                                                                        <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
+                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                            value={timeValue}
+                                                                                                            onChange={(e) => settimeValue(e.target.value)}
+                                                                                                        />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div className="mb-3">
+                                                                                            <button type="submit" className="btn btn-success">Submit</button>
+                                                                                        </div>
+                                                                                    </form>
+
+
+                                                                                </div>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </div>
+                                                                    {/* <!-- Card Body --> */}
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
                                         </div>
-
+                                        {/* end for edit commission */}
 
 
 

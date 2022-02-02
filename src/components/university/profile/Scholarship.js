@@ -37,7 +37,7 @@ const Document = () => {
             var mytoken = mydata.data.token;
         }
         //start for getting admin 
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/scholarships/61ebe571481b8d50d1e005ec';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/scholarships/';
         fetch(url, {
             method: 'GET'
         })

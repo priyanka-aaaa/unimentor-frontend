@@ -31,7 +31,7 @@ const AdminApplication = () => {
         setAdminId(adminId)
         
         //start for select course
-        const url = process.env.REACT_APP_SERVER_URL+"admin/applications/"+adminId;
+        const url = process.env.REACT_APP_SERVER_URL+"admin/applications/";
       
        
         fetch(url, {

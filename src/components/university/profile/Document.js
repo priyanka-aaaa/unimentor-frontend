@@ -54,7 +54,7 @@ const Document = () => {
             })
         //end for fetch all document
         //start for getting admin 
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/61ebe571481b8d50d1e005ec';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/';
         fetch(url, {
             method: 'GET'
         })
