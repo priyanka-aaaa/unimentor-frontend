@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 import PersonalInfo from './PersonalInfo';
 import Address from './Address';
 import Family from './Family';
-
+import Education from './Education';
 import Footer from './Footer';
 
 export default function Studentregister() {
@@ -13,7 +13,7 @@ export default function Studentregister() {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
 
-   
+
     // start for education
     const [educationhighestEducation, seteducationhighestEducation] = useState();
     const [educationstatus, seteducationstatus] = useState();
@@ -84,7 +84,7 @@ export default function Studentregister() {
 
 
 
-      
+
         //start for education
         axios.get('/student/education', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
@@ -214,7 +214,7 @@ export default function Studentregister() {
     }, [])
 
 
- 
+
     function Personal_education(event) {
         event.preventDefault();
         const obj = {
@@ -398,244 +398,7 @@ export default function Studentregister() {
                                     <PersonalInfo />
                                     <Address />
                                     <Family />
-                                    <div className="card">
-                                        <a className="card-header" data-bs-toggle="collapse" href="#collapse4">
-                                            <strong>4</strong>  Education
-                                        </a>
-                                        <div id="collapse4" className="collapse" data-bs-parent="#accordion">
-                                            <div className="card-body">
-                                                <form onSubmit={Personal_education}>
-                                                    <div className="form-block">
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="Highest Level of Education">Highest Level of
-                                                                        Education <span className="text-danger"> *</span></label>
-                                                                    <select
-                                                                        value={educationhighestEducation}
-                                                                        onChange={(e) => seteducationhighestEducation(e.target.value)}
-                                                                        className="form-control" id="Highest Level of Education" name="education_level">
-                                                                        <option >Select</option>
-                                                                        <option value="Secondary">Secondary</option>
-                                                                        <option value="Undergraduate Degree">Undergraduate Degree</option>
-                                                                        <option value="Postgraduate Degree">Postgraduate Degree</option>
-                                                                        <option value="Research and Doctoral">Research &amp; Doctoral</option>
-                                                                        <option value="Undergraduate Diploma">Undergraduate Diploma</option>
-                                                                        <option value="Postgraduate Diploma">Postgraduate Diploma</option>
-                                                                        <option value="Foundation Degree">Foundation Degree</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="education_status">Education Status <span className="text-danger"> *</span></label><br />
-                                                                    <label className="ant-radio-wrapper ant-radio-wrapper-checked">
-                                                                        <span className="ant-radio ant-radio-checked"><input
-                                                                            value={educationstatus}
-                                                                            onChange={(e) => seteducationstatus(e.target.value)}
-                                                                            checked={educationstatus === "Pursuing"}
-                                                                            name="education_status_0" type="radio" className="ant-radio-input" value="Pursuing" />
-                                                                            <span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
-                                                                                value={educationstatus}
-                                                                                onChange={(e) => seteducationstatus(e.target.value)}
-                                                                                checked={educationstatus === "Completed"}
-                                                                                value="Completed"
-                                                                                name="education_status_0" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
-                                                                        <span>Completed</span></label> <br />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="specialisation">Specialization <span className="text-danger"> *</span>
-                                                                    </label>
-                                                                    <select
-                                                                        value={educationspecialization}
-                                                                        onChange={(e) => seteducationspecialization(e.target.value)}
-                                                                        className="form-control" id="specialisation" name="specialisation" required="">
-                                                                        <option >Select</option>
-                                                                        <option value="Social Science and Humanities">Social Science and Humanities</option>
-                                                                        <option value="Management">Management</option>
-                                                                        <option value="Law">Law</option>
-                                                                        <option value="Engineering">Engineering</option>
-                                                                        <option value="Architecture">Architecture</option>
-                                                                        <option value="Design">Design</option>
-                                                                        <option value="Medicine">Medicine</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="education_degree">Degree/Diploma/Certificate
-                                                                        <span className="text-danger"> *</span></label>
-                                                                    <select
-                                                                        value={educationdegree}
-                                                                        onChange={(e) => seteducationdegree(e.target.value)}
-                                                                        className="form-control" id="education_degree" name="education_degree" required="">
-                                                                        <option >Select Education Level</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group"><label htmlFor="grading_scheme_id">Grade
-                                                                    Scheme(GPA/Percentage)</label><select
-                                                                        value={educationgradePercentage}
-                                                                        onChange={(e) => seteducationgradePercentage(e.target.value)}
-                                                                        className="form-control" id="grading_scheme_id" name="grading_scheme_id" required="">
-                                                                        <option >Select</option>
-                                                                        <option value="Grade Scale 0-4">Grade Scale 0-4</option>
-                                                                        <option value="Grade Scale 0-10">Grade Scale 0-10</option>
-                                                                        <option value="Percentage 0-100">Percentage 0-100</option>
-                                                                        <option value="Division/Class">Division/Class</option>
-                                                                        <option value="Letter Grade F to A+">Letter Grade F to A+</option>
-                                                                    </select></div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group"><label htmlFor="grade_marks">Grade
-                                                                    Average/Marks Obtained</label><input
-                                                                        value={educationmarks}
-                                                                        onChange={(e) => seteducationmarks(e.target.value)}
-                                                                        type="text" className="form-control" id="grade_marks" name="grade_marks" placeholder="Grade Average/Marks Obtained" required="" /></div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="attendedFrom">Attended From</label>
-                                                                    <br />
-                                                                    <input
-                                                                        value={educationattendedForm}
-                                                                        onChange={(e) => seteducationattendedForm(e.target.value)}
-                                                                        type="date" className="form-control" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="institute_name">Name of Institution</label>
-                                                                    <input
-                                                                        value={educationinstitution}
-                                                                        onChange={(e) => seteducationinstitution(e.target.value)}
-                                                                        type="text" className="form-control" id="institute_name" name="institute_name" placeholder="Name of Institution" />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group"><label htmlFor="institute_affiliation">Affiliating University/Board
-                                                                    of Education</label>
-                                                                    <input
-                                                                        value={educationaffiliationUniversity}
-                                                                        onChange={(e) => seteducationaffiliationUniversity(e.target.value)}
-                                                                        type="text" className="form-control" id="institute_affiliation" name="institute_affiliation" placeholder="Name of Institution" />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="language_of_study">Language of
-                                                                        Instruction</label>
-                                                                    <select
-                                                                        value={educationlanguage}
-                                                                        onChange={(e) => seteducationlanguage(e.target.value)}
-                                                                        className="form-control" id="language_of_study" name="language_of_study" required="">
-                                                                        <option value="English">English</option>
-                                                                        <option value="Hindi">Hindi</option>
-                                                                        <option value="Other">Other</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="nationality">Country</label>
-                                                                    <select
-                                                                        value={educationcountry}
-                                                                        onChange={(e) => seteducationcountry(e.target.value)}
-                                                                        className="form-control" id="Nationality" name="Nationality">
-                                                                        <option >Select Country</option>
-                                                                        <option value="India">India</option>
-                                                                        <option value="Afghanistan">Afghanistan</option>
-                                                                        <option value="Albania">Albania</option>
-                                                                        <option value="Algeria">Algeria</option>
-                                                                        <option value="American Samoa">American Samoa
-                                                                        </option>
-                                                                        <option value="Andorra">Andorra</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                <div className="form-group"><label htmlFor="institute_address_state">State/Province</label><select
-                                                                    value={educationstate}
-                                                                    onChange={(e) => seteducationstate(e.target.value)}
-                                                                    className="form-control" id="institute_address_state" name="institute_address_state" required="">
-                                                                    <option>Select State</option>
-                                                                </select></div>
-                                                            </div>
-
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label htmlFor="City/institute_address_city">City/Town</label><input
-                                                                        value={educationcity}
-                                                                        onChange={(e) => seteducationcity(e.target.value)}
-                                                                        type="text" className="form-control" id="institute_address_city" placeholder="City/Town" name="institute_address_city" required="" />
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label htmlFor="institute_address_text_1">Address</label><input
-                                                                        value={educationaddress}
-                                                                        onChange={(e) => seteducationaddress(e.target.value)}
-                                                                        type="text" className="form-control" id="institute_address_text_1" placeholder="Address" name="institute_address_text" required="" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label htmlFor="institute_address_zipcode">Zipcode</label><input
-                                                                        value={educationzipcode}
-                                                                        onChange={(e) => seteducationzipcode(e.target.value)}
-                                                                        type="text" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="institute_address_zipcode" required="" /></div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-md-6"></div>
-                                                                <div className="col-md-6 text-right">
-                                                                    <button type="button" className="btn btn-success ">Add New
-                                                                    </button>
-                                                                    <button type="submit" className="btn btn-secondary">Save
-                                                                    </button>
-
-                                                                    <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse5">Save
-                                                                        Next</button>
-
-                                                                </div>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-
-
-                                                </form>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                 <Education/>
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse5">
