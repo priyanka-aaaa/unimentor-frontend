@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 import axios from 'axios';
 import Topbar from './Topbar';
-import Index from './Index';
+
 import Footer from './Footer';
 import Main from './Main';
 import 'bootstrap/dist/css/bootstrap.min.css';

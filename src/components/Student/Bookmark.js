@@ -1,7 +1,9 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-// import './components/css/dashboard.css';
+
+// import waterloouniversity from './waterloouniversity.jpg'
+import waterloouniversity from './waterloouniversity.jpg';
 import Footer from './Footer';
 function Bookmark(props) {
     return (
@@ -41,7 +43,9 @@ function Bookmark(props) {
               <div className="row">
                 <div className="col-md-4">
                   <div className="bookmark-block">
-                    <span><img src="img/waterloouniversity.jpg" /></span>
+                    <span>
+                    <img src={waterloouniversity} alt="logo" />
+                    </span>
                     <div className="bool-markcontent">
                       <h5>Unversity</h5>
                       <p>Waterloo University</p>
@@ -51,7 +55,7 @@ function Bookmark(props) {
                 </div>
                 <div className="col-md-4">
                   <div className="bookmark-block">
-                    <span><img src="img/rimt.jpg" /></span>
+                    <span> <img src={waterloouniversity} alt="logo" /></span>
                     <div className="bool-markcontent">
                       <h5>Unversity</h5>
                       <p>Rimt University</p>
@@ -61,7 +65,7 @@ function Bookmark(props) {
                 </div>
                 <div className="col-md-4">
                   <div className="bookmark-block">
-                    <span><img src="img/waterloouniversity.jpg" /></span>
+                    <span> <img src={waterloouniversity} alt="logo" /></span>
                     <div className="bool-markcontent">
                       <h5>Unversity</h5>
                       <p>Rimt University</p>

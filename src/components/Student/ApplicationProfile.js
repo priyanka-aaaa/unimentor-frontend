@@ -2,49 +2,18 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import Index from './Index';
+import PersonalInfo from './PersonalInfo';
+import Address from './Address';
+import Family from './Family';
+
 import Footer from './Footer';
 
 export default function Studentregister() {
-    // start for personal information
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
-    const [salutation, setsalutation] = useState("");
-    const [firstName, setfirstName] = useState("");
-    const [middleName, setmiddleName] = useState("");
-    const [lastName, setlastName] = useState("");
-    const [otherName, setotherName] = useState("no");
-    const [gender, setgender] = useState("");
-    const [dateOfBirth, setdateOfBirth] = useState("");
-    const [countryOfBirth, setcountryOfBirth] = useState("");
-    const [nationality, setnationality] = useState("");
-    const [dualNationality, setdualNationality] = useState("no");
-    const [maritalStatus, setmaritalStatus] = useState("");
-    const [differentlyAble, setdifferentlyAble] = useState("no");
-    const [passport, setpassport] = useState("no");
-    const [aadharCard, setaadharCard] = useState("no");
-    const [firstLanguage, setfirstLanguage] = useState("");
-    const [visa, setvisa] = useState("no");
-    const [refusedVisa, setrefusedVisa] = useState("no");
-    // end for personal information
-    // start for address
-    const [country, setcountry] = useState();
-    const [state, setstate] = useState();
-    const [city, setcity] = useState();
-    const [address, setaddress] = useState();
-    const [zipcode, setzipcode] = useState();
-    const [communication_address, setcommunication_address] = useState("no");
-    // end for address
-    // start for family
-    const [familyRelationship, setfamilyRelationship] = useState();
-    const [familySalutation, setfamilySalutation] = useState();
-    const [familyfirstName, setfamilyfirstName] = useState();
-    const [familymiddleName, setfamilymiddleName] = useState();
-    const [familylastName, setfamilylastName] = useState();
-    const [familyemail, setfamilyemail] = useState();
-    const [familymobile, setfamilymobile] = useState();
-    const [familyoccupation, setfamilyoccupation] = useState();
-    const [familyqualification, setfamilyqualification] = useState();
-    // end for family
+
+   
     // start for education
     const [educationhighestEducation, seteducationhighestEducation] = useState();
     const [educationstatus, seteducationstatus] = useState();
@@ -112,88 +81,10 @@ export default function Studentregister() {
         }
         setMounted(mytoken)
         var myurl = process.env.REACT_APP_SERVER_URL;
-        //start for fetch personal information
-        axios.get(process.env.REACT_APP_SERVER_URL+'student/personalInformation', { headers: { 'Authorization': mytoken } })
-            .then(function (res) {
-                if (res.data.success === true) {
-                    var student_personal = res.data.studentPersonalInformation;
-                    setsalutation(student_personal.salutation);
-                    setfirstName(student_personal.firstName);
-                    setmiddleName(student_personal.middleName);
-                    setlastName(student_personal.lastName);
-                    setotherName(student_personal.otherName);
-                    setgender(student_personal.gender);
-                    setdateOfBirth(student_personal.dateOfBirth);
-                    setcountryOfBirth(student_personal.countryOfBirth);
-                    setnationality(student_personal.nationality);
-                    setdualNationality(student_personal.dualNationality);
-                    setmaritalStatus(student_personal.maritalStatus);
-                    setdifferentlyAble(student_personal.differentlyAble);
-                    setpassport(student_personal.passport);
-                    setaadharCard(student_personal.aadharCard);
-                    setfirstLanguage(student_personal.firstLanguage);
-                    setvisa(student_personal.visa);
-                    setrefusedVisa(student_personal.refusedVisa);
 
-                }
-                else {
-                    alert("error");
-                }
 
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-        //end for fetch personal information
-        //start for address
-        axios.get('/student/address', { headers: { 'Authorization': mytoken } })
-            .then(function (res) {
-                console.log(res.data);
-                if (res.data.success === true) {
 
-                    var studentAddress = res.data.studentAddress;
-                    setcountry(studentAddress.country);
-                    setstate(studentAddress.state);
-                    setcity(studentAddress.city);
-                    setaddress(studentAddress.address);
-                    setzipcode(studentAddress.zipcode);
-                    setcommunication_address(studentAddress.communication_address);
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-        //end for address
-        //start for family
-        axios.get('/student/family', { headers: { 'Authorization': mytoken } })
-            .then(function (res) {
-                console.log(res.data);
-                if (res.data.success === true) {
-                    var MystudentFamily = res.data.studentFamily;
-                    setfamilyRelationship(MystudentFamily.relationship);
-                    setfamilySalutation(MystudentFamily.salutation);
-                    setfamilyfirstName(MystudentFamily.firstName);
-                    setfamilymiddleName(MystudentFamily.middleName);
-                    setfamilylastName(MystudentFamily.lastName);
-                    setfamilyemail(MystudentFamily.email);
-                    setfamilymobile(MystudentFamily.mobile);
-                    setfamilyoccupation(MystudentFamily.occupation);
-                    setfamilyqualification(MystudentFamily.qualification);
-
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-        //end for family
+      
         //start for education
         axios.get('/student/education', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
@@ -321,97 +212,9 @@ export default function Studentregister() {
             });
         //end for recommendation
     }, [])
-    function Personal_Information(event) {
-        event.preventDefault();
-        const obj = {
-            salutation: salutation,
-            firstName: firstName,
-            middleName: middleName,
-            lastName: lastName,
-            otherName: otherName,
-            gender: gender,
-            dateOfBirth: dateOfBirth,
-            countryOfBirth: countryOfBirth,
-            nationality: nationality,
-            dualNationality: dualNationality,
-            maritalStatus: maritalStatus,
-            differentlyAble: differentlyAble,
-            passport: passport,
-            aadharCard: aadharCard,
-            firstLanguage: firstLanguage,
-            visa: visa,
-            refusedVisa: refusedVisa
-        };
-        axios.put('/student/personalInformation', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                console.log(res.data);
-                if (res.data.success === true) {
-                    alert("Personal Profile update successfully");
-                }
-                else {
-                    alert("error");
-                }
 
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    }
-    function application_address(event) {
-        event.preventDefault();
-        console.log(communication_address);
-        const obj = {
-            country: country,
-            state: state,
-            city: city,
-            address: address,
-            zipcode: zipcode,
-            communication_address: communication_address
 
-        };
-        axios.put('/student/address', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                console.log(res.data);
-                if (res.data.success === true) {
-                    alert("address update successfully");
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    }
-    function Personal_family(event) {
-        event.preventDefault();
-        const obj = {
-            relationship: familyRelationship,
-            salutation: familySalutation,
-            firstName: familyfirstName,
-            middleName: familymiddleName,
-            lastName: familylastName,
-            email: familyemail,
-            mobile: familymobile,
-            occupation: familyoccupation,
-            qualification: familyqualification,
-        };
-        axios.put('/student/family', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                console.log(res.data);
-                if (res.data.success === true) {
-                    alert("family update successfully");
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-    }
+ 
     function Personal_education(event) {
         event.preventDefault();
         const obj = {
@@ -570,6 +373,9 @@ export default function Studentregister() {
                         {/* <!-- Begin Page Content --> */}
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
+                        {submitSuccess === 1 ? <div className="Show_success_message">
+                            <strong>Success!</strong> {successMessage}
+                        </div> : null}
                         <div className="container">
 
                             {/* <!-- Page Heading --> */}
@@ -588,550 +394,13 @@ export default function Studentregister() {
                                 <div className="col-xl-12 col-lg-7">
 
                                     {/* <!-- Card Header - Dropdown --> */}
-                                    <div id="accordion">
-                                        <div className="card">
-
-                                            <div className="card">
-                                                <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
-                                                <strong>1</strong>  Personal Information
-
-                                                </a>
-                                                <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
-                                                    <div className="card-body">
-
-                                                        <div className="from-block">
-                                                            <form onSubmit={Personal_Information}>
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label htmlFor="state" className="form-label">Salutation
-                                                                                *</label>
-                                                                            <select type="text" className="form-control" id="salutation"
-                                                                                value={salutation}
-                                                                                onChange={(e) => setsalutation(e.target.value)}
-                                                                                placeholder="Salutation" name="salutation">
-                                                                                <option >Select</option>
-                                                                                <option value="Ms.">Ms.</option>
-                                                                                <option value="Mr.">Mr.</option>
-                                                                                <option value="Mrs.">Mrs.</option>
-                                                                                <option value="Miss.">Miss.</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label htmlFor="fname" className="form-label">First Name
-                                                                                *</label>
-                                                                            <input
-                                                                                value={firstName}
-                                                                                onChange={(e) => setfirstName(e.target.value)}
-                                                                                type="text" className="form-control" placeholder="First Name" name="fname" />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label htmlFor="Mname" className="form-label">Middle
-                                                                                Name</label>
-                                                                            <input
-                                                                                value={middleName}
-                                                                                onChange={(e) => setmiddleName(e.target.value)}
-                                                                                type="text" className="form-control" placeholder="Middle Name" name="Mname" />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label htmlFor="lname" className="form-label">Last Name/
-                                                                                Surname/ Family Name *</label>
-                                                                            <input
-                                                                                value={lastName}
-                                                                                onChange={(e) => setlastName(e.target.value)}
-                                                                                type="text" className="form-control" placeholder="" name="lname" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label htmlFor="email" className="form-label">Have you
-                                                                                ever been known by any other name ?</label>
-                                                                            <select
-                                                                                value={otherName}
-                                                                                onChange={(e) => setotherName(e.target.value)}
-                                                                                className="form-control" id="othername" name="has_other_name">
-                                                                                <option value="no">No</option>
-                                                                                <option value="yes">Yes</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label htmlFor="gender">Gender</label><select
-
-                                                                                value={gender}
-                                                                                onChange={(e) => setgender(e.target.value)}
-                                                                                className="form-control" id="gender" name="user_gender">
-                                                                                <option >Select</option>
-                                                                                <option value="Male">Male</option>
-                                                                                <option value="Female">Female</option>
-                                                                                <option value="Transgender">Transgender
-                                                                                </option>
-                                                                            </select>
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <div className="mt"><label htmlFor="dob">Date of
-                                                                                Birth</label>
-                                                                                <input
-                                                                                    value={dateOfBirth}
-                                                                                    onChange={(e) => setdateOfBirth(e.target.value)}
-                                                                                    type="date" className="form-control" />
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label htmlFor="country_of_birth">Country of
-                                                                                Birth</label>
-                                                                            <select
-                                                                                value={countryOfBirth}
-                                                                                onChange={(e) => setcountryOfBirth(e.target.value)}
-                                                                                className="form-control" id="country_of_birth" name="country_of_birth">
-                                                                                <option >Select</option>
-                                                                                <option value="India">India</option>
-                                                                                <option value="Afghanistan">Afghanistan</option>
-                                                                                <option value="Albania">Albania</option>
-                                                                                <option value="Algeria">Algeria</option>
-                                                                                <option value="American Samoa">American Samoa</option>
-                                                                                <option value="Andorra">Andorra</option>
-
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-md-4">
-                                                                            <div className="mt">
-                                                                                <label htmlFor="nationality">Nationality</label>
-                                                                                <select
-
-                                                                                    value={nationality}
-                                                                                    onChange={(e) => setnationality(e.target.value)}
-                                                                                    className="form-control" id="Nationality" name="Nationality">
-                                                                                    <option >Select</option>
-                                                                                    <option value="India">India</option>
-                                                                                    <option value="Afghanistan">Afghanistan</option>
-                                                                                    <option value="Albania">Albania</option>
-                                                                                    <option value="Algeria">Algeria</option>
-                                                                                    <option value="American Samoa">American Samoa</option>
-                                                                                    <option value="Andorra">Andorra</option>
-
-
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div className="col-md-4">
-                                                                            <div className="mt"><label htmlFor="DualNationality">Do
-                                                                                you hold Dual
-                                                                                Nationality?</label><select
-                                                                                    value={dualNationality}
-                                                                                    onChange={(e) => setdualNationality(e.target.value)}
-
-                                                                                    className="form-control" id="DualNationality" name="has_dual_nationality">
-                                                                                    <option value="no">No</option>
-                                                                                    <option value="yes">Yes</option>
-                                                                                </select></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-md-4">
-                                                                            <div className="mt"><label htmlFor="">Marital
-                                                                                Status</label><br /><input
-                                                                                    value={maritalStatus}
-                                                                                    onChange={(e) => setmaritalStatus(e.target.value)}
-                                                                                    type="radio" id="married" name="marital_status" value="married" /><label className="mr-1" htmlFor="married">Married</label>&nbsp;&nbsp;<input type="radio" id="unmarried" name="marital_status" value="unmarried" /><label className="mr-1" htmlFor="unmarried">Unmarried</label>&nbsp;&nbsp;<input type="radio" id="widowed" name="marital_status" value="widowed" /><label htmlFor="widowed">Widowed</label></div>
-                                                                        </div>
-
-
-                                                                        <div className="col-md-4">
-                                                                            <div className="mt"><label htmlFor="abled">Are
-                                                                                you differently abled?</label><select
-                                                                                    value={differentlyAble}
-                                                                                    onChange={(e) => setdifferentlyAble(e.target.value)}
-                                                                                    className="form-control" id="abled" name="is_differently_abled">
-                                                                                    <option value="no">No</option>
-                                                                                    <option value="yes">Yes</option>
-                                                                                </select></div>
-                                                                        </div>
-
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                            <div className="mt"><label htmlFor="passport">Do you
-                                                                                have a valid passport?</label><select
-                                                                                    value={passport}
-                                                                                    onChange={(e) => setpassport(e.target.value)}
-                                                                                    className="form-control" id="passport" name="has_valid_passport">
-                                                                                    <option value="no">No</option>
-                                                                                    <option value="yes">Yes</option>
-                                                                                </select></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                            <div className="mt"><label htmlFor="aadharCard">Do you
-                                                                                have
-                                                                                a valid Aadhar Card?</label><select
-                                                                                    value={aadharCard}
-                                                                                    onChange={(e) => setaadharCard(e.target.value)}
-                                                                                    className="form-control" id="aadharCard" name="has_aadhar_card">
-                                                                                    <option value="no">No</option>
-                                                                                    <option value="yes">Yes</option>
-                                                                                </select></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div className="row">
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                        <div className="mt">
-                                                                            <label htmlFor="firstLanguage">First
-                                                                                Language</label><input
-                                                                                value={firstLanguage}
-                                                                                onChange={(e) => setfirstLanguage(e.target.value)}
-                                                                                type="text" className="form-control" id="firstLanguage" placeholder="First Language" name="first_language" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                        <div className="mt"><label htmlFor="">Do you have a valid
-                                                                            study visa/work permit?</label><select
-                                                                                value={visa}
-                                                                                onChange={(e) => setvisa(e.target.value)}
-                                                                                className="form-control" name="has_visa">
-                                                                                <option value="no">No</option>
-                                                                                <option value="yes">Yes</option>
-                                                                            </select></div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                            <div className="mt-3"><label htmlFor="refusedVisa">Have
-                                                                                you been refused a visa from Canada, the
-                                                                                USA, the United Kingdom, New Zealand or
-                                                                                Australia?</label><select
-                                                                                    value={refusedVisa}
-                                                                                    onChange={(e) => setrefusedVisa(e.target.value)}
-                                                                                    className="form-control" id="refusedVisa" name="is_visa_refused">
-                                                                                    <option value="no">No</option>
-                                                                                    <option value="yes">Yes</option>
-                                                                                </select></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-md-6"></div>
-                                                                        <div className="col-md-6 text-right">
-                                                                            <button type="submit" className="btn btn-secondary btn-lg">Save
-                                                                            </button>
-                                                                            <button type="submit" data-bs-toggle="collapse" className="btn btn-success btn-lg" href="#collapseTwo">Save
-                                                                                Next</button>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </div>
-
-
-                                                            </form>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-
-
-                                            </div>
-                                        </div>
-                                        <div className="card">
-                                            <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo">
-                                            <strong>2</strong>   Address & Contact
-                                            </a>
-                                            <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
-                                                <div className="card-body">
-                                                    <form onSubmit={application_address}>
-                                                        <div className="d-flex flex-wrap" id="Address">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="Country">Country <span className="text-danger">
-                                                                        *</span>
-                                                                    </label>
-                                                                    <select
-                                                                        value={country}
-                                                                        onChange={(e) => setcountry(e.target.value)}
-                                                                        className="form-control" name="country" required="">
-                                                                        <option >Select Country</option>
-                                                                        <option >India</option>
-                                                                        <option >Afghanistan</option>
-                                                                        <option>Albania</option>
-                                                                        <option >Algeria</option>
-                                                                        <option >American Samoa</option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="State/Province">State/Province <span className="text-danger"> *</span>
-                                                                    </label>
-                                                                    <select
-                                                                        value={state}
-                                                                        onChange={(e) => setstate(e.target.value)}
-                                                                        className="form-control" name="state" required="">
-                                                                        <option >Select State</option>
-                                                                        <option >Please select country to view states
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group"><label htmlFor="City/Town">City/Town <span className="text-danger"> *</span></label>
-                                                                    <select
-                                                                        value={city}
-                                                                        onChange={(e) => setcity(e.target.value)}
-                                                                        className="form-control" name="city" required="">
-                                                                        <option >Select State</option>
-                                                                        <option >Please select a state to view cities
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="addressLine2">Address <span className="text-danger">
-                                                                        *</span></label>
-                                                                    <input
-                                                                        value={address}
-                                                                        onChange={(e) => setaddress(e.target.value)}
-                                                                        type="text" className="form-control" placeholder="Address" name="address_text" required="" />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                                                <div className="form-group">
-                                                                    <label htmlFor="Zipcode">Zipcode <span className="text-danger">
-                                                                        *</span></label>
-                                                                    <input
-                                                                        value={zipcode}
-                                                                        onChange={(e) => setzipcode(e.target.value)}
-                                                                        type="text" className="form-control" placeholder="Zipcode" name="zip_code" required="" />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-12">
-                                                                <div className="form-group"><label htmlFor="addressLine2">Is your Home
-                                                                    Address same as Communication Address?</label>
-                                                                    <label htmlFor="1" className="m-3">
-                                                                        <input
-                                                                            value={communication_address}
-                                                                            onChange={(e) => setcommunication_address(e.target.value)}
-                                                                            checked={communication_address === "yes"}
-                                                                            value="yes"
-                                                                            type="radio" name="address_check" /> Yes</label>
-                                                                    <label htmlFor="0" className="m-3"><input type="radio" name="address_check"
-                                                                        value={communication_address}
-                                                                        onChange={(e) => setcommunication_address(e.target.value)}
-                                                                        checked={communication_address === "no"}
-                                                                        value="no"
-                                                                    /> No</label>
-                                                                </div>
-                                                            </div>
-                                                            <div className="clearfix"></div>
-
-                                                        </div>
-
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-md-6"></div>
-                                                                <div className="col-md-6 text-right">
-                                                                    <button type="submit" className="btn btn-secondary btn-lg">Save
-                                                                    </button>
-                                                                    <button type="submit" data-bs-toggle="collapse" className="btn btn-success btn-lg" href="#collapse3">Save
-                                                                        Next</button>
-                                                                </div>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card">
-                                            <a className="card-header" data-bs-toggle="collapse" href="#collapse3">
-                                            <strong>3</strong> Family Information
-                                            </a>
-                                            <div id="collapse3" className="collapse" data-bs-parent="#accordion">
-                                                <div className="card-body">
-
-                                                    <div className="from-block">
-                                                        <form onSubmit={Personal_family}>
-
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col">
-                                                                        <label htmlFor="state" className="form-label">Relationship *
-                                                                        </label>
-                                                                        <select
-                                                                            value={familyRelationship}
-                                                                            onChange={(e) => setfamilyRelationship(e.target.value)}
-                                                                            className="form-control" id="Relationship" name="relationship">
-                                                                            <option>Select</option>
-                                                                            <option>Father</option>
-                                                                            <option>Mother</option>
-                                                                            <option>Brother</option>
-                                                                            <option>Sister</option>
-                                                                            <option>Guardian</option>
-                                                                            <option >Sibling</option>
-                                                                            <option>Husband</option>
-                                                                            <option >Wife</option>
-                                                                            <option >Son</option>
-                                                                            <option>Daughter</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col">
-                                                                        <label htmlFor="state" className="form-label">Salutation
-                                                                            *</label>
-                                                                        <select
-                                                                            value={familySalutation}
-                                                                            onChange={(e) => setfamilySalutation(e.target.value)}
-                                                                            type="text" className="form-control" id="salutation" placeholder="Salutation" name="salutation">
-                                                                            <option >Select</option>
-                                                                            <option value="Ms.">Ms.</option>
-                                                                            <option value="Mr.">Mr.</option>
-                                                                            <option value="Mrs.">Mrs.</option>
-                                                                            <option value="Miss.">Miss.</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        <label htmlFor="fname" className="form-label">First Name
-                                                                            *</label>
-                                                                        <input
-                                                                            value={familyfirstName}
-                                                                            onChange={(e) => setfamilyfirstName(e.target.value)}
-                                                                            type="text" className="form-control" placeholder="First Name" name="fname" />
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        <label htmlFor="Mname" className="form-label">Middle
-                                                                            Name</label>
-                                                                        <input
-                                                                            value={familymiddleName}
-                                                                            onChange={(e) => setfamilymiddleName(e.target.value)}
-                                                                            type="text" className="form-control" placeholder="Middle Name" name="Mname" />
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        <label htmlFor="lname" className="form-label">L-Name/
-                                                                            S-name/ Family Name *</label>
-                                                                        <input
-                                                                            value={familylastName}
-                                                                            onChange={(e) => setfamilylastName(e.target.value)}
-                                                                            type="text" className="form-control" placeholder="" name="lname" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label htmlFor="fOccupation">Email
-                                                                        </label><input type="email"
-                                                                            value={familyemail}
-                                                                            onChange={(e) => setfamilyemail(e.target.value)}
-                                                                            className="form-control" id="email" name="email" placeholder="Email" /></div>
-                                                                    </div>
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label htmlFor="2-qualification">Mobile </label><input
-                                                                            value={familymobile}
-                                                                            onChange={(e) => setfamilymobile(e.target.value)}
-                                                                            type="number" className="form-control" id="mobile" name="mobile" placeholder="Mobile" />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label htmlFor="occupation">Occupation</label><input
-                                                                            value={familyoccupation}
-                                                                            onChange={(e) => setfamilyoccupation(e.target.value)}
-                                                                            type="text" className="form-control" id="occupation" name="occupation" placeholder="Occupation" /></div>
-                                                                    </div>
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label htmlFor="highest_qualification">Highest
-                                                                            Qualification </label><select
-                                                                                value={familyqualification}
-                                                                                onChange={(e) => setfamilyqualification(e.target.value)}
-                                                                                className="form-control dropdown" id="highest_qualification" name="highest_qualification">
-                                                                                <option >Select Qualification</option>
-                                                                                <option value="Diploma">Diploma</option>
-                                                                                <option value="Secondary">Secondary</option>
-                                                                                <option value="Higher Secondary">Higher
-                                                                                    Secondary</option>
-                                                                                <option value="Undergraduate">Undergraduate
-                                                                                </option>
-                                                                                <option value="Postgraduate">Postgraduate
-                                                                                </option>
-                                                                            </select></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-md-6"></div>
-                                                                    <div className="col-md-6 text-right">
-                                                                        <button type="button" className="btn btn-success ">Add New
-                                                                        </button>
-                                                                        <button type="submit" className="btn btn-secondary">Save
-                                                                        </button>
-
-                                                                        <button type="submit" data-bs-toggle="collapse" className="btn btn-success " href="#collapse4">Save
-                                                                            Next</button>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-
-                                                        </form>
-
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
+                                    {/* <PersonalInformation /> */}
+                                    <PersonalInfo />
+                                    <Address />
+                                    <Family />
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse4">
-                                        <strong>4</strong>  Education
+                                            <strong>4</strong>  Education
                                         </a>
                                         <div id="collapse4" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1370,7 +639,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse5">
-                                        <strong>5</strong>  Test Scores
+                                            <strong>5</strong>  Test Scores
                                         </a>
                                         <div id="collapse5" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1459,7 +728,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse6">
-                                        <strong>6</strong>  Work Experience
+                                            <strong>6</strong>  Work Experience
                                         </a>
                                         <div id="collapse6" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1594,7 +863,7 @@ export default function Studentregister() {
 
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse7">
-                                        <strong>7</strong>  Extra Curricular Activities
+                                            <strong>7</strong>  Extra Curricular Activities
                                         </a>
                                         <div id="collapse7" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
@@ -1720,10 +989,10 @@ export default function Studentregister() {
                                                                     <button type="submit" className="btn btn-secondary">Save
                                                                     </button>
                                                                     <button
-                                                                     data-bs-toggle="collapse" href="#collapse8"
-                                                                    
-                                                                    
-                                                                    type="submit"  className="btn btn-success " >Save
+                                                                        data-bs-toggle="collapse" href="#collapse8"
+
+
+                                                                        type="submit" className="btn btn-success " >Save
                                                                         Next</button>
                                                                 </div>
 
@@ -1738,7 +1007,7 @@ export default function Studentregister() {
                                     </div>
                                     <div className="card">
                                         <a className="card-header" data-bs-toggle="collapse" href="#collapse8">
-                                        <strong>8</strong>    Recommendation
+                                            <strong>8</strong>    Recommendation
                                         </a>
                                         <div id="collapse8" className="collapse" data-bs-parent="#accordion">
                                             <div className="card-body">
