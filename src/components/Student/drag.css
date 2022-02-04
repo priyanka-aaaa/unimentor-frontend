@@ -1,0 +1,527 @@
+div.flex-nowrap {
+    overflow: auto;
+    white-space: nowrap
+}
+
+.file-upload {
+    display: flex
+}
+
+.droped_data {
+    margin-top: 12px
+}
+
+#gallery img {
+    display: inline-block;
+    width: 100px;
+    height: 50px
+}
+
+div.flex-nowrap img:hover .close {
+    display: inline-block;
+    position: absolute;
+    color: #4f0ee7;
+    border-radius: 50%;
+    right: -10px;
+    height: 20px
+}
+
+#files {
+    display: none
+}
+#upload{
+    display: none
+}
+/* start for upload */
+#uploadmypassport{
+    display:none;
+}
+#uploadmyugConsolidatedMarksheet{
+    display:none;
+}
+#uploadmypassportback{
+    display:none;
+}
+#uploadmyotherdocument{
+    display:none;
+}
+#uploadlogo{
+    display:none;
+}
+#uploadUniversitylogo{
+    display:none;
+}
+#uploaduniversityImage{
+    display:none;
+}
+#uploadcoverpik{
+    display:none;
+}
+#uploadselectEnglish{
+    display:none;
+}
+#uploadExtraActivity{
+    display:none;
+}
+#uploadmypgmarksheet{
+    display:none;
+}
+#uploadmyUgDegree{
+    display:none;
+}
+#uploadmyugMarksheet{
+    display:none;
+}
+#uploadmarksheet10{
+    display:none;
+}
+#myuploadbutton{
+    display:none;
+}
+#uploadmyTwelve{
+    display:none;
+}
+#uploadmycv{
+    display:none;
+}
+#myuploadbutton{
+    width: 280px;
+}
+/* end for upload */
+.upload_button {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    border: none;
+    padding: 10px
+}
+
+.card-block {
+    height: 100px;
+    width: 100px;
+    margin: 10px
+}
+
+.close {
+    display: none;
+    position: absolute;
+    top: -11px;
+    right: 0;
+    font-size: 15px !important;
+    background-color: red;
+    border-radius: 100px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: inherit !important;
+    color: #fff !important;
+    opacity: inherit !important
+}
+
+.hidden_div {
+    display: none
+}
+
+.card.card-block {
+    padding: 24px
+}
+
+.card-block span {
+    font-size: 12px
+}
+
+.choose-file label {
+    margin-bottom: 0
+}
+
+.choose-file {
+    background-color: #57141463;
+    padding: 10px;
+    width: 79%;
+    float: left
+}
+
+@media only screen and (max-width: 767px) {
+    #drop_section {
+        width: 100%;
+        background-color: #FAFAFA !important;
+    }
+}
+
+.drop_upper label.open {
+    display: block
+}
+
+.fa-star:before {
+    color: #000
+}
+
+.checked:before {
+    color: #f7c324
+}
+
+.mt-user_dashboard .tox-statusbar__branding {
+    display: none
+}
+
+.mt-user_dashboard .tox .tox-statusbar {
+    display: none
+}
+
+.mt-user_dashboard .tox-statusbar {
+    display: none !important
+}
+
+.right_wrapper {
+    text-align: right
+}
+
+.left_wrapper {
+    text-align: left
+}
+
+.center_wrapper {
+    padding: 15px 0;
+    text-align: center
+}
+
+.orderDetails_title {
+    margin: 15px 0
+}
+
+.send_message {
+    padding-top: 15px
+}
+
+.fa-star:before {
+    content: "\f005";
+    color: #f7c324
+}
+
+.tox-tinymce {
+    height: 400px !important
+}
+
+.tox-statusbar {
+    display: none !important
+}
+
+section#homepage--slider .submit-work-form {
+    overflow: hidden
+}
+
+.dr-section p {
+    font-size: 18px;
+    margin: 0;
+    line-height: 1;
+    text-align: center
+}
+
+.dr-section .drop_img {
+    text-align: center;
+    font-size: 27px;
+    color: #838588;
+    float: left;
+    text-align: right;
+    width: 38%
+}
+
+.drag_dropsection {
+    float: left;
+    margin-left: 10px
+}
+
+.dr-section .drop_upper {
+    border: 2px dashed #838588
+}
+
+.dr-section .fa-upload {
+    font-weight: 900;
+    color: #838588;
+    font-size: 24px
+}
+
+.dr-section .drop_text {
+    padding: 8px 0
+}
+
+.drop_lower {
+    padding-bottom: 14px
+}
+
+.dr-section .drop_lower .upload_file_row {
+    padding-top: 10px;
+    margin-bottom: 13px;
+    border-bottom: 1px solid #ccc
+}
+
+.dr-section .drop_lower .upload_file_row p {
+    padding: 0
+}
+
+.dr-section .dr-file-name {
+    padding: 6px 0 10px 4px;
+}
+
+.dr-section .dr-file-name p {
+    text-align: left;
+}
+
+.dr-section .drop_text p {
+    color: #838588;
+}
+
+.dr-section .cross {
+    background: #ff5a09;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 10px;
+    padding: 4px;
+    margin: 4px 0 0;
+    position: absolute;
+    right: 0;
+    top: -13px;
+}
+
+.dr-section .drop_upper:hover {
+    cursor: pointer;
+    border: 2px dashed #838588;
+}
+
+.dr-section .cross:hover {
+    background: #ff5a09;
+}
+
+span.browse_data {
+    border: 1px solid #ff5a09;
+    padding: 7px 16px;
+    margin-top: 15px;
+    display: inline-block;
+    font-size: 14px;
+    color: #ff5a09;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+span.upl_data {
+    font-size: 14px;
+    color: #838588;
+}
+
+.dr-file-name p {
+    font-size: 12px;
+}
+
+@media(max-width:768px) {
+    .dr-section .drop_upper {
+        padding: 0
+    }
+    .dr-section .drop_img {
+        text-align: center;
+        width: 100%
+    }
+    .drag_dropsection {
+        float: inherit;
+        margin-left: 10px
+    }
+    span.browse_data {
+        margin-top: 7px
+    }
+    button.btn.btn-primary.free_quotes {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .browse_file.upl-data {
+        display: none
+    }
+    .drag_dropsection {
+        float: inherit
+    }
+    span.browse_data {
+        margin-top: 0;
+        margin-bottom: 8px
+    }
+    .drop_lower {
+        padding-bottom: 0
+    }
+    button.btn.btn-primary.free_quotes {
+        width: 100%;
+    }
+}
+
+.upload_file_row {
+    position: relative
+}
+
+.delete {
+    position: absolute;
+    right: 20px;
+    top: 12px
+}
+
+.upload_file_row {
+    float: left;
+    width: 100%
+}
+
+span.tick {
+    float: left;
+    margin-right: 10px
+}
+
+.upload_file_row p {
+    margin: 0;
+    padding: 5px;
+    float: left;
+    text-align: left;
+    font-size: 13px
+}
+
+.drag-and-drop-new {
+    border: 2px dashed grey;
+    background-color: #FAFAFA;
+    padding: 15px;
+    text-align: center;
+    color: #808080ab;
+    transition-property: border, color;
+    transition-duration: .5s
+}
+
+.drag-and-drop-new-section {
+    text-align: center;
+   
+}
+
+.drag-and-drop-new-section .submit-button {
+    margin: 10px
+}
+
+.class_add:hover {
+    border: 2px dashed #ff5b09b2 !important;
+    color: grey !important
+}
+
+.class_add:hover #drag_h3 {
+    color: grey !important
+}
+
+.fisticon .fas {
+    color: #1e90ff
+}
+
+.class_add:hover .fas {
+    -webkit-animation-name: heartbeat;
+    -webkit-animation-duration: 400ms;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear
+}
+
+.drag-and-drop-new h3 {
+    font-size: 16px;
+    margin-bottom: 0 !important
+}
+
+.drag-and-drop-new .fisticon {
+    margin-right: 5px;
+}
+
+@-webkit-keyframes heartbeat {
+    0% {
+        -webkit-transform: scale(1)
+    }
+    50% {
+        -webkit-transform: scale(0.9)
+    }
+    100% {
+        -webkit-transform: scale(1)
+    }
+}
+
+#files {
+    display: none;
+}
+
+.browseStyling {
+    color: #1e90ff;
+}
+
+.upload_file_row {
+    border-bottom: 1px solid #d3d3d3;
+    border-right: 1px solid #d3d3d3;
+    padding: 5px 16px;
+    border-top: 1px solid #d3d3d3;
+    border-left: 1px solid #d3d3d3;
+}
+
+.upload_file_row:first-child {
+   
+    margin-top: 26px;
+}
+
+.file-upload .uploads {
+    margin-top: 10px;
+}
+
+.upload_file_row p {
+    margin: 0;
+    padding: 5px;
+    font-size: 13px;
+}
+
+.drop_lower .cross {
+    margin-top: 6px;
+}
+
+.cross .fas {
+    cursor: pointer;
+}
+
+.upload_file_row .col-md-3 {
+    text-align: right;
+}
+
+.upload_file_row .far {
+    margin-top: 6px;
+    color: green;
+    font-weight: 600;
+}
+
+.upload_file_row .fas {
+    transition-property: color;
+    transition-duration: .2s;
+}
+
+.upload_file_row .fas:hover {
+    color: red;
+}
+
+.upload_file_row .col-md-1 {
+    text-align: left;
+}
+
+.upload_file_row .col-md-8 {
+    text-align: left;
+}
+
+.upload_file_row .col-md-3 {
+    text-align: right;
+}
+
+label {
+    display: inline !important;
+    margin-bottom: 0 !important;
+}
+
+.icon {
+    -webkit-animation-name: heartbeat;
+    -webkit-animation-duration: 400ms;
+    -webkit-transform-origin: 50% 50%;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear
+}

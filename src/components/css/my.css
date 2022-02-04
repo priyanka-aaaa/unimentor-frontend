@@ -1,0 +1,13 @@
+trix-editor.form-control.editarea {
+  height: 27rem;
+}
+trix-editor:empty:not(:focus)::before {
+  content: "•" !important;
+  /* color: graytext;
+  cursor: text; */
+}
+ul {
+  list-style: initial !important;
+  margin: 0;
+  padding: 0;
+}
