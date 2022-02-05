@@ -5,7 +5,7 @@ import './App.css';
 import './components/css/dashboard.css';
 import './components/css/style.css';
 import Home from './components/Home/Home';
-
+ 
 import Studentregister from './components/Studentregister';
 import Studentlogin from './components/Studentlogin';
 import StudentDashboard from './components/StudentDashboard';
@@ -16,8 +16,8 @@ import Profile from './components/Student/Profile';
 import Document from './components/Student/Document';
 import StudentPersonalInformation from './StudentPersonalInformation';
 import Bookmark from './components/Student/Bookmark';
-
-
+ 
+ 
 import UniversityPassword from './components/university/UniversityPassword';
 import UniversityIntake from './components/university/UniversityIntake';
 import UniversityDashboard from './components/university/Dashboard';
@@ -40,10 +40,13 @@ import AdminStudy from './components/admin/AdminStudy';
 import AdminApplication from './components/admin/AdminApplication';
 import AdminDocument from './components/admin/AdminDocument';
 import AdminScholarship from './components/admin/AdminScholarship';
-
-
-
-
+import AdminStudentApplication from './components/admin/AdminStudentApplication';
+ 
+import AdminStudentApplicationView from './components/admin/AdminStudentApplicationView';
+ 
+ 
+ 
+ 
 import AgentLogin from './components/AgentLogin';
 import AgentRegister from './components/AgentRegister';
 import AgentDashboard from './components/agent/AgentDashboard';
@@ -54,20 +57,20 @@ import AgentCertificate from './components/agent/AgentCertificate';
 import AddStudent from './components/agent/AddStudent';
 import AgentApplication from './components/agent/AgentApplication';
 import AgentCommission from './components/agent/AgentCommission';
-
-
-
+ 
+ 
+ 
 // import Counter from './components/Student/Counter';
 function App() {
   return (
     <div>
-
+ 
       {/* <Counter /> */}
-
-
+ 
+ 
       <Router>
         <div>
-
+ 
           {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <ul className="navbar-nav mr-auto">
               <li><Link to={'/'} className="nav-link"> Home </Link></li>
@@ -77,18 +80,18 @@ function App() {
               <Link to={'/Example'}></Link>
               <Link to={'/Dashboard'}></Link>
            
-
+ 
             </ul>
           </nav>
           <hr /> */}
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
           <Switch>
-
-
+ 
+ 
             <Route path='/AgentRegister' component={AgentRegister} />
             <Route path='/AgentLogin' component={AgentLogin} />
             <Route path='/AgentDashboard' component={AgentDashboard} />
@@ -97,11 +100,11 @@ function App() {
             <Route path='/AgentEvaluate' component={AgentEvaluate} />
             <Route path='/AgentCertificate' component={AgentCertificate} />
             <Route path='/AgentApplication' component={AgentApplication} />
-
+ 
             <Route path='/AgentCommission' component={AgentCommission} />
-            
-            
-
+           
+           
+ 
             <Route exact path='/' component={Home} />
             <Route path='/Studentlogin' component={Studentlogin} />
             <Route path='/Studentregister' component={Studentregister} />
@@ -114,8 +117,8 @@ function App() {
             <Route path='/StudentPersonalInformation' component={StudentPersonalInformation} />
             <Route path='/Bookmark' component={Bookmark} />
             <Route path='/AddStudent' component={AddStudent} />
-            
-            
+           
+           
             <Route path='/FilterUniversity' component ={UniversityFilter} />
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />
@@ -127,9 +130,9 @@ function App() {
             <Route path='/UniversityProfile' component={UniversityProfile} />
             <Route path='/UniversitySummary' component={Summary} />
             <Route path='/AllUniversity' component={AllUniversity} />
-
+ 
             <Route path='/UniveristyPage/:id' component={UniveristyPage} />
-
+ 
             <Route path='/AdminLogin' component={AdminLogin} />
             <Route path='/AdminDashboard' component={AdminDashboard} />
             <Route path='/AdminStudent' component={AdminStudent} />
@@ -142,17 +145,22 @@ function App() {
             <Route path='/AdminApplication' component={AdminApplication} />
             <Route path='/AdminDocument' component={AdminDocument} />
             <Route path='/AdminScholarship' component={AdminScholarship} />
-
-             
-
-
+            <Route path='/AdminStudentApplication' component={AdminStudentApplication} />
+            <Route path='/AdminStudentApplicationView' component={AdminStudentApplicationView} />
+ 
+           
+           
+ 
+ 
           </Switch>
         </div>
       </Router>
-
-
+ 
+ 
     </div>
   );
 }
-
+ 
 export default App;
+ 
+

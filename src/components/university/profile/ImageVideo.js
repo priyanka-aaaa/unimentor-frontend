@@ -8,14 +8,21 @@ class ImageVideo extends Component {
         this.state = {
             //start for primary information
             logo: "",
+            link: "",
             coverPic: "",
             image: "",
             universityId: "",
             mylogo: "",
             mycoverPic: "",
             imagesVideo: [],
+            successMessage: "",
+            submitSuccess: "",
         };
         this.submitImages = this.submitImages.bind(this);
+
+
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+        this.ViewAllImage = this.ViewAllImage.bind(this);
         //start for primary information
 
     }
@@ -30,6 +37,49 @@ class ImageVideo extends Component {
             this.setState({ mounted: mytoken });
             this.setState({ universityId: universityId });
         }
+    }
+    ViewAllImage() {
+
+        this.setState({ viewDisplay: "inline" })
+
+    }
+    handleDeleteClick(value) {
+
+
+        // this.setState({ editId: value, editnewcomponent: 1, rankingId: value })
+
+        const url4 = process.env.REACT_APP_SERVER_URL + 'university/imageVideos/' + value;
+        fetch(url4, {
+            method: 'delete',
+            headers: { 'Authorization': this.state.mounted },
+
+        })
+            .then(response => response.json())
+            .then(data => {
+                this.setState({ successMessage: "Ranking Deleted", submitSuccess: 1, width: "0px" });
+                setTimeout(() =>
+                    this.setState({ submitSuccess: 0 })
+                    , 3000);
+                //start for fetting all images
+
+                axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/imageVideos', { headers: { 'Authorization': this.state.mounted } })
+                    .then(res => {
+                        this.setState({
+                            imagesVideo: res.data.universityImageVideos,
+
+                        });
+                        if (res.data.success === true) {
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+                //end for fetting all images
+            })
+
     }
     componentDidMount() {
         var myuniversityId = this.state.universityId;
@@ -68,6 +118,15 @@ class ImageVideo extends Component {
             });
         //end for fetting all images
     };
+
+    renderSuccessElement() {
+
+        if (this.state.submitSuccess === 1)
+            return <div className="Show_success_message">
+                <strong>Success!</strong> {this.state.successMessage}
+            </div>;
+        return null;
+    }
     logoHandleDrop = (myfiles) => {
         this.setState({ logo: myfiles[0] });
     }
@@ -87,11 +146,13 @@ class ImageVideo extends Component {
 
     };
     imageHandleDrop = (mycoverfiles) => {
-        this.setState({ image: mycoverfiles[0] });
+        this.setState({ link: mycoverfiles[0] });
 
     }
     onFileChangeImage = eventcoverpik => {
-        this.setState({ image: eventcoverpik.target.files[0] });
+        console.log("iop")
+        console.log(eventcoverpik.target.files[0])
+        this.setState({ link: eventcoverpik.target.files[0] });
 
 
     };
@@ -100,25 +161,57 @@ class ImageVideo extends Component {
         const obj1 = new FormData();
         obj1.append("logo", this.state.logo);
         obj1.append("coverPic", this.state.coverPic);
-        obj1.append("image", this.state.image);
-
-
-
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/image ', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
-
                 if (res.data.success === true) {
-                    alert("address update successfully");
+                    this.setState({ successMessage: "Image Added", submitSuccess: 1, addWidth: "0px" });
+                    setTimeout(() =>
+                        this.setState({ submitSuccess: 0 })
+                        , 3000);
                 }
                 else {
                     alert("error");
                 }
-
             })
             .catch(error => {
                 console.log(error.response)
             });
+        //start for image only
+        if (this.state.link !== "") {
+            const obj1 = new FormData();
+            obj1.append("link", this.state.link);
+
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/imageVideos';
+            fetch(url2, {
+                method: 'post',
+                headers: { 'Authorization': this.state.mounted },
+                body: obj1
+            })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({ successMessage: "Image Added", submitSuccess: 1, addWidth: "0px" });
+                    setTimeout(() =>
+                        this.setState({ submitSuccess: 0 })
+                        , 3000);
+                    const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/imageVideos';
+                    console.log("url3");
+                    console.log(url3);
+                    fetch(url3, {
+                        method: 'GET',
+                        headers: { 'Authorization': this.state.mytoken }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+
+                            this.setState({ imagesVideo: data.universityImageVideos })
+
+                        })
+                    // end for university ranking
+                })
+        }
+        //end for image only
     }
+
     renderElementpassportBack() {
         if (this.state.mylogo === '' || this.state.mylogo === undefined) {
             return <DragAndDrop handleDrop={this.logoHandleDrop}>
@@ -263,7 +356,7 @@ class ImageVideo extends Component {
 
 
                 <div className="card">
-
+                    {this.renderSuccessElement()}
                     <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>8</strong>
                         Images/Video
                     </a>
@@ -298,19 +391,51 @@ class ImageVideo extends Component {
                                     </div>
                                 </div>
                                 <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label>Images/Videos</label><br />
 
-                                    <div className="col-md-10">
-                                        <label>All Images</label><br />
-                                        <span className="documentUpload ant-upload-picture-card-wrapper" >
-                                            <div className="ant-upload-list ant-upload-list-picture-card">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <DragAndDrop handleDrop={this.imageHandleDrop}>
+                                    <section className="drag-and-drop-new-section">
+                                        <div className="containerx" id="drop_section">
+                                            <label htmlFor="files">
+                                                <div id="drag" className="drag-and-drop-new class_add">
+                                                    <div className="row">
+                                                        <div className="col-md-12 email-con">
+                                                            <label htmlFor="uploaduniversityImage">
+                                                                <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                                                <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </label>
+
+                                        </div>
+                                        <section className="file-upload">
+                                            <div className="container">
+                                                <div className="uploads">
+                                                    <div className="drop_lower" id="gallery"></div>
+                                                </div>
                                             </div>
-                                            {/* <div className="ant-upload ant-upload-select ant-upload-select-picture-card">
-                                                <span tabIndex="0" className="ant-upload" role="button">
-                                                    <input type="file" accept="" />
-                                                    <p>
-                                                        Upload/Drag &amp; Drop here</p>
-                                                </span>
-                                            </div> */}
+                                        </section>
+                                    </section>
+                                </DragAndDrop>
+
+                                <div className="row">
+                                    <div className="d-sm-flex align-items-center justify-content-between mb-4">
+
+
+                                        <button type="button" onClick={() => this.ViewAllImage()} className="btn btn-outline-success"><span><i className="fas fa-eye"></i></span>Show All Image</button>
+                                    </div>
+                                    {/* start for shwowing table */}
+                                    <div className="col-md-10 ">
+                                        <div className="uniImageTable" style={{ display: this.state.viewDisplay }}>
+                                            <label>All Images</label><br />
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
@@ -320,54 +445,18 @@ class ImageVideo extends Component {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                { this.state.imagesVideo.map((element) =>
-
-                                                      
-
-                                                            <tr>
-                                                                  <td> {element._id}</td>
-                                                                <td> <img src={element.link} alt="passportback" /></td>
-                                                               <td></td>
-
-                                                            </tr>
-
-)}
+                                                    {this.state.imagesVideo.map((element) =>
+                                                        <tr>
+                                                            <td> {element._id}</td>
+                                                            <td> <img src={element.link} alt="passportback" /></td>
+                                                            <td><p onClick={() => this.handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></p></td>
+                                                        </tr>
+                                                    )}
                                                 </tbody>
-
-
                                             </table>
-
-                                           
-
-
-                                            <DragAndDrop handleDrop={this.imageHandleDrop}>
-                                                <section className="drag-and-drop-new-section">
-                                                    <div className="containerx" id="drop_section">
-                                                        <label htmlFor="files">
-                                                            <div id="drag" className="drag-and-drop-new class_add">
-                                                                <div className="row">
-                                                                    <div className="col-md-12 email-con">
-                                                                        <label htmlFor="uploaduniversityImage">
-                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
-                                                                            <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-
-                                                    </div>
-                                                    <section className="file-upload">
-                                                        <div className="container">
-                                                            <div className="uploads">
-                                                                <div className="drop_lower" id="gallery"></div>
-                                                            </div>
-                                                        </div>
-                                                    </section>
-                                                </section>
-                                            </DragAndDrop>
-                                        </span>
+                                        </div>
                                     </div>
+                                    {/* end for showing table */}
                                     <div className="col-md-2">
 
                                     </div>
@@ -381,6 +470,7 @@ class ImageVideo extends Component {
                                                 onClick={this.submitImages}
                                                 className="btn btn-secondary">Save
                                             </button>
+
                                             <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success">Save &
                                                 Next</button>
                                         </div>
