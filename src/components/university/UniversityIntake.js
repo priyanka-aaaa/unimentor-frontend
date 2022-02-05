@@ -18,6 +18,7 @@ export default function UniversityPassword() {
     }])
 
     useEffect(() => {
+
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
@@ -27,6 +28,8 @@ export default function UniversityPassword() {
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
         }
+
+
         setMounted(mytoken)
         setUniveristyId(myuniversityid)
         //start for select course
@@ -41,11 +44,33 @@ export default function UniversityPassword() {
                 }
                 else {
                     setFormValues(data.universityIntakes)
+                    var item = data.universityIntakes;
+                    // start for 5 year
+
+                    for (var j = 0; j < item.length; j++) {
+
+                        var complete_id = "ddlYears" + j;
+
+                        var ddlYearssss = document.getElementById(complete_id)
+
+                        var currentYear = (new Date()).getFullYear();
+                        for (var i = currentYear; i < 2027; i++) {
+                            var option = document.createElement("OPTION");
+                            option.innerHTML = i;
+                            option.value = i;
+                            ddlYearssss.appendChild(option);
+                        }
+                    }
+
+
+
+                    //end for 5 year
                 }
             })
         //end for select course
     }, [])
     let handleChange = (i, e) => {
+
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
@@ -66,10 +91,12 @@ export default function UniversityPassword() {
 
     let handleSubmit = (event) => {
         event.preventDefault();
+
         var myvalues = JSON.stringify(formValues);
 
         formValues.map(async (item) => {
             if (item._id === "null") {
+
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
                         console.log(res.data);
@@ -88,6 +115,8 @@ export default function UniversityPassword() {
 
             }
             else {
+                console.log("item")
+                console.log(item)
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + item._id, item, { headers: { 'Authorization': mounted } })
                     // await axios.put('/university/61dab27e05671a193cca5f81/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
@@ -181,7 +210,7 @@ export default function UniversityPassword() {
                             {/* <!-- Content Row --> */}
 
                             <p>Admin Application</p>
-                            {/* <form onSubmit={handleSubmit}> */}
+
                             <form onSubmit={handleSubmit}>
                                 <div className="card-body" >
 
@@ -196,12 +225,25 @@ export default function UniversityPassword() {
                                                         <div className="form-group">
                                                             <label className="form-label">Year
                                                                 *</label>
-                                                            <input type="text" className="form-control"
-                                                                placeholder="Year" name="year"
+                                                            {/* <select id={"ddlYears" + index}
+
                                                                 value={element.year || ""} onChange={e => handleChange(index, e)}
+                                                                className="form-control dropdown" name="highest_qualification">
+                                                            </select>
+                                      */}
 
 
-                                                                required />
+
+                                                            <select
+
+                                                                value={element.year || ""} onChange={e => handleChange(index, e)}
+                                                                className="form-control dropdown" name="highest_qualification">
+                               
+                                                                <option></option>
+                                                            </select>
+
+
+
                                                         </div>
                                                     </div>
 
@@ -216,33 +258,17 @@ export default function UniversityPassword() {
 
                                                                 required />
                                                         </div>
-                                                      
+
 
                                                     </div>
                                                     <div className="col-md-2">
 
-                                                    <button className="btn"
+                                                        <button className="btn"
                                                             onClick={() => handleDelete(element._id)}
                                                         ><i className="fas fa-trash-alt"></i></button>
 
-</div>
-                                                    {/* <div className="mb-3">
-                                                <div className="row">
-                                                    <div className="col">
-                                                        <label className="form-label">application
-                                                            *</label>
-                                                        <input type="text" className="form-control"
-                                                            placeholder="application" name="application"
-                                                        // value={element.application || ""} onChange={e => handleChange(index, e)}
-
-                                                        // value={courseName}
-                                                        // onChange={(e) => setcourseName(e.target.value)}
-                                                        />
                                                     </div>
 
-
-                                                </div>
-                                            </div> */}
 
 
 

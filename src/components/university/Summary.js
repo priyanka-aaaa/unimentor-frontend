@@ -19,7 +19,8 @@ export default function Summary() {
     const [pgPTE, setpgPTE] = useState("");
     const [intake, setintake] = useState("");
     const [UniversityId, setUniversityId] = useState("");
-
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     
     useEffect(() => {
 
@@ -112,7 +113,9 @@ export default function Summary() {
             .then(function (res) {
                 console.log(res.data);
                 if (res.data.success === true) {
-                    alert("summary update successfully");
+                    setsuccessMessage("course delete")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
                 }
                 else {
                     alert("error");
@@ -146,7 +149,9 @@ export default function Summary() {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
-
+                        {submitSuccess === 1 ? <div className="Show_success_message">
+                                <strong>Success!</strong> {successMessage}
+                            </div> : null}
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Summary Information</h1>

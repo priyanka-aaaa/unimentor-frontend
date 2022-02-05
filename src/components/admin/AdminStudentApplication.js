@@ -31,7 +31,7 @@ export default function AdminStudentApplication() {
                         {/* <!-- Begin Page Content --> */}
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
-                        <div className="container">
+                      
 
                             {/* <!-- Page Heading --> */}
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -54,6 +54,7 @@ export default function AdminStudentApplication() {
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
+                                                        <th> ID</th>
                                                             <th>Student ID</th>
                                                           <th>Application Current Status</th>
                                                             <th> Name</th>
@@ -68,6 +69,7 @@ export default function AdminStudentApplication() {
                                                     </thead>
                                                     <tbody>
                                                         <tr>
+                                                        <td> 1</td>
                                                             <td>1
                                                             <span class="badge badge-pill badge-primary">new</span>
                                                             </td>
@@ -94,6 +96,7 @@ export default function AdminStudentApplication() {
                                                         </tr>
                                                         <tr>
                                                             <td>2</td>
+                                                            <td>2</td>
                                                             <td>
                                                                 Result Declared
 
@@ -112,6 +115,7 @@ export default function AdminStudentApplication() {
                                                             </td>
                                                         </tr>
                                                         <tr>
+                                                        <td>3 </td>
                                                             <td>3  <span class="badge badge-pill badge-primary">new</span></td>
                                                             <td>
                                                             Application Initiated
@@ -144,7 +148,7 @@ export default function AdminStudentApplication() {
                             </div>
                             {/* <!-- Card Body --> */}
 
-                        </div>
+                        
                         {/* <!-- /.container-fluid --> */}
 
                     </div>

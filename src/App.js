@@ -17,7 +17,7 @@ import Document from './components/Student/Document';
 import StudentPersonalInformation from './StudentPersonalInformation';
 import Bookmark from './components/Student/Bookmark';
  
- 
+
 import UniversityPassword from './components/university/UniversityPassword';
 import UniversityIntake from './components/university/UniversityIntake';
 import UniversityDashboard from './components/university/Dashboard';
@@ -57,9 +57,20 @@ import AgentCertificate from './components/agent/AgentCertificate';
 import AddStudent from './components/agent/AddStudent';
 import AgentApplication from './components/agent/AgentApplication';
 import AgentCommission from './components/agent/AgentCommission';
- 
- 
- 
+
+import MajorPursue from './components/MajorPursue';
+
+ import country from './components/country';
+ import Degree  from './components/Degree';
+ import EducationLevel  from './components/EducationLevel';
+ import Test  from './components/Test';
+ import AcademicTest  from './components/AcademicTest';
+ import WorkExperience  from './components/WorkExperience';
+ import Activity  from './components/Activity';
+ import NgoExperience  from './components/NgoExperience';
+ import FinalFilter  from './components/FinalFilter';
+
+
 // import Counter from './components/Student/Counter';
 function App() {
   return (
@@ -91,7 +102,22 @@ function App() {
  
           <Switch>
  
- 
+          <Route path='/country' component={country} />
+          <Route path='/Degree' component={Degree} />
+          <Route path='/EducationLevel' component={EducationLevel} />
+
+          <Route path='/MajorPursue' component={MajorPursue} />
+
+          <Route path='/Test' component={Test} />
+          <Route path='/AcademicTest' component={AcademicTest} />
+          <Route path='/WorkExperience' component={WorkExperience} />
+          <Route path='/Activity' component={Activity} />
+          <Route path='/NgoExperience' component={NgoExperience} />
+          <Route path='/FinalFilter' component={FinalFilter} />
+
+      
+          
+          
             <Route path='/AgentRegister' component={AgentRegister} />
             <Route path='/AgentLogin' component={AgentLogin} />
             <Route path='/AgentDashboard' component={AgentDashboard} />
