@@ -4,6 +4,116 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
 export default function UniversityPassword() {
+
+    const [formValues, setFormValues] = useState([{
+        year:"",month:"",
+        _id: "null"
+
+    }])
+    const [mounted, setMounted] = useState();
+    const [data, setdata] = useState([]);
+    useEffect(() => {
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
+            var mydata = JSON.parse(a);
+        
+            var myuniversityid = mydata.data.university._id;
+
+            var user_email = mydata.data.university.email;
+            var mytoken = mydata.data.token;
+        }
+        setMounted(mytoken)
+        //start for select course
+
+
+        // const url = "university/courses";
+        const url = process.env.REACT_APP_SERVER_URL+'university/' + myuniversityid + '/intakes';
+
+        fetch(url, {
+            method: 'GET'
+
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                // this.setState({ data: data.universityCourses })
+             
+              
+                var myresults = data.universityCourses;
+                if (Object.keys(myresults).length === 0) {
+                  
+                }
+                else {
+                    setFormValues(data.universityCourses)
+                }
+
+               
+
+            })
+
+    }, [])
+    let handleChange = (i, e) => {
+        let newFormValues = [...formValues];
+        newFormValues[i][e.target.name] = e.target.value;
+        setFormValues(newFormValues);
+    }
+
+    let addFormFields = () => {
+        setFormValues([...formValues, {
+            year: "", month: "",
+            _id: "null"
+        }])
+    }
+
+    let removeFormFields = (i) => {
+        let newFormValues = [...formValues];
+        newFormValues.splice(i, 1);
+        setFormValues(newFormValues)
+    }
+
+    let handleSubmit = (event) => {
+        event.preventDefault();
+      var myvalues = JSON.stringify(formValues);
+     
+        formValues.map(async (item) => {
+            if (item._id === "null") {
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes', item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            // alert("courses update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+
+            }
+            else {
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + item._id, item, { headers: { 'Authorization': mounted } })
+                    // await axios.put('/university/61dab27e05671a193cca5f81/courses', item, { headers: { 'Authorization': mounted } })
+                    .then(function (res) {
+                        console.log(res.data);
+                        if (res.data.success === true) {
+                            // alert("courses update successfully");
+                        }
+                        else {
+                            alert("error");
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response)
+                    });
+            }
+        })
+
+    }
+
+
+
     // start for personal information
 
     return (
@@ -39,36 +149,37 @@ export default function UniversityPassword() {
 
                             <p>Admin Application</p>
                             {/* <form onSubmit={handleSubmit}> */}
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className="card-body" >
 
                                     <div className="from-block" >
-
+                                    {formValues.map((element, index) => (  
+                                    <div key={index}>
 
                                         <div className="row" >
 
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label className="form-label">Address
+                                                <label className="form-label">Year
                                                     *</label>
                                                 <input type="text" className="form-control"
-                                                    placeholder="Address" name="Address"
+                                                    placeholder="Year" name="year"
+                                                    value={element.year || ""} onChange={e => handleChange(index, e)}
 
-                                                    // value={address}
-                                                    // onChange={(e) => setaddress(e.target.value)}
+                                                   
                                                     required />
                                             </div>
                                         </div>
 
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label className="form-label">Address
+                                                <label className="form-label">month
                                                     *</label>
                                                 <input type="text" className="form-control"
-                                                    placeholder="Address" name="Address"
+                                                    placeholder="month" name="month"
+                                                    value={element.month || ""} onChange={e => handleChange(index, e)}
 
-                                                    // value={address}
-                                                    // onChange={(e) => setaddress(e.target.value)}
+                                                  
                                                     required />
                                             </div>
                                         </div>
@@ -98,7 +209,8 @@ export default function UniversityPassword() {
 
 
                                         </div>
-
+</div>
+                                    ))}
 
                                         <div className="mb-3">
                                             <div className="row">

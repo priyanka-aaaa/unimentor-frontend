@@ -42,6 +42,7 @@ import AdminDocument from './components/admin/AdminDocument';
 import AdminScholarship from './components/admin/AdminScholarship';
 import AdminStudentApplication from './components/admin/AdminStudentApplication';
 
+import AdminStudentApplicationView from './components/admin/AdminStudentApplicationView';
 
 
 
@@ -145,7 +146,9 @@ function App() {
             <Route path='/AdminDocument' component={AdminDocument} />
             <Route path='/AdminScholarship' component={AdminScholarship} />
             <Route path='/AdminStudentApplication' component={AdminStudentApplication} />
+            <Route path='/AdminStudentApplicationView' component={AdminStudentApplicationView} />
 
+            
             
 
 

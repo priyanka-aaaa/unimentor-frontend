@@ -25,14 +25,14 @@ class Sidebar extends Component {
                     {/* <!-- Nav Item - Dashboar
                     
                     d --> */}
-
-
-<Link to={'/AdminStudentApplication'} className="nav-link" href="#">
+                     <li className="nav-item ">
+                        <Link to={'/AdminStudentApplication'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Application</span></Link>
+                    </li>
+     <li className="nav-item">
 
-
-                    <li className="nav-item">
+                        
                         {/* <a className="nav-link" href="personal-profile.html">
                             <i className="fas fa-user"></i>
                             <span>Profile</span></a> */}
