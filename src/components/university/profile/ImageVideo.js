@@ -150,8 +150,7 @@ class ImageVideo extends Component {
 
     }
     onFileChangeImage = eventcoverpik => {
-        console.log("iop")
-        console.log(eventcoverpik.target.files[0])
+ 
         this.setState({ link: eventcoverpik.target.files[0] });
 
 
@@ -194,8 +193,7 @@ class ImageVideo extends Component {
                         this.setState({ submitSuccess: 0 })
                         , 3000);
                     const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/imageVideos';
-                    console.log("url3");
-                    console.log(url3);
+             
                     fetch(url3, {
                         method: 'GET',
                         headers: { 'Authorization': this.state.mytoken }

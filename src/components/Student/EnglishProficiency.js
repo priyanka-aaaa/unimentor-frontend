@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import SelectEnglishProficiency from './SelectEnglishProficiency';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import '../css/style.css';
-import '../css/dashboard.css';
+
 
 
 import SelectEnglish from './SelectEnglish';

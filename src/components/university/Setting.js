@@ -18,7 +18,7 @@ export default function Setting() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+           
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
         }
@@ -41,7 +41,7 @@ export default function Setting() {
             };
             axios.post(process.env.REACT_APP_SERVER_URL+'university/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-                    console.log(res.data);
+               
                     if (res.data.success === true) {
                         alert("password update successfully");
                     }

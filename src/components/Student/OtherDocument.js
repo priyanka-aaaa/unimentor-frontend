@@ -9,7 +9,7 @@ import Main from './Main';
 import DragAndDrop from './DragAndDrop';
 import DragAndDroptwo from './DragAndDroptwo';
 import DragAndDropthree from './DragAndDropthree';
-import "./drag.css";
+
 
 class OtherDocument extends Component {
     constructor(props) {

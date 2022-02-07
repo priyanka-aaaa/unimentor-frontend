@@ -2,14 +2,55 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Footer from './Footer';
 
 export default function AdminUniversity() {
     // start for personal information
+    const [mounted, setMounted] = useState();
+
+
+    const [data, setdata] = useState([]);
+
+    const [foundedYear, setfoundedYear] = useState("");
+    const [formValues, setFormValues] = useState([{
+        name: ""
+    }])
+
+    useEffect(() => {
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
+            var mydata = JSON.parse(a);
+            var myuniversityid = mydata.data.university._id;
+
+            var user_email = mydata.data.university.email;
+            var mytoken = mydata.data.token;
+
+        }
+        setMounted(mytoken)
+
+
+        // start for fetch university
+        const url = process.env.REACT_APP_SERVER_URL + "universities";
+        console.log(url)
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data.universities");
+                console.log(data.universities);
+                setdata(data.universities);
+                setFormValues(data.universities)
+                // this.setState({ data: data.universityCourses })
+            })
 
 
 
+
+    }, [])
     return (
         <div id="page-top">
 
@@ -33,8 +74,8 @@ export default function AdminUniversity() {
                         <div className="container">
 
                             {/* <!-- Page Heading --> */}
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">University</h1>
+                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 className="h3 mb-0 text-gray-800">University</h1>
 
 
                             </div>
@@ -42,19 +83,23 @@ export default function AdminUniversity() {
 
                             {/* <!-- Content Row --> */}
 
-                            <div class="row">
+                            <div className="row">
 
                                 {/* <!-- Area Chart --> */}
-                                <div class="col-xl-12 col-lg-7">
-                                    <div class="card shadow mb-4">
+                                <div className="col-xl-12 col-lg-7">
+                                    <div className="card shadow mb-4">
                                         {/* <!-- Card Header - Dropdown --> */}
-                                        <div class="card shadow mb-4">
-                                            <div class="table-responsive-sm">
-                                                <table class="table table-bordered">
+                                        <div className="card shadow mb-4">
+                                            <div className="table-responsive-sm">
+    
+
+                                                <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
-                                                            <th> Name</th>
+                                                        <th>No.</th>
+                                                        <th>Id</th>
+                                                            <th>Name</th>
+
                                                             <th>Email</th>
                                                             <th>Phone</th>
                                                             <th></th>
@@ -62,58 +107,28 @@ export default function AdminUniversity() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>priyanka</td>
+                                               
+                                                    {formValues.map((object, i) => {
+                                                        return(
+                                                    <tr key={i}>
+                                                          <td>{i+1}</td>
+                                                             <td>{object._id}</td>
+                                                            <td> {object.name}</td>
                                                             <td>priyanka.calinfo500@gmail.com</td>
                                                             <td>9817961998</td>
 
                                                             <td>
                                                                 <button className="btn" ><i className="fas fa-trash-alt"></i></button>
                                                                 <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" ><Link to={'/UniveristyPage/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
+                                                                <button className="btn" ><i className="fas fa-user-slash"></i></button>
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>priyanka</td>
-                                                            <td>priyanka.calinfo500@gmail.com</td>
-                                                            <td>9817961998</td>
-
-                                                            <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>priyanka</td>
-                                                            <td>priyanka.calinfo500@gmail.com</td>
-                                                            <td>9817961998</td>
-
-                                                            <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>1</td>
-                                                            <td>priyanka</td>
-                                                            <td>priyanka.calinfo500@gmail.com</td>
-                                                            <td>9817961998</td>
-
-                                                            <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
-                                                            </td>
-                                                        </tr>
+                                                        )
+                                                    
+                                                    })}
+                                                     
+                                                       
                                                     </tbody>
                                                 </table>
                                             </div>

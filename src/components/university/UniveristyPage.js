@@ -80,8 +80,7 @@ export default function AllUniversity() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data.universityFaqs");
-                console.log(data.universityFaqs);
+             
                 setFormValues(data.universityFaqs)
             })
         //end for fetching faq
@@ -134,8 +133,7 @@ export default function AllUniversity() {
                 var myuniversitiesResult = data.universities
                 myuniversitiesResult.map((element, index) => {
                     if (element._id === id) {
-                        console.log("datuersities")
-                        console.log(element.name)
+                      
                         setFormuniversitiesValues(element)
                     }
                 })
@@ -162,9 +160,7 @@ export default function AllUniversity() {
             .then(response => response.json())
             .then(data => {
                 setuniversityImageValues(data.universityImage)
-                console.log("data.universityImage");
-                console.log(data.universityImage.coverPic);
-
+            
             })
         //end for fetching image
         //start for fetching image

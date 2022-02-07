@@ -107,8 +107,7 @@ const Application = () => {
         seteditnewcomponent(1)
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log("res.data.universityCourse");
-                console.log(res.data.universityCourse);
+            
                 var myuniversityAdmission = res.data.universityAdmission;
                 if (res.data.success === true) {
                     seteditPoint(myuniversityAdmission.point);
@@ -190,8 +189,7 @@ const Application = () => {
     }
     let handleEditSubmit = () => {
         let originalString = document.getElementById("editx").value;
-        console.log("originalString");
-        console.log(originalString)
+    
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;

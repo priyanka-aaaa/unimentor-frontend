@@ -82,8 +82,7 @@ const Document = () => {
 
    //start for getting university 
    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships/' + value;
-   console.log("op");
-   console.log(url1);
+  
    fetch(url1, {
        method: 'GET',
        headers: { 'Authorization': mounted }
@@ -110,8 +109,7 @@ const Document = () => {
     }
     let handleAddSubmit = () => {
         let originalString = document.getElementById("addx").value;
-        console.log("originalString");
-        console.log(originalString)
+  
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;

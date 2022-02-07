@@ -5,12 +5,8 @@ import Topbar from './Topbar';
 
 import Footer from './Footer';
 import Main from './Main';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-// import DragAndDrop from './DragAndDrop';
-import '../css/style.css';
-import '../css/dashboard.css';
-import "./drag.css";
+
+
 
 
 import EducationDocument from './EducationDocument';

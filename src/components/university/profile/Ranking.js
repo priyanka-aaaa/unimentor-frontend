@@ -102,8 +102,7 @@ class Ranking extends Component {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
-                console.log("res.data.universityRanking.agencyName")
-                console.log(res.data.universityRanking.agencyName)
+        
                 this.setState({
 
                     agencyName: res.data.universityRanking.agencyName,
@@ -159,8 +158,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-                console.log("url3");
-                console.log(url3);
+               
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }
@@ -204,8 +202,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-                console.log("url3");
-                console.log(url3);
+               
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }
@@ -246,8 +243,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-                console.log("url3");
-                console.log(url3);
+               
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }

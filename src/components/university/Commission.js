@@ -56,15 +56,10 @@ const Commission = () => {
     }
     function setEditcommissionData(value) {
 
-        console.log("ff")
-        console.log("ff")
-        console.log("ff")
-        console.log("ff")
-        console.log("ff")
 
         setEditcommissionType(value)
 
-        console.log("value")
+      
         if (value === "fixed") {
             setdisplayEditAmount("inline");
             setdisplayEditPercentage("none");
@@ -79,7 +74,7 @@ const Commission = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+         
             var universityId = mydata.data.university._id;
             setuniversityId(universityId)
             var mytoken = mydata.data.token;
@@ -161,9 +156,7 @@ const Commission = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("myf");
-                console.log("data.universityCommission.commissionType")
-                console.log(data.universityCommission.commissionType)
+              
                 setEditid(data.universityCommission._id)
                 setcourseName(data.universityCommission.courseName)
                 setfee(data.universityCommission.fee)
@@ -255,8 +248,7 @@ const Commission = () => {
         obj1.append("commissionValue", commissionValue);
         obj1.append("timeType", commissionTimeChecked);
         obj1.append("timeValue", timeValue);
-        console.log("obj1obj1");
-        console.log(obj1)
+       
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions'
         fetch(url2, {
             method: 'post',

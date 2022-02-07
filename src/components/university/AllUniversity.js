@@ -27,19 +27,18 @@ export default function AllUniversity() {
 
 
         // start for fetch university
-        const url = process.env.REACT_APP_SERVER_URL+"universities";
-        console.log(url)
+        const url = process.env.REACT_APP_SERVER_URL + "universities";
+      
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data.universities");
-                console.log(data.universities);
+              
                 setdata(data.universities);
                 setFormValues(data.universities)
-                // this.setState({ data: data.universityCourses })
+               
             })
 
 
@@ -87,8 +86,8 @@ export default function AllUniversity() {
                                     <tr key={i}>
                                         <td>{object._id}</td>
                                         {/* <td><a href="object.name">{object.name}</a></td> */}
-                                        <td> <Link to={'/UniveristyPage/'+object._id} className="nav-link" >{object.name}</Link></td>
-                                      
+                                        <td> <Link to={'/UniveristyPage/' + object._id} className="nav-link" >{object.name}</Link></td>
+
 
                                     </tr>
 

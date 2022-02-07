@@ -111,117 +111,80 @@ const AdminApplication = () => {
 
 
 
-        <div id="page-top">
+        <div className="card">
+            <a className="card-header" data-bs-toggle="collapse" href="#collapse1"><strong>1</strong>
+                Application
+            </a>
+            <div id="collapse1" className="collapse" data-bs-parent="#accordion">
+                <div className="card-body">
+                    <div className="form-block">
+                        <form onSubmit={handleSubmit}>
+                            <div className="card-body" >
 
+                                <div className="from-block" >
 
-            {/* <!-- Page Wrapper --> */}
-            <div id="wrapper">
-                <Sidebar />
-                {/* there will be come sidebar */}
+                                    {formValues.map((element, index) => (
 
-                {/* <!-- Content Wrapper --> */}
-                <div id="content-wrapper" className="d-flex flex-column">
+                                        <div className="row" key={index}>
+                                            <div className="mb-3">
+                                                <div className="row">
+                                                    <div className="col">
+                                                        <label className="form-label">application
+                                                            *</label>
+                                                        <input type="text" className="form-control"
+                                                            placeholder="application" name="application"
+                                                            value={element.application || ""} onChange={e => handleChange(index, e)}
 
-                    {/* <!-- Main Content --> */}
-                    <div id="content">
-
-                        {/* topbar will be come there */}
-                        <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
-                        <div className="container">
-
-                            {/* <!-- Page Heading --> */}
-                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Student</h1>
-
-
-                            </div>
-
-
-                            {/* <!-- Content Row --> */}
-
-                            <p>Admin Application</p>
-                            <form onSubmit={handleSubmit}>
-                                <div className="card-body" >
-
-                                    <div className="from-block" >
-
-                                        {formValues.map((element, index) => (
-
-                                            <div className="row" key={index}>
-                                                <div className="mb-3">
-                                                    <div className="row">
-                                                        <div className="col">
-                                                            <label className="form-label">application
-                                                                *</label>
-                                                            <input type="text" className="form-control"
-                                                                placeholder="application" name="application"
-                                                                value={element.application || ""} onChange={e => handleChange(index, e)}
-
-                                                            // value={courseName}
-                                                            // onChange={(e) => setcourseName(e.target.value)}
-                                                            />
-                                                        </div>
-
-
+                                                        // value={courseName}
+                                                        // onChange={(e) => setcourseName(e.target.value)}
+                                                        />
                                                     </div>
+
+
                                                 </div>
-
-
-
                                             </div>
-                                        ))}
 
-                                        <div className="mb-3">
-                                            <div className="row">
-                                                <div className="col-md-6"></div>
-                                                <div className="col-md-6 text-right">
 
-                                                    <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                                    <button type="submit" className="btn btn-secondary">Save
-                                                    </button>
-                                                    <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
-                                                        Next</button>
-                                                </div>
+                                        </div>
+                                    ))}
 
+                                    <div className="mb-3">
+                                        <div className="row">
+                                            <div className="col-md-6"></div>
+                                            <div className="col-md-6 text-right">
+
+                                                <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+
+                                                <button type="submit" className="btn btn-secondary">Save
+                                                </button>
+                                                <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
+                                                    Next</button>
                                             </div>
 
                                         </div>
 
-
-
                                     </div>
+
+
+
                                 </div>
-                            </form>
-                            {/* <!-- Card Body --> */}
+                            </div>
+                        </form>
 
+                        <div className="row pl-4 pr-4 mt-3">
+
+
+                            <div>
+
+
+
+                            </div>
                         </div>
-                        {/* <!-- /.container-fluid --> */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-                    <Footer />
-                    {/* <!-- End of Footer --> */}
-
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div>
-            {/* <!-- End of Page Wrapper --> */}
-
-            {/* <!-- Scroll to Top Button--> */}
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-
-            {/* <!-- Logout Modal--> */}
-
-        </div >
+        </div>
     );
 }
 

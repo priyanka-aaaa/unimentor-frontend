@@ -2,8 +2,8 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
-// import waterloouniversity from './waterloouniversity.jpg'
-import waterloouniversity from './waterloouniversity.jpg';
+
+import waterloouniversity from './img/waterloouniversity.jpg';
 import Footer from './Footer';
 function Bookmark(props) {
   return (

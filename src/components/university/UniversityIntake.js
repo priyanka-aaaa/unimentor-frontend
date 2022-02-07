@@ -99,7 +99,7 @@ export default function UniversityPassword() {
 
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                     
                         if (res.data.success === true) {
                             setsuccessMessage("Intake Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
@@ -115,12 +115,11 @@ export default function UniversityPassword() {
 
             }
             else {
-                console.log("item")
-                console.log(item)
+             
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + item._id, item, { headers: { 'Authorization': mounted } })
                     // await axios.put('/university/61dab27e05671a193cca5f81/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                   
                         if (res.data.success === true) {
                             setsuccessMessage("Intake Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);

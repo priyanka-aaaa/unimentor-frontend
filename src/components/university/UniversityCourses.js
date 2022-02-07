@@ -34,7 +34,7 @@ const UniversityCourses = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+           
             var user_email = mydata.data.university.email;
             var universityId = mydata.data.university._id;
 
@@ -64,13 +64,13 @@ const UniversityCourses = () => {
 
     function handleClick(value) {
 
-        console.log(value);
+
         seteditId(value);
         setwidth("1600px");
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
-                console.log(res.data.universityCourse);
+            
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
 
@@ -140,15 +140,15 @@ const UniversityCourses = () => {
 
     function handleView(value) {
 
-        console.log(value);
+     
         seteditId(value);
         setviewWidth("1600px");
         // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
 
             .then(function (res) {
-                console.log("jj");
-                console.log(res.data.universityCourse);
+               
+             
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
 
@@ -215,7 +215,7 @@ const UniversityCourses = () => {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+           
                 if (res.data.success === true) {
                     setwidth(0)
                     setsuccessMessage("course update")
@@ -259,7 +259,7 @@ const UniversityCourses = () => {
         };
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+        
                 if (res.data.success === true) {
                     setsuccessMessage("course add")
                     setTimeout(() => setsubmitSuccess(""), 3000);

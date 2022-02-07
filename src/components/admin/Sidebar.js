@@ -25,6 +25,11 @@ class Sidebar extends Component {
                     {/* <!-- Nav Item - Dashboar
                    
                     d --> */}
+                       <li className="nav-item ">
+                        <Link to={'/AdminProfile'} className="nav-link" href="#">
+                            <i className="fas fa-file-upload"></i>
+                            <span>Admin</span></Link>
+                    </li>
                     <li className="nav-item ">
                         <Link to={'/AdminStudentApplication'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
@@ -35,17 +40,7 @@ class Sidebar extends Component {
                             <i className="fas fa-file-upload"></i>
                             <span>Old Application</span></Link>
                     </li>
-                    <li className="nav-item">
-
-
-                        {/* <a className="nav-link" href="personal-profile.html">
-                            <i className="fas fa-user"></i>
-                            <span>Profile</span></a> */}
-                        <Link to={'/AdminDashboard'} className="nav-link" href="personal-profile.html">
-                            <i className="fas fa-user"></i>
-                            <span>University</span></Link>
-
-                    </li>
+                 
                     <li className="nav-item">
 
                         <Link to={'/AdminStudent'} className="nav-link" >
@@ -74,21 +69,7 @@ class Sidebar extends Component {
                             <i className="fas fa-file-upload"></i>
                             <span>Field Of Study</span></Link>
                     </li>
-                    <li className="nav-item ">
-                        <Link to={'/AdminApplication'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Application</span></Link>
-                    </li>
-                    <li className="nav-item ">
-                        <Link to={'/AdminDocument'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Document</span></Link>
-                    </li>
-                    <li className="nav-item ">
-                        <Link to={'/AdminScholarship'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Scholarship</span></Link>
-                    </li>
+                 
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">
                         <button className="rounded-circle border-0" id="sidebarToggle"></button>

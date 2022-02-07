@@ -11,7 +11,7 @@ import '../css/frontend.css';
 // start for personal information
 export default function FrontendFooter() {
     let { id } = useParams();
-    // console.log(id);
+ 
     const [mounted, setMounted] = useState();
 
 

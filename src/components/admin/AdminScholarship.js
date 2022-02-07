@@ -106,40 +106,14 @@ const AdminScholarship = () => {
     return (
 
 
-
-        <div id="page-top">
-
-
-            {/* <!-- Page Wrapper --> */}
-            <div id="wrapper">
-                <Sidebar />
-                {/* there will be come sidebar */}
-
-                {/* <!-- Content Wrapper --> */}
-                <div id="content-wrapper" className="d-flex flex-column">
-
-                    {/* <!-- Main Content --> */}
-                    <div id="content">
-
-                        {/* topbar will be come there */}
-                        <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
-                        <div className="container">
-
-                            {/* <!-- Page Heading --> */}
-                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Scholarship</h1>
-
-
-                            </div>
-
-
-                            {/* <!-- Content Row --> */}
-
-                            <p>Admin Application</p>
-                            <form onSubmit={handleSubmit}>
+        <div className="card">
+        <a className="card-header" data-bs-toggle="collapse" href="#collapse3"><strong>3</strong>
+        Scholarship
+        </a>
+        <div id="collapse3" className="collapse" data-bs-parent="#accordion">
+            <div className="card-body">
+                <div className="form-block">
+                <form onSubmit={handleSubmit}>
                                 <div className="card-body" >
 
                                     <div className="from-block" >
@@ -192,32 +166,20 @@ const AdminScholarship = () => {
                                     </div>
                                 </div>
                             </form>
-                            {/* <!-- Card Body --> */}
+
+                    <div className="row pl-4 pr-4 mt-3">
+
+
+                        <div>
+
+
 
                         </div>
-                        {/* <!-- /.container-fluid --> */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-                    <Footer />
-                    {/* <!-- End of Footer --> */}
-
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div>
-            {/* <!-- End of Page Wrapper --> */}
-
-            {/* <!-- Scroll to Top Button--> */}
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-
-            {/* <!-- Logout Modal--> */}
-
-        </div >
+        </div>
+    </div>
     );
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import "../Student/drag.css";
+import "../css/drag.css";
 
 import Footer from './Footer';
 import Application from './profile/Application';
@@ -87,7 +87,7 @@ class UniversityProfile extends Component {
     }
     changeenglish(event) {
         this.setState({ english: event.target.value });
-        console.log(this.state.english);
+    
     }
     changecgpa(event) {
         this.setState({ cgpa: event.target.value });
@@ -111,7 +111,7 @@ class UniversityProfile extends Component {
 
         axios.put(process.env.REACT_APP_SERVER_URL+'university/overview', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
-                console.log(res.data);
+             
                 if (res.data.success === true) {
                     alert("overview update successfully");
                 }

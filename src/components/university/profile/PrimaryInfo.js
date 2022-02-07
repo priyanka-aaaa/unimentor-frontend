@@ -62,16 +62,13 @@ export default function PrimaryInfo() {
             .catch(error => {
                 console.log(error.response)
             });
-            console.log("hii")
-            console.log("process.env.REACT_APP_SERVER_URL + 'countries/")
-            console.log(process.env.REACT_APP_SERVER_URL + 'countries/')
+         
             axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
  
  
             .then(function (res) {
                 if (res.data.success === true) {
-                    console.log("res.data");
-                    console.log(res.data)
+                  
                     // var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
  
                     // setname(student_universityPrimaryInformation.name);
@@ -90,8 +87,7 @@ export default function PrimaryInfo() {
             axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
   .then(function (res) {
                 if (res.data.success === true) {
-                    console.log("res.data");
-                    console.log(res.data)
+               
                   }
                 else {
                     alert("error");

@@ -53,7 +53,7 @@ export default function Summary() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+          
             var user_email = mydata.data.university.email;
             var UniversityId = mydata.data.university._id;
             var mytoken = mydata.data.token;
@@ -65,7 +65,7 @@ export default function Summary() {
         axios.get(process.env.REACT_APP_SERVER_URL+'university/'+UniversityId+'/summary', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    console.log(res.data);
+                 
                     var my_universitySummary = res.data.universitySummary;
 
                     setcampus(my_universitySummary.campus);
@@ -111,7 +111,7 @@ export default function Summary() {
         };
         axios.put(process.env.REACT_APP_SERVER_URL+'university/summary', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+              
                 if (res.data.success === true) {
                     setsuccessMessage("course delete")
                     setTimeout(() => setsubmitSuccess(""), 3000);

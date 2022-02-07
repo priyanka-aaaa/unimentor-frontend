@@ -79,7 +79,7 @@ export default function Universitylogin() {
                                         <div className="mb-3 mt-3">
                                             <label className="form-label">Password</label>
                                             <input type="text" className="form-control form-control-lg" id="uname"
-                                                placeholder="Full Name" name="name"
+                                                placeholder="Password" name="name"
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                             />

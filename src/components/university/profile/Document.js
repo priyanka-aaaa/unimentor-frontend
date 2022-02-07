@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 
-// import './my.css'
+
 const Document = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
@@ -119,8 +119,7 @@ const Document = () => {
     }
     let handleAddSubmit = () => {
         let originalString = document.getElementById("x").value;
-        console.log("originalString");
-        console.log(originalString)
+     
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
@@ -129,7 +128,7 @@ const Document = () => {
         const obj = {
             document: InsetApplication
         };
-        console.log(obj);
+  
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/documents', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
@@ -203,8 +202,7 @@ const Document = () => {
     }
     let handleEditSaveSubmit = () => {
         let originalString = document.getElementById("editx").value;
-        console.log("originalString");
-        console.log(originalString)
+
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
@@ -216,7 +214,7 @@ const Document = () => {
 
         };
 
-        console.log(obj);
+
 
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/documents/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
