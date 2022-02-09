@@ -32,7 +32,7 @@ class Document extends Component {
         var i = 0;
 
         return (
-            <div id="page-top">
+            <div id="page-top" className="component-a">
                 {/* {this.state.files.map((file, index) => (
                     <h2 key={index}>{file}</h2>
                 ))} */}
@@ -64,9 +64,7 @@ class Document extends Component {
 
                                 <div className=" align-items-center justify-content-between mb-4">
 
-                                    <i className="fa fa-trash-alt"></i>
-                                    <i className="fa fa-sun-o" />
-                                    <i class="fas fa-pen"></i>
+                                  
                                     <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
                                     <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
 

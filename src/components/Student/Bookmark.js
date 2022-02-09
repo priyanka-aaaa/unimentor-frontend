@@ -1,8 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
-
 import waterloouniversity from './img/waterloouniversity.jpg';
 import Footer from './Footer';
 function Bookmark(props) {

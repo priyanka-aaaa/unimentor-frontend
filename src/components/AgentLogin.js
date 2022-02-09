@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import './css/style.css';
+
 import logo from './img/logo.png';
 // import { Component } from 'react';
 import axios from 'axios';
-import 'react-phone-number-input/style.css'
+
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 // import { BrowserRouter as Redirect } from 'react-router-dom';
 
 export default function Studentlogin() {
@@ -38,6 +35,7 @@ export default function Studentlogin() {
                     let responseJson = result;
                     console.log(responseJson.data.success);
                     if (responseJson.data.success === true) {
+                        
                         localStorage.setItem('agentData', JSON.stringify(responseJson));
                         setredirectToReferrer(true)
                     }

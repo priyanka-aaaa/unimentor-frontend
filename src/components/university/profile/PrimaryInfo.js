@@ -19,6 +19,16 @@ export default function PrimaryInfo() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
 
+    const [countries, setcountries] = useState([{
+        country_name: ""
+    }]);
+    const [states, setstates] = useState([{
+        state_name: ""
+    }])
+    const [cities, setcities] = useState([{
+        city_name: ""
+    }])
+
 
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
@@ -62,45 +72,99 @@ export default function PrimaryInfo() {
             .catch(error => {
                 console.log(error.response)
             });
-         
-            axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
- 
- 
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
+
+
             .then(function (res) {
                 if (res.data.success === true) {
-                  
+                    console.log("gg");
+                    console.log(res.data.result)
                     // var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
- 
-                    // setname(student_universityPrimaryInformation.name);
- 
- 
+
+                    setcountries(res.data.result);
+
+
                 }
                 else {
                     alert("error");
                 }
- 
+
             })
             .catch(error => {
                 console.log(error.response)
             });
-            //start for fetch for city
-            axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
-  .then(function (res) {
+        //start for fetch for city
+        axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
+            .then(function (res) {
                 if (res.data.success === true) {
-               
-                  }
+
+                }
                 else {
                     alert("error");
                 }
- 
+
             })
             .catch(error => {
                 console.log(error.response)
             });
-            //end for fetch for city
+        //end for fetch for city
 
     }, [])
 
+    function handlecountry(e) {
+
+        setcountry(e)
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
+
+
+            .then(function (res) {
+                if (res.data.success === true) {
+                    console.log("gg");
+                    console.log(res.data.result)
+
+
+                    setstates(res.data.result);
+
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    }
+
+    function handlestate(e) {
+
+        setstate(e)
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
+
+
+            .then(function (res) {
+                if (res.data.success === true) {
+                    console.log("gg");
+                    console.log(res.data.result)
+
+
+                    setcities(res.data.result);
+
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    }
 
     function Personal_Information(event) {
         event.preventDefault();
@@ -197,15 +261,19 @@ export default function PrimaryInfo() {
                                                 <label>Country *</label>
                                                 <select className="form-control" name="country" required=""
                                                     value={country}
-                                                    onChange={(e) => setcountry(e.target.value)}
+                                                    onChange={(e) => handlecountry(e.target.value)}
 
                                                 >
-                                                    <option >Select Country</option>
-                                                    <option>India</option>
-                                                    <option>Afghanistan</option>
-                                                    <option>Albania</option>
-                                                    <option>Algeria</option>
-                                                    <option>American Samoa</option>
+                                                    {countries.map((element, index) => {
+                                                        return (
+
+                                                            <option
+
+
+                                                                value={element.country_name} key={index}>{element.country_name}</option>
+                                                        )
+                                                    })}
+
                                                 </select>
                                             </div>
                                         </div>
@@ -218,15 +286,25 @@ export default function PrimaryInfo() {
                                             <div className="form-group">
                                                 <label>State *
                                                 </label>
-                                                <select className="form-control" name="state" required=""
 
+                                                <select className="form-control" name="state" required=""
                                                     value={state}
-                                                    onChange={(e) => setstate(e.target.value)}
+
+                                                    onChange={(e) => handlestate(e.target.value)}
                                                 >
-                                                    <option>Select State</option>
-                                                    <option>Please select country to view states
-                                                    </option>
+                                                    {states.map((element, index) => {
+                                                        return (
+
+                                                            <option
+
+
+                                                                value={element.state_name} key={index}>{element.state_name}</option>
+                                                        )
+                                                    })}
+
                                                 </select>
+
+
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -236,9 +314,16 @@ export default function PrimaryInfo() {
                                                     value={city}
                                                     onChange={(e) => setcity(e.target.value)}
                                                 >
-                                                    <option >Select State</option>
-                                                    <option>Please select a state to view cities
-                                                    </option>
+                                                   
+                                                    {cities.map((element, index) => {
+                                                        return (
+
+                                                            <option
+
+
+                                                                value={element.city_name} key={index}>{element.city_name}</option>
+                                                        )
+                                                    })}
                                                 </select>
                                             </div>
                                         </div>

@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-import '../css/style.css';
-import '../css/dashboard.css';
-import '../css/fontawesome.min.css';
-import '../css/frontend.css';
+
 
 // start for personal information
 export default function FrontendTopbar() {

@@ -1,15 +1,12 @@
 import React, { useState } from "react";
-import './css/style.css';
+
 
 import logo from './img/logo.png';
 
 import axios from 'axios';
-import 'react-phone-number-input/style.css'
+
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
-
 
 export default function Universityregister() {
     const [name, setName] = useState("");

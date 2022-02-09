@@ -1,5 +1,5 @@
 
-import './css/style.css';
+
 import React from 'react';
 import logo from './img/logo.png';
 import { Component } from 'react';

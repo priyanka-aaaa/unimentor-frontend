@@ -154,7 +154,7 @@ export default function Home() {
               <div className="row align-items-end">
                 <div className="col-lg-6 md-mb-50 order-last">
                   <div className="banner-img">
-                    <img src={images["banner/banner-5.png"]} alt="" />
+                    <img src={images["banner-5.png"]} alt="banner-5.png" />
                   </div>
                 </div>
                 <div className="col-lg-6">
@@ -245,7 +245,7 @@ export default function Home() {
               </div>
             </div>
             <div className="rs-animation">
-              <img className="dance3" src={images["banner/b4-dot-6.png"]} alt="images" />
+              <img className="dance3" src={images["b4-dot-6.png"]} alt="images" />
             </div>
           </div>
           {/* Banner Section End */}
@@ -266,7 +266,7 @@ export default function Home() {
                         <div className="front-content-part purple-bg">
                           <div className="front-icon-part">
                             <div className="icon-part">
-                              <img src={images["services/style6/6.png"]} alt="" /> 
+                              <img src={images["6.png"]} alt="" /> 
                             </div>
                           </div>
                           <div className="front-title-part">
@@ -425,7 +425,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/1.png"]} alt="" />
+                      <img src={images["1.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Software</h4> 
@@ -435,7 +435,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/2.png"]} alt="" />
+                      <img src={images["2.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Fintech</h4> 
@@ -445,7 +445,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/3.png"]} alt="" />
+                      <img src={images["3.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Healthcare</h4> 
@@ -455,7 +455,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/4.png"]} alt="" />
+                      <img src={images["4.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Data Mining</h4> 
@@ -465,7 +465,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/5.png"]} alt="" />
+                      <img src={images["5.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Machine learning</h4> 
@@ -475,7 +475,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/6.png"]} alt="" />
+                      <img src={images["6.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Medical</h4> 
@@ -485,7 +485,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/7.png"]} alt="" />
+                      <img src={images["7.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Entertainment</h4> 
@@ -495,7 +495,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/8.png"]} alt="" />
+                      <img src={images["8.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">AI</h4> 
@@ -505,7 +505,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/9.png"]} alt="" />
+                      <img src={images["9.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Manufacturing</h4> 
@@ -515,7 +515,7 @@ export default function Home() {
                 <div className="services-item">
                   <div className="services-wrap">
                     <div className="services-icon">
-                      <img src={images["technology/style3/10.png"]} alt="" />
+                      <img src={images["10.png"]} alt="" />
                     </div>
                     <div className="services-text">
                       <h4 className="title">Logistics</h4> 
@@ -540,8 +540,8 @@ export default function Home() {
                   <div className="services-item pink-light-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/5.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/5.png"]} alt="" />
+                        <img className="main-img" src={images["5.png"]} alt="" />
+                        <img className="hover-img" src={images["5.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
@@ -561,8 +561,8 @@ export default function Home() {
                   <div className="services-item blue2-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/6.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/6.png"]} alt="" />
+                        <img className="main-img" src={images["6.png"]} alt="" />
+                        <img className="hover-img" src={images["6.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
@@ -582,8 +582,8 @@ export default function Home() {
                   <div className="services-item paste2-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/7.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/7.png"]} alt="" />
+                        <img className="main-img" src={images["7.png"]} alt="" />
+                        <img className="hover-img" src={images["7.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
@@ -603,8 +603,8 @@ export default function Home() {
                   <div className="services-item purple2-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/8.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/8.png"]} alt="" />
+                        <img className="main-img" src={images["8.png"]} alt="" />
+                        <img className="hover-img" src={images["8.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
@@ -624,8 +624,8 @@ export default function Home() {
                   <div className="services-item cyan2-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/9.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/9.png"]} alt="" />
+                        <img className="main-img" src={images["9.png"]} alt="" />
+                        <img className="hover-img" src={images["9.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
@@ -645,8 +645,8 @@ export default function Home() {
                   <div className="services-item pink2-bg">
                     <div className="services-icon">
                       <div className="image-part">
-                        <img className="main-img" src={images["services/style3/main-img/10.png"]} alt="" />
-                        <img className="hover-img" src={images["services/style3/hover-img/10.png"]} alt="" />
+                        <img className="main-img" src={images["10.png"]} alt="" />
+                        <img className="hover-img" src={images["10.png"]} alt="" />
                       </div>
                     </div>
                     <div className="services-content">
