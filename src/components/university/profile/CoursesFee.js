@@ -9,6 +9,8 @@ const CoursesFee = () => {
         _id: "null"
 
     }])
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     useEffect(() => {
@@ -98,7 +100,9 @@ const CoursesFee = () => {
                     .then(function (res) {
                  
                         if (res.data.success === true) {
-                        
+                            setsuccessMessage("Courses Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
                         else {
                             alert("error");
@@ -114,6 +118,10 @@ const CoursesFee = () => {
 
     return (
         <div>
+            
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse3"><strong>3</strong>
                     Courses & Fees

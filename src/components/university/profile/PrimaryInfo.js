@@ -78,11 +78,7 @@ export default function PrimaryInfo() {
 
             .then(function (res) {
                 if (res.data.success === true) {
-                    console.log("gg");
-                    console.log(res.data.result)
-                    // var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
-
-                    setcountries(res.data.result);
+                 setcountries(res.data.result);
 
 
                 }
@@ -121,11 +117,7 @@ export default function PrimaryInfo() {
 
             .then(function (res) {
                 if (res.data.success === true) {
-                    console.log("gg");
-                    console.log(res.data.result)
-
-
-                    setstates(res.data.result);
+                 setstates(res.data.result);
 
 
                 }
@@ -148,11 +140,7 @@ export default function PrimaryInfo() {
 
             .then(function (res) {
                 if (res.data.success === true) {
-                    console.log("gg");
-                    console.log(res.data.result)
-
-
-                    setcities(res.data.result);
+                 setcities(res.data.result);
 
 
                 }

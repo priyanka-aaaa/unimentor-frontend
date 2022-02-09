@@ -9,19 +9,25 @@ const Faq = () => {
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [universityId, setuniversityId] = useState([]);
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
 
     const [display, setdisplay] = useState("none");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-
+            console.log(mydata)
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
+            var universityId = mydata.data.university._id;
         }
         setMounted(mytoken)
+        setuniversityId(universityId)
+
         // const url = "university/faqs";
-        const url = "university/61dab27e05671a193cca5f81/faqs";
+        const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
@@ -54,11 +60,13 @@ const Faq = () => {
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-                await axios.post(process.env.REACT_APP_SERVER_URL+'university/faqs', item, { headers: { 'Authorization': mounted } })
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'university/faqs', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
 
                         if (res.data.success === true) {
-                            alert("question update successfully");
+                            setsuccessMessage("Faq Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
                         else {
                             alert("error");
@@ -69,15 +77,14 @@ const Faq = () => {
                     });
             }
             else {
-                // await axios.put('
-                // university/faqs/61f243ed8353023b49271293
-                // /university/faqs', item, { headers: { 'Authorization': mounted } })
-                await axios.put(process.env.REACT_APP_SERVER_URL+'university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
 
                         if (res.data.success === true) {
-                            alert("question update successfully");
+                            setsuccessMessage("Faq Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
                         else {
                             alert("error");
@@ -100,8 +107,40 @@ const Faq = () => {
         }
 
     }
+    let handleDeleteClick = (value) => {
+
+        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + value, { headers: { 'Authorization': mounted } })
+             .then(function (res) {
+ 
+                 if (res.data.success === true) {
+                     setsuccessMessage("faq deleted")
+                     setTimeout(() => setsubmitSuccess(""), 3000);
+                     setsubmitSuccess(1)
+                   
+                     const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
+                     fetch(url, {
+                         method: 'GET',
+                         headers: { 'Authorization': mounted }
+                     })
+                         .then(response => response.json())
+                         .then(data => {
+                             setFormValues(data.universityFaqs)
+                         })
+ 
+                 }
+                 else {
+                     alert("error");
+                 }
+             })
+             .catch(error => {
+                 console.log(error.response)
+             });
+     }
     return (
         <div>
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse9"><strong>9</strong>
                     FAQ
@@ -130,7 +169,11 @@ const Faq = () => {
                                                         <form onSubmit={handleSubmit}>
                                                             {formValues.map((element, index) => (
                                                                 <div className="mb-12" key={index}>
+
+                                                                    <button className="btn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
                                                                     <div className="row">
+
+
                                                                         <div className="col">
                                                                             <label htmlFor="fname" className="form-label">Question</label>
                                                                             <input type="text" className="form-control" placeholder="" name="question"

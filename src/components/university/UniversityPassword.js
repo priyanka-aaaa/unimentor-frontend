@@ -10,6 +10,8 @@ export default function UniversityPassword() {
     const [password, setpassword] = useState("");
     const [conformPassword, setconformPassword] = useState("");
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
 
     // end for personal information
 
@@ -18,7 +20,7 @@ export default function UniversityPassword() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-        
+
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
         }
@@ -39,11 +41,13 @@ export default function UniversityPassword() {
 
 
             };
-            axios.post(process.env.REACT_APP_SERVER_URL+'university/changePassword', obj, { headers: { 'Authorization': mounted } })
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-                  
+
                     if (res.data.success === true) {
-                        alert("password update successfully");
+                        setsuccessMessage("Password Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
                     }
                     else {
                         alert("error");
@@ -75,6 +79,9 @@ export default function UniversityPassword() {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
+                            {submitSuccess === 1 ? <div className="Show_success_message">
+                                <strong>Success!</strong> {successMessage}
+                            </div> : null}
                             {/* <!-- Page Heading --> */}
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Setting</h1>
