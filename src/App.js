@@ -22,7 +22,7 @@ import Document from './components/Student/Document';
 import AddStudent from './components/agent/AddStudent';
 import Bookmark from './components/Student/Bookmark';
 
-// import StudentPersonalInformation from './components/Student/StudentPersonalInformation';
+
 import Home from './components/Home/Home';
  
 
@@ -184,7 +184,7 @@ function App() {
                     <Route path='/ApplicationProfile' component={ApplicationProfile} />
                     <Route path='/Profile' component={Profile} />
                     <Route path='/Document' component={Document} />
-                    {/* <Route path='/StudentPersonalInformation' component={StudentPersonalInformation} /> */}
+              
                     <Route path='/Bookmark' component={Bookmark} />
                     <Route path='/AddStudent' component={AddStudent} />
  

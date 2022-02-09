@@ -6,7 +6,8 @@ const WorkExperience = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
-        status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
+        type: "", organization: "", recommenderName: "", email: "", relation: "", designation: "", number: "", address: "", letterL: "",
+
         _id: "null"
     }])
     const [mounted, setMounted] = useState();
@@ -23,7 +24,7 @@ const WorkExperience = () => {
 
 
         //start for select course
-        const url = process.env.REACT_APP_SERVER_URL + 'student/experiences';
+        const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
         fetch(url, {
             method: 'GET',
             headers: {
@@ -33,16 +34,17 @@ const WorkExperience = () => {
         })
             .then(response => response.json())
             .then(data => {
-                var myresults = data.studentExperiences;
+                var myresults = data.studentProfileRecommendations;
                 if (Object.keys(myresults).length === 0) {
 
                 }
                 else {
-                    setFormValues(data.studentExperiences)
+                    setFormValues(data.studentProfileRecommendations)
                 }
             })
     }, [])
     let handleChange = (i, e) => {
+        console.log("uu")
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
@@ -50,7 +52,8 @@ const WorkExperience = () => {
 
     let addFormFields = () => {
         setFormValues([...formValues, {
-            status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
+            type: "", organization: "", recommenderName: "", email: "", relation: "", designation: "", number: "", address: "", letterL: "",
+
             _id: "null"
         }])
     }
@@ -67,7 +70,7 @@ const WorkExperience = () => {
 
         formValues.map(async (item) => {
             if (item._id === "null") {
-                await axios.post(process.env.REACT_APP_SERVER_URL + 'student/experiences', item, { headers: { 'Authorization': mounted } })
+                await axios.post(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
 
 
@@ -87,7 +90,7 @@ const WorkExperience = () => {
             }
             else {
 
-                await axios.put(process.env.REACT_APP_SERVER_URL + 'student/experiences/' + item._id, item, { headers: { 'Authorization': mounted } })
+                await axios.put(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
 
@@ -109,7 +112,7 @@ const WorkExperience = () => {
 
     }
     function handleDelete(value) {
-        const url2 = process.env.REACT_APP_SERVER_URL + 'student/experiences/' + value
+        const url2 = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + value
         console.log("url2");
         console.log(url2);
         fetch(url2, {
@@ -127,7 +130,7 @@ const WorkExperience = () => {
 
 
                 //start for get commission
-                const url = process.env.REACT_APP_SERVER_URL + 'student/experiences';
+                const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -150,17 +153,17 @@ const WorkExperience = () => {
                 //end for get commission
             })
     }
- 
+
     return (
         <div>
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>4</strong>
-                    Work Experience
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>4</strong>
+                Recommendation
                 </a>
-                <div id="collapse6" className="collapse" data-bs-parent="#accordion">
+                <div id="collapse8" className="collapse" data-bs-parent="#accordion">
                     {/* <form> */}
                     <form onSubmit={handleSubmit}>
 
@@ -169,114 +172,85 @@ const WorkExperience = () => {
                                 <a onClick={() => handleDelete(element._id)}><i className="fas fa-trash-alt"></i></a>
 
                                 <div className="row">
-                                    <div className="col-12 col-sm-4 col-md-4 col-lg-4">
-                                        <div className="form-group">
-                                            <label>Work Status <span className="text-danger">
-                                                *</span></label><br />
-                                            <label className="ant-radio-wrapper"><span className="ant-radio">
-                                                <input
-                                                    value={element.status || ""} onChange={e => handleChange(index, e)}
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label>Reference Type <span className="text-danger"> *</span></label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
+                                            value={element.type || ""} onChange={e => handleChange(index, e)}
 
+                                            name="reference_type_0" type="radio" className="ant-radio-input" value="Professional" /><span className="ant-radio-inner"></span></span><span>Professional</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                value={element.type || ""} onChange={e => handleChange(index, e)}
 
-                                                    name="is_current_job_0" type="radio" className="ant-radio-input" value="Ongoing" />
-                                                <span className="ant-radio-inner"></span></span><span>Ongoing</span></label>
-                                            <label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
-                                                value={element.status || ""} onChange={e => handleChange(index, e)}
-
-                                                name="is_current_job_0" type="radio" className="ant-radio-input" value="Completed" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
+                                                name="reference_type_0" type="radio" className="ant-radio-input" value="Academic" /><span className="ant-radio-inner"></span></span><span>Academic</span></label>
                                             <br />
                                         </div>
                                     </div>
-                                    <div className="col-12 col-sm-4 col-md-4 col-lg-4">
-                                        <div className="form-group"><label htmlFor="work_type">Work Type <span className="text-danger"> *</span></label><select
-                                            value={element.type || ""} onChange={e => handleChange(index, e)}
-
-                                            className="form-control" id="work_type" name="work_type">
-                                            <option >Select</option>
-                                            <option value="Full-time">Full-time</option>
-                                            <option value="Part-time">Part-time</option>
-                                            <option value="Internship">Internship</option>
-                                        </select></div>
-                                    </div>
-                                    <div className="col-12 col-sm-4 col-md-4 col-lg-4">
-                                        <div className="form-group"><label htmlFor="company_name">Name of
-                                            Organization <span className="text-danger">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label htmlFor="Name_of_organisation">Name
+                                            of Organisation/Institution <span className="text-danger">
                                                 *</span></label><input
                                                 value={element.organization || ""} onChange={e => handleChange(index, e)}
 
-
-                                                type="text" className="form-control" id="company_name" name="company_name" placeholder="Name of Organization" /></div>
+                                                type="text" className="form-control" id="Name_of_organisation" name="Name_of_organisation" placeholder="Name of Organisation/Institution" />
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div className="form-group"><label htmlFor="work_designation">Designation</label><input
+                                        <div className="form-group"><label htmlFor="recommender_name">Recommender Name <span className="text-danger"> *</span></label><input
+                                            value={element.recommenderName || ""} onChange={e => handleChange(index, e)}
+
+                                            type="text" className="form-control" id="recommender_name" name="recommender_name" placeholder="Recommender Name" /></div>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label htmlFor="official_email_id">Official
+                                            Email ID <span className="text-danger">
+                                                *</span></label><input
+                                                value={element.email || ""} onChange={e => handleChange(index, e)}
+
+                                                type="text" className="form-control" id="official_email_id" name="official_email_id" placeholder="Email" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label htmlFor="relation_with_applicant">Relation with Recommender</label><input
+                                            value={element.relation || ""} onChange={e => handleChange(index, e)}
+
+                                            type="text" className="form-control" id="relation_with_applicant" name="relation_with_applicant" placeholder="Relation with recommender" /></div>
+                                    </div>
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label htmlFor="recommender_designation">Recommender Designation</label><input
                                             value={element.designation || ""} onChange={e => handleChange(index, e)}
 
-
-
-                                            type="text" className="form-control" id="work_designation" name="designation" placeholder="Designation" />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div className="form-group"><label htmlFor="role_description">Job
-                                            Role</label><input
-                                                value={element.role || ""} onChange={e => handleChange(index, e)}
-
-                                                type="text" className="form-control" id="role_description" name="role_description" placeholder="Job Role" /></div>
-                                    </div>
-                                </div>
-
-
-
-                                <div className="row">
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div className="form-group">
-                                            <label htmlFor="start_from">Started From</label>
-                                            <input
-                                                value={element.started || ""} onChange={e => handleChange(index, e)}
-
-                                                type="date" className="form-control" />
-                                        </div>
-                                    </div>
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div className="form-group">
-                                            <label htmlFor="start_from">Ended On</label>
-                                            <input
-                                                value={element.ended || ""} onChange={e => handleChange(index, e)}
-
-                                                type="date" className="form-control" />
-                                        </div>
+                                            type="text" className="form-control" id="recommender_designation" name="recommender_designation" placeholder="Recommender Designation" /></div>
                                     </div>
                                 </div>
 
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <label>Country</label>
-                                        <select
-                                            value={element.country || ""} onChange={e => handleChange(index, e)}
+                                        <div className="form-group"><label htmlFor="contact_number">Contact Number</label><input
+                                            value={element.number || ""} onChange={e => handleChange(index, e)}
 
-                                            className="form-control" id="job_country"
-                                            name="job_country">
-                                            <option value="">Select Country</option>
-                                            <option value="India">India</option>
-                                            <option value="Afghanistan">Afghanistan</option>
-                                            <option value="Albania">Albania</option>
-                                            <option value="Algeria">Algeria</option>
-                                            <option value="American Samoa">American Samoa</option>
-                                        </select>
+                                            type="number" className="form-control" id="contact_number" name="contact_number" placeholder="Contact Number" /></div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                        <div className="form-group"><label
-                                            htmlFor="job_city">City/Town</label><input
-                                                value={element.city || ""} onChange={e => handleChange(index, e)}
+                                        <div className="form-group"><label htmlFor="address_of_organisation">Address of Organisation/Institution</label><input
+                                            value={element.address || ""} onChange={e => handleChange(index, e)}
 
-                                                type="text"
-                                                className="form-control" id="job_city"
-                                                placeholder="City/Town" name="job_city" value="" /></div>
+                                            type="text" className="form-control" id="address_of_organisation" name="address_of_organisation" placeholder="Address of Organisation/Institution" /></div>
                                     </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div className="form-group"><label>Do you have letter of recommendation?</label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
+                                            value={element.letter || ""} onChange={e => handleChange(index, e)}
 
+                                            name="has_lor_0" type="radio" className="ant-radio-input" value="yes" /><span className="ant-radio-inner"></span></span><span>Yes</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                value={element.letter || ""} onChange={e => handleChange(index, e)}
+
+                                                name="has_lor_0" type="radio" className="ant-radio-input" value="no" /><span className="ant-radio-inner"></span></span><span>No</span></label> <br /></div>
+                                    </div>
                                 </div>
                             </div>
                         ))}

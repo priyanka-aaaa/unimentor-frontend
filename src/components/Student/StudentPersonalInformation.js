@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import axios from 'axios';
-function PersonalInformation(props) {
+function StudentPersonalInformation(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
@@ -302,4 +302,4 @@ function PersonalInformation(props) {
     );
 }
 
-export default PersonalInformation;
+export default StudentPersonalInformation;
