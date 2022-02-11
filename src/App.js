@@ -24,9 +24,9 @@ import Bookmark from './components/Student/Bookmark';
 
 
 import Home from './components/Home/Home';
- 
 
- 
+
+
 
 import UniversityPassword from './components/university/UniversityPassword';
 import UniversityIntake from './components/university/UniversityIntake';
@@ -51,12 +51,12 @@ import AdminApplication from './components/admin/AdminApplication';
 import AdminDocument from './components/admin/AdminDocument';
 import AdminScholarship from './components/admin/AdminScholarship';
 import AdminStudentApplication from './components/admin/AdminStudentApplication';
- 
+
 import AdminStudentApplicationView from './components/admin/AdminStudentApplicationView';
- 
- import AdminProfile from './components/admin/AdminProfile';
- 
- 
+
+import AdminProfile from './components/admin/AdminProfile';
+
+
 import AgentLogin from './components/AgentLogin';
 import AgentRegister from './components/AgentRegister';
 import AgentDashboard from './components/agent/AgentDashboard';
@@ -68,30 +68,31 @@ import AgentCertificate from './components/agent/AgentCertificate';
 import AgentApplication from './components/agent/AgentApplication';
 import AgentCommission from './components/agent/AgentCommission';
 
-import MajorPursue from './components/MajorPursue';
 
- import country from './components/country';
- import Degree  from './components/Degree';
- import EducationLevel  from './components/EducationLevel';
- import Test  from './components/Test';
- import AcademicTest  from './components/AcademicTest';
- import WorkExperience  from './components/WorkExperience';
- import Activity  from './components/Activity';
- import NgoExperience  from './components/NgoExperience';
- import FinalFilter  from './components/FinalFilter';
+
+import country from './components/Home/country';
+import Degree from './components/Home/Degree';
+import EducationLevel from './components/Home/EducationLevel';
+import MajorPursue from './components/Home/MajorPursue';
+import Test from './components/Home/Test';
+import AcademicTest from './components/Home/AcademicTest';
+import Experience from './components/Home/Experience';
+import Activity from './components/Home/Activity';
+import NgoExperience from './components/Home/NgoExperience';
+import FinalFilter from './components/Home/FinalFilter';
 
 
 // import Counter from './components/Student/Counter';
 function App() {
   return (
     <div>
- 
+
       {/* <Counter /> */}
- 
- 
+
+
       <Router>
         <div>
- 
+
           {/* <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <ul className="navbar-nav mr-auto">
               <li><Link to={'/'} className="nav-link"> Home </Link></li>
@@ -105,30 +106,30 @@ function App() {
             </ul>
           </nav>
           <hr /> */}
- 
- 
- 
- 
- 
+
+
+
+
+
           <Switch>
- 
-          <Route path='/country' component={country} />
-          <Route path='/Degree' component={Degree} />
-          <Route path='/EducationLevel' component={EducationLevel} />
 
-          <Route path='/MajorPursue' component={MajorPursue} />
+            <Route path='/country' component={country} />
+            <Route path='/Degree' component={Degree} />
+            <Route path='/EducationLevel' component={EducationLevel} />
 
-          <Route path='/Test' component={Test} />
-          <Route path='/AcademicTest' component={AcademicTest} />
-          <Route path='/WorkExperience' component={WorkExperience} />
-          <Route path='/Activity' component={Activity} />
-          <Route path='/NgoExperience' component={NgoExperience} />
-          <Route path='/FinalFilter' component={FinalFilter} />
-          <Route path='/AdminProfile' component={AdminProfile} />
+            <Route path='/MajorPursue' component={MajorPursue} />
 
-          
-          
-          
+            <Route path='/Test' component={Test} />
+            <Route path='/AcademicTest' component={AcademicTest} />
+            <Route path='/Experience' component={Experience} />
+            <Route path='/Activity' component={Activity} />
+            <Route path='/NgoExperience' component={NgoExperience} />
+            <Route path='/FinalFilter' component={FinalFilter} />
+            <Route path='/AdminProfile' component={AdminProfile} />
+
+
+
+
             <Route path='/AgentRegister' component={AgentRegister} />
             <Route path='/AgentLogin' component={AgentLogin} />
             <Route path='/AgentDashboard' component={AgentDashboard} />
@@ -137,16 +138,16 @@ function App() {
             <Route path='/AgentEvaluate' component={AgentEvaluate} />
             <Route path='/AgentCertificate' component={AgentCertificate} />
             <Route path='/AgentApplication' component={AgentApplication} />
- 
+
             <Route path='/AgentCommission' component={AgentCommission} />
-           
-           
- 
+
+
+
             <Route exact path='/' component={Home} />
-     
-           
-           
-            <Route path='/FilterUniversity' component ={UniversityFilter} />
+
+
+
+            <Route path='/FilterUniversity' component={UniversityFilter} />
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />
             <Route path='/UniversitySetcommission' component={Commission} />
@@ -157,9 +158,9 @@ function App() {
             <Route path='/UniversityProfile' component={UniversityProfile} />
             <Route path='/UniversitySummary' component={Summary} />
             <Route path='/AllUniversity' component={AllUniversity} />
- 
+
             <Route path='/UniveristyPage/:id' component={UniveristyPage} />
- 
+
             <Route path='/AdminLogin' component={AdminLogin} />
             <Route path='/AdminDashboard' component={AdminDashboard} />
             <Route path='/AdminStudent' component={AdminStudent} />
@@ -174,30 +175,30 @@ function App() {
             <Route path='/AdminScholarship' component={AdminScholarship} />
             <Route path='/AdminStudentApplication' component={AdminStudentApplication} />
             <Route path='/AdminStudentApplicationView' component={AdminStudentApplicationView} />
- 
-           
+
+
             <Route path='/Studentlogin' component={Studentlogin} />
-                    <Route path='/Studentregister' component={Studentregister} />
-                    <Route path='/StudentDashboard' component={StudentDashboard} />
-                    <Route path='/StudentForgotPassword' component={StudentForgotPassword} />
-                    <Route path='/Dashboard' component={Dashboard} />
-                    <Route path='/ApplicationProfile' component={ApplicationProfile} />
-                    <Route path='/Profile' component={Profile} />
-                    <Route path='/Document' component={Document} />
-              
-                    <Route path='/Bookmark' component={Bookmark} />
-                    <Route path='/AddStudent' component={AddStudent} />
- 
- 
+            <Route path='/Studentregister' component={Studentregister} />
+            <Route path='/StudentDashboard' component={StudentDashboard} />
+            <Route path='/StudentForgotPassword' component={StudentForgotPassword} />
+            <Route path='/Dashboard' component={Dashboard} />
+            <Route path='/ApplicationProfile' component={ApplicationProfile} />
+            <Route path='/Profile' component={Profile} />
+            <Route path='/Document' component={Document} />
+
+            <Route path='/Bookmark' component={Bookmark} />
+            <Route path='/AddStudent' component={AddStudent} />
+
+
           </Switch>
         </div>
       </Router>
- 
- 
+
+
     </div>
   );
 }
- 
+
 export default App;
- 
+
 

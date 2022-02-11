@@ -178,7 +178,7 @@ const Education = () => {
 
 
 
-                                                        className="form-control" id="Highest Level of Education" name="education_level">
+                                                        className="form-control" id="Highest Level of Education" name="highestEducation">
                                                         <option >Select</option>
                                                         <option value="Secondary">Secondary</option>
                                                         <option value="Undergraduate Degree">Undergraduate Degree</option>
@@ -200,7 +200,7 @@ const Education = () => {
 
 
                                                             checked={element.status === "Pursuing"}
-                                                            name="education_status_0" type="radio" className="ant-radio-input" value="Pursuing" />
+                                                            name="status" type="radio" className="ant-radio-input" value="Pursuing" />
                                                             <span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
 
                                                                 value={element.status || ""} onChange={e => handleChange(index, e)}
@@ -208,7 +208,7 @@ const Education = () => {
 
                                                                 checked={element.status === "Completed"}
                                                                 value="Completed"
-                                                                name="education_status_0" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
+                                                                name="status" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
                                                         <span>Completed</span></label> <br />
                                                 </div>
                                             </div>
@@ -223,7 +223,7 @@ const Education = () => {
                                                         value={element.specialization || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        className="form-control" id="specialisation" name="specialisation" required="">
+                                                        className="form-control" id="specialisation" name="specialization" required="">
                                                         <option >Select</option>
                                                         <option value="Social Science and Humanities">Social Science and Humanities</option>
                                                         <option value="Management">Management</option>
@@ -242,7 +242,7 @@ const Education = () => {
                                                     <select
                                                         value={element.degree || ""} onChange={e => handleChange(index, e)}
 
-                                                        className="form-control" id="education_degree" name="education_degree" required="">
+                                                        className="form-control" id="education_degree" name="degree" required="">
                                                         <option >Select Education Level</option>
                                                     </select>
                                                 </div>
@@ -254,7 +254,7 @@ const Education = () => {
                                                 <div className="form-group"><label htmlFor="grading_scheme_id">Grade
                                                     Scheme(GPA/Percentage)</label><select
                                                         value={element.gradePercentage || ""} onChange={e => handleChange(index, e)}
-                                                        className="form-control" id="grading_scheme_id" name="grading_scheme_id" required="">
+                                                        className="form-control" id="grading_scheme_id" name="gradePercentage" required="">
                                                         <option >Select</option>
                                                         <option value="Grade Scale 0-4">Grade Scale 0-4</option>
                                                         <option value="Grade Scale 0-10">Grade Scale 0-10</option>
@@ -268,7 +268,7 @@ const Education = () => {
                                                     Average/Marks Obtained</label><input
                                                         value={element.marks || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="grade_marks" name="grade_marks" placeholder="Grade Average/Marks Obtained" required="" /></div>
+                                                        type="text" className="form-control" id="grade_marks" name="marks" placeholder="Grade Average/Marks Obtained" required="" /></div>
                                             </div>
                                         </div>
 
@@ -280,7 +280,7 @@ const Education = () => {
                                                     <input
                                                         value={element.attendedForm || ""} onChange={e => handleChange(index, e)}
 
-
+name="attendedForm"
                                                         type="date" className="form-control" />
                                                 </div>
                                             </div>
@@ -294,7 +294,7 @@ const Education = () => {
                                                         value={element.institution || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        type="text" className="form-control" id="institute_name" name="institute_name" placeholder="Name of Institution" />
+                                                        type="text" className="form-control" id="institute_name" name="institution" placeholder="Name of Institution" />
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -304,7 +304,7 @@ const Education = () => {
                                                         value={element.affiliationUniversity || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        type="text" className="form-control" id="institute_affiliation" name="institute_affiliation" placeholder="Name of Institution" />
+                                                        type="text" className="form-control" id="institute_affiliation" name="affiliationUniversity" placeholder="Name of Institution" />
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -315,7 +315,7 @@ const Education = () => {
                                                         value={element.language || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        className="form-control" id="language_of_study" name="language_of_study" required="">
+                                                        className="form-control" id="language_of_study" name="language" required="">
                                                         <option value="English">English</option>
                                                         <option value="Hindi">Hindi</option>
                                                         <option value="Other">Other</option>
@@ -332,7 +332,7 @@ const Education = () => {
                                                     <select
                                                         value={element.country || ""} onChange={e => handleChange(index, e)}
 
-                                                        className="form-control" id="Nationality" name="Nationality">
+                                                        className="form-control" id="Nationality" name="country">
                                                         <option >Select Country</option>
                                                         <option value="India">India</option>
                                                         <option value="Afghanistan">Afghanistan</option>
@@ -348,7 +348,7 @@ const Education = () => {
                                                 <div className="form-group"><label htmlFor="institute_address_state">State/Province</label><select
                                                     value={element.state || ""} onChange={e => handleChange(index, e)}
 
-                                                    className="form-control" id="institute_address_state" name="institute_address_state" required="">
+                                                    className="form-control" id="institute_address_state" name="state" required="">
                                                     <option>Select State</option>
                                                 </select></div>
                                             </div>
@@ -358,14 +358,14 @@ const Education = () => {
                                                     <div className="form-group"><label htmlFor="City/institute_address_city">City/Town</label><input
                                                         value={element.city || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_city" placeholder="City/Town" name="institute_address_city" required="" />
+                                                        type="text" className="form-control" id="institute_address_city" placeholder="City/Town" name="city" required="" />
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                     <div className="form-group"><label htmlFor="institute_address_text_1">Address</label><input
                                                         value={element.address || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_text_1" placeholder="Address" name="institute_address_text" required="" />
+                                                        type="text" className="form-control" id="institute_address_text_1" placeholder="Address" name="address" required="" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -375,7 +375,7 @@ const Education = () => {
                                                     <div className="form-group"><label htmlFor="institute_address_zipcode">Zipcode</label><input
                                                         value={element.zipcode || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="institute_address_zipcode" required="" /></div>
+                                                        type="text" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="zipcode" required="" /></div>
                                                 </div>
                                             </div>
 

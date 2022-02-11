@@ -34,7 +34,7 @@ const UniversityCourses = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-           
+
             var user_email = mydata.data.university.email;
             var universityId = mydata.data.university._id;
 
@@ -70,7 +70,7 @@ const UniversityCourses = () => {
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
-            
+
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
 
@@ -105,7 +105,7 @@ const UniversityCourses = () => {
     //start for delete
 
     function handleDelete(value) {
-       
+
         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var myuniversityCourse = res.data.universityCourse;
@@ -114,16 +114,16 @@ const UniversityCourses = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                     //start for fetching course
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setdata(data.universityCourses)
-            })
-        // end for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityCourses)
+                        })
+                    // end for fetching course
                 }
                 else {
                     alert("error");
@@ -140,15 +140,15 @@ const UniversityCourses = () => {
 
     function handleView(value) {
 
-     
+
         seteditId(value);
         setviewWidth("1600px");
         // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
 
             .then(function (res) {
-               
-             
+
+
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
 
@@ -215,7 +215,7 @@ const UniversityCourses = () => {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-           
+
                 if (res.data.success === true) {
                     setwidth(0)
                     setsuccessMessage("course update")
@@ -259,7 +259,7 @@ const UniversityCourses = () => {
         };
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-        
+
                 if (res.data.success === true) {
                     setsuccessMessage("course add")
                     setTimeout(() => setsubmitSuccess(""), 3000);

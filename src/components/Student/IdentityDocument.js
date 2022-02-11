@@ -34,9 +34,13 @@ class IdentityDocument extends Component {
         }
     }
     componentDidMount() {    //start for call api
-        axios.get(process.env.REACT_APP_SERVER_URL+'student/identityDocument', { headers: { 'Authorization': this.state.mounted } })
+        var url2=process.env.REACT_APP_SERVER_URL+'student/identityDocument';
+        axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
+                console.log("oo")
+                console.log(url2)
                 this.setState({
+                   
                     mypassport: res.data.studentIdentityDocument.passport,
                     mypassportBack: res.data.studentIdentityDocument.passportBack,
                     mycv: res.data.studentIdentityDocument.cv

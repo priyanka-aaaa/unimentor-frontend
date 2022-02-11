@@ -18,6 +18,9 @@ export default function PrimaryInfo() {
     const [organization, setorganization] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [CheckState, setCheckState] = useState("0");
+    const [CheckCity, setCheckCity] = useState("0");
+
 
     const [countries, setcountries] = useState([{
         country_name: ""
@@ -62,8 +65,7 @@ export default function PrimaryInfo() {
                     setwebsite(student_universityPrimaryInformation.website);
                     setphone(student_universityPrimaryInformation.phone);
                     setorganization(student_universityPrimaryInformation.organization);
-
-                }
+               }
                 else {
                     alert("error");
                 }
@@ -78,7 +80,7 @@ export default function PrimaryInfo() {
 
             .then(function (res) {
                 if (res.data.success === true) {
-                 setcountries(res.data.result);
+                    setcountries(res.data.result);
 
 
                 }
@@ -111,13 +113,13 @@ export default function PrimaryInfo() {
     function handlecountry(e) {
 
         setcountry(e)
-
+        setCheckState("1")
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
 
 
             .then(function (res) {
                 if (res.data.success === true) {
-                 setstates(res.data.result);
+                    setstates(res.data.result);
 
 
                 }
@@ -134,13 +136,15 @@ export default function PrimaryInfo() {
     function handlestate(e) {
 
         setstate(e)
-
+        setCheckCity("1")
+      
+     
         axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
 
 
             .then(function (res) {
                 if (res.data.success === true) {
-                 setcities(res.data.result);
+                    setcities(res.data.result);
 
 
                 }
@@ -266,33 +270,22 @@ export default function PrimaryInfo() {
                                             </div>
                                         </div>
                                     </div>
-
-
-
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label>State *
                                                 </label>
-
                                                 <select className="form-control" name="state" required=""
-                                                    value={state}
-
                                                     onChange={(e) => handlestate(e.target.value)}
                                                 >
+                                                    {CheckState === "0" ? <option value={state}>{state}</option> : <option>Please select state</option>}
                                                     {states.map((element, index) => {
                                                         return (
-
                                                             <option
-
-
                                                                 value={element.state_name} key={index}>{element.state_name}</option>
                                                         )
                                                     })}
-
                                                 </select>
-
-
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -302,8 +295,9 @@ export default function PrimaryInfo() {
                                                     value={city}
                                                     onChange={(e) => setcity(e.target.value)}
                                                 >
-                                                   
+                                                    {CheckCity === "0" ? <option value={city}>{city}</option> : <option>Please select state</option>}
                                                     {cities.map((element, index) => {
+                                                    
                                                         return (
 
                                                             <option

@@ -65,13 +65,13 @@ function PersonalInformation(props) {
                 console.log(error.response)
             });
         //end for fetch personal information
-     
-     
+
+
     }, [])
-     // start for personal information
-    
-     // end for personal information
-     function Personal_Information(event) {
+    // start for personal information
+
+    // end for personal information
+    function Personal_Information(event) {
         event.preventDefault();
         const obj = {
             salutation: salutation,
@@ -110,13 +110,13 @@ function PersonalInformation(props) {
                 console.log(error.response)
             });
     }
-    
+
     return (
-      
+
         <div id="accordion">
-              {submitSuccess === 1 ? <div className="Show_success_message">
-                            <strong>Success!</strong> {successMessage}
-                        </div> : null}
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             <div className="card">
 
                 <div className="card">
@@ -394,7 +394,7 @@ function PersonalInformation(props) {
 
                 </div>
             </div>
-         
+
 
 
         </div>

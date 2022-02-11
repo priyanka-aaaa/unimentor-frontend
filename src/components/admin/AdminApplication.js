@@ -19,9 +19,6 @@ const AdminApplication = () => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
-
-
-
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
             // setAdminId(adminId)

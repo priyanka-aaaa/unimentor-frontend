@@ -1,9 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
+import axios from 'axios';
+
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import waterloouniversity from './img/waterloouniversity.jpg';
 import Footer from './Footer';
 function Bookmark(props) {
+  const [successMessage, setsuccessMessage] = useState("");
+  const [submitSuccess, setsubmitSuccess] = useState("0");
+  const [mounted, setMounted] = useState();
+  const [UniveristyId, setUniveristyId] = useState("");
+  const [firstName, setfirstName] = useState("");
+  useEffect(() => {
+    if (localStorage.getItem("userData")) {
+      var a = localStorage.getItem('userData');
+      var mydata = JSON.parse(a);
+      console.log(mydata);
+      var user_email = mydata.data.student.email;
+      var mounted = mydata.data.token;
+    }
+    setMounted(mounted)
+    var myurl = process.env.REACT_APP_SERVER_URL;
+    //start for fetch personal information
+
+    const url = process.env.REACT_APP_SERVER_URL + 'student/bookmarks';
+    fetch(url, {
+      method: 'GET',
+      headers: { 'Authorization': mounted }
+
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("rrrr");
+        var myresults = data.studentBookmarks;
+        console.log(myresults)
+        // if (Object.keys(myresults).length === 0) {
+        // }
+        // else {
+        setUniveristyId(data.studentBookmarks)
+        // }
+      })
+
+
+    // axios.get(process.env.REACT_APP_SERVER_URL + 'student/bookmarks', { headers: { 'Authorization': mounted } })
+    //   .then(function (res) {
+    //     if (res.data.success === true) {
+    //       var student_bookmark = res.data.studentBookmarks;
+    //       setUniveristyId(student_bookmark.universityID);
+
+    //       // setfirstName(student_bookmark.firstName);
+    //     }
+    //     else {
+    //       alert("error");
+    //     }
+
+    //   })
+    //   .catch(error => {
+    //     console.log(error.response)
+    //   });
+    //end for fetch personal information
+
+
+  }, [])
   return (
     <div id="page-top">
 

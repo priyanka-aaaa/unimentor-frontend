@@ -17,7 +17,7 @@ const CoursesFee = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-        
+
             var myuniversityid = mydata.data.university._id;
 
             var user_email = mydata.data.university.email;
@@ -28,30 +28,20 @@ const CoursesFee = () => {
 
 
         // const url = "university/courses";
-        const url = process.env.REACT_APP_SERVER_URL+'university/' + myuniversityid + '/courses';
-
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/courses';
         fetch(url, {
             method: 'GET'
 
         })
             .then(response => response.json())
             .then(data => {
-
-                // this.setState({ data: data.universityCourses })
-             
-              
                 var myresults = data.universityCourses;
                 if (Object.keys(myresults).length === 0) {
-                  
                 }
                 else {
                     setFormValues(data.universityCourses)
                 }
-
-               
-
             })
-
     }, [])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -75,15 +65,15 @@ const CoursesFee = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-      var myvalues = JSON.stringify(formValues);
-     
+        var myvalues = JSON.stringify(formValues);
+
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                    
+
                         if (res.data.success === true) {
-                         
+
                         }
                         else {
                             alert("error");
@@ -96,9 +86,9 @@ const CoursesFee = () => {
             }
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + item._id, item, { headers: { 'Authorization': mounted } })
-                
+
                     .then(function (res) {
-                 
+
                         if (res.data.success === true) {
                             setsuccessMessage("Courses Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
@@ -118,7 +108,7 @@ const CoursesFee = () => {
 
     return (
         <div>
-            
+
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}

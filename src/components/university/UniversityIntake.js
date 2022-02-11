@@ -1,165 +1,89 @@
+
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+
 import Footer from './Footer';
-export default function UniversityPassword() {
-    const [successMessage, setsuccessMessage] = useState("");
-    const [submitSuccess, setsubmitSuccess] = useState("0");
+const UniversityIntake = () => {
+    const [year, setyear] = useState("");
+    const [month, setmonth] = useState("");
+
+    const [IntakeId, setIntakeId] = useState("");
+
+    const [width, setwidth] = useState("");
+    const [viewWidth, setviewWidth] = useState("");
+    const [addWidth, setaddWidth] = useState("");
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
-    const [myuniversityid, setUniveristyId] = useState([]);
-
-
-    const [formValues, setFormValues] = useState([{
-        year: "", month: "",
-        _id: "null"
-
-    }])
+    const [editId, seteditId] = useState([]);
+    const [universityId, setuniversityId] = useState([]);
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
 
     useEffect(() => {
-
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
 
-            var myuniversityid = mydata.data.university._id;
-
             var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
+            var universityId = mydata.data.university._id;
+
+            var mounted = mydata.data.token;
         }
+        setMounted(mounted)
+        setuniversityId(universityId)
+
+        //start for year
 
 
-        setMounted(mytoken)
-        setUniveristyId(myuniversityid)
-        //start for select course
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/intakes';
+        var ddlYears = document.getElementById("myyear");
+        var ddlYearsEdit = document.getElementById("myyearEdit");
+
+        
+        //Determine the Current Year.
+        var currentYear = (new Date()).getFullYear();
+        for (var i = currentYear; i < 2027; i++) {
+
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYears.appendChild(option);
+        }
+        for (var i = currentYear; i < 2027; i++) {
+
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYearsEdit.appendChild(option);
+        }
+        
+        //end for year
+        //start for fetching course
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
-            method: 'GET'
+            method: 'GET',
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {
-                var myresults = data.universityIntakes;
-                if (Object.keys(myresults).length === 0) {
-                }
-                else {
-                    setFormValues(data.universityIntakes)
-                    var item = data.universityIntakes;
-                    // start for 5 year
-
-                    for (var j = 0; j < item.length; j++) {
-
-                        var complete_id = "ddlYears" + j;
-
-                        var ddlYearssss = document.getElementById(complete_id)
-
-                        var currentYear = (new Date()).getFullYear();
-                        for (var i = currentYear; i < 2027; i++) {
-                            var option = document.createElement("OPTION");
-                            option.innerHTML = i;
-                            option.value = i;
-                            ddlYearssss.appendChild(option);
-                        }
-                    }
-
-
-
-                    //end for 5 year
-                }
+                setdata(data.universityIntakes)
             })
-        //end for select course
+        // end for fetching course
     }, [])
-    let handleChange = (i, e) => {
 
-        let newFormValues = [...formValues];
-        newFormValues[i][e.target.name] = e.target.value;
-        setFormValues(newFormValues);
-    }
+    function handleClick(value) {
 
-    let addFormFields = () => {
-        setFormValues([...formValues, {
-            year: "", month: "",
-            _id: "null"
-        }])
-    }
-
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
-
-    let handleSubmit = (event) => {
-        event.preventDefault();
-
-        var myvalues = JSON.stringify(formValues);
-
-        formValues.map(async (item) => {
-            if (item._id === "null") {
-
-                await axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes', item, { headers: { 'Authorization': mounted } })
-                    .then(function (res) {
-                     
-                        if (res.data.success === true) {
-                            setsuccessMessage("Intake Updated")
-                            setTimeout(() => setsubmitSuccess(""), 3000);
-                            setsubmitSuccess(1)
-                        }
-                        else {
-                            alert("error");
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.response)
-                    });
-
-            }
-            else {
-             
-                await axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + item._id, item, { headers: { 'Authorization': mounted } })
-                    // await axios.put('/university/61dab27e05671a193cca5f81/courses', item, { headers: { 'Authorization': mounted } })
-                    .then(function (res) {
-                   
-                        if (res.data.success === true) {
-                            setsuccessMessage("Intake Updated")
-                            setTimeout(() => setsubmitSuccess(""), 3000);
-                            setsubmitSuccess(1)
-                        }
-                        else {
-                            alert("error");
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.response)
-                    });
-            }
-        })
-
-    }
-    function handleDelete(value) {
-
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + value, { headers: { 'Authorization': mounted } })
+        seteditId(value);
+        setwidth("1600px");
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                var myuniversityCourse = res.data.universityCourse;
+                var myuniversityIntakes = res.data.universityIntake;
                 if (res.data.success === true) {
-                    setsuccessMessage("Intake delete")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    //start for select course
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/intakes';
-                    fetch(url, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            var myresults = data.universityIntakes;
-                            if (Object.keys(myresults).length === 0) {
-                            }
-                            else {
-                                setFormValues(data.universityIntakes)
-                            }
-                        })
-                    //end for select course
+                    // console.log("myuniversityIntakes.year");
+                    // console.log(res.data.universityIntake)
+                    setyear(myuniversityIntakes.year);
+                    setmonth(myuniversityIntakes.month);
                 }
                 else {
                     alert("error");
@@ -171,13 +95,172 @@ export default function UniversityPassword() {
             });
 
     }
+    function handleAdd() {
+        setaddWidth("1600px");
+    }
+    //start for delete
+
+    function handleDelete(value) {
+
+        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + value, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                var myuniversityCourse = res.data.intakes;
+                if (res.data.success === true) {
+                    setsuccessMessage("course delete")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    //start for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityIntakes)
+                        })
+                    // end for fetching course
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
+    }
+    //end for delete 
+    //start for view
+
+    function handleView(value) {
 
 
-    // start for personal information
+        seteditId(value);
+        setviewWidth("1600px");
+        // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes/' + value, { headers: { 'Authorization': mounted } })
 
+            .then(function (res) {
+
+
+                var universityIntakes = res.data.universityIntakes;
+                if (res.data.success === true) {
+
+                    setIntakeId(universityIntakes._id);
+                    setyear(universityIntakes.year);
+                    setmonth(universityIntakes.month);
+
+
+
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
+    }
+    //end for view
+
+    function closebox(value) {
+        setwidth("0px");
+
+    }
+    function closeviewbox(value) {
+
+        setviewWidth("0px");
+    }
+    function closeaddbox(value) {
+
+        setaddWidth("0px");
+    }
+
+    //END FOR
+
+
+    let handleEditSubmit = (event) => {
+        event.preventDefault();
+        const obj = {
+            year: year,
+            month: month,
+
+        };
+        axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + editId, obj, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+
+                if (res.data.success === true) {
+                    setwidth(0)
+                    setsuccessMessage("course update")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    //start for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityIntakes)
+                        })
+                    // end for fetching course
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    }
+    let handleAddSubmit = (event) => {
+        event.preventDefault();
+        const obj = {
+            year: year,
+            month: month,
+
+        };
+        axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes/', obj, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+
+                if (res.data.success === true) {
+                    setsuccessMessage("course add")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    setaddWidth(0)
+                    setyear("");
+                    setmonth("");
+
+                    //start for fetching course
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setdata(data.universityIntakes)
+                        })
+                    // end for fetching course
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+    }
     return (
-
         <div id="page-top">
+
+            {/* <button onClick={addStudent}>Add Another Student</button> */}
+
             {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 <Sidebar />
@@ -195,110 +278,330 @@ export default function UniversityPassword() {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
+                            {/* start for showing add message */}
                             {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
                             </div> : null}
+                            {/* start for showing add message */}
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Student</h1>
-
+                                <h1 className="h3 mb-0 text-gray-800">Intake</h1>
+                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Intake</button>
 
                             </div>
 
 
                             {/* <!-- Content Row --> */}
 
-                            <p>Admin Application</p>
+                            <div className="row">
 
-                            <form onSubmit={handleSubmit}>
-                                <div className="card-body" >
+                                {/* <!-- Area Chart --> */}
+                                <div className="col-xl-12 col-lg-7">
+                                    <div className="card shadow mb-4">
+                                        {/* <!-- Card Header - Dropdown --> */}
+                                        <div className="card shadow mb-4">
+                                            <div className="table-responsive-sm">
+                                                <table className="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>Year</th>
+                                                            <th>Month</th>
+                                                            <th>Action</th>
 
-                                    <div className="from-block" >
-                                        {formValues.map((element, index) => (
-                                            <div key={index}>
-
-                                                <div className="row" >
-
-
-                                                    <div className="col-md-5">
-                                                        <div className="form-group">
-                                                            <label className="form-label">Year
-                                                                *</label>
-                                                            {/* <select id={"ddlYears" + index}
-
-                                                                value={element.year || ""} onChange={e => handleChange(index, e)}
-                                                                className="form-control dropdown" name="highest_qualification">
-                                                            </select>
-                                      */}
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
 
 
 
-                                                            <select
 
-                                                                value={element.year || ""} onChange={e => handleChange(index, e)}
-                                                                className="form-control dropdown" name="highest_qualification">
-                               
-                                                                <option></option>
-                                                            </select>
+                                                        {data.map((object, i) => {
+
+                                                            return (
+
+                                                                <tr key={i}>
+                                                                    <td>{object._id}</td>
+                                                                    <td>{object.year}</td>
+                                                                    <td>{object.month}</td>
+
+                                                                    <td>
+
+                                                                        <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
+                                                                        <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+
+                                                                    </td>
+                                                                </tr>
+
+                                                            )
+                                                        })}
+                                                    </tbody>
 
 
+                                                </table>
+                                            </div>
+                                        </div>
 
-                                                        </div>
+
+                                        <div className="card-body sidenav" id="mySidenav"
+                                            style={{ width: width }}
+                                        >
+
+                                            <div className="student-view">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+
                                                     </div>
-
-                                                    <div className="col-md-5">
-                                                        <div className="form-group">
-                                                            <label className="form-label">month
-                                                                *</label>
-                                                            <input type="text" className="form-control"
-                                                                placeholder="month" name="month"
-                                                                value={element.month || ""} onChange={e => handleChange(index, e)}
-
-
-                                                                required />
-                                                        </div>
-
-
+                                                    <div className="col-md-6">
+                                                        <a className="closebtn" onClick={closebox} >&times;</a>
                                                     </div>
-                                                    <div className="col-md-2">
-
-                                                        <button className="btn"
-                                                            onClick={() => handleDelete(element._id)}
-                                                        ><i className="fas fa-trash-alt"></i></button>
-
-                                                    </div>
-
-
-
+                                                </div>
+                                                <div className="row mt-3">
 
                                                 </div>
-                                            </div>
-                                        ))}
+                                                <div className="table-responsive mt-5">
 
-                                        <div className="mb-3">
-                                            <div className="row">
-                                                <div className="col-md-6"></div>
-                                                <div className="col-md-6 text-right">
+                                                    <div className="row">
+                                                        <div className="col-sm-12">
+                                                            <p><b>Edit Intake</b></p>
+                                                            <form onSubmit={handleEditSubmit}>
+                                                                <div className="card-body" >
 
-                                                    <button className="button add" type="button" className="btn btn-success "
-                                                        onClick={() => addFormFields()}
-                                                    >Add New</button>
+                                                                    <div className="from-block" >
 
-                                                    <button type="submit" className="btn btn-secondary">Save
-                                                    </button>
-                                                    <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
-                                                        Next</button>
+
+
+                                                                        <div className="row">
+                                                                            <div className="col">
+                                                                                <label className="form-label">Year
+                                                                                    *</label>
+                                                                                <select id="myyearEdit"
+                                                                                    className="form-control"
+                                                                                    placeholder="Year" name="year"
+
+                                                                                    value={year}
+                                                                                    onChange={(e) => setyear(e.target.value)}>
+
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label">Month
+                                                                                </label>
+
+                                                                                <select
+
+                                                                                    className="form-control"
+                                                                                    placeholder="Month" name="Month"
+                                                                                    value={month}
+                                                                                    onChange={(e) => setmonth(e.target.value)}>
+                                                                                    <option value='Jan'>Janaury</option>
+                                                                                    <option value='Feb'>February</option>
+                                                                                    <option value='March'>March</option>
+                                                                                    <option value='April'>April</option>
+                                                                                    <option value='May'>May</option>
+                                                                                    <option value='June'>June</option>
+                                                                                    <option value='July'>July</option>
+                                                                                    <option value='Aug'>August</option>
+                                                                                    <option value='Sep'>September</option>
+                                                                                    <option value='Oct'>October</option>
+                                                                                    <option value='Nov'>November</option>
+                                                                                    <option value='Dec'>December</option>
+                                                                                </select>
+
+                                                                            </div>
+
+                                                                        </div>
+
+
+                                                                        <div className="mb-3">
+                                                                            <div className="row">
+                                                                                <div className="col-md-6"></div>
+                                                                                <div className="col-md-6 text-right">
+
+
+
+                                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                                    </button>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
                                                 </div>
 
                                             </div>
+                                        </div>
+                                        <div className="card-body sidenav" id="mySideAdd"
+                                            style={{ width: addWidth }}
+                                        >
 
+                                            <div className="student-view">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                    </div>
+                                                </div>
+                                                <div className="row mt-3">
+
+                                                </div>
+                                                <div className="table-responsive mt-5">
+
+                                                    <div className="row">
+                                                        <div className="col-sm-12">
+                                                            <form onSubmit={handleAddSubmit}>
+                                                                <div className="card-body" >
+
+                                                                    <div className="from-block" >
+
+
+                                                                        <div className="row">
+                                                                            <div className="col">
+                                                                                <label className="form-label">Year
+                                                                                    *</label>
+                                                                                <select id="myyear"
+                                                                                    className="form-control"
+                                                                                    placeholder="Year" name="year"
+                                                                                    value={year}
+                                                                                    onChange={(e) => setyear(e.target.value)}>
+
+                                                                                </select>
+
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label">Month
+                                                                                </label>
+                                                                                <select
+
+                                                                                    className="form-control"
+                                                                                    placeholder="Month" name="Month"
+                                                                                    value={month}
+                                                                                    onChange={(e) => setmonth(e.target.value)}
+                                                                                >
+                                                                                    <option selected value='Jan'>Janaury</option>
+                                                                                    <option value='Feb'>February</option>
+                                                                                    <option value='March'>March</option>
+                                                                                    <option value='April'>April</option>
+                                                                                    <option value='May'>May</option>
+                                                                                    <option value='June'>June</option>
+                                                                                    <option value='July'>July</option>
+                                                                                    <option value='Aug'>August</option>
+                                                                                    <option value='Sep'>September</option>
+                                                                                    <option value='Oct'>October</option>
+                                                                                    <option value='Nov'>November</option>
+                                                                                    <option value='Dec'>December</option>
+                                                                                </select>
+
+                                                                            </div>
+
+                                                                        </div>
+
+
+                                                                        <div className="mb-3">
+                                                                            <div className="row">
+                                                                                <div className="col-md-6"></div>
+                                                                                <div className="col-md-6 text-right">
+
+
+
+                                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                                    </button>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div className="card-body sidenav" id="mySideview"
+                                            style={{ width: viewWidth }}
+                                        >
+
+                                            <div className="student-view">
+                                                <div className="row">
+                                                    <div className="col-md-6">
+                                                        <h6 className="mt-2 font-weight-bold text-primary"></h6>
+                                                    </div>
+                                                    <div className="col-md-6">
+                                                        <a className="closebtn" onClick={closeviewbox} >&times;</a>
+                                                    </div>
+                                                </div>
+                                                <div className="row mt-3">
+                                                    <div className="col-md-6"></div>
+                                                    <div className="col-md-6 text-right"></div>
+                                                </div>
+                                                <div className="table-responsive mt-5">
+
+                                                    <div className="row">
+                                                        <div className="col-sm-12">
+                                                            <table className="table table-bordered dataTable" id="dataTable" width="100%" cellSpacing="0" role="grid" aria-describedby="dataTable_info" >
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th rowSpan="1" colSpan="1">ID</th>
+                                                                        <th rowSpan="1" colSpan="1">Year</th>
+
+
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr className="odd">
+                                                                        <td className="sorting_1">{IntakeId}</td>
+
+                                                                        <td>{year}</td>
+                                                                        <td>{month}</td>
+
+
+
+                                                                    </tr>
+
+
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
 
 
 
+
+
+
+
+
+                                        {/* end for edit */}
                                     </div>
                                 </div>
-                            </form>
+
+
+                            </div>
                             {/* <!-- Card Body --> */}
 
                         </div>
@@ -327,3 +630,5 @@ export default function UniversityPassword() {
         </div >
     );
 }
+
+export default UniversityIntake;

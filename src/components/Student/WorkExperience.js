@@ -157,7 +157,7 @@ const WorkExperience = () => {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>6</strong>
                     Work Experience
                 </a>
                 <div id="collapse6" className="collapse" data-bs-parent="#accordion">
@@ -178,12 +178,12 @@ const WorkExperience = () => {
                                                     value={element.status || ""} onChange={e => handleChange(index, e)}
 
 
-                                                    name="is_current_job_0" type="radio" className="ant-radio-input" value="Ongoing" />
+                                                    name="status" type="radio" className="ant-radio-input" value="Ongoing" />
                                                 <span className="ant-radio-inner"></span></span><span>Ongoing</span></label>
                                             <label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
                                                 value={element.status || ""} onChange={e => handleChange(index, e)}
 
-                                                name="is_current_job_0" type="radio" className="ant-radio-input" value="Completed" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
+                                                name="status" type="radio" className="ant-radio-input" value="Completed" /><span className="ant-radio-inner"></span></span><span>Completed</span></label>
                                             <br />
                                         </div>
                                     </div>
@@ -191,7 +191,7 @@ const WorkExperience = () => {
                                         <div className="form-group"><label htmlFor="work_type">Work Type <span className="text-danger"> *</span></label><select
                                             value={element.type || ""} onChange={e => handleChange(index, e)}
 
-                                            className="form-control" id="work_type" name="work_type">
+                                            className="form-control" id="work_type" name="type">
                                             <option >Select</option>
                                             <option value="Full-time">Full-time</option>
                                             <option value="Part-time">Part-time</option>
@@ -205,7 +205,7 @@ const WorkExperience = () => {
                                                 value={element.organization || ""} onChange={e => handleChange(index, e)}
 
 
-                                                type="text" className="form-control" id="company_name" name="company_name" placeholder="Name of Organization" /></div>
+                                                type="text" className="form-control" id="company_name" name="organization" placeholder="Name of Organization" /></div>
                                     </div>
                                 </div>
 
@@ -224,7 +224,7 @@ const WorkExperience = () => {
                                             Role</label><input
                                                 value={element.role || ""} onChange={e => handleChange(index, e)}
 
-                                                type="text" className="form-control" id="role_description" name="role_description" placeholder="Job Role" /></div>
+                                                type="text" className="form-control" id="role_description" name="role" placeholder="Job Role" /></div>
                                     </div>
                                 </div>
 
@@ -237,7 +237,7 @@ const WorkExperience = () => {
                                             <input
                                                 value={element.started || ""} onChange={e => handleChange(index, e)}
 
-                                                type="date" className="form-control" />
+                                                type="date" className="form-control" name="started" />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -246,7 +246,7 @@ const WorkExperience = () => {
                                             <input
                                                 value={element.ended || ""} onChange={e => handleChange(index, e)}
 
-                                                type="date" className="form-control" />
+                                                type="date" className="form-control" name="ended"/>
                                         </div>
                                     </div>
                                 </div>
@@ -258,8 +258,8 @@ const WorkExperience = () => {
                                             value={element.country || ""} onChange={e => handleChange(index, e)}
 
                                             className="form-control" id="job_country"
-                                            name="job_country">
-                                            <option value="">Select Country</option>
+                                            name="country">
+                                            <option >Select Country</option>
                                             <option value="India">India</option>
                                             <option value="Afghanistan">Afghanistan</option>
                                             <option value="Albania">Albania</option>
@@ -274,7 +274,7 @@ const WorkExperience = () => {
 
                                                 type="text"
                                                 className="form-control" id="job_city"
-                                                placeholder="City/Town" name="job_city" value="" /></div>
+                                                placeholder="City/Town" name="city"  /></div>
                                     </div>
 
                                 </div>

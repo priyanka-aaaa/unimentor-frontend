@@ -160,7 +160,7 @@ const ExtraCurricultarActivity = () => {
             </div> : null}
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse7"><strong>7</strong>
-                Extra Curricular Activities
+                    Extra Curricular Activities
                 </a>
                 <div id="collapse7" className="collapse" data-bs-parent="#accordion">
                     {/* <form> */}
@@ -180,7 +180,8 @@ const ExtraCurricultarActivity = () => {
                                                 <input name="activity_status_0"
                                                     value={element.activityStatus || ""} onChange={e => handleChange(index, e)}
 
-                                                    type="radio" className="ant-radio-input" value="Ongoing" /><span
+                                                    type="radio" className="ant-radio-input" value="Ongoing"
+                                                    name="activityStatus" /><span
                                                         className="ant-radio-inner"></span></span>
                                                 <span>Ongoing</span></label>
                                             <label className="ant-radio-wrapper ant-radio-wrapper-checked">
@@ -188,7 +189,7 @@ const ExtraCurricultarActivity = () => {
                                                     <input
                                                         value={element.activityStatus || ""} onChange={e => handleChange(index, e)}
 
-                                                        name="activity_status_0" type="radio" className="ant-radio-input"
+                                                        name="activityStatus" type="radio" className="ant-radio-input"
                                                         value="Completed" />
                                                     <span className="ant-radio-inner"></span></span>
                                                 <span>Completed</span></label> <br />
@@ -231,7 +232,7 @@ const ExtraCurricultarActivity = () => {
                                             className="text-danger"> *</span></label><input
                                                 value={element.position || ""} onChange={e => handleChange(index, e)}
 
-                                                type="text" className="form-control" id="designation" name="designation"
+                                                type="text" className="form-control" id="designation" name="position"
                                                 placeholder="Position/Designation" /></div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -251,7 +252,7 @@ const ExtraCurricultarActivity = () => {
                                             <input
                                                 value={element.started || ""} onChange={e => handleChange(index, e)}
 
-                                                type="date" className="form-control" />
+                                                type="date" className="form-control" name="started" />
                                         </div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -260,7 +261,7 @@ const ExtraCurricultarActivity = () => {
                                             <input
                                                 value={element.ended || ""} onChange={e => handleChange(index, e)}
 
-                                                type="date" className="form-control" />
+                                                type="date" className="form-control" name="ended" />
                                         </div>
                                     </div>
                                 </div>
@@ -275,7 +276,7 @@ const ExtraCurricultarActivity = () => {
                                                         value={element.apply || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        name="participation_interested_0" type="radio" className="ant-radio-input"
+                                                        name="apply" type="radio" className="ant-radio-input"
                                                         value="yes" /><span
                                                             className="ant-radio-inner"></span></span><span>Yes</span></label><label
                                                                 className="ant-radio-wrapper ant-radio-wrapper-checked"><span
@@ -283,7 +284,7 @@ const ExtraCurricultarActivity = () => {
                                                         value={element.apply || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        name="participation_interested_0" type="radio" className="ant-radio-input"
+                                                        name="apply" type="radio" className="ant-radio-input"
                                                         value="no" /><span
                                                             className="ant-radio-inner"></span></span><span>No</span></label>
                                             <br />

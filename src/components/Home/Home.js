@@ -1,4 +1,7 @@
 import React from 'react';
+import "./frontend_css/style.css";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -149,7 +152,8 @@ export default function Home() {
             <div className="row align-items-end">
               <div className="col-lg-6 md-mb-50 order-last">
                 <div className="banner-img">
-                  <img src="image/cbanner-5.png" alt="" />
+                                  <img src={images["cbanner-5.png"]}
+                  alt="" />
                 </div>
               </div>
               <div className="col-lg-6">
@@ -161,7 +165,14 @@ export default function Home() {
                     thousands of competing schools.
                   </p>
                   <ul className="banner-btn">
-                    <li><a className="readon started" href="#">Get Started</a></li>
+              
+
+                    <li>
+                    <Link to={'/country'} className="readon started" href="#">
+                          
+                    Get Started</Link>
+                      {/* <a className="readon started" href="#">Get Started</a> */}
+                      </li>
                     {/* <li>
                                             <div class="rs-videos">
                                                 <div class="animate-border">
@@ -181,56 +192,56 @@ export default function Home() {
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="image/pt-1.png" alt="" />
+                            <img src={images["pt-1.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="image/pt-2.png" alt="" />
+                            <img src={images["pt-2.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="image/pt-3.png" alt="" />
+                            <img src={images["pt-3.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="image/pt-4.png" alt="" />
+                            <img src={images["pt-4.png"]}alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="images/pt-5.png" alt="" />
+                            <img src={images["pt-5.png"]}alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="image/pt-6.png" alt="" />
+                            <img src={images["pt-6.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="#">
-                            <img src="assets/images/partner/style2/7.png" alt="" />
+                            <img src={images["7.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src="assets/images/partner/style2/8.png" alt="" />
+                            <img src={images["8.png"]} alt="" />
                           </a>
                         </div>
                       </div>
@@ -242,7 +253,7 @@ export default function Home() {
             </div>
           </div>
           <div className="rs-animation">
-            <img className="dance3" src="image/b4-dot-6.png" alt="images" />
+            <img className="dance3" src={images["b4-dot-6.png"]} alt="images" />
           </div>
         </div>
         {/* Banner Section End */}
@@ -263,7 +274,7 @@ export default function Home() {
                       <div className="front-content-part purple-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="images/service-6.png" alt="" />
+                            <img src={images["service-6.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -305,7 +316,7 @@ export default function Home() {
                       <div className="front-content-part gold-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="assets/images/services/main-home/icons/8.png" alt="" />
+                            <img src={images["smh8.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -345,7 +356,7 @@ export default function Home() {
                       <div className="front-content-part blue-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="image/main-home-icon-9.png" alt="" />
+                            <img src={images["main-home-icon-9.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -414,7 +425,7 @@ export default function Home() {
               </div>
               <div className="col-lg-6 pl-65 md-pl-15">
                 <div className="about-img">
-                  <img src="images/ab-5.png" alt="" />
+                  <img src={images["ab-5.png"]} alt="" />
                 </div>
               </div>
             </div>
@@ -434,7 +445,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-1.png" alt="" />
+                    <img src={images["style3-1.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Software</h4>
@@ -444,7 +455,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-2.png" alt="" />
+                    <img src={images["style3-2.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Fintech</h4>
@@ -454,7 +465,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-3.png" alt="" />
+                    <img src={images["style3-3.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Healthcare</h4>
@@ -464,7 +475,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/4.png" alt="" />
+                    <img src={images["4.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Data Mining</h4>
@@ -474,7 +485,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-5.png" alt="" />
+                    <img src={images["style3-5.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Machine learning</h4>
@@ -484,7 +495,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-6.png" alt="" />
+                    <img src={images["style3-6.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Medical</h4>
@@ -494,7 +505,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-7.png" alt="" />
+                    <img src={images["style3-7.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Entertainment</h4>
@@ -504,7 +515,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-8.png" alt="" />
+                    <img src={images["style3-8.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">AI</h4>
@@ -514,7 +525,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-9.png" alt="" />
+                    <img src={images["style3-9.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Manufacturing</h4>
@@ -524,7 +535,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src="image/style3-10.png" alt="" />
+                    <img src={images["style3-10.png"]}  alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Logistics</h4>
@@ -549,8 +560,8 @@ export default function Home() {
                 <div className="services-item pink-light-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-5.png" alt="" />
-                      <img className="hover-img" src="image/ssh-5.png" alt="" />
+                      <img className="main-img" src={images["ssm-5.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-5.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -570,8 +581,8 @@ export default function Home() {
                 <div className="services-item blue2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-6.png" alt="" />
-                      <img className="hover-img" src="image/ssh-6.png" alt="" />
+                      <img className="main-img" src={images["ssm-6.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-6.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -592,8 +603,8 @@ export default function Home() {
                 <div className="services-item paste2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-7.png" alt="" />
-                      <img className="hover-img" src="image/ssh-7.png" alt="" />
+                      <img className="main-img" src={images["ssm-7.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-7.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -614,8 +625,8 @@ export default function Home() {
                 <div className="services-item purple2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-8.png" alt="" />
-                      <img className="hover-img" src="image/ssh-8.png" alt="" />
+                      <img className="main-img" src={images["ssm-8.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-8.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -636,8 +647,8 @@ export default function Home() {
                 <div className="services-item cyan2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-9.png" alt="" />
-                      <img className="hover-img" src="image/ssh-9.png" alt="" />
+                      <img className="main-img" src={images["ssm-9.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-9.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -658,8 +669,8 @@ export default function Home() {
                 <div className="services-item pink2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src="image/ssm-10.png" alt="" />
-                      <img className="hover-img" src="image/ssh-10.png" alt="" />
+                      <img className="main-img" src={images["ssm-10.png"]} alt="" />
+                      <img className="hover-img" src={images["ssh-10.png"]}  alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -693,7 +704,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-1.png" alt="" />
+                      <img src={images["ts2-1.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -702,7 +713,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-2.png" alt="" />
+                      <img src={images["ts2-2.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -711,7 +722,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-3.png" alt="" />
+                      <img src={images["ts2-3.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -720,7 +731,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-4.png" alt="" />
+                      <img src={images["ts2-4.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -729,7 +740,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-5.png" alt="" />
+                      <img src={images["ts2-5.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -738,7 +749,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-6.png" alt="" />
+                      <img src={images["ts2-6.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -747,7 +758,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-7.png" alt="" />
+                      <img src={images["ts2-7.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -756,7 +767,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-8.png" alt="" />
+                      <img src={images["ts2-8.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -765,7 +776,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-9.png" alt="" />
+                      <img src={images["ts2-9.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -774,7 +785,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-10.png" alt="" />
+                      <img src={images["ts2-10.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -783,7 +794,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-11.png" alt="" />
+                      <img src={images["ts2-11.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -792,7 +803,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-12.png" alt="" />
+                      <img src={images["ts2-12.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -801,7 +812,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-13.png" alt="" />
+                      <img src={images["ts2-13.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -810,7 +821,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-14.png" alt="" />
+                      <img src={images["ts2-14.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -819,7 +830,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-15.png" alt="" />
+                      <img src={images["ts2-15.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -828,7 +839,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-16.png" alt="" />
+                      <img src={images["ts2-16.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -837,7 +848,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-17.png" alt="" />
+                      <img src={images["ts2-17.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -846,7 +857,7 @@ export default function Home() {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="image/ts2-18.png" alt="" />
+                      <img src={images["ts2-18.png"]} alt="" />
                     </div>
                   </a>
                 </div>
@@ -876,7 +887,7 @@ export default function Home() {
             <div className="rs-carousel owl-carousel" data-loop="true" data-items={3} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={2} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={2} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={3} data-md-device-nav="false" data-md-device-dots="false">
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="image/bmh-1.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-1.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html">Software Development</a></li>
                   </ul>
@@ -906,7 +917,7 @@ export default function Home() {
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="image/bmh-3.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-3.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html">It Services</a></li>
                   </ul>
@@ -921,7 +932,7 @@ export default function Home() {
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="assets/images/blog/main-home/bmh-4.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-4.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html">Artifical Intelligence</a></li>
                   </ul>
@@ -936,7 +947,7 @@ export default function Home() {
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="image/bmh-5.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-5.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html">Digital Technology</a></li>
                   </ul>
@@ -951,7 +962,7 @@ export default function Home() {
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="image/bmh-6.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-6.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html">It Services</a></li>
                   </ul>
@@ -974,7 +985,7 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-6">
                 <div className="testi-img">
-                  <img src="image/testimonial-3.png" alt="" />
+                  <img src={images["testimonial-3.png"]} alt="" />
                 </div>
               </div>
               <div className="col-lg-6 md-pt-50 modify-gap">
@@ -995,13 +1006,13 @@ export default function Home() {
                       <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"Based on such knowledge, we may understand several other
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
                               programming languages in a more in-depth way. They have such an easy
                               way of teaching. 5/5 rating great work keep it up"</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh3.jpg" alt="" />
+                              <img src={images["tmh3.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Imran Khan</a>
@@ -1013,14 +1024,14 @@ export default function Home() {
                       <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"I
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
                               had an excellent time learning about many topics. I had a little bit
                               of knowledge but never had the chance to study them deeply. Thank
                               You so much for valuable information. "</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh4.jpg" alt="" />
+                              <img src={images["tmh4.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Parteek sharma</a>
@@ -1032,7 +1043,7 @@ export default function Home() {
                       <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
                               Someone
                               told me Python is not easy to understand if you are a newbie in it.
                               But they taught everything from the ground level. I really enjoyed
@@ -1041,7 +1052,7 @@ export default function Home() {
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh1.jpg" alt="" />
+                              <img src={images["tmh1.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Keli</a>
@@ -1053,14 +1064,14 @@ export default function Home() {
                       <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
                               It's a great course. The starting can be a bit tough if you're not
                               from a programming background, but later, you start to understand
                               everything because they will explain everything step by step."</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh2.jpg" alt="" />
+                              <img src={images["tmh2.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Somya Saini</a>
@@ -1072,13 +1083,13 @@ export default function Home() {
                       <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"Based on such knowledge, we may understand several other
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
                               programming languages in a more in-depth way. They have such an easy
                               way of teaching. 5/5 rating great work keep it up"</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh3.jpg" alt="" />
+                              <img src={images["tmh3.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Imran Khan</a>
@@ -1090,14 +1101,14 @@ export default function Home() {
                       <div className="owl-item active" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"I
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
                               had an excellent time learning about many topics. I had a little bit
                               of knowledge but never had the chance to study them deeply. Thank
                               You so much for valuable information. "</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh4.jpg" alt="" />
+                              <img src={images["tmh4.jpg"]}  alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Parteek sharma</a>
@@ -1109,7 +1120,7 @@ export default function Home() {
                       <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
                               Someone told me Python is not easy to understand if you are a newbie
                               in it. But they taught everything from the ground level. I really
                               enjoyed learning from such a nice course. "
@@ -1117,7 +1128,7 @@ export default function Home() {
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh1.jpg" alt="" />
+                              <img src={images["tmh1.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Keli</a>
@@ -1129,14 +1140,14 @@ export default function Home() {
                       <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
-                            <div className="desc"><img className="quote" src="image/quote2.png" alt="" />"
+                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
                               It's a great course. The starting can be a bit tough if you're not
                               from a programming background, but later, you start to understand
                               everything because they will explain everything step by step."</div>
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src="image/tmh2.jpg" alt="" />
+                              <img src={images["tmh2.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Somya Saini</a>
@@ -1165,72 +1176,72 @@ export default function Home() {
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="images/partner-1.png" alt="" />
-                    <img className="main-logo" src="image/partner-1.png" alt="" />
+                    <img className="hover-logo" src={images["partner-1.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-1.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-2.png" alt="" />
-                    <img className="main-logo" src="image/partner-2.png" alt="" />
+                    <img className="hover-logo" src={images["partner-2.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-2.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-3.png" alt="" />
-                    <img className="main-logo" src="image/partner-3.png" alt="" />
+                    <img className="hover-logo" src={images["partner-3.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-3.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-4.png" alt="" />
-                    <img className="main-logo" src="image/partner-4.png" alt="" />
+                    <img className="hover-logo" src={images["partner-4.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-4.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-5.png" alt="" />
-                    <img className="main-logo" src="image/partner-5.png" alt="" />
+                    <img className="hover-logo" src={images["partner-5.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-5.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-6.png" alt="" />
-                    <img className="main-logo" src="image/partner-6.png" alt="" />
+                    <img className="hover-logo" src={images["partner-6.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-6.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-7.png" alt="" />
-                    <img className="main-logo" src="image/partner-7.png" alt="" />
+                    <img className="hover-logo" src={images["partner-7.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-7.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-8.png" alt="" />
-                    <img className="main-logo" src="image/partner-8.png" alt="" />
+                    <img className="hover-logo" src={images["partner-8.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-8.png"]} alt="" />
                   </a>
                 </div>
               </div>
               <div className="partner-item">
                 <div className="logo-img">
                   <a href="https://rstheme.com/">
-                    <img className="hover-logo" src="image/partner-9.png" alt="" />
-                    <img className="main-logo" src="image/partner-9.png" alt="" />
+                    <img className="hover-logo" src={images["partner-9.png"]} alt="" />
+                    <img className="main-logo" src={images["partner-9.png"]} alt="" />
                   </a>
                 </div>
               </div>
@@ -1247,7 +1258,7 @@ export default function Home() {
             <div className="row">
               <div className="col-lg-3 col-md-12 col-sm-12 footer-widget">
                 <div className="footer-logo mb-30">
-                  <a href="index.html"><img src="image/logofirst-1.png" alt="" /></a>
+                  <a href="index.html"><img src={images["logofirst-1.png"]} alt="" /></a>
                 </div>
                 <div className="textwidget pb-30">
                   <p>Coursementor.com is a 24*7 Online Tutoring Platform. Get online tutoring on-demand on
