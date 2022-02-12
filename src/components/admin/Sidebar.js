@@ -69,6 +69,11 @@ class Sidebar extends Component {
                             <i className="fas fa-file-upload"></i>
                             <span>Field Of Study</span></Link>
                     </li>
+                    <li className="nav-item ">
+                        <Link to={'/ApplicationStep'} className="nav-link" href="#">
+                            <i className="fas fa-file-upload"></i>
+                            <span>Application Step</span></Link>
+                    </li>
                  
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">

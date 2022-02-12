@@ -11,18 +11,28 @@ import Main from './Main';
 
 import DragAndDrop from './DragAndDrop';
 class IdentityDocument extends Component {
-    state = {
-        mounted: "",
-        files: [
-        ],
-        data: [],
 
-        mypassport: "",
-        mypassportBack: "",
-        mycv: "",
-        selectedImage: [
+    constructor(props) {
+        super();
 
-        ]
+        this.state = {
+            mounted: "",
+            files: [
+            ],
+            data: [],
+
+            mypassport: "",
+            mypassportBack: "",
+            mycv: "",
+            selectedImage: [
+
+            ]
+
+        };
+        this.onDeletePassportHandle = this.onDeletePassportHandle.bind(this);
+        this.onDeletePassportBackHandle = this.onDeletePassportBackHandle.bind(this);
+        this.onDeletecvHandle = this.onDeletecvHandle.bind(this);
+
     }
     componentWillMount() {
         if (localStorage.getItem("userData")) {
@@ -33,18 +43,17 @@ class IdentityDocument extends Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
-        var url2=process.env.REACT_APP_SERVER_URL+'student/identityDocument';
+    componentDidMount() {
+        //start for fetch identityDocument
+        var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
         axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 console.log("oo")
                 console.log(url2)
                 this.setState({
-                   
                     mypassport: res.data.studentIdentityDocument.passport,
                     mypassportBack: res.data.studentIdentityDocument.passportBack,
                     mycv: res.data.studentIdentityDocument.cv
-
                 });
 
                 if (res.data.success === true) {
@@ -56,15 +65,109 @@ class IdentityDocument extends Component {
             .catch(error => {
                 console.log(error.response)
             });
-
-           
+        //end for fetch identityDocument
     };
+    onDeletePassportHandle() {
+        const obj2 = new FormData();
+        obj2.append("passport", "*");
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
+            headers: {
+                'Authorization': this.state.mounted,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    // alert("Personal Profile passport update successfully");
+                        //start for fetch identityDocument
+        var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
+        axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
+            .then(res => {
+                console.log("oo")
+                console.log(url2)
+                this.setState({
+                    mypassport: res.data.studentIdentityDocument.passport,
+                    mypassportBack: res.data.studentIdentityDocument.passportBack,
+                    mycv: res.data.studentIdentityDocument.cv
+                });
+
+                if (res.data.success === true) {
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for fetch identityDocument
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
+    }
+    onDeletePassportBackHandle() {
+        console.log('gggh')
+        //start for identitydocument
+        const obj2 = new FormData();
+
+        obj2.append("passportBack", "*");
+
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
+            headers: {
+                'Authorization': this.state.mounted,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    alert("Personal Profile passport update successfully");
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for identity document
+    }
+    onDeletecvHandle() {
+        //start for identitydocument
+        const obj2 = new FormData();
+
+        obj2.append("cv", "*");
+
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
+            headers: {
+                'Authorization': this.state.mounted,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    alert("Personal Profile passport update successfully");
+                }
+                else {
+                    alert("error");
+                }
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+        //end for identity document
+    }
     onFileChangepassport = eventpassport => {
         const obj2 = new FormData();
 
         obj2.append("passport", eventpassport.target.files[0]);
 
-        axios.put(process.env.REACT_APP_SERVER_URL+'student/identityDocument', obj2, {
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted,
                 "Content-Type": "multipart/form-data"
@@ -87,7 +190,7 @@ class IdentityDocument extends Component {
         const obj4 = new FormData();
         obj4.append("passport", myfiles[0]);
 
-        axios.put(process.env.REACT_APP_SERVER_URL+'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     alert("Personal Profile update successfully");
@@ -102,7 +205,7 @@ class IdentityDocument extends Component {
         //end for call api
     }
     renderElementpassport() {
-        if (this.state.mypassport === '' || this.state.mypassport === undefined) {
+        if (this.state.mypassport === '' || this.state.mypassport === undefined || this.state.mypassport === null) {
             return <DragAndDrop handleDrop={this.handleDrop}>
                 <section className="drag-and-drop-new-section">
                     <div className="containerx" id="drop_section">
@@ -144,7 +247,7 @@ class IdentityDocument extends Component {
                     <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
 
 
-                        <button type="button" className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                        <button type="button" onClick={this.onDeletePassportHandle} className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
@@ -173,7 +276,7 @@ class IdentityDocument extends Component {
         // obj2.append("passport", );
         obj2.append("passportBack", eventpassportback.target.files[0]);
         // obj2.append("cv", );
-        axios.put('/student/identityDocument', obj2, {
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted,
                 "Content-Type": "multipart/form-data"
@@ -196,7 +299,7 @@ class IdentityDocument extends Component {
         const obj4 = new FormData();
         obj4.append("passportBack", myfiles[0]);
 
-        axios.put('/student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     alert("Personal Profile update successfully");
@@ -211,7 +314,7 @@ class IdentityDocument extends Component {
         //end for call api
     }
     renderElementpassportBack() {
-        if (this.state.mypassportBack === '' || this.state.mypassportBack === undefined) {
+        if (this.state.mypassportBack === '' || this.state.mypassportBack === undefined || this.state.mypassportBack === null || this.state.mypassportBack === "*") {
             return <DragAndDrop handleDrop={this.handleDrop}>
                 <section className="drag-and-drop-new-section">
                     <div className="containerx" id="drop_section">
@@ -255,7 +358,7 @@ class IdentityDocument extends Component {
                     <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
 
 
-                        <button type="button" className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                        <button type="button" onClick={this.onDeletePassportBackHandle} className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
                     </div>
                     {/* <!-- The Modal --> */}
                     <div className="modal" id="myModalPassportback">
@@ -286,7 +389,7 @@ class IdentityDocument extends Component {
 
         obj2.append("cv", eventcv.target.files[0]);
         // obj2.append("cv", );
-        axios.put('/student/identityDocument', obj2, {
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted
 
@@ -309,7 +412,7 @@ class IdentityDocument extends Component {
         const obj4 = new FormData();
         obj4.append("cv", myfiles[0]);
 
-        axios.put('/student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     alert("cv update successfully");
@@ -328,7 +431,7 @@ class IdentityDocument extends Component {
         const obj5 = new FormData();
         obj5.append("cv", "");
 
-        axios.put('/student/identityDocument', obj5, { headers: { 'Authorization': this.state.mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj5, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     alert("cv delete successfully");
@@ -343,7 +446,7 @@ class IdentityDocument extends Component {
         //end for call api
     }
     renderElementcv() {
-        if (this.state.mycv === '' || this.state.mycv === undefined) {
+        if (this.state.mycv === '' || this.state.mycv === undefined || this.state.mycv === null || this.state.mycv === "*") {
             return <DragAndDrop handleDrop={this.handleDrop}>
                 <section className="drag-and-drop-new-section">
                     <div className="containerx" id="drop_section">
@@ -381,9 +484,7 @@ class IdentityDocument extends Component {
                         </button>
                     </div>
                     <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-
-
-                        <button type="button" className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                        <button type="button" onClick={this.onDeletecvHandle} className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
                     </div>
 
                     {/* <button onClick={this.deleteCv}>
