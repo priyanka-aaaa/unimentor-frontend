@@ -3,7 +3,8 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+	
+import SweetAlert from 'react-bootstrap-sweetalert';
 import Footer from './Footer';
 const UniversityCourses = () => {
     const [courseName, setcourseName] = useState("");
@@ -36,7 +37,8 @@ const UniversityCourses = () => {
     const [month, setmonth] = useState("0");
     const [createIntake, setcreateIntake] = useState("0");
 
-
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -133,34 +135,8 @@ const UniversityCourses = () => {
 
     function handleDelete(value) {
 
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                var myuniversityCourse = res.data.universityCourse;
-                if (res.data.success === true) {
-                    setsuccessMessage("course delete")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    //start for fetching course
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityCourses)
-                        })
-                    // end for fetching course
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
     //end for delete 
     //start for view
@@ -366,6 +342,55 @@ const UniversityCourses = () => {
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Coures</h1>
+                                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            var myuniversityCourse = res.data.universityCourse;
+                            if (res.data.success === true) {
+                                setsuccessMessage("course delete")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                //start for fetching course
+                                const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: { 'Authorization': mounted }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        setdata(data.universityCourses)
+                                    })
+                                // end for fetching course
+                            }
+                            else {
+                                alert("error");
+                            }
+            
+                        })
+                        .catch(error => {
+                            console.log(error.response)
+                        });
+            
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                                 <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
 
                             </div>

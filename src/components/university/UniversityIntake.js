@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 import Footer from './Footer';
 const UniversityIntake = () => {
     const [year, setyear] = useState("");
@@ -20,7 +20,9 @@ const UniversityIntake = () => {
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
+	
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -102,88 +104,22 @@ const UniversityIntake = () => {
 
     function handleDelete(value) {
 
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                var myuniversityCourse = res.data.intakes;
-                if (res.data.success === true) {
-                    setsuccessMessage("course delete")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    //start for fetching course
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityIntakes)
-                        })
-                    // end for fetching course
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
+        setshowSweetAlert("1")
+        setdeleteId(value)
 
     }
     //end for delete 
-    //start for view
-
-    function handleView(value) {
-
-
-        seteditId(value);
-        setviewWidth("1600px");
-        // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes/' + value, { headers: { 'Authorization': mounted } })
-
-            .then(function (res) {
-
-
-                var universityIntakes = res.data.universityIntakes;
-                if (res.data.success === true) {
-
-                    setIntakeId(universityIntakes._id);
-                    setyear(universityIntakes.year);
-                    setmonth(universityIntakes.month);
-
-
-
-                }
-                else {
-                    alert("error");
-                }
-
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
-
-    }
-    //end for view
-
-    function closebox(value) {
+ function closebox(value) {
         setwidth("0px");
-
-    }
+  }
     function closeviewbox(value) {
-
-        setviewWidth("0px");
+    setviewWidth("0px");
     }
     function closeaddbox(value) {
-
-        setaddWidth("0px");
+    setaddWidth("0px");
     }
-
-    //END FOR
-
-
-    let handleEditSubmit = (event) => {
+ //END FOR
+ let handleEditSubmit = (event) => {
         event.preventDefault();
         const obj = {
             year: year,
@@ -219,7 +155,9 @@ const UniversityIntake = () => {
             });
     }
     let handleAddSubmit = (event) => {
+     
         event.preventDefault();
+        setaddWidth(0)
         const obj = {
             year: year,
             month: month,
@@ -232,7 +170,7 @@ const UniversityIntake = () => {
                     setsuccessMessage("course add")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    setaddWidth(0)
+                  
                     setyear("");
                     setmonth("");
 
@@ -286,6 +224,55 @@ const UniversityIntake = () => {
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Intake</h1>
+
+                                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + deleteId, { headers: { 'Authorization': mounted } })
+.then(function (res) {
+    var myuniversityCourse = res.data.intakes;
+    if (res.data.success === true) {
+        setsuccessMessage("course delete")
+        setTimeout(() => setsubmitSuccess(""), 3000);
+        setsubmitSuccess(1)
+        //start for fetching course
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setdata(data.universityIntakes)
+            })
+        // end for fetching course
+    }
+    else {
+        alert("error");
+    }
+
+})
+.catch(error => {
+    console.log(error.response)
+});
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                                 <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Intake</button>
 
                             </div>
