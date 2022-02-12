@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 const Faq = () => {
     const [formValues, setFormValues] = useState([{
         question: "", answer: "",
@@ -14,6 +14,8 @@ const Faq = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
 
     const [display, setdisplay] = useState("none");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -34,7 +36,12 @@ const Faq = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setFormValues(data.universityFaqs)
+                var myresults=data.universityFaqs;
+                if (Object.keys(myresults).length === 0) {
+                }
+                else{
+                    setFormValues(data.universityFaqs)
+                }
             })
 
 
@@ -107,35 +114,12 @@ const Faq = () => {
         }
 
     }
-    let handleDeleteClick = (value) => {
 
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + value, { headers: { 'Authorization': mounted } })
-             .then(function (res) {
- 
-                 if (res.data.success === true) {
-                     setsuccessMessage("faq deleted")
-                     setTimeout(() => setsubmitSuccess(""), 3000);
-                     setsubmitSuccess(1)
-                   
-                     const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
-                     fetch(url, {
-                         method: 'GET',
-                         headers: { 'Authorization': mounted }
-                     })
-                         .then(response => response.json())
-                         .then(data => {
-                             setFormValues(data.universityFaqs)
-                         })
- 
-                 }
-                 else {
-                     alert("error");
-                 }
-             })
-             .catch(error => {
-                 console.log(error.response)
-             });
-     }
+    let handleDeleteClick = (value) => {
+        setshowSweetAlert("1")
+        setdeleteId(value)
+    }
+
     return (
         <div>
             {submitSuccess === 1 ? <div className="Show_success_message">
@@ -147,6 +131,53 @@ const Faq = () => {
                 </a>
                 <div id="collapse9" className="collapse" data-bs-parent="#accordion">
                     <div className="card-body">
+                        {showSweetAlert === "1" ? <SweetAlert
+                            warning
+                            showCancel
+                            confirmBtnText="Yes, delete it!"
+                            confirmBtnBsStyle="danger"
+
+                            title="Are you sure?"
+                            onConfirm={(value) => {
+                                setshowSweetAlert("0");
+                                axios.delete(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + deleteId, { headers: { 'Authorization': mounted } })
+                                    .then(function (res) {
+
+                                        if (res.data.success === true) {
+                                            setsuccessMessage("faq deleted")
+                                            setTimeout(() => setsubmitSuccess(""), 3000);
+                                            setsubmitSuccess(1)
+
+                                            const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
+                                            fetch(url, {
+                                                method: 'GET',
+                                                headers: { 'Authorization': mounted }
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    setFormValues(data.universityFaqs)
+                                                })
+
+                                        }
+                                        else {
+                                            alert("error");
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.log(error.response)
+                                    });
+
+                            }}
+                            onCancel={() =>
+                                setshowSweetAlert("0")
+
+                            }
+                            focusCancelBtn
+                        >
+
+                        </SweetAlert>
+                            : null
+                        }
                         <div className="form-block">
 
                             <div className="row pl-4 pr-4 mt-3">
@@ -169,8 +200,10 @@ const Faq = () => {
                                                         <form onSubmit={handleSubmit}>
                                                             {formValues.map((element, index) => (
                                                                 <div className="mb-12" key={index}>
+                                                                    <div className="row text-right">
+                                                                        <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p>
 
-                                                                    <button className="btn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                    </div>
                                                                     <div className="row">
 
 

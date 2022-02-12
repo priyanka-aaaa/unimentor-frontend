@@ -29,7 +29,6 @@ const Application = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-    const [ConfirmDelete, setConfirmDelete] = useState("");
     const [deleteId, setdeleteId] = useState("");
 
 

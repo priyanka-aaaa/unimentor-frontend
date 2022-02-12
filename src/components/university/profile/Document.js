@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 
@@ -30,7 +31,8 @@ const Document = () => {
 
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -118,8 +120,9 @@ const Document = () => {
         //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
     let handleAddSubmit = () => {
+        setaddWidth(0)
         let originalString = document.getElementById("x").value;
-     
+
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
@@ -128,12 +131,12 @@ const Document = () => {
         const obj = {
             document: InsetApplication
         };
-  
+
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/documents', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
-                    setaddWidth(0)
+
                     setsuccessMessage("Document Add")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
@@ -172,35 +175,11 @@ const Document = () => {
         //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
     let handleDeleteClick = (value) => {
-       axios.delete(process.env.REACT_APP_SERVER_URL + 'university/documents/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-
-                if (res.data.success === true) {
-                    setsuccessMessage("Document deleted")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    setwidth(0);
-                    //start for fetch all document
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityDocuments)
-                        })
-                    //end for fetch all document
-
-                }
-                else {
-                    alert("error");
-                }
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
     let handleEditSaveSubmit = () => {
+        setwidth(0);
         let originalString = document.getElementById("editx").value;
 
         var div = document.createElement("div");
@@ -223,7 +202,7 @@ const Document = () => {
                     setsuccessMessage("Document Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    setwidth(0);
+
                     //start for fetch all document
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
                     fetch(url1, {
@@ -249,9 +228,57 @@ const Document = () => {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
+
             <input id="x" type="hidden" />
 
             <div className="card">
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/documents/' + deleteId, { headers: { 'Authorization': mounted } })
+                            .then(function (res) {
+
+                                if (res.data.success === true) {
+                                    setsuccessMessage("Document deleted")
+                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                    setsubmitSuccess(1)
+                                    //start for fetch all document
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
+                                    fetch(url1, {
+                                        method: 'GET'
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            setFormValues(data.universityDocuments)
+                                        })
+                                    //end for fetch all document
+
+                                }
+                                else {
+                                    alert("error");
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error.response)
+                            });
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse5"><strong>5</strong>
                     Document
                 </a>

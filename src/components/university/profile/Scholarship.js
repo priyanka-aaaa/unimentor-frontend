@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 const Document = () => {
 
     const [FormValues, setFormValues] = useState([{
@@ -26,6 +26,8 @@ const Document = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [MYpoint, setMYpoint] = useState();
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -198,34 +200,9 @@ const Document = () => {
             });
     }
     let handleDeleteClick = (value) => {
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + value, { headers: { 'Authorization': mounted } })
-             .then(function (res) {
- 
-                 if (res.data.success === true) {
-                     setsuccessMessage("Document deleted")
-                     setTimeout(() => setsubmitSuccess(""), 3000);
-                     setsubmitSuccess(1)
-                     setwidth(0);
-                     //start for fetch all document
-                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
-                     fetch(url1, {
-                         method: 'GET'
-                     })
-                         .then(response => response.json())
-                         .then(data => {
-                             setFormValues(data.universityScholarships)
-                         })
-                     //end for fetch all document
- 
-                 }
-                 else {
-                     alert("error");
-                 }
-             })
-             .catch(error => {
-                 console.log(error.response)
-             });
-     }
+        setshowSweetAlert("1")
+        setdeleteId(value)
+    }
     return (
 
         <div>
@@ -235,6 +212,54 @@ const Document = () => {
             <input id="x" type="hidden" />
 
             <div className="card">
+            {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+            
+                            if (res.data.success === true) {
+                                setsuccessMessage("Document deleted")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                setwidth(0);
+                                //start for fetch all document
+                                const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
+                                fetch(url1, {
+                                    method: 'GET'
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        setFormValues(data.universityScholarships)
+                                    })
+                                //end for fetch all document
+            
+                            }
+                            else {
+                                alert("error");
+                            }
+                        })
+                        .catch(error => {
+                            console.log(error.response)
+                        });
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse6"><strong>6</strong>
                     Scholarship
                 </a>

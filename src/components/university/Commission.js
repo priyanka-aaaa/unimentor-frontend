@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
+import SweetAlert from 'react-bootstrap-sweetalert';
 const Commission = () => {
     const [mounted, setMounted] = useState();
     const [Percentage, setPercentage] = useState();
@@ -41,6 +42,8 @@ const Commission = () => {
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
     //start for edit
     function setEditCommissionTime(value) {
 
@@ -59,7 +62,7 @@ const Commission = () => {
 
         setEditcommissionType(value)
 
-      
+
         if (value === "fixed") {
             setdisplayEditAmount("inline");
             setdisplayEditPercentage("none");
@@ -74,7 +77,7 @@ const Commission = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-         
+
             var universityId = mydata.data.university._id;
             setuniversityId(universityId)
             var mytoken = mydata.data.token;
@@ -156,7 +159,7 @@ const Commission = () => {
         })
             .then(response => response.json())
             .then(data => {
-              
+
                 setEditid(data.universityCommission._id)
                 setcourseName(data.universityCommission.courseName)
                 setfee(data.universityCommission.fee)
@@ -193,35 +196,8 @@ const Commission = () => {
     //start for delete
 
     function handleDelete(value) {
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + value
-        fetch(url2, {
-            method: 'delete',
-            headers: { 'Authorization': mounted }
-
-        })
-            .then(response => response.json())
-            .then(data => {
-                setaddWidth("0");
-                setsuccessMessage("Commisssion Deleted")
-                setTimeout(() => setsubmitSuccess(""), 3000);
-                setsubmitSuccess(1)
-                //start for get commission
-                
-
-                        //start for get commission
-                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
-                        fetch(url, {
-                            method: 'GET',
-                            headers: { 'Authorization': mounted }
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                setcommissionData(data.universityCommissions)
-                            })
-                        //end for get commission
-                  
-                //end for get commission
-            })
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
     //end for delete 
     function closebox(value) {
@@ -239,6 +215,7 @@ const Commission = () => {
     }
     let handleAddSubmit = (event) => {
         event.preventDefault();
+        setaddWidth("0");
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
@@ -248,7 +225,7 @@ const Commission = () => {
         obj1.append("commissionValue", commissionValue);
         obj1.append("timeType", commissionTimeChecked);
         obj1.append("timeValue", timeValue);
-       
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions'
         fetch(url2, {
             method: 'post',
@@ -257,7 +234,7 @@ const Commission = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setaddWidth("0");
+
                 setsuccessMessage("Commisssion Added")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
@@ -276,6 +253,7 @@ const Commission = () => {
     }
     let handleEditSubmit = (event) => {
         event.preventDefault();
+        setwidth("0");
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
@@ -292,9 +270,10 @@ const Commission = () => {
             .then(response => response.json())
             .then(data => {
                 setaddWidth("0");
-                setsuccessMessage("Commisssion Added")
+                setsuccessMessage("Commisssion Updated")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
+
                 //start for get commission
                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                 fetch(url, {
@@ -304,10 +283,7 @@ const Commission = () => {
                     .then(response => response.json())
                     .then(data => {
                         setcommissionData(data.universityCommissions)
-                        setwidth("0");
-                        setsuccessMessage("Commisssion Updated")
-                        setTimeout(() => setsubmitSuccess(""), 3000);
-                        setsubmitSuccess(1)
+
 
 
                         //start for get commission
@@ -354,6 +330,59 @@ const Commission = () => {
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">  Commission</h1>
+
+                                {showSweetAlert === "1" ? <SweetAlert
+                                    warning
+                                    showCancel
+                                    confirmBtnText="Yes, delete it!"
+                                    confirmBtnBsStyle="danger"
+
+                                    title="Are you sure?"
+                                    onConfirm={(value) => {
+                                        setshowSweetAlert("0");
+                                        const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + deleteId
+                                        fetch(url2, {
+                                            method: 'delete',
+                                            headers: { 'Authorization': mounted }
+
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                setaddWidth("0");
+                                                setsuccessMessage("Commisssion Deleted")
+                                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                                setsubmitSuccess(1)
+                                                //start for get commission
+
+
+                                                //start for get commission
+                                                const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+                                                fetch(url, {
+                                                    method: 'GET',
+                                                    headers: { 'Authorization': mounted }
+                                                })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        setcommissionData(data.universityCommissions)
+                                                    })
+                                                //end for get commission
+
+                                                //end for get commission
+                                            })
+
+                                    }}
+                                    onCancel={() =>
+                                        setshowSweetAlert("0")
+
+                                    }
+                                    focusCancelBtn
+                                >
+
+                                </SweetAlert>
+                                    : null
+                                }
+
+
                                 <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add Commission</button>
 
                             </div>
