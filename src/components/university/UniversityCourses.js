@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Footer from './Footer';
 const UniversityCourses = () => {
@@ -25,10 +25,17 @@ const UniversityCourses = () => {
     const [addWidth, setaddWidth] = useState("");
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [Intakedata, setIntakedata] = useState([]);
+
+
     const [editId, seteditId] = useState([]);
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [year, setyear] = useState("");
+    const [month, setmonth] = useState("0");
+    const [createIntake, setcreateIntake] = useState("0");
+
 
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
@@ -57,7 +64,25 @@ const UniversityCourses = () => {
             })
         // end for fetching course
 
+        //start for fetching intake
+        const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+        fetch(url2, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                var myresults = data.universityIntakes
+                if (Object.keys(myresults).length === 0) {
 
+                }
+                else {
+                    setIntakedata(data.universityIntakes)
+                    setcreateIntake("1")
+                }
+
+            })
+        // end for fetching intake
 
 
     }, [])
@@ -86,6 +111,8 @@ const UniversityCourses = () => {
                     setwebsite(myuniversityCourse.website);
                     setdescription(myuniversityCourse.description);
                     setexam(myuniversityCourse.exam);
+                    setyear(myuniversityCourse.year);
+                    setmonth(myuniversityCourse.month);
 
 
                 }
@@ -166,7 +193,8 @@ const UniversityCourses = () => {
                     setwebsite(myuniversityCourse.website);
                     setdescription(myuniversityCourse.description);
                     setexam(myuniversityCourse.exam);
-
+                    setyear(myuniversityCourse.year);
+                    setmonth(myuniversityCourse.month);
 
                 }
                 else {
@@ -211,7 +239,9 @@ const UniversityCourses = () => {
             english: english,
             website: website,
             description: description,
-            exam: exam
+            exam: exam,
+            year: year,
+            month: month
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -255,9 +285,11 @@ const UniversityCourses = () => {
             english: english,
             website: website,
             description: description,
-            exam: exam
+            exam: exam,
+            year: year,
+            month: month
         };
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+        axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
                 if (res.data.success === true) {
@@ -276,6 +308,8 @@ const UniversityCourses = () => {
                     setwebsite("");
                     setdescription("");
                     setexam("");
+                    setyear("");
+                    setmonth("");
                     //start for fetching course
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                     fetch(url, {
@@ -295,6 +329,12 @@ const UniversityCourses = () => {
             .catch(error => {
                 console.log(error.response)
             });
+    }
+    function setintake(value) {
+        const myArray = value.split("&&");
+        setyear(myArray[0])
+        setmonth(myArray[1])
+
     }
     return (
         <div id="page-top">
@@ -566,7 +606,31 @@ const UniversityCourses = () => {
                                                                             </div>
                                                                         </div>
 
+                                                                        {/* start for intake */}
+                                                                        <div className="mb-3">
+                                                                            <div className="row">
+                                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                                    Intakes
 
+                                                                                    <select
+                                                                                        type="text" className="form-control"
+                                                                                        required
+                                                                                        onChange={(e) => setintake(e.target.value)}>
+                                                                                        {Intakedata.map((object, i) => {
+
+                                                                                            return (
+                                                                                                <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                            )
+                                                                                        })}
+
+                                                                                    </select>
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+
+                                                                        {/* end for intake */}
                                                                         <div className="mb-3">
                                                                             <div className="row">
                                                                                 <div className="col-md-6"></div>
@@ -619,7 +683,7 @@ const UniversityCourses = () => {
 
                                                                     <div className="from-block" >
 
-
+                                                                        <h6>Add Course</h6>
 
                                                                         <div className="row" >
                                                                             <div className="mb-3">
@@ -773,6 +837,40 @@ const UniversityCourses = () => {
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
+                                                                            <div className="mb-3">
+                                                                                <div className="row">
+                                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+
+                                                                                        <b>{createIntake == "1" ? '' :
+
+
+
+                                                                                            <Link to={'/UniversityIntake'}
+                                                                                                href="#">
+                                                                                                <button type="button" className="btn btn-outline-success"><span>
+
+                                                                                                </span>Add Intake</button>
+                                                                                            </Link>
+
+                                                                                        }</b>
+                                                                                        Intakes
+                                                                                        <select
+                                                                                            type="text" className="form-control"
+                                                                                            required
+                                                                                            onChange={(e) => setintake(e.target.value)}>
+                                                                                            {Intakedata.map((object, i) => {
+
+                                                                                                return (
+                                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                                )
+                                                                                            })}
+
+                                                                                        </select>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
 
 
@@ -840,6 +938,8 @@ const UniversityCourses = () => {
                                                                         <th rowSpan="1" colSpan="1">Course website</th>
                                                                         <th rowSpan="1" colSpan="1">Course Description</th>
                                                                         <th rowSpan="1" colSpan="1">Academic proficiency exam</th>
+                                                                        <th rowSpan="1" colSpan="1">Year</th>
+                                                                        <th rowSpan="1" colSpan="1">Month</th>
 
                                                                     </tr>
                                                                 </thead>
@@ -859,7 +959,8 @@ const UniversityCourses = () => {
                                                                         <td>{website}</td>
                                                                         <td>{description}</td>
                                                                         <td>{exam}</td>
-
+                                                                        <td>{year}</td>
+                                                                        <td>{month}</td>
 
                                                                     </tr>
 

@@ -59,7 +59,7 @@ const UniversityIntake = () => {
         }
         
         //end for year
-        //start for fetching course
+        //start for fetching intake
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
             method: 'GET',
@@ -69,7 +69,7 @@ const UniversityIntake = () => {
             .then(data => {
                 setdata(data.universityIntakes)
             })
-        // end for fetching course
+        // end for fetching intake
     }, [])
 
     function handleClick(value) {

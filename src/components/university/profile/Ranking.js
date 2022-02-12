@@ -49,7 +49,7 @@ class Ranking extends Component {
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.ddhandleAddClick = this.ddhandleAddClick.bind(this);
 
-        
+
     }
 
     componentWillMount() {
@@ -91,8 +91,8 @@ class Ranking extends Component {
     changeyear(event) {
         this.setState({ year: event.target.value });
     }
-    ddhandleAddClick(){
-        this.setState({  width: "0px",addWidth:"0px"})
+    ddhandleAddClick() {
+        this.setState({ width: "0px", addWidth: "0px" })
 
     }
     handleAddClick(value) {
@@ -102,7 +102,7 @@ class Ranking extends Component {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
-        
+
                 this.setState({
 
                     agencyName: res.data.universityRanking.agencyName,
@@ -158,7 +158,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-               
+
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }
@@ -202,7 +202,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-               
+
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }
@@ -243,7 +243,7 @@ class Ranking extends Component {
 
                 // end for university ranking
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-               
+
                 fetch(url3, {
                     method: 'GET',
                     headers: { 'Authorization': this.state.mytoken }
