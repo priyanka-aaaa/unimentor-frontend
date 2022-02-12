@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 const Application = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
@@ -27,6 +28,13 @@ const Application = () => {
 
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [ConfirmDelete, setConfirmDelete] = useState("");
+    const [deleteId, setdeleteId] = useState("");
+
+
+
+
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -72,33 +80,8 @@ const Application = () => {
 
     }
     let handleDeleteClick = (value) => {
-        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + value, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-
-                if (res.data.success === true) {
-                    setsuccessMessage("Document deleted")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-
-                    //start for getting university 
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityAdmissions)
-                        })
-                    //end  for getting university 
-
-                }
-                else {
-                    alert("error");
-                }
-            })
-            .catch(error => {
-                console.log(error.response)
-            });
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
     function handleEditClick(value) {
 
@@ -107,7 +90,7 @@ const Application = () => {
         seteditnewcomponent(1)
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-            
+
                 var myuniversityAdmission = res.data.universityAdmission;
                 if (res.data.success === true) {
                     seteditPoint(myuniversityAdmission.point);
@@ -155,7 +138,7 @@ const Application = () => {
                     setsuccessMessage("Admission Added")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                  
+
                     //start for getting university 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {
@@ -191,7 +174,7 @@ const Application = () => {
     let handleEditSubmit = () => {
         setwidth(0)
         let originalString = document.getElementById("editx").value;
-    
+
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
@@ -204,7 +187,7 @@ const Application = () => {
                     setsuccessMessage("Admission Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                  
+
                     //start for getting university 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {
@@ -229,9 +212,52 @@ const Application = () => {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-
-
             <div className="card">
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + deleteId, { headers: { 'Authorization': mounted } })
+                            .then(function (res) {
+                                if (res.data.success === true) {
+                                    setsuccessMessage("Document deleted")
+                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                    setsubmitSuccess(1)
+
+                                    //start for getting university 
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                                    fetch(url1, {
+                                        method: 'GET'
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            setFormValues(data.universityAdmissions)
+                                        })
+                                    //end  for getting university 
+
+                                }
+                                else {
+                                    alert("error");
+                                }
+                            })
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
+
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse4"><strong>4</strong>
                     Application Process
                 </a>
