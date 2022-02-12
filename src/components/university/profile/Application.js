@@ -138,6 +138,7 @@ const Application = () => {
         //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
     let handleAddSubmit = () => {
+        setaddWidth(0)
         let originalString = document.getElementById("addx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
@@ -154,7 +155,7 @@ const Application = () => {
                     setsuccessMessage("Admission Added")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    setaddWidth(0)
+                  
                     //start for getting university 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {
@@ -188,6 +189,7 @@ const Application = () => {
         //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
     }
     let handleEditSubmit = () => {
+        setwidth(0)
         let originalString = document.getElementById("editx").value;
     
         var div = document.createElement("div");
@@ -202,7 +204,7 @@ const Application = () => {
                     setsuccessMessage("Admission Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    setwidth(0)
+                  
                     //start for getting university 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {

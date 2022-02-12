@@ -27,6 +27,19 @@ export default function Overview() {
 
         }
         setMounted(mytoken)
+        var ddlYears = document.getElementById("myyear");
+
+        
+        //Determine the Current Year.
+        var currentYear = (new Date()).getFullYear();
+        // for (var i = currentYear; i < 2027; i++) {
+            for (var i = currentYear; i >= 1950; i--) {
+            var option = document.createElement("OPTION");
+            option.innerHTML = i;
+            option.value = i;
+            ddlYears.appendChild(option);
+        }
+
         //start for fetch personal information
         // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/overview')
@@ -113,16 +126,16 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label>Founded year </label>
-                                        <select className="form-control" name="country" required=""
+                                        <select id="myyear" className="form-control" name="country" required=""
                                             value={foundedYear}
                                             onChange={(e) => setfoundedYear(e.target.value)}
                                         >
-                                            <option>Select Year</option>
+                                            {/* <option>Select Year</option>
                                             <option>2021</option>
                                             <option>2020</option>
                                             <option>2019</option>
                                             <option>2018</option>
-                                            <option>2017</option>
+                                            <option>2017</option> */}
                                         </select>
                                     </div>
                                 </div>
@@ -160,12 +173,12 @@ export default function Overview() {
 
                                             className="form-control" name="city" required="">
                                             <option>Select Courses</option>
-                                            <option>IELTS</option>
-                                            <option>TOEFL</option>
-                                            <option>GMAT</option>
-                                            <option>GRE</option>
-                                            <option>SAT</option>
-                                            <option>ACT</option>
+                                            <option value="IELTS">IELTS</option>
+                                            <option value="TOEFL">TOEFL</option>
+                                            <option value="GMAT">GMAT</option>
+                                            <option value="GRE">GRE</option>
+                                            <option value="SAT">SAT</option>
+                                            <option value="ACT">ACT</option>
                                         </select>
                                     </div>
                                 </div>
@@ -192,10 +205,26 @@ export default function Overview() {
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label>Add Month </label>
-                                                <input type="text" className="form-control"
+                                                <select
+
+                                                    className="form-control"
+                                                    placeholder="Month" name="Month"
                                                     value={month}
-                                                    onChange={(e) => setmonth(e.target.value)}
-                                                />
+                                                    onChange={(e) => setmonth(e.target.value)}>
+                                                    <option value='Jan'>Janaury</option>
+                                                    <option value='Feb'>February</option>
+                                                    <option value='March'>March</option>
+                                                    <option value='April'>April</option>
+                                                    <option value='May'>May</option>
+                                                    <option value='June'>June</option>
+                                                    <option value='July'>July</option>
+                                                    <option value='Aug'>August</option>
+                                                    <option value='Sep'>September</option>
+                                                    <option value='Oct'>October</option>
+                                                    <option value='Nov'>November</option>
+                                                    <option value='Dec'>December</option>
+                                                </select>
+
                                             </div>
                                         </div>
                                         <div className="col-md-6">
