@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, UseState} from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
@@ -9,6 +9,29 @@ function importAll(r) {
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 
 function country(props) {
+  const list = [
+    {
+      "country":"Australia",
+      "image":images["process-1.png"]
+    },
+    {
+      "country":"Canada",
+      "image":images["process-2.png"]
+    },
+    {
+      "country" : "United Kingdom",
+      "image":images["process-3.png"]
+    },
+    {
+      "country" : "United Kingdom",
+      "image":images["process-3.png"]
+    }
+  ]
+  function setCountryInLocalStorage(index){
+    console.log(list[index])
+    localStorage.setItem("countryFilter",list[index].country);
+  }
+
   return (
     <div>
 
@@ -165,62 +188,28 @@ function country(props) {
                 </h2>
               </div>
               <div className="row">
-                <div className="col-lg-3 col-sm-6 md-mb-50">
+                
+                {
+                list.map((item,index)=>
+
+                <div className="col-lg-3 col-sm-6 md-mb-50" onClick={()=>{
+                  setCountryInLocalStorage(index)
+                }}>
                   <div className="addon-process">
                     <div className="process-wrap">
                       <div className="process-img">
                         <a href="course_finder_select_degree.html"><img
-                          src={images["process-1.png"]}
+                          src={item.image}
                           alt="" /></a>
                       </div>
                       <div className="process-text">
-                        <h3 className="title">Australia</h3>
+                        <h3 className="title">{item.name}</h3>
                       </div>
                     </div>
                   </div>
+                  
                 </div>
-                <div className="col-lg-3 col-sm-6 md-mb-50">
-                  <div className="addon-process">
-                    <div className="process-wrap">
-                      <div className="process-img">
-                        <a href="course_finder_select_degree.html"><img
-                          src={images["process-2.png"]}
-                          alt="" /></a>
-                      </div>
-                      <div className="process-text">
-                        <h3 className="title">Canada</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-sm-6">
-                  <div className="addon-process">
-                    <div className="process-wrap">
-                      <div className="process-img">
-                        <a href="course_finder_select_degree.html"><img
-                          src={images["process-3.png"]}
-                          alt="" /></a>
-                      </div>
-                      <div className="process-text">
-                        <h3 className="title">United Kingdom</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-lg-3 col-sm-6">
-                  <div className="addon-process">
-                    <div className="process-wrap">
-                      <div className="process-img">
-                        <a href="course_finder_select_degree.html"><img
-                          src={images["process-4.png"]}
-                          alt="" /></a>
-                      </div>
-                      <div className="process-text">
-                        <h3 className="title">United States</h3>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                )}
               </div>
               <div className="text-center mt-5">
               <Link to={'/Degree'} className="readon started" href="#">

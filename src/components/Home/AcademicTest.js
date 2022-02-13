@@ -2,7 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function AcademicTest(props) {
-
+  const list = [
+    {
+      "academicTest":"IELTS",
+    },
+    {
+      "academicTest":"IBA"
+    }
+  ]
+  function setAcademicTestInLocalStorage(index){
+    console.log(list[index])
+    localStorage.setItem("academicTestFilter",list[index].academicTest);
+  }
               return (
              
               
@@ -158,15 +169,12 @@ function AcademicTest(props) {
                               <h2>Which academic test have you taken OR are planning to take?</h2>
                               {/* About Section Start */}
                               <ul className="nav nav-pills" role="tablist">
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block1">ACT</a>
+                                
+                                {list.map((item,index)=>
+                                <li className="nav-item" onClick={()=>setAcademicTestInLocalStorage(index)}>
+                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block1">{item.academicTest}</a>
                                 </li>
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block2">SAT</a>
-                                </li> 
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" href="course-universities-dashboard.html">Not planning to take any</a>
-                                </li> 
+                              )}
                               </ul>
                               {/* Tab panes */}
                               {/* <div className="tab-content"> */}

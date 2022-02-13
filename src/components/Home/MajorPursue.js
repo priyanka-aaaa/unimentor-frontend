@@ -2,6 +2,16 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function MajorPursue(props) {
+  const list = [
+    {
+      "major":"Managment",
+    },
+    
+  ]
+  function setMajorInLocalStorage(index){
+    console.log(list[index])
+    localStorage.setItem("majorFilter",list[index].major);
+  }
 
               return (
              
@@ -173,15 +183,11 @@ function MajorPursue(props) {
                                     <div className="row mt-5">
                                       <div className="col-md-12">                                                      
                                         <ul> 
-                                          <a href="study_level_form.html"><li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Management</li></a>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Engineering</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Computers and Data Science</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Design</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Finance and Banking</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Law</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Humanities and Social Sciences</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Sciences</li>
-                                          <li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>Medicine and Pharma</li>                                    
+                                         
+                                         {
+                                           list.map((item,index)=>
+                                          <a  onClick={()=>setMajorInLocalStorage(index)}><li className="btn btn-outline-secondary"><span><i className="fa fa-book" /></span>{list[index].major}</li></a>
+                                           )}                                
                                         </ul>
                                       </div>
                                     </div>

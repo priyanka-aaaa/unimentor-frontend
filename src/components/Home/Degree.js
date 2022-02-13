@@ -8,6 +8,20 @@ function importAll(r) {
 const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
 
 function country(props) {
+  const list = [
+    {
+      "degree":"MBA",
+      "image":images["graduated.png"]
+    },
+    {
+      "degree": "Masters",
+      "image": images["graduated.png"]
+    },
+  ]
+  function setDegreeInLocalStorage(index){
+    console.log(list[index])
+    localStorage.setItem("degreeFilter",list[index].degree);
+  }
 
   return (
     <div>
@@ -161,55 +175,25 @@ function country(props) {
           <div className="container">
             <h3 className="text-center mb-5">Which degree do you wish to pursue?</h3>
             <div className="row">
-              <div className="col-lg-4 col-sm-8 md-mb-50">
-                <div className="addon-process">
-                  <div className="process-wrap">
-                    <div className="process-img">
-                      <Link to={'/EducationLevel'} href="#">
-                        <img src={images["graduated.png"]} alt="" />
-
-                      </Link>
-                     </div>
-                    <div className="process-text">
-                      <h3 className="title">Bachelors</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-sm-8 md-mb-50">
+              {list.map((item,index)=><div className="col-lg-4 col-sm-8 md-mb-50" onClick={()=>setDegreeInLocalStorage(index)} >
                 <div className="addon-process">
                   <div className="process-wrap">
                     <div className="process-img">
                       <a href="course_finder_master.html">
                       <Link to={'/EducationLevel'} href="#">
-                        <img src={images["graduated.png"]} alt="" />
+                        <img src={item.image} alt="" />
 
                       </Link>
                       </a>
                     </div>
                     <div className="process-text">
-                      <h3 className="title">Masters</h3>
+                      <h3 className="title">{item.degree}</h3>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-lg-4 col-sm-8">
-                <div className="addon-process">
-                  <div className="process-wrap">
-                    <div className="process-img">
-                      <a href="course_finder_mba.html">
-                      <Link to={'/EducationLevel'} href="#">
-                        <img src={images["graduated.png"]} alt="" />
-
-                      </Link>
-                      </a>
-                    </div>
-                    <div className="process-text">
-                      <h3 className="title">MBA</h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              </div>)}
+              
+              
             </div>
             {/* <div class="btn-part">
                                           <a class="readon learn-more" href="contact.html">Learn-More</a>

@@ -2,6 +2,18 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function Test(props) {
+  const list = [
+    {
+      "test":"IELTS",
+    },
+    {
+      "test":"IBA"
+    }
+  ]
+  function setTestInLocalStorage(index){
+    console.log(list[index])
+    localStorage.setItem("testFilter",list[index].test);
+  }
 
               return (
              
@@ -155,18 +167,12 @@ function Test(props) {
                               <h2>Which english language test have you taken OR are planning to take?</h2>
                               {/* About Section Start */}
                               <ul className="nav nav-pills" role="tablist">
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block1">IELTS</a>
+                                
+                                {list.map((item,index)=>
+                                <li className="nav-item" onClick={()=>setTestInLocalStorage(index)}>
+                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block1">{list[index].test}</a>
                                 </li>
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block2">TOLEF</a>
-                                </li> 
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="#block3">PTE</a>
-                                </li> 
-                                <li className="nav-item">
-                                  <a className="nav-link btn btn-outline-primary" data-toggle="pill" href="study_planning.html">Not planning to take any</a>
-                                </li>                    
+                                )}                 
                               </ul>
                               {/* Tab panes */}
                               <div className="tab-content">

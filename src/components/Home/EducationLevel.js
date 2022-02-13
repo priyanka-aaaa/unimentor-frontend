@@ -2,9 +2,26 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function EducationLevel(props) {
+  const list = [
+    {
+      "education":"IB",
+    },
+    {
+      "education":"CBSE",
+    },
+    {
+      "education" : "ICSE",
+    },
+    {
+      "education" : "STATE",
+    }
+  ]
+  function setEducationLevelInLocalStorage(event){
+    localStorage.setItem("educationLevelFilter",event.target.value);
+  }
 
   return (
-
+    
     <div>
       {/* Main content Start */}
       <div className="main-content">
@@ -168,12 +185,9 @@ function EducationLevel(props) {
               <div className="row">
                 <div className="col-md-4" />
                 <div className="col-md-4">
-                  <select className="form-control">
-                    <option>Select Board</option>
-                    <option>IB</option>
-                    <option>ICSE</option>
-                    <option>CBSE</option>
-                    <option>state</option>
+                 
+                  <select className="form-control" onChange={setEducationLevelInLocalStorage}>
+                    {list.map((item,index)=><option>{list[index].education}</option>)}
                   </select>
                 </div>
                 <div className="col-md-4" />
