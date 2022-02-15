@@ -381,7 +381,7 @@ export default function AdminStudentApplication() {
             });
         //end for recommendation
         //start for studentApplication
-
+        
     }
     return (
         <div id="page-top">

@@ -15,13 +15,6 @@ function AcademicTest(props) {
     localStorage.setItem("academicTestFilter",list[index].academicTest);
   }
               return (
-             
-              
-                  
-                       
-           
-                  
-
                         <div className="main-content">
                           {/*Full width header Start*/}
                           <div className="full-width-header">

@@ -49,15 +49,16 @@ export default function ApplicationStep() {
 
     let addFormFields = () => {
 
+        let person = prompt("Enter string");
 
 
-        setuniversityApplication([...universityApplication, {
+        if(person){
+            setuniversityApplication([...universityApplication, person]
 
-        }]
+                // setuniversityApplication([...universityApplication]
 
-            // setuniversityApplication([...universityApplication]
-
-        )
+            )
+        }
 
 
 
@@ -65,7 +66,7 @@ export default function ApplicationStep() {
     }
     let handleChange = (i, e) => {
         let newFormValues = [...universityApplication];
-        newFormValues[i][e.target.name] = e.target.value;
+        newFormValues[i] = e.target.value;
         setuniversityApplication(newFormValues);
     }
     useEffect(() => {
@@ -102,7 +103,7 @@ export default function ApplicationStep() {
         event.preventDefault();
         // var myvalues = JSON.stringify(formValues);
         const item = {
-            countrySteps: 'tt',
+            countrySteps: universityApplication,
             // firstName: this.state.firstName,
             // middleName: this.state.middleName,
             // lastName: this.state.lastName,
@@ -128,6 +129,7 @@ export default function ApplicationStep() {
                     setsubmitSuccess(1)
                 }
                 else {
+                    console.log(res);
                     alert("error");
                 }
             })
