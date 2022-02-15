@@ -152,6 +152,7 @@ export default function Home() {
             <div className="row align-items-end">
               <div className="col-lg-6 md-mb-50 order-last">
                 <div className="banner-img">
+             
                                   <img src={images["cbanner-5.png"]}
                   alt="" />
                 </div>

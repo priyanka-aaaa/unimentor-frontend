@@ -12,6 +12,10 @@ function MajorPursue(props) {
     console.log(list[index])
     localStorage.setItem("majorFilter",list[index].major);
   }
+  function setMajorScoreLocalStorage(event){
+
+    localStorage.setItem("majorScoreFilter",event.target.value);
+  }
 
               return (
              
@@ -168,7 +172,7 @@ function MajorPursue(props) {
                                     <div className="col-md-4" />
                                     <div className="col-md-4">
                                       <div className="outer">
-                                        <input type="serach" className="form-control" />
+                                        <input type="serach" className="form-control" onChange={setMajorScoreLocalStorage} />
                                       
                                         {/* <button className="btn btn-outline-primary"> */}
                                         <Link className="btn btn-outline-primary" to={'/NgoExperience'} href="#">

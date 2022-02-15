@@ -11,6 +11,8 @@ import './components/css/frontend.css';
 
 // import './components/Routes';
 import './components/css/my.css';
+import './components/admin_css/dashboard.css';
+// import './components/admin_css/style.css';
 import Studentregister from './components/Studentregister';
 import Studentlogin from './components/Studentlogin';
 import StudentDashboard from './components/StudentDashboard';
@@ -52,7 +54,7 @@ import AdminDocument from './components/admin/AdminDocument';
 import AdminScholarship from './components/admin/AdminScholarship';
 import AdminStudentApplication from './components/admin/AdminStudentApplication';
 import ApplicationStep from './components/admin/ApplicationStep';
-
+import ViewStudentApplication from './components/admin/ViewStudentApplication'
 
 import AdminStudentApplicationView from './components/admin/AdminStudentApplicationView';
 
@@ -178,8 +180,9 @@ function App() {
             <Route path='/AdminStudentApplication' component={AdminStudentApplication} />
             <Route path='/AdminStudentApplicationView' component={AdminStudentApplicationView} />
             <Route path='/ApplicationStep' component={ApplicationStep} />
-           
-            
+            <Route path='/ViewStudentApplication' component={ViewStudentApplication} />
+
+
 
             <Route path='/Studentlogin' component={Studentlogin} />
             <Route path='/Studentregister' component={Studentregister} />

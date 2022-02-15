@@ -36,10 +36,10 @@ const Faq = () => {
         })
             .then(response => response.json())
             .then(data => {
-                var myresults=data.universityFaqs;
+                var myresults = data.universityFaqs;
                 if (Object.keys(myresults).length === 0) {
                 }
-                else{
+                else {
                     setFormValues(data.universityFaqs)
                 }
             })
@@ -199,30 +199,43 @@ const Faq = () => {
                                                     <div className="from-block">
                                                         <form onSubmit={handleSubmit}>
                                                             {formValues.map((element, index) => (
-                                                                <div className="mb-12" key={index}>
-                                                                    <div className="row text-right">
-                                                                        <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p>
+                                                                <div key={index}>
+                                                                    <div className="btn deleteFamily" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
 
-                                                                    </div>
-                                                                    <div className="row">
+                                                                    {/* <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p> */}
+                                                                    <div className="mb-3">
+
+                                                                        <div className="row">
 
 
-                                                                        <div className="col">
-                                                                            <label htmlFor="fname" className="form-label">Question</label>
-                                                                            <input type="text" className="form-control" placeholder="" name="question"
-                                                                                value={element.question || ""} onChange={e => handleChange(index, e)}
-                                                                            />
+                                                                            <div className="col">
+                                                                                <label htmlFor="fname" className="form-label">Question</label>
+                                                                                <input type="text" className="form-control" placeholder="" name="question"
+                                                                                    value={element.question || ""} onChange={e => handleChange(index, e)}
+                                                                                />
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label htmlFor="fname" className="form-label">Answer</label>
-                                                                            <input type="text" className="form-control" placeholder="" name="answer"
-                                                                                value={element.answer || ""} onChange={e => handleChange(index, e)}
 
-                                                                            />
+                                                                    <div className="mb-3">
+
+                                                                        <div className="row">
+
+
+                                                                            <div className="col">
+                                                                                <label htmlFor="fname" className="form-label">Answer</label>
+                                                                                <input type="text" className="form-control" placeholder="" name="question"
+                                                                                    value={element.answer || ""} onChange={e => handleChange(index, e)}
+                                                                                />
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+
+
+
+
+
+
                                                                 </div>
 
                                                             ))}

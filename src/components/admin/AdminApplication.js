@@ -12,7 +12,7 @@ const AdminApplication = () => {
     }])
     const [mounted, setMounted] = useState();
     const [myAdminId, setAdminId] = useState();
-
+  
 
     const [data, setdata] = useState([]);
     useEffect(() => {

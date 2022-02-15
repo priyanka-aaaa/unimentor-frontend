@@ -13,11 +13,15 @@ export default function ApplicationStep() {
     const [countryId, setcountryId] = useState("0px");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [universityApplication, setuniversityApplication] = useState(
-        []
-    )
+    // const [universityApplication, setuniversityApplication] = useState(
+    //     []
+    // )
+    
+    const [universityApplication, setuniversityApplication] = useState([{
+        countrySteps: "",
+        _id: "null"
 
-
+    }])
     const [data, setdata] = useState([]);
     const [mounted, setMounted] = useState();
 
@@ -42,26 +46,17 @@ export default function ApplicationStep() {
             .then(response => response.json())
             .then(data => {
                 setuniversityApplication(data.adminCountry.countrySteps)
-
+                console.log("qwerty");
+                console.log(data.adminCountry)
             })
         // end for fetching particular data
     }
 
     let addFormFields = () => {
-
-
-
         setuniversityApplication([...universityApplication, {
-
+            countrySteps: ""
         }]
-
-            // setuniversityApplication([...universityApplication]
-
         )
-
-
-
-
     }
     let handleChange = (i, e) => {
         let newFormValues = [...universityApplication];
@@ -231,29 +226,19 @@ export default function ApplicationStep() {
 
                                                                 <div class="row">
                                                                     <div class="col-sm-12 ">
+                                                                        {universityApplication.map((element, index) => (
 
-                                                                        {universityApplication.map((object, i) => {
+                                                                            <div class="form-group" key={index}>
+                                                                                <label for="password"> Steps</label>
+                                                                                <input required="" name="countrySteps"
+                                                                                    type="text" id="password"
+                                                                                    class="form-control"
+                                                                                    value={element}
+                                                                                    onChange={e => handleChange(index, e)}
 
-                                                                            return (
-                                                                                <div class="form-group" key={i}>
-                                                                                    <label for="password"> Steps</label>
-                                                                                    <input required="" name="countrySteps"
-                                                                                        type="text"
-                                                                                        class="form-control"
-                                                                                        value={object}
-                                                                                        onChange={e => handleChange(i, e)}
-
-                                                                                    />
-                                                                                </div>
-
-
-
-
-                                                                            )
-                                                                        })}
-
-
-
+                                                                                />
+                                                                            </div>
+                                                                        ))}
                                                                     </div>
 
                                                                     <div class="col-sm-12 text-danger"></div>

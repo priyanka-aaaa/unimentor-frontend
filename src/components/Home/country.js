@@ -1,4 +1,4 @@
-import {React, UseState} from 'react';
+import { React, UseState } from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
@@ -11,27 +11,35 @@ const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/
 function country(props) {
   const list = [
     {
-      "country":"Australia",
-      "image":images["process-1.png"]
+      "country": "Australia",
+      "image": images["process-1.png"],
+      "name": "Australia",
     },
     {
-      "country":"Canada",
-      "image":images["process-2.png"]
+      "country": "Canada",
+      "image": images["process-2.png"],
+      "name": "Canada",
     },
     {
-      "country" : "United Kingdom",
-      "image":images["process-3.png"]
+      "country": "United Kingdom",
+      "image": images["process-3.png"],
+      "name": "United Kingdom",
+
     },
     {
-      "country" : "United Kingdom",
-      "image":images["process-3.png"]
+      "country": "United Kingdom",
+      "image": images["process-3.png"],
+      "name": "United Kingdom",
+
     }
   ]
-  function setCountryInLocalStorage(index){
+  function setCountryInLocalStorage(index) {
     console.log(list[index])
-    localStorage.setItem("countryFilter",list[index].country);
+    localStorage.setItem("countryFilter", list[index].country);
   }
-
+  let handlecountry = () => {
+    // alert("jj")
+  }
   return (
     <div>
 
@@ -188,34 +196,36 @@ function country(props) {
                 </h2>
               </div>
               <div className="row">
-                
-                {
-                list.map((item,index)=>
 
-                <div className="col-lg-3 col-sm-6 md-mb-50" onClick={()=>{
-                  setCountryInLocalStorage(index)
-                }}>
-                  <div className="addon-process">
-                    <div className="process-wrap">
-                      <div className="process-img">
-                        <a href="course_finder_select_degree.html"><img
-                          src={item.image}
-                          alt="" /></a>
+                {
+                  list.map((item, index) =>
+
+
+                    <div className="col-lg-3 col-sm-6 md-mb-50" onClick={() => {
+                      setCountryInLocalStorage(index)
+                    }}>
+                      <div className="addon-process">
+                        <div className="process-wrap">
+                          <div className="process-img">
+                            <img
+                              onClick={() => handlecountry()}
+                              src={item.image}
+                              alt="" />
+                          </div>
+                          <div className="process-text">
+                            <h3 className="title">{item.name}</h3>
+                          </div>
+                        </div>
                       </div>
-                      <div className="process-text">
-                        <h3 className="title">{item.name}</h3>
-                      </div>
+
                     </div>
-                  </div>
-                  
-                </div>
-                )}
+                  )}
               </div>
               <div className="text-center mt-5">
-              <Link to={'/Degree'} className="readon started" href="#">
-              Open to all
-              </Link>
-              
+                <Link to={'/Degree'} className="readon started" href="#">
+                  Open to all
+                </Link>
+
               </div>
             </div>
           </div>

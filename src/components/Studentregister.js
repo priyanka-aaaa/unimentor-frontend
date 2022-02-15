@@ -39,7 +39,7 @@ export default function Studentregister() {
                 phone: phone
 
             };
-            axios.post('/student/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL+'student/register', obj)
                 .then(function (res) {
                     console.log(res.data);
                     if (res.data.success === true) {
