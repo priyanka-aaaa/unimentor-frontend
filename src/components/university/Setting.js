@@ -43,14 +43,14 @@ export default function Setting() {
                 .then(function (res) {
                
                     if (res.data.success === true) {
-                        alert("password update successfully");
+                 
                     }
                     else {
-                        alert("error");
+                    
                     }
                 })
                 .catch(error => {
-                    console.log(error.response)
+                  
                 });
         }
     }

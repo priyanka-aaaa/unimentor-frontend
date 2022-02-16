@@ -119,12 +119,12 @@ const UniversityCourses = () => {
 
                 }
                 else {
-                    alert("error");
+               
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
 
     }
@@ -174,12 +174,12 @@ const UniversityCourses = () => {
 
                 }
                 else {
-                    alert("error");
+             
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
 
     }
@@ -240,11 +240,11 @@ const UniversityCourses = () => {
                     // end for fetching course
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+       
             });
     }
     let handleAddSubmit = (event) => {
@@ -299,11 +299,11 @@ const UniversityCourses = () => {
                     // end for fetching course
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
     }
     function setintake(value) {
@@ -371,12 +371,12 @@ const UniversityCourses = () => {
                                 // end for fetching course
                             }
                             else {
-                                alert("error");
+                             
                             }
             
                         })
                         .catch(error => {
-                            console.log(error.response)
+                        
                         });
             
 

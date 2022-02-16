@@ -83,12 +83,12 @@ export default function Summary() {
 
                 }
                 else {
-                    alert("error");
+                   
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
 
     }, [])
@@ -118,12 +118,12 @@ export default function Summary() {
                     setsubmitSuccess(1)
                 }
                 else {
-                    alert("error");
+                   
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
     }
 

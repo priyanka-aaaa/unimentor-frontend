@@ -95,12 +95,12 @@ const Application = () => {
                     seteditPoint(myuniversityAdmission.point);
                 }
                 else {
-                    alert("error");
+               
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
     }
 
@@ -150,11 +150,11 @@ const Application = () => {
                     //end  for getting university 
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
     }
     let clickEditHandler = (datum) => {
@@ -199,11 +199,11 @@ const Application = () => {
                     //end  for getting university 
                 }
                 else {
-                    alert("error");
+           
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     return (
@@ -241,7 +241,7 @@ const Application = () => {
 
                                 }
                                 else {
-                                    alert("error");
+                              
                                 }
                             })
 

@@ -82,18 +82,17 @@ const UniversityIntake = () => {
             .then(function (res) {
                 var myuniversityIntakes = res.data.universityIntake;
                 if (res.data.success === true) {
-                    // console.log("myuniversityIntakes.year");
-                    // console.log(res.data.universityIntake)
+                  
                     setyear(myuniversityIntakes.year);
                     setmonth(myuniversityIntakes.month);
                 }
                 else {
-                    alert("error");
+        
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
 
     }
@@ -147,11 +146,11 @@ const UniversityIntake = () => {
                     // end for fetching course
                 }
                 else {
-                    alert("error");
+         
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     let handleAddSubmit = (event) => {
@@ -187,11 +186,11 @@ const UniversityIntake = () => {
                     // end for fetching course
                 }
                 else {
-                    alert("error");
+            
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
     }
     return (
@@ -254,12 +253,12 @@ const UniversityIntake = () => {
         // end for fetching course
     }
     else {
-        alert("error");
+
     }
 
 })
 .catch(error => {
-    console.log(error.response)
+
 });
 
                     }}

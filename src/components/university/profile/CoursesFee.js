@@ -76,11 +76,11 @@ const CoursesFee = () => {
 
                         }
                         else {
-                            alert("error");
+                          
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                    
                     });
 
             }
@@ -95,11 +95,11 @@ const CoursesFee = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+                        
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                   
                     });
             }
         })

@@ -20,7 +20,7 @@ const Faq = () => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            console.log(mydata)
+          
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
             var universityId = mydata.data.university._id;
@@ -76,11 +76,11 @@ const Faq = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+            
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                 
                     });
             }
             else {
@@ -94,11 +94,11 @@ const Faq = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+                      
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                  
                     });
             }
 
@@ -160,11 +160,11 @@ const Faq = () => {
 
                                         }
                                         else {
-                                            alert("error");
+                                     
                                         }
                                     })
                                     .catch(error => {
-                                        console.log(error.response)
+                                    
                                     });
 
                             }}

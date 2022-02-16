@@ -67,12 +67,12 @@ export default function PrimaryInfo() {
                     setorganization(student_universityPrimaryInformation.organization);
                }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
@@ -85,12 +85,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //start for fetch for city
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
@@ -99,12 +99,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    alert("error");
+                    
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for fetch for city
 
@@ -124,12 +124,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    alert("error");
+                   
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
     }
 
@@ -149,12 +149,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    alert("error");
+                 
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
     }
 
@@ -185,12 +185,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
     }
     return (

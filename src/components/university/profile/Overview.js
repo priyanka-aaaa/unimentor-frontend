@@ -63,12 +63,12 @@ export default function Overview() {
 
                 }
                 else {
-                    alert("error");
+             
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
     }, [])
 
@@ -100,12 +100,12 @@ export default function Overview() {
 
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     return (

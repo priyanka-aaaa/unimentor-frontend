@@ -11,6 +11,7 @@ function Bookmark(props) {
   const [mounted, setMounted] = useState();
   const [UniveristyId, setUniveristyId] = useState("");
   const [firstName, setfirstName] = useState("");
+  const [data, setdata] = useState([]);
   useEffect(() => {
     if (localStorage.getItem("userData")) {
       var a = localStorage.getItem('userData');
@@ -37,28 +38,12 @@ function Bookmark(props) {
         // if (Object.keys(myresults).length === 0) {
         // }
         // else {
-        setUniveristyId(data.studentBookmarks)
+        setdata(data.studentBookmarks)
+
         // }
       })
 
 
-    // axios.get(process.env.REACT_APP_SERVER_URL + 'student/bookmarks', { headers: { 'Authorization': mounted } })
-    //   .then(function (res) {
-    //     if (res.data.success === true) {
-    //       var student_bookmark = res.data.studentBookmarks;
-    //       setUniveristyId(student_bookmark.universityID);
-
-    //       // setfirstName(student_bookmark.firstName);
-    //     }
-    //     else {
-    //       alert("error");
-    //     }
-
-    //   })
-    //   .catch(error => {
-    //     console.log(error.response)
-    //   });
-    //end for fetch personal information
 
 
   }, [])
@@ -97,38 +82,27 @@ function Bookmark(props) {
                 <div className="col-xl-12 col-lg-7">
                   <div className="card shadow mb-4">
                     <div className="row">
-                      <div className="col-md-4">
+                    {data.map((object, i) => {
+                        return (
+                      <div className="col-md-4"  key={i}>
                         <div className="bookmark-block">
                           <span>
                             <img src={waterloouniversity} alt="logo" />
                           </span>
                           <div className="bool-markcontent">
                             <h5>Unversity</h5>
-                            <p>Waterloo University</p>
+                            <p>{object.name}</p>
                             <a href="#">UnBookmark</a>
                           </div>
                         </div>
                       </div>
-                      <div className="col-md-4">
-                        <div className="bookmark-block">
-                          <span> <img src={waterloouniversity} alt="logo" /></span>
-                          <div className="bool-markcontent">
-                            <h5>Unversity</h5>
-                            <p>Rimt University</p>
-                            <a href="#">UnBookmark</a>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-4">
-                        <div className="bookmark-block">
-                          <span> <img src={waterloouniversity} alt="logo" /></span>
-                          <div className="bool-markcontent">
-                            <h5>Unversity</h5>
-                            <p>Rimt University</p>
-                            <a href="#">UnBookmark</a>
-                          </div>
-                        </div>
-                      </div>
+                     
+
+                     
+
+                        )
+                      })}
+                      {/* end for bookmark */}
                     </div>
                   </div>
                 </div>

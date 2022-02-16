@@ -113,11 +113,11 @@ class Ranking extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //start for fetting all images
 

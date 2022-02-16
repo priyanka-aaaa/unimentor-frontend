@@ -71,11 +71,11 @@ class ImageVideo extends Component {
                         if (res.data.success === true) {
                         }
                         else {
-                            alert("error");
+                            
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                   
                     });
                 //end for fetting all images
             })
@@ -93,11 +93,11 @@ class ImageVideo extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+       
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //start for fetting all images
 
@@ -110,11 +110,11 @@ class ImageVideo extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for fetting all images
     };
@@ -169,11 +169,11 @@ class ImageVideo extends Component {
                         , 3000);
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //start for image only
         if (this.state.link !== "") {

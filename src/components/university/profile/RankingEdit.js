@@ -56,11 +56,11 @@ class RankingEdit extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+       
             });
         //start for fetting all images
 
@@ -92,15 +92,15 @@ class RankingEdit extends Component {
             .then(function (res) {
              
                 if (res.data.success === true) {
-                    alert("rasnking update successfully");
+                  
                 }
                 else {
-                    alert("error");
+               
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
     }
 

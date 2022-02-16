@@ -152,11 +152,11 @@ const Document = () => {
                     //end for fetch all document
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     let clickEditAddHandler = (datum) => {
@@ -216,11 +216,11 @@ const Document = () => {
 
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+                
             });
     }
     return (
@@ -261,11 +261,11 @@ const Document = () => {
 
                                 }
                                 else {
-                                    alert("error");
+                               
                                 }
                             })
                             .catch(error => {
-                                console.log(error.response)
+                           
                             });
 
                     }}

@@ -50,11 +50,11 @@ export default function UniversityPassword() {
                         setsubmitSuccess(1)
                     }
                     else {
-                        alert("error");
+               
                     }
                 })
                 .catch(error => {
-                    console.log(error.response)
+                  
                 });
         }
     }

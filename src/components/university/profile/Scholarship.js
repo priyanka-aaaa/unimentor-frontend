@@ -140,11 +140,11 @@ const Document = () => {
 
                 }
                 else {
-                    alert("error");
+              
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
     }
     let clickHandler = (datum) => {
@@ -192,11 +192,11 @@ const Document = () => {
                     //end for getting university 
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
     }
     let handleDeleteClick = (value) => {
@@ -242,11 +242,11 @@ const Document = () => {
             
                             }
                             else {
-                                alert("error");
+                            
                             }
                         })
                         .catch(error => {
-                            console.log(error.response)
+                    
                         });
 
                     }}

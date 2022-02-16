@@ -113,14 +113,14 @@ class UniversityProfile extends Component {
             .then(function (res) {
              
                 if (res.data.success === true) {
-                    alert("overview update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
     }
     //end for overview
