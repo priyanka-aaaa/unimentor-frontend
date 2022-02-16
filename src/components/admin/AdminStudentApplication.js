@@ -3,10 +3,48 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+import JSZip from 'jszip';
 import Footer from './Footer';
-
+import { saveAs } from "file-saver";
+import JSZipUtils from './zputils.js';
 export default function AdminStudentApplication() {
+
+    const saveFile = (url) => {
+        var zip = new JSZip();
+        var count = 0;
+        var zipFilename = "zipFilename.zip";
+        var urls = [
+            {
+                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name:'image1'
+            },
+            {
+                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name:'image2'
+            },
+            {
+                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name:'image3'
+            },
+            
+        ];
+
+        urls.forEach(function(url){
+           JSZipUtils.getBinaryContent(url.link, function (err, data) {
+                if(err) {
+                    throw err; // or handle the error
+                }
+                zip.file(url.name, data, {binary:true});
+                count++;
+                if (count == urls.length) {
+                    zip.generateAsync({type:'blob'}).then(function(content) {
+                        saveAs(content, zipFilename);
+                        return
+                    });
+                }
+            });
+        });
+      };
     // start for personal information
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -382,6 +420,54 @@ export default function AdminStudentApplication() {
         //end for recommendation
         //start for studentApplication
         
+    }
+
+
+    function downloadPassport(){
+
+        var id = '61d9176d3ccf1bfc23b1ebee';
+        var url= process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/identityDocument';
+        axios.get(url, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    
+                    console.log(res.data?.studentIdentityDocument)
+                    saveFile(res.data?.studentIdentityDocument?.passportBack,"passportBack");
+                    
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
+    }
+    function download10thdmc(){
+
+        var id = '61d9176d3ccf1bfc23b1ebee';
+        var url= process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/educationDocument';
+        axios.get(url, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                if (res.data.success === true) {
+                    
+                    console.log(res.data?.studentEducationDocument)
+                    saveFile(res.data?.studentEducationDocument?.marksheet10,"10th");
+                    saveFile(res.data?.studentEducationDocument?.marksheet12,"");
+                    saveFile(res.data?.studentEducationDocument?.ugDegree,"cv");
+                    
+                }
+                else {
+                    alert("error");
+                }
+
+            })
+            .catch(error => {
+                console.log(error.response)
+            });
+
     }
     return (
         <div id="page-top">
@@ -1404,7 +1490,7 @@ export default function AdminStudentApplication() {
                                                                 Document</button></div>
                                                         </div>
                                                         <ul>
-                                                            <li>PASSPORT <span><i className="fas fa-eye" /></span></li>
+                                                            <li onClick={downloadPassport}>PASSPORT <span><i className="fas fa-eye" /></span></li>
                                                             <li>10TH<span><i className="fas fa-eye" /></span></li>
                                                             <li>12TH<span><i className="fas fa-eye" /></span></li>
                                                             <li>MEDIUM OF INSTRUCTION<span><i className="fas fa-eye" /></span></li>

@@ -11,7 +11,7 @@ function PersonalInformation(props) {
     const [state, setstate] = useState();
     const [city, setcity] = useState();
     const [address, setaddress] = useState();
-    const [zipcode, setzipcode] = useState();
+    const [zipcode, setzipcode] = useState()
     const [communication_address, setcommunication_address] = useState("no");
     const [countries, setcountries] = useState([{
         country_name: ""
