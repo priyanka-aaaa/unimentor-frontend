@@ -158,9 +158,7 @@ class StudentPersonalInformation extends Component {
     onSubmit(e) {
         e.preventDefault();
 
-        console.log("ok");
-        console.log(this.state.store);
-        console.log("ok");
+      
         const obj = {
             salutation: this.state.salutation,
             firstName: this.state.firstName,
