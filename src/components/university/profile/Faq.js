@@ -250,7 +250,8 @@ const Faq = () => {
 
                                                                             className="btn btn-secondary">Save
                                                                         </button>
-                                                                        <button type="button" className="btn btn-success " data-bs-toggle="collapse" href="#collapse1">Save &
+                                                                        <button type="button" className="btn btn-success"
+                                                                         data-bs-toggle="collapse" href="#collapse1">Save &
                                                                             Preview</button>
                                                                     </div>
                                                                 </div>
