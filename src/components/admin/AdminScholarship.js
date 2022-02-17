@@ -21,7 +21,7 @@ const AdminScholarship = () => {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
 
-            // console.log(mydata);
+     
 
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
@@ -40,7 +40,7 @@ const AdminScholarship = () => {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data.scholarship");
+            
 
                 setFormValues(data.adminScholarships)
             })
@@ -71,32 +71,32 @@ const AdminScholarship = () => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/scholarships', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                      
                         if (res.data.success === true) {
-                            // alert("courses update successfully");
+                         
                         }
                         else {
-                            alert("error");
+                   
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                     
                     });
-                // alert("application update successfully");
+              
             }
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/scholarships/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                     
                         if (res.data.success === true) {
-                            console.log(" update successfully");
+                          
                         }
                         else {
-                            alert("error");
+                    
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                      
                     });
             }
         })

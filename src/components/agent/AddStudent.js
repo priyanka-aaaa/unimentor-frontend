@@ -50,7 +50,7 @@ function AddStudent(props) {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+           
             var user_email = mydata.data.student.email;
             var mounted = mydata.data.token;
         }
@@ -69,8 +69,7 @@ function AddStudent(props) {
             //end for score
 
         };
-        console.log("obj")
-        console.log(obj)
+   
         var objRegister = {
             firstName: firstName,
             phone: phone,
@@ -129,8 +128,7 @@ function AddStudent(props) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("yy");
-                        console.log(data)
+                       
                     })
                 // end for personal details
                 // start for address
@@ -143,8 +141,7 @@ function AddStudent(props) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("yy");
-                        console.log(data)
+                     
                     })
                 // end for address
                 // start for education
@@ -157,8 +154,7 @@ function AddStudent(props) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("yy");
-                        console.log(data)
+                  
                     })
                 // end for education
                 //start for score
@@ -171,8 +167,7 @@ function AddStudent(props) {
                 })
                     .then(response => response.json())
                     .then(data => {
-                        console.log("yy");
-                        console.log(data)
+                   
                     })
                 //end for score
 

@@ -36,13 +36,13 @@ export default function Universitylogin() {
                 .then(result => {
                     
                     let responseJson = result;
-                    console.log(responseJson.data.success);
+             
                     if (responseJson.data.success === true) {
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
                         setredirectToReferrer(true)
                     }
                     else {
-                        alert("Username or Password is not correct");
+                       
                     }
                 }
                 )

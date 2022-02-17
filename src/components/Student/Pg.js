@@ -118,11 +118,11 @@ class Button extends React.Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+         
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
     };
     onFileChangepassport = eventpassport => {
@@ -138,14 +138,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Pg Degree pgdegree update successfully");
+                  
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+      
             });
         //end for call api
     };
@@ -156,14 +156,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Pg Degree update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for call api
     }
@@ -247,14 +247,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("pgMarksheet update successfully");
+                 
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
         //end for call api
     };
@@ -265,14 +265,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("pgMarksheet update successfully");
+                  
                 }
                 else {
-                    alert("error");
+        
                 }
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //end for call api
     }
@@ -356,14 +356,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("pg consolidated update successfully");
+               
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+                
             });
         //end for call api
     };
@@ -374,14 +374,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("pg consolidated update successfully");
+          
                 }
                 else {
-                    alert("error");
+             
                 }
             })
             .catch(error => {
-                console.log(error.response)
+ 
             });
         //end for call api
     }

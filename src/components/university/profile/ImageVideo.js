@@ -40,7 +40,7 @@ class ImageVideo extends Component {
         }
     }
     ViewAllImage() {
-        console.log("this.state.buttonText")
+       
       
        if(this.state.buttonText==="Show All Image & Video"){
         this.setState({ viewDisplay: "inline", buttonText:"Hide  All Image & Video"})

@@ -19,8 +19,7 @@ class StudentDashboard extends Component {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var b = JSON.parse(a);
-            console.log(b);
-            console.log(b.data.student.email);
+         
             var user_email = b.data.student.email;
             this.setState({ email: user_email });
         }

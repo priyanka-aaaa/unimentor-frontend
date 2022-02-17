@@ -20,11 +20,11 @@ const AdminDocument = () => {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
 
-            // console.log(mydata);
+          
 
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
-            // setAdminId(adminId)
+          
         }
         setMounted(mytoken)
 
@@ -65,38 +65,37 @@ const AdminDocument = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        console.log("formvalues");
-        console.log(formValues);
+       
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/documents', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                       
                         if (res.data.success === true) {
-                            console.log("courses update successfully");
+                      
                         }
                         else {
-                            console.log("error");
+                    
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                     
                     });
 
             }
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/documents/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                      
                         if (res.data.success === true) {
-                            alert("courses update successfully");
+                       
                         }
                         else {
-                            alert("error");
+                         
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                       
                     });
 
             }

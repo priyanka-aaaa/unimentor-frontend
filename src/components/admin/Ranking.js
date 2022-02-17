@@ -59,17 +59,17 @@ class Ranking extends Component {
 
         axios.put('/university/ranking', obj1, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
-                console.log(res.data);
+              
                 if (res.data.success === true) {
-                    alert("address update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                   
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
     }
     render() {

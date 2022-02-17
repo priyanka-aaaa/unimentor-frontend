@@ -50,20 +50,20 @@ class WorkExperienceForm extends Component {
                     myExtraActivity: res.data.studentExtraCurricularDocument.file,
                     myactivity: res.data.studentExtraCurricularDocument.activity
                 });
-                console.log(this.state.myactivity);
+              
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+             
                 }
             })
             .catch(error => {
-                console.log(error.response)
+   
             });
     };
     onFileExtraActivity = eventpassport => {
 
-        console.log(eventpassport.target.files[0]);
+       
         const obj2 = new FormData();
 
         obj2.append("file", eventpassport.target.files[0]);
@@ -76,14 +76,14 @@ class WorkExperienceForm extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+                  
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
         //end for call api
     };
@@ -94,14 +94,14 @@ class WorkExperienceForm extends Component {
         axios.put('/student/extraCurricularDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+      
             });
         //end for call api
     }

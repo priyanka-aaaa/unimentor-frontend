@@ -19,7 +19,7 @@ function country(props) {
     },
   ]
   function setDegreeInLocalStorage(index){
-    console.log(list[index])
+  
     localStorage.setItem("degreeFilter",list[index].degree);
   }
 

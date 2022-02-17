@@ -11,7 +11,7 @@ function PersonalInformation(props) {
     if (localStorage.getItem("userData")) {
       var a = localStorage.getItem('userData');
       var mydata = JSON.parse(a);
-      console.log(mydata);
+   
       var user_email = mydata.data.student.email;
       var mounted = mydata.data.token;
     }
@@ -27,12 +27,12 @@ function PersonalInformation(props) {
 
         }
         else {
-          alert("error");
+      
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+      
       });
     //end for fetch personal information
 

@@ -41,9 +41,9 @@ export default function Universityregister() {
             };
             axios.post(process.env.REACT_APP_SERVER_URL+'university/register', obj)
                 .then(function (res) {
-                    console.log(res.data);
+             
                     if (res.data.success === true) {
-                        alert("University successfully");
+                      
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -57,7 +57,7 @@ export default function Universityregister() {
                     }
                 })
                 .catch(error => {
-                    console.log(error.response)
+                 
                 });
         }
 

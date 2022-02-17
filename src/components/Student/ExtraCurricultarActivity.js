@@ -16,7 +16,7 @@ const ExtraCurricultarActivity = () => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+      
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
@@ -79,11 +79,11 @@ const ExtraCurricultarActivity = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+                            
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                     
                     });
 
             }
@@ -99,11 +99,11 @@ const ExtraCurricultarActivity = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+              
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                     
                     });
             }
         })
@@ -112,8 +112,7 @@ const ExtraCurricultarActivity = () => {
     }
     function handleDelete(value) {
         const url2 = process.env.REACT_APP_SERVER_URL + 'student/activities/' + value
-        console.log("url2");
-        console.log(url2);
+     
         fetch(url2, {
             method: 'delete',
             headers: { 'Authorization': mounted }

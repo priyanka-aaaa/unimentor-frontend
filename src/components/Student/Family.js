@@ -21,7 +21,7 @@ const Family = () => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+       
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
@@ -76,14 +76,14 @@ const Family = () => {
                       
                         
                         if (res.data.success === true) {
-                            // alert("courses update successfully");
+                       
                         }
                         else {
-                            alert("error");
+                     
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                 
                     });
 
             }
@@ -99,11 +99,11 @@ const Family = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+                        
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+              
                     });
             }
         })

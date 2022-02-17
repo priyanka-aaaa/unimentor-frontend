@@ -66,18 +66,18 @@ class StudentForgotPassword extends Component {
             axios.post('/student/forgotPassword ', obj)
                 .then(result => {
                     let responseJson = result;
-                    // console.log(responseJson.data.success);
+                  
                     if (responseJson.data.success === true) {
                         // localStorage.setItem('userData', JSON.stringify(responseJson));
                         // this.setState({ redirectToReferrer: true });
                     }
                     else {
-                        alert("Username is not correct");
+                      
                     }
                 }
                 )
                 .catch(error => {
-                    console.log(error.response)
+          
                 });
             this.setState({
                 email: '',

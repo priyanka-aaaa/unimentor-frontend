@@ -63,40 +63,39 @@ const AdminApplication = () => {
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        console.log("formvalues");
-        console.log(formValues);
+     
 
 
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/applications', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                     
                         if (res.data.success === true) {
-                            console.log("courses update successfully");
+                      
                         }
                         else {
-                            alert("error");
+                      
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                      
                     });
 
             }
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                        console.log(res.data);
+                      
                         if (res.data.success === true) {
-                            console.log("courses update successfully");
+                        
                         }
                         else {
-                            alert("error");
+                        
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+                       
                     });
             }
 

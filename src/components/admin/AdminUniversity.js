@@ -33,15 +33,14 @@ export default function AdminUniversity() {
 
         // start for fetch university
         const url = process.env.REACT_APP_SERVER_URL + "universities";
-        console.log(url)
+       
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data.universities");
-                console.log(data.universities);
+             
                 setdata(data.universities);
                 setFormValues(data.universities)
                 // this.setState({ data: data.universityCourses })

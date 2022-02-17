@@ -124,11 +124,11 @@ class Button extends React.Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+              
                 }
             })
             .catch(error => {
-                console.log(error.response)
+       
             });
     };
     onFileChangeugDegree = eventugDegree => {
@@ -144,14 +144,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Ug degree update successfully");
+                
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for call api
     };
@@ -162,14 +162,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Ug degree update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                    
                 }
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
         //end for call api
     }
@@ -253,14 +253,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Ug consolidated update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for call api
     };
@@ -271,14 +271,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Ug consolidated update successfully");
+                   
                 }
                 else {
-                    alert("error");
+              
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for call api
     }
@@ -362,14 +362,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("edug marksheet ugMarksheet update successfully");
+                    
                 }
                 else {
-                    alert("error");
+           
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //end for call api
     };
@@ -380,14 +380,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("edug marksheet update successfully");
+                 
                 }
                 else {
-                    alert("error");
+      
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for call api
     }

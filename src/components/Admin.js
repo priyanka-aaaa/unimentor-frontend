@@ -35,13 +35,13 @@ export default function AdminLogin() {
             axios.post('/student/login', obj)
                 .then(result => {
                     let responseJson = result;
-                    console.log(responseJson.data.success);
+                  
                     if (responseJson.data.success === true) {
                         localStorage.setItem('userData', JSON.stringify(responseJson));
                         setredirectToReferrer(true)
                     }
                     else {
-                        alert("Username or Password is not correct");
+                     
                     }
                 }
                 )

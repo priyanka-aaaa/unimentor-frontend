@@ -46,8 +46,7 @@ export default function ApplicationStep() {
             .then(response => response.json())
             .then(data => {
                 setuniversityApplication(data.adminCountry.countrySteps)
-                console.log("qwerty");
-                console.log(data.adminCountry)
+            
             })
         // end for fetching particular data
     }
@@ -86,8 +85,7 @@ export default function ApplicationStep() {
             .then(response => response.json())
             .then(data => {
                 setdata(data.adminCountrys)
-                console.log("data.adminCountrys");
-                console.log(data.adminCountrys)
+              
             })
         // end for fetching course
     }, [])
@@ -123,11 +121,11 @@ export default function ApplicationStep() {
                     setsubmitSuccess(1)
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
     }
 

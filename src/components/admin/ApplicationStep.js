@@ -92,8 +92,7 @@ export default function ApplicationStep() {
             .then(response => response.json())
             .then(data => {
                 setdata(data.adminCountrys)
-                console.log("data.adminCountrys");
-                console.log(data.adminCountrys)
+               
             })
         // end for fetching course
     }, [])
@@ -129,12 +128,11 @@ export default function ApplicationStep() {
                     setsubmitSuccess(1)
                 }
                 else {
-                    console.log(res);
-                    alert("error");
+              
                 }
             })
-            .catch(error => {
-                console.log(error.response)
+            .catch(error => {  
+               
             });
     }
 

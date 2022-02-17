@@ -9,7 +9,7 @@ function MajorPursue(props) {
     
   ]
   function setMajorInLocalStorage(index){
-    console.log(list[index])
+   
     localStorage.setItem("majorFilter",list[index].major);
   }
   function setMajorScoreLocalStorage(event){

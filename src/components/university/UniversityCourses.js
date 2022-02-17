@@ -332,9 +332,10 @@ const UniversityCourses = () => {
             website: website,
             description: description,
             exam: exam,
-            year: year,
-            month: month
+            year: intakeyear,
+            month: intakemonth
         };
+      
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
 
@@ -380,6 +381,13 @@ const UniversityCourses = () => {
         const myArray = value.split("&&");
         setyear(myArray[0])
         setmonth(myArray[1])
+
+    }
+    function setcourseaddintake(value) {
+      
+        const myArray = value.split("&&");
+        setintakeyear(myArray[0])
+        setintakemonth(myArray[1])
 
     }
     return (
@@ -708,9 +716,10 @@ const UniversityCourses = () => {
                                                                                     Intakes
 
                                                                                     <select
-                                                                                        type="text" className="form-control"
+                                                                                        type="text" className="form-control" value="hii"
                                                                                         required
                                                                                         onChange={(e) => setintake(e.target.value)}>
+                                                                                        <option value={year + "&&" + month}>{year + " " + month}</option>
                                                                                         {Intakedata.map((object, i) => {
 
                                                                                             return (
@@ -954,7 +963,7 @@ const UniversityCourses = () => {
                                                                                         <select
                                                                                             type="text" className="form-control"
                                                                                             required
-                                                                                            onChange={(e) => setintake(e.target.value)}>
+                                                                                            onChange={(e) => setcourseaddintake(e.target.value)}>
                                                                                             {Intakedata.map((object, i) => {
 
                                                                                                 return (

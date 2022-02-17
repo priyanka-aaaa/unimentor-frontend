@@ -11,7 +11,7 @@ function Test(props) {
     }
   ]
   function setTestInLocalStorage(index){
-    console.log(list[index])
+  
     localStorage.setItem("testFilter",list[index].test);
   }
 

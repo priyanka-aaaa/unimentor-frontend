@@ -48,8 +48,7 @@ class IdentityDocument extends Component {
         var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
         axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
-                console.log("oo")
-                console.log(url2)
+             
                 this.setState({
                     mypassport: res.data.studentIdentityDocument.passport,
                     mypassportBack: res.data.studentIdentityDocument.passportBack,
@@ -59,11 +58,11 @@ class IdentityDocument extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+           
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //end for fetch identityDocument
     };
@@ -78,13 +77,12 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    // alert("Personal Profile passport update successfully");
+                
                         //start for fetch identityDocument
         var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
         axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
-                console.log("oo")
-                console.log(url2)
+              
                 this.setState({
                     mypassport: res.data.studentIdentityDocument.passport,
                     mypassportBack: res.data.studentIdentityDocument.passportBack,
@@ -94,25 +92,25 @@ class IdentityDocument extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
         //end for fetch identityDocument
                 }
                 else {
-                    alert("error");
+                    
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
 
     }
     onDeletePassportBackHandle() {
-        console.log('gggh')
+     
         //start for identitydocument
         const obj2 = new FormData();
 
@@ -126,14 +124,14 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile passport update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
         //end for identity document
     }
@@ -151,14 +149,14 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile passport update successfully");
+              
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for identity document
     }
@@ -175,14 +173,14 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile passport update successfully");
+                   
                 }
                 else {
-                    alert("error");
+             
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
         //end for call api
     };
@@ -193,14 +191,14 @@ class IdentityDocument extends Component {
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile update successfully");
+                 
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+         
             });
         //end for call api
     }
@@ -284,14 +282,14 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile passport update successfully");
+                  
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //end for call api
     };
@@ -302,14 +300,14 @@ class IdentityDocument extends Component {
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("Personal Profile update successfully");
+              
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for call api
     }
@@ -383,8 +381,7 @@ class IdentityDocument extends Component {
         }
     }
     onFileChangecv = eventcv => {
-        console.log("hhh");
-        console.log(eventcv.target.files[0]);
+       
         const obj2 = new FormData();
 
         obj2.append("cv", eventcv.target.files[0]);
@@ -397,14 +394,14 @@ class IdentityDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("cv update successfully");
+              
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for call api
     };
@@ -415,14 +412,14 @@ class IdentityDocument extends Component {
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("cv update successfully");
+               
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
         //end for call api
     }
@@ -434,14 +431,14 @@ class IdentityDocument extends Component {
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj5, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("cv delete successfully");
+                
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
         //end for call api
     }

@@ -30,7 +30,7 @@ export default function AgentEvaluate() {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+    
             var user_email = mydata.data.student.email;
             var mounted = mydata.data.token;
         }
@@ -47,7 +47,7 @@ export default function AgentEvaluate() {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'agent/evaluate', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+            
                 if (res.data.success === true) {
 
                     setsuccessMessage("Evaluate Updated")
@@ -55,12 +55,12 @@ export default function AgentEvaluate() {
                     setsubmitSuccess(1)
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
     }
 

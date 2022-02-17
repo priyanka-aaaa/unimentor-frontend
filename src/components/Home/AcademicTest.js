@@ -11,7 +11,7 @@ function AcademicTest(props) {
     }
   ]
   function setAcademicTestInLocalStorage(index){
-    console.log(list[index])
+
     localStorage.setItem("academicTestFilter",list[index].academicTest);
   }
               return (

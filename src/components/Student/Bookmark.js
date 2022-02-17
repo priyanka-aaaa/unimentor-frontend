@@ -16,7 +16,7 @@ function Bookmark(props) {
     if (localStorage.getItem("userData")) {
       var a = localStorage.getItem('userData');
       var mydata = JSON.parse(a);
-      console.log(mydata);
+
       var user_email = mydata.data.student.email;
       var mounted = mydata.data.token;
     }
@@ -32,15 +32,13 @@ function Bookmark(props) {
     })
       .then(response => response.json())
       .then(data => {
-        console.log("rrrr");
+      
         var myresults = data.studentBookmarks;
-        console.log(myresults)
-        // if (Object.keys(myresults).length === 0) {
-        // }
-        // else {
+      
+     
         setdata(data.studentBookmarks)
 
-        // }
+    
       })
 
 

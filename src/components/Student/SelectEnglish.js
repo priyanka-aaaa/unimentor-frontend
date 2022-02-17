@@ -58,11 +58,11 @@ class TenMarksheet extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+ 
             });
     };
     onFileSelectEnglish = eventpassport => {
@@ -79,14 +79,14 @@ class TenMarksheet extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+             
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //end for call api
     };
@@ -97,14 +97,14 @@ class TenMarksheet extends Component {
         axios.put('/student/englishProficiencyDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+                
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+     
             });
         //end for call api
     }

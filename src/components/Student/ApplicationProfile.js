@@ -20,7 +20,7 @@ export default function Studentregister() {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+      
             var user_email = mydata.data.student.email;
             var mytoken = mydata.data.token;
         }

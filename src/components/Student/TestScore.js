@@ -18,7 +18,7 @@ function PersonalInformation(props) {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+          
             var user_email = mydata.data.student.email;
             var mytoken = mydata.data.token;
         }
@@ -27,7 +27,7 @@ function PersonalInformation(props) {
         //start for score
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/score', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
-                console.log(res.data);
+             
                 if (res.data.success === true) {
                     var resultStudentScore = res.data.studentScore;
                     setscoremarks(resultStudentScore.marks);
@@ -36,12 +36,12 @@ function PersonalInformation(props) {
                     setscoresat(resultStudentScore.sat);
                 }
                 else {
-                    alert("error");
+              
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+       
             });
         //end for score
     }, [])
@@ -61,18 +61,18 @@ function PersonalInformation(props) {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/score', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+          
                 if (res.data.success === true) {
                     setsuccessMessage("Score Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     return (

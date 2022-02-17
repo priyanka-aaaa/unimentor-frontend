@@ -20,8 +20,7 @@ class Topbar extends Component {
         if (localStorage.getItem("agentData")) {
             var a = localStorage.getItem('agentData');
             var b = JSON.parse(a);
-            console.log(b);
-            console.log(b.data.agent.email);
+            
             var user_email = b.data.agent.email;
             this.setState({ email: user_email });
         }

@@ -128,8 +128,7 @@ export default function AdminStudentApplication() {
     axios.get(url2, { headers: { 'Authorization': mounted } })
       .then(function (res) {
         var myuniversityCourse = res.data.studentPersonalInformation;
-        console.log("myuniversityCourse")
-        console.log(myuniversityCourse)
+      
         if (res.data.success === true) {
           setsalutation(myuniversityCourse.salutation);
           setfirstName(myuniversityCourse.firstName);
@@ -150,12 +149,12 @@ export default function AdminStudentApplication() {
           setrefusedVisa(myuniversityCourse.refusedVisa);
         }
         else {
-          alert("error");
+     
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+      
       });
     //end for personal information
     //start for address
@@ -172,12 +171,12 @@ export default function AdminStudentApplication() {
           setcommunication_address(studentAddress.communication_address);
         }
         else {
-          alert("error");
+     
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+       
       });
     //end for address
     //start for family information
@@ -189,12 +188,12 @@ export default function AdminStudentApplication() {
           setFormFamilyValues(res.data.studentFamilies)
         }
         else {
-          alert("error");
+      
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+
       });
     //end for family information
 
@@ -206,19 +205,19 @@ export default function AdminStudentApplication() {
           setformEducationValues(res.data.studentEducations)
         }
         else {
-          alert("error");
+      
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+      
       });
     //end for education
     //start for score
     var url5 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/score';
     axios.get(url5, { headers: { 'Authorization': mounted } })
       .then(function (res) {
-        console.log(res.data);
+     
         if (res.data.success === true) {
           var resultStudentScore = res.data.studentScore;
           setscoremarks(resultStudentScore.marks);
@@ -227,12 +226,12 @@ export default function AdminStudentApplication() {
           setscoresat(resultStudentScore.sat);
         }
         else {
-          alert("error");
+        
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+  
       });
     //end for score
     //start for work experience
@@ -241,17 +240,16 @@ export default function AdminStudentApplication() {
     axios.get(url6, { headers: { 'Authorization': mounted } })
       .then(function (res) {
         if (res.data.success === true) {
-          console.log("res.data.studentExperiences");
-          console.log(res.data.studentExperiences[0].status)
+      
           setFormExperienceValues(res.data.studentExperiences)
         }
         else {
-          alert("error");
+    
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+   
       });
     //end for work experience
     //start for extra curricultar activity
@@ -264,12 +262,12 @@ export default function AdminStudentApplication() {
           setformActivityValues(res.data.studentActivities)
         }
         else {
-          alert("error");
+    
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+
       });
     //end for extra curricultar activity
     //start for recommendation
@@ -281,12 +279,12 @@ export default function AdminStudentApplication() {
           setFormRecommendationValues(res.data.studentProfileRecommendations)
         }
         else {
-          alert("error");
+    
         }
 
       })
       .catch(error => {
-        console.log(error.response)
+   
       });
     //end for recommendation
   }

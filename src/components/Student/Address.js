@@ -28,7 +28,7 @@ function PersonalInformation(props) {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+        
             var user_email = mydata.data.student.email;
             var mytoken = mydata.data.token;
         }
@@ -37,7 +37,7 @@ function PersonalInformation(props) {
      //start for address
      axios.get(process.env.REACT_APP_SERVER_URL + 'student/address', { headers: { 'Authorization': mytoken } })
      .then(function (res) {
-         console.log(res.data);
+        
          if (res.data.success === true) {
 
              var studentAddress = res.data.studentAddress;
@@ -49,12 +49,12 @@ function PersonalInformation(props) {
              setcommunication_address(studentAddress.communication_address);
          }
          else {
-             alert("error");
+         
          }
 
      })
      .catch(error => {
-         console.log(error.response)
+  
      });
      axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
 
@@ -66,12 +66,12 @@ function PersonalInformation(props) {
 
          }
          else {
-             alert("error");
+             
          }
 
      })
      .catch(error => {
-         console.log(error.response)
+       
      });
  //start for fetch for city
  axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
@@ -80,18 +80,18 @@ function PersonalInformation(props) {
 
          }
          else {
-             alert("error");
+           
          }
 
      })
      .catch(error => {
-         console.log(error.response)
+  
      });
  //end for fetch for city
     }, [])
     function application_address(event) {
         event.preventDefault();
-        console.log(communication_address);
+    
         const obj = {
             country: country,
             state: state,
@@ -103,7 +103,7 @@ function PersonalInformation(props) {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/address', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+          
                 if (res.data.success === true) {
                     setsuccessMessage("Address Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
@@ -111,12 +111,12 @@ function PersonalInformation(props) {
 
                 }
                 else {
-                    alert("error");
+               
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     
@@ -134,12 +134,12 @@ function PersonalInformation(props) {
 
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
     }
     function handlestate(e) {
@@ -156,12 +156,12 @@ function PersonalInformation(props) {
 
                 }
                 else {
-                    alert("error");
+           
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
     }
     return (

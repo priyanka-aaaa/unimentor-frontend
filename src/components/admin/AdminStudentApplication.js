@@ -186,11 +186,11 @@ export default function AdminStudentApplication() {
             
         //     }
         //     else {
-        //         alert("error");
+      
         //     }
         // })
         // .catch(error => {
-        //     console.log(error.response)
+       
         // });
         //end for all
         //start for particular application details
@@ -202,8 +202,7 @@ export default function AdminStudentApplication() {
             .then(response => response.json())
             .then(data => {
                 setuniversityApplication(data.adminCountry.countrySteps)
-                console.log("data.adminCountry.countrySteps")
-                console.log(data.adminCountry.countrySteps)
+             
             })
         //end for particular application details
         //start for dummy country application step
@@ -248,11 +247,11 @@ export default function AdminStudentApplication() {
 
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //end for studentAppliation
         //start for personal information
@@ -281,12 +280,12 @@ export default function AdminStudentApplication() {
                     setrefusedVisa(myuniversityCourse.refusedVisa);
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+              
             });
         //end for personal information
         //start for address
@@ -303,12 +302,12 @@ export default function AdminStudentApplication() {
                     setcommunication_address(studentAddress.communication_address);
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for address
         //start for family information
@@ -320,12 +319,12 @@ export default function AdminStudentApplication() {
                     setFormFamilyValues(res.data.studentFamilies)
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
         //end for family information
 
@@ -337,12 +336,12 @@ export default function AdminStudentApplication() {
                     setformEducationValues(res.data.studentEducations)
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //end for education
         //start for score
@@ -357,12 +356,12 @@ export default function AdminStudentApplication() {
                     setscoresat(resultStudentScore.sat);
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
         //end for score
         //start for work experience
@@ -375,12 +374,12 @@ export default function AdminStudentApplication() {
                     setFormExperienceValues(res.data.studentExperiences)
                 }
                 else {
-                    alert("error");
+                   
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //end for work experience
         //start for extra curricultar activity
@@ -393,12 +392,12 @@ export default function AdminStudentApplication() {
                     setformActivityValues(res.data.studentActivities)
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+                
             });
         //end for extra curricultar activity
         //start for recommendation
@@ -410,12 +409,12 @@ export default function AdminStudentApplication() {
                     setFormRecommendationValues(res.data.studentProfileRecommendations)
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
         //end for recommendation
         //start for studentApplication
@@ -431,17 +430,17 @@ export default function AdminStudentApplication() {
             .then(function (res) {
                 if (res.data.success === true) {
                     
-                    console.log(res.data?.studentIdentityDocument)
+                   
                     saveFile(res.data?.studentIdentityDocument?.passportBack,"passportBack");
                     
                 }
                 else {
-                    alert("error");
+                
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+        
             });
 
     }
@@ -453,19 +452,19 @@ export default function AdminStudentApplication() {
             .then(function (res) {
                 if (res.data.success === true) {
                     
-                    console.log(res.data?.studentEducationDocument)
+            
                     saveFile(res.data?.studentEducationDocument?.marksheet10,"10th");
                     saveFile(res.data?.studentEducationDocument?.marksheet12,"");
                     saveFile(res.data?.studentEducationDocument?.ugDegree,"cv");
                     
                 }
                 else {
-                    alert("error");
+                  
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
 
     }

@@ -264,7 +264,7 @@ const UniversityCourses = () => {
         setviewWidth("0px");
     }
     function closeaddbox(value) {
-alert("fgf")
+
         setaddWidth("0px");
     }
 

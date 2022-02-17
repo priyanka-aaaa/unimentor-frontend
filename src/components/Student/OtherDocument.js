@@ -55,11 +55,11 @@ class OtherDocument extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+          
             });
     };
     onFileChangeTen = eventpassport => {
@@ -78,14 +78,14 @@ class OtherDocument extends Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("otherDocument update successfully");
+                 
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+      
             });
         //end for call api
     };
@@ -97,14 +97,14 @@ class OtherDocument extends Component {
         axios.put('/student/otherDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("otherDocument update successfully");
+                 
                 }
                 else {
-                    alert("error");
+                  
                 }
             })
             .catch(error => {
-                console.log(error.response)
+       
             });
         //end for call api
     }

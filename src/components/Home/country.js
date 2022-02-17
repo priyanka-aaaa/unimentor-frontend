@@ -34,11 +34,11 @@ function country(props) {
     }
   ]
   function setCountryInLocalStorage(index) {
-    console.log(list[index])
+
     localStorage.setItem("countryFilter", list[index].country);
   }
   let handlecountry = () => {
-    // alert("jj")
+
   }
   return (
     <div>

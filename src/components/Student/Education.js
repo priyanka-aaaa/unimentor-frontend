@@ -19,15 +19,15 @@ const Education = () => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+     
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
         //start for select course
         const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-        console.log(url);
-        console.log("uuuulululu")
+     
+      
         fetch(url, {
             method: 'GET',
             headers: {
@@ -78,14 +78,15 @@ const Education = () => {
 
 
                         if (res.data.success === true) {
-                            // alert("courses update successfully");
+                   
                         }
                         else {
-                            alert("error");
+                     
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+               
+                        
                     });
 
             }
@@ -101,11 +102,12 @@ const Education = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                            alert("error");
+                    
                         }
                     })
                     .catch(error => {
-                        console.log(error.response)
+              
+                        
                     });
             }
         })

@@ -26,7 +26,7 @@ function PersonalInformation(props) {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+         
             var user_email = mydata.data.student.email;
             var mounted = mydata.data.token;
         }
@@ -57,12 +57,12 @@ function PersonalInformation(props) {
 
                 }
                 else {
-                    alert("error");
+            
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+           
             });
         //end for fetch personal information
 
@@ -94,7 +94,7 @@ function PersonalInformation(props) {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+          
                 if (res.data.success === true) {
 
                     setsuccessMessage("Personal Info Updated")
@@ -102,12 +102,12 @@ function PersonalInformation(props) {
                     setsubmitSuccess(1)
                 }
                 else {
-                    alert("error");
+              
                 }
 
             })
             .catch(error => {
-                console.log(error.response)
+
             });
     }
 

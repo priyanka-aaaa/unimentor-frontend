@@ -26,7 +26,7 @@ export default function Studentregister() {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-            console.log(mydata);
+   
             var user_email = mydata.data.student.email;
             var mytoken = mydata.data.token;
         }
@@ -44,16 +44,16 @@ export default function Studentregister() {
             };
             axios.post('/student/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-                    console.log(res.data);
+                    
                     if (res.data.success === true) {
-                        alert("password update successfully");
+                      
                     }
                     else {
-                        alert("error");
+                       
                     }
                 })
                 .catch(error => {
-                    console.log(error.response)
+               
                 });
         }
     }
@@ -76,16 +76,16 @@ export default function Studentregister() {
         };
         axios.put('/student/personalDetails', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log(res.data);
+          
                 if (res.data.success === true) {
-                    alert("Personal details update successfully");
+             
                 }
                 else {
-                    alert("error");
+          
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
 
     }

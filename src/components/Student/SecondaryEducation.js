@@ -69,15 +69,15 @@ class Button extends React.Component {
                 if (res.data.success === true) {
                 }
                 else {
-                    alert("error");
+             
                 }
             })
             .catch(error => {
-                console.log(error.response)
+            
             });
     };
     onFileChangeTen = eventpassport => {
-        console.log("hlo");
+   
         const obj2 = new FormData();
 
         obj2.append("marksheet10", eventpassport.target.files[0]);
@@ -90,14 +90,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+               
                 }
                 else {
-                    alert("error");
+               
                 }
             })
             .catch(error => {
-                console.log(error.response)
+     
             });
         //end for call api
     };
@@ -108,14 +108,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("10 marksheet update successfully");
+                   
                 }
                 else {
-                    alert("error");
+                   
                 }
             })
             .catch(error => {
-                console.log(error.response)
+                
             });
         //end for call api
     }
@@ -246,14 +246,14 @@ class Button extends React.Component {
         })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("12 marksheet update successfully");
+                 
                 }
                 else {
-                    alert("error");
+                
                 }
             })
             .catch(error => {
-                console.log(error.response)
+               
             });
         //end for call api
     };
@@ -264,14 +264,14 @@ class Button extends React.Component {
         axios.put('/student/educationDocument', obj4, { headers: { 'Authorization': this.state.mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    alert("12 marksheet update successfully");
+                
                 }
                 else {
-                    alert("error");
+                 
                 }
             })
             .catch(error => {
-                console.log(error.response)
+             
             });
         //end for call api
     }
