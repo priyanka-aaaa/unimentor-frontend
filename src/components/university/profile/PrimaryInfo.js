@@ -200,7 +200,7 @@ export default function PrimaryInfo() {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
 
-            <div className="card">
+          
 
                 <div className="card">
                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne"><strong>1</strong>
@@ -409,7 +409,7 @@ export default function PrimaryInfo() {
 
                 </div>
             </div>
-        </div>
+     
     );
 }
 
