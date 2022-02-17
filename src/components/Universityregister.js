@@ -15,6 +15,8 @@ export default function Universityregister() {
     const [nameError, setnameError] = useState("");
     const [emailError, setemailError] = useState("");
     const [phoneError, setphoneError] = useState("");
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     function handleSubmit(event) {
         setnameError("");
         setemailError("");
@@ -43,7 +45,10 @@ export default function Universityregister() {
                 .then(function (res) {
              
                     if (res.data.success === true) {
-                      
+                        setsuccessMessage("Register")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -67,6 +72,9 @@ export default function Universityregister() {
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
+                    {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
                         <div className="col-lg-12">
                             <div className="form-centerblock">
                                 <p className="logo"><img src={logo} alt="logo" /></p>
