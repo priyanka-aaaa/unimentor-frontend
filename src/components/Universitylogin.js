@@ -82,7 +82,7 @@ export default function Universitylogin() {
                                             />
                                         </div>
                                         <span style={{ color: "red" }}> {passwordError}</span>
-                                        <button type="submit" className="btn btn-website">Register</button>
+                                        <button type="submit" className="btn btn-website">Login</button>
                                     </form>
                                 </div>
 

@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 const CoursesFee = () => {
     const [formValues, setFormValues] = useState([{
         courseName: "", duration: "", tuitionFee: "", studyField: "",
@@ -13,22 +13,27 @@ const CoursesFee = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
+    const [universityId, setuniversityId] = useState([]);
+
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
 
-            var myuniversityid = mydata.data.university._id;
+            var universityId = mydata.data.university._id;
 
             var user_email = mydata.data.university.email;
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
+        setuniversityId(universityId)
         //start for select course
 
 
         // const url = "university/courses";
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/courses';
+        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET'
 
@@ -68,6 +73,8 @@ const CoursesFee = () => {
         var myvalues = JSON.stringify(formValues);
 
         formValues.map(async (item) => {
+            console.log("item._id")
+            console.log(item._id)
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
@@ -76,11 +83,11 @@ const CoursesFee = () => {
 
                         }
                         else {
-                          
+
                         }
                     })
                     .catch(error => {
-                    
+
                     });
 
             }
@@ -95,17 +102,21 @@ const CoursesFee = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                        
+
                         }
                     })
                     .catch(error => {
-                   
+
                     });
             }
         })
 
     }
 
+    let handleDeleteClick = (value) => {
+        setshowSweetAlert("1")
+        setdeleteId(value)
+    }
     return (
         <div>
 
@@ -118,6 +129,60 @@ const CoursesFee = () => {
                 </a>
                 <div id="collapse3" className="collapse" data-bs-parent="#accordion">
                     {/* <form> */}
+                    {showSweetAlert === "1" ? <SweetAlert
+                        warning
+                        showCancel
+                        confirmBtnText="Yes, delete it!"
+                        confirmBtnBsStyle="danger"
+
+                        title="Are you sure?"
+                        onConfirm={(value) => {
+                            setshowSweetAlert("0");
+                            axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + deleteId, { headers: { 'Authorization': mounted } })
+                                .then(function (res) {
+                                    var myuniversityCourse = res.data.universityCourse;
+                                    if (res.data.success === true) {
+                                        setsuccessMessage("course delete")
+                                        setTimeout(() => setsubmitSuccess(""), 3000);
+                                        setsubmitSuccess(1)
+                                        //start for fetching course
+                                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                                        fetch(url, {
+                                            method: 'GET'
+
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                var myresults = data.universityCourses;
+                                                if (Object.keys(myresults).length === 0) {
+                                                }
+                                                else {
+                                                    setFormValues(data.universityCourses)
+                                                }
+                                            })
+                                        // end for fetching course
+                                    }
+                                    else {
+
+                                    }
+
+                                })
+                                .catch(error => {
+
+                                });
+
+
+                        }}
+                        onCancel={() =>
+                            setshowSweetAlert("0")
+
+                        }
+                        focusCancelBtn
+                    >
+
+                    </SweetAlert>
+                        : null
+                    }
                     <form onSubmit={handleSubmit}>
                         <div className="card-body" >
 
@@ -126,6 +191,8 @@ const CoursesFee = () => {
                                 {formValues.map((element, index) => (
 
                                     <div className="row" key={index}>
+                                        <div className="btn deleteFamily" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
+
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col">
