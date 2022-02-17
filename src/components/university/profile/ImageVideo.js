@@ -17,6 +17,7 @@ class ImageVideo extends Component {
             imagesVideo: [],
             successMessage: "",
             submitSuccess: "",
+            buttonText:"Show All Image & Video"
         };
         this.submitImages = this.submitImages.bind(this);
 
@@ -39,9 +40,16 @@ class ImageVideo extends Component {
         }
     }
     ViewAllImage() {
-
-        this.setState({ viewDisplay: "inline" })
-
+        console.log("this.state.buttonText")
+      
+       if(this.state.buttonText==="Show All Image & Video"){
+        this.setState({ viewDisplay: "inline", buttonText:"Hide  All Image & Video"})
+       }
+       else{
+        this.setState({ viewDisplay: "none", buttonText:"Show All Image & Video"})
+       }
+     
+    
     }
     handleDeleteClick(value) {
 
@@ -428,7 +436,9 @@ class ImageVideo extends Component {
                                     <div className="d-sm-flex align-items-center justify-content-between mb-4">
 
 
-                                        <button type="button" onClick={() => this.ViewAllImage()} className="btn btn-outline-success"><span><i className="fas fa-eye"></i></span>Show All Image</button>
+                                        <button type="button" onClick={() => this.ViewAllImage()} className="btn btn-outline-success"><span><i className="fas fa-eye"></i></span>
+                                        {this.state.buttonText}
+                                        </button>
                                     </div>
                                     {/* start for shwowing table */}
                                     <div className="col-md-10 ">

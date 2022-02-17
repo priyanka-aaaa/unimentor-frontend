@@ -22,7 +22,7 @@ const UniversityIntake = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
-	
+
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -42,7 +42,7 @@ const UniversityIntake = () => {
         var ddlYears = document.getElementById("myyear");
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
-        
+
         //Determine the Current Year.
         var currentYear = (new Date()).getFullYear();
         for (var i = currentYear; i < 2027; i++) {
@@ -59,7 +59,7 @@ const UniversityIntake = () => {
             option.value = i;
             ddlYearsEdit.appendChild(option);
         }
-        
+
         //end for year
         //start for fetching intake
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
@@ -82,17 +82,17 @@ const UniversityIntake = () => {
             .then(function (res) {
                 var myuniversityIntakes = res.data.universityIntake;
                 if (res.data.success === true) {
-                  
+
                     setyear(myuniversityIntakes.year);
                     setmonth(myuniversityIntakes.month);
                 }
                 else {
-        
+
                 }
 
             })
             .catch(error => {
-              
+
             });
 
     }
@@ -108,17 +108,17 @@ const UniversityIntake = () => {
 
     }
     //end for delete 
- function closebox(value) {
+    function closebox(value) {
         setwidth("0px");
-  }
+    }
     function closeviewbox(value) {
-    setviewWidth("0px");
+        setviewWidth("0px");
     }
     function closeaddbox(value) {
-    setaddWidth("0px");
+        setaddWidth("0px");
     }
- //END FOR
- let handleEditSubmit = (event) => {
+    //END FOR
+    let handleEditSubmit = (event) => {
         event.preventDefault();
         const obj = {
             year: year,
@@ -146,15 +146,15 @@ const UniversityIntake = () => {
                     // end for fetching course
                 }
                 else {
-         
+
                 }
             })
             .catch(error => {
-              
+
             });
     }
     let handleAddSubmit = (event) => {
-     
+
         event.preventDefault();
         setaddWidth(0)
         const obj = {
@@ -169,7 +169,7 @@ const UniversityIntake = () => {
                     setsuccessMessage("course add")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                  
+
                     setyear("");
                     setmonth("");
 
@@ -186,11 +186,11 @@ const UniversityIntake = () => {
                     // end for fetching course
                 }
                 else {
-            
+
                 }
             })
             .catch(error => {
-             
+
             });
     }
     return (
@@ -225,53 +225,53 @@ const UniversityIntake = () => {
                                 <h1 className="h3 mb-0 text-gray-800">Intake</h1>
 
                                 {showSweetAlert === "1" ? <SweetAlert
-                    warning
-                    showCancel
-                    confirmBtnText="Yes, delete it!"
-                    confirmBtnBsStyle="danger"
+                                    warning
+                                    showCancel
+                                    confirmBtnText="Yes, delete it!"
+                                    confirmBtnBsStyle="danger"
 
-                    title="Are you sure?"
-                    onConfirm={(value) => {
-                        setshowSweetAlert("0");
-                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + deleteId, { headers: { 'Authorization': mounted } })
-.then(function (res) {
-    var myuniversityCourse = res.data.intakes;
-    if (res.data.success === true) {
-        setsuccessMessage("course delete")
-        setTimeout(() => setsubmitSuccess(""), 3000);
-        setsubmitSuccess(1)
-        //start for fetching course
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setdata(data.universityIntakes)
-            })
-        // end for fetching course
-    }
-    else {
+                                    title="Are you sure?"
+                                    onConfirm={(value) => {
+                                        setshowSweetAlert("0");
+                                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + deleteId, { headers: { 'Authorization': mounted } })
+                                            .then(function (res) {
+                                                var myuniversityCourse = res.data.intakes;
+                                                if (res.data.success === true) {
+                                                    setsuccessMessage("course delete")
+                                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                                    setsubmitSuccess(1)
+                                                    //start for fetching course
+                                                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                                                    fetch(url, {
+                                                        method: 'GET',
+                                                        headers: { 'Authorization': mounted }
+                                                    })
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                                            setdata(data.universityIntakes)
+                                                        })
+                                                    // end for fetching course
+                                                }
+                                                else {
 
-    }
+                                                }
 
-})
-.catch(error => {
+                                            })
+                                            .catch(error => {
 
-});
+                                            });
 
-                    }}
-                    onCancel={() =>
-                        setshowSweetAlert("0")
+                                    }}
+                                    onCancel={() =>
+                                        setshowSweetAlert("0")
 
-                    }
-                    focusCancelBtn
-                >
+                                    }
+                                    focusCancelBtn
+                                >
 
-                </SweetAlert>
-                    : null
-                }
+                                </SweetAlert>
+                                    : null
+                                }
                                 <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Intake</button>
 
                             </div>
