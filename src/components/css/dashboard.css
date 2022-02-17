@@ -11769,6 +11769,27 @@ a.card-header strong {
   padding-top: 20px;
 }
 
+
+.course-sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  right:-40px;
+  background-color: #F1F1F1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 20px;
+}
+.course-sidenav .closebtn {
+  position: absolute;
+  top: -21px;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 20px;
+  color:#f71313;
+}
 .sidenav a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;

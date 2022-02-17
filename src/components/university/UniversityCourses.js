@@ -264,7 +264,7 @@ const UniversityCourses = () => {
         setviewWidth("0px");
     }
     function closeaddbox(value) {
-alert("fgf")
+
         setaddWidth("0px");
     }
 
@@ -519,7 +519,7 @@ alert("fgf")
                                         </div>
 
 
-                                        <div className="card-body sidenav" id="mySidenav"
+                                        <div className="card-body course-sidenav" id="mySidenav"
                                             style={{ width: width }}
                                         >
 
@@ -753,7 +753,7 @@ alert("fgf")
 
                                             </div>
                                         </div>
-                                        <div className="card-body sidenav" id="mySideAdd"
+                                        <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: addWidth }}
                                         >
 
@@ -998,7 +998,7 @@ alert("fgf")
 
                                             </div>
                                         </div>
-                                        <div className="card-body sidenav" id="mySideview"
+                                        <div className="card-body course-sidenav" id="mySideview"
                                             style={{ width: viewWidth }}
                                         >
 
