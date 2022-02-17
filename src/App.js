@@ -37,7 +37,7 @@ import UniversityCourses from './components/university/UniversityCourses';
 import UniversityProfile from './components/university/UniversityProfile';
 import Universitylogin from './components/Universitylogin';
 import Universityregister from './components/Universityregister';
-import Commission from './components/university/Commission';
+import UniversitySetcommission from './components/university/UniversitySetcommission';
 import Summary from './components/university/Summary';
 import AllUniversity from './components/university/AllUniversity';
 import UniveristyPage from './components/university/UniveristyPage';
@@ -154,7 +154,7 @@ function App() {
             <Route path='/FilterUniversity' component={UniversityFilter} />
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />
-            <Route path='/UniversitySetcommission' component={Commission} />
+            <Route path='/UniversitySetcommission' component={UniversitySetcommission} />
             <Route path='/UniversityDashboard' component={UniversityDashboard} />
             <Route path='/UniversityCourses' component={UniversityCourses} />
             <Route path='/UniversityPassword' component={UniversityPassword} />

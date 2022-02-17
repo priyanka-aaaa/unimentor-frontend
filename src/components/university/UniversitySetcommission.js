@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
 import SweetAlert from 'react-bootstrap-sweetalert';
-const Commission = () => {
+const UniversitySetcommission = () => {
     const [mounted, setMounted] = useState();
     const [Percentage, setPercentage] = useState();
     const [commissionChecked, setcommissionChecked] = useState();
@@ -247,6 +247,7 @@ const Commission = () => {
                     .then(response => response.json())
                     .then(data => {
                         setcommissionData(data.universityCommissions)
+                   
                     })
                 //end for get commission
             })
@@ -445,7 +446,7 @@ const Commission = () => {
 
 
 
-                                        <div className="card-body sidenav" id="mySideAdd"
+                                        <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: addWidth }}
                                         >
 
@@ -567,8 +568,9 @@ const Commission = () => {
                                                                                                         <input type="text" className="form-control" placeholder="" name="enter Percentage"
                                                                                                             onChange={e => percentagecommissionValue(e.target.value)}
                                                                                                         />
+                                                                                                           <span>The Total commission is {Percentage}</span>
                                                                                                     </div>
-                                                                                                    <span>The Total commission is {Percentage}</span>
+                                                                                                 
                                                                                                 </div>
                                                                                             </div>
 
@@ -641,7 +643,7 @@ const Commission = () => {
 
                                             </div>
                                         </div>
-                                        <div className="card-body sidenav" id="mySideview"
+                                        <div className="card-body course-sidenav" id="mySideview"
                                             style={{ width: width }}
                                         >
 
@@ -772,7 +774,7 @@ const Commission = () => {
                                                                                                             onChange={e => percentagecommissionValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
-                                                                                                    <span>The Total commission is {Percentage}</span>
+                                                                                                    <span>The Total commission is {commissionValue}</span>
                                                                                                 </div>
                                                                                             </div>
 
@@ -891,4 +893,4 @@ const Commission = () => {
     );
 }
 
-export default Commission;
+export default UniversitySetcommission;
