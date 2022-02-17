@@ -6,7 +6,7 @@ const CoursesFee = () => {
     const [formValues, setFormValues] = useState([{
         courseName: "", duration: "", tuitionFee: "", studyField: "",
         fee: "", courseLevel: "", cgpa: "", eligibility: "", english: "", website: "", description: "", exam: "",
-        year: "", month: "", _id: "null"
+        _id: "null"
 
     }])
     const [successMessage, setsuccessMessage] = useState("");
@@ -16,10 +16,6 @@ const CoursesFee = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     const [universityId, setuniversityId] = useState([]);
-    const [createIntake, setcreateIntake] = useState("0");
-    const [intakeyear, setintakeyear] = useState("2022");
-    const [intakemonth, setintakemonth] = useState("jan");
-    const [Intakedata, setIntakedata] = useState([]);
 
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
@@ -51,59 +47,18 @@ const CoursesFee = () => {
                     setFormValues(data.universityCourses)
                 }
             })
-        //start for fetching intake
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-        fetch(url2, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myresults = data.universityIntakes
-                if (Object.keys(myresults).length === 0) {
-
-                }
-                else {
-                    setIntakedata(data.universityIntakes)
-                    setcreateIntake("1")
-                }
-
-            })
-        // end for fetching intake
     }, [])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
-        console.log("e.target.name");
-        console.log(e.target.name);
-        if(e.target.name==="intake"){
-            var myvalue=e.target.value;
-            const myArray = myvalue.split("&&");
-            newFormValues[i]["year"] = myArray[0]; 
-            newFormValues[i]["month"] = myArray[1]; 
-        }
-        console.log("e.target.value");
-        console.log(e.target.value);
-    
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
     }
-    function setcourseaddintake(value) {
 
-        const myArray = value.split("&&");
-        setintakeyear(myArray[0])
-        setintakemonth(myArray[1])
-
-        setFormValues([{
-
-            year: myArray[0], month: myArray[1], _id: "null"
-        }])
-
-    }
     let addFormFields = () => {
         setFormValues([...formValues, {
             courseName: "", duration: "", tuitionFee: "", studyField: "",
             fee: "", courseLevel: "", cgpa: "", eligibility: "", english: "", website: "", description: "", exam: "",
-            year: "", month: "", _id: "null"
+            _id: "null"
         }])
     }
 
@@ -116,8 +71,7 @@ const CoursesFee = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
-        console.log("myvalues");
-        console.log(myvalues)
+
         formValues.map(async (item) => {
             console.log("item._id")
             console.log(item._id)
@@ -387,45 +341,6 @@ const CoursesFee = () => {
 
                                                         </select></div>
                                                 </div>
-                                                {/* start for intake */}
-                                                <div className="mb-3">
-                                                    <div className="row">
-                                                        <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-
-                                                            <b>{createIntake == "1" ? '' :
-
-                                                                <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
-
-                                                                    Add Intake</button>
-
-
-
-                                                            }</b>
-                                                            <br />
-                                                            Intakes
-                                                            <select
-                                                                type="text" className="form-control" name=""
-                                                                required
-                                                                name="intake"
-                                                                onChange={e => handleChange(index, e)}
-                                                                // onChange={(e) => setcourseaddintake(e.target.value)}
-                                                                >
-                                                                        <option value={element.year + "&&" + element.year}>{element.year + " " + element.month}</option>
-
-                                                                {Intakedata.map((object, i) => {
-
-                                                                    return (
-                                                                        <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                    )
-                                                                })}
-
-                                                            </select>
-
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                                {/* end for intake */}
                                             </div>
                                         </div>
                                     </div>

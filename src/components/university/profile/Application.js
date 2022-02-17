@@ -315,7 +315,7 @@ const Application = () => {
                                     </div>
                                 </div>
                                 {/* start for add */}
-                                <div className="card-body sidenav" id="mySideAdd"
+                                <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
 
@@ -332,7 +332,7 @@ const Application = () => {
                                         {/* start for add admission */}
                                         <div className="row">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Application Process</h3>
+                                                <h3>Add Application Process</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">
@@ -408,7 +408,7 @@ const Application = () => {
                                 </div>
                                 {/* end for add */}
                                 {/* start for view */}
-                                <div className="card-body sidenav" id="mySidenav"
+                                <div className="card-body course-sidenav" id="mySidenav"
                                     style={{ width: width }}
                                 >
 
@@ -425,7 +425,7 @@ const Application = () => {
                                         {/* start for edit admission */}
                                         <div className="row">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Application Process</h3>
+                                                <h3>Edit Application Process</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">

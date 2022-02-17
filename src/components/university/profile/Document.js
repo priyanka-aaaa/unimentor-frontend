@@ -152,11 +152,11 @@ const Document = () => {
                     //end for fetch all document
                 }
                 else {
-                 
+
                 }
             })
             .catch(error => {
-              
+
             });
     }
     let clickEditAddHandler = (datum) => {
@@ -216,11 +216,11 @@ const Document = () => {
 
                 }
                 else {
-                 
+
                 }
             })
             .catch(error => {
-                
+
             });
     }
     return (
@@ -261,11 +261,11 @@ const Document = () => {
 
                                 }
                                 else {
-                               
+
                                 }
                             })
                             .catch(error => {
-                           
+
                             });
 
                     }}
@@ -336,7 +336,7 @@ const Document = () => {
                                     </div>
                                 </div>
                                 {/* start for add */}
-                                <div className="card-body sidenav" id="mySideAdd"
+                                <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
 
@@ -354,7 +354,7 @@ const Document = () => {
                                         {/* start for add document */}
                                         <div className="row">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Document</h3>
+                                                <h3>Add Document</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">
@@ -422,32 +422,11 @@ const Document = () => {
                                             </div>
                                         </div>
                                         {/* //end for add docyument */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     </div>
                                 </div>
                                 {/* end for add */}
                                 {/* start for view */}
-                                <div className="card-body sidenav" id="mySidenav"
+                                <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >
 
@@ -465,7 +444,7 @@ const Document = () => {
 
                                         <div className="row">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Document Process</h3>
+                                                <h3>Edit Document Process</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">

@@ -317,7 +317,7 @@ const Document = () => {
                                         </table>
                                     </div>
                                 </div>
-                                <div className="card-body sidenav" id="mySideAdd"
+                                <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
                                     <div className="student-view">
@@ -432,7 +432,7 @@ const Document = () => {
                                 </div>
                                 {/* end for add */}
                                 {/* start for view */}
-                                <div className="card-body sidenav" id="mySidenav"
+                                <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >
 
