@@ -10,29 +10,34 @@ export default function Overview() {
     const [course, setcourse] = useState("");
     const [courseNo, setcourseNo] = useState("");
     const [month, setmonth] = useState("");
-    const [year, setyear] = useState("");
+    const [myyear, setmyyear] = useState("");
     const [english, setenglish] = useState("");
     const [cgpa, setcgpa] = useState("");
     const [acceptanceRate, setacceptanceRate] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    useEffect(() => {
+    const [foundedYearMessage, setfoundedYearMessage] = useState("");
+    const [yearMessage, setyearMessage] = useState("");
+
+
+    const onChangefoundedYear = (e) => {
+
+        setfoundedYear(e);
+        setfoundedYearMessage("")
+    }
+    const onChangeYear = (e) => {
      
+        setmyyear(e);
+        setyearMessage("")
+    }
+    useEffect(() => {
+
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
-        var ddlYears = document.getElementById("myyear");
 
-        
-        //Determine the Current Year.
-        var currentYear = (new Date()).getFullYear();
-        // for (var i = currentYear; i < 2027; i++) {
-            for (var i = currentYear; i >= 1950; i--) {
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYears.appendChild(option);
-        }
+
+
 
         //start for fetch personal information
         // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
@@ -49,7 +54,7 @@ export default function Overview() {
                     setcourse(student_universityOverview.course);
                     setcourseNo(student_universityOverview.courseNo);
                     setmonth(student_universityOverview.month);
-                    setyear(student_universityOverview.year);
+                    setmyyear(student_universityOverview.year);
                     setenglish(student_universityOverview.english);
                     setcgpa(student_universityOverview.cgpa);
                     setacceptanceRate(student_universityOverview.acceptanceRate);
@@ -57,50 +62,65 @@ export default function Overview() {
 
                 }
                 else {
-             
+
                 }
 
             })
             .catch(error => {
-            
+
             });
     }, [])
 
 
     function overview(event) {
         event.preventDefault();
-        const obj = {
-            foundedYear: foundedYear,
-            ranking: ranking,
 
-            rate: rate,
-            course: course,
-            courseNo: courseNo,
-            month: month,
-            year: year,
-            english: english,
-            cgpa: cgpa,
-            acceptanceRate: acceptanceRate
+        var foundedYearNo = foundedYear.toString().length;
+       
+        var yearNo = myyear.toString().length;
+    
+        if (foundedYearNo !== 4) {
+            setfoundedYearMessage("Please Insert Four Digit")
+        }
+        else if (yearNo !== 4) {
+            setyearMessage("Please Insert Four Digit")
+        }
+        else {
 
-        };
+            const obj = {
+                foundedYear: foundedYear,
+                ranking: ranking,
 
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/overview', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+                rate: rate,
+                course: course,
+                courseNo: courseNo,
+                month: month,
+                year: myyear,
+                english: english,
+                cgpa: cgpa,
+                acceptanceRate: acceptanceRate
 
-                if (res.data.success === true) {
-                    setsuccessMessage("Overview Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+            };
 
-                }
-                else {
-                  
-                }
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/overview', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
 
-            })
-            .catch(error => {
-              
-            });
+                    if (res.data.success === true) {
+                        setsuccessMessage("Overview Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+                    }
+                    else {
+
+                    }
+
+                })
+                .catch(error => {
+
+                });
+        }
+
     }
     return (
         <div>
@@ -120,17 +140,15 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label>Founded year </label>
-                                        <select id="myyear" className="form-control" name="country" required=""
+                                        <input type="number" className="form-control"
+
                                             value={foundedYear}
-                                            onChange={(e) => setfoundedYear(e.target.value)}
-                                        >
-                                            {/* <option>Select Year</option>
-                                            <option>2021</option>
-                                            <option>2020</option>
-                                            <option>2019</option>
-                                            <option>2018</option>
-                                            <option>2017</option> */}
-                                        </select>
+                                            onChange={(e) => onChangefoundedYear(e.target.value)}
+                                        />
+                                        <span style={{ color: "red" }}> {foundedYearMessage}</span>
+
+
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -161,37 +179,25 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label>Popular Courses </label>
-                                        <select
+                                        <input type="text" name="city" className="form-control"
+                                        placeholder="Master in Architecture"
+
                                             value={course}
                                             onChange={(e) => setcourse(e.target.value)}
+                                        />
 
-                                            className="form-control" name="city" required="">
-                                            <option>Select Courses</option>
-                                            <option value="IELTS">IELTS</option>
-                                            <option value="TOEFL">TOEFL</option>
-                                            <option value="GMAT">GMAT</option>
-                                            <option value="GRE">GRE</option>
-                                            <option value="SAT">SAT</option>
-                                            <option value="ACT">ACT</option>
-                                        </select>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label htmlFor="Zipcode">No. of courses </label>
-                                        <select
+                                        <input type="text" name="courseNo" className="form-control"
 
                                             value={courseNo}
                                             onChange={(e) => setcourseNo(e.target.value)}
-                                            className="form-control" name="city" required="">
-                                            <option>Select Courses</option>
-                                            <option>IELTS</option>
-                                            <option>TOEFL</option>
-                                            <option>GMAT</option>
-                                            <option>GRE</option>
-                                            <option>SAT</option>
-                                            <option>ACT</option>
-                                        </select>
+                                            placeholder="7"
+                                        />
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -224,10 +230,12 @@ export default function Overview() {
                                         <div className="col-md-6">
                                             <div className="form-group">
                                                 <label>Year</label>
-                                                <input type="text" className="form-control"
-                                                    value={year}
-                                                    onChange={(e) => setyear(e.target.value)}
+                                                <input type="number" className="form-control"
+                                                    value={myyear}
+                                                    onChange={(e) => onChangeYear(e.target.value)}
                                                 />
+                                              
+                                                <span style={{ color: "red" }}> {yearMessage}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -236,11 +244,18 @@ export default function Overview() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label htmlFor="State/Province"> English Proficiency                                                             </label>
-                                            <input type="text" className="form-control" placholder="ielts/Pte etc.. "
+                                            <label htmlFor="State/Province"> English Proficiency  </label>
+                                            <select
+
+                                                className="form-control"
+                                                placeholder="Month" name="Month"
                                                 value={english}
-                                                onChange={(e) => setenglish(e.target.value)}
-                                            />
+                                                onChange={(e) => setenglish(e.target.value)}>
+                                                <option value='IELTS'>IELTS</option>
+                                                <option value='PTE'>PTE</option>
+
+                                            </select>
+
                                         </div>
                                     </div>
                                     <div className="col-md-4">
@@ -256,7 +271,7 @@ export default function Overview() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label htmlFor="State/Province">  Acceptance rate                                                            </label>
-                                            <input type="text" className="form-control" placholder=" acceptance rate"
+                                            <input type="number" className="form-control" placholder=" acceptance rate"
                                                 value={acceptanceRate}
                                                 onChange={(e) => setacceptanceRate(e.target.value)}
                                             />

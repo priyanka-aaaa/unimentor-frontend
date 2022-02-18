@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import PhoneInput from 'react-phone-number-input'
+import { isValidPhoneNumber } from 'react-phone-number-input'
 
 // start for personal information
 export default function PrimaryInfo() {
@@ -7,9 +9,9 @@ export default function PrimaryInfo() {
     const [universityId, setuniversityId] = useState();
     const [name, setname] = useState("");
     const [address, setaddress] = useState("");
-    const [country, setcountry] = useState("");
-    const [state, setstate] = useState("");
-    const [city, setcity] = useState("no");
+    const [country, setcountry] = useState("Select Country");
+    const [state, setstate] = useState("Select State");
+    const [city, setcity] = useState("Select City");
     const [pincode, setpincode] = useState("");
     const [type, settype] = useState("");
     const [description, setdescription] = useState("");
@@ -20,6 +22,7 @@ export default function PrimaryInfo() {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [CheckState, setCheckState] = useState("0");
     const [CheckCity, setCheckCity] = useState("0");
+    const [phoneError, setphoneError] = useState("");
 
 
     const [countries, setcountries] = useState([{
@@ -153,6 +156,14 @@ export default function PrimaryInfo() {
 
     function Personal_Information(event) {
         event.preventDefault();
+        setphoneError("");
+        if (phone === "") {
+            setphoneError("Please enter phone number");
+        }
+        if (isValidPhoneNumber(phone) === false) {
+            setphoneError("Please enter correct phone number");
+        }
+        else{
         const obj = {
             name: name,
             address: address,
@@ -185,6 +196,7 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
+        }
     }
     return (
         <div>
@@ -305,7 +317,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label>Pincode *</label>
-                                            <input type="text" className="form-control" placeholder="Pincode" name="pin_code" required=""
+                                            <input type="number" className="form-control" placeholder="1234" name="pin_code" required=""
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
@@ -349,7 +361,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label>Website</label>
-                                            <input type="text" className="form-control" placeholder="website" name="website" required=""
+                                            <input type="text" className="form-control" placeholder="https://www.sunderland.ac.uk/" name="website" required=""
 
                                                 value={website}
                                                 onChange={(e) => setwebsite(e.target.value)}
@@ -358,11 +370,18 @@ export default function PrimaryInfo() {
                                     </div>
                                     <div className="col-md-4">
                                         <label>Phone Number</label>
-                                        <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
+                                        <PhoneInput
+                                                placeholder="Enter phone number"
+                                                required
+                                                value={phone}
+                                                onChange={setphone} />
+                                            <span style={{ color: "red" }}> {phoneError}</span>
+
+                                        {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
 
                                             value={phone}
                                             onChange={(e) => setphone(e.target.value)}
-                                        />
+                                        /> */}
                                     </div>
                                     <div className="col-md-4">
                                         <label>Parent organization</label>
