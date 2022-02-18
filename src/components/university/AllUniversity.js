@@ -66,7 +66,7 @@ export default function AllUniversity() {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                               
                                 <th>University Name</th>
 
 
@@ -82,8 +82,7 @@ export default function AllUniversity() {
                                 return (
 
                                     <tr key={i}>
-                                        <td>{object._id}</td>
-                                        {/* <td><a href="object.name">{object.name}</a></td> */}
+                                      
                                         <td> <Link to={'/UniveristyPage/' + object._id} className="nav-link" >{object.name}</Link></td>
 
 

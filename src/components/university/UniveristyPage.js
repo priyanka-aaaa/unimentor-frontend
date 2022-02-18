@@ -129,7 +129,8 @@ export default function AllUniversity() {
             .then(response => response.json())
             .then(data => {
                 var myuniversitiesResult = data.universities
-                myuniversitiesResult.map((element, index) => {
+                myuniversitiesResult.map((element) => {
+                
                     if (element._id === id) {
                       
                         setFormuniversitiesValues(element)
@@ -157,7 +158,11 @@ export default function AllUniversity() {
         })
             .then(response => response.json())
             .then(data => {
-                setuniversityImageValues(data.universityImage)
+                var myuniversityImage = data.universityImage
+                if(myuniversityImage!==undefined){
+                    setuniversityImageValues(myuniversityImage)
+                }
+                
             
             })
         //end for fetching image
@@ -512,7 +517,7 @@ export default function AllUniversity() {
                                                     <div className="raning-agency">
                                                         <h5>Ranking Agencies</h5>
                                                         {rankingValues.map((element, index) => (
-                                                        <a href="#"><img src={element.certificate} alt="" /></a>
+                                                        <a href="#" key={index}><img src={element.certificate} alt="" /></a>
                                                         ))}
                                                     </div>
                                                 </div>
