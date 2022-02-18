@@ -37,7 +37,7 @@ const Courses = () => {
 
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("0");
-    const [createIntake, setcreateIntake] = useState("0");
+   
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
@@ -102,7 +102,7 @@ const Courses = () => {
                 }
                 else {
                     setIntakedata(data.universityIntakes)
-                    setcreateIntake("1")
+                   
                 }
 
             })
@@ -140,7 +140,7 @@ const Courses = () => {
                         .then(response => response.json())
                         .then(data => {
                             setIntakedata(data.universityIntakes)
-                            setcreateIntake("1")
+                      
                         })
                     // end for fetching course
                 }
@@ -612,7 +612,7 @@ const Courses = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibilit </label>
+                                                                                <label className="form-label"> Eligibility </label>
                                                                                 <input type="text" className="form-control" placeholder=" Eligibilit(like min 55%)"
                                                                                     name=" eligibility"
                                                                                     value={eligibility}
@@ -856,7 +856,7 @@ const Courses = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibilit </label>
+                                                                                <label className="form-label"> Eligibility </label>
                                                                                 <input type="text" className="form-control" placeholder="Eligibility(like min 55%)"
                                                                                     name=" eligibility"
                                                                                     value={eligibility}
@@ -933,22 +933,18 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
 
-                                                                        <b>{createIntake == "1" ? '' :
+Add Intake</button>
 
-                                                                            <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
-
-                                                                                Add Intake</button>
-
-
-
-                                                                        }</b>
+                                                                      
                                                                         <br />
                                                                         Intakes
                                                                         <select
                                                                             type="text" className="form-control"
                                                                             required
                                                                             onChange={(e) => setcourseaddintake(e.target.value)}>
+                                                                                <option value="">Select Intake</option>
                                                                             {Intakedata.map((object, i) => {
 
                                                                                 return (

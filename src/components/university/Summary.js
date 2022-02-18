@@ -21,6 +21,7 @@ export default function Summary() {
     const [universityId, setuniversityId] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [Intakedata, setIntakedata] = useState([]);
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
@@ -54,7 +55,25 @@ export default function Summary() {
         }
 
 
-       
+         //start for fetching intake
+         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+         fetch(url2, {
+             method: 'GET',
+             headers: { 'Authorization': mounted }
+         })
+             .then(response => response.json())
+             .then(data => {
+                 var myresults = data.universityIntakes
+                 if (Object.keys(myresults).length === 0) {
+ 
+                 }
+                 else {
+                     setIntakedata(data.universityIntakes)
+                    
+                 }
+ 
+             })
+         // end for fetching intake
 
         //start for fetch personal information
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/summary', { headers: { 'Authorization': mounted } })
@@ -185,7 +204,7 @@ export default function Summary() {
                                                                     <div className="col">
                                                                         {/* <label className="form-label">Eligibilit Year for UG
                                                                         </label> */}
-                                                                        <div className="form-group"><label>Eligibilit Year for UG</label>
+                                                                        <div className="form-group"><label>Eligibility Year for UG</label>
                                                                             <select id="ddlYears"
 
                                                                                 value={ugYear}
@@ -201,7 +220,7 @@ export default function Summary() {
 
 
 
-                                                                            <label className="form-label">Eligibilit Year for PG</label>
+                                                                            <label className="form-label">Eligibility Year for PG</label>
                                                                             <select id="pgYears"
 
                                                                                 value={pgYear}
@@ -284,15 +303,25 @@ export default function Summary() {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label>Intake Available</label><select
-                                                                            value={intake}
-                                                                            onChange={(e) => setintake(e.target.value)}
-                                                                            className="form-control dropdown" id="highest_qualification" name="highest_qualification">
-                                                                            <option value="">JAn</option>
-                                                                            <option value="Diploma">FEB</option>
-                                                                            <option value="Secondary">March</option>
+                                                                        <div className="form-group"><label>Intake Available</label>
+                                                                        
+                                                                        <select
+                                                                            type="text" className="form-control"
+                                                                            required
+                                                                            onChange={(e) => setintake(e.target.value)}    value={intake}>
+                                                                                <option value="">Select Intake</option>
+                                                                            {Intakedata.map((object, i) => {
 
-                                                                        </select></div>
+                                                                                return (
+                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                )
+                                                                            })}
+
+                                                                        </select>
+                                                                        
+                                                                        
+                                                                        
+                                    </div>
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
 
