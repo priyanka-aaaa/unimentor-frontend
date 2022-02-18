@@ -486,7 +486,7 @@ const UniversitySetcommission = () => {
 
                                                                                                     <select className="form-control" onChange={(e) => handleChange(e.target.value)}>
 
-                                                                                                        <option value="" >Select course name</option>
+                                                                                                        <option value="" >Select Course Name</option>
                                                                                                         {data.map((object, i) => {
                                                                                                             return (
 

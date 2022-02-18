@@ -341,9 +341,9 @@ export default function PrimaryInfo() {
                                                 onChange={(e) => settype(e.target.value)}
                                             >
                                                 <option value="">Select Type</option>
-                                                <option value="public">Public</option>
-                                                <option value="private">Private</option>
-                                                <option value="govt">Govt</option>
+                                                <option value="Public">Public</option>
+                                                <option value="Private">Private</option>
+                                                <option value="Govt">Govt</option>
                                             </select>
                                         </div>
                                     </div>

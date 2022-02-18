@@ -12,7 +12,7 @@ class Sidebar extends Component {
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                     {/* <!-- Sidebar - Brand --> */}
-                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                         {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
 <i className="fas fa-graduation-cap"></i>
 </div> --> */}
@@ -24,31 +24,36 @@ class Sidebar extends Component {
 
                     {/* <!-- Nav Item - Dashboard --> */}
 
-                    <li className="nav-item">
-                        {/* <a className="nav-link" href="personal-profile.html">
-                            <i className="fas fa-user"></i>
-                            <span>Profile</span></a> */}
-                        <Link to={'/UniversityProfile'} className="nav-link" href="personal-profile.html">
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="University">
+                        
+                        <Link to={'/UniversityProfile'} className="nav-link" >
                             <i className="fas fa-user"></i>
                             <span>University</span></Link>
 
                     </li>
-                    <li className="nav-item">
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Coures Listingn">
 
-                        <Link to={'/UniversityCourses'} className="nav-link" >
+                        <Link to={'/UniversityCourses'} className="nav-link" data-toggle="tooltip" data-placement="right" title="Coures Listing">
                             <i className="fas fa-file-alt"></i>
                             <span>Coures Listing</span></Link>
                     </li>
-
-
-                    <li className="nav-item ">
-                        <Link to={'/UniversitySummary'} className="nav-link" href="#">
+                    <li className="nav-item " data-toggle="tooltip" data-placement="right" title="Set Commission">
+                        <Link to={'/UniversitySetcommission'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
-                            <span>Summary Information</span></Link>
+                            <span>Set Commission</span></Link>
                     </li>
-                  
 
-                    <li className="nav-item">
+                    <li className="nav-item "  data-toggle="tooltip" data-placement="right" title="Summary Information"
+                    >
+                        <Link to={'/UniversitySummary'} className="nav-link" href="#"
+                       
+                        >
+                            <i className="fas fa-file-upload"></i>
+                            <span >Summary Information</span></Link>
+                    </li>
+   
+
+                    <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Setting">
                         <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
                             <i className="fas fa-user-tie"></i>
                             <span>Setting </span>
@@ -67,11 +72,7 @@ class Sidebar extends Component {
                         </div>
                     </li>
 
-                    <li className="nav-item ">
-                        <Link to={'/UniversitySetcommission'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Set Commission</span></Link>
-                    </li>
+                   
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">
                         <button className="rounded-circle border-0" id="sidebarToggle"></button>
