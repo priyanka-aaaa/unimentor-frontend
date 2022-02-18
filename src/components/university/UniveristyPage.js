@@ -57,6 +57,8 @@ export default function AllUniversity() {
     }])
 
   const [rankingValues, setrankingValues] = useState([])
+  const [imageVideoValues, setimageVideoValues] = useState([])
+
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -184,6 +186,19 @@ export default function AllUniversity() {
 
             })
         //end for university ranking
+           //start for university imageVideo
+           const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
+
+           fetch(url10, {
+               method: 'GET',
+               headers: { 'Authorization': mytoken }
+           })
+               .then(response => response.json())
+               .then(data => {
+                   setimageVideoValues(data.universityImageVideos)
+   
+               })
+           //end for university imageVideo
     
 
     }, [])
@@ -570,20 +585,19 @@ export default function AllUniversity() {
                                             <div className="blog-item" id="img-video">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Images/Video </a></h3>
-                                                    <div className="row">
-                                                        <div className="col-md-6">
+
+                                                      
+                                                    <div className="row" >
+                                                    {imageVideoValues.map((element, index) => (
+                                                        <div className="col-md-6" key={index}>
                                                             <div className="blog-img">
                                                                 <a href="blog-details.html"><img
-                                                                    src="assets/images/blog/inner/6.jpg" alt="" /></a>
+                                                                    src={element.link || ""} alt="" /></a>
                                                             </div>
                                                         </div>
-                                                        <div className="col-md-6">
-                                                            <div className="blog-img">
-                                                                <a href="blog-details.html"><img
-                                                                    src="assets/images/blog/inner/6.jpg" alt="" /></a>
-                                                            </div>
-                                                        </div>
+                                                          ))} 
                                                     </div>
+                                                 
                                                 </div>
                                             </div>
                                         </div>
