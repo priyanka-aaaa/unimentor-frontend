@@ -205,7 +205,7 @@ const Faq = () => {
 
                                                                             <div className="col">
                                                                                 <label htmlFor="fname" className="form-label">Question</label>
-                                                                                <input required type="text" className="form-control" placeholder="" name="question"
+                                                                                <input required type="text" className="form-control" placeholder="Question" name="question"
                                                                                     value={element.question || ""} onChange={e => handleChange(index, e)}
                                                                                 />
                                                                             </div>
@@ -219,7 +219,7 @@ const Faq = () => {
 
                                                                             <div className="col">
                                                                                 <label htmlFor="fname" className="form-label">Answer</label>
-                                                                                <input required type="text" className="form-control" placeholder="" name="answer"
+                                                                                <input required type="text" className="form-control" placeholder="Answer" name="answer"
                                                                                     value={element.answer || ""} onChange={e => handleChange(index, e)}
                                                                                 />
                                                                             </div>

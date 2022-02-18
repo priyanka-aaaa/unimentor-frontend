@@ -49,7 +49,7 @@ export default function UniversityPassword() {
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
                         //start for fetching course
-                       
+
 
                         const obj2 = new FormData();
                         obj2.append("email", universityEmail);
@@ -136,6 +136,7 @@ export default function UniversityPassword() {
                                                                                 <input required="" name="password" type="password" id="password" class="form-control"
                                                                                     value={password}
                                                                                     onChange={(e) => setpassword(e.target.value)}
+                                                                                    placeholder="Password"
                                                                                 />
                                                                             </div>
                                                                         </div>
@@ -145,6 +146,7 @@ export default function UniversityPassword() {
                                                                                 <input required="" name="c_password" type="password" id="c_password" class="form-control"
                                                                                     value={conformPassword}
                                                                                     onChange={(e) => setconformPassword(e.target.value)}
+                                                                                    placeholder="Confirm Password"
                                                                                 />
                                                                             </div>
                                                                             <span style={{ color: "red" }}> {confirmpasswordError}</span>

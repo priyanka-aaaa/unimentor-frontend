@@ -384,558 +384,320 @@ const Courses = () => {
     }
     return (
         <div className="container">
-        {/* start for showing add message */}
-        {submitSuccess === 1 ? <div className="Show_success_message">
-            <strong>Success!</strong> {successMessage}
-        </div> : null}
-        {/* start for showing add message */}
-        {/* <!-- Page Heading --> */}
-        <div className="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 className="h3 mb-0 text-gray-800">Coures</h1>
-            {showSweetAlert === "1" ? <SweetAlert
-                warning
-                showCancel
-                confirmBtnText="Yes, delete it!"
-                confirmBtnBsStyle="danger"
+            {/* start for showing add message */}
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
+            {/* start for showing add message */}
+            {/* <!-- Page Heading --> */}
+            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 className="h3 mb-0 text-gray-800">Coures</h1>
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
 
-                title="Are you sure?"
-                onConfirm={(value) => {
-                    setshowSweetAlert("0");
-                    axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + deleteId, { headers: { 'Authorization': mounted } })
-                        .then(function (res) {
-                            var myuniversityCourse = res.data.universityCourse;
-                            if (res.data.success === true) {
-                                setsuccessMessage("course delete")
-                                setTimeout(() => setsubmitSuccess(""), 3000);
-                                setsubmitSuccess(1)
-                                //start for fetching course
-                                const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-                                fetch(url, {
-                                    method: 'GET',
-                                    headers: { 'Authorization': mounted }
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        setdata(data.universityCourses)
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + deleteId, { headers: { 'Authorization': mounted } })
+                            .then(function (res) {
+                                var myuniversityCourse = res.data.universityCourse;
+                                if (res.data.success === true) {
+                                    setsuccessMessage("course delete")
+                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                    setsubmitSuccess(1)
+                                    //start for fetching course
+                                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                                    fetch(url, {
+                                        method: 'GET',
+                                        headers: { 'Authorization': mounted }
                                     })
-                                // end for fetching course
-                            }
-                            else {
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            setdata(data.universityCourses)
+                                        })
+                                    // end for fetching course
+                                }
+                                else {
 
-                            }
+                                }
 
-                        })
-                        .catch(error => {
+                            })
+                            .catch(error => {
 
-                        });
+                            });
 
 
-                }}
-                onCancel={() =>
-                    setshowSweetAlert("0")
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
 
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
                 }
-                focusCancelBtn
-            >
+                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
 
-            </SweetAlert>
-                : null
-            }
-            <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
-
-        </div>
+            </div>
 
 
-        {/* <!-- Content Row --> */}
+            {/* <!-- Content Row --> */}
 
-        <div className="row">
+            <div className="row">
 
-            {/* <!-- Area Chart --> */}
-            <div className="col-xl-12 col-lg-7">
-                <div className="card shadow mb-4">
-                    {/* <!-- Card Header - Dropdown --> */}
+                {/* <!-- Area Chart --> */}
+                <div className="col-xl-12 col-lg-7">
                     <div className="card shadow mb-4">
-                        <div className="table-responsive-sm">
-                            <table className="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Course Name</th>
-                                        <th>Duration</th>
-                                        <th>Fee</th>
-                                        <th>Action</th>
+                        {/* <!-- Card Header - Dropdown --> */}
+                        <div className="card shadow mb-4">
+                            <div className="table-responsive-sm">
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Course Name</th>
+                                            <th>Duration</th>
+                                            <th>Fee</th>
+                                            <th>Action</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-
-
-                                    {data.map((object, i) => {
-
-                                        return (
-
-                                            <tr key={i}>
-                                                <td>{object._id}</td>
-                                                <td>{object.courseName}</td>
-                                                <td>{object.duration}</td>
-                                                <td>{object.tuitionFee}</td>
-                                                <td>
-
-                                                    <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                    <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
-                                                    <button className="btn" onClick={() => handleView(object._id)}><i className="fas fa-eye"></i></button>
-                                                </td>
-                                            </tr>
-
-                                        )
-                                    })}
-                                </tbody>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
 
-                            </table>
+
+
+                                        {data.map((object, i) => {
+
+                                            return (
+
+                                                <tr key={i}>
+                                                    <td>{object._id}</td>
+                                                    <td>{object.courseName}</td>
+                                                    <td>{object.duration}</td>
+                                                    <td>{object.tuitionFee}</td>
+                                                    <td>
+
+                                                        <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
+                                                        <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                        <button className="btn" onClick={() => handleView(object._id)}><i className="fas fa-eye"></i></button>
+                                                    </td>
+                                                </tr>
+
+                                            )
+                                        })}
+                                    </tbody>
+
+
+                                </table>
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div className="card-body course-sidenav" id="mySidenav"
-                        style={{ width: width }}
-                    >
+                        <div className="card-body course-sidenav" id="mySidenav"
+                            style={{ width: width }}
+                        >
 
-                        <div className="student-view">
-                            <div className="row">
-                                <div className="col-md-6">
-
-                                </div>
-                                <div className="col-md-6">
-                                    <a className="closebtn" onClick={closebox} >&times;</a>
-                                </div>
-                            </div>
-                            <div className="row mt-3">
-
-                            </div>
-                            <div className="table-responsive mt-5">
-
+                            <div className="student-view">
                                 <div className="row">
-                                    <div className="col-sm-12">
-                                        <p><b>Edit Course</b></p>
-                                        <form onSubmit={handleEditSubmit}>
-                                            <div className="card-body" >
+                                    <div className="col-md-6">
 
-                                                <div className="from-block" >
-
-
-
-                                                    <div className="row" >
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col">
-                                                                    <label className="form-label">Course name
-                                                                        *</label>
-                                                                    <input type="text" className="form-control"
-                                                                        placeholder="Course name" name="courseName"
-                                                                        // value="fhgfh"
-                                                                        value={courseName}
-                                                                        onChange={(e) => setcourseName(e.target.value)}
-
-                                                                    />
-                                                                </div>
-                                                                <div className="col">
-                                                                    <label className="form-label">Duration
-                                                                    </label>
-                                                                    <input type="text" className="form-control"
-                                                                        placeholder="duration" name="duration"
-                                                                        value={duration}
-                                                                        onChange={(e) => setduration(e.target.value)}
-                                                                    />
-                                                                </div>
-                                                                <div className="col">
-                                                                    <label className="form-label">Tuition fee</label>
-                                                                    <input type="text" className="form-control" placeholder="tuition fee"
-                                                                        name="tuitionFee"
-                                                                        value={tuitionFee}
-                                                                        onChange={(e) => settuitionFee(e.target.value)}
-
-
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-md-4">
-                                                                    <label className="form-label">Study
-                                                                        *</label>
-                                                                    <select type="text" className="form-control" id="salutation"
-                                                                        placeholder="Salutation" name="studyField"
-
-                                                                        value={studyField}
-                                                                        onChange={(e) => setstudyField(e.target.value)}
-                                                                    >
-                                                                        <option >Machine Learning</option>
-                                                                        <option value="Ms.">Indigenous Canada</option>
-                                                                        <option value="Mr.">The Science of Well-Being</option>
-                                                                        <option value="Mrs.">Introduction to Statistics</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div className="col-md-8">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label className="form-label">fee</label>
-                                                                            <input type="text" className="form-control" placeholder="fee"
-                                                                                name="fee"
-                                                                                value={fee}
-                                                                                onChange={(e) => setfee(e.target.value)}
-
-
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> course level</label>
-                                                                            <input type="text" className="form-control" placeholder=" course level"
-                                                                                name=" courseLevel"
-                                                                                value={courseLevel}
-                                                                                onChange={(e) => setcourseLevel(e.target.value)}
-
-
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> Cgpa </label>
-                                                                            <input type="text" className="form-control" placeholder=" Cumulative Grade Point Average "
-                                                                                name="cgpa"
-                                                                                value={cgpa}
-                                                                                onChange={(e) => setcgpa(e.target.value)}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> Eligibilit </label>
-                                                                            <input type="text" className="form-control" placeholder=" eligibility(like min 55%)"
-                                                                                name=" eligibility"
-                                                                                value={eligibility}
-                                                                                onChange={(e) => seteligibility(e.target.value)}
-                                                                            />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label >English Proficiency
-                                                                    </label><input type="text" className="form-control"
-                                                                        id="eng-pro" name="english" placeholder="English Proficiency"
-                                                                        value={english}
-                                                                        onChange={(e) => setenglish(e.target.value)}
-
-
-                                                                        /></div>
-                                                                </div>
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group">
-                                                                        <label>Course website </label><input
-                                                                            type="text" className="form-control" id="cour-web"
-                                                                            name="website" placeholder="Course website "
-                                                                            value={website}
-                                                                            onChange={(e) => setwebsite(e.target.value)}
-
-
-                                                                        />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group">
-                                                                        <label>Course  Description</label>
-                                                                        <textarea className="form-control" row="2" col="3" name="description"
-                                                                            value={description}
-                                                                            onChange={(e) => setdescription(e.target.value)}
-                                                                        ></textarea>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label
-                                                                    >Academic proficiency exam</label><select
-                                                                        className="form-control dropdown"
-                                                                        id="highest_qualification"
-                                                                        name="exam"
-                                                                        value={exam}
-                                                                        onChange={(e) => setexam(e.target.value)}
-
-
-                                                                    >
-                                                                            <option >GRE</option>
-                                                                            <option value="Diploma">GMAT</option>
-                                                                            <option value="Secondary">SAT</option>
-
-                                                                        </select></div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    {/* start for intake */}
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                Intakes
-
-                                                                <select
-                                                                    type="text" className="form-control" value="hii"
-                                                                    required
-                                                                    onChange={(e) => setintake(e.target.value)}>
-                                                                    <option value={year + "&&" + month}>{year + " " + month}</option>
-                                                                    {Intakedata.map((object, i) => {
-
-                                                                        return (
-                                                                            <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                        )
-                                                                    })}
-
-                                                                </select>
-
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-                                                    {/* end for intake */}
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col-md-6"></div>
-                                                            <div className="col-md-6 text-right">
-
-
-
-                                                                <button type="submit" className="btn btn-secondary">Save
-                                                                </button>
-
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>
-
-
-
-                                                </div>
-                                            </div>
-                                        </form>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <a className="closebtn" onClick={closebox} >&times;</a>
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div className="card-body course-sidenav" id="mySideAdd"
-                        style={{ width: addWidth }}
-                    >
-
-                        <div className="student-view">
-                            <div className="row">
-                                <div className="col-md-6">
+                                <div className="row mt-3">
 
                                 </div>
-                                <div className="col-md-6">
-                                    <a className="closebtn" onClick={closeaddbox} >&times;</a>
-                                </div>
-                            </div>
-                            <div className="row mt-3">
+                                <div className="table-responsive mt-5">
 
-                            </div>
-                            <div className="table-responsive mt-5">
+                                    <div className="row">
+                                        <div className="col-sm-12">
+                                            <p><b>Edit Course</b></p>
+                                            <form onSubmit={handleEditSubmit}>
+                                                <div className="card-body" >
 
-                                <div className="row">
-                                    <div className="col-sm-12">
-                                        {successIntakeMessage === 1 ? <div className="Show_success_message">
-                                            <strong>Success!</strong> Intake Added
-                                        </div> : null}
-                                        <form onSubmit={handleAddSubmit}>
-                                            <div className="card-body" >
-
-                                                <div className="from-block" >
+                                                    <div className="from-block" >
 
 
-                                                    <h6>Add Course</h6>
 
-                                                    <div className="row" >
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col">
-                                                                    <label className="form-label">Course name
-                                                                        *</label>
-                                                                    <input type="text" className="form-control"
-                                                                        placeholder="Course name" name="courseName"
-                                                                        // value="fhgfh"
-                                                                        value={courseName}
-                                                                        onChange={(e) => setcourseName(e.target.value)}
+                                                        <div className="row" >
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col">
+                                                                        <label className="form-label">Course Name
+                                                                            *</label>
+                                                                        <input type="text" className="form-control"
+                                                                            placeholder="Course Name" name="courseName"
+                                                                            // value="fhgfh"
+                                                                            value={courseName}
+                                                                            onChange={(e) => setcourseName(e.target.value)}
 
-                                                                    />
-                                                                </div>
-                                                                <div className="col">
-                                                                    <label className="form-label">Duration
-                                                                    </label>
-                                                                    <input type="text" className="form-control"
-                                                                        placeholder="duration" name="duration"
-                                                                        value={duration}
-                                                                        onChange={(e) => setduration(e.target.value)}
-                                                                    />
-                                                                </div>
-                                                                <div className="col">
-                                                                    <label className="form-label">Tuition fee</label>
-                                                                    <input type="text" className="form-control" placeholder="tuition fee"
-                                                                        name="tuitionFee"
-                                                                        value={tuitionFee}
-                                                                        onChange={(e) => settuitionFee(e.target.value)}
-
-
-                                                                    />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-md-4">
-                                                                    <label className="form-label">Study
-                                                                        *</label>
-                                                                    <select type="text" className="form-control" id="salutation"
-                                                                        placeholder="Salutation" name="studyField"
-
-                                                                        value={studyField}
-                                                                        onChange={(e) => setstudyField(e.target.value)}
-                                                                    >
-                                                                        <option >Machine Learning</option>
-                                                                        <option value="Ms.">Indigenous Canada</option>
-                                                                        <option value="Mr.">The Science of Well-Being</option>
-                                                                        <option value="Mrs.">Introduction to Statistics</option>
-                                                                    </select>
-                                                                </div>
-                                                                <div className="col-md-8">
-                                                                    <div className="row">
-                                                                        <div className="col">
-                                                                            <label className="form-label">fee</label>
-                                                                            <input type="text" className="form-control" placeholder="fee"
-                                                                                name="fee"
-                                                                                value={fee}
-                                                                                onChange={(e) => setfee(e.target.value)}
-
-
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> course level</label>
-                                                                            <input type="text" className="form-control" placeholder=" course level"
-                                                                                name=" courseLevel"
-                                                                                value={courseLevel}
-                                                                                onChange={(e) => setcourseLevel(e.target.value)}
-
-
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> Cgpa </label>
-                                                                            <input type="text" className="form-control" placeholder=" Cumulative Grade Point Average "
-                                                                                name="cgpa"
-                                                                                value={cgpa}
-                                                                                onChange={(e) => setcgpa(e.target.value)}
-                                                                            />
-                                                                        </div>
-                                                                        <div className="col">
-                                                                            <label className="form-label"> Eligibilit </label>
-                                                                            <input type="text" className="form-control" placeholder=" eligibility(like min 55%)"
-                                                                                name=" eligibility"
-                                                                                value={eligibility}
-                                                                                onChange={(e) => seteligibility(e.target.value)}
-                                                                            />
-                                                                        </div>
+                                                                        />
                                                                     </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label >English Proficiency
-                                                                    </label><input type="text" className="form-control"
-                                                                        id="eng-pro" name="english" placeholder="English Proficiency"
-                                                                        value={english}
-                                                                        onChange={(e) => setenglish(e.target.value)}
-
-
-                                                                        /></div>
-                                                                </div>
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group">
-                                                                        <label>Course website </label><input
-                                                                            type="text" className="form-control" id="cour-web"
-                                                                            name="website" placeholder="Course website "
-                                                                            value={website}
-                                                                            onChange={(e) => setwebsite(e.target.value)}
+                                                                    <div className="col">
+                                                                        <label className="form-label">Duration
+                                                                        </label>
+                                                                        <input type="text" className="form-control"
+                                                                            placeholder="Duration" name="duration"
+                                                                            value={duration}
+                                                                            onChange={(e) => setduration(e.target.value)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className="col">
+                                                                        <label className="form-label">Tuition fee</label>
+                                                                        <input type="text" className="form-control" placeholder="tuition fee"
+                                                                            name="TuitionFee"
+                                                                            value={tuitionFee}
+                                                                            onChange={(e) => settuitionFee(e.target.value)}
 
 
                                                                         />
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div className="mb-3">
-                                                            <div className="row">
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group">
-                                                                        <label>Course  Description</label>
-                                                                        <textarea className="form-control" row="2" col="3" name="description"
-                                                                            value={description}
-                                                                            onChange={(e) => setdescription(e.target.value)}
-                                                                        ></textarea>
+
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-md-4">
+                                                                        <label className="form-label">Study
+                                                                            *</label>
+                                                                        <select type="text" className="form-control" id="salutation"
+                                                                            placeholder="Study" name="studyField"
+
+                                                                            value={studyField}
+                                                                            onChange={(e) => setstudyField(e.target.value)}
+                                                                        >
+                                                                            <option >Machine Learning</option>
+                                                                            <option value="Indigenous Canada">Indigenous Canada</option>
+                                                                            <option value="The Science of Well-Being">The Science of Well-Being</option>
+                                                                            <option value="Introduction to Statistics">Introduction to Statistics</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div className="col-md-8">
+                                                                        <div className="row">
+                                                                            <div className="col">
+                                                                                <label className="form-label">Fee</label>
+                                                                                <input type="text" className="form-control" placeholder="Fee"
+                                                                                    name="fee"
+                                                                                    value={fee}
+                                                                                    onChange={(e) => setfee(e.target.value)}
+
+
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> Course Level</label>
+                                                                                <input type="text" className="form-control" placeholder=" Course Level"
+                                                                                    name=" courseLevel"
+                                                                                    value={courseLevel}
+                                                                                    onChange={(e) => setcourseLevel(e.target.value)}
+
+
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> CGPA </label>
+                                                                                <input type="text" className="form-control" placeholder="CGPA"
+                                                                                    name="cgpa"
+                                                                                    value={cgpa}
+                                                                                    onChange={(e) => setcgpa(e.target.value)}
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> Eligibilit </label>
+                                                                                <input type="text" className="form-control" placeholder=" Eligibilit(like min 55%)"
+                                                                                    name=" eligibility"
+                                                                                    value={eligibility}
+                                                                                    onChange={(e) => seteligibility(e.target.value)}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <div className="form-group"><label
-                                                                    >Academic proficiency exam</label><select
-                                                                        className="form-control dropdown"
-                                                                        id="highest_qualification"
-                                                                        name="exam"
-                                                                        value={exam}
-                                                                        onChange={(e) => setexam(e.target.value)}
+                                                            </div>
+
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group"><label >English Proficiency
+                                                                        </label>
+                                                                            <select
+
+                                                                                className="form-control"
+                                                                                placeholder="Month" name="english"
+                                                                                value={english}
+                                                                                onChange={(e) => setenglish(e.target.value)}>
+                                                                                <option value='IELTS'>IELTS</option>
+                                                                                <option value='PTE'>PTE</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group">
+                                                                            <label>Course Website </label><input
+                                                                                type="text" className="form-control" id="cour-web"
+                                                                                name="website" placeholder="Course Website "
+                                                                                value={website}
+                                                                                onChange={(e) => setwebsite(e.target.value)}
 
 
-                                                                    >
-                                                                            <option >GRE</option>
-                                                                            <option value="Diploma">GMAT</option>
-                                                                            <option value="Secondary">SAT</option>
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group">
+                                                                            <label>Course  Description</label>
+                                                                            <textarea className="form-control" row="2" col="3" name="description"
+                                                                                value={description}
+                                                                                onChange={(e) => setdescription(e.target.value)}
+                                                                                placeholder="Course  Description"
+                                                                            ></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group"><label
+                                                                        >Academic proficiency exam</label><select
+                                                                            className="form-control dropdown"
+                                                                            id="highest_qualification"
+                                                                            name="exam"
+                                                                            value={exam}
+                                                                            onChange={(e) => setexam(e.target.value)}
 
-                                                                        </select></div>
+
+                                                                        >
+                                                                                <option value="GRE" >GRE</option>
+                                                                                <option value="GMAT">GMAT</option>
+                                                                                <option value="SAT">SAT</option>
+
+                                                                            </select></div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        {/* start for intake */}
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-
-                                                                    <b>{createIntake == "1" ? '' :
-
-                                                                        <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
-
-                                                                            Add Intake</button>
-
-
-
-                                                                    }</b>
-                                                                    <br />
                                                                     Intakes
+
                                                                     <select
-                                                                        type="text" className="form-control"
+                                                                        type="text" className="form-control" value="hii"
                                                                         required
-                                                                        onChange={(e) => setcourseaddintake(e.target.value)}>
+                                                                        onChange={(e) => setintake(e.target.value)}>
+                                                                        <option value={year + "&&" + month}>{year + " " + month}</option>
                                                                         {Intakedata.map((object, i) => {
 
                                                                             return (
@@ -949,194 +711,442 @@ const Courses = () => {
 
                                                             </div>
                                                         </div>
-                                                    </div>
+
+                                                        {/* end for intake */}
+                                                        <div className="mb-3">
+                                                            <div className="row">
+                                                                <div className="col-md-6"></div>
+                                                                <div className="col-md-6 text-right">
 
 
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col-md-6"></div>
-                                                            <div className="col-md-6 text-right">
 
+                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                    </button>
 
-
-                                                                <button type="submit" className="btn btn-secondary">Save
-                                                                </button>
+                                                                </div>
 
                                                             </div>
 
                                                         </div>
 
+
+
                                                     </div>
-
-
-
                                                 </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
+                            </div>
                         </div>
-                    </div>
-                    <div className="card-body course-sidenav" id="mySideview"
-                        style={{ width: viewWidth }}
-                    >
+                        <div className="card-body course-sidenav" id="mySideAdd"
+                            style={{ width: addWidth }}
+                        >
 
-                        <div className="student-view">
-                            <div className="row">
-                                <div className="col-md-6">
-                                    <h6 className="mt-2 font-weight-bold text-primary"></h6>
+                            <div className="student-view">
+                                <div className="row">
+                                    <div className="col-md-6">
+
+                                    </div>
+                                    <div className="col-md-6">
+                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                    </div>
                                 </div>
-                                <div className="col-md-6">
-                                    <a className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
+                                <div className="row mt-3">
+
                                 </div>
+                                <div className="table-responsive mt-5">
+
+                                    <div className="row">
+                                        <div className="col-sm-12">
+                                            {successIntakeMessage === 1 ? <div className="Show_success_message">
+                                                <strong>Success!</strong> Intake Added
+                                            </div> : null}
+                                            <form onSubmit={handleAddSubmit}>
+                                                <div className="card-body" >
+
+                                                    <div className="from-block" >
+
+
+                                                        <h6>Add Course</h6>
+
+                                                        <div className="row" >
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col">
+                                                                        <label className="form-label">Course Name
+                                                                            *</label>
+                                                                        <input type="text" className="form-control"
+                                                                            placeholder="Course Name" name="courseName"
+                                                                            // value="fhgfh"
+                                                                            value={courseName}
+                                                                            onChange={(e) => setcourseName(e.target.value)}
+
+                                                                        />
+                                                                    </div>
+                                                                    <div className="col">
+                                                                        <label className="form-label">Duration
+                                                                        </label>
+                                                                        <input type="text" className="form-control"
+                                                                            placeholder="Duration" name="duration"
+                                                                            value={duration}
+                                                                            onChange={(e) => setduration(e.target.value)}
+                                                                        />
+                                                                    </div>
+                                                                    <div className="col">
+                                                                        <label className="form-label">Tuition fee</label>
+                                                                        <input type="text" className="form-control" placeholder="tuition fee"
+                                                                            name="tuitionFee"
+                                                                            value={tuitionFee}
+                                                                            onChange={(e) => settuitionFee(e.target.value)}
+
+
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-md-4">
+                                                                        <label className="form-label">Study
+                                                                            *</label>
+                                                                        <select type="text" className="form-control" id="salutation"
+                                                                            placeholder="Salutation" name="studyField"
+
+                                                                            value={studyField}
+                                                                            onChange={(e) => setstudyField(e.target.value)}
+                                                                        >
+                                                                            <option value="Indigenous Canada">Indigenous Canada</option>
+                                                                            <option value="The Science of Well-Being">The Science of Well-Being</option>
+                                                                            <option value="Introduction to Statistics">Introduction to Statistics</option>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div className="col-md-8">
+                                                                        <div className="row">
+                                                                            <div className="col">
+                                                                                <label className="form-label">Fee</label>
+                                                                                <input type="text" className="form-control" placeholder="Fee"
+                                                                                    name="fee"
+                                                                                    value={fee}
+                                                                                    onChange={(e) => setfee(e.target.value)}
+
+
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> course Level</label>
+                                                                                <input type="text" className="form-control" placeholder=" course Level"
+                                                                                    name=" courseLevel"
+                                                                                    value={courseLevel}
+                                                                                    onChange={(e) => setcourseLevel(e.target.value)}
+
+
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> CGPA </label>
+                                                                                <input type="text" className="form-control" placeholder="CGPA"
+                                                                                    name="cgpa"
+                                                                                    value={cgpa}
+                                                                                    onChange={(e) => setcgpa(e.target.value)}
+                                                                                />
+                                                                            </div>
+                                                                            <div className="col">
+                                                                                <label className="form-label"> Eligibilit </label>
+                                                                                <input type="text" className="form-control" placeholder="Eligibility(like min 55%)"
+                                                                                    name=" eligibility"
+                                                                                    value={eligibility}
+                                                                                    onChange={(e) => seteligibility(e.target.value)}
+                                                                                />
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group"><label >English Proficiency
+                                                                        </label>
+                                                                            <select
+
+                                                                                className="form-control"
+                                                                                placeholder="Month" name="english"
+                                                                                value={english}
+                                                                                onChange={(e) => setenglish(e.target.value)}>
+                                                                                <option value='IELTS'>IELTS</option>
+                                                                                <option value='PTE'>PTE</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group">
+                                                                            <label>Course website </label><input
+                                                                                type="text" className="form-control" id="cour-web"
+                                                                                name="website" placeholder="Course website "
+                                                                                value={website}
+                                                                                onChange={(e) => setwebsite(e.target.value)}
+
+
+                                                                            />
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group">
+                                                                            <label>Course  Description</label>
+                                                                            <textarea className="form-control" row="2" col="3" name="description"
+                                                                                value={description}
+                                                                                onChange={(e) => setdescription(e.target.value)}
+                                                                            ></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                        <div className="form-group"><label
+                                                                        >Academic proficiency exam</label><select
+                                                                            className="form-control dropdown"
+                                                                            id="highest_qualification"
+                                                                            name="exam"
+                                                                            value={exam}
+                                                                            onChange={(e) => setexam(e.target.value)}
+
+
+                                                                        >
+                                                                                <option value="GRE" >GRE</option>
+                                                                                <option value="GMAT">GMAT</option>
+                                                                                <option value="SAT">SAT</option>
+
+                                                                            </select></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className="mb-3">
+                                                                <div className="row">
+                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+
+                                                                        <b>{createIntake == "1" ? '' :
+
+                                                                            <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
+
+                                                                                Add Intake</button>
+
+
+
+                                                                        }</b>
+                                                                        <br />
+                                                                        Intakes
+                                                                        <select
+                                                                            type="text" className="form-control"
+                                                                            required
+                                                                            onChange={(e) => setcourseaddintake(e.target.value)}>
+                                                                            {Intakedata.map((object, i) => {
+
+                                                                                return (
+                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                )
+                                                                            })}
+
+                                                                        </select>
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div className="mb-3">
+                                                            <div className="row">
+                                                                <div className="col-md-6"></div>
+                                                                <div className="col-md-6 text-right">
+
+
+
+                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                    </button>
+
+                                                                </div>
+
+                                                            </div>
+
+                                                        </div>
+
+
+
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div className="row mt-3">
-                                <div className="col-md-6"></div>
-                                <div className="col-md-6 text-right"></div>
+                        </div>
+                        <div className="card-body course-sidenav" id="mySideview"
+                            style={{ width: viewWidth }}
+                        >
+
+                            <div className="student-view">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <h6 className="mt-2 font-weight-bold text-primary"></h6>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <a className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
+                                    </div>
+                                </div>
+                                <div className="row mt-3">
+                                    <div className="col-md-6"></div>
+                                    <div className="col-md-6 text-right"></div>
+                                </div>
+                                <div className="table-responsive mt-5">
+
+                                    <div className="row">
+                                        <div className="col-sm-12">
+                                            <table className="table table-bordered dataTable" id="dataTable" width="100%" cellSpacing="0" role="grid" aria-describedby="dataTable_info" >
+                                                <thead>
+                                                    <tr>
+                                                        <th rowSpan="1" colSpan="1">ID</th>
+                                                        <th rowSpan="1" colSpan="1">Course name</th>
+                                                        <th rowSpan="1" colSpan="1">Duration</th>
+                                                        <th rowSpan="1" colSpan="1">Tuition fee</th>
+                                                        <th rowSpan="1" colSpan="1">Study</th>
+                                                        <th rowSpan="1" colSpan="1">Fee</th>
+                                                        <th rowSpan="1" colSpan="1">Course level</th>
+                                                        <th rowSpan="1" colSpan="1">Cgpa</th>
+                                                        <th rowSpan="1" colSpan="1">Eligibilit</th>
+                                                        <th rowSpan="1" colSpan="1">English Proficiency</th>
+                                                        <th rowSpan="1" colSpan="1">Course website</th>
+                                                        <th rowSpan="1" colSpan="1">Course Description</th>
+                                                        <th rowSpan="1" colSpan="1">Academic proficiency exam</th>
+                                                        <th rowSpan="1" colSpan="1">Year</th>
+                                                        <th rowSpan="1" colSpan="1">Month</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr className="odd">
+                                                        <td className="sorting_1">{courseId}</td>
+
+                                                        <td>{courseName}</td>
+                                                        <td>{duration}</td>
+                                                        <td>{tuitionFee}</td>
+                                                        <td>{studyField}</td>
+                                                        <td>{fee}</td>
+                                                        <td>{courseLevel}</td>
+                                                        <td>{cgpa}</td>
+                                                        <td>{eligibility}</td>
+                                                        <td>{english}</td>
+                                                        <td>{website}</td>
+                                                        <td>{description}</td>
+                                                        <td>{exam}</td>
+                                                        <td>{year}</td>
+                                                        <td>{month}</td>
+
+                                                    </tr>
+
+
+
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
-                            <div className="table-responsive mt-5">
+                        </div>
+
+
+
+
+
+
+
+
+                        {/* end for edit */}
+                    </div>
+                </div>
+
+
+            </div>
+            {/* <!-- Card Body --> */}
+
+
+            <div className="modal" id="myModal">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        {/* Modal Header */}
+                        <div className="modal-header">
+                            <h4 className="modal-title">Add Intake</h4>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" />
+                        </div>
+                        {/* Modal body */}
+                        <form>
+                            <div className="modal-body">
 
                                 <div className="row">
-                                    <div className="col-sm-12">
-                                        <table className="table table-bordered dataTable" id="dataTable" width="100%" cellSpacing="0" role="grid" aria-describedby="dataTable_info" >
-                                            <thead>
-                                                <tr>
-                                                    <th rowSpan="1" colSpan="1">ID</th>
-                                                    <th rowSpan="1" colSpan="1">Course name</th>
-                                                    <th rowSpan="1" colSpan="1">Duration</th>
-                                                    <th rowSpan="1" colSpan="1">Tuition fee</th>
-                                                    <th rowSpan="1" colSpan="1">Study</th>
-                                                    <th rowSpan="1" colSpan="1">Fee</th>
-                                                    <th rowSpan="1" colSpan="1">Course level</th>
-                                                    <th rowSpan="1" colSpan="1">Cgpa</th>
-                                                    <th rowSpan="1" colSpan="1">Eligibilit</th>
-                                                    <th rowSpan="1" colSpan="1">English Proficiency</th>
-                                                    <th rowSpan="1" colSpan="1">Course website</th>
-                                                    <th rowSpan="1" colSpan="1">Course Description</th>
-                                                    <th rowSpan="1" colSpan="1">Academic proficiency exam</th>
-                                                    <th rowSpan="1" colSpan="1">Year</th>
-                                                    <th rowSpan="1" colSpan="1">Month</th>
+                                    <div className="col">
+                                        <label className="form-label">Year
+                                            *</label>
+                                        <select id="myyearEdit"
+                                            className="form-control"
+                                            placeholder="Year" name="year"
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr className="odd">
-                                                    <td className="sorting_1">{courseId}</td>
+                                            value={intakeyear}
+                                            onChange={(e) => setintakeyear(e.target.value)}>
 
-                                                    <td>{courseName}</td>
-                                                    <td>{duration}</td>
-                                                    <td>{tuitionFee}</td>
-                                                    <td>{studyField}</td>
-                                                    <td>{fee}</td>
-                                                    <td>{courseLevel}</td>
-                                                    <td>{cgpa}</td>
-                                                    <td>{eligibility}</td>
-                                                    <td>{english}</td>
-                                                    <td>{website}</td>
-                                                    <td>{description}</td>
-                                                    <td>{exam}</td>
-                                                    <td>{year}</td>
-                                                    <td>{month}</td>
+                                        </select>
 
-                                                </tr>
-
-
-
-
-                                            </tbody>
-                                        </table>
                                     </div>
-                                </div>
-                            </div>
+                                    <div className="col">
+                                        <label className="form-label">Month
+                                        </label>
 
-                        </div>
-                    </div>
+                                        <select
 
+                                            className="form-control"
+                                            placeholder="Month" name="Month"
+                                            value={intakemonth}
+                                            onChange={(e) => setintakemonth(e.target.value)}>
+                                            <option value='Jan'>Janaury</option>
+                                            <option value='Feb'>February</option>
+                                            <option value='March'>March</option>
+                                            <option value='April'>April</option>
+                                            <option value='May'>May</option>
+                                            <option value='June'>June</option>
+                                            <option value='July'>July</option>
+                                            <option value='Aug'>August</option>
+                                            <option value='Sep'>September</option>
+                                            <option value='Oct'>October</option>
+                                            <option value='Nov'>November</option>
+                                            <option value='Dec'>December</option>
+                                        </select>
 
-
-
-
-
-
-
-                    {/* end for edit */}
-                </div>
-            </div>
-
-
-        </div>
-        {/* <!-- Card Body --> */}
-
-
-        <div className="modal" id="myModal">
-            <div className="modal-dialog">
-                <div className="modal-content">
-                    {/* Modal Header */}
-                    <div className="modal-header">
-                        <h4 className="modal-title">Add Intake</h4>
-                        <button type="button" className="btn-close" data-bs-dismiss="modal" />
-                    </div>
-                    {/* Modal body */}
-                    <form>
-                        <div className="modal-body">
-
-                            <div className="row">
-                                <div className="col">
-                                    <label className="form-label">Year
-                                        *</label>
-                                    <select id="myyearEdit"
-                                        className="form-control"
-                                        placeholder="Year" name="year"
-
-                                        value={intakeyear}
-                                        onChange={(e) => setintakeyear(e.target.value)}>
-
-                                    </select>
-
-                                </div>
-                                <div className="col">
-                                    <label className="form-label">Month
-                                    </label>
-
-                                    <select
-
-                                        className="form-control"
-                                        placeholder="Month" name="Month"
-                                        value={intakemonth}
-                                        onChange={(e) => setintakemonth(e.target.value)}>
-                                        <option value='Jan'>Janaury</option>
-                                        <option value='Feb'>February</option>
-                                        <option value='March'>March</option>
-                                        <option value='April'>April</option>
-                                        <option value='May'>May</option>
-                                        <option value='June'>June</option>
-                                        <option value='July'>July</option>
-                                        <option value='Aug'>August</option>
-                                        <option value='Sep'>September</option>
-                                        <option value='Oct'>October</option>
-                                        <option value='Nov'>November</option>
-                                        <option value='Dec'>December</option>
-                                    </select>
+                                    </div>
 
                                 </div>
 
                             </div>
-
-                        </div>
-                        <div className="modal-footer">
-                            <button onClick={handleIntakeSubmit} type="button" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                            <div className="modal-footer">
+                                <button onClick={handleIntakeSubmit} type="button" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
 
 
-                        </div>
-                    </form>
-                    {/* Modal footer */}
+                            </div>
+                        </form>
+                        {/* Modal footer */}
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     );
 }
 
