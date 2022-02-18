@@ -17,7 +17,7 @@ class ImageVideo extends Component {
             imagesVideo: [],
             successMessage: "",
             submitSuccess: "",
-            buttonText:"Show All Image & Video"
+            buttonText: "Show All Image & Video"
         };
         this.submitImages = this.submitImages.bind(this);
 
@@ -28,28 +28,22 @@ class ImageVideo extends Component {
 
     }
     componentWillMount() {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.university.email;
-            var universityId = mydata.data.university._id;
-
-            var mytoken = mydata.data.token;
-            this.setState({ mounted: mytoken });
-            this.setState({ universityId: universityId });
-        }
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        this.setState({ mounted: mounted });
+        this.setState({ universityId: universityId });
     }
     ViewAllImage() {
-       
-      
-       if(this.state.buttonText==="Show All Image & Video"){
-        this.setState({ viewDisplay: "inline", buttonText:"Hide  All Image & Video"})
-       }
-       else{
-        this.setState({ viewDisplay: "none", buttonText:"Show All Image & Video"})
-       }
-     
-    
+
+
+        if (this.state.buttonText === "Show All Image & Video") {
+            this.setState({ viewDisplay: "inline", buttonText: "Hide  All Image & Video" })
+        }
+        else {
+            this.setState({ viewDisplay: "none", buttonText: "Show All Image & Video" })
+        }
+
+
     }
     handleDeleteClick(value) {
 
@@ -79,11 +73,11 @@ class ImageVideo extends Component {
                         if (res.data.success === true) {
                         }
                         else {
-                            
+
                         }
                     })
                     .catch(error => {
-                   
+
                     });
                 //end for fetting all images
             })
@@ -101,11 +95,11 @@ class ImageVideo extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-       
+
                 }
             })
             .catch(error => {
-            
+
             });
         //start for fetting all images
 
@@ -118,11 +112,11 @@ class ImageVideo extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                 
+
                 }
             })
             .catch(error => {
-            
+
             });
         //end for fetting all images
     };
@@ -158,7 +152,7 @@ class ImageVideo extends Component {
 
     }
     onFileChangeImage = eventcoverpik => {
- 
+
         this.setState({ link: eventcoverpik.target.files[0] });
 
 
@@ -177,11 +171,11 @@ class ImageVideo extends Component {
                         , 3000);
                 }
                 else {
-               
+
                 }
             })
             .catch(error => {
-              
+
             });
         //start for image only
         if (this.state.link !== "") {
@@ -201,10 +195,10 @@ class ImageVideo extends Component {
                         this.setState({ submitSuccess: 0 })
                         , 3000);
                     const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/imageVideos';
-             
+
                     fetch(url3, {
                         method: 'GET',
-                        headers: { 'Authorization': this.state.mytoken }
+                        headers: { 'Authorization': this.state.mounted }
                     })
                         .then(response => response.json())
                         .then(data => {
@@ -437,7 +431,7 @@ class ImageVideo extends Component {
 
 
                                         <button type="button" onClick={() => this.ViewAllImage()} className="btn btn-outline-success"><span><i className="fas fa-eye"></i></span>
-                                        {this.state.buttonText}
+                                            {this.state.buttonText}
                                         </button>
                                     </div>
                                     {/* start for shwowing table */}

@@ -23,19 +23,15 @@ class RankingEdit extends Component {
         this.submitEditRanking = this.submitEditRanking.bind(this);
     }
     componentWillMount() {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.university.email;
-            var universityId = mydata.data.university._id;
 
-            this.setState({ universityId: universityId });
-            var mytoken = mydata.data.token;
-            this.setState({ mounted: mytoken });
-        }
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        this.setState({ universityId: universityId });
+        this.setState({ mounted: mounted });
+
     }
     componentDidMount() {
-     
+
         var rankingId = this.props.editId
         this.setState({
             rankingId: rankingId
@@ -45,7 +41,7 @@ class RankingEdit extends Component {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityId + '/rankings/' + rankingId, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
-             
+
                 this.setState({
 
                     agencyName: res.data.universityRanking.agencyName,
@@ -56,11 +52,11 @@ class RankingEdit extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                  
+
                 }
             })
             .catch(error => {
-       
+
             });
         //start for fetting all images
 
@@ -90,17 +86,17 @@ class RankingEdit extends Component {
         obj1.append("certificate", this.state.certificate);
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.rankingId, obj1, { headers: { 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InByaXlhbmthLmNhbGluZm81MDBAZ21haWwuY29tIiwicGFzc3dvcmQiOiIxMjM0NSIsImlhdCI6MTY0MzYyOTc4Mjc0MCwiZXhwIjoxNjQzNjI5Nzk3MTQwfQ.P7TZof9JUpZJmjAwEMKmal7m_nHTdGZGiIsxpctJpFo' } })
             .then(function (res) {
-             
+
                 if (res.data.success === true) {
-                  
+
                 }
                 else {
-               
+
                 }
 
             })
             .catch(error => {
-               
+
             });
     }
 

@@ -17,12 +17,17 @@ class Topbar extends Component {
         localStorage.clear();
     }
     componentWillMount() {
+        
         if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var b = JSON.parse(a);
+            // var a = localStorage.getItem('universityData');
+            // var b = JSON.parse(a);
       
-            var user_email = b.data.university.email;
-            this.setState({ email: user_email });
+            // var user_email = b.data.university.email;
+            // this.setState({ email: user_email });
+            var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        var user_email = localStorage.getItem('universityEmail');
+        this.setState({ email: user_email });
         }
         else {
             var user_email = "";

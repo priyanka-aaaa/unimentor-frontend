@@ -17,16 +17,10 @@ export default function Overview() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
-
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-
-        }
-        setMounted(mytoken)
+     
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
         var ddlYears = document.getElementById("myyear");
 
         
@@ -42,7 +36,7 @@ export default function Overview() {
 
         //start for fetch personal information
         // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/overview')
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/overview')
 
             .then(function (res) {
 

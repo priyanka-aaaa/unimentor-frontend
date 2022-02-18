@@ -7,6 +7,9 @@ export default function UniversityPassword() {
     // start for personal information
 
     const [mounted, setMounted] = useState();
+    const [universityEmail, setuniversityEmail] = useState();
+
+
     const [password, setpassword] = useState("");
     const [conformPassword, setconformPassword] = useState("");
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
@@ -17,14 +20,11 @@ export default function UniversityPassword() {
 
     //end for recommendation
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        var universityEmail = localStorage.getItem('universityEmail');
+        setMounted(mounted)
+        setuniversityEmail(universityEmail)
 
     }, [])
     function setting(event) {
@@ -48,14 +48,36 @@ export default function UniversityPassword() {
                         setsuccessMessage("Password Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
+                        //start for fetching course
+                       
+
+                        const obj2 = new FormData();
+                        obj2.append("email", universityEmail);
+                        obj2.append("password", password);
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/login';
+                        fetch(url, {
+                            method: 'POST',
+                            body: obj2
+
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+
+                                localStorage.setItem('universityId', data.university._id);
+                                localStorage.setItem('universityToken', data.token);
+                                localStorage.setItem('universityName', data.university.name);
+                                localStorage.setItem('universityEmail', data.university.email);
+                            })
+                        // end for fetching course
                     }
                     else {
-               
+
                     }
                 })
                 .catch(error => {
-                  
+
                 });
+
         }
     }
 

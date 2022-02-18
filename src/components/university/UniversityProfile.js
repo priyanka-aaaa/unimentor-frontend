@@ -51,13 +51,8 @@ class UniversityProfile extends Component {
         //end for overview
     }
     componentWillMount() {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-            this.setState({ mounted: mytoken });
-        }
+      var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
     }
 
 

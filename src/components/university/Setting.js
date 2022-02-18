@@ -15,14 +15,10 @@ export default function Setting() {
 
     //end for recommendation
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-           
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
 
     }, [])
     function setting(event) {
@@ -39,18 +35,18 @@ export default function Setting() {
 
 
             };
-            axios.post(process.env.REACT_APP_SERVER_URL+'university/changePassword', obj, { headers: { 'Authorization': mounted } })
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-               
+
                     if (res.data.success === true) {
-                 
+
                     }
                     else {
-                    
+
                     }
                 })
                 .catch(error => {
-                  
+
                 });
         }
     }

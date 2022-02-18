@@ -46,11 +46,7 @@ class Sidebar extends Component {
                             <i className="fas fa-file-upload"></i>
                             <span>Summary Information</span></Link>
                     </li>
-                    {/* <li className="nav-item ">
-                        <Link to={'/UniversitySetting'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Setting</span></Link>
-                    </li> */}
+                  
 
                     <li className="nav-item">
                         <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">

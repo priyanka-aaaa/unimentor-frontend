@@ -24,15 +24,10 @@ const UniversityIntake = () => {
     const [deleteId, setdeleteId] = useState("");
 
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
 
-            var user_email = mydata.data.university.email;
-            var universityId = mydata.data.university._id;
 
-            var mounted = mydata.data.token;
-        }
         setMounted(mounted)
         setuniversityId(universityId)
 

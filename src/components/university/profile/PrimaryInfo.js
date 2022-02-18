@@ -34,20 +34,13 @@ export default function PrimaryInfo() {
 
 
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
 
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-
-        }
-
-        setMounted(mytoken)
-        setuniversityId(myuniversityid);
+        setMounted(mounted)
+        setuniversityId(universityId);
         //start for fetch personal information
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityid + '/primaryInformation')
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
 
 
             .then(function (res) {
@@ -65,14 +58,14 @@ export default function PrimaryInfo() {
                     setwebsite(student_universityPrimaryInformation.website);
                     setphone(student_universityPrimaryInformation.phone);
                     setorganization(student_universityPrimaryInformation.organization);
-               }
+                }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-             
+
             });
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
@@ -85,12 +78,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                  
+
                 }
 
             })
             .catch(error => {
-            
+
             });
         //start for fetch for city
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
@@ -99,12 +92,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                    
+
                 }
 
             })
             .catch(error => {
-          
+
             });
         //end for fetch for city
 
@@ -124,12 +117,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                   
+
                 }
 
             })
             .catch(error => {
-           
+
             });
     }
 
@@ -137,8 +130,8 @@ export default function PrimaryInfo() {
 
         setstate(e)
         setCheckCity("1")
-      
-     
+
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
 
 
@@ -149,12 +142,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                 
+
                 }
 
             })
             .catch(error => {
-        
+
             });
     }
 
@@ -185,12 +178,12 @@ export default function PrimaryInfo() {
 
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-          
+
             });
     }
     return (
@@ -200,216 +193,216 @@ export default function PrimaryInfo() {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
 
-          
-
-                <div className="card">
-                    <a className="card-header" data-bs-toggle="collapse" href="#collapseOne"><strong>1</strong>
-                        Primary Info
-
-                    </a>
-                    <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
-                        <div className="card-body">
-                            {/* start for shwongi popup */}
-
-                            {/* end for showing popup */}
-
-                            <form onSubmit={Personal_Information}>
-                                <div className="from-block">
 
 
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label className="form-label">Name
-                                                    *</label>
-                                                <input type="text" className="form-control"
-                                                    placeholder="Name" name="uname"
+            <div className="card">
+                <a className="card-header" data-bs-toggle="collapse" href="#collapseOne"><strong>1</strong>
+                    Primary Info
 
-                                                    value={name}
-                                                    onChange={(e) => setname(e.target.value)}
-                                                    required
-                                                />
-                                            </div>
+                </a>
+                <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
+                    <div className="card-body">
+                        {/* start for shwongi popup */}
 
-                                        </div>
-                                    </div>
-                                    <hr />
-                                    <div className="row">
-                                        <h6>Location</h6>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label className="form-label">Address
-                                                    *</label>
-                                                <input type="text" className="form-control"
-                                                    placeholder="Address" name="Address"
+                        {/* end for showing popup */}
 
-                                                    value={address}
-                                                    onChange={(e) => setaddress(e.target.value)}
-                                                    required />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label>Country *</label>
-                                                <select className="form-control" name="country" required=""
-                                                    value={country}
-                                                    onChange={(e) => handlecountry(e.target.value)}
-
-                                                >
-                                                    {countries.map((element, index) => {
-                                                        return (
-
-                                                            <option
+                        <form onSubmit={Personal_Information}>
+                            <div className="from-block">
 
 
-                                                                value={element.country_name} key={index}>{element.country_name}</option>
-                                                        )
-                                                    })}
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label className="form-label">Name
+                                                *</label>
+                                            <input type="text" className="form-control"
+                                                placeholder="Name" name="uname"
 
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="form-group">
-                                                <label>State *
-                                                </label>
-                                                <select className="form-control" name="state" required=""
-                                                    onChange={(e) => handlestate(e.target.value)}
-                                                >
-                                                    {CheckState === "0" ? <option value={state}>{state}</option> : <option>Please select state</option>}
-                                                    {states.map((element, index) => {
-                                                        return (
-                                                            <option
-                                                                value={element.state_name} key={index}>{element.state_name}</option>
-                                                        )
-                                                    })}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="form-group"><label>City</label>
-                                                <select className="form-control" name="city" required=""
-
-                                                    value={city}
-                                                    onChange={(e) => setcity(e.target.value)}
-                                                >
-                                                    {CheckCity === "0" ? <option value={city}>{city}</option> : <option>Please select state</option>}
-                                                    {cities.map((element, index) => {
-                                                    
-                                                        return (
-
-                                                            <option
-
-
-                                                                value={element.city_name} key={index}>{element.city_name}</option>
-                                                        )
-                                                    })}
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <div className="form-group">
-                                                <label>Pincode *</label>
-                                                <input type="text" className="form-control" placeholder="Pincode" name="pin_code" required=""
-                                                    value={pincode}
-                                                    onChange={(e) => setpincode(e.target.value)}
-                                                />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-md-6">
-                                            <div className="form-group">
-                                                <label>University Type</label>
-                                                <select className="form-control" name="city" required=""
-                                                    value={type}
-                                                    onChange={(e) => settype(e.target.value)}
-                                                >
-                                                    <option value="">Select Type</option>
-                                                    <option value="public">Public</option>
-                                                    <option value="private">Private</option>
-                                                    <option value="govt">Govt</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div className="row">
-                                        <div className="col-md-12">
-                                            <div className="form-group">
-                                                <label>Description</label>
-                                                <textarea
-                                                    value={description}
-                                                    onChange={(e) => setdescription(e.target.value)}
-                                                    className="form-control" row="2" col="3"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div className="row">
-                                        <div className="col-md-4">
-                                            <div className="form-group">
-                                                <label>Website</label>
-                                                <input type="text" className="form-control" placeholder="website" name="website" required=""
-
-                                                    value={website}
-                                                    onChange={(e) => setwebsite(e.target.value)}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-md-4">
-                                            <label>Phone Number</label>
-                                            <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
-
-                                                value={phone}
-                                                onChange={(e) => setphone(e.target.value)}
+                                                value={name}
+                                                onChange={(e) => setname(e.target.value)}
+                                                required
                                             />
                                         </div>
-                                        <div className="col-md-4">
-                                            <label>Parent organization</label>
-                                            <input type="text" className="form-control" placeholder="Parent organization" name="pr-org" required=""
 
-                                                value={organization}
-                                                onChange={(e) => setorganization(e.target.value)}
+                                    </div>
+                                </div>
+                                <hr />
+                                <div className="row">
+                                    <h6>Location</h6>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label className="form-label">Address
+                                                *</label>
+                                            <input type="text" className="form-control"
+                                                placeholder="Address" name="Address"
+
+                                                value={address}
+                                                onChange={(e) => setaddress(e.target.value)}
+                                                required />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label>Country *</label>
+                                            <select className="form-control" name="country" required=""
+                                                value={country}
+                                                onChange={(e) => handlecountry(e.target.value)}
+
+                                            >
+                                                {countries.map((element, index) => {
+                                                    return (
+
+                                                        <option
+
+
+                                                            value={element.country_name} key={index}>{element.country_name}</option>
+                                                    )
+                                                })}
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>State *
+                                            </label>
+                                            <select className="form-control" name="state" required=""
+                                                onChange={(e) => handlestate(e.target.value)}
+                                            >
+                                                {CheckState === "0" ? <option value={state}>{state}</option> : <option>Please select state</option>}
+                                                {states.map((element, index) => {
+                                                    return (
+                                                        <option
+                                                            value={element.state_name} key={index}>{element.state_name}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group"><label>City</label>
+                                            <select className="form-control" name="city" required=""
+
+                                                value={city}
+                                                onChange={(e) => setcity(e.target.value)}
+                                            >
+                                                {CheckCity === "0" ? <option value={city}>{city}</option> : <option>Please select state</option>}
+                                                {cities.map((element, index) => {
+
+                                                    return (
+
+                                                        <option
+
+
+                                                            value={element.city_name} key={index}>{element.city_name}</option>
+                                                    )
+                                                })}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Pincode *</label>
+                                            <input type="text" className="form-control" placeholder="Pincode" name="pin_code" required=""
+                                                value={pincode}
+                                                onChange={(e) => setpincode(e.target.value)}
                                             />
                                         </div>
                                     </div>
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label>University Type</label>
+                                            <select className="form-control" name="city" required=""
+                                                value={type}
+                                                onChange={(e) => settype(e.target.value)}
+                                            >
+                                                <option value="">Select Type</option>
+                                                <option value="public">Public</option>
+                                                <option value="private">Private</option>
+                                                <option value="govt">Govt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <div className="form-group">
+                                            <label>Description</label>
+                                            <textarea
+                                                value={description}
+                                                onChange={(e) => setdescription(e.target.value)}
+                                                className="form-control" row="2" col="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label>Website</label>
+                                            <input type="text" className="form-control" placeholder="website" name="website" required=""
+
+                                                value={website}
+                                                onChange={(e) => setwebsite(e.target.value)}
+                                            />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <label>Phone Number</label>
+                                        <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
+
+                                            value={phone}
+                                            onChange={(e) => setphone(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="col-md-4">
+                                        <label>Parent organization</label>
+                                        <input type="text" className="form-control" placeholder="Parent organization" name="pr-org" required=""
+
+                                            value={organization}
+                                            onChange={(e) => setorganization(e.target.value)}
+                                        />
+                                    </div>
+                                </div>
 
 
 
 
-                                    <div className="mb-3">
-                                        <div className="row">
-                                            <div className="col-md-6"></div>
-                                            <div className="col-md-6 text-right">
-                                                <button type="submit" className="btn btn-secondary" >Save
-                                                </button>
-                                                <button data-bs-toggle="collapse" href="#collapseTwo" type="submit"
-                                                    className="btn btn-success">Save &
-                                                    Next</button>
-                                            </div>
-
+                                <div className="mb-3">
+                                    <div className="row">
+                                        <div className="col-md-6"></div>
+                                        <div className="col-md-6 text-right">
+                                            <button type="submit" className="btn btn-secondary" >Save
+                                            </button>
+                                            <button data-bs-toggle="collapse" href="#collapseTwo" type="submit"
+                                                className="btn btn-success">Save &
+                                                Next</button>
                                         </div>
 
                                     </div>
-
-
 
                                 </div>
-                            </form>
-                        </div>
-                        {/* end for primary info */}
-                    </div>
 
+
+
+                            </div>
+                        </form>
+                    </div>
+                    {/* end for primary info */}
                 </div>
+
             </div>
-     
+        </div>
+
     );
 }
 

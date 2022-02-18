@@ -22,16 +22,9 @@ const CoursesFee = () => {
     const [Intakedata, setIntakedata] = useState([]);
 
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var universityId = mydata.data.university._id;
-
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
         setuniversityId(universityId)
         //start for select course
 
@@ -73,16 +66,14 @@ const CoursesFee = () => {
     }, [])
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
-        console.log("e.target.name");
-        console.log(e.target.name);
+   
         if(e.target.name==="intake"){
             var myvalue=e.target.value;
             const myArray = myvalue.split("&&");
             newFormValues[i]["year"] = myArray[0]; 
             newFormValues[i]["month"] = myArray[1]; 
         }
-        console.log("e.target.value");
-        console.log(e.target.value);
+    
     
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
@@ -116,11 +107,9 @@ const CoursesFee = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
-        console.log("myvalues");
-        console.log(myvalues)
+   
         formValues.map(async (item) => {
-            console.log("item._id")
-            console.log(item._id)
+      
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {

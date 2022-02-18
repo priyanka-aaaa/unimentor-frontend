@@ -20,9 +20,9 @@ export default function FrontendFooter() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
+            
 
-            var user_email = mydata.data.university.email;
+           
             var mytoken = mydata.data.token;
 
         }

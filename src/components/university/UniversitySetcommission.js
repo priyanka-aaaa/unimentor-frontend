@@ -74,19 +74,13 @@ const UniversitySetcommission = () => {
     }
     //end for edit
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var universityId = mydata.data.university._id;
-            setuniversityId(universityId)
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {
@@ -96,7 +90,7 @@ const UniversitySetcommission = () => {
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url2, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {

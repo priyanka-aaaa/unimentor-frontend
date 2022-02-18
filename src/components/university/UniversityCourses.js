@@ -24,7 +24,7 @@ const UniversityCourses = () => {
     const [width, setwidth] = useState("");
     const [viewWidth, setviewWidth] = useState("");
     const [addWidth, setaddWidth] = useState("");
-    const [mounted, setMounted] = useState();
+    const [mounted, setmounted] = useState();
     const [data, setdata] = useState([]);
     const [Intakedata, setIntakedata] = useState([]);
 
@@ -46,16 +46,9 @@ const UniversityCourses = () => {
     const [intakeyear, setintakeyear] = useState("2022");
     const [intakemonth, setintakemonth] = useState("jan");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var user_email = mydata.data.university.email;
-            var universityId = mydata.data.university._id;
-
-            var mounted = mydata.data.token;
-        }
-        setMounted(mounted)
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setmounted(mounted)
         setuniversityId(universityId)
 
         //start for year

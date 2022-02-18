@@ -39,7 +39,7 @@ const Application = () => {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
             var universityid = mydata.data.university._id;
-            var user_email = mydata.data.university.email;
+          
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)

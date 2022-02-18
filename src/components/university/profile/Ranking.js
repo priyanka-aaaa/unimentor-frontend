@@ -53,21 +53,20 @@ class Ranking extends Component {
     }
 
     componentWillMount() {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.university.email;
-            var universityId = mydata.data.university._id;
-            var mytoken = mydata.data.token;
-            this.setState({ mounted: mytoken, universityId: universityId });
-        }
+
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+
+
+        this.setState({ mounted: mounted, universityId: universityId });
+
     }
     componentDidMount() {    //start for call api
         // start for  university ranking
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': this.state.mytoken }
+            headers: { 'Authorization': this.state.mounted }
         })
             .then(response => response.json())
             .then(data => {
@@ -113,11 +112,11 @@ class Ranking extends Component {
                 if (res.data.success === true) {
                 }
                 else {
-                   
+
                 }
             })
             .catch(error => {
-           
+
             });
         //start for fetting all images
 
@@ -161,7 +160,7 @@ class Ranking extends Component {
 
                 fetch(url3, {
                     method: 'GET',
-                    headers: { 'Authorization': this.state.mytoken }
+                    headers: { 'Authorization': this.state.mounted }
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -205,7 +204,7 @@ class Ranking extends Component {
 
                 fetch(url3, {
                     method: 'GET',
-                    headers: { 'Authorization': this.state.mytoken }
+                    headers: { 'Authorization': this.state.mounted }
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -246,7 +245,7 @@ class Ranking extends Component {
 
                 fetch(url3, {
                     method: 'GET',
-                    headers: { 'Authorization': this.state.mytoken }
+                    headers: { 'Authorization': this.state.mounted }
                 })
                     .then(response => response.json())
                     .then(data => {

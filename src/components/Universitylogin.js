@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 
 import logo from './img/logo.png';
 // import { Component } from 'react';
@@ -6,12 +7,14 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 
+
 // import { BrowserRouter as Redirect } from 'react-router-dom';
 
 export default function Universitylogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     const [redirectToReferrer, setredirectToReferrer] = useState(false);
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
@@ -38,11 +41,25 @@ export default function Universitylogin() {
                     let responseJson = result;
              
                     if (responseJson.data.success === true) {
+                        
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
+ 
+                   
+                        localStorage.setItem('universityId', responseJson.data.university._id);
+                        localStorage.setItem('universityToken', responseJson.data.token);
+                        localStorage.setItem('universityName', responseJson.data.university.name);
+                        localStorage.setItem('universityEmail', responseJson.data.university.email);
+
+
+
+                        
                         setredirectToReferrer(true)
                     }
                     else {
-                       
+                    
+                        setsuccessMessage("Username or Password is incorrect")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
                     }
                 }
                 )
@@ -58,6 +75,9 @@ export default function Universitylogin() {
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
+                    {submitSuccess === 1 ? <div className="Show_success_message">
+                                <strong>Danger!</strong> {successMessage}
+                            </div> : null}
                         <div className="col-lg-12">
                             <div className="form-centerblock">
                                 {/* <a className="logo"><img src={logo} /></a> */}

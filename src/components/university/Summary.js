@@ -18,12 +18,16 @@ export default function Summary() {
     const [ugPTE, setugPTE] = useState("");
     const [pgPTE, setpgPTE] = useState("");
     const [intake, setintake] = useState("");
-    const [UniversityId, setUniversityId] = useState("");
+    const [universityId, setuniversityId] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    
-    useEffect(() => {
 
+    useEffect(() => {
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
+        setuniversityId(universityId)
+        
         var ddlYears = document.getElementById("ddlYears");
 
         //Determine the Current Year.
@@ -39,7 +43,7 @@ export default function Summary() {
         var pgYears = document.getElementById("pgYears");
 
         //Determine the Current Year.
-     
+
 
         //Loop and add the Year values to DropDownList.
         for (var i = currentYear; i >= 1950; i--) {
@@ -48,24 +52,15 @@ export default function Summary() {
             option.value = i;
             pgYears.appendChild(option);
         }
-        
 
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-          
-            var user_email = mydata.data.university.email;
-            var UniversityId = mydata.data.university._id;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
-        setUniversityId(UniversityId)
-        
+
+       
+
         //start for fetch personal information
-        axios.get(process.env.REACT_APP_SERVER_URL+'university/'+UniversityId+'/summary', { headers: { 'Authorization': mytoken } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/summary', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                 
+
                     var my_universitySummary = res.data.universitySummary;
 
                     setcampus(my_universitySummary.campus);
@@ -83,12 +78,12 @@ export default function Summary() {
 
                 }
                 else {
-                   
+
                 }
 
             })
             .catch(error => {
-            
+
             });
 
     }, [])
@@ -109,21 +104,22 @@ export default function Summary() {
             intake: intake
 
         };
-        axios.put(process.env.REACT_APP_SERVER_URL+'university/summary', obj, { headers: { 'Authorization': mounted } })
+ 
+        axios.put(process.env.REACT_APP_SERVER_URL + 'university/summary', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-              
+
                 if (res.data.success === true) {
                     setsuccessMessage("course delete")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                 }
                 else {
-                   
+
                 }
 
             })
             .catch(error => {
-          
+
             });
     }
 
@@ -149,7 +145,7 @@ export default function Summary() {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
-                        {submitSuccess === 1 ? <div className="Show_success_message">
+                            {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
                             </div> : null}
                             {/* <!-- Page Heading --> */}

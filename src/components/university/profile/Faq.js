@@ -17,22 +17,16 @@ const Faq = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-          
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-            var universityId = mydata.data.university._id;
-        }
-        setMounted(mytoken)
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
         setuniversityId(universityId)
 
         // const url = "university/faqs";
         const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {
@@ -76,11 +70,11 @@ const Faq = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-            
+
                         }
                     })
                     .catch(error => {
-                 
+
                     });
             }
             else {
@@ -94,11 +88,11 @@ const Faq = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                      
+
                         }
                     })
                     .catch(error => {
-                  
+
                     });
             }
 
@@ -160,11 +154,11 @@ const Faq = () => {
 
                                         }
                                         else {
-                                     
+
                                         }
                                     })
                                     .catch(error => {
-                                    
+
                                     });
 
                             }}
@@ -251,7 +245,7 @@ const Faq = () => {
                                                                             className="btn btn-secondary">Save
                                                                         </button>
                                                                         <button type="button" className="btn btn-success"
-                                                                         data-bs-toggle="collapse" href="#collapse1">Save &
+                                                                            data-bs-toggle="collapse" href="#collapse1">Save &
                                                                             Preview</button>
                                                                     </div>
                                                                 </div>

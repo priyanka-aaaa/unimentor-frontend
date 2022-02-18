@@ -25,7 +25,7 @@ const Document = () => {
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
     const [editPoint, seteditPoint] = useState("");
-    const [universityid, setuniversityid] = useState("");
+    const [universityId, setuniversityId] = useState("");
 
     const [MYpoint, setMYpoint] = useState();
 
@@ -34,19 +34,13 @@ const Document = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var universityid = mydata.data.university._id;
-
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
-        setuniversityid(universityid)
+        
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
+        setuniversityId(universityId)
         //start for fetch all document
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
         fetch(url1, {
             method: 'GET'
         })
@@ -87,7 +81,7 @@ const Document = () => {
         setwidth("1600px");
         seteditnewcomponent(1)
         //start for getting university 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents/' + value;
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents/' + value;
 
         fetch(url1, {
             method: 'GET',
@@ -141,7 +135,7 @@ const Document = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                     //start for fetch all document
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -204,7 +198,7 @@ const Document = () => {
                     setsubmitSuccess(1)
 
                     //start for fetch all document
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -249,7 +243,7 @@ const Document = () => {
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
                                     //start for fetch all document
-                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/documents';
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                                     fetch(url1, {
                                         method: 'GET'
                                     })

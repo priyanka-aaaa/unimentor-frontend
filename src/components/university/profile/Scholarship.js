@@ -22,22 +22,16 @@ const Document = () => {
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
     const [editPoint, seteditPoint] = useState("");
-    const [universityid, setuniversityid] = useState("");
+    const [universityId, setuniversityId] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [MYpoint, setMYpoint] = useState();
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-            var universityid = mydata.data.university._id;
-
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
+       
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
         //start for getting admin 
         const url = process.env.REACT_APP_SERVER_URL + 'admin/scholarships/';
         fetch(url, {
@@ -48,10 +42,10 @@ const Document = () => {
                 setformAdminValues(data.adminScholarships)
             })
         //end for getting admin 
-        setMounted(mytoken)
-        setuniversityid(universityid)
+        setMounted(mounted)
+        setuniversityId(universityId)
         //start for getting university 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
         fetch(url1, {
             method: 'GET'
         })
@@ -83,7 +77,7 @@ const Document = () => {
         seteditnewcomponent(1)
 
         //start for getting university 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships/' + value;
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships/' + value;
 
         fetch(url1, {
             method: 'GET',
@@ -128,7 +122,7 @@ const Document = () => {
                     setsubmitSuccess(1)
 
                     //start for getting university 
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -185,7 +179,7 @@ const Document = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                     //start for getting university 
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -234,7 +228,7 @@ const Document = () => {
                                     setsubmitSuccess(1)
                                     setwidth(0);
                                     //start for fetch all document
-                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/scholarships';
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
