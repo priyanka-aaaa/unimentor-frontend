@@ -317,7 +317,7 @@ export default function Home() {
                       <div className="front-content-part gold-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src={images["smh8.png"]} alt="" />
+                            <img src={images["icons-8.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -476,7 +476,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src={images["4.png"]} alt="" />
+                    <img src={images["style3-4.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Data Mining</h4>
@@ -670,7 +670,7 @@ export default function Home() {
                 <div className="services-item pink2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src={images["ssm-10.png"]} alt="" />
+                      <img className="main-img" src={images["main-img-10.png"]} alt="" />
                       <img className="hover-img" src={images["ssh-10.png"]}  alt="" />
                     </div>
                   </div>

@@ -11,7 +11,7 @@ import './components/css/frontend.css';
 
 // import './components/Routes';
 import './components/css/my.css';
-import './components/admin_css/dashboard.css';
+
 // import './components/admin_css/style.css';
 import Studentregister from './components/Studentregister';
 import Studentlogin from './components/Studentlogin';
