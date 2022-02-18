@@ -241,6 +241,7 @@ class Ranking extends Component {
                     , 3000);
 
                 // end for university ranking
+                
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 
                 fetch(url3, {
