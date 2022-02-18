@@ -55,7 +55,8 @@ export default function AllUniversity() {
         eligibility: "", english: "", coursewebsite: "", description: "", exam: ""
 
     }])
-  
+
+  const [rankingValues, setrankingValues] = useState([])
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -170,6 +171,19 @@ export default function AllUniversity() {
 
             })
         //end for fetching image
+        //start for university ranking
+        const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
+
+        fetch(url9, {
+            method: 'GET',
+            headers: { 'Authorization': mytoken }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setrankingValues(data.universityRankings)
+
+            })
+        //end for university ranking
     
 
     }, [])
@@ -309,7 +323,9 @@ export default function AllUniversity() {
                                                     </div>
 
                                                     <div className="overview-box ornage-light">
-                                                        <span className="icon"><i className="fa fa-star"></i></span>
+                                                        <span className="icon">
+                                                            
+                                                            <i className="fa fa-star"></i></span>
                                                         <h3>{FormOverviewValues.ranking}<br /><span>Global Rankings</span></h3>
                                                     </div>
 
@@ -453,30 +469,36 @@ export default function AllUniversity() {
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="blog-details.html">Ranking</a></h3>
                                                     <div className="blog-meta">
-                                                        <ul className="btm-cate">
+                                                    {rankingValues.map((element, index) => (
+                                                        <ul className="btm-cate" key={index}>
                                                             <li>
                                                                 <div className="blog-date">
                                                                     <i className="fa fa-globe"></i>
-                                                                    Global Ranking
+                                                                   {element.agencyName}
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div className="blog-date">
                                                                     <i className="fa fa-calendar-check-o"></i>
-                                                                    QS-2021
+                                                                    {element.year}
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div className="author">
-                                                                    <i className="fa fa-star"></i> 206
+                                                                <i className="fas fa-file-upload"></i>
+                                                       
+                                                                    <i className="fa fa-star"></i> {element.rank}
                                                                 </div>
                                                             </li>
                                                         </ul>
+                                                    ))}
                                                     </div><br />
 
                                                     <div className="raning-agency">
                                                         <h5>Ranking Agencies</h5>
-                                                        <a href="#"><img src="assets/images/ranking_agency_qs.webp" alt="" /></a>
+                                                        {rankingValues.map((element, index) => (
+                                                        <a href="#"><img src={element.certificate} alt="" /></a>
+                                                        ))}
                                                     </div>
                                                 </div>
                                             </div>
