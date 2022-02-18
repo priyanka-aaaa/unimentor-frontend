@@ -163,39 +163,39 @@ export default function PrimaryInfo() {
         if (isValidPhoneNumber(phone) === false) {
             setphoneError("Please enter correct phone number");
         }
-        else{
-        const obj = {
-            name: name,
-            address: address,
-            country: country,
-            state: state,
-            city: city,
-            pincode: pincode,
-            type: type,
-            description: description,
-            website: website,
-            phone: phone,
-            organization: organization
+        else {
+            const obj = {
+                name: name,
+                address: address,
+                country: country,
+                state: state,
+                city: city,
+                pincode: pincode,
+                type: type,
+                description: description,
+                website: website,
+                phone: phone,
+                organization: organization
 
-        };
+            };
 
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
 
-                if (res.data.success === true) {
-                    setsuccessMessage("Primary Information Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+                    if (res.data.success === true) {
+                        setsuccessMessage("Primary Information Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
 
-                }
-                else {
+                    }
+                    else {
 
-                }
+                    }
 
-            })
-            .catch(error => {
+                })
+                .catch(error => {
 
-            });
+                });
         }
     }
     return (
@@ -243,7 +243,7 @@ export default function PrimaryInfo() {
                                     <h6>Location</h6>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label className="form-label">Address
+                                            <label className="form-label">Street Address
                                                 *</label>
                                             <input type="text" className="form-control"
                                                 placeholder="Address" name="Address"
@@ -261,7 +261,14 @@ export default function PrimaryInfo() {
                                                 onChange={(e) => handlecountry(e.target.value)}
 
                                             >
+                                                <option
+
+
+                                                    value="" >Select country</option>
                                                 {countries.map((element, index) => {
+                                                    console.log("countries");
+                                                    console.log(country);
+
                                                     return (
 
                                                         <option
@@ -371,11 +378,11 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <label>Phone Number</label>
                                         <PhoneInput
-                                                placeholder="Enter phone number"
-                                                required
-                                                value={phone}
-                                                onChange={setphone} />
-                                            <span style={{ color: "red" }}> {phoneError}</span>
+                                            placeholder="Enter Phone Number"
+                                            required
+                                            value={phone}
+                                            onChange={setphone} />
+                                        <span style={{ color: "red" }}> {phoneError}</span>
 
                                         {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
 

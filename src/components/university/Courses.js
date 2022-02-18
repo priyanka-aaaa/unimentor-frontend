@@ -52,20 +52,21 @@ const Courses = () => {
 
         //start for year
 
-
+       
         // var ddlYears = document.getElementById("myyear");
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
-
+       
+        
+        //e.firstElementChild can be used.
+        var child = ddlYearsEdit.lastElementChild; 
+        while (child) {
+            ddlYearsEdit.removeChild(child);
+            child = ddlYearsEdit.lastElementChild;
+        }
         // //Determine the Current Year.
         var currentYear = (new Date()).getFullYear();
-        // for (var i = currentYear; i < 2027; i++) {
-
-        //     var option = document.createElement("OPTION");
-        //     option.innerHTML = i;
-        //     option.value = i;
-        //     ddlYears.appendChild(option);
-        // }
+     
         for (var i = currentYear; i < 2027; i++) {
 
             var option = document.createElement("OPTION");
@@ -795,8 +796,8 @@ const Courses = () => {
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Tuition fee</label>
-                                                                        <input type="text" className="form-control" placeholder="tuition fee"
+                                                                        <label className="form-label">Tuition Fee</label>
+                                                                        <input type="text" className="form-control" placeholder="Tuition Fee"
                                                                             name="tuitionFee"
                                                                             value={tuitionFee}
                                                                             onChange={(e) => settuitionFee(e.target.value)}
@@ -818,6 +819,7 @@ const Courses = () => {
                                                                             value={studyField}
                                                                             onChange={(e) => setstudyField(e.target.value)}
                                                                         >
+                                                                            <option value="">Select Study</option>
                                                                             <option value="Indigenous Canada">Indigenous Canada</option>
                                                                             <option value="The Science of Well-Being">The Science of Well-Being</option>
                                                                             <option value="Introduction to Statistics">Introduction to Statistics</option>
@@ -836,8 +838,8 @@ const Courses = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> course Level</label>
-                                                                                <input type="text" className="form-control" placeholder=" course Level"
+                                                                                <label className="form-label"> Course Level</label>
+                                                                                <input type="text" className="form-control" placeholder=" Course Level"
                                                                                     name=" courseLevel"
                                                                                     value={courseLevel}
                                                                                     onChange={(e) => setcourseLevel(e.target.value)}
@@ -877,6 +879,7 @@ const Courses = () => {
                                                                                 placeholder="Month" name="english"
                                                                                 value={english}
                                                                                 onChange={(e) => setenglish(e.target.value)}>
+                                                                                <option value=''>Select English Proficiency</option>
                                                                                 <option value='IELTS'>IELTS</option>
                                                                                 <option value='PTE'>PTE</option>
 

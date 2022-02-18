@@ -154,7 +154,7 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label htmlFor="State/Province">Ranking                                                             </label>
-                                        <input type="text" className="form-control"
+                                        <input type="number" className="form-control"
 
                                             value={ranking}
                                             onChange={(e) => setranking(e.target.value)}
@@ -191,7 +191,7 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
                                         <label htmlFor="Zipcode">No. of courses </label>
-                                        <input type="text" name="courseNo" className="form-control"
+                                        <input type="number" name="courseNo" className="form-control"
 
                                             value={courseNo}
                                             onChange={(e) => setcourseNo(e.target.value)}
@@ -261,7 +261,7 @@ export default function Overview() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label htmlFor="State/Province"> CGPA                                                            </label>
-                                            <input type="text" className="form-control" placholder="CGPA"
+                                            <input type="text" className="form-control" placeholder="CGPA"
 
                                                 value={cgpa}
                                                 onChange={(e) => setcgpa(e.target.value)}
