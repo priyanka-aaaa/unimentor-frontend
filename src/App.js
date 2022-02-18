@@ -7,9 +7,6 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './components/css/style.css';
 import './components/css/dashboard.css';
 import './components/css/frontend.css';
-
-
-// import './components/Routes';
 import './components/css/my.css';
 
 // import './components/admin_css/style.css';
@@ -39,9 +36,9 @@ import Universitylogin from './components/Universitylogin';
 import Universityregister from './components/Universityregister';
 import UniversitySetcommission from './components/university/UniversitySetcommission';
 import Summary from './components/university/Summary';
-import AllUniversity from './components/university/AllUniversity';
-import UniveristyPage from './components/university/UniveristyPage';
-import UniversityFilter from './components/universityFilter'
+import AllUniversity from './components/Home/AllUniversity';
+import UniveristyPage from './components/Home/UniveristyPage';
+
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminLogin from './components/AdminLogin';
 import AdminStudent from './components/admin/AdminStudent';
@@ -149,9 +146,10 @@ function App() {
 
             <Route exact path='/' component={Home} />
 
+   
 
 
-            <Route path='/FilterUniversity' component={UniversityFilter} />
+           
             <Route path='/Universitylogin' component={Universitylogin} />
             <Route path='/Universityregister' component={Universityregister} />
             <Route path='/UniversitySetcommission' component={UniversitySetcommission} />
