@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { BrowserRouter as Redirect} from 'react-router-dom';
+
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import undraw_profile from '../img/undraw_profile.svg';
 class Topbar extends Component {
@@ -19,11 +19,7 @@ class Topbar extends Component {
     componentWillMount() {
         
         if (localStorage.getItem("universityData")) {
-            // var a = localStorage.getItem('universityData');
-            // var b = JSON.parse(a);
-      
-            // var user_email = b.data.university.email;
-            // this.setState({ email: user_email });
+     
             var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         var user_email = localStorage.getItem('universityEmail');

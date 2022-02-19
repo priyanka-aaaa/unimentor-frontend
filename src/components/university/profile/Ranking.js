@@ -39,7 +39,7 @@ class Ranking extends Component {
 
 
         };
-        //start for primary information
+    
         this.handleAdd = this.handleAdd.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
         this.closeaddbox = this.closeaddbox.bind(this);
@@ -64,8 +64,8 @@ class Ranking extends Component {
         this.setState({ mounted: mounted, universityId: universityId });
 
     }
-    componentDidMount() {    //start for call api
-        // start for  university ranking
+    componentDidMount() {  
+     
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
         fetch(url, {
             method: 'GET',
@@ -76,7 +76,7 @@ class Ranking extends Component {
                 this.setState({ data: data.universityRankings })
 
             })
-        // end for  university ranking
+     
     };
     logoHandleDrop = (myfiles) => {
         this.setState({ certificate: myfiles[0] });
@@ -100,10 +100,7 @@ class Ranking extends Component {
     }
     handleAddClick(value) {
         this.setState({ editId: value, width: "1600px", editnewcomponent: 1, rankingId: value })
-
-        //start for call api
-
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
+ axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
 
                 this.setState({
@@ -122,7 +119,7 @@ class Ranking extends Component {
             .catch(error => {
 
             });
-        //start for fetting all images
+ 
 
     }
     handleAdd() {
@@ -153,7 +150,7 @@ class Ranking extends Component {
             obj1.append("year", this.state.year);
             obj1.append("certificate", this.state.certificate);
 
-            // start for university ranking
+          
             const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
             fetch(url2, {
                 method: 'post',
@@ -167,7 +164,7 @@ class Ranking extends Component {
                         this.setState({ submitSuccess: 0 })
                         , 3000);
 
-                    // end for university ranking
+                
                     const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 
                     fetch(url3, {
@@ -179,7 +176,7 @@ class Ranking extends Component {
                             this.setState({ data: data.universityRankings })
 
                         })
-                    // end for university ranking
+               
                 })
         }
     }
@@ -217,7 +214,7 @@ class Ranking extends Component {
                     this.setState({ submitSuccess: 0 })
                     , 3000);
 
-                // end for university ranking
+       
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 
                 fetch(url3, {
@@ -229,7 +226,7 @@ class Ranking extends Component {
                         this.setState({ data: data.universityRankings })
 
                     })
-                // end for university ranking
+         
             })
 
 
@@ -243,8 +240,7 @@ class Ranking extends Component {
 
     }
     handleDeleteClick(value) {
-        // setshowSweetAlert("1")
-        // setdeleteId(value)
+
         this.setState({ showSweetAlert: "1", deleteId: value })
     }
     render() {
@@ -270,8 +266,7 @@ class Ranking extends Component {
                                 title="Are you sure?"
                                 onConfirm={(value) => {
                                     this.setState({ showSweetAlert: "0" });
-                                    // setshowSweetAlert("0");
-                                    console.log("qqqqq")
+                                    
 
 
 
@@ -289,7 +284,7 @@ class Ranking extends Component {
                                                 this.setState({ submitSuccess: 0 })
                                                 , 3000);
 
-                                            // end for university ranking
+                                      
 
                                             const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 

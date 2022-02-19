@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
 export default function UniversityPassword() {
-    // start for personal information
+  
 
     const [mounted, setMounted] = useState();
     const [universityEmail, setuniversityEmail] = useState();
@@ -16,9 +16,9 @@ export default function UniversityPassword() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
 
-    // end for personal information
+  
 
-    //end for recommendation
+ 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -48,7 +48,7 @@ export default function UniversityPassword() {
                         setsuccessMessage("Password Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-                        //start for fetching course
+                    
 
 
                         const obj2 = new FormData();
@@ -68,7 +68,7 @@ export default function UniversityPassword() {
                                 localStorage.setItem('universityName', data.university.name);
                                 localStorage.setItem('universityEmail', data.university.email);
                             })
-                        // end for fetching course
+                     
                     }
                     else {
 

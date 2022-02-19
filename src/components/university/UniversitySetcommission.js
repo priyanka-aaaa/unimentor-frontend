@@ -14,7 +14,7 @@ const UniversitySetcommission = () => {
     const [displayPercentage, setdisplayPercentage] = useState("none");
     const [displayone, setdisplayone] = useState("none");
     const [displaymany, setdisplaymany] = useState("none");
-    //start for edit
+ 
     const [Editid, setEditid] = useState([]);
 
     const [EditcommissionType, setEditcommissionType] = useState([]);
@@ -25,7 +25,7 @@ const UniversitySetcommission = () => {
     const [displayEditPercentage, setdisplayEditPercentage] = useState("none");
     const [displayEditone, setdisplayEditone] = useState("none");
     const [displayEditmany, setdisplayEditmany] = useState("none");
-    //end for edit commission
+
 
 
     const [courseName, setcourseName] = useState("");
@@ -44,7 +44,7 @@ const UniversitySetcommission = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
-    //start for edit
+  
     function setEditCommissionTime(value) {
 
         setEdittimeType(value)
@@ -72,7 +72,7 @@ const UniversitySetcommission = () => {
             setdisplayEditAmount("none");
         }
     }
-    //end for edit
+   
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -87,7 +87,7 @@ const UniversitySetcommission = () => {
             .then(data => {
                 setcommissionData(data.universityCommissions)
             })
-        //start for select courses
+       
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url2, {
             method: 'GET',
@@ -97,7 +97,7 @@ const UniversitySetcommission = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-        //end for select courses
+       
     }, [])
 
 
@@ -128,7 +128,7 @@ const UniversitySetcommission = () => {
     function percentagecommissionValue(percentageValue) {
         var number1 = fee;
         var number2 = percentageValue;
-        var value = (number1 / number2); //w00t!
+        var value = (number1 / number2); 
         setPercentage(value)
         setcommissionValue(value)
     }
@@ -188,13 +188,13 @@ const UniversitySetcommission = () => {
     function handleAdd() {
         setaddWidth("1600px");
     }
-    //start for delete
+
 
     function handleDelete(value) {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-    //end for delete 
+   
     function closebox(value) {
         setwidth("0px");
 
@@ -214,7 +214,7 @@ const UniversitySetcommission = () => {
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
-        // obj1.append("commissionType", commissionChecked);
+       
         obj1.append("commissionType", commissionChecked);
 
         obj1.append("commissionValue", commissionValue);
@@ -233,7 +233,7 @@ const UniversitySetcommission = () => {
                 setsuccessMessage("Commisssion Added")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-                //start for get commission
+          
                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                 fetch(url, {
                     method: 'GET',
@@ -244,7 +244,7 @@ const UniversitySetcommission = () => {
                         setcommissionData(data.universityCommissions)
                    
                     })
-                //end for get commission
+              
             })
     }
     let handleEditSubmit = (event) => {
@@ -270,7 +270,7 @@ const UniversitySetcommission = () => {
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
 
-                //start for get commission
+           
                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                 fetch(url, {
                     method: 'GET',
@@ -282,7 +282,7 @@ const UniversitySetcommission = () => {
 
 
 
-                        //start for get commission
+                     
                         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                         fetch(url, {
                             method: 'GET',
@@ -292,16 +292,16 @@ const UniversitySetcommission = () => {
                             .then(data => {
                                 setcommissionData(data.universityCommissions)
                             })
-                        //end for get commission
+                  
                     })
-                //end for get commission
+                
             })
     }
 
     return (
         <div id="page-top">
 
-            {/* <button onClick={addStudent}>Add Another Student</button> */}
+       
 
             {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
@@ -316,9 +316,7 @@ const UniversitySetcommission = () => {
 
                         {/* topbar will be come there */}
                         <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
+                     
                         <div className="container">
                             {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
@@ -348,10 +346,10 @@ const UniversitySetcommission = () => {
                                                 setsuccessMessage("Commisssion Deleted")
                                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                                 setsubmitSuccess(1)
-                                                //start for get commission
+                                         
 
 
-                                                //start for get commission
+                                             
                                                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                                                 fetch(url, {
                                                     method: 'GET',
@@ -361,9 +359,7 @@ const UniversitySetcommission = () => {
                                                     .then(data => {
                                                         setcommissionData(data.universityCommissions)
                                                     })
-                                                //end for get commission
-
-                                                //end for get commission
+                                          
                                             })
 
                                     }}
@@ -494,10 +490,7 @@ const UniversitySetcommission = () => {
                                                                                                                 <option
                                                                                                                     onClick={(e) => handleClick(object.fee)}
 
-                                                                                                                    // onClick={() => {
-                                                                                                                    //     setfee(object.fee)
-                                                                                                                    // }}
-
+                                                        
 
                                                                                                                     value={object.courseName + "&&" + object.fee} key={i}>{object.courseName}</option>
                                                                                                             )

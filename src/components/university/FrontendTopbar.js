@@ -3,7 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 
 
-// start for personal information
+
 export default function FrontendTopbar() {
     let { id } = useParams();
 
@@ -27,7 +27,7 @@ export default function FrontendTopbar() {
         setMounted(mytoken)
 
 
-        // start for fetch university
+      
 
         const url = "universities";
 
@@ -40,7 +40,7 @@ export default function FrontendTopbar() {
 
                 setdata(data.universities);
                 setFormValues(data.universities)
-                // this.setState({ data: data.universityCourses })
+             
             })
 
 

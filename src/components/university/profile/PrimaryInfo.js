@@ -3,7 +3,6 @@ import axios from 'axios';
 import PhoneInput from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 
-// start for personal information
 export default function PrimaryInfo() {
     const [mounted, setMounted] = useState();
     const [universityId, setuniversityId] = useState();
@@ -42,7 +41,7 @@ export default function PrimaryInfo() {
 
         setMounted(mounted)
         setuniversityId(universityId);
-        //start for fetch personal information
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
 
 
@@ -88,7 +87,7 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-        //start for fetch for city
+    
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
             .then(function (res) {
                 if (res.data.success === true) {
@@ -102,7 +101,7 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-        //end for fetch for city
+        
 
     }, [])
 function onChangeName(e){
@@ -273,8 +272,7 @@ function onChangeName(e){
 
                                                     value="" >Select country</option>
                                                 {countries.map((element, index) => {
-                                                    console.log("countries");
-                                                    console.log(country);
+                                                    
 
                                                     return (
 

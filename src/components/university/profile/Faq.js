@@ -22,7 +22,7 @@ const Faq = () => {
         setMounted(mounted)
         setuniversityId(universityId)
 
-        // const url = "university/faqs";
+   
         const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',

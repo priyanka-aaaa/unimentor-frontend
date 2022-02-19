@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import ApplicationProfile from './ApplicationProfile';
-// import Profile from './Profile';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class Sidebar extends Component {
@@ -13,9 +11,7 @@ class Sidebar extends Component {
 
                     {/* <!-- Sidebar - Brand --> */}
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                        {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
-<i className="fas fa-graduation-cap"></i>
-</div> --> */}
+             
                         <div className="sidebar-brand-text mx-3">University Coursementor </div>
                     </a>
 

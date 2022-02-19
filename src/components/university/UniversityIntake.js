@@ -31,14 +31,14 @@ const UniversityIntake = () => {
         setMounted(mounted)
         setuniversityId(universityId)
 
-        //start for year
+ 
 
 
         var ddlYears = document.getElementById("myyear");
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
 
-        //Determine the Current Year.
+       
         var currentYear = (new Date()).getFullYear();
         for (var i = currentYear; i < 2027; i++) {
 
@@ -55,8 +55,7 @@ const UniversityIntake = () => {
             ddlYearsEdit.appendChild(option);
         }
 
-        //end for year
-        //start for fetching intake
+   
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
             method: 'GET',
@@ -66,7 +65,7 @@ const UniversityIntake = () => {
             .then(data => {
                 setdata(data.universityIntakes)
             })
-        // end for fetching intake
+   
     }, [])
 
     function handleClick(value) {
@@ -94,7 +93,7 @@ const UniversityIntake = () => {
     function handleAdd() {
         setaddWidth("1600px");
     }
-    //start for delete
+
 
     function handleDelete(value) {
 
@@ -102,7 +101,7 @@ const UniversityIntake = () => {
         setdeleteId(value)
 
     }
-    //end for delete 
+ 
     function closebox(value) {
         setwidth("0px");
     }
@@ -112,7 +111,7 @@ const UniversityIntake = () => {
     function closeaddbox(value) {
         setaddWidth("0px");
     }
-    //END FOR
+
     let handleEditSubmit = (event) => {
         event.preventDefault();
         const obj = {
@@ -128,7 +127,7 @@ const UniversityIntake = () => {
                     setsuccessMessage("course update")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    //start for fetching course
+                  
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -138,7 +137,7 @@ const UniversityIntake = () => {
                         .then(data => {
                             setdata(data.universityIntakes)
                         })
-                    // end for fetching course
+             
                 }
                 else {
 
@@ -168,7 +167,7 @@ const UniversityIntake = () => {
                     setyear("");
                     setmonth("");
 
-                    //start for fetching course
+          
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -178,7 +177,7 @@ const UniversityIntake = () => {
                         .then(data => {
                             setdata(data.universityIntakes)
                         })
-                    // end for fetching course
+                
                 }
                 else {
 
@@ -235,7 +234,7 @@ const UniversityIntake = () => {
                                                     setsuccessMessage("course delete")
                                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                                     setsubmitSuccess(1)
-                                                    //start for fetching course
+                                                    
                                                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                                                     fetch(url, {
                                                         method: 'GET',
@@ -245,7 +244,7 @@ const UniversityIntake = () => {
                                                         .then(data => {
                                                             setdata(data.universityIntakes)
                                                         })
-                                                    // end for fetching course
+                                                 
                                                 }
                                                 else {
 

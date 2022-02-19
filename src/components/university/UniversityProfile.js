@@ -22,7 +22,7 @@ class UniversityProfile extends Component {
         super(props);
         this.state = {
 
-            //start for overview
+          
             year: "",
             ranking: "",
             rate: "",
@@ -33,10 +33,10 @@ class UniversityProfile extends Component {
             english: "",
             cgpa: "",
             acceptanceRate: "",
-            //end for overview
+  
         };
 
-        //start for overview
+     
         this.changeyear = this.changeyear.bind(this);
         this.changeranking = this.changeranking.bind(this);
         this.changerate = this.changerate.bind(this);
@@ -48,7 +48,7 @@ class UniversityProfile extends Component {
         this.changecgpa = this.changecgpa.bind(this);
         this.changeacceptanceRate = this.changeacceptanceRate.bind(this);
         this.submitOverview = this.submitOverview.bind(this);
-        //end for overview
+     
     }
     componentWillMount() {
       var universityId = localStorage.getItem('universityId');
@@ -57,7 +57,7 @@ class UniversityProfile extends Component {
 
 
 
-    //start for overview
+
     changeyear(event) {
         this.setState({ year: event.target.value });
     }
@@ -118,7 +118,7 @@ class UniversityProfile extends Component {
             
             });
     }
-    //end for overview
+   
 
     render() {
         return (

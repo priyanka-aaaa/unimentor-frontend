@@ -50,21 +50,21 @@ const Courses = () => {
         setmounted(mounted)
         setuniversityId(universityId)
 
-        //start for year
+    
 
        
-        // var ddlYears = document.getElementById("myyear");
+
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
        
         
-        //e.firstElementChild can be used.
+   
         var child = ddlYearsEdit.lastElementChild; 
         while (child) {
             ddlYearsEdit.removeChild(child);
             child = ddlYearsEdit.lastElementChild;
         }
-        // //Determine the Current Year.
+
         var currentYear = (new Date()).getFullYear();
      
         for (var i = currentYear; i < 2027; i++) {
@@ -74,9 +74,9 @@ const Courses = () => {
             option.value = i;
             ddlYearsEdit.appendChild(option);
         }
-        //end for year
+   
 
-        //start for fetching course
+  
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET',
@@ -86,9 +86,7 @@ const Courses = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-        // end for fetching course
-
-        //start for fetching intake
+      
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
             method: 'GET',
@@ -106,7 +104,7 @@ const Courses = () => {
                 }
 
             })
-        // end for fetching intake
+     
 
 
     }, [])
@@ -131,7 +129,7 @@ const Courses = () => {
                     setyear("");
                     setmonth("");
 
-                    //start for fetching course
+                  
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -142,7 +140,7 @@ const Courses = () => {
                             setIntakedata(data.universityIntakes)
                       
                         })
-                    // end for fetching course
+               
                 }
                 else {
 
@@ -194,22 +192,21 @@ const Courses = () => {
     function handleAdd() {
         setaddWidth("1600px");
     }
-    //start for delete
+  
 
     function handleDelete(value) {
 
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-    //end for delete 
-    //start for view
+  
 
     function handleView(value) {
 
 
         seteditId(value);
         setviewWidth("1600px");
-        // axios.get('/university/courses/' + value, { headers: { 'Authorization': mounted } })
+      
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
 
             .then(function (res) {
@@ -246,7 +243,7 @@ const Courses = () => {
             });
 
     }
-    //end for view
+   
 
     function closebox(value) {
         setwidth("0px");
@@ -261,7 +258,6 @@ const Courses = () => {
         setaddWidth("0px");
     }
 
-    //END FOR
 
 
     let handleEditSubmit = (event) => {
@@ -290,7 +286,7 @@ const Courses = () => {
                     setsuccessMessage("course update")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    //start for fetching course
+             
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                     fetch(url, {
                         method: 'GET',
@@ -300,7 +296,7 @@ const Courses = () => {
                         .then(data => {
                             setdata(data.universityCourses)
                         })
-                    // end for fetching course
+     
                 }
                 else {
 
@@ -350,7 +346,7 @@ const Courses = () => {
                     setexam("");
                     setyear("");
                     setmonth("");
-                    //start for fetching course
+         
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                     fetch(url, {
                         method: 'GET',
@@ -360,7 +356,7 @@ const Courses = () => {
                         .then(data => {
                             setdata(data.universityCourses)
                         })
-                    // end for fetching course
+                 
                 }
                 else {
 
@@ -417,7 +413,7 @@ const Courses = () => {
                                     setsuccessMessage("course delete")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                    //start for fetching course
+                                   
                                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                                     fetch(url, {
                                         method: 'GET',
@@ -427,7 +423,7 @@ const Courses = () => {
                                         .then(data => {
                                             setdata(data.universityCourses)
                                         })
-                                    // end for fetching course
+                                
                                 }
                                 else {
 
@@ -544,7 +540,7 @@ const Courses = () => {
                                                                             *</label>
                                                                         <input type="text" className="form-control"
                                                                             placeholder="Course Name" name="courseName"
-                                                                            // value="fhgfh"
+                                                                          
                                                                             value={courseName}
                                                                             onChange={(e) => setChangecourseName(e.target.value)}
 
@@ -788,7 +784,7 @@ const Courses = () => {
                                                                             *</label>
                                                                         <input type="text" className="form-control"
                                                                             placeholder="Course Name" name="courseName"
-                                                                            // value="fhgfh"
+                                                                          
                                                                             value={courseName}
                                                                             onChange={(e) => setChangecourseName(e.target.value)}
 

@@ -5,7 +5,7 @@ class RankingEdit extends Component {
     constructor() {
         super();
         this.state = {
-            //start for primary information
+       
             agencyName: "",
             rank: "",
             year: "",
@@ -15,7 +15,7 @@ class RankingEdit extends Component {
 
         };
 
-        //start for primary information
+    
         this.changeagencyName = this.changeagencyName.bind(this);
         this.changerank = this.changerank.bind(this);
         this.changeyear = this.changeyear.bind(this);
@@ -37,7 +37,7 @@ class RankingEdit extends Component {
             rankingId: rankingId
         });
         var myuniversityId = this.state.universityId;
-        //start for call api
+
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityId + '/rankings/' + rankingId, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
@@ -58,7 +58,7 @@ class RankingEdit extends Component {
             .catch(error => {
 
             });
-        //start for fetting all images
+  
 
     };
 

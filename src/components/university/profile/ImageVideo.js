@@ -6,7 +6,7 @@ class ImageVideo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //start for primary information
+            
             logo: "",
             link: "",
             coverPic: "",
@@ -24,7 +24,7 @@ class ImageVideo extends Component {
 
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
         this.ViewAllImage = this.ViewAllImage.bind(this);
-        //start for primary information
+    
 
     }
     componentWillMount() {
@@ -46,11 +46,7 @@ class ImageVideo extends Component {
 
     }
     handleDeleteClick(value) {
-
-
-        // this.setState({ editId: value, editnewcomponent: 1, rankingId: value })
-
-        const url4 = process.env.REACT_APP_SERVER_URL + 'university/imageVideos/' + value;
+ const url4 = process.env.REACT_APP_SERVER_URL + 'university/imageVideos/' + value;
         fetch(url4, {
             method: 'delete',
             headers: { 'Authorization': this.state.mounted },
@@ -62,8 +58,6 @@ class ImageVideo extends Component {
                 setTimeout(() =>
                     this.setState({ submitSuccess: 0 })
                     , 3000);
-                //start for fetting all images
-
                 axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/imageVideos', { headers: { 'Authorization': this.state.mounted } })
                     .then(res => {
                         this.setState({
@@ -79,13 +73,13 @@ class ImageVideo extends Component {
                     .catch(error => {
 
                     });
-                //end for fetting all images
+              
             })
 
     }
     componentDidMount() {
         var myuniversityId = this.state.universityId;
-        //start for call api
+  
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityId + '/image', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 this.setState({
@@ -101,7 +95,7 @@ class ImageVideo extends Component {
             .catch(error => {
 
             });
-        //start for fetting all images
+     
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + myuniversityId + '/imageVideos', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
@@ -118,7 +112,7 @@ class ImageVideo extends Component {
             .catch(error => {
 
             });
-        //end for fetting all images
+       
     };
 
     renderSuccessElement() {
@@ -177,7 +171,7 @@ class ImageVideo extends Component {
             .catch(error => {
 
             });
-        //start for image only
+      
         if (this.state.link !== "") {
             const obj1 = new FormData();
             obj1.append("link", this.state.link);
@@ -206,10 +200,10 @@ class ImageVideo extends Component {
                             this.setState({ imagesVideo: data.universityImageVideos })
 
                         })
-                    // end for university ranking
+         
                 })
         }
-        //end for image only
+  
     }
 
     renderElementpassportBack() {

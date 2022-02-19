@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-// start for personal information
+
 export default function Overview() {
     const [mounted, setMounted] = useState();
     const [foundedYear, setfoundedYear] = useState("");
@@ -36,11 +36,6 @@ export default function Overview() {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
 
-
-
-
-        //start for fetch personal information
-        // axios.get('/university/'+'61dab27e05671a193cca5f81'+'/overview')
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/overview')
 
             .then(function (res) {

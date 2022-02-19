@@ -39,7 +39,7 @@ const Document = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        //start for fetch all document
+ 
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
         fetch(url1, {
             method: 'GET'
@@ -48,8 +48,7 @@ const Document = () => {
             .then(data => {
                 setFormValues(data.universityDocuments)
             })
-        //end for fetch all document
-        //start for getting admin 
+  
         const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/';
         fetch(url, {
             method: 'GET'
@@ -58,7 +57,7 @@ const Document = () => {
             .then(data => {
                 setformAdminValues(data.adminDocuments)
             })
-        //end for getting admin 
+       
     }, [])
 
     function closeaddbox(value) {
@@ -80,7 +79,7 @@ const Document = () => {
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
-        //start for getting university 
+    
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents/' + value;
 
         fetch(url1, {
@@ -91,7 +90,7 @@ const Document = () => {
             .then(data => {
                 setMYpoint(data.universityDocument.document)
             })
-        //end for getting university 
+ 
 
     }
     let props = {
@@ -102,16 +101,16 @@ const Document = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";   
         }
         var element = document.querySelector(".helpadd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+   
     }
     let handleAddSubmit = () => {
         setaddWidth(0)
@@ -134,7 +133,7 @@ const Document = () => {
                     setsuccessMessage("Document Add")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    //start for fetch all document
+               
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                     fetch(url1, {
                         method: 'GET'
@@ -143,7 +142,7 @@ const Document = () => {
                         .then(data => {
                             setFormValues(data.universityDocuments)
                         })
-                    //end for fetch all document
+               
                 }
                 else {
 
@@ -157,16 +156,16 @@ const Document = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";   
         }
         var element = document.querySelector(".helpedit")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+       
     }
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
@@ -183,7 +182,7 @@ const Document = () => {
 
         const obj = {
             document: InsetApplication
-            // point: originalString
+      
 
         };
 
@@ -197,7 +196,7 @@ const Document = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
 
-                    //start for fetch all document
+              
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                     fetch(url1, {
                         method: 'GET'
@@ -206,7 +205,7 @@ const Document = () => {
                         .then(data => {
                             setFormValues(data.universityDocuments)
                         })
-                    //end for fetch all document
+                  
 
                 }
                 else {
@@ -242,7 +241,7 @@ const Document = () => {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                    //start for fetch all document
+                                  
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                                     fetch(url1, {
                                         method: 'GET'
@@ -251,8 +250,7 @@ const Document = () => {
                                         .then(data => {
                                             setFormValues(data.universityDocuments)
                                         })
-                                    //end for fetch all document
-
+                               
                                 }
                                 else {
 
@@ -415,11 +413,10 @@ const Document = () => {
 
                                             </div>
                                         </div>
-                                        {/* //end for add docyument */}
+                                  
                                     </div>
                                 </div>
-                                {/* end for add */}
-                                {/* start for view */}
+                        
                                 <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >

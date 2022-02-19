@@ -44,7 +44,7 @@ const Application = () => {
         }
         setMounted(mytoken)
         setuniversityid(universityid)
-        //start for getting university 
+       
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
         fetch(url1, {
             method: 'GET'
@@ -53,8 +53,7 @@ const Application = () => {
             .then(data => {
                 setFormValues(data.universityAdmissions)
             })
-        //end  for getting university 
-        //start for getting admin 
+ 
         const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/';
         fetch(url, {
             method: 'GET'
@@ -63,7 +62,7 @@ const Application = () => {
             .then(data => {
                 setformAdminValues(data.adminApplications)
             })
-        //end for getting admin 
+      
     }, [])
     function closeaddbox(value) {
 
@@ -108,16 +107,16 @@ const Application = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";    
         }
         var element = document.querySelector(".help")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+     
     }
     let handleAddSubmit = () => {
         setaddWidth(0)
@@ -138,7 +137,7 @@ const Application = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
 
-                    //start for getting university 
+                 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {
                         method: 'GET'
@@ -147,7 +146,7 @@ const Application = () => {
                         .then(data => {
                             setFormValues(data.universityAdmissions)
                         })
-                    //end  for getting university 
+              
                 }
                 else {
                  
@@ -159,16 +158,16 @@ const Application = () => {
     }
     let clickEditHandler = (datum) => {
         if (tempp !== 1) {
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".edithelp")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+       
     }
     let handleEditSubmit = () => {
         setwidth(0)
@@ -187,7 +186,7 @@ const Application = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
 
-                    //start for getting university 
+                 
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                     fetch(url1, {
                         method: 'GET'
@@ -196,7 +195,7 @@ const Application = () => {
                         .then(data => {
                             setFormValues(data.universityAdmissions)
                         })
-                    //end  for getting university 
+                  
                 }
                 else {
            
@@ -228,7 +227,7 @@ const Application = () => {
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
 
-                                    //start for getting university 
+                                   
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                                     fetch(url1, {
                                         method: 'GET'
@@ -237,7 +236,7 @@ const Application = () => {
                                         .then(data => {
                                             setFormValues(data.universityAdmissions)
                                         })
-                                    //end  for getting university 
+                        
 
                                 }
                                 else {

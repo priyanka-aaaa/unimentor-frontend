@@ -31,10 +31,10 @@ export default function Summary() {
         
         var ddlYears = document.getElementById("ddlYears");
 
-        //Determine the Current Year.
+ 
         var currentYear = (new Date()).getFullYear();
 
-        //Loop and add the Year values to DropDownList.
+   
         for (var i = currentYear; i >= 1950; i--) {
             var option = document.createElement("OPTION");
             option.innerHTML = i;
@@ -43,10 +43,10 @@ export default function Summary() {
         }
         var pgYears = document.getElementById("pgYears");
 
-        //Determine the Current Year.
 
 
-        //Loop and add the Year values to DropDownList.
+
+  
         for (var i = currentYear; i >= 1950; i--) {
             var option = document.createElement("OPTION");
             option.innerHTML = i;
@@ -55,7 +55,7 @@ export default function Summary() {
         }
 
 
-         //start for fetching intake
+ 
          const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
          fetch(url2, {
              method: 'GET',
@@ -73,9 +73,9 @@ export default function Summary() {
                  }
  
              })
-         // end for fetching intake
 
-        //start for fetch personal information
+
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/summary', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -106,7 +106,7 @@ export default function Summary() {
             });
 
     }, [])
-    // start for personal information
+  
     function Summary(event) {
         event.preventDefault();
         const obj = {

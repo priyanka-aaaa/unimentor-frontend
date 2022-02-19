@@ -32,7 +32,7 @@ const Document = () => {
        
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
-        //start for getting admin 
+
         const url = process.env.REACT_APP_SERVER_URL + 'admin/scholarships/';
         fetch(url, {
             method: 'GET'
@@ -41,10 +41,10 @@ const Document = () => {
             .then(data => {
                 setformAdminValues(data.adminScholarships)
             })
-        //end for getting admin 
+
         setMounted(mounted)
         setuniversityId(universityId)
-        //start for getting university 
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
         fetch(url1, {
             method: 'GET'
@@ -53,7 +53,7 @@ const Document = () => {
             .then(data => {
                 setFormValues(data.universityScholarships)
             })
-        //end for getting university 
+
     }, [])
 
     function closeaddbox(value) {
@@ -76,7 +76,7 @@ const Document = () => {
         setwidth("1600px");
         seteditnewcomponent(1)
 
-        //start for getting university 
+       
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships/' + value;
 
         fetch(url1, {
@@ -87,17 +87,17 @@ const Document = () => {
             .then(data => {
                 setMYpoint(data.universityScholarship.scholarship)
             })
-        //end for getting university 
+  
     }
 
     let clickAddHandler = (datum) => {
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; 
         }
         var element = document.querySelector(".addhelp")
         element.editor.insertHTML(datum);
@@ -121,7 +121,7 @@ const Document = () => {
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
 
-                    //start for getting university 
+                    
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                     fetch(url1, {
                         method: 'GET'
@@ -130,7 +130,7 @@ const Document = () => {
                         .then(data => {
                             setFormValues(data.universityScholarships)
                         })
-                    //end for getting university 
+            
 
                 }
                 else {
@@ -146,16 +146,16 @@ const Document = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; //<li></li>
+            var datum = "<ul><li>" + datum + "</li></ul>"; 
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; //<li></li>   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";  
         }
         var element = document.querySelector(".helpedit")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-        //  this.setState(prevState => ({ valueArr: [...prevState.valueArr, mydatumvalue] }));
+      
     }
 
 
@@ -178,7 +178,7 @@ const Document = () => {
                     setsuccessMessage("Scholarship Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                    //start for getting university 
+              
                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                     fetch(url1, {
                         method: 'GET'
@@ -187,7 +187,7 @@ const Document = () => {
                         .then(data => {
                             setFormValues(data.universityScholarships)
                         })
-                    //end for getting university 
+                  
                 }
                 else {
 
@@ -227,7 +227,7 @@ const Document = () => {
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
                                     setwidth(0);
-                                    //start for fetch all document
+                                
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                                     fetch(url1, {
                                         method: 'GET'
@@ -236,7 +236,7 @@ const Document = () => {
                                         .then(data => {
                                             setFormValues(data.universityScholarships)
                                         })
-                                    //end for fetch all document
+                                  
 
                                 }
                                 else {

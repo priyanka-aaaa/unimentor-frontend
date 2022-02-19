@@ -4,16 +4,14 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
 export default function Setting() {
-    // start for personal information
+ 
 
     const [mounted, setMounted] = useState();
     const [password, setpassword] = useState("");
     const [conformPassword, setconformPassword] = useState("");
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
 
-    // end for personal information
-
-    //end for recommendation
+ 
     useEffect(() => {
 
         var universityId = localStorage.getItem('universityId');
