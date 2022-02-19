@@ -24,7 +24,7 @@ const Education = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-        //start for select course
+ 
         const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
      
       
@@ -127,10 +127,7 @@ const Education = () => {
                 setsuccessMessage("Education Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-                //start for get commission
-
-
-                //start for get commission
+               
                 const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
                 fetch(url, {
                     method: 'GET',
@@ -149,9 +146,7 @@ const Education = () => {
                             setFormValues(data.studentEducations)
                         }
                     })
-                //end for get commission
-
-                //end for get commission
+                
             })
     }
     return (

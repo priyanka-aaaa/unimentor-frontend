@@ -6,11 +6,7 @@ import Topbar from './Topbar';
 import Footer from './Footer';
 
 export default function AdminStudy() {
-    // start for personal information
-
-
-
-    return (
+   return (
         <div id="page-top">
             {/*
     <!-- Page Wrapper --> */}
@@ -69,8 +65,7 @@ export default function AdminStudy() {
                                                                                 <input required="" name="password"
                                                                                     type="password" id="password"
                                                                                     class="form-control"
-                                                                                // value={password}
-                                                                                // onChange={(e)=> setpassword(e.target.value)}
+                                                                               
                                                                                 />
                                                                             </div>
                                                                         </div>

@@ -5,16 +5,11 @@ function PersonalInformation(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
-
-
-    //start for score
-    const [scoremarks, setscoremarks] = useState();
+  const [scoremarks, setscoremarks] = useState();
     const [scoreenglishProficiency, setscoreenglishProficiency] = useState();
     const [scoregre, setscoregre] = useState();
     const [scoresat, setscoresat] = useState();
-    // end for score
-
-    useEffect(() => {
+   useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
@@ -24,7 +19,7 @@ function PersonalInformation(props) {
         }
         setMounted(mytoken)
         var myurl = process.env.REACT_APP_SERVER_URL;
-        //start for score
+    
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/score', { headers: { 'Authorization': mytoken } })
             .then(function (res) {
              
@@ -43,7 +38,7 @@ function PersonalInformation(props) {
             .catch(error => {
        
             });
-        //end for score
+
     }, [])
 
 

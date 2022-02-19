@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-// import ApplicationProfile from './ApplicationProfile';
-// import Profile from './Profile';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 class Sidebar extends Component {

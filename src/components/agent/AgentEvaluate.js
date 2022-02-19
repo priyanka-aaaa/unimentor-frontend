@@ -6,12 +6,12 @@ import Topbar from './Topbar';
 import Footer from './Footer';
 
 export default function AgentEvaluate() {
-    // start for personal information
+   
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
 
-    //start for evaluate
+  
     const [country, setcountry] = useState("");
     const [state, setstate] = useState("");
     const [university, setuniversity] = useState("");
@@ -24,7 +24,7 @@ export default function AgentEvaluate() {
     const [listening, setlistening] = useState("");
     const [speaking, setspeaking] = useState("");
     const [writing, setwriting] = useState("");
-    //end for evaluate
+ 
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {

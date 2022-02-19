@@ -24,7 +24,7 @@ class WorkExperienceForm extends Component {
         ],
         data: [],
 
-        // mypassport: "",
+        
         myfile: "",
         selectedImage: [
 
@@ -41,12 +41,12 @@ class WorkExperienceForm extends Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {    
         axios.get('/student/extraCurricularDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
 
                 this.setState({
-                    // mypassport: res.data.studentIdentityDocument.passport,
+               
                     myExtraActivity: res.data.studentExtraCurricularDocument.file,
                     myactivity: res.data.studentExtraCurricularDocument.activity
                 });
@@ -85,7 +85,7 @@ class WorkExperienceForm extends Component {
             .catch(error => {
                
             });
-        //end for call api
+   
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -103,7 +103,7 @@ class WorkExperienceForm extends Component {
             .catch(error => {
       
             });
-        //end for call api
+
     }
     renderElementExtraActivity() {
         if (this.state.myExtraActivity === '' || this.state.myExtraActivity === undefined) {

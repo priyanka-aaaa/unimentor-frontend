@@ -32,7 +32,7 @@ export default function AdminStudentApplication() {
         urls.forEach(function(url){
            JSZipUtils.getBinaryContent(url.link, function (err, data) {
                 if(err) {
-                    throw err; // or handle the error
+                    throw err; 
                 }
                 zip.file(url.name, data, {binary:true});
                 count++;
@@ -45,25 +45,20 @@ export default function AdminStudentApplication() {
             });
         });
       };
-    // start for personal information
+
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [firstviewWidth, setfirstviewWidth] = useState("0px");
     const [viewId, setviewId] = useState("0px");
     const [thirdviewWidth, setthirdviewWidth] = useState("0px");
-    // const [universityApplication, setuniversityApplication] = useState();
+    
     const [universityApplication, setuniversityApplication] = useState(
         []
     )
-    // var universityApplication = [
-    //     {object: "Pete Hunt"},
-
-    //   ];
+   
     const [FormStudentApplicationValues, setFormStudentApplicationValues] = useState([]);
     const [viewSingleApplication, setviewSingleApplication] = useState("");
 
-
-    //start for personal information
     const [salutation, setsalutation] = useState("");
     const [firstName, setfirstName] = useState("");
     const [middleName, setmiddleName] = useState("");
@@ -81,12 +76,7 @@ export default function AdminStudentApplication() {
     const [firstLanguage, setfirstLanguage] = useState("");
     const [visa, setvisa] = useState("");
     const [refusedVisa, setrefusedVisa] = useState("");
-  
-
-    
-    //end for personal information
-
-    //start for address
+ 
     const [country, setcountry] = useState();
     const [state, setstate] = useState();
     const [city, setcity] = useState();
@@ -94,68 +84,46 @@ export default function AdminStudentApplication() {
     const [zipcode, setzipcode] = useState();
     const [communication_address, setcommunication_address] = useState("no");
     const [secondviewWidth, setsecondviewWidth] = useState("0px");
-
-
-
-    //end for address
-
-    //start for family
-    const [FormFamilyValues, setFormFamilyValues] = useState([{
+ const [FormFamilyValues, setFormFamilyValues] = useState([{
         relationship: "", salutation: "", firstName: "", middleName: "", lastName: "", email: "",
         mobile: "", occupation: "", qualification: "", _id: "null"
     }])
-    //end for familty
-    //start for education
-    const [formEducationValues, setformEducationValues] = useState([{
+   const [formEducationValues, setformEducationValues] = useState([{
         highestEducation: "", status: "", specialization: "", degree: "", gradePercentage: "", marks: "", attendedForm: "",
         institution: "", affiliationUniversity: "", language: "", country: "", state: "", city: "", address: "", zipcode: "",
         _id: "null"
     }])
-    //end for education
-
-    //start for score
     const [scoremarks, setscoremarks] = useState();
     const [scoreenglishProficiency, setscoreenglishProficiency] = useState();
     const [scoregre, setscoregre] = useState();
     const [scoresat, setscoresat] = useState();
-    // end for score
-    //start for work experience
+
     const [FormExperienceValues, setFormExperienceValues] = useState([{
         status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
         _id: "null"
     }])
-    //end for work experience
-    //start for extra curricultar Activity
+
     const [formActivityValues, setformActivityValues] = useState([{
         activityStatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
 
         _id: "null"
     }])
-    //end for extra curricultar Activity
-    //start for recommendation
+
     const [FormRecommendationValues, setFormRecommendationValues] = useState([{
         type: "", organization: "", recommenderName: "", email: "", relation: "", designation: "", number: "", address: "", letter: "",
 
         _id: "null"
     }])
-    //end for recommendation
-
-
-    useEffect(() => {
+  useEffect(() => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
             var mounted = mydata.data.token;
             var adminId = mydata.data.admin._id;
-            // setAdminId(adminId)
+           
         }
         setMounted(mounted)
-        // setuniversityId(universityId)
-
-
-
-        // start for fetching course
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
+      const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -164,7 +132,7 @@ export default function AdminStudentApplication() {
             .then(data => {
                 setdata(data.applications)
             })
-        // end for fetching course
+      
     }, [])
     function handleCloseView() {
         setfirstviewWidth("0px");
@@ -179,22 +147,7 @@ export default function AdminStudentApplication() {
         setthirdviewWidth("1800px")
         setfirstviewWidth("0px")
         setsecondviewWidth("0px")
-        //start for all
-        // axios.put(process.env.REACT_APP_SERVER_URL + 'admin/countries/' + countryId, item, { headers: { 'Authorization': mounted } })
-        // .then(function (res) {
-        //     if (res.data.success === true) {
-            
-        //     }
-        //     else {
-      
-        //     }
-        // })
-        // .catch(error => {
-       
-        // });
-        //end for all
-        //start for particular application details
-        const url4 = process.env.REACT_APP_SERVER_URL + 'admin/countries/620a48a37cef50e6815393ce';
+       const url4 = process.env.REACT_APP_SERVER_URL + 'admin/countries/620a48a37cef50e6815393ce';
         fetch(url4, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -204,8 +157,6 @@ export default function AdminStudentApplication() {
                 setuniversityApplication(data.adminCountry.countrySteps)
              
             })
-        //end for particular application details
-        //start for dummy country application step
         const url7 = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications/';
         fetch(url7, {
             method: 'GET',
@@ -213,7 +164,6 @@ export default function AdminStudentApplication() {
         })
             .then(response => response.json())
             .then(data => {
-                // setviewSingleApplication(data.applications)
                 var myresult =
                 {
                     "_id": "6207314ccc02846889d76fb4",
@@ -232,13 +182,13 @@ export default function AdminStudentApplication() {
                 setviewSingleApplication(myresult)
 
             })
-        //end for dummy country application step
+     
     }
     function handleView(value) {
         const myArray = value.split("&&");
         setviewId(myArray[0]);
         setfirstviewWidth("1600px");
-        //start for studentApplication 
+
         var url8 = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications/' + myArray[1];
         axios.get(url8, { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -253,9 +203,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
            
             });
-        //end for studentAppliation
-        //start for personal information
-        var url2 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/personalInformation';
+       var url2 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/personalInformation';
         axios.get(url2, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var myuniversityCourse = res.data.studentPersonalInformation;
@@ -287,9 +235,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
               
             });
-        //end for personal information
-        //start for address
-        var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/address';
+         var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/address';
         axios.get(url3, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var studentAddress = res.data.studentAddress;
@@ -309,10 +255,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
           
             });
-        //end for address
-        //start for family information
-
-        var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
+       var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
         axios.get(url3, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -326,9 +269,6 @@ export default function AdminStudentApplication() {
             .catch(error => {
             
             });
-        //end for family information
-
-        //start for education
         var url4 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/educations';
         axios.get(url4, { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -343,9 +283,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
            
             });
-        //end for education
-        //start for score
-        var url5 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/score';
+         var url5 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/score';
         axios.get(url5, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -363,9 +301,6 @@ export default function AdminStudentApplication() {
             .catch(error => {
         
             });
-        //end for score
-        //start for work experience
-
         var url6 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/experiences';
         axios.get(url6, { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -381,9 +316,6 @@ export default function AdminStudentApplication() {
             .catch(error => {
            
             });
-        //end for work experience
-        //start for extra curricultar activity
-
         var url6 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/activities';
         axios.get(url6, { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -399,9 +331,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
                 
             });
-        //end for extra curricultar activity
-        //start for recommendation
-        var url7 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/profileRecommendations';
+         var url7 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/profileRecommendations';
         axios.get(url7, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -416,10 +346,7 @@ export default function AdminStudentApplication() {
             .catch(error => {
           
             });
-        //end for recommendation
-        //start for studentApplication
-        
-    }
+      }
 
 
     function downloadPassport(){

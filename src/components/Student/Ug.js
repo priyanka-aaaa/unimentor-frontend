@@ -110,7 +110,7 @@ class Button extends React.Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {   
         axios.get('/student/educationDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
 
@@ -153,7 +153,7 @@ class Button extends React.Component {
             .catch(error => {
             
             });
-        //end for call api
+    
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -171,7 +171,7 @@ class Button extends React.Component {
             .catch(error => {
         
             });
-        //end for call api
+
     }
     renderElementugDegree() {
         if (this.state.myUgDegree === '' || this.state.myUgDegree === undefined) {
@@ -262,7 +262,7 @@ class Button extends React.Component {
             .catch(error => {
             
             });
-        //end for call api
+   
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -280,7 +280,7 @@ class Button extends React.Component {
             .catch(error => {
             
             });
-        //end for call api
+   
     }
     renderElementugConsolidatedMarksheet() {
         if (this.state.myugConsolidatedMarksheet === '' || this.state.myugConsolidatedMarksheet === undefined) {
@@ -371,7 +371,7 @@ class Button extends React.Component {
             .catch(error => {
               
             });
-        //end for call api
+    
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -389,7 +389,7 @@ class Button extends React.Component {
             .catch(error => {
             
             });
-        //end for call api
+       
     }
     renderElementugMarksheet() {
         if (this.state.myugMarksheet === '' || this.state.myugMarksheet === undefined) {

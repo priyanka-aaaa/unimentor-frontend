@@ -26,7 +26,7 @@ const Family = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-        //start for select course
+     
         const url = process.env.REACT_APP_SERVER_URL + 'student/families';
         fetch(url, {
             method: 'GET',
@@ -123,10 +123,10 @@ const Family = () => {
                 setsuccessMessage("Family Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-                //start for get commission
+         
 
 
-                //start for get commission
+           
                 const url = process.env.REACT_APP_SERVER_URL + 'student/families';
                 fetch(url, {
                     method: 'GET',
@@ -145,9 +145,7 @@ const Family = () => {
                             setFormValues(data.studentFamilies)
                         }
                     })
-                //end for get commission
-
-                //end for get commission
+             
             })
     }
     return (
@@ -284,7 +282,7 @@ const Family = () => {
                                 </div>
                             </div>
                         ))}
-                        {/* //end  */}
+              
                         <div className="mb-3">
                             <div className="row">
                                 <div className="col-md-6"></div>

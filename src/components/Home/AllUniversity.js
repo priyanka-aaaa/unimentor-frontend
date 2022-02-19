@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-// start for personal information
+
 export default function AllUniversity() {
     const [mounted, setMounted] = useState();
 
@@ -24,7 +24,7 @@ export default function AllUniversity() {
         setMounted(mytoken)
 
 
-        // start for fetch university
+
         const url = process.env.REACT_APP_SERVER_URL + "universities";
       
         fetch(url, {

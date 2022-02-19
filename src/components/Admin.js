@@ -5,11 +5,6 @@ import logo from './img/logo.png';
 import axios from 'axios';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
-
-
-
-// import { BrowserRouter as Redirect } from 'react-router-dom';
-
 export default function AdminLogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

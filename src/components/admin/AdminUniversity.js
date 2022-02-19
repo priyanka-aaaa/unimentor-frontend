@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Footer from './Footer';
 
 export default function AdminUniversity() {
-    // start for personal information
+  
     const [mounted, setMounted] = useState();
 
 
@@ -31,7 +31,7 @@ export default function AdminUniversity() {
         setMounted(mytoken)
 
 
-        // start for fetch university
+ 
         const url = process.env.REACT_APP_SERVER_URL + "universities";
        
         fetch(url, {
@@ -43,7 +43,6 @@ export default function AdminUniversity() {
              
                 setdata(data.universities);
                 setFormValues(data.universities)
-                // this.setState({ data: data.universityCourses })
             })
 
 

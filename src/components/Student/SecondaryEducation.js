@@ -24,7 +24,7 @@ class Button extends React.Component {
         ],
         data: [],
 
-        // mypassport: "",
+      
         marksheet10: "",
         myTwelve: "",
         selectedImage: [
@@ -36,18 +36,7 @@ class Button extends React.Component {
             { textflag: !this.state.textflag }
         );
     }
-    // state = {
-    //     mounted: "",
-    //     files: [
-    //     ],
-    //     data: [],
 
-    //     // mypassport: "",
-    //     marksheet10: "",
-    //     selectedImage: [
-
-    //     ]
-    // }
     componentWillMount() {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -57,11 +46,11 @@ class Button extends React.Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {   
         axios.get('/student/educationDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 this.setState({
-                    // mypassport: res.data.studentIdentityDocument.passport,
+             
                     marksheet10: res.data.studentEducationDocument.marksheet10,
                     myTwelve: res.data.studentEducationDocument.marksheet12
                 });
@@ -99,7 +88,7 @@ class Button extends React.Component {
             .catch(error => {
      
             });
-        //end for call api
+
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -117,7 +106,7 @@ class Button extends React.Component {
             .catch(error => {
                 
             });
-        //end for call api
+   
     }
     renderElementTenMarksheet() {
         if (this.state.marksheet10 === '' || this.state.marksheet10 === undefined) {
@@ -255,7 +244,7 @@ class Button extends React.Component {
             .catch(error => {
                
             });
-        //end for call api
+ 
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -273,7 +262,7 @@ class Button extends React.Component {
             .catch(error => {
              
             });
-        //end for call api
+     
     }
     renderElementpassport() {
         if (this.state.myTwelve === '' || this.state.myTwelve === undefined) {

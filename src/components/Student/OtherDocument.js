@@ -25,7 +25,7 @@ class OtherDocument extends Component {
         myname: "",
         data: [],
 
-        // mypassport: "",
+    
         file: "",
         selectedImage: [
 
@@ -41,12 +41,12 @@ class OtherDocument extends Component {
 
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {   
         axios.get('/student/otherDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
 
                 this.setState({
-                    // mypassport: res.data.studentIdentityDocument.passport,
+                    
                     myotherdocument: res.data.studentOtherDocument.file,
                     myname: res.data.studentOtherDocument.name,
 
@@ -87,7 +87,7 @@ class OtherDocument extends Component {
             .catch(error => {
       
             });
-        //end for call api
+     
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -106,7 +106,7 @@ class OtherDocument extends Component {
             .catch(error => {
        
             });
-        //end for call api
+
     }
     renderElementTenMarksheet() {
         if (this.state.myotherdocument === '' || this.state.myotherdocument === undefined) {

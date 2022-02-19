@@ -21,13 +21,13 @@ const AdminApplication = () => {
             var mydata = JSON.parse(a);
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
-            // setAdminId(adminId)
+          
         }
         setMounted(mytoken)
 
         setAdminId(adminId)
 
-        //start for select course
+        
         const url = process.env.REACT_APP_SERVER_URL + "admin/applications/";
 
 
@@ -38,7 +38,7 @@ const AdminApplication = () => {
             .then(response => response.json())
             .then(data => {
                 setFormValues(data.adminApplications)
-                // this.setState({ data: data.universityCourses })
+             
             })
 
     }, [])
@@ -131,8 +131,7 @@ const AdminApplication = () => {
                                                             placeholder="application" name="application"
                                                             value={element.application || ""} onChange={e => handleChange(index, e)}
 
-                                                        // value={courseName}
-                                                        // onChange={(e) => setcourseName(e.target.value)}
+                                                      
                                                         />
                                                     </div>
 

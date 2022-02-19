@@ -17,7 +17,7 @@ function PersonalInformation(props) {
     }
     setMounted(mounted)
     var myurl = process.env.REACT_APP_SERVER_URL;
-    //start for fetch personal information
+  
     axios.get(process.env.REACT_APP_SERVER_URL + 'student/applications', { headers: { 'Authorization': mounted } })
       .then(function (res) {
         if (res.data.success === true) {
@@ -34,13 +34,11 @@ function PersonalInformation(props) {
       .catch(error => {
       
       });
-    //end for fetch personal information
+   
 
 
   }, [])
-  // start for personal information
 
-  // end for personal information
 
 
   return (

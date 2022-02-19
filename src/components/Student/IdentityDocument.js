@@ -44,7 +44,7 @@ class IdentityDocument extends Component {
         }
     }
     componentDidMount() {
-        //start for fetch identityDocument
+ 
         var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
         axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
@@ -64,7 +64,7 @@ class IdentityDocument extends Component {
             .catch(error => {
               
             });
-        //end for fetch identityDocument
+      
     };
     onDeletePassportHandle() {
         const obj2 = new FormData();
@@ -78,7 +78,7 @@ class IdentityDocument extends Component {
             .then(function (res) {
                 if (res.data.success === true) {
                 
-                        //start for fetch identityDocument
+                   
         var url2 = process.env.REACT_APP_SERVER_URL + 'student/identityDocument';
         axios.get(url2, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
@@ -98,7 +98,7 @@ class IdentityDocument extends Component {
             .catch(error => {
                
             });
-        //end for fetch identityDocument
+ 
                 }
                 else {
                     
@@ -111,7 +111,7 @@ class IdentityDocument extends Component {
     }
     onDeletePassportBackHandle() {
      
-        //start for identitydocument
+  
         const obj2 = new FormData();
 
         obj2.append("passportBack", "*");
@@ -133,10 +133,10 @@ class IdentityDocument extends Component {
             .catch(error => {
                
             });
-        //end for identity document
+      
     }
     onDeletecvHandle() {
-        //start for identitydocument
+       
         const obj2 = new FormData();
 
         obj2.append("cv", "*");
@@ -158,7 +158,7 @@ class IdentityDocument extends Component {
             .catch(error => {
             
             });
-        //end for identity document
+
     }
     onFileChangepassport = eventpassport => {
         const obj2 = new FormData();
@@ -182,7 +182,7 @@ class IdentityDocument extends Component {
             .catch(error => {
              
             });
-        //end for call api
+ 
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -200,7 +200,7 @@ class IdentityDocument extends Component {
             .catch(error => {
          
             });
-        //end for call api
+
     }
     renderElementpassport() {
         if (this.state.mypassport === '' || this.state.mypassport === undefined || this.state.mypassport === null) {
@@ -271,9 +271,9 @@ class IdentityDocument extends Component {
     }
     onFileChangepassportBack = eventpassportback => {
         const obj2 = new FormData();
-        // obj2.append("passport", );
+  
         obj2.append("passportBack", eventpassportback.target.files[0]);
-        // obj2.append("cv", );
+        
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted,
@@ -291,7 +291,7 @@ class IdentityDocument extends Component {
             .catch(error => {
               
             });
-        //end for call api
+
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -309,7 +309,7 @@ class IdentityDocument extends Component {
             .catch(error => {
           
             });
-        //end for call api
+       
     }
     renderElementpassportBack() {
         if (this.state.mypassportBack === '' || this.state.mypassportBack === undefined || this.state.mypassportBack === null || this.state.mypassportBack === "*") {
@@ -385,7 +385,7 @@ class IdentityDocument extends Component {
         const obj2 = new FormData();
 
         obj2.append("cv", eventcv.target.files[0]);
-        // obj2.append("cv", );
+
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', obj2, {
             headers: {
                 'Authorization': this.state.mounted
@@ -403,7 +403,7 @@ class IdentityDocument extends Component {
             .catch(error => {
           
             });
-        //end for call api
+
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -421,7 +421,7 @@ class IdentityDocument extends Component {
             .catch(error => {
         
             });
-        //end for call api
+        
     }
 
     deleteCv() {
@@ -440,7 +440,7 @@ class IdentityDocument extends Component {
             .catch(error => {
         
             });
-        //end for call api
+    
     }
     renderElementcv() {
         if (this.state.mycv === '' || this.state.mycv === undefined || this.state.mycv === null || this.state.mycv === "*") {

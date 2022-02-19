@@ -23,7 +23,7 @@ const WorkExperience = () => {
         setMounted(mounted)
 
 
-        //start for select course
+    
         const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
         fetch(url, {
             method: 'GET',
@@ -125,10 +125,10 @@ const WorkExperience = () => {
                 setsuccessMessage("Family Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-                //start for get commission
+               
 
 
-                //start for get commission
+              
                 const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
                 fetch(url, {
                     method: 'GET',
@@ -147,9 +147,7 @@ const WorkExperience = () => {
                             setFormValues(data.studentExperience)
                         }
                     })
-                //end for get commission
-
-                //end for get commission
+             
             })
     }
 

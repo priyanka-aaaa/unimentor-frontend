@@ -106,7 +106,7 @@ class Button extends React.Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {
         axios.get('/student/educationDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 this.setState({
@@ -147,7 +147,7 @@ class Button extends React.Component {
             .catch(error => {
       
             });
-        //end for call api
+       
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -165,7 +165,7 @@ class Button extends React.Component {
             .catch(error => {
           
             });
-        //end for call api
+     
     }
     renderElementpassport() {
         if (this.state.mypgdegree === '' || this.state.mypgdegree === undefined) {
@@ -256,7 +256,7 @@ class Button extends React.Component {
             .catch(error => {
              
             });
-        //end for call api
+   
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -274,7 +274,7 @@ class Button extends React.Component {
             .catch(error => {
            
             });
-        //end for call api
+    
     }
     renderElementpassport() {
         if (this.state.mypgmarksheet === '' ||  this.state.mypgmarksheet === undefined) {
@@ -365,7 +365,7 @@ class Button extends React.Component {
             .catch(error => {
                 
             });
-        //end for call api
+    
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -383,7 +383,7 @@ class Button extends React.Component {
             .catch(error => {
  
             });
-        //end for call api
+        
     }
     renderElementpassport() {
         if (this.state.mypgconsolidated === '' ||  this.state.mypgconsolidated === undefined) {

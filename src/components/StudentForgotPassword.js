@@ -25,7 +25,7 @@ class StudentForgotPassword extends Component {
         let fields = this.state;
         let errors = {};
         let formIsValid = true;
-        //Email
+     
         if (!fields["email"]) {
             formIsValid = false;
             errors["email"] = "Please enter a email";
@@ -68,8 +68,7 @@ class StudentForgotPassword extends Component {
                     let responseJson = result;
                   
                     if (responseJson.data.success === true) {
-                        // localStorage.setItem('userData', JSON.stringify(responseJson));
-                        // this.setState({ redirectToReferrer: true });
+               
                     }
                     else {
                       
@@ -91,9 +90,7 @@ class StudentForgotPassword extends Component {
 
     }
     render() {
-        // if (this.state.redirectToReferrer || localStorage.getItem('userData')) {
-        //     return (<Redirect to={'/StudentDashboard'} />)
-        // }
+      
         return (
             <div >
                 <section className="Form-block">

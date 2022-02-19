@@ -20,23 +20,20 @@ function AddStudent(props) {
     const [maritalStatus, setmaritalStatus] = useState("");
     const [refusedVisa, setrefusedVisa] = useState("");
     const [refusedVisaReason, setrefusedVisaReason] = useState("");
-    //start for address
+   
     const [address, setaddress] = useState("");
     const [country, setcountry] = useState("");
     const [state, setstate] = useState("");
     const [city, setcity] = useState("");
     const [zipcode, setzipcode] = useState("");
-    // end for address
-    // start for register
+   
     const [phone, setphone] = useState("");
     const [email, setemail] = useState("");
-    // end for register
-    //start for education
+   
     const [highestEducation, sethighestEducation] = useState("");
     const [gradePercentage, setgradePercentage] = useState("");
     const [passingYear, setpassingYear] = useState("");
-    //end for education
-    //start for score
+   
     const [examType, setexamType] = useState("");
     const [examinationDate, setexaminationDate] = useState("");
     const [overall, setoverall] = useState("");
@@ -44,7 +41,7 @@ function AddStudent(props) {
     const [reading, setreading] = useState("");
     const [writing, setwriting] = useState("");
     const [speaking, setspeaking] = useState("");
-    //end for score
+  
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -61,12 +58,6 @@ function AddStudent(props) {
         event.preventDefault();
         const obj = {
 
-
-
-            //start for score
-
-
-            //end for score
 
         };
    
@@ -118,7 +109,7 @@ function AddStudent(props) {
             .then(data => {
                 setStudentId(data.id)
                 var student_id = data.id;
-                // start for personal details
+            
                 const url2 = process.env.REACT_APP_SERVER_URL + 'agent/students/' +
                     student_id + '/personalInformation';
                 fetch(url2, {
@@ -130,8 +121,7 @@ function AddStudent(props) {
                     .then(data => {
                        
                     })
-                // end for personal details
-                // start for address
+             
                 const url3 = process.env.REACT_APP_SERVER_URL + 'agent/students/' +
                     student_id + '/address';
                 fetch(url3, {
@@ -143,8 +133,7 @@ function AddStudent(props) {
                     .then(data => {
                      
                     })
-                // end for address
-                // start for education
+             
                 const url4 = process.env.REACT_APP_SERVER_URL + 'agent/students/' +
                     student_id + '/education';
                 fetch(url4, {
@@ -156,8 +145,7 @@ function AddStudent(props) {
                     .then(data => {
                   
                     })
-                // end for education
-                //start for score
+            
                 const url5 = process.env.REACT_APP_SERVER_URL + 'agent/students/' +
                     student_id + '/score';
                 fetch(url5, {
@@ -169,7 +157,7 @@ function AddStudent(props) {
                     .then(data => {
                    
                     })
-                //end for score
+           
 
             })
 
@@ -369,8 +357,7 @@ function AddStudent(props) {
                                                                         <div className="col-md-4">
                                                                             <label className="form-label"><span>*</span>Country Code</label>
                                                                             <select
-                                                                                // value={firstName}
-                                                                                // onChange={(e) => setfirstName(e.target.value)}
+                                                                             
                                                                                 className="form-control" name="city" required>
                                                                                 <option value>Select State</option>
                                                                                 <option value>+91</option>

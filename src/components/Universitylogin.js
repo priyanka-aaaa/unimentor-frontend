@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
-
-
 import logo from './img/logo.png';
-// import { Component } from 'react';
 import axios from 'axios';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
-
-
-// import { BrowserRouter as Redirect } from 'react-router-dom';
-
 export default function Universitylogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

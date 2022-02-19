@@ -7,10 +7,6 @@ import Footer from './Footer';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default function AdminStudentApplicationView() {
-    // start for personal information
-
-
-
     return (
         <div id="page-top">
 

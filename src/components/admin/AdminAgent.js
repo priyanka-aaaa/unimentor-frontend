@@ -6,11 +6,7 @@ import Topbar from './Topbar';
 import Footer from './Footer';
 
 export default function AdminAgent() {
-    // start for personal information
-
-
-
-    return (
+   return (
         <div id="page-top">
 
 

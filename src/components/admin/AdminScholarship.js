@@ -25,13 +25,13 @@ const AdminScholarship = () => {
 
             var mytoken = mydata.data.token;
             var adminId = mydata.data.admin._id;
-            // setAdminId(adminId)
+     
         }
         setMounted(mytoken)
 
         setAdminId(adminId)
 
-        //start for select course
+       
         const url = process.env.REACT_APP_SERVER_URL + "admin/scholarships/";
 
         fetch(url, {
@@ -130,8 +130,7 @@ const AdminScholarship = () => {
                                                                 placeholder="scholarship" name="scholarship"
                                                                 value={element.scholarship || ""} onChange={e => handleChange(index, e)}
 
-                                                            // value={courseName}
-                                                            // onChange={(e) => setcourseName(e.target.value)}
+                                                           
                                                             />
                                                         </div>
 

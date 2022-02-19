@@ -9,7 +9,7 @@ export default function Studentregister() {
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
-    //start for pesonal profile
+    
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
     const [location, setlocation] = useState("");
@@ -21,7 +21,7 @@ export default function Studentregister() {
     const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
-    //end for personal profile
+    
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -178,8 +178,7 @@ export default function Studentregister() {
                                                                                 <label htmlFor="fname" className="form-label">First
                                                                                     Name</label>
                                                                                 <input
-                                                                                    //   value={confirmpassword}
-                                                                                    //   onChange={(e) => setconfirmpassword(e.target.value)}
+                                                                                  
                                                                                     type="text" className="form-control"
                                                                                     placeholder="" name="fname" />
                                                                             </div>
@@ -187,8 +186,7 @@ export default function Studentregister() {
                                                                                 <label htmlFor="lname" className="form-label">Last
                                                                                     Name</label>
                                                                                 <input type="text"
-                                                                                    //   value={confirmpassword}
-                                                                                    //   onChange={(e) => setconfirmpassword(e.target.value)}
+                                                                                 
                                                                                     className="form-control"
                                                                                     placeholder="" name="lname" />
                                                                             </div>

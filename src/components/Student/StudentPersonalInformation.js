@@ -6,7 +6,7 @@ function StudentPersonalInformation(props) {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
 
-    // start for address
+ 
     const [country, setcountry] = useState();
     const [state, setstate] = useState();
     const [city, setcity] = useState();
@@ -22,7 +22,7 @@ function StudentPersonalInformation(props) {
     const [cities, setcities] = useState([{
         city_name: ""
     }])
-    // end for address
+
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -34,7 +34,7 @@ function StudentPersonalInformation(props) {
         }
         setMounted(mytoken)
         var myurl = process.env.REACT_APP_SERVER_URL;
-     //start for address
+   
      axios.get(process.env.REACT_APP_SERVER_URL + 'student/address', { headers: { 'Authorization': mytoken } })
      .then(function (res) {
    
@@ -73,7 +73,7 @@ function StudentPersonalInformation(props) {
      .catch(error => {
      
      });
- //start for fetch for city
+
  axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
      .then(function (res) {
          if (res.data.success === true) {
@@ -87,7 +87,7 @@ function StudentPersonalInformation(props) {
      .catch(error => {
  
      });
- //end for fetch for city
+
     }, [])
     function application_address(event) {
         event.preventDefault();
@@ -186,7 +186,7 @@ function StudentPersonalInformation(props) {
                                     value={country}
                                     onChange={(e) => handlecountry(e.target.value)}
 
-                                    // onChange={(e) => setcountry(e.target.value)}
+                             
                                     className="form-control" name="country" required="">
                                      {countries.map((element, index) => {
                                                         return (

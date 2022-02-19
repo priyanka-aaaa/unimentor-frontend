@@ -37,7 +37,7 @@ function FinalFilter(props) {
                                               </li>
                                             </ul> 
                                           </nav>
-                                        </div> {/* //.main-menu */}
+                                        </div> 
                                         <div className="expand-btn-inner search-icon hidden-md">
                                           <ul>
                                             <li className="sidebarmenu-search">

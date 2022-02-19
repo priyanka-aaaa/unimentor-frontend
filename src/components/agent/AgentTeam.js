@@ -6,11 +6,7 @@ import Topbar from './Topbar';
 import Footer from './Footer';
 
 export default function AgentTeam() {
-    // start for personal information
-
-
-
-    return (
+  return (
         <div id="page-top">
             {/*
     <!-- Page Wrapper --> */}
@@ -79,16 +75,14 @@ export default function AgentTeam() {
                                         <div className="col-md-4">
                                             <label className="form-label"><span>*</span>Contact Person Name</label>
                                             <input type="text" className="form-control" 
-                                            //  value={name}
-                                            //  onChange={(e) => setname(e.target.value)}
+                                         
                                             placeholder="" name="cpname" />
                                         </div>
 
                                         <div className="col-md-4">
                                             <label className="form-label"><span>*</span>Country Code</label>
                                             <input type="text" className="form-control" placeholder="" 
-                                                // value={name}
-                                                // onChange={(e) => setname(e.target.value)}
+                                            
                                             name="count-code" />
                                         </div>
                                         <div className="col-md-4">

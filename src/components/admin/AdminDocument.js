@@ -30,7 +30,7 @@ const AdminDocument = () => {
 
         setAdminId(adminId)
 
-        //start for select course
+      
         const url = process.env.REACT_APP_SERVER_URL+"admin/documents/";
  
         fetch(url, {
@@ -40,7 +40,7 @@ const AdminDocument = () => {
             .then(response => response.json())
             .then(data => {
                 setFormValues(data.adminDocuments)
-                // this.setState({ data: data.universityCourses })
+               
             })
 
     }, [])
@@ -134,8 +134,6 @@ const AdminDocument = () => {
                                                                 placeholder="document" name="document"
                                                                 value={element.document || ""} onChange={e => handleChange(index, e)}
 
-                                                            // value={courseName}
-                                                            // onChange={(e) => setcourseName(e.target.value)}
                                                             />
                                                         </div>
 

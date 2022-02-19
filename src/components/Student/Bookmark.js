@@ -22,7 +22,7 @@ function Bookmark(props) {
     }
     setMounted(mounted)
     var myurl = process.env.REACT_APP_SERVER_URL;
-    //start for fetch personal information
+   
 
     const url = process.env.REACT_APP_SERVER_URL + 'student/bookmarks';
     fetch(url, {

@@ -28,7 +28,7 @@ class TenMarksheet extends Component {
         mytest: "",
         data: [],
         salutation: "",
-        // mypassport: "",
+ 
         selectEnglish: "",
         selectedImage: [
 
@@ -44,11 +44,11 @@ class TenMarksheet extends Component {
             this.setState({ mounted: mytoken });
         }
     }
-    componentDidMount() {    //start for call api
+    componentDidMount() {    
         axios.get('/student/englishProficiencyDocument', { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
                 this.setState({
-                    // mypassport: res.data.studentIdentityDocument.passport,
+                  
                     selectEnglish: res.data.studentEnglishProficiencyDocument.file,
 
                     mytest: res.data.studentEnglishProficiencyDocument.test
@@ -88,7 +88,7 @@ class TenMarksheet extends Component {
             .catch(error => {
               
             });
-        //end for call api
+       
     };
     handleDrop = (myfiles) => {
         const obj4 = new FormData();
@@ -106,7 +106,7 @@ class TenMarksheet extends Component {
             .catch(error => {
      
             });
-        //end for call api
+       
     }
     renderElementTenMarksheet() {
         if (this.state.selectEnglish === '' || this.state.selectEnglish === undefined) {

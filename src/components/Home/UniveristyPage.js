@@ -6,21 +6,19 @@ import Footer from './Footer'
 import Header from './Header'
 
 
-// start for personal information
+
 export default function AllUniversity() {
     let { id } = useParams();
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [foundedYear, setfoundedYear] = useState("");
 
-    //start for fetching faq
+
     const [formValues, setFormValues] = useState([{
         question: "", answer: ""
 
     }])
 
-    //end for fetching faq
-    //start for fetching admission
     const [FormAdmissionValues, setFormAdmissionValues] = useState([{
         point: ""
 
@@ -31,7 +29,6 @@ export default function AllUniversity() {
     }])
 
 
-    //end for fetching admission
 
     const [FormDocumentValues, setFormDocumentValues] = useState([{
         document: ""
@@ -70,7 +67,7 @@ export default function AllUniversity() {
 
         }
         setMounted(mytoken)
-        //start for fetching faq
+     
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
         fetch(url1, {
             method: 'GET',
@@ -81,8 +78,7 @@ export default function AllUniversity() {
 
                 setFormValues(data.universityFaqs)
             })
-        //end for fetching faq
-        //start for fetching admission
+       
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/admissions';
         fetch(url2, {
             method: 'GET',
@@ -92,8 +88,7 @@ export default function AllUniversity() {
             .then(data => {
                 setFormAdmissionValues(data.universityAdmissions)
             })
-        //end for fetching admission
-        //start for fetching document
+    
         const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/documents';
         fetch(url3, {
             method: 'GET',
@@ -103,8 +98,7 @@ export default function AllUniversity() {
             .then(data => {
                 setFormDocumentValues(data.universityDocuments)
             })
-        //end for fetching document
-        //start for fetching document
+    
         const url4 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/overview';
         fetch(url4, {
             method: 'GET',
@@ -119,8 +113,7 @@ export default function AllUniversity() {
                 }
 
             })
-        //end for fetching document
-        //start for fetching universirties
+       
         const url5 = process.env.REACT_APP_SERVER_URL + 'universities';
         fetch(url5, {
             method: 'GET',
@@ -137,8 +130,7 @@ export default function AllUniversity() {
                     }
                 })
             })
-        //end for fetching universirties
-        //start for fetching primary information
+       
         const url6 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/primaryInformation';
         fetch(url6, {
             method: 'GET',
@@ -149,8 +141,7 @@ export default function AllUniversity() {
                 setFormPrimaryInformationValues(data.universityPrimaryInformation)
 
             })
-        //end for fetching  primary information
-        //start for fetching image
+ 
         const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
         fetch(url7, {
             method: 'GET',
@@ -165,8 +156,7 @@ export default function AllUniversity() {
 
 
             })
-        //end for fetching image
-        //start for fetching image
+
         const url8 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/courses';
         fetch(url8, {
             method: 'GET',
@@ -177,8 +167,7 @@ export default function AllUniversity() {
                 setcoursesValues(data.universityCourses)
 
             })
-        //end for fetching image
-        //start for university ranking
+      
         const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
 
         fetch(url9, {
@@ -190,8 +179,7 @@ export default function AllUniversity() {
                 setrankingValues(data.universityRankings)
 
             })
-        //end for university ranking
-        //start for university imageVideo
+     
         const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
 
         fetch(url10, {
@@ -203,10 +191,7 @@ export default function AllUniversity() {
                 setimageVideoValues(data.universityImageVideos)
 
             })
-        //end for university imageVideo
-
-
-    }, [])
+       }, [])
     var divStyle = {
         backgroundImage: 'url(' + universityImageValues.coverPic + ')'
     }

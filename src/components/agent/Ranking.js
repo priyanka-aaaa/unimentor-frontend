@@ -5,14 +5,14 @@ class Ranking extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            //start for primary information
+          
             agencyName: "",
             rank: "",
             year: "",
             onFileChangeLogo: "",
             certificate: "",
         };
-        //start for primary information
+
         this.changeagencyName = this.changeagencyName.bind(this);
         this.changerank = this.changerank.bind(this);
         this.changeyear = this.changeyear.bind(this);
@@ -46,12 +46,7 @@ class Ranking extends Component {
     submitRanking(event) {
         event.preventDefault();
         const obj1 = new FormData();
-        // agencyName
-        // rank
-        // year
-        // onFileChangeLogo
-
-        obj1.append("agencyName", this.state.agencyName);
+       obj1.append("agencyName", this.state.agencyName);
         obj1.append("rank", this.state.rank);
         obj1.append("year", this.state.year);
         obj1.append("certificate", this.state.certificate);

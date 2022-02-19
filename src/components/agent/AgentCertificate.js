@@ -6,11 +6,7 @@ import Topbar from './Topbar';
 import Footer from './Footer';
 import certificate from './img/certificate.jpg';
 export default function AgentEvaluate() {
-    // start for personal information
-
-
-
-    return (
+  return (
         <div id="page-top">
             {/*
     <!-- Page Wrapper --> */}

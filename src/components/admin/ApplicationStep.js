@@ -16,23 +16,18 @@ export default function ApplicationStep() {
     const [universityApplication, setuniversityApplication] = useState(
         []
     )
-
-
-    const [data, setdata] = useState([]);
+ const [data, setdata] = useState([]);
     const [mounted, setMounted] = useState();
-
-
-    // start for personal information
-    function handleCloseView() {
+  function handleCloseView() {
         setviewWidth("0px");
     }
     function handleEdit(value) {
-        // alert(value)
+     
         setcountryId(value)
 
         setviewWidth("1600px");
 
-        // start for fetching particular data
+    
 
         const url2 = process.env.REACT_APP_SERVER_URL + 'admin/countries/' + value;
         fetch(url2, {
@@ -44,7 +39,7 @@ export default function ApplicationStep() {
                 setuniversityApplication(data.adminCountry.countrySteps)
 
             })
-        // end for fetching particular data
+
     }
 
     let addFormFields = () => {
@@ -54,10 +49,7 @@ export default function ApplicationStep() {
 
         if(person){
             setuniversityApplication([...universityApplication, person]
-
-                // setuniversityApplication([...universityApplication]
-
-            )
+ )
         }
 
 
@@ -75,16 +67,10 @@ export default function ApplicationStep() {
             var mydata = JSON.parse(a);
             var mounted = mydata.data.token;
             var adminId = mydata.data.admin._id;
-            // setAdminId(adminId)
+      
         }
         setMounted(mounted)
-        // setuniversityId(universityId)
-
-
-
-        // start for fetching course
-
-        const url = process.env.REACT_APP_SERVER_URL + 'admin/countries';
+       const url = process.env.REACT_APP_SERVER_URL + 'admin/countries';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -94,32 +80,15 @@ export default function ApplicationStep() {
                 setdata(data.adminCountrys)
                
             })
-        // end for fetching course
+      
     }, [])
 
 
     let handleSubmit = (event) => {
         event.preventDefault();
-        // var myvalues = JSON.stringify(formValues);
         const item = {
             countrySteps: universityApplication,
-            // firstName: this.state.firstName,
-            // middleName: this.state.middleName,
-            // lastName: this.state.lastName,
-            // otherName: this.state.otherName,
-            // gender: this.state.gender,
-            // dateOfBirth: this.state.dateOfBirth,
-            // countryOfBirth: this.state.countryOfBirth,
-            // nationality: this.state.nationality,
-            // dualNationality: this.state.dualNationality,
-            // maritalStatus: this.state.maritalStatus,
-            // differentlyAble: this.state.differentlyAble,
-            // passport: this.state.passport,
-            // aadharCard: this.state.aadharCard,
-            // firstLanguage: this.state.firstLanguage,
-            // visa: this.state.visa,
-            // refusedVisa: this.state.refusedVisa
-        };
+           };
         axios.put(process.env.REACT_APP_SERVER_URL + 'admin/countries/' + countryId, item, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
