@@ -9,7 +9,7 @@ function importAll(r) {
   return images
 }
 
-const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
+const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 export default function Home() {
   return (
     <div>

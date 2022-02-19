@@ -1,13 +1,24 @@
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import "./components/css/drag.css";
+
 import 'react-phone-number-input/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 
-import './components/css/style.css';
-import './components/css/dashboard.css';
-import './components/css/frontend.css';
-import './components/css/my.css';
+// import './components/css/style.css';
+// import './components/css/dashboard.css';
+// import './components/css/frontend.css';
+
+
+import "./css/drag.css";
+
+
+
+import './css/style.css';
+import './css/dashboard.css';
+import './css/frontend.css';
+import './css/my.css';
+import "./css/drag.css";
+
 
 // import './components/admin_css/style.css';
 import Studentregister from './components/Studentregister';

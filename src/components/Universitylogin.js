@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import logo from './img/logo.png';
+import logo from '../img/logo.png';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 export default function Universitylogin() {

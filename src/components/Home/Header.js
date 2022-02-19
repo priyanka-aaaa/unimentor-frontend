@@ -5,7 +5,7 @@ function importAll(r) {
     return images
   }
   
-  const images = importAll(require.context('./images', false, /\.(png|jpe?g|svg)$/));
+  const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 function Header(props) {
     return (
         <header id="rs-header" className="rs-header style3 modify1 header-transparent">

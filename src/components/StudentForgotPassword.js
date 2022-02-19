@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import logo from './img/logo.png';
+import logo from '../img/logo.png';
 import { Component } from 'react';
 import axios from 'axios';
 

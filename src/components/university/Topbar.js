@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
-import undraw_profile from '../img/undraw_profile.svg';
+import undraw_profile from '../../img/undraw_profile.svg';
 class Topbar extends Component {
     constructor(props) {
         super(props);
@@ -157,7 +157,7 @@ class Topbar extends Component {
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <div className="dropdown-list-image mr-3">
                                         {/* <img src={require('./logo.jpeg')} /> */}
-                                        <img className="rounded-circle" src={require('../img/undraw_profile_1.svg')} alt="..." />
+                                        <img className="rounded-circle" src={require('../../img/undraw_profile_1.svg')} alt="..." />
 
                                         {/* <img className="rounded-circle" src="img/undraw_profile_1.svg" alt="..." /> */}
                                         <div className="status-indicator bg-success"></div>
@@ -170,7 +170,7 @@ class Topbar extends Component {
                                 </a>
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <div className="dropdown-list-image mr-3">
-                                        <img className="rounded-circle" src={require('../img/undraw_profile_2.svg')} alt="..." />
+                                        <img className="rounded-circle" src={require('../../img/undraw_profile_2.svg')} alt="..." />
                                         <div className="status-indicator"></div>
                                     </div>
                                     <div>
@@ -181,7 +181,7 @@ class Topbar extends Component {
                                 </a>
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <div className="dropdown-list-image mr-3">
-                                        <img className="rounded-circle" src={require('../img/undraw_profile_3.svg')} alt="..." />
+                                        <img className="rounded-circle" src={require('../../img/undraw_profile_3.svg')} alt="..." />
                                         <div className="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
