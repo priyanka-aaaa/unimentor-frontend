@@ -43,7 +43,7 @@ export default function AllUniversity() {
 
     }])
     const [FormPrimaryInformationValues, setFormPrimaryInformationValues] = useState([{
-        website: "", country: "", phone: ""
+        website: "", country: "", phone: "",type:""
 
     }])
     const [universityImageValues, setuniversityImageValues] = useState([{
@@ -265,7 +265,7 @@ export default function AllUniversity() {
                                             <div className="univer-logo"><img src={universityImageValues.logo} /></div>
                                             <h4>{FormuniversitiesValues.name}</h4>
                                             <p>{FormPrimaryInformationValues.country}<br />
-                                                Private | Estd. N/A</p>
+                                                {FormPrimaryInformationValues.type} | Estd. {FormOverviewValues.foundedYear}</p>
                                             <button type="button" className="btn btn-primary btn-lg">Talk to an Expert for FREE</button>
                                         </div>
                                         <div className="recent-posts mb-50">
@@ -357,10 +357,7 @@ export default function AllUniversity() {
                                                         <h3>{FormOverviewValues.ranking}<br /><span>Global Rankings</span></h3>
                                                     </div>
 
-                                                    <div className="overview-box yellow-light">
-                                                        <span className="icon"><i className="fa fa-user"></i></span>
-                                                        <h3>40-60%<br /><span>Set Commision</span></h3>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                         </div>

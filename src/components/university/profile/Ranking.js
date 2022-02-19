@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import RankingEdit from './RankingEdit';
 import DragAndDrop from './DragAndDrop';
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 class Ranking extends Component {
     constructor(props) {
@@ -32,7 +33,9 @@ class Ranking extends Component {
             myugConsolidatedMarksheet: "",
             myugMarksheet: "",
 
-
+            showSweetAlert: "",
+            deleteId: "",
+            yearMessage: ""
 
 
         };
@@ -88,6 +91,7 @@ class Ranking extends Component {
         this.setState({ rank: event.target.value });
     }
     changeyear(event) {
+
         this.setState({ year: event.target.value });
     }
     ddhandleAddClick() {
@@ -133,43 +137,51 @@ class Ranking extends Component {
     }
     submitAddRanking(event) {
         event.preventDefault();
-        this.setState({ addWidth: "0px" })
+        var yearNo = this.state.year.toString().length;
+        if (yearNo !== 4) {
+            this.setState({ yearMessage: "Please Insert Four Digit" })
 
-        const obj1 = new FormData();
-        obj1.append("agencyName", this.state.agencyName);
-        obj1.append("rank", this.state.rank);
-        obj1.append("year", this.state.year);
-        obj1.append("certificate", this.state.certificate);
+        }
+        else {
 
-        // start for university ranking
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
-        fetch(url2, {
-            method: 'post',
-            headers: { 'Authorization': this.state.mounted },
-            body: obj1
-        })
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ successMessage: "Ranking Added", submitSuccess: 1, addWidth: "0px" });
-                setTimeout(() =>
-                    this.setState({ submitSuccess: 0 })
-                    , 3000);
 
-                // end for university ranking
-                const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
+            this.setState({ addWidth: "0px" })
 
-                fetch(url3, {
-                    method: 'GET',
-                    headers: { 'Authorization': this.state.mounted }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState({ data: data.universityRankings })
+            const obj1 = new FormData();
+            obj1.append("agencyName", this.state.agencyName);
+            obj1.append("rank", this.state.rank);
+            obj1.append("year", this.state.year);
+            obj1.append("certificate", this.state.certificate);
 
-                    })
-                // end for university ranking
+            // start for university ranking
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
+            fetch(url2, {
+                method: 'post',
+                headers: { 'Authorization': this.state.mounted },
+                body: obj1
             })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({ successMessage: "Ranking Added", submitSuccess: 1, addWidth: "0px", yearMessage: "" });
+                    setTimeout(() =>
+                        this.setState({ submitSuccess: 0 })
+                        , 3000);
 
+                    // end for university ranking
+                    const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
+
+                    fetch(url3, {
+                        method: 'GET',
+                        headers: { 'Authorization': this.state.mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.setState({ data: data.universityRankings })
+
+                        })
+                    // end for university ranking
+                })
+        }
     }
     renderElement() {
 
@@ -181,6 +193,12 @@ class Ranking extends Component {
     }
     submitEditRanking(event) {
         event.preventDefault();
+        var yearNo = this.state.year.toString().length;
+        if (yearNo !== 4) {
+            this.setState({ yearMessage: "Please Insert Four Digit" })
+
+        }
+        else {
         const obj1 = new FormData();
         obj1.append("agencyName", this.state.agencyName);
         obj1.append("rank", this.state.rank);
@@ -194,7 +212,7 @@ class Ranking extends Component {
         })
             .then(response => response.json())
             .then(data => {
-                this.setState({ successMessage: "Ranking Updated", submitSuccess: 1, width: "0px" });
+                this.setState({ successMessage: "Ranking Updated", submitSuccess: 1, width: "0px",yearMessage:"" });
                 setTimeout(() =>
                     this.setState({ submitSuccess: 0 })
                     , 3000);
@@ -219,43 +237,15 @@ class Ranking extends Component {
 
 
 
-
+        }
 
 
 
     }
     handleDeleteClick(value) {
-        this.setState({ editId: value, editnewcomponent: 1, rankingId: value })
-
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + value;
-        fetch(url2, {
-            method: 'delete',
-            headers: { 'Authorization': this.state.mounted },
-
-        })
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ successMessage: "Ranking Deleted", submitSuccess: 1, width: "0px" });
-                setTimeout(() =>
-                    this.setState({ submitSuccess: 0 })
-                    , 3000);
-
-                // end for university ranking
-                
-                const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-
-                fetch(url3, {
-                    method: 'GET',
-                    headers: { 'Authorization': this.state.mounted }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState({ data: data.universityRankings })
-
-                    })
-                // end for university ranking
-            })
-
+        // setshowSweetAlert("1")
+        // setdeleteId(value)
+        this.setState({ showSweetAlert: "1", deleteId: value })
     }
     render() {
         return (
@@ -271,7 +261,64 @@ class Ranking extends Component {
                     </a>
                     <div id="collapse7" className="collapse" data-bs-parent="#accordion">
                         <div className="container">
+                            {this.state.showSweetAlert === "1" ? <SweetAlert
+                                warning
+                                showCancel
+                                confirmBtnText="Yes, delete it!"
+                                confirmBtnBsStyle="danger"
 
+                                title="Are you sure?"
+                                onConfirm={(value) => {
+                                    this.setState({ showSweetAlert: "0" });
+                                    // setshowSweetAlert("0");
+                                    console.log("qqqqq")
+
+
+
+
+                                    const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.deleteId;
+                                    fetch(url2, {
+                                        method: 'delete',
+                                        headers: { 'Authorization': this.state.mounted },
+
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            this.setState({ successMessage: "Ranking Deleted", submitSuccess: 1, width: "0px" });
+                                            setTimeout(() =>
+                                                this.setState({ submitSuccess: 0 })
+                                                , 3000);
+
+                                            // end for university ranking
+
+                                            const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
+
+                                            fetch(url3, {
+                                                method: 'GET',
+                                                headers: { 'Authorization': this.state.mounted }
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    this.setState({ data: data.universityRankings })
+
+                                                })
+
+                                        })
+
+
+
+                                }}
+                                onCancel={() =>
+
+                                    this.setState({ showSweetAlert: "0" })
+
+                                }
+                                focusCancelBtn
+                            >
+
+                            </SweetAlert>
+                                : null
+                            }
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Ranking</h1>
@@ -344,7 +391,7 @@ class Ranking extends Component {
 
 
                                         {/* start for add ranking */}
-                                        <div className="card-body sidenav" id="mySideAdd"
+                                        <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: this.state.addWidth }}>
 
                                             <div className="student-view">
@@ -360,26 +407,28 @@ class Ranking extends Component {
                                                     </div>
                                                 </div>
 
-                                                <form>
+                                                <form onSubmit={this.submitAddRanking}>
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
                                                                 <label htmlFor="fname" className="form-label">Agency Name</label>
-                                                                <input type="text" className="form-control" placeholder="" name="agname"
+                                                                <input required type="text" className="form-control" placeholder="" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                 />
                                                             </div>
                                                             <div className="col">
                                                                 <label htmlFor="lname" className="form-label">Rank</label>
-                                                                <input type="text" className="form-control" placeholder="" name="rank"
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
                                                             </div>
                                                             <div className="col">
                                                                 <label htmlFor="lname" className="form-label">Year</label>
-                                                                <input type="text" className="form-control" placeholder="" name="rank"
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
+                                                                <span style={{ color: "red" }}> {this.state.yearMessage}</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -420,7 +469,7 @@ class Ranking extends Component {
                                                             <div className="col-md-6 text-right">
 
                                                                 <button type="submit"
-                                                                    onClick={this.submitAddRanking}
+                                                                
                                                                     className="btn btn-secondary">Add
                                                                 </button>
 
@@ -434,7 +483,7 @@ class Ranking extends Component {
                                         {/* end for add ranking */}
 
 
-                                        <div className="card-body sidenav" id="mySideAdd"
+                                        <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: this.state.width }}>
 
                                             <div className="student-view">
@@ -442,7 +491,7 @@ class Ranking extends Component {
                                                     <div className="col-md-6">
 
                                                     </div>
-                                                    <div className="col-md-6">closeaddbox
+                                                    <div className="col-md-6">
                                                         <a className="closebtn"
 
 
@@ -452,27 +501,30 @@ class Ranking extends Component {
                                                 </div>
 
                                                 {/* start for edit component */}
-                                                <form>
+                                                <form onSubmit={this.submitEditRanking}>
                                                     Edit Ranking
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
                                                                 <label htmlFor="fname" className="form-label">Agency Name</label>
-                                                                <input type="text" className="form-control" placeholder="" name="agname"
+                                                                <input  type="text" className="form-control" placeholder="" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
+                                                                    required
                                                                 />
                                                             </div>
                                                             <div className="col">
                                                                 <label htmlFor="lname" className="form-label">Rank</label>
-                                                                <input type="text" className="form-control" placeholder="" name="rank"
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
                                                             </div>
                                                             <div className="col">
                                                                 <label htmlFor="lname" className="form-label">Year</label>
-                                                                <input type="text" className="form-control" placeholder="" name="rank"
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
+                                                                <span style={{ color: "red" }}> {this.state.yearMessage}</span>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -518,7 +570,7 @@ class Ranking extends Component {
                                                             <div className="col-md-6 text-right">
 
                                                                 <button type="submit"
-                                                                    onClick={this.submitEditRanking}
+                                                                 
                                                                     className="btn btn-secondary">Add
                                                                 </button>
 

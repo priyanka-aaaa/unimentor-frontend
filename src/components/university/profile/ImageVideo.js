@@ -393,38 +393,72 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Images/Videos</label><br />
+                                            <label>Images</label><br />
 
+                                            <DragAndDrop handleDrop={this.imageHandleDrop}>
+                                                <section className="drag-and-drop-new-section">
+                                                    <div className="containerx" id="drop_section">
+                                                        <label htmlFor="files">
+                                                            <div id="drag" className="drag-and-drop-new class_add">
+                                                                <div className="row">
+                                                                    <div className="col-md-12 email-con">
+                                                                        <label htmlFor="uploaduniversityImage">
+                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                                                            <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                    </div>
+                                                    <section className="file-upload">
+                                                        <div className="container">
+                                                            <div className="uploads">
+                                                                <div className="drop_lower" id="gallery"></div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </section>
+                                            </DragAndDrop>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <div className="form-group">
+                                            <label>Videos</label><br />
+
+                                            <DragAndDrop handleDrop={this.imageHandleDrop}>
+                                                <section className="drag-and-drop-new-section">
+                                                    <div className="containerx" id="drop_section">
+                                                        <label htmlFor="files">
+                                                            <div id="drag" className="drag-and-drop-new class_add">
+                                                                <div className="row">
+                                                                    <div className="col-md-12 email-con">
+                                                                        <label htmlFor="uploaduniversityImage">
+                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                                                            <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </label>
+
+                                                    </div>
+                                                    <section className="file-upload">
+                                                        <div className="container">
+                                                            <div className="uploads">
+                                                                <div className="drop_lower" id="gallery"></div>
+                                                            </div>
+                                                        </div>
+                                                    </section>
+                                                </section>
+                                            </DragAndDrop>
                                         </div>
                                     </div>
                                 </div>
 
-                                <DragAndDrop handleDrop={this.imageHandleDrop}>
-                                    <section className="drag-and-drop-new-section">
-                                        <div className="containerx" id="drop_section">
-                                            <label htmlFor="files">
-                                                <div id="drag" className="drag-and-drop-new class_add">
-                                                    <div className="row">
-                                                        <div className="col-md-12 email-con">
-                                                            <label htmlFor="uploaduniversityImage">
-                                                                <span className="myuploadbutton">   upload/Drag & Drop Here</span>
-                                                                <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </label>
 
-                                        </div>
-                                        <section className="file-upload">
-                                            <div className="container">
-                                                <div className="uploads">
-                                                    <div className="drop_lower" id="gallery"></div>
-                                                </div>
-                                            </div>
-                                        </section>
-                                    </section>
-                                </DragAndDrop>
+
 
                                 <div className="row">
                                     <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -437,12 +471,12 @@ class ImageVideo extends Component {
                                     {/* start for shwowing table */}
                                     <div className="col-md-10 ">
                                         <div className="uniImageTable" style={{ display: this.state.viewDisplay }}>
-                                            <label>All Images</label><br />
+                                            <label>All Images & Video</label><br />
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
                                                         <th>ID</th>
-                                                        <th>Image</th>
+                                                        <th>Image/Video</th>
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
