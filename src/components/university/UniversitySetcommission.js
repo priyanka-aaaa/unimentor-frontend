@@ -77,6 +77,7 @@ const UniversitySetcommission = () => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
+        setuniversityId(universityId)
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
         fetch(url, {
             method: 'GET',

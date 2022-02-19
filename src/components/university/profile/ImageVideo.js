@@ -366,7 +366,7 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Logo(size)</label><br />
+                                            <label>Logo(size 259*194px)</label><br />
 
 
                                             <span className="documentUpload ant-upload-picture-card-wrapper" >
@@ -381,7 +381,7 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Cover Pict(size)</label><br />
+                                            <label>Cover Pict(size 259*194px)</label><br />
                                             <span className="documentUpload ant-upload-picture-card-wrapper" >
                                                 <div className="ant-upload-list ant-upload-list-picture-card">
                                                 </div>
