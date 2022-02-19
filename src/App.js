@@ -33,7 +33,6 @@ import AddStudent from './components/agent/AddStudent';
 import Bookmark from './components/Student/Bookmark';
 
 
-import Home from './components/Home/Home';
 
 
 
@@ -47,6 +46,10 @@ import Universitylogin from './components/Universitylogin';
 import Universityregister from './components/Universityregister';
 import UniversitySetcommission from './components/university/UniversitySetcommission';
 import Summary from './components/university/Summary';
+import Home from './components/Home/Home';
+import About from './components/Home/About';
+import Contact from './components/Home/Contact';
+
 import AllUniversity from './components/Home/AllUniversity';
 import UniveristyPage from './components/Home/UniveristyPage';
 
@@ -157,6 +160,8 @@ function App() {
 
             <Route exact path='/' component={Home} />
 
+            <Route  path='/About' component={About} />
+            <Route  path='/Contact' component={Contact} />
    
 
 
