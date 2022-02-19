@@ -308,13 +308,14 @@ function setChangecampus(e){
                                                                 </div>
                                                             </div>
                                                             <div className="mb-3">
+                                                            
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label>Intake Available</label>
                                                                         
                                                                         <select
-                                                                            type="text" className="form-control"
-                                                                            required
+                                                                            type="text" className="form-control" required
+                                                                            
                                                                             onChange={(e) => setintake(e.target.value)}    value={intake}>
                                                                                 <option value="">Select Intake</option>
                                                                             {Intakedata.map((object, i) => {
