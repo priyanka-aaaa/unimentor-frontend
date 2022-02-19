@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
 import Footer from './Footer';
-import certificate from './img/certificate.jpg';
+// import certificate from './img/certificate.jpg';
 export default function AgentEvaluate() {
   return (
         <div id="page-top">
@@ -49,7 +49,7 @@ export default function AgentEvaluate() {
                                         {/* <!-- Card Header - Dropdown --> */}
                                         <div class="card shadow mb-4">
                                             <div class="certificate">
-                                                <img src={certificate} class="img-fluid" />
+                                                <img src="certificate" class="img-fluid" />
 
 
                                             </div>

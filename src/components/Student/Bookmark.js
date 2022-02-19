@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import waterloouniversity from './img/waterloouniversity.jpg';
+
 import Footer from './Footer';
 function Bookmark(props) {
   const [successMessage, setsuccessMessage] = useState("");
@@ -85,7 +85,7 @@ function Bookmark(props) {
                       <div className="col-md-4"  key={i}>
                         <div className="bookmark-block">
                           <span>
-                            <img src={waterloouniversity} alt="logo" />
+                            <img src="waterloouniversity" alt="logo" />
                           </span>
                           <div className="bool-markcontent">
                             <h5>Unversity</h5>
