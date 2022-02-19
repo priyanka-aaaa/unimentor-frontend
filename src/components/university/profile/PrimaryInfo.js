@@ -105,7 +105,14 @@ export default function PrimaryInfo() {
         //end for fetch for city
 
     }, [])
-
+function onChangeName(e){
+   const arr = e.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const str2 = arr.join(" ");
+   setname(str2)
+}
     function handlecountry(e) {
 
         setcountry(e)
@@ -231,7 +238,7 @@ export default function PrimaryInfo() {
                                                 placeholder="Name" name="uname"
 
                                                 value={name}
-                                                onChange={(e) => setname(e.target.value)}
+                                                onChange={(e) => onChangeName(e.target.value)}
                                                 required
                                             />
                                         </div>

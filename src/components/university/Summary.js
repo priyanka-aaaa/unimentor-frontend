@@ -142,7 +142,14 @@ export default function Summary() {
             });
     }
 
-
+function setChangecampus(e){
+    const arr = e.split(" ");
+    for (var i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+    const str2 = arr.join(" ");
+    setcampus(str2)
+}
     return (
         <div id="page-top">
 
@@ -198,7 +205,7 @@ export default function Summary() {
                                                                         </label>
                                                                         <input type="text" className="form-control"
                                                                             value={campus}
-                                                                            onChange={(e) => setcampus(e.target.value)}
+                                                                            onChange={(e) => setChangecampus(e.target.value)}
                                                                             placeholder="Course name" name="cname" />
                                                                     </div>
                                                                     <div className="col">
@@ -266,14 +273,14 @@ export default function Summary() {
                                                                 <div className="row">
                                                                     <div className="col-md-6">
                                                                         <label className="form-label">IELTS for UG</label>
-                                                                        <input type="text"
+                                                                        <input type="number"
                                                                             value={ugIelts}
                                                                             onChange={(e) => setugIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for UG" name=" cgpa" />
                                                                     </div>
                                                                     <div className="col-md-6">
                                                                         <label className="form-label">IELTS for PG </label>
-                                                                        <input type="text"
+                                                                        <input type="number"
                                                                             value={pgIelts}
                                                                             onChange={(e) => setpgIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for PG" name=" eligibility" />
@@ -285,14 +292,14 @@ export default function Summary() {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label>PTE for UG
-                                                                        </label><input type="text"
+                                                                        </label><input type="number"
                                                                             value={ugPTE}
                                                                             onChange={(e) => setugPTE(e.target.value)}
                                                                             className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" /></div>
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>PTE for PG </label><input type="text"
+                                                                            <label>PTE for PG </label><input type="number"
                                                                                 value={pgPTE}
                                                                                 onChange={(e) => setpgPTE(e.target.value)}
                                                                                 className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />

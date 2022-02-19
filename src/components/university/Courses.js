@@ -383,6 +383,14 @@ const Courses = () => {
         setintakemonth(myArray[1])
 
     }
+    function setChangecourseName(e){
+        const arr = e.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        }
+        const str2 = arr.join(" ");
+        setcourseName(str2)
+    }
     return (
         <div className="container">
             {/* start for showing add message */}
@@ -538,7 +546,7 @@ const Courses = () => {
                                                                             placeholder="Course Name" name="courseName"
                                                                             // value="fhgfh"
                                                                             value={courseName}
-                                                                            onChange={(e) => setcourseName(e.target.value)}
+                                                                            onChange={(e) => setChangecourseName(e.target.value)}
 
                                                                         />
                                                                     </div>
@@ -782,7 +790,7 @@ const Courses = () => {
                                                                             placeholder="Course Name" name="courseName"
                                                                             // value="fhgfh"
                                                                             value={courseName}
-                                                                            onChange={(e) => setcourseName(e.target.value)}
+                                                                            onChange={(e) => setChangecourseName(e.target.value)}
 
                                                                         />
                                                                     </div>
