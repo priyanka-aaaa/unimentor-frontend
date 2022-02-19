@@ -35,7 +35,7 @@ function FinalFilter(props) {
                                               <li>
                                                 <a href="contact.html">Contact</a>
                                               </li>
-                                            </ul> {/* //.nav-menu */}
+                                            </ul> 
                                           </nav>
                                         </div> {/* //.main-menu */}
                                         <div className="expand-btn-inner search-icon hidden-md">
