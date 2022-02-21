@@ -2,15 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
-    let images = {};
-    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
-    return images
-  }
-  
-  const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
+  let images = {};
+  r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+  return images
+}
+
+const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 function Header(props) {
-    return (
-      <header id="rs-header" className="rs-header style3 modify1">
+  return (
+    <header id="rs-header" className="rs-header style3 modify1">
       {/* Menu Start */}
       <div className="menu-area menu-sticky">
         <div className="container-fluid">
@@ -19,8 +19,8 @@ function Header(props) {
               <div className="logo-part">
                 <a href="index.html">
 
-                    
-                    <img src= {images["logo.png"]}  alt="" /></a>
+
+                  <img src={images["logo.png"]} alt="" /></a>
               </div>
               <div className="mobile-menu">
                 <a href="#" className="rs-menu-toggle rs-menu-toggle-close secondary">
@@ -33,14 +33,18 @@ function Header(props) {
                 <div className="main-menu">
                   <nav className="rs-menu pr-86 lg-pr-50 md-pr-0">
                     <ul className="nav-menu">
-                      <li className="menu-item-has-children current-menu-item"> <a href="#">Home</a>
+                      <li><Link to={'/'} className="menu-item-has-children current-menu-item" href="#">
+                        Home</Link>
                       </li>
-                      <li>
-                        <a href="about.html">About</a>
+
+                      <li><Link to={'/About'} className="nav-link" href="#">
+                        About</Link>
                       </li>
-                      <li>
-                        <a href="contact.html">Contact</a>
+
+                      <li><Link to={'/Contact'} href="#">
+                        Contact</Link>
                       </li>
+
                     </ul> {/* //.nav-menu */}
                   </nav>
                 </div> {/* //.main-menu */}
@@ -73,7 +77,7 @@ function Header(props) {
       </div>
       {/* Menu End */}
     </header>
-    );
+  );
 }
 
 export default Header;

@@ -17,7 +17,7 @@ export default function Home() {
         {/*Full width header Start*/}
         <div className="full-width-header">
           {/*Header Start*/}
-        <Header/>
+          <Header />
           {/*Header End*/}
           {/* Canvas Menu start */}
           <nav className="right_menu_togle hidden-md">
@@ -92,9 +92,9 @@ export default function Home() {
             <div className="row align-items-end">
               <div className="col-lg-6 md-mb-50 order-last">
                 <div className="banner-img">
-             
-                                  <img src={images["cbanner-5.png"]}
-                  alt="" />
+
+                  <img src={images["cbanner-5.png"]}
+                    alt="" />
                 </div>
               </div>
               <div className="col-lg-6">
@@ -106,14 +106,14 @@ export default function Home() {
                     thousands of competing schools.
                   </p>
                   <ul className="banner-btn">
-              
+
 
                     <li>
-                    <Link to={'/country'} className="readon started" href="#">
-                          
-                    Get Started</Link>
+                      <Link to={'/country'} className="readon started" href="#">
+
+                        Get Started</Link>
                       {/* <a className="readon started" href="#">Get Started</a> */}
-                      </li>
+                    </li>
                     {/* <li>
                                             <div class="rs-videos">
                                                 <div class="animate-border">
@@ -154,14 +154,14 @@ export default function Home() {
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src={images["pt-4.png"]}alt="" />
+                            <img src={images["pt-4.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
                           <a href="https://rstheme.com/">
-                            <img src={images["pt-5.png"]}alt="" />
+                            <img src={images["pt-5.png"]} alt="" />
                           </a>
                         </div>
                       </div>
@@ -476,7 +476,7 @@ export default function Home() {
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src={images["style3-10.png"]}  alt="" />
+                    <img src={images["style3-10.png"]} alt="" />
                   </div>
                   <div className="services-text">
                     <h4 className="title">Logistics</h4>
@@ -611,7 +611,7 @@ export default function Home() {
                   <div className="services-icon">
                     <div className="image-part">
                       <img className="main-img" src={images["main-img-10.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-10.png"]}  alt="" />
+                      <img className="hover-img" src={images["ssh-10.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
@@ -1049,7 +1049,7 @@ export default function Home() {
                           </div>
                           <div className="testimonial-content">
                             <div className="author-img">
-                              <img src={images["tmh4.jpg"]}  alt="" />
+                              <img src={images["tmh4.jpg"]} alt="" />
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Parteek sharma</a>
@@ -1193,7 +1193,7 @@ export default function Home() {
       </div>
       {/* Main content End */}
       {/* Footer Start */}
-    <Footer/>
+      <Footer />
       {/* Footer End */}
       {/* start scrollUp  */}
       <div id="scrollUp" className="orange-color">
