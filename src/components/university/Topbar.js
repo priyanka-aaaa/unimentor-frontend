@@ -13,17 +13,21 @@ class Topbar extends Component {
         }
     }
     logout = () => {
-        localStorage.removeItem("universityData");
+        localStorage.removeItem("universityId");
+        localStorage.removeItem("universityToken");
+        localStorage.removeItem("universityEmail");
+        localStorage.removeItem("universityName");
+
         localStorage.clear();
     }
     componentWillMount() {
-        
+
         if (localStorage.getItem("universityData")) {
-     
+
             var universityId = localStorage.getItem('universityId');
-        var mounted = localStorage.getItem('universityToken');
-        var user_email = localStorage.getItem('universityEmail');
-        this.setState({ email: user_email });
+            var mounted = localStorage.getItem('universityToken');
+            var user_email = localStorage.getItem('universityEmail');
+            this.setState({ email: user_email });
         }
         else {
             var user_email = "";
@@ -86,7 +90,7 @@ class Topbar extends Component {
                                 </form>
                             </div>
                         </li>
-                     
+
 
 
                         {/* <!-- Nav Item - Alerts --> */}

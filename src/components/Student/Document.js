@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 
 import Footer from './Footer';
 import Main from './Main';
-
+import NewIdentityDocument from './NewIdentityDocument'
 
 
 
@@ -64,33 +64,15 @@ class Document extends Component {
 
                                 <div className=" align-items-center justify-content-between mb-4">
 
-                                  
+
                                     <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
                                     <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
 
                                     <div className="row">
                                         <div className="col-xl-12 col-lg-7">
                                             <div id="accordion">
-                                                <IdentityDocument/>
-                                                {/* start for identity document */}
-                                                {/* <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
-                                                        <strong>1</strong>   Identity Documents
-                                                    </a>
-                                                    <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
-                                                        <div className="card-body">
-                                                            <div className="form form_doc">
-                                                                <Passport />
-
-                                                                <Passportback />
-                                                                <Cv />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> */}
-
-
-
+                                                <IdentityDocument />
+                                                <NewIdentityDocument />
                                                 <EducationDocument />
                                                 <div className="card">
 
