@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import Footer from './Footer';
+
 import axios from 'axios';
 function PersonalInformation(props) {
   const [data, setdata] = useState([]);
@@ -245,7 +245,7 @@ function PersonalInformation(props) {
           {/* <!-- End of Main Content --> */}
 
           {/* <!-- Footer --> */}
-          <Footer />
+        
           {/* <!-- End of Footer --> */}
 
         </div>

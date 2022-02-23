@@ -4,7 +4,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
-import Footer from './Footer';
+
 function Bookmark(props) {
   const [successMessage, setsuccessMessage] = useState("");
   const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -116,7 +116,7 @@ function Bookmark(props) {
           {/* <!-- End of Main Content --> */}
 
           {/* <!-- Footer --> */}
-          <Footer />
+      
           {/* <!-- End of Footer --> */}
 
         </div>

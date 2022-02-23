@@ -26,17 +26,17 @@ export default function Universitylogin() {
                 password: password
             };
             var myurl = process.env.REACT_APP_SERVER_URL;
-         
+
             axios.post(myurl + 'university/login', obj)
                 .then(result => {
-                    
+
                     let responseJson = result;
-             
+
                     if (responseJson.data.success === true) {
-                        
+
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
- 
-                   
+
+
                         localStorage.setItem('universityId', responseJson.data.university._id);
                         localStorage.setItem('universityToken', responseJson.data.token);
                         localStorage.setItem('universityName', responseJson.data.university.name);
@@ -44,11 +44,11 @@ export default function Universitylogin() {
 
 
 
-                        
+
                         setredirectToReferrer(true)
                     }
                     else {
-                    
+
                         setsuccessMessage("Username or Password is incorrect")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
@@ -67,9 +67,9 @@ export default function Universitylogin() {
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
-                    {submitSuccess === 1 ? <div className="Show_success_message">
-                                <strong>Danger!</strong> {successMessage}
-                            </div> : null}
+                        {submitSuccess === 1 ? <div className="Show_success_message">
+                            <strong>Danger!</strong> {successMessage}
+                        </div> : null}
                         <div className="col-lg-12">
                             <div className="form-centerblock">
                                 {/* <a className="logo"><img src={logo} /></a> */}

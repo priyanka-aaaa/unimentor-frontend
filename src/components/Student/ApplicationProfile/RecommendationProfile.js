@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const WorkExperience = () => {
+const WorkExperienceProfile = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -274,4 +274,4 @@ const WorkExperience = () => {
     );
 }
 
-export default WorkExperience
+export default WorkExperienceProfile

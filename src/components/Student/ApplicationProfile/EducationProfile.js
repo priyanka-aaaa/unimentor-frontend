@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const Education = () => {
+const EducationProfile = () => {
 
 
 
@@ -411,4 +411,4 @@ name="attendedForm"
     );
 }
 
-export default Education
+export default EducationProfile

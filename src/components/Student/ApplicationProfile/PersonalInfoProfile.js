@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import axios from 'axios';
-function PersonalInformation(props) {
+function PersonalInformationProfile(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [mounted, setMounted] = useState();
+    const [mounted, setMounted]= useState();
     const [salutation, setsalutation] = useState("");
     const [firstName, setfirstName] = useState("");
     const [middleName, setmiddleName] = useState("");
@@ -402,4 +402,4 @@ function PersonalInformation(props) {
     );
 }
 
-export default PersonalInformation;
+export default PersonalInformationProfile;

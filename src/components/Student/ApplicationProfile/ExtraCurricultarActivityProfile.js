@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const ExtraCurricultarActivity = () => {
+const ExtraCurricultarActivityProfile = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -307,4 +307,4 @@ const ExtraCurricultarActivity = () => {
     );
 }
 
-export default ExtraCurricultarActivity
+export default ExtraCurricultarActivityProfile

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import PersonalInfo from './PersonalInfo';
-import Address from './Address';
-import Family from './Family';
-import Education from './Education';
-import Footer from './Footer';
-import TestScore from './TestScore';
-import WorkExperience from './WorkExperience';
-import ExtraCurricultarActivity from './ExtraCurricultarActivity';
-import Recommendation from './Recommendation';
+import PersonalInfoProfile from './ApplicationProfile/PersonalInfoProfile';
+import AddressProfile from './ApplicationProfile/AddressProfile';
+import FamilyProfile from './ApplicationProfile/FamilyProfile';
+import EducationProfile from './ApplicationProfile/EducationProfile';
+
+import TestScoreProfile from './ApplicationProfile/TestScoreProfile';
+import WorkExperienceProfile from './ApplicationProfile/WorkExperienceProfile';
+import ExtraCurricultarActivityProfile from './ApplicationProfile/ExtraCurricultarActivityProfile';
+import RecommendationProfile from './ApplicationProfile/RecommendationProfile';
 export default function Studentregister() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -20,19 +20,19 @@ export default function Studentregister() {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-      
+
             var user_email = mydata.data.student.email;
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
         var myurl = process.env.REACT_APP_SERVER_URL;
-   
-      
+
+
     }, [])
 
 
 
-   
+
 
     return (
         <div id="page-top">
@@ -75,27 +75,15 @@ export default function Studentregister() {
                                 <div className="col-xl-12 col-lg-7">
 
                                     {/* <!-- Card Header - Dropdown --> */}
-                                  
-                                    <PersonalInfo />
-                                    <Address />
-                                    <Family />
-                                 <Education/>
 
-                                 <TestScore/>
-
-
-
-                                   <WorkExperience/>
-
-                                  <ExtraCurricultarActivity/>
-                                <Recommendation/>
-
-
-
-
-
-
-
+                                    <PersonalInfoProfile />
+                                    <AddressProfile />
+                                    <FamilyProfile />
+                                    <EducationProfile />
+                                    <TestScoreProfile />
+                                    <WorkExperienceProfile />
+                                    <ExtraCurricultarActivityProfile />
+                                    <RecommendationProfile />
 
 
                                     {/* <!-- -------------- --> */}
@@ -110,7 +98,7 @@ export default function Studentregister() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+                 
                     {/* <!-- End of Footer --> */}
 
                 </div>

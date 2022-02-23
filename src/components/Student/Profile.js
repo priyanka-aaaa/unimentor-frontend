@@ -3,7 +3,6 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
-import Footer from './Footer';
 export default function Studentregister() {
     const [mounted, setMounted] = useState();
     const [password, setpassword] = useState();
@@ -424,7 +423,7 @@ export default function Studentregister() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+     
                     {/* <!-- End of Footer --> */}
 
                 </div>

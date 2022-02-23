@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
-const Family = () => {
+const FamilyProfile = () => {
 
 
 
@@ -306,4 +306,4 @@ const Family = () => {
     );
 }
 
-export default Family
+export default FamilyProfile
