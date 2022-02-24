@@ -113,6 +113,7 @@ const FamilyProfile = () => {
     function handleDelete(value) {
         const url2 = process.env.REACT_APP_SERVER_URL + 'student/families/' + value
         fetch(url2, {
+            
             method: 'delete',
             headers: { 'Authorization': mounted }
 
