@@ -24,6 +24,12 @@ export default function PrimaryInfo() {
     const [CheckCity, setCheckCity] = useState("0");
     const [phoneError, setphoneError] = useState("");
     const [typeError, settypeError] = useState("");
+    const [descriptionError, setdescriptionError] = useState("");
+    const [stateError, setstateError] = useState("");
+    const [cityError, setcityError] = useState("");
+
+
+
 
     const [loader, setmyloader] = useState("false");
 
@@ -179,12 +185,13 @@ export default function PrimaryInfo() {
         }
     }
 
-    function Personal_Information(event) {
-
+    function handleFormSubmit(event) {
         event.preventDefault();
-
+        setdescriptionError("");
         settypeError("");
         setphoneError("");
+        setstateError("");
+        setcityError("")
         if (type === "") {
             settypeError("Please Select University Type");
 
@@ -195,6 +202,16 @@ export default function PrimaryInfo() {
         else if (isValidPhoneNumber(phone) === false) {
             setphoneError("Please enter correct phone number");
         }
+        else if (description === "") {
+            setdescriptionError("Please Enter Description")
+        }
+        else if (state === "Select State") {
+            setstateError("Please Enter State")
+        }
+        else if (city === "Select City") {
+            setcityError("Please Enter City")
+        }
+
         else {
             setmyloader("true")
             const obj = {
@@ -259,7 +276,7 @@ export default function PrimaryInfo() {
 
                         {/* end for showing popup */}
 
-                        <form onSubmit={Personal_Information}>
+                        <form onSubmit={handleFormSubmit}>
                             <div className="from-block">
 
 
@@ -327,7 +344,8 @@ export default function PrimaryInfo() {
                                         <div className="form-group">
                                             <label>State *
                                             </label>
-                                            <select className="form-control" name="state" 
+
+                                            <select className="form-control" name="state"
                                                 onChange={(e) => handlestate(e.target.value)}
                                                 required
                                                 value={state}
@@ -341,6 +359,7 @@ export default function PrimaryInfo() {
                                                 })}
 
                                             </select>
+                                            <span style={{ color: "red" }}> {stateError}</span>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
@@ -350,7 +369,7 @@ export default function PrimaryInfo() {
                                                 value={city}
                                                 onChange={(e) => setcity(e.target.value)}
                                             >
-                                                {CheckCity === "0" ? <option value={city}>{city}</option> : <option>Please select state</option>}
+                                                {CheckCity === "0" ? <option value={city}>{city}</option> : <option value="">Please select City</option>}
                                                 {cities.map((element, index) => {
 
                                                     return (
@@ -362,6 +381,8 @@ export default function PrimaryInfo() {
                                                     )
                                                 })}
                                             </select>
+                                            <span style={{ color: "red" }}> {cityError}</span>
+
                                         </div>
                                     </div>
                                     <div className="col-md-4">
@@ -404,6 +425,7 @@ export default function PrimaryInfo() {
                                                 value={description}
                                                 onChange={(e) => setdescription(e.target.value)}
                                                 className="form-control" row="2" col="3"></textarea>
+                                            <span style={{ color: "red" }}> {descriptionError}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -437,7 +459,7 @@ export default function PrimaryInfo() {
                                     </div>
                                     <div className="col-md-4">
                                         <label>Parent organization</label>
-                                        <input type="text" className="form-control" placeholder="Parent organization" name="pr-org" 
+                                        <input type="text" className="form-control" placeholder="Parent organization" name="pr-org"
 
                                             value={organization}
                                             onChange={(e) => setorganization(e.target.value)}
