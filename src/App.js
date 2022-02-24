@@ -31,7 +31,7 @@ import Profile from './components/Student/Profile';
 import Document from './components/Student/Document';
 import AddStudent from './components/agent/AddStudent';
 import Bookmark from './components/Student/Bookmark';
-
+import Testing from './components/Testing';
 
 
 
@@ -141,9 +141,10 @@ function App() {
             <Route path='/NgoExperience' component={NgoExperience} />
             <Route path='/FinalFilter' component={FinalFilter} />
             <Route path='/AdminProfile' component={AdminProfile} />
+            <Route path='/Testing' component={Testing} />
 
 
-
+            
 
             <Route path='/AgentRegister' component={AgentRegister} />
             <Route path='/AgentLogin' component={AgentLogin} />

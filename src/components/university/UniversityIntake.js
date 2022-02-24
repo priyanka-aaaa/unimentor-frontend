@@ -266,7 +266,7 @@ const UniversityIntake = () => {
                                 </SweetAlert>
                                     : null
                                 }
-                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Intake</button>
+                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span> Add New Intake</button>
 
                             </div>
 
@@ -307,8 +307,8 @@ const UniversityIntake = () => {
 
                                                                     <td>
 
-                                                                        <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                        <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
+                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
 
                                                                     </td>
                                                                 </tr>
@@ -337,13 +337,13 @@ const UniversityIntake = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
-
+                                                        <h3>Edit Intake</h3>
                                                 </div>
                                                 <div className="table-responsive mt-5">
 
                                                     <div className="row">
                                                         <div className="col-sm-12">
-                                                            <p><b>Edit Intake</b></p>
+                                                           
                                                             <form onSubmit={handleEditSubmit}>
                                                                 <div className="card-body" >
 
@@ -435,9 +435,11 @@ const UniversityIntake = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
-
+                                                    <div className="col-md-12">
+                                                       <h3 className="pl-3">Add Intake</h3>
+                                                    </div>
                                                 </div>
-                                                <div className="table-responsive mt-5">
+                                                <div className="table-responsive ">
 
                                                     <div className="row">
                                                         <div className="col-sm-12">
@@ -489,7 +491,7 @@ const UniversityIntake = () => {
                                                                         </div>
 
 
-                                                                        <div className="mb-3">
+                                                                        <div className="mb-3 mt-3">
                                                                             <div className="row">
                                                                                 <div className="col-md-6"></div>
                                                                                 <div className="col-md-6 text-right">

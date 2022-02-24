@@ -315,10 +315,15 @@ class Ranking extends Component {
                                 : null
                             }
                             {/* <!-- Page Heading --> */}
-                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Ranking</h1>
 
-                                <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Ranking</button>
+                            <div className="mt-4 mb-4">
+                                <div className='row'>
+                                    <div className='col-md-6'><h3>Ranking</h3></div>
+                                    <div className='col-md-6 text-right'> <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Ranking</button></div>
+                                </div>
+                              
+
+                               
                             </div>
 
 
@@ -359,16 +364,16 @@ class Ranking extends Component {
                                                                     <td>{object.agencyName}</td>
                                                                     <td>{object.rank}</td>
                                                                     <td>{object.year}</td>
-                                                                    <td>  <img src={object.certificate} alt="passportback" /> </td>
+                                                                    <td className='img-table'>  <img src={object.certificate} alt="passportback" /> </td>
 
                                                                     <td>
 
 
-                                                                        <button className="btn"
+                                                                        <button title='Edit' className="btn btn btn-success btn-sm "
                                                                             onClick={() => this.handleAddClick(object._id)}
 
                                                                         ><i className="fas fa-pen "></i></button>
-                                                                        <button className="btn" onClick={() => this.handleDeleteClick(object._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                        <button title='Delete' className="btn btn-danger btn-sm vbtn" onClick={() => this.handleDeleteClick(object._id)}><i class="fas fa-trash-alt"></i></button>
 
 
                                                                     </td>
@@ -390,15 +395,17 @@ class Ranking extends Component {
                                             style={{ width: this.state.addWidth }}>
 
                                             <div className="student-view">
-                                                <div className="row">
-                                                    <div className="col-md-6">
-
-                                                    </div>
-                                                    <div className="col-md-6">
+                                                <div className="row">                                                    
+                                                    <div className="col-md-12">
                                                         <a className="closebtn"
                                                             onClick={() => this.ddhandleAddClick()}
 
                                                         >&times;</a>
+                                                    </div>
+                                                </div>
+                                                <div className='row mt-3'>
+                                                    <div className='col-md-12'>                                                   
+                                                        <h3>Add New Ranking</h3>                                                    
                                                     </div>
                                                 </div>
 
@@ -482,22 +489,22 @@ class Ranking extends Component {
                                             style={{ width: this.state.width }}>
 
                                             <div className="student-view">
-                                                <div className="row">
-                                                    <div className="col-md-6">
-
-                                                    </div>
-                                                    <div className="col-md-6">
+                                                <div className="row">                                                   
+                                                    <div className="col-md-12">
                                                         <a className="closebtn"
-
-
                                                             onClick={() => this.ddhandleAddClick()}
                                                         >&times;</a>
                                                     </div>
                                                 </div>
+                                                <div className='row mt-3'>
+                                                <div className='col-md-12'>
+                                                  <h3>Edit Ranking</h3>
+                                                </div>
+                                                </div>
 
                                                 {/* start for edit component */}
                                                 <form onSubmit={this.submitEditRanking}>
-                                                    Edit Ranking
+                                                   
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">

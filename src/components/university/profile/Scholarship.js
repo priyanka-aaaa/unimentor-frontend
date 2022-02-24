@@ -265,14 +265,13 @@ const Document = () => {
 
                     <div className="card-body">
                         <div className="formbody">
+                        <div className="mt-4 mb-4">
                             <div className="row">
-                                <div className="col-lg-12 col-12 ">
-                                    <h3> Scholarship</h3>
-                                </div>
-                                <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 className="h3 mb-0 text-gray-800"></h1>
-                                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
-
+                              
+                           <div className="col-md-6"><h3>Scholarship</h3></div>
+                                   <div className="col-md-6 text-right"> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
+</div> 
+                                   
                                 </div>
 
                                 <div className="card shadow mb-4">
@@ -300,9 +299,9 @@ const Document = () => {
 
                                                             <td>
 
-                                                                <button className="btn" onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+                                                                <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
 
-                                                                <button className="btn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
 
                                                             </td>
                                                         </tr>
@@ -327,7 +326,7 @@ const Document = () => {
                                                 <a className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
-                                        <div className="row">
+                                        <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Add  Scholarship</h3>
                                             </div>
@@ -349,7 +348,7 @@ const Document = () => {
 
                                                             </div>
                                                             <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                                                <div className="form-group">
+                                                                <div className="form-group textarea">
                                                                     <div className="EditorSide">
                                                                         <p>Choose your relevant pre-written examples. </p>
                                                                     </div>
@@ -448,9 +447,9 @@ const Document = () => {
                                         {/* start for edit scholarship */}
 
 
-                                        <div className="row">
+                                        <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Scholarship</h3>
+                                                <h3>Edit Scholarship</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">

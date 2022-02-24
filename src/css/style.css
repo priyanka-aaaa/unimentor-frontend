@@ -45,7 +45,53 @@ section.Form-block .logo {
 select.form-control{
     color: #6c757d;
 }
-
+.PhoneInput {
+    display: flex;
+    align-items: center;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 0.75rem;
+    height: calc(1.5em + 0.75rem + 2px);
+    border-radius: 0.35rem;
+}
+.PhoneInput input.PhoneInputInput {
+    border: none;
+}
+.card h5 {
+    margin-bottom: 0;
+    padding-top: 4px;
+}
+.btn-view {
+    width: 100%;
+    display: block;
+}
+.website-btn {
+    background-color: #ff7f0e !important;
+    padding: 0 30px !important;
+    display: inline-block !important;
+    line-height: 45px !important;
+    height: 45px !important;
+    color: #fff !important;
+    border: 1px solid #ff7f0e !important;
+}
+a.btn.website-btn:hover {
+    background-color: transparent !important;
+    border: 1px solid #ff7f0e;
+    color: #ff7f0e !important;
+}
+a.btn.outline-website-btn {
+    display: inline-block !important;
+    padding: 0 30px !important;
+    display: inline-block !important;
+    line-height: 45px !important;
+    height: 45px !important;
+    border: 1px solid #ff7f0e !important;
+    color: #ff7f0e !important;
+    margin-right: 10px !important;
+}
+a.btn.outline-website-btn:hover {
+    background-color: #ff7f0e;
+    color: #fff !important;
+}
 
 /* responsive */
 @media only screen and (max-width: 480px) {

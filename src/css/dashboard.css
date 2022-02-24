@@ -37,8 +37,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
 }
 
 *,
@@ -48,7 +47,7 @@
 }
 
 html {
-  font-family: sans-serif;
+
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -60,13 +59,16 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+ 
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #858796;
   text-align: left;
   background-color: #fff;
+}
+.btn-success {
+  margin-left: 7px;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -183,7 +185,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
   font-size: 1em;
 }
 
@@ -5847,7 +5849,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+ 
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -5960,7 +5962,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -9461,9 +9463,6 @@ button.bg-dark:focus {
   background-color: rgba(0, 0, 0, 0);
 }
 
-.text-monospace {
-  font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
-}
 
 .text-justify {
   text-align: justify !important;
@@ -10230,8 +10229,11 @@ a:focus {
   padding-bottom: 0.75rem;
   color: #fff;
 }
+.vbtn {
+  margin-left: 8px;
+}
 .btn-success i {
-  margin-right: 10px;
+  margin-right: 0px;
   font-size: 14px;
 }
 label.uploader {
@@ -11366,6 +11368,7 @@ span.td-format {
   display: inline-block;
   width: 50px;
   height: 24px;
+  right: 50px;
 }
 
 .switch input { 
@@ -11415,7 +11418,7 @@ input:checked + .slider:before {
 /* Rounded sliders */
 .slider.round {
   border-radius: 34px;
-  height: 20px;
+  height: 22px;
   width: 48px;
 }
 .icon_delete {
@@ -11649,9 +11652,6 @@ a.card-header.collapsed:after{
   color: #303030;
 }
 .card span {
-
-  margin-bottom: 8px;
-  color: #8d8d8d;
   float: left;
   /* display: inline-block; */
   margin-right: 14px;
@@ -11786,11 +11786,12 @@ a.card-header strong {
 }
 .course-sidenav .closebtn {
   position: absolute;
-  top: -21px;
-  right: 25px;
+  top: -1px;
+  right: 45px;
   font-size: 36px;
   margin-left: 20px;
-  color:#f71313;
+  color: #f71313;
+  cursor: pointer;
 }
 .sidenav a {
   padding: 8px 8px 8px 32px;
@@ -11816,7 +11817,21 @@ a.card-header strong {
 .sidenav .btn span {
   color: #1cc88a;
 }
-
+.form-group.textarea {
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.student-view {
+  padding-right: 30px !important;
+}
+td.img-table {
+  width: 140px;
+  /* border: 1px solid #ccc; */
+}
+td.img-table img {
+  border: 1px solid #ccc;
+  padding: 4px;
+}
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
@@ -11825,4 +11840,5 @@ a.card-header strong {
 trix-editor.form-control.editarea {
   height: 27rem;
 }
+
 /* end priyanka */

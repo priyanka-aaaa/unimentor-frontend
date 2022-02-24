@@ -395,8 +395,16 @@ const Courses = () => {
             </div> : null}
             {/* start for showing add message */}
             {/* <!-- Page Heading --> */}
-            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">Coures</h1>
+            <div className="mb-4 mt-4">
+                <div className="row">
+                    <div className="col-md-6">
+                    <h5>Coures</h5>
+                    </div>
+                    <div className="col-md-6 text-right">
+                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
+                    </div>
+                </div>
+               
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -446,7 +454,7 @@ const Courses = () => {
                 </SweetAlert>
                     : null
                 }
-                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
+                
 
             </div>
 
@@ -488,9 +496,9 @@ const Courses = () => {
                                                     <td>{object.tuitionFee}</td>
                                                     <td>
 
-                                                        <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                        <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
-                                                        <button className="btn" onClick={() => handleView(object._id)}><i className="fas fa-eye"></i></button>
+                                                        <button title="Delete" className="btn btn-danger btn-sm" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
+                                                        <button title="Edit" className="btn btn-success btn-sm" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                        <button title="View" className="btn btn-primary btn-sm vbtn" onClick={() => handleView(object._id)}><i className="fas fa-eye"></i></button>
                                                     </td>
                                                 </tr>
 
@@ -516,21 +524,18 @@ const Courses = () => {
                                     <div className="col-md-6">
                                         <a className="closebtn" onClick={closebox} >&times;</a>
                                     </div>
-                                </div>
-                                <div className="row mt-3">
-
-                                </div>
-                                <div className="table-responsive mt-5">
+                                </div>                               
+                                <div className="table-responsive mt-3">
 
                                     <div className="row">
                                         <div className="col-sm-12">
-                                            <p><b>Edit Course</b></p>
+                                          
                                             <form onSubmit={handleEditSubmit}>
                                                 <div className="card-body" >
 
                                                     <div className="from-block" >
 
-
+                                                    <h3>Edit Course</h3>
 
                                                         <div className="row" >
                                                             <div className="mb-3">
@@ -752,16 +757,13 @@ const Courses = () => {
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
-
+                                                                 
                                     </div>
                                     <div className="col-md-6">
                                         <a className="closebtn" onClick={closeaddbox} >&times;</a>
                                     </div>
-                                </div>
-                                <div className="row mt-3">
-
-                                </div>
-                                <div className="table-responsive mt-5">
+                                </div>                             
+                                <div className="table-responsive mt-3">
 
                                     <div className="row">
                                         <div className="col-sm-12">
@@ -772,10 +774,7 @@ const Courses = () => {
                                                 <div className="card-body" >
 
                                                     <div className="from-block" >
-
-
-                                                        <h6>Add Course</h6>
-
+                                                        <h3>Add Course</h3>
                                                         <div className="row" >
                                                             <div className="mb-3">
                                                                 <div className="row">
@@ -939,10 +938,9 @@ const Courses = () => {
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                     <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
 
-Add Intake</button>
-
-                                                                      
+                                                                     Add Intake</button>
                                                                         <br />
+                                                                        <div className="form-group mt-3">
                                                                         Intakes
                                                                         <select
                                                                             type="text" className="form-control"
@@ -957,6 +955,7 @@ Add Intake</button>
                                                                             })}
 
                                                                         </select>
+                                                                        </div>
 
                                                                     </div>
 
@@ -999,17 +998,13 @@ Add Intake</button>
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <h6 className="mt-2 font-weight-bold text-primary"></h6>
+                                    <h3>Course Detail</h3>
                                     </div>
                                     <div className="col-md-6">
                                         <a className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
                                     </div>
-                                </div>
-                                <div className="row mt-3">
-                                    <div className="col-md-6"></div>
-                                    <div className="col-md-6 text-right"></div>
-                                </div>
-                                <div className="table-responsive mt-5">
+                                </div>                               
+                                <div className="table-responsive mt-3">
 
                                     <div className="row">
                                         <div className="col-sm-12">

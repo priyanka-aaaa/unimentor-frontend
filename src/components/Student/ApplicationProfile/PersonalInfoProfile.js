@@ -4,7 +4,7 @@ import axios from 'axios';
 function PersonalInformationProfile(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [mounted, setMounted]= useState();
+    const [mounted, setMounted] = useState();
     const [salutation, setsalutation] = useState("");
     const [firstName, setfirstName] = useState("");
     const [middleName, setmiddleName] = useState("");
@@ -22,17 +22,20 @@ function PersonalInformationProfile(props) {
     const [firstLanguage, setfirstLanguage] = useState("");
     const [visa, setvisa] = useState("no");
     const [refusedVisa, setrefusedVisa] = useState("no");
+    const [countries, setcountries] = useState([{
+        country_name: ""
+    }]);
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-         
+
             var user_email = mydata.data.student.email;
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
-        
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -57,20 +60,32 @@ function PersonalInformationProfile(props) {
 
                 }
                 else {
-            
+
                 }
 
             })
             .catch(error => {
-           
-            });
-       
 
+            });
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
+            .then(function (res) {
+                if (res.data.success === true) {
+                    setcountries(res.data.result);
+                }
+                else {
+                }
+            })
+            .catch(error => {
+            });
 
     }, [])
-  
 
-  
+function handlemaritalStatus(value){
+   
+    setmaritalStatus(value)
+}
+
     function Personal_Information(event) {
         event.preventDefault();
         const obj = {
@@ -85,6 +100,8 @@ function PersonalInformationProfile(props) {
             nationality: nationality,
             dualNationality: dualNationality,
             maritalStatus: maritalStatus,
+         
+
             differentlyAble: differentlyAble,
             passport: passport,
             aadharCard: aadharCard,
@@ -94,7 +111,7 @@ function PersonalInformationProfile(props) {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-          
+
                 if (res.data.success === true) {
 
                     setsuccessMessage("Personal Info Updated")
@@ -102,13 +119,21 @@ function PersonalInformationProfile(props) {
                     setsubmitSuccess(1)
                 }
                 else {
-              
+
                 }
 
             })
             .catch(error => {
 
             });
+    }
+    function handlecountryOfBirth(e) {
+
+        setcountryOfBirth(e)
+    }
+    function handlenationality(e) {
+
+        setnationality(e)
     }
 
     return (
@@ -219,18 +244,18 @@ function PersonalInformationProfile(props) {
                                             <div className="col">
                                                 <label htmlFor="country_of_birth">Country of
                                                     Birth</label>
-                                                <select
+                                                <select className="form-control" name="countryOfBirth" required=""
                                                     value={countryOfBirth}
-                                                    onChange={(e) => setcountryOfBirth(e.target.value)}
-                                                    className="form-control" id="country_of_birth" name="country_of_birth">
-                                                    <option >Select</option>
-                                                    <option value="India">India</option>
-                                                    <option value="Afghanistan">Afghanistan</option>
-                                                    <option value="Albania">Albania</option>
-                                                    <option value="Algeria">Algeria</option>
-                                                    <option value="American Samoa">American Samoa</option>
-                                                    <option value="Andorra">Andorra</option>
-
+                                                    onChange={(e) => handlecountryOfBirth(e.target.value)}
+                                                >
+                                                    <option
+                                                        value="" >Select country</option>
+                                                    {countries.map((element, index) => {
+                                                        return (
+                                                            <option
+                                                                value={element.country_name} key={index}>{element.country_name}</option>
+                                                        )
+                                                    })}
                                                 </select>
                                             </div>
                                         </div>
@@ -240,20 +265,19 @@ function PersonalInformationProfile(props) {
                                             <div className="col-md-4">
                                                 <div className="mt">
                                                     <label htmlFor="nationality">Nationality</label>
-                                                    <select
 
+                                                    <select className="form-control" name="Nationality" required=""
                                                         value={nationality}
-                                                        onChange={(e) => setnationality(e.target.value)}
-                                                        className="form-control" id="Nationality" name="Nationality">
-                                                        <option >Select</option>
-                                                        <option value="India">India</option>
-                                                        <option value="Afghanistan">Afghanistan</option>
-                                                        <option value="Albania">Albania</option>
-                                                        <option value="Algeria">Algeria</option>
-                                                        <option value="American Samoa">American Samoa</option>
-                                                        <option value="Andorra">Andorra</option>
-
-
+                                                        onChange={(e) => handlenationality(e.target.value)}
+                                                    >
+                                                        <option
+                                                            value="" >Select country</option>
+                                                        {countries.map((element, index) => {
+                                                            return (
+                                                                <option
+                                                                    value={element.country_name} key={index}>{element.country_name}</option>
+                                                            )
+                                                        })}
                                                     </select>
                                                 </div>
                                             </div>
@@ -274,11 +298,41 @@ function PersonalInformationProfile(props) {
                                     <div className="mb-3">
                                         <div className="row">
                                             <div className="col-md-4">
-                                                <div className="mt"><label htmlFor="">Marital
-                                                    Status</label><br /><input
-                                                        value={maritalStatus}
-                                                        onChange={(e) => setmaritalStatus(e.target.value)}
-                                                        type="radio" id="married" name="marital_status" value="married" /><label className="mr-1" htmlFor="married">Married</label>&nbsp;&nbsp;<input type="radio" id="unmarried" name="marital_status" value="unmarried" /><label className="mr-1" htmlFor="unmarried">Unmarried</label>&nbsp;&nbsp;<input type="radio" id="widowed" name="marital_status" value="widowed" /><label htmlFor="widowed">Widowed</label></div>
+                                                <div className="mt">
+
+
+                                                    <label htmlFor="">Marital
+                                                        Status</label><br />
+
+                                                    <input
+                                                       
+                                                        checked={maritalStatus === "married"}
+                                                        onChange={(e) => handlemaritalStatus("married")}
+
+                                                        type="radio" id="married" name="marital_status" />
+                                                    <label className="mr-1" htmlFor="married">Married</label>&nbsp;&nbsp;
+
+
+
+                                                    <input type="radio" id="unmarried" name="marital_status"
+                                                   
+                                                       checked={maritalStatus === "unmarried"}
+                                                       onChange={(e) => handlemaritalStatus("unmarried")}
+                                                    />
+                                                    <label className="mr-1" htmlFor="unmarried">Unmarried</label>&nbsp;&nbsp;
+
+
+
+
+
+                                                    <input type="radio" id="widowed" name="marital_status" 
+                                             
+                                                        checked={maritalStatus === "widowed"}
+                                                        onChange={(e) => handlemaritalStatus("widowed")}
+                                                     />
+                                                    <label htmlFor="widowed">Widowed</label></div>
+
+
                                             </div>
 
 

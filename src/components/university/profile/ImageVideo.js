@@ -216,7 +216,7 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-12 email-con">
                                         <label htmlFor="uploadUniversitylogo">
-                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                            <span className="myuploadbutton"><i class="fa fa-cloud-upload" aria-hidden="true"></i>   Upload/Drag & Drop Here</span>
                                             <input type="file" onChange={this.onFileChangeUniversityLogo} id="uploadUniversitylogo" />
                                         </label>
                                     </div>
@@ -244,7 +244,7 @@ class ImageVideo extends Component {
                     </div> */}
                     <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                         {/* <img src={this.state.mypassportBack} alt="passportback" /> */}
-                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassportback">
+                        <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModalPassportback">
                             View
                         </button>
                     </div>
@@ -285,7 +285,7 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-12 email-con">
                                         <label htmlFor="uploadcoverpik">
-                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                            <span className="myuploadbutton"><i class="fa fa-cloud-upload" aria-hidden="true"></i>   Upload/Drag & Drop Here</span>
                                             <input type="file" onChange={this.onFileChangeCoverPik} id="uploadcoverpik" />
                                         </label>
                                     </div>
@@ -313,7 +313,7 @@ class ImageVideo extends Component {
                     </div> */}
                     <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                         {/* <img src={this.state.mypassportBack} alt="passportback" /> */}
-                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalcoverPik">
+                        <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModalcoverPik">
                             View
                         </button>
                     </div>
@@ -360,7 +360,7 @@ class ImageVideo extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Logo(size 259*194px)</label><br />
+                                            <label>Logo(size 250*250px)</label><br />
 
 
                                             <span className="documentUpload ant-upload-picture-card-wrapper" >
@@ -371,11 +371,9 @@ class ImageVideo extends Component {
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Cover Pict(size 259*194px)</label><br />
+                                            <label>Cover Pict(size 1920*377px)</label><br />
                                             <span className="documentUpload ant-upload-picture-card-wrapper" >
                                                 <div className="ant-upload-list ant-upload-list-picture-card">
                                                 </div>
@@ -384,6 +382,7 @@ class ImageVideo extends Component {
                                         </div>
                                     </div>
                                 </div>
+                              
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -397,7 +396,7 @@ class ImageVideo extends Component {
                                                                 <div className="row">
                                                                     <div className="col-md-12 email-con">
                                                                         <label htmlFor="uploaduniversityImage">
-                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                                                            <span className="myuploadbutton"><i class="fa fa-cloud-upload" aria-hidden="true"></i>   Upload/Drag & Drop Here</span>
                                                                             <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
                                                                         </label>
                                                                     </div>
@@ -429,7 +428,7 @@ class ImageVideo extends Component {
                                                                 <div className="row">
                                                                     <div className="col-md-12 email-con">
                                                                         <label htmlFor="uploaduniversityImage">
-                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
+                                                                            <span className="myuploadbutton"><i class="fa fa-cloud-upload" aria-hidden="true"></i>   Upload/Drag & Drop Here</span>
                                                                             <input type="file" onChange={this.onFileChangeImage} id="uploaduniversityImage" />
                                                                         </label>
                                                                     </div>
@@ -463,7 +462,7 @@ class ImageVideo extends Component {
                                         </button>
                                     </div>
                                     {/* start for shwowing table */}
-                                    <div className="col-md-10 ">
+                                    <div className="col-md-12 ">
                                         <div className="uniImageTable" style={{ display: this.state.viewDisplay }}>
                                             <label>All Images & Video</label><br />
                                             <table className="table table-bordered">

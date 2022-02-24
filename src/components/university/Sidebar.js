@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+  }
+  
+  const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 class Sidebar extends Component {
     render() {
         return (
@@ -12,7 +18,8 @@ class Sidebar extends Component {
                     {/* <!-- Sidebar - Brand --> */}
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
              
-                        <div className="sidebar-brand-text mx-3">University Coursementor </div>
+                        <div className="sidebar-brand-text mx-3"> <a href="/">
+                  <img src={images["dash-logo.png"]} alt="" /></a></div>
                     </a>
 
                     {/* <!-- Divider --> */}

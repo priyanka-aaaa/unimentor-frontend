@@ -51,55 +51,7 @@
 
 
 --------------------------------------------------------*/
-@font-face {
-  font-family: 'Livvic';
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCr-x1S2hzjrlfXbeM-.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCq-x1S2hzjrlffw8Eesg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCp-x1S2hzjrlfnbw.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCq-x1S2hzjrlffm8Aesg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCq-x1S2hzjrlfft8cesg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCq-x1S2hzjrlff08Yesg.ttf) format('truetype');
-}
-@font-face {
-  font-family: 'Livvic';
-  font-style: normal;
-  font-weight: 900;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/livvic/v8/rnCq-x1S2hzjrlff68Qesg.ttf) format('truetype');
-}
+
 /* -----------------------------------
     01. General CSS
 -------------------------------------*/
@@ -264,6 +216,11 @@ body.nav-expanded .offwrap {
 .text-right {
   text-align: right;
 }
+
+
+hr:not([size]) {
+    height: auto;
+}
 a {
   color: #077493;
   transition: all 0.3s ease;
@@ -274,7 +231,7 @@ a:active,
 a:hover {
   text-decoration: none;
   outline: 0 none;
-  color: #106eea;
+  color: #ff7f0e;
 }
 ul {
   list-style: outside none none;
@@ -334,14 +291,14 @@ ul {
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-color: #000060;
+  background-color: #065268;
 }
 .bg6 {
   background: url(assets/images/bg/project-bg.png);
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;
-  background-color: #000060;
+  background-color: #065268;
 }
 .bg7 {
   background: url(assets/images/bg/cta-bg.jpg);
@@ -911,11 +868,11 @@ blockquote cite:before {
 }
 .readon.learn-more {
   padding: 14px 40px 14px 40px;
-  background-image: linear-gradient(250deg, #4e95ed 19%, #03228f 100%);
+  background-image:linear-gradient(250deg, #0383a9 19%, #067393 100%);
   border-radius: 30px 30px 30px 30px;
 }
 .readon.learn-more:hover {
-  background-image: linear-gradient(180deg, #03228f 19%, #4e95ed 100%);
+  background-image: linear-gradient(180deg, #0f82a3 19%, #067393 100%);
   color: #ffffff;
 }
 .readon.learn-more.sub-con {
@@ -1402,7 +1359,7 @@ blockquote cite:before {
 .submit {
   color: #FFFFFF;
   background-color: transparent;
-  background-image: linear-gradient(95deg, #03228f 0%, #4e95ed 100%);
+  background-image: linear-gradient(250deg, #0383a9 19%, #067393 100%);
   padding: 18px 40px 17px 40px;
   font-size: 15px;
   line-height: 1;
@@ -1417,7 +1374,7 @@ blockquote cite:before {
 }
 .submit.sub-small:hover {
   color: #ffffff;
-  background-image: linear-gradient(290deg, #03228f 0%, #4e95ed 100%);
+  background-image: linear-gradient(180deg, #0f82a3 19%, #067393 100%);
   opacity: unset;
 }
 /*-- Add Cart Button Css --*/
@@ -1608,7 +1565,7 @@ blockquote cite:before {
 }
 .rs-videos .animate-border .popup-border:before {
   content: "";
-  border: 2px solid #106eea;
+  border: 2px solid #0383a9;
   position: absolute;
   z-index: 0;
   left: 50%;
@@ -1624,7 +1581,7 @@ blockquote cite:before {
 }
 .rs-videos .animate-border .popup-border:after {
   content: "";
-  border: 2px solid #106eea;
+  border: 2px solid #0383a9;
   position: absolute;
   z-index: 0;
   left: 50%;
@@ -2373,7 +2330,7 @@ blockquote cite:before {
   padding: 0;
   color: #ffffff;
   position: relative;
-  font-family: Livvic;
+ 
 }
 .full-width-header .rs-header .menu-area .main-menu .rs-menu ul.nav-menu li a:hover {
   color: #bbb;
@@ -2828,7 +2785,7 @@ blockquote cite:before {
   color: #101010;
 }
 .full-width-header .rs-header.style3.modify1 .menu-area .main-menu .rs-menu ul.nav-menu li a:hover {
-  color: #106eea;
+  color: #ffa351;
 }
 .full-width-header .rs-header.style3.modify1 .menu-area .main-menu .rs-menu ul.nav-menu li.menu-item-has-children:hover > a:before {
   content: "-";
@@ -4882,7 +4839,7 @@ body .search-modal .close:hover {
   opacity: 1;
 }
 .rs-contact .contact-box {
-  background-image: linear-gradient(250deg, #4e95ed 0%, #03228f 100%);
+  background-image:linear-gradient(250deg, #1e91b3 0%, #067393 100%);
   padding: 80px 30px 80px 30px;
   border-radius: 5px 5px 5px 5px;
 }
@@ -4902,7 +4859,7 @@ body .search-modal .close:hover {
 .rs-contact .contact-box .address-box .address-icon i {
   font-size: 20px;
   line-height: 20px;
-  color: #03228F;
+  color: #ff7f0e;
 }
 .rs-contact .contact-box .address-box .address-text .label {
   font-size: 16px;
@@ -5367,7 +5324,7 @@ body .search-modal .close:hover {
   background: url(assets/images/bg/team-bg.png);
   background-position: center center;
   background-size: cover;
-  background-color: #000060;
+  background-color: #067393;
 }
 .rs-team .team-item-wrap .team-wrap {
   padding: 9px 35px 25px 20px;
@@ -7118,7 +7075,7 @@ body .search-modal .close:hover {
 }
 .rs-industry .all-services .services-item {
   padding: 10px;
-  width: 20%;
+  width: 33.3%;
   float: left;
 }
 .rs-industry .all-services .services-item .services-wrap {
@@ -10754,7 +10711,7 @@ span.btn.btn-primary.loct {
   color: #454545;
 }
 .rs-footer .footer-top .site-map li a:hover {
-  color: #106eea;
+  color: #ff7f0e;
 }
 .rs-footer .footer-top .footer-social li {
   display: inline;

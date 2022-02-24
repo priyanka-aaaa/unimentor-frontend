@@ -175,11 +175,11 @@ const Faq = () => {
                         }
                         <div className="form-block">
 
-                            <div className="row pl-4 pr-4 mt-3">
-                                <div className="col-8 col-sm-8 col-md-8 col-lg-10">
+                            <div className="row mt-3">
+                                <div className="col-md-8">
                                     <p>I haven't have any FAQ</p>
                                 </div>
-                                <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
+                                <div className=" col-md-4 text-right">
                                     <label className="switch">
                                         <input type="checkbox" />
                                         <span className="slider round" onClick={() => ToggleButton()}></span>
@@ -187,7 +187,7 @@ const Faq = () => {
 
                                 </div>
                                 <div>
-                                    <div className="col-xl-12 col-lg-7">
+                                    <div className="col-xl-12 ">
                                         <div className="card shadow mb-4" style={{ display: display }}>
                                             <div id="accordion">
                                                 <div className="card-body">
@@ -195,19 +195,21 @@ const Faq = () => {
                                                         <form onSubmit={handleSubmit}>
                                                             {formValues.map((element, index) => (
                                                                 <div key={index}>
-                                                                    <div className="btn deleteFamily" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
+                                                                   
 
                                                                     {/* <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p> */}
                                                                     <div className="mb-3">
 
                                                                         <div className="row">
 
-
-                                                                            <div className="col">
+                                                                            <div className="col-md-11">
                                                                                 <label htmlFor="fname" className="form-label">Question</label>
                                                                                 <input required type="text" className="form-control" placeholder="Question" name="question"
                                                                                     value={element.question || ""} onChange={e => handleChange(index, e)}
                                                                                 />
+                                                                            </div>
+                                                                            <div className="col-md-1 text-left">
+                                                                            <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -242,7 +244,7 @@ const Faq = () => {
                                                                         </button>
                                                                         <button type="submit"
 
-                                                                            className="btn btn-secondary">Save
+                                                                            className="btn btn-secondary vbtn">Save
                                                                         </button>
                                                                         <button type="button" className="btn btn-success"
                                                                             data-bs-toggle="collapse" href="#collapse1">Save &

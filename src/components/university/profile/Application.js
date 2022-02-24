@@ -264,11 +264,9 @@ const Application = () => {
                     <div className="card-body">
                         <div className="formbody">
                             <div className="row">
-                                <div className="col-lg-12 col-12 ">
-                                    <h3>Application Process</h3>
-                                </div>
+                               
                                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                    <h1 className="h3 mb-0 text-gray-800"></h1>
+                                    <h5>Application Process</h5>
                                     <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Application</button>
 
                                 </div>
@@ -299,8 +297,8 @@ const Application = () => {
                                                             <td>
 
 
-                                                                <button className="btn" onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+                                                                <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
 
                                                             </td>
                                                         </tr>
@@ -329,7 +327,7 @@ const Application = () => {
                                         </div>
 
                                         {/* start for add admission */}
-                                        <div className="row">
+                                        <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Add Application Process</h3>
                                             </div>
@@ -352,7 +350,7 @@ const Application = () => {
 
                                                             </div>
                                                             <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                                                <div className="form-group">
+                                                                <div className="form-group textarea">
                                                                     <div className="EditorSide">
                                                                         <p>Choose your relevant pre-written examples. </p>
                                                                     </div>
@@ -422,7 +420,7 @@ const Application = () => {
                                         </div>
 
                                         {/* start for edit admission */}
-                                        <div className="row">
+                                        <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Edit Application Process</h3>
                                             </div>
@@ -444,7 +442,7 @@ const Application = () => {
                                                                 </div>
                                                             </div>
                                                             <div className="col-xl-6  mt-2 d-none d-xl-block" >
-                                                                <div className="form-group">
+                                                                <div className="form-group textarea">
                                                                     <div className="EditorSide">
                                                                         <p>Choose your relevant pre-written examples. </p>
                                                                     </div>

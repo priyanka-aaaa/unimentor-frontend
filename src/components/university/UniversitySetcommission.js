@@ -375,7 +375,7 @@ const UniversitySetcommission = () => {
                                 }
 
 
-                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add Commission</button>
+                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span> Add Commission</button>
 
                             </div>
 
@@ -420,8 +420,8 @@ const UniversitySetcommission = () => {
 
                                                                     <td>
 
-                                                                        <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                        <button className="btn" onClick={() => handleEditClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
+                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(object._id)}><i className="fas fa-pen "></i></button>
 
                                                                     </td>
                                                                 </tr>
@@ -435,7 +435,7 @@ const UniversitySetcommission = () => {
                                             </div>
                                         </div>
 
-
+                                                        
 
                                         <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: addWidth }}
@@ -451,9 +451,11 @@ const UniversitySetcommission = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
-
+                                                    <div className="col-md-12">
+                                                    <h3>Add Commission</h3>
+                                                    </div>    
                                                 </div>
-                                                <div className="table-responsive mt-5">
+                                                <div className="table-responsive ">
 
                                                     <div className="row">
                                                         <div className="col-sm-12">
@@ -467,7 +469,7 @@ const UniversitySetcommission = () => {
                                                                         <div className="card shadow mb-4">
                                                                             <div id="accordion">
 
-                                                                                <p>Add Commission</p>
+                                                                              
                                                                                 <div className="card-body">
 
                                                                                     <div className="from-block">

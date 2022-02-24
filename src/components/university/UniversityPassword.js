@@ -122,15 +122,14 @@ export default function UniversityPassword() {
                                         <div class="card-body">
                                             <div class="form-block">
                                                 <div class="card-body">
-                                                    <h1 class="h3 mb-3 text-gray-800">Change Password</h1>
+                                                    <h3>Change Password</h3>
                                                     <div class="col-sm-12">
 
 
                                                         <div class="row">
                                                             <div class="col-sm-12">
                                                                 <form onSubmit={setting}>
-                                                                    <div class="row">
-                                                                        <div class="col-sm-12 ">
+                                                                  
                                                                             <div class="form-group">
                                                                                 <label for="password">Enter Password</label>
                                                                                 <input required="" name="password" type="password" id="password" class="form-control"
@@ -139,8 +138,8 @@ export default function UniversityPassword() {
                                                                                     placeholder="Password"
                                                                                 />
                                                                             </div>
-                                                                        </div>
-                                                                        <div class="col-sm-12">
+                                                                      
+                                                                       
                                                                             <div class="form-group">
                                                                                 <label for="c_password">Confirm Password</label>
                                                                                 <input required="" name="c_password" type="password" id="c_password" class="form-control"
@@ -151,10 +150,10 @@ export default function UniversityPassword() {
                                                                             </div>
                                                                             <span style={{ color: "red" }}> {confirmpasswordError}</span>
 
-                                                                        </div>
+                                                                       
                                                                         <div class="col-sm-12 text-danger"></div>
-                                                                        <div class="col-sm-12"><button type="submit" class="btn btn-success">Save</button></div>
-                                                                    </div>
+                                                                       <button type="submit" class="btn btn-success">Save</button>
+                                                                    
                                                                 </form>
                                                             </div>
                                                         </div>

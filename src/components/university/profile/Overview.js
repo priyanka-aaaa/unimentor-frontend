@@ -235,7 +235,7 @@ export default function Overview() {
                                         </div>
                                     </div>
                                 </div>
-
+                                <div className="col-12">
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
@@ -273,6 +273,7 @@ export default function Overview() {
                                         </div>
                                     </div>
                                 </div>
+                                </div>
 
                                 <div className="clearfix"></div>
 
@@ -282,12 +283,8 @@ export default function Overview() {
                                 <div className="row">
                                     <div className="col-md-6"></div>
                                     <div className="col-md-6 text-right">
-                                        <button type="submit"
-
-                                            className="btn btn-secondary">Save
-                                        </button>
-                                        <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success">Save &
-                                            Next</button>
+                                        <button type="submit" className="btn btn-secondary">Save</button>
+                                        <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success">Save & Next</button>
                                     </div>
 
                                 </div>
