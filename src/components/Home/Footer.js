@@ -35,6 +35,18 @@ function Footer(props) {
                   </li>
                 </ul>
               </div>
+
+              <div className="col-lg-3 col-md-12 col-sm-12">
+                <h3 className="widget-title">Exploring</h3>
+                <ul className="site-map">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/About">About Us</a></li>
+                  <li><a href="#">Blog</a></li>
+                  <li><a href="/contact">Contact Us</a></li>
+                </ul>
+                {/* <p className="widget-desc">We denounce with righteous and in and dislike men who are so beguiled and demo realized.</p> */}
+              </div>
+
               <div className="col-lg-3 col-md-12 col-sm-12 pl-45 md-pl-15 md-mb-30">
                 <h3 className="widget-title">Policy</h3>
                 <ul className="site-map">
@@ -46,6 +58,9 @@ function Footer(props) {
                   <li><a href="#">Blog</a></li>
                 </ul>
               </div>
+            
+             
+
               <div className="col-lg-3 col-md-12 col-sm-12 md-mb-30">
                 <h3 className="widget-title">Contact Info</h3>
                 <ul className="address-widget">
@@ -73,24 +88,16 @@ function Footer(props) {
                   </li>
                 </ul>
               </div>
-              <div className="col-lg-3 col-md-12 col-sm-12">
-                <h3 className="widget-title">Exploring</h3>
-                <ul className="site-map">
-                  <li><a href="index.html">Home</a></li>
-                  <li><a href="about.html">About Us</a></li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-                {/* <p class="widget-desc">We denounce with righteous and in and dislike men who are so beguiled and demo realized.</p> */}
-              </div>
+
+
             </div>
           </div>
         </div>
         <div className="footer-bottom">
           <div className="container">
             <div className="row y-middle">
-              {/* <div class="col-lg-6 text-right md-mb-10 order-last">
-                            <ul class="copy-right-menu">
+              {/* <div className="col-lg-6 text-right md-mb-10 order-last">
+                            <ul className="copy-right-menu">
                                <li><a href="index.html">Home</a></li>
                                <li><a href="about.html">About</a></li>
                                <li><a href="blog.html">Blog</a></li>
@@ -100,7 +107,7 @@ function Footer(props) {
                         </div> */}
               <div className="col-lg-6">
                 <div className="copyright">
-                  <p>©Copyright 2018 - 2022<a href="http://Coursementor.com/">Coursementor.com</a> All
+                  <p>©Copyright 2018 - 2022 <a href="http://Coursementor.com/"> Coursementor.com</a> All
                     rights reserved.</p>
                 </div>
               </div>

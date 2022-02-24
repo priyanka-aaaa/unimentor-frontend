@@ -115,10 +115,10 @@ export default function Home() {
                       {/* <a className="readon started" href="#">Get Started</a> */}
                     </li>
                     {/* <li>
-                                            <div class="rs-videos">
-                                                <div class="animate-border">
-                                                    <a class="popup-border popup-videos" href="https://www.youtube.com/watch?v=YLN1Argi7ik">
-                                                        <i class="fa fa-play"></i>
+                                            <div className="rs-videos">
+                                                <div className="animate-border">
+                                                    <a className="popup-border popup-videos" href="https://www.youtube.com/watch?v=YLN1Argi7ik">
+                                                        <i className="fa fa-play"></i>
                                                     </a>
                                                 </div>
                                             </div> 
@@ -132,42 +132,42 @@ export default function Home() {
                     <div className="rs-carousel owl-carousel" data-loop="true" data-items={3} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={2} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={3} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={3} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={3} data-md-device-nav="false" data-md-device-dots="false">
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-1.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-2.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-3.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-4.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-5.png"]} alt="" />
                           </a>
                         </div>
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["pt-6.png"]} alt="" />
                           </a>
                         </div>
@@ -181,7 +181,7 @@ export default function Home() {
                       </div>
                       <div className="partner-item">
                         <div className="logo-img">
-                          <a href="https://rstheme.com/">
+                          <a href="#">
                             <img src={images["8.png"]} alt="" />
                           </a>
                         </div>
@@ -204,7 +204,7 @@ export default function Home() {
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">We Are Best</span>
               <h2 className="title">
-                Why Choose Unizmentor
+                Why Choose Coursementor
               </h2>
             </div>
             <div className="row">
@@ -223,8 +223,7 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                            Can directly search the university or colleges on our portal and can
-                            apply for admissions in that.
+                          We believe in your dreams and work hard to make them a reality. Get matched with and apply to programs and schools that align with your background, skills, and interests.
                           </p>
                         </div>
                       </div>
@@ -236,10 +235,7 @@ export default function Home() {
                           </h3>
                         </div>
                         <div className="back-desc-part">
-                          <p className="back-desc"> Can directly search the university or colleges on our
-                            portal and can apply for admissions in that. They can also see the
-                            application status of their admission and the college will update their
-                            application on the portal.
+                          <p className="back-desc">  We believe in your dreams and work hard to make them a reality. Get matched with and apply to programs and schools that align with your background, skills, and interests.
                           </p>
                         </div>
                         <div className="back-btn-part">
@@ -257,16 +253,15 @@ export default function Home() {
                       <div className="front-content-part gold-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src={images["icons-8.png"]} alt="" />
+                            <img src={images["universities-icon.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
-                          <h3 className="title"><a href="#">Universities</a></h3>
+                          <h3 className="title"><a href="#">Recruitment Partners</a></h3>
                         </div>
                         <div className="front-desc-part">
                           <p>
-                            From all over the world to be registered on our portal. Universities
-                            will be able to list their all courses .
+                          Coursementor is more than a platform—we are your trusted partner—here to help you do what you do best: help as many students as possible fulfill their international education dreams.
                           </p>
                         </div>
                       </div>
@@ -274,13 +269,10 @@ export default function Home() {
                     <div className="back-front gold-bg">
                       <div className="back-front-content">
                         <div className="back-title-part">
-                          <h3 className="back-title">Universities</h3>
+                          <h3 className="back-title">Recruitment Partners</h3>
                         </div>
                         <div className="back-desc-part">
-                          <p className="back-desc"> From all over the world to be registered on our
-                            portal. Universities will be able to list their all courses with all
-                            information about them like course name, description, duration, credit,
-                            fee, etc. </p>
+                          <p className="back-desc"> Coursementor is more than a platform—we are your trusted partner—here to help you do what you do best: help as many students as possible fulfill their international education dreams. </p>
                         </div>
                         <div className="back-btn-part">
                           <a className="readon view-more" href="#">View More</a>
@@ -297,16 +289,15 @@ export default function Home() {
                       <div className="front-content-part blue-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src={images["main-home-icon-9.png"]} alt="" />
+                            <img src={images["patner.png"]} alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
-                          <h3 className="title"><a href="#">Immigration Agents/Partners </a></h3>
+                          <h3 className="title"><a href="#">Partner Schools </a></h3>
                         </div>
                         <div className="front-desc-part">
                           <p>
-                            Can also apply for student applications for admission on the student’s
-                            behalf.
+                          Increase your global presence and the number of qualified students from a single, easy-to-use platform trusted by more than 1,500 institutions worldwide.
                           </p>
                         </div>
                       </div>
@@ -319,9 +310,7 @@ export default function Home() {
                         <div className="back-desc-part">
                           <p className="back-desc">Can also apply for student applications for admission
                             on the student’s behalf. He is the one responsible for uploading all
-                            documents of students on their behalf. and also see the application
-                            status of their admission and the college will update their application
-                            on the portal. </p>
+                            documents of students on their behalf. </p>
                         </div>
                         <div className="back-btn-part">
                           <a className="readon view-more" href="#">View More</a>
@@ -389,87 +378,28 @@ export default function Home() {
                     <img src={images["style3-1.png"]} alt="" />
                   </div>
                   <div className="services-text">
-                    <h4 className="title">Software</h4>
+                    <h4 className="title">Find Programs<br></br>
+Faster</h4>
                   </div>
                 </div>
               </div>
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src={images["style3-2.png"]} alt="" />
+                    <img src={images["spport-team.png"]} alt="" />
                   </div>
                   <div className="services-text">
-                    <h4 className="title">Fintech</h4>
+                    <h4 className="title">Helpful and Dedicated<br></br> Support Team</h4>
                   </div>
                 </div>
               </div>
               <div className="services-item">
                 <div className="services-wrap">
                   <div className="services-icon">
-                    <img src={images["style3-3.png"]} alt="" />
+                    <img src={images["scholarship.png"]} alt="" />
                   </div>
                   <div className="services-text">
-                    <h4 className="title">Healthcare</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-4.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">Data Mining</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-5.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">Machine learning</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-6.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">Medical</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-7.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">Entertainment</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-8.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">AI</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="services-item">
-                <div className="services-wrap">
-                  <div className="services-icon">
-                    <img src={images["style3-9.png"]} alt="" />
-                  </div>
-                  <div className="services-text">
-                    <h4 className="title">Manufacturing</h4>
+                    <h4 className="title">Access to Exclusive<br></br>  Scholarships</h4>
                   </div>
                 </div>
               </div>
@@ -479,10 +409,32 @@ export default function Home() {
                     <img src={images["style3-10.png"]} alt="" />
                   </div>
                   <div className="services-text">
-                    <h4 className="title">Logistics</h4>
+                    <h4 className="title">One Easy Application<br></br> Platform</h4>
                   </div>
                 </div>
               </div>
+              <div className="services-item">
+                <div className="services-wrap">
+                  <div className="services-icon">
+                    <img src={images["style3-5.png"]} alt="" />
+                  </div>
+                  <div className="services-text">
+                    <h4 className="title">Knowledgeable<br></br> Support Team</h4>
+                  </div>
+                </div>
+              </div>
+              <div className="services-item">
+                <div className="services-wrap">
+                  <div className="services-icon">
+                    <img src={images["ssm-8.png"]} alt="" />
+                  </div>
+                  <div className="services-text">
+                    <h4 className="title">Data Driven<br></br>
+                     Insights</h4>
+                  </div>
+                </div>
+              </div>
+             
             </div>
           </div>
         </div>
@@ -492,7 +444,7 @@ export default function Home() {
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">SKILLS</span>
               <h2 className="title title2">
-                Focus on the skills you need
+              Get Started With Course Mentor
               </h2>
               <p>Focus on the skills you need</p>
             </div>
@@ -501,25 +453,47 @@ export default function Home() {
                 <div className="services-item pink-light-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <img className="main-img" src={images["ssm-5.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-5.png"]} alt="" />
+                      <img className="main-img" src={images["graduated.png"]} alt="" />
+                      <img className="hover-img" src={images["graduated.png"]} alt="" />
                     </div>
                   </div>
                   <div className="services-content">
                     <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Learn At Home</a></h3>
+                      <h3 className="title"><a href="#">Students</a></h3>
                     </div>
                     <div className="services-desc">
                       <p>
-                        Enjoy learning from the comfort of your home, at your own time and pace.
+                      Are you a student looking to study abroad in Canada, the United States, the United Kingdom, or Australia? Register to let our team of experts guide you through your journey.
                       </p>
                     </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
+                    <div className="services-button"><a href="#">Student Registration</a></div>
                   </div>
                 </div>
               </div>
               <div className="col-lg-4 col-md-6 mb-30">
                 <div className="services-item blue2-bg">
+                  <div className="services-icon">
+                    <div className="image-part">
+                      <img className="main-img" src={images["patner.png"]} alt="" />
+                      <img className="hover-img" src={images["patner.png"]} alt="" />
+                    </div>
+                  </div>
+                  <div className="services-content">
+                    <div className="services-text">
+                      <h3 className="title"><a href="#">Partner Schools</a></h3>
+                    </div>
+                    <div className="services-desc">
+                      <p>
+                       
+				Become an ApplyBoard partner school to diversify your campus by attracting qualified students from around the world. Complete this form and our Partner Relations team will be in touch.					
+                      </p>
+                    </div>
+                    <div className="services-button"><a href="#">Partner Inquiry</a></div>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4 col-md-6 mb-30">
+                <div className="services-item paste2-bg">
                   <div className="services-icon">
                     <div className="image-part">
                       <img className="main-img" src={images["ssm-6.png"]} alt="" />
@@ -528,106 +502,21 @@ export default function Home() {
                   </div>
                   <div className="services-content">
                     <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Expert Tutors</a></h3>
+                      <h3 className="title"><a href="#">Recruitment Partners</a></h3>
                     </div>
                     <div className="services-desc">
                       <p>
-                        Receive specialized training in statistics by trained educators. We handpick the
-                        best teachers from our rigorous hiring process.
+                       
+				Do you recruit prospective students who want to study in Canada, the United States, the United Kingdom, or Australia? Register to become an ApplyBoard Certified Recruitment Partner.					
                       </p>
                     </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
+                    <div className="services-button"><a href="#">Recruiter Registration</a></div>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 mb-30">
-                <div className="services-item paste2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["ssm-7.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-7.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Strong Community</a></h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                        Join our Affiliate Schools that are growing as one of India’s largest community
-                        of student.
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 md-mb-30">
-                <div className="services-item purple2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["ssm-8.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-8.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Online Tutoring</a></h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                        Learning never stops, and this is especially true when it comes to e-learning.
-                        It ensures flexibility and fun ways of learning to keep you engaged.
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 sm-mb-30">
-                <div className="services-item cyan2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["ssm-9.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-9.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Enjoy Learning From Anywhere</a>
-                      </h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                        Learning top skills can bring an extra-ordinary outcome in a career.
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6">
-                <div className="services-item pink2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["main-img-10.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-10.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Learn From Industry Experts</a>
-                      </h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                        Learning top skills can bring an extra-ordinary outcome in a career.
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
-                  </div>
-                </div>
-              </div>
+           
+         
+           
             </div>
           </div>
         </div>
@@ -843,7 +732,7 @@ export default function Home() {
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src="image/bmh-2.jpg" alt="" /></a>
+                  <a href="blog-details.html"><img src={images["bmh-2.jpg"]} alt="" /></a>
                   <ul className="post-categories">
                     <li><a href="blog-details.html"> Web Development</a></li>
                   </ul>
@@ -942,7 +831,7 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="rs-carousel owl-carousel owl-loaded owl-drag" data-loop="true" data-items={1} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="true" data-nav="false" data-nav-speed="false" data-md-device={1} data-md-device-nav="false" data-md-device-dots="false" data-center-mode="false" data-ipad-device2={1} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-ipad-device={1} data-ipad-device-nav="false" data-ipad-device-dots="true" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false">
-                  <div className="owl-stage-outer">
+                
                     <div className="owl-stage" style={{ transform: 'translate3d(-3335px, 0px, 0px)', transition: 'all 0.8s ease 0s', width: '5336px' }}>
                       <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
@@ -957,7 +846,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Imran Khan</a>
-                              {/* <span class="designation">Web Developer</span> */}
+                              {/* <span className="designation">Web Developer</span> */}
                             </div>
                           </div>
                         </div>
@@ -976,7 +865,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Parteek sharma</a>
-                              {/* <span class="designation">Arist</span> */}
+                              {/* <span className="designation">Arist</span> */}
                             </div>
                           </div>
                         </div>
@@ -997,7 +886,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Keli</a>
-                              {/* <span class="designation">CEO, Brick Consulting</span> */}
+                              {/* <span className="designation">CEO, Brick Consulting</span> */}
                             </div>
                           </div>
                         </div>
@@ -1016,7 +905,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Somya Saini</a>
-                              {/* <span class="designation">CEO, Keen IT Solution</span> */}
+                              {/* <span className="designation">CEO, Keen IT Solution</span> */}
                             </div>
                           </div>
                         </div>
@@ -1034,12 +923,12 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Imran Khan</a>
-                              {/* <span class="designation">Web Developer</span> */}
+                              {/* <span className="designation">Web Developer</span> */}
                             </div>
                           </div>
                         </div>
                       </div>
-                      <div className="owl-item active" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
                         <div className="testi-item">
                           <div className="author-desc">
                             <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
@@ -1053,7 +942,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Parteek sharma</a>
-                              {/* <span class="designation">Arist</span> */}
+                              {/* <span className="designation">Arist</span> */}
                             </div>
                           </div>
                         </div>
@@ -1073,7 +962,7 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Keli</a>
-                              {/* <span class="designation">CEO, Brick Consulting</span> */}
+                              {/* <span className="designation">CEO, Brick Consulting</span> */}
                             </div>
                           </div>
                         </div>
@@ -1092,13 +981,13 @@ export default function Home() {
                             </div>
                             <div className="author-part">
                               <a className="name" href="#">Somya Saini</a>
-                              {/* <span class="designation">CEO, Keen IT Solution</span> */}
+                              {/* <span className="designation">CEO, Keen IT Solution</span> */}
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+               
                   <div className="owl-nav disabled">
                     <div className="owl-prev"><i className="fa fa-angle-left" /></div>
                     <div className="owl-next"><i className="fa fa-angle-right" /></div>
@@ -1116,7 +1005,7 @@ export default function Home() {
             <div className="rs-carousel owl-carousel" data-loop="true" data-items={5} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={2} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={3} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={3} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={5} data-md-device-nav="false" data-md-device-dots="false">
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-1.png"]} alt="" />
                     <img className="main-logo" src={images["partner-1.png"]} alt="" />
                   </a>
@@ -1124,7 +1013,7 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-2.png"]} alt="" />
                     <img className="main-logo" src={images["partner-2.png"]} alt="" />
                   </a>
@@ -1132,7 +1021,7 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-3.png"]} alt="" />
                     <img className="main-logo" src={images["partner-3.png"]} alt="" />
                   </a>
@@ -1140,7 +1029,7 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-4.png"]} alt="" />
                     <img className="main-logo" src={images["partner-4.png"]} alt="" />
                   </a>
@@ -1148,7 +1037,7 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-5.png"]} alt="" />
                     <img className="main-logo" src={images["partner-5.png"]} alt="" />
                   </a>
@@ -1156,7 +1045,7 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-6.png"]} alt="" />
                     <img className="main-logo" src={images["partner-6.png"]} alt="" />
                   </a>
@@ -1164,28 +1053,13 @@ export default function Home() {
               </div>
               <div className="partner-item">
                 <div className="logo-img">
-                  <a href="https://rstheme.com/">
+                  <a href="#">
                     <img className="hover-logo" src={images["partner-7.png"]} alt="" />
                     <img className="main-logo" src={images["partner-7.png"]} alt="" />
                   </a>
                 </div>
               </div>
-              <div className="partner-item">
-                <div className="logo-img">
-                  <a href="https://rstheme.com/">
-                    <img className="hover-logo" src={images["partner-8.png"]} alt="" />
-                    <img className="main-logo" src={images["partner-8.png"]} alt="" />
-                  </a>
-                </div>
-              </div>
-              <div className="partner-item">
-                <div className="logo-img">
-                  <a href="https://rstheme.com/">
-                    <img className="hover-logo" src={images["partner-9.png"]} alt="" />
-                    <img className="main-logo" src={images["partner-9.png"]} alt="" />
-                  </a>
-                </div>
-              </div>
+           
             </div>
           </div>
         </div>
