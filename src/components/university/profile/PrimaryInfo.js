@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../../Home/Loader';
 import PhoneInput from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 
@@ -24,6 +25,7 @@ export default function PrimaryInfo() {
     const [phoneError, setphoneError] = useState("");
     const [typeError, settypeError] = useState("");
 
+    const [loader, setmyloader] = useState("false");
 
     const [countries, setcountries] = useState([{
         country_name: ""
@@ -194,6 +196,7 @@ export default function PrimaryInfo() {
             setphoneError("Please enter correct phone number");
         }
         else {
+            setmyloader("true")
             const obj = {
                 name: name,
                 address: address,
@@ -211,8 +214,9 @@ export default function PrimaryInfo() {
 
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-
+                    setmyloader("false")
                     if (res.data.success === true) {
+                       
                         setsuccessMessage("Primary Information Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
@@ -231,7 +235,13 @@ export default function PrimaryInfo() {
     }
     return (
         <div>
+         
+       
+            {loader==="true" ?
+          
+                <Loader />
 
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}

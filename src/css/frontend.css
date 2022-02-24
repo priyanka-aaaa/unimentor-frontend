@@ -11638,7 +11638,7 @@ ul.address-widget {
 .website-loading {
 
   position: relative;
-  display:none;
+
 
 }
 .load-pict {
@@ -11675,7 +11675,7 @@ ul.address-widget {
 
   position: absolute;
 
-  left: 50%;
+  left: 25%;
 
   top: 50%;
 

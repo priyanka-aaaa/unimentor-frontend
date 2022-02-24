@@ -25,17 +25,7 @@ function Header(props) {
     <header id="rs-header" className="rs-header style3 modify1">
 
       {/* Menu Start */}
-      {/* start for loading */}
-      <div id="loader" class="website-loading">
-
-        <div class="load-pict">
-
-          <div class="loader"></div>
-
-        </div>
-
-      </div>
-      {/* end for loading */}
+    
 
       <div className="menu-area menu-sticky">
         <div className="container-fluid">
