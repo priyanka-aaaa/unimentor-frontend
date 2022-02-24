@@ -19,15 +19,15 @@ const EducationProfile = () => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-     
+
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
- 
+
         const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-     
-      
+
+
         fetch(url, {
             method: 'GET',
             headers: {
@@ -47,7 +47,7 @@ const EducationProfile = () => {
             })
     }, [])
     let handleChange = (i, e) => {
-      
+
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
@@ -78,15 +78,15 @@ const EducationProfile = () => {
 
 
                         if (res.data.success === true) {
-                   
+
                         }
                         else {
-                     
+
                         }
                     })
                     .catch(error => {
-               
-                        
+
+
                     });
 
             }
@@ -102,12 +102,12 @@ const EducationProfile = () => {
                             setsubmitSuccess(1)
                         }
                         else {
-                    
+
                         }
                     })
                     .catch(error => {
-              
-                        
+
+
                     });
             }
         })
@@ -127,7 +127,7 @@ const EducationProfile = () => {
                 setsuccessMessage("Education Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-               
+
                 const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
                 fetch(url, {
                     method: 'GET',
@@ -146,7 +146,7 @@ const EducationProfile = () => {
                             setFormValues(data.studentEducations)
                         }
                     })
-                
+
             })
     }
     return (
@@ -277,7 +277,7 @@ const EducationProfile = () => {
                                                     <input
                                                         value={element.attendedForm || ""} onChange={e => handleChange(index, e)}
 
-name="attendedForm"
+                                                        name="attendedForm"
                                                         type="date" className="form-control" />
                                                 </div>
                                             </div>
@@ -383,8 +383,8 @@ name="attendedForm"
                                     <div className="row">
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6 text-right">
-                                            
-                                    <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+
+                                            <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                             <button type="submit" className="btn btn-secondary">Save
                                             </button>

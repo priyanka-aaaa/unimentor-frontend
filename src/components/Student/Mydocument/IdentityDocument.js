@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 const NewIdentityDocument = () => {
@@ -10,7 +11,10 @@ const NewIdentityDocument = () => {
     const [mypassport, setmypassport] = useState();
     const [mypassportBack, setmypassportBack] = useState();
     const [mycv, setmycv] = useState();
-
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -35,86 +39,19 @@ const NewIdentityDocument = () => {
         //end for get all newIdeneitiydocument 
     }, [])
 
-    function onDeletePassportHandle() {
-        const obj5 = new FormData();
-        obj5.append("passport", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypassport(data.studentIdentityDocument.passport)
-                        setmypassportBack(data.studentIdentityDocument.passportBack)
-                        setmycv(data.studentIdentityDocument.cv)
+    function onDeletePassportHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
 
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+
     }
-    function onDeletecvHandle() {
-        const obj5 = new FormData();
-        obj5.append("cv", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypassport(data.studentIdentityDocument.passport)
-                        setmypassportBack(data.studentIdentityDocument.passportBack)
-                        setmycv(data.studentIdentityDocument.cv)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletecvHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-    function onDeletePassportBackHandle() {
-        const obj5 = new FormData();
-        obj5.append("passportBack", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypassport(data.studentIdentityDocument.passport)
-                        setmypassportBack(data.studentIdentityDocument.passportBack)
-                        setmycv(data.studentIdentityDocument.cv)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletePassportBackHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
     return (
         <div className="card">
@@ -123,15 +60,79 @@ const NewIdentityDocument = () => {
             </a>
             <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
                 <div className="card-body">
+                {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong></strong> {successMessage}
+            </div> : null}
+
+                    {showSweetAlert === "1" ? <SweetAlert
+                        warning
+                        showCancel
+                        confirmBtnText="Yes, delete it!"
+                        confirmBtnBsStyle="danger"
+
+                        title="Are you sure?"
+                        onConfirm={(value) => {
+                            setshowSweetAlert("0");
+                            console.log("setdeleteId");
+                            console.log(deleteId)
+                            // start for delete
+                            const obj5 = new FormData();
+                            obj5.append(deleteId, "*");
+
+                            //start for calling first api
+                            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                method: 'put',
+                                body: obj5,
+                                headers: { 'Authorization': mounted },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    setsuccessMessage("Deleted Successfully")
+                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                    setsubmitSuccess(1)
+
+                                    //start for get all newIdeneitiydocument 
+                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                        method: 'get',
+                                        //  body: obj5,
+                                        headers: { 'Authorization': mounted },
+                                    })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            setmypassport(data.studentIdentityDocument.passport)
+                                            setmypassportBack(data.studentIdentityDocument.passportBack)
+                                            setmycv(data.studentIdentityDocument.cv)
+
+                                        })
+                                    //end for get all newIdeneitiydocument 
+                                })
+                            // end for delete
+
+
+
+
+
+                        }}
+                        onCancel={() =>
+                            setshowSweetAlert("0")
+
+                        }
+                        focusCancelBtn
+                    >
+
+                    </SweetAlert>
+                        : null
+                    }
                     <div className="form form_doc">
                         {/* start for cv */}
                         <div className="upload_doc d-flex flex-wrap align-items-center row">
                             <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <p className="pl-4 pr-4 pt-0 pb-0">Passport Front <span className="text-danger"> *</span></p>
                             </div>
+
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                 {/* //start for cv */}
-                                {mypassport === "" || mypassport === "*" || mypassport === null ?
+                                {mypassport === "" || mypassport === "*" || mypassport === null || mypassport === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         const obj5 = new FormData();
                                         obj5.append("passport", acceptedFiles[0]);
@@ -170,7 +171,7 @@ const NewIdentityDocument = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}
@@ -181,8 +182,10 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeletePassportHandle()}
-                                            //  onClick={this.onDeletecvHandle} 
+
+
+                                            onClick={() => onDeletePassportHandle("passport")}
+                                           
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
                                         <div className="modal" id="myModalPassport1">
@@ -217,7 +220,8 @@ const NewIdentityDocument = () => {
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                 <div>{/* This would be the dropzone for the Hero image */}
-                                    {mypassportBack === "" || mypassportBack === "*" ?
+                                {mypassportBack === "" || mypassportBack === "*" || mypassportBack === null || mypassportBack === undefined ?
+                               
                                         <Dropzone onDrop={(acceptedFiles) => {
                                             const obj5 = new FormData();
                                             obj5.append("passportBack", acceptedFiles[0]);
@@ -256,7 +260,7 @@ const NewIdentityDocument = () => {
                                                 <div {...getRootProps({ className: 'dropzone' })}>
                                                     <input {...getInputProps()} />
                                                     <span style={{ fontSize: ".8rem" }}>
-                                                        Drop hero image here, or click to select file
+                                                        Upload/Drag & Drop here
                                                     </span>
                                                 </div>
                                             )}
@@ -267,8 +271,8 @@ const NewIdentityDocument = () => {
                                                 View
                                             </button>
                                             <button type="button"
-                                                onClick={() => onDeletePassportBackHandle()}
-                                                //  onClick={this.onDeletecvHandle} 
+                                                onClick={() => onDeletePassportBackHandle("passportBack")}
+                                                
                                                 className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
                                             <div className="modal" id="myModalPassportback1">
@@ -309,7 +313,8 @@ const NewIdentityDocument = () => {
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                 {/* //start for passport */}
-                                {mycv === "" || mycv === "*" ?
+                                {mycv === "" || mycv === "*" || mycv === null || mycv === undefined ?
+
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         const obj5 = new FormData();
                                         obj5.append("cv", acceptedFiles[0]);
@@ -348,7 +353,7 @@ const NewIdentityDocument = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}
@@ -359,7 +364,7 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeletecvHandle()}
+                                            onClick={() => onDeletecvHandle("cv")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 

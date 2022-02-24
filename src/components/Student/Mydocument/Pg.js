@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 const NewIdentityDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
@@ -12,7 +12,10 @@ const NewIdentityDocument = () => {
     const [mypgMarksheet, setmypgMarksheet] = useState();
 
     const [textflag, settextflag] = useState("none");
-
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
 
     useEffect(() => {
@@ -39,86 +42,18 @@ const NewIdentityDocument = () => {
         //end for get all newIdeneitiydocument 
     }, [])
 
-    function onDeletepgDegreeHandle() {
-        const obj5 = new FormData();
-        obj5.append("pgDegree", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypgDegree(data.studentEducationDocument.pgDegree)
-                        setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
-                        setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletepgDegreeHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
 
-    function onDeletepgDegreeConsolidatedMarksheetHandle() {
-        const obj5 = new FormData();
-        obj5.append("pgDegreeConsolidatedMarksheet", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypgDegree(data.studentEducationDocument.pgDegree)
-                        setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
-                        setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletepgDegreeConsolidatedMarksheetHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-    function onDeletepgMarksheetConsolidateHandle() {
-        const obj5 = new FormData();
-        obj5.append("pgMarksheet", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmypgDegree(data.studentEducationDocument.pgDegree)
-                        setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
-                        setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletepgMarksheetConsolidateHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
     function ToggleButton() {
         if (textflag == "none") {
@@ -131,6 +66,69 @@ const NewIdentityDocument = () => {
     return (
 
         <div className="card-body">
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong></strong> {successMessage}
+            </div> : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    console.log("setdeleteId");
+                    console.log(deleteId)
+                    // start for delete
+                    const obj5 = new FormData();
+                    obj5.append(deleteId, "*");
+
+                    //start for calling first api
+                    fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                        method: 'put',
+                        body: obj5,
+                        headers: { 'Authorization': mounted },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setsuccessMessage("Deleted Successfully")
+
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
+
+                            //start for get all newIdeneitiydocument 
+                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                                method: 'get',
+                                //  body: obj5,
+                                headers: { 'Authorization': mounted },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    setmypgDegree(data.studentEducationDocument.pgDegree)
+                                    setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
+                                    setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
+                                })
+                            //end for get all newIdeneitiydocument 
+                        })
+                    // end for delete
+
+
+
+
+
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+
+                }
+                focusCancelBtn
+            >
+
+            </SweetAlert>
+                : null
+            }
+
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10">
@@ -209,7 +207,7 @@ const NewIdentityDocument = () => {
                                         View
                                     </button>
                                     <button type="button"
-                                        onClick={() => onDeletepgDegreeHandle()}
+                                        onClick={() => onDeletepgDegreeHandle("pgDegree")}
                                         //  onClick={this.onDeletecvHandle} 
                                         className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -245,7 +243,7 @@ const NewIdentityDocument = () => {
                         </div>
                         <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                             <div>{/* This would be the dropzone for the Hero image */}
-                            
+
 
                                 {mypgDegreeConsolidatedMarksheet === "" || mypgDegreeConsolidatedMarksheet === "*" || mypgDegree === null || mypgDegreeConsolidatedMarksheet === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
@@ -297,7 +295,7 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeletepgDegreeConsolidatedMarksheetHandle()}
+                                            onClick={() => onDeletepgDegreeConsolidatedMarksheetHandle("pgDegreeConsolidatedMarksheet")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -388,7 +386,7 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeletepgMarksheetConsolidateHandle()}
+                                            onClick={() => onDeletepgMarksheetConsolidateHandle("pgMarksheet")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 

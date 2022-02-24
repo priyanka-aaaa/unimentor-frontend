@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 const SecondaryEducation = () => {
@@ -10,7 +11,10 @@ const SecondaryEducation = () => {
     const [mymarksheet10, setmymarksheet10] = useState();
     const [mymarksheet12, setmymarksheet12] = useState();
     const [textflag, settextflag] = useState("none");
-
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
 
     useEffect(() => {
@@ -37,60 +41,14 @@ const SecondaryEducation = () => {
         //end for get all newIdeneitiydocument 
     }, [])
 
-    function onDeletemarksheet10Handle() {
-        const obj5 = new FormData();
-        obj5.append("marksheet10", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmymarksheet10(data.studentEducationDocument.marksheet10)
-                        setmymarksheet12(data.studentEducationDocument.marksheet12)
-
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletemarksheet10Handle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
 
-    function onDeletemarksheet12Handle() {
-        const obj5 = new FormData();
-        obj5.append("marksheet12", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmymarksheet10(data.studentEducationDocument.marksheet10)
-                        setmymarksheet12(data.studentEducationDocument.marksheet12)
-
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletemarksheet12Handle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
     function ToggleButton() {
         if (textflag == "none") {
@@ -103,6 +61,67 @@ const SecondaryEducation = () => {
     return (
 
         <div className="card-body">
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong></strong> {successMessage}
+            </div> : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    console.log("setdeleteId");
+                    console.log(deleteId)
+                    // start for delete
+                    const obj5 = new FormData();
+                    obj5.append(deleteId, "*");
+
+                    //start for calling first api
+                    fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                        method: 'put',
+                        body: obj5,
+                        headers: { 'Authorization': mounted },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setsuccessMessage("Deleted Successfully")
+
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
+
+                            //start for get all newIdeneitiydocument 
+                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                                method: 'get',
+                                //  body: obj5,
+                                headers: { 'Authorization': mounted },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    setmymarksheet10(data.studentEducationDocument.marksheet10)
+                                    setmymarksheet12(data.studentEducationDocument.marksheet12)
+                                })
+                            //end for get all newIdeneitiydocument 
+                        })
+                    // end for delete
+
+
+
+
+
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+
+                }
+                focusCancelBtn
+            >
+
+            </SweetAlert>
+                : null
+            }
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10">
@@ -170,7 +189,7 @@ const SecondaryEducation = () => {
                                         <div {...getRootProps({ className: 'dropzone' })}>
                                             <input {...getInputProps()} />
                                             <span style={{ fontSize: ".8rem" }}>
-                                                Drop hero image here, or click to select file
+                                                Upload/Drag & Drop here
                                             </span>
                                         </div>
                                     )}
@@ -181,7 +200,7 @@ const SecondaryEducation = () => {
                                         View
                                     </button>
                                     <button type="button"
-                                        onClick={() => onDeletemarksheet10Handle()}
+                                        onClick={() => onDeletemarksheet10Handle("marksheet10")}
                                         //  onClick={this.onDeletecvHandle} 
                                         className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -256,7 +275,7 @@ const SecondaryEducation = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}
@@ -267,7 +286,7 @@ const SecondaryEducation = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeletemarksheet12Handle()}
+                                            onClick={() => onDeletemarksheet12Handle("marksheet12")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 

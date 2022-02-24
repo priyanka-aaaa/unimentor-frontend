@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 const NewIdentityDocument = () => {
@@ -13,8 +14,12 @@ const NewIdentityDocument = () => {
 
     const [textflag, settextflag] = useState("none");
 
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
-    
+
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -39,98 +44,92 @@ const NewIdentityDocument = () => {
         //end for get all newIdeneitiydocument 
     }, [])
 
-    function onDeleteugDegreeHandle() {
-        const obj5 = new FormData();
-        obj5.append("ugDegree", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmyugDegree(data.studentEducationDocument.ugDegree)
-                        setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                        setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeleteugDegreeHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-
-    function onDeleteugConsolidateHandle() {
-        const obj5 = new FormData();
-        obj5.append("ugConsolidate", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmyugDegree(data.studentEducationDocument.ugDegree)
-                        setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                        setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeleteugConsolidateHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-    function onDeleteUGMarksheetConsolidateHandle() {
-        const obj5 = new FormData();
-        obj5.append("ugMarksheet", "*");
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                    method: 'get',
-                    //  body: obj5,
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setmyugDegree(data.studentEducationDocument.ugDegree)
-                        setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                        setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeleteUGMarksheetHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
     function ToggleButton() {
-        if(textflag=="none"){
+        if (textflag == "none") {
             settextflag("inline")
         }
-        else{
+        else {
             settextflag("none")
         }
-   }
+    }
     return (
 
         <div className="card-body">
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong></strong> {successMessage}
+            </div> : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    console.log("setdeleteId");
+                    console.log(deleteId)
+                    // start for delete
+                    const obj5 = new FormData();
+                    obj5.append(deleteId, "*");
+
+                    //start for calling first api
+                    fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                        method: 'put',
+                        body: obj5,
+                        headers: { 'Authorization': mounted },
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setsuccessMessage("Deleted Successfully")
+
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
+
+                            //start for get all newIdeneitiydocument 
+                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                                method: 'get',
+                                //  body: obj5,
+                                headers: { 'Authorization': mounted },
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    setmyugDegree(data.studentEducationDocument.ugDegree)
+                                    setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
+                                    setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
+                                })
+                            //end for get all newIdeneitiydocument 
+                        })
+                    // end for delete
+
+
+
+
+
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+
+                }
+                focusCancelBtn
+            >
+
+            </SweetAlert>
+                : null
+            }
+
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10">
@@ -209,7 +208,7 @@ const NewIdentityDocument = () => {
                                         View
                                     </button>
                                     <button type="button"
-                                        onClick={() => onDeleteugDegreeHandle()}
+                                        onClick={() => onDeleteugDegreeHandle("ugDegree")}
                                         //  onClick={this.onDeletecvHandle} 
                                         className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -295,7 +294,7 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeleteugConsolidateHandle()}
+                                            onClick={() => onDeleteugConsolidateHandle("ugConsolidate")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -386,7 +385,7 @@ const NewIdentityDocument = () => {
                                             View
                                         </button>
                                         <button type="button"
-                                            onClick={() => onDeleteUGMarksheetConsolidateHandle()}
+                                            onClick={() => onDeleteUGMarksheetHandle("ugMarksheet")}
                                             //  onClick={this.onDeletecvHandle} 
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 

@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
-import SweetAlert from 'react-bootstrap-sweetalert';
 
 
-const EnglishProficiencyDocument = () => {
+const ExtraCurricularDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
 
     const [mymarksheet12, setmymarksheet12] = useState();
-
-    const [myfile, setmyfile] = useState();
-    const [test, settest] = useState();
-
-    const [testtype, settesttype] = useState("none");
-    const [submittest, setsubmittest] = useState("none");
-
     const [textflag, settextflag] = useState("none");
 
-    const [deleteId, setdeleteId] = useState();
-    const [successMessage, setsuccessMessage] = useState("");
-    const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [myfile, setmyfile] = useState();
+    const [activity, setactivity] = useState();
+
+    const [activitytype, setactivitytype] = useState("none");
+    const [submitactivity, setsubmitactivity] = useState("none");
 
 
 
@@ -37,36 +30,29 @@ const EnglishProficiencyDocument = () => {
         setMounted(mounted)
 
         //start for get all newIdeneitiydocument 
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
         })
             .then(response => response.json())
             .then(data => {
-
-                settest(data.studentEnglishProficiencyDocument.test)
-                setmyfile(data.studentEnglishProficiencyDocument.file)
-                setsubmittest(data.studentEnglishProficiencyDocument.test)
+          
+                setactivity(data.studentExtraCurricularDocument.activity)
+                setmyfile(data.studentExtraCurricularDocument.file)
+                setsubmitactivity(data.studentExtraCurricularDocument.activity)
 
 
             })
         //end for get all newIdeneitiydocument 
     }, [])
 
-    function onChangeIelts(e) {
 
-        settest(e)
+    function handleChange(e) {
+        // alert(e.target.value)
+        setactivity(e.target.value)
+      
     }
-    function onChangeToefl(e) {
-        settest(e)
-    }
-    function onChangePte(e) {
-        settest(e)
-    }
-    function onChangeDuolingo(e) {
 
-        settest(e)
-    }
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
@@ -76,84 +62,49 @@ const EnglishProficiencyDocument = () => {
         }
     }
 
-    function onDeletefileHandle(value) {
-        setdeleteId(value)
-        setshowSweetAlert("1")
+    function onDeletefileHandle() {
+        const obj5 = new FormData();
+        obj5.append("activity", "none");
+        obj5.append("file", "*");
+
+
+        //start for calling first api
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
+            method: 'put',
+            body: obj5,
+            headers: { 'Authorization': mounted },
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                //start for get all newIdeneitiydocument 
+                fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
+                    method: 'get',
+                    headers: { 'Authorization': mounted },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setactivity(data.studentExtraCurricularDocument.activity)
+                        setmyfile(data.studentExtraCurricularDocument.file)
+                        setsubmitactivity(data.studentExtraCurricularDocument.activity)
+
+
+                    })
+                //end for get all newIdeneitiydocument 
+            })
     }
 
     return (
         <div className="card">
-            <a className="card-header" data-bs-toggle="collapse" href="#collapsefour">
-                <strong>4</strong>  English Proficiency Test Document
+            <a className="card-header" data-bs-toggle="collapse" href="#collapsefive">
+                <strong>5</strong>  Extra Curricular Document
             </a>
-            <div id="collapsefour" className="collapse" data-bs-parent="#accordion">
-                {submitSuccess === 1 ? <div className="Show_success_message">
-                    <strong></strong> {successMessage}
-                </div> : null}
-                {showSweetAlert === "1" ? <SweetAlert
-                    warning
-                    showCancel
-                    confirmBtnText="Yes, delete it!"
-                    confirmBtnBsStyle="danger"
-
-                    title="Are you sure?"
-                    onConfirm={(value) => {
-                        setshowSweetAlert("0");
-                  
-                        // start for delete
-                        const obj5 = new FormData();
-                        obj5.append("test", "none");
-                        obj5.append("file", "*");
-
-                        //start for calling first api
-                        fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-                            method: 'put',
-                            body: obj5,
-                            headers: { 'Authorization': mounted },
-                        })
-                            .then(response => response.json())
-                            .then(data => {
-                                setsuccessMessage("Deleted Successfully")
-
-                                setTimeout(() => setsubmitSuccess(""), 3000);
-                                setsubmitSuccess(1)
-
-                                //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-                                    method: 'get',
-                                    //  body: obj5,
-                                    headers: { 'Authorization': mounted },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        settest(data.studentEnglishProficiencyDocument.test)
-                                        setmyfile(data.studentEnglishProficiencyDocument.file)
-                                        setsubmittest(data.studentEnglishProficiencyDocument.test)
-                                    })
-                                //end for get all newIdeneitiydocument 
-                            })
-                        // end for delete
-
-
-
-
-
-                    }}
-                    onCancel={() =>
-                        setshowSweetAlert("0")
-
-                    }
-                    focusCancelBtn
-                >
-
-                </SweetAlert>
-                    : null
-                }
+            <div id="collapsefive" className="collapse" data-bs-parent="#accordion">
                 <div className="card-body">
                     <div className="form form_doc">
                         <div className="row pl-4 pr-4 mt-3">
                             <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                                <p>I haven't taken any English Proficiency Test</p>
+                                <p>I haven't done any extra curricular activites</p>
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
                                 <label className="switch">
@@ -175,24 +126,16 @@ const EnglishProficiencyDocument = () => {
                             <div className="upload_doc d-flex flex-wrap align-items-center row">
                                 <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                     <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
-
-
-                                        {submittest === "" || submittest === undefined || submittest === "none" ?
-                                            <div>
-                                                <label>Please select English Proficiency Test</label><br />
-                                                <div role="group" className="doc_choice btn-group" >
-                                                    <input type="hidden" />
-                                                    <button type="button"
-                                                        onClick={() => onChangeIelts("IELTS")}
-
-                                                        className="selected btn btn-secondary">IELTS</button>
-                                                    <button type="button" onClick={() => onChangeToefl("TOEFL")} className="btn btn-secondary">TOEFL</button>
-                                                    <button type="button" onClick={() => onChangePte("PTE")} className="btn btn-secondary">PTE</button>
-                                                    <button type="button" onClick={() => onChangeDuolingo("Duolingo")} className="btn btn-secondary">Duolingo</button>
-                                                </div>
-                                            </div>
-
-                                            : test + " Score Card"}
+                                        <select name="activity" value={activity}
+                                            onChange={(e) => handleChange(e)}
+                                        >
+                                            <option value="">Search Activity</option>
+                                            <option value="Student Government">Student Government</option>
+                                            <option value="Academic Teams and Clubs">Academic Teams and Clubs</option>
+                                            <option value="The Debate Team students">The Debate Team students</option>
+                                            <option value="The Arts Team students">The Arts Team students</option>
+                                            <option value="Internships">Internships</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
@@ -201,9 +144,9 @@ const EnglishProficiencyDocument = () => {
                                         <Dropzone onDrop={(acceptedFiles) => {
                                             const obj5 = new FormData();
                                             obj5.append("file", acceptedFiles[0]);
-                                            obj5.append("test", test);
+                                            obj5.append("activity", activity);
                                             //start for calling first api
-                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
                                                 method: 'put',
                                                 body: obj5,
                                                 headers: { 'Authorization': mounted },
@@ -211,17 +154,17 @@ const EnglishProficiencyDocument = () => {
                                                 .then(response => response.json())
                                                 .then(data => {
                                                     //start for get all newIdeneitiydocument 
-                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
                                                         method: 'get',
                                                         //  body: obj5,
                                                         headers: { 'Authorization': mounted },
                                                     })
                                                         .then(response => response.json())
                                                         .then(data => {
-                                                            settest(data.studentEnglishProficiencyDocument.test)
-                                                            setsubmittest(data.studentEnglishProficiencyDocument.test)
+                                                            setactivity(data.studentExtraCurricularDocument.activity)
+                                                            setsubmitactivity(data.studentExtraCurricularDocument.activity)
 
-                                                            setmyfile(data.studentEnglishProficiencyDocument.file)
+                                                            setmyfile(data.studentExtraCurricularDocument.file)
 
 
                                                         })
@@ -247,15 +190,15 @@ const EnglishProficiencyDocument = () => {
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalEnglishProficiecny">
+                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalfile1">
                                                 View
                                             </button>
                                             <button type="button"
-                                                onClick={() => onDeletefileHandle("file")}
-
+                                                onClick={() => onDeletefileHandle()}
+                                                //  onClick={this.onDeletecvHandle} 
                                                 className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
-                                            <div className="modal" id="myModalEnglishProficiecny">
+                                            <div className="modal" id="myModalfile1">
                                                 <div className="modal-dialog">
                                                     <div className="modal-content">
 
@@ -291,4 +234,4 @@ const EnglishProficiencyDocument = () => {
     );
 }
 
-export default EnglishProficiencyDocument;
+export default ExtraCurricularDocument;
