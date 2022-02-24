@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../../Home/Loader';
 
 
 export default function Overview() {
@@ -18,6 +19,7 @@ export default function Overview() {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [foundedYearMessage, setfoundedYearMessage] = useState("");
     const [yearMessage, setyearMessage] = useState("");
+    const [loader, setmyloader] = useState("false");
 
 
     const onChangefoundedYear = (e) => {
@@ -26,7 +28,7 @@ export default function Overview() {
         setfoundedYearMessage("")
     }
     const onChangeYear = (e) => {
-     
+
         setmyyear(e);
         setyearMessage("")
     }
@@ -67,13 +69,13 @@ export default function Overview() {
     }, [])
 
 
-    function overview(event) {
+    function handleFormSubmit(event) {
         event.preventDefault();
 
         var foundedYearNo = foundedYear.toString().length;
-       
+
         var yearNo = myyear.toString().length;
-    
+
         if (foundedYearNo !== 4) {
             setfoundedYearMessage("Please Insert Four Digit")
         }
@@ -81,6 +83,7 @@ export default function Overview() {
             setyearMessage("Please Insert Four Digit")
         }
         else {
+            setmyloader("true")
 
             const obj = {
                 foundedYear: foundedYear,
@@ -99,6 +102,7 @@ export default function Overview() {
 
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/overview', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
+                    setmyloader("false")
 
                     if (res.data.success === true) {
                         setsuccessMessage("Overview Updated")
@@ -119,6 +123,14 @@ export default function Overview() {
     }
     return (
         <div>
+            {loader === "true" ?
+
+                <Loader />
+
+                : null}
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -128,15 +140,15 @@ export default function Overview() {
                     Overview
                 </a>
                 <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
-                    <form onSubmit={overview}>
+                    <form onSubmit={handleFormSubmit}>
                         <div className="card-body">
 
                             <div className="d-flex flex-wrap" id="Address">
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label>Founded year </label>
+                                        <label>Founded year *</label>
                                         <input type="number" className="form-control"
-
+                                            required
                                             value={foundedYear}
                                             onChange={(e) => onChangefoundedYear(e.target.value)}
                                         />
@@ -148,35 +160,36 @@ export default function Overview() {
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label htmlFor="State/Province">Ranking                                                             </label>
+                                        <label htmlFor="State/Province">Ranking *                                                            </label>
                                         <input type="number" className="form-control"
-
+                                            required
                                             value={ranking}
                                             onChange={(e) => setranking(e.target.value)}
                                         />
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                    <div className="form-group"><label htmlFor="City/Town">International Student Rate </label>
+                                    <div className="form-group"><label htmlFor="City/Town">International Student Rate *</label>
                                         <select
+
                                             value={rate}
                                             onChange={(e) => setrate(e.target.value)}
-                                            className="form-control" name="city" required="">
-                                            <option>Select Student Rate</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
+                                            className="form-control" name="city" required>
+                                            <option value="">Select Student Rate</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label>Popular Courses </label>
+                                        <label>Popular Courses *</label>
                                         <input type="text" name="city" className="form-control"
-                                        placeholder="Master in Architecture"
-
+                                            placeholder="Master in Architecture"
+                                            required
                                             value={course}
                                             onChange={(e) => setcourse(e.target.value)}
                                         />
@@ -185,9 +198,9 @@ export default function Overview() {
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label htmlFor="Zipcode">No. of courses </label>
+                                        <label htmlFor="Zipcode">No. of courses *</label>
                                         <input type="number" name="courseNo" className="form-control"
-
+                                            required
                                             value={courseNo}
                                             onChange={(e) => setcourseNo(e.target.value)}
                                             placeholder="7"
@@ -199,13 +212,14 @@ export default function Overview() {
                                     <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Add Month </label>
+                                                <label>Add Month *</label>
                                                 <select
-
+                                                    required
                                                     className="form-control"
                                                     placeholder="Month" name="Month"
                                                     value={month}
                                                     onChange={(e) => setmonth(e.target.value)}>
+                                                    <option value=''>Select Month</option>
                                                     <option value='Jan'>Janaury</option>
                                                     <option value='Feb'>February</option>
                                                     <option value='March'>March</option>
@@ -224,55 +238,59 @@ export default function Overview() {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Year</label>
+                                                <label>Year *</label>
                                                 <input type="number" className="form-control"
                                                     value={myyear}
                                                     onChange={(e) => onChangeYear(e.target.value)}
+                                                    required
                                                 />
-                                              
+
                                                 <span style={{ color: "red" }}> {yearMessage}</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div className="col-12">
-                                <div className="row">
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="State/Province"> English Proficiency  </label>
-                                            <select
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="State/Province"> English Proficiency *</label>
+                                                <select
+                                                    required
+                                                    className="form-control"
+                                                    placeholder="Month" name="Month"
+                                                    value={english}
+                                                    onChange={(e) => setenglish(e.target.value)}
+                                                >
+                                                    <option value=''>Select English Proficiency</option>
+                                                    <option value='IELTS'>IELTS</option>
+                                                    <option value='PTE'>PTE</option>
 
-                                                className="form-control"
-                                                placeholder="Month" name="Month"
-                                                value={english}
-                                                onChange={(e) => setenglish(e.target.value)}>
-                                                <option value='IELTS'>IELTS</option>
-                                                <option value='PTE'>PTE</option>
+                                                </select>
 
-                                            </select>
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="State/Province"> CGPA                                                           </label>
+                                                <input type="text" className="form-control" placeholder="CGPA"
 
+                                                    value={cgpa}
+                                                    onChange={(e) => setcgpa(e.target.value)}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-md-4">
+                                            <div className="form-group">
+                                                <label htmlFor="State/Province">  Acceptance rate *                                                            </label>
+                                                <input type="number" className="form-control" placholder=" acceptance rate"
+
+                                                    required value={acceptanceRate}
+                                                    onChange={(e) => setacceptanceRate(e.target.value)}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="State/Province"> CGPA                                                            </label>
-                                            <input type="text" className="form-control" placeholder="CGPA"
-
-                                                value={cgpa}
-                                                onChange={(e) => setcgpa(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label htmlFor="State/Province">  Acceptance rate                                                            </label>
-                                            <input type="number" className="form-control" placholder=" acceptance rate"
-                                                value={acceptanceRate}
-                                                onChange={(e) => setacceptanceRate(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
                                 </div>
 
                                 <div className="clearfix"></div>
