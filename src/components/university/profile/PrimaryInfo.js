@@ -22,6 +22,7 @@ export default function PrimaryInfo() {
     const [CheckState, setCheckState] = useState("0");
     const [CheckCity, setCheckCity] = useState("0");
     const [phoneError, setphoneError] = useState("");
+    const [typeError, settypeError] = useState("");
 
 
     const [countries, setcountries] = useState([{
@@ -87,7 +88,7 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-    
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
             .then(function (res) {
                 if (res.data.success === true) {
@@ -101,17 +102,17 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-        
+
 
     }, [])
-function onChangeName(e){
-   const arr = e.split(" ");
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    function onChangeName(e) {
+        const arr = e.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        }
+        const str2 = arr.join(" ");
+        setname(str2)
     }
-    const str2 = arr.join(" ");
-   setname(str2)
-}
     function handlecountry(e) {
 
         setcountry(e)
@@ -159,14 +160,37 @@ function onChangeName(e){
 
             });
     }
+    function nameMethod(e) {
+        const re = /[a-zA-Z]+/s;
+
+        if (!re.test(e.key)) {
+            e.preventDefault();
+        }
+    }
+    function streetAddressMethod(e) {
+        // const re = /[a-zA-Z]+/s;
+        const re = /[!@$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        // const re = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        if (re.test(e.key)) {
+            e.preventDefault();
+        }
+     }
 
     function Personal_Information(event) {
+
         event.preventDefault();
+
+        settypeError("");
         setphoneError("");
-        if (phone === "") {
+        if (type === "") {
+            settypeError("Please Select University Type");
+
+        }
+        else if (phone === "") {
             setphoneError("Please enter phone number");
         }
-        if (isValidPhoneNumber(phone) === false) {
+        else if (isValidPhoneNumber(phone) === false) {
             setphoneError("Please enter correct phone number");
         }
         else {
@@ -203,6 +227,7 @@ function onChangeName(e){
 
                 });
         }
+
     }
     return (
         <div>
@@ -235,7 +260,7 @@ function onChangeName(e){
                                                 *</label>
                                             <input type="text" className="form-control"
                                                 placeholder="Name" name="uname"
-
+                                                onKeyPress={(e) => nameMethod(e)}
                                                 value={name}
                                                 onChange={(e) => onChangeName(e.target.value)}
                                                 required
@@ -253,7 +278,7 @@ function onChangeName(e){
                                                 *</label>
                                             <input type="text" className="form-control"
                                                 placeholder="Address" name="Address"
-
+                                                onKeyPress={(e) => streetAddressMethod(e)}
                                                 value={address}
                                                 onChange={(e) => setaddress(e.target.value)}
                                                 required />
@@ -272,7 +297,7 @@ function onChangeName(e){
 
                                                     value="" >Select country</option>
                                                 {countries.map((element, index) => {
-                                                    
+
 
                                                     return (
 
@@ -350,6 +375,8 @@ function onChangeName(e){
                                                 <option value="Private">Private</option>
                                                 <option value="Govt">Govt</option>
                                             </select>
+                                            <span style={{ color: "red" }}> {typeError}</span>
+
                                         </div>
                                     </div>
                                 </div>

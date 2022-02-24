@@ -1,18 +1,22 @@
 import React from 'react';
 
 function Testing(props) {
-    function firstMethod(e) {
-        const re = /[a-zA-Z]+/s;
+    // function nameMethod(e) {
+    //     // const re = /[a-zA-Z]+/s;
+    //     // const re = /[!@$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+    //     // const re = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
 
-        if (!re.test(e.key)) {
-            e.preventDefault();
-        }
-    }
+
+        
+    //     if (re.test(e.key)) {
+    //         e.preventDefault();
+    //     }
+    //  }
 
     return (
         <div>
-            <p>dfgdfgfd</p>
-            <input onKeyPress={(e) => firstMethod(e)} />
+            {/* <p>dfgdfgfd</p>
+            <input onKeyPress={(e) => nameMethod(e)} /> */}
 
         </div>
     );
