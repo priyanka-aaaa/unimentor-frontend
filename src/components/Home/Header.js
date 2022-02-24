@@ -12,19 +12,31 @@ const images = importAll(require.context('../../images', false, /\.(png|jpe?g|sv
 function Header(props) {
   const [textflag, settextflag] = useState("-500px");
   function ToggleButton() {
-   
+
     if (textflag == "-500px") {
-        settextflag("0px")
+      settextflag("0px")
     }
     else {
-        settextflag("-500px")
+      settextflag("-500px")
     }
-}
+  }
 
   return (
     <header id="rs-header" className="rs-header style3 modify1">
 
       {/* Menu Start */}
+      {/* start for loading */}
+      <div id="loader" class="website-loading">
+
+        <div class="load-pict">
+
+          <div class="loader"></div>
+
+        </div>
+
+      </div>
+      {/* end for loading */}
+
       <div className="menu-area menu-sticky">
         <div className="container-fluid">
           <div className="row align-items-center">
@@ -70,10 +82,10 @@ function Header(props) {
                       </a>
                     </li>
                     <li>
-                    
-                      <a id="nav-expander" className="humburger nav-expander"    onClick={() => ToggleButton()}
->
-                    
+
+                      <a id="nav-expander" className="humburger nav-expander" onClick={() => ToggleButton()}
+                      >
+
                         <span className="dot1" />
                         <span className="dot2" />
                         <span className="dot3" />
@@ -94,8 +106,8 @@ function Header(props) {
       </div>
       {/* Menu End */}
       {/* start for toogle */}
-     
-      <nav className="right_menu_togle hidden-md" style={{ right: textflag}} >
+
+      <nav className="right_menu_togle hidden-md" style={{ right: textflag }} >
         <div className="close-btn">
           <div className="nav-link">
             <a id="nav-close" className="humburger nav-expander" onClick={() => ToggleButton()} >

@@ -175,7 +175,7 @@ export default function PrimaryInfo() {
         if (re.test(e.key)) {
             e.preventDefault();
         }
-     }
+    }
 
     function Personal_Information(event) {
 
