@@ -216,7 +216,7 @@ export default function PrimaryInfo() {
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
-                       
+
                         setsuccessMessage("Primary Information Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
@@ -235,10 +235,10 @@ export default function PrimaryInfo() {
     }
     return (
         <div>
-         
-       
-            {loader==="true" ?
-          
+
+
+            {loader === "true" ?
+
                 <Loader />
 
                 : null}
@@ -297,10 +297,10 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>Country *</label>
-                                            <select className="form-control" name="country" required=""
+                                            <select className="form-control" name="country" required
                                                 value={country}
                                                 onChange={(e) => handlecountry(e.target.value)}
-
+                                                required
                                             >
                                                 <option
 
@@ -327,8 +327,10 @@ export default function PrimaryInfo() {
                                         <div className="form-group">
                                             <label>State *
                                             </label>
-                                            <select className="form-control" name="state" required=""
+                                            <select className="form-control" name="state" 
                                                 onChange={(e) => handlestate(e.target.value)}
+                                                required
+                                                value={state}
                                             >
                                                 {CheckState === "0" ? <option value={state}>{state}</option> : <option>Please select state</option>}
                                                 {states.map((element, index) => {
@@ -337,12 +339,13 @@ export default function PrimaryInfo() {
                                                             value={element.state_name} key={index}>{element.state_name}</option>
                                                     )
                                                 })}
+
                                             </select>
                                         </div>
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group"><label>City</label>
-                                            <select className="form-control" name="city" required=""
+                                            <select className="form-control" name="city" required
 
                                                 value={city}
                                                 onChange={(e) => setcity(e.target.value)}
@@ -364,7 +367,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label>Pincode *</label>
-                                            <input type="number" className="form-control" placeholder="1234" name="pin_code" required=""
+                                            <input type="number" className="form-control" placeholder="1234" name="pin_code" required
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
@@ -376,7 +379,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>University Type</label>
-                                            <select className="form-control" name="city" required=""
+                                            <select className="form-control" name="city" required
                                                 value={type}
                                                 onChange={(e) => settype(e.target.value)}
                                             >
@@ -410,7 +413,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <label>Website</label>
-                                            <input type="text" className="form-control" placeholder="https://www.sunderland.ac.uk/" name="website" required=""
+                                            <input type="text" className="form-control" placeholder="https://www.sunderland.ac.uk/" name="website" required
 
                                                 value={website}
                                                 onChange={(e) => setwebsite(e.target.value)}
@@ -426,7 +429,7 @@ export default function PrimaryInfo() {
                                             onChange={setphone} />
                                         <span style={{ color: "red" }}> {phoneError}</span>
 
-                                        {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required=""
+                                        {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required
 
                                             value={phone}
                                             onChange={(e) => setphone(e.target.value)}
@@ -434,7 +437,7 @@ export default function PrimaryInfo() {
                                     </div>
                                     <div className="col-md-4">
                                         <label>Parent organization</label>
-                                        <input type="text" className="form-control" placeholder="Parent organization" name="pr-org" required=""
+                                        <input type="text" className="form-control" placeholder="Parent organization" name="pr-org" 
 
                                             value={organization}
                                             onChange={(e) => setorganization(e.target.value)}
