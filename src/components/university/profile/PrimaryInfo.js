@@ -27,6 +27,9 @@ export default function PrimaryInfo() {
     const [descriptionError, setdescriptionError] = useState("");
     const [stateError, setstateError] = useState("");
     const [cityError, setcityError] = useState("");
+    const [DescriptionLengthError, setDescriptionLengthError] = useState("");
+    const [websiteStartError, setwebsiteStartError] = useState("");
+    const [websiteEndError, setwebsiteEndError] = useState("");
 
 
 
@@ -192,6 +195,12 @@ export default function PrimaryInfo() {
         setphoneError("");
         setstateError("");
         setcityError("")
+        setDescriptionLengthError("");
+        setwebsiteStartError("");
+        setwebsiteEndError("");
+        var descriptionLength = description.split(' ').length;
+
+
         if (type === "") {
             settypeError("Please Select University Type");
 
@@ -211,7 +220,18 @@ export default function PrimaryInfo() {
         else if (city === "Select City") {
             setcityError("Please Enter City")
         }
+        else if (descriptionLength < 49) {
+            setDescriptionLengthError("Please Enter Aleast 50-60 words")
 
+        }
+        else if (!website.startsWith('www.')) {
+            setwebsiteStartError("Please Start website with www.")
+
+        }
+        else if (!website.endsWith('.com') && !website.endsWith('.edu') && !website.endsWith('.in')) {
+            setwebsiteEndError("Please End website with .com or .edu or .in")
+
+        }
         else {
             setmyloader("true")
             const obj = {
@@ -363,7 +383,7 @@ export default function PrimaryInfo() {
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <div className="form-group"><label>City</label>
+                                        <div className="form-group"><label>City *</label>
                                             <select className="form-control" name="city" required
 
                                                 value={city}
@@ -399,7 +419,7 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>University Type</label>
+                                            <label>University Type *</label>
                                             <select className="form-control" name="city" required
                                                 value={type}
                                                 onChange={(e) => settype(e.target.value)}
@@ -420,12 +440,16 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="form-group">
-                                            <label>Description</label>
+                                            <label>Description *</label>
                                             <textarea
                                                 value={description}
                                                 onChange={(e) => setdescription(e.target.value)}
                                                 className="form-control" row="2" col="3"></textarea>
                                             <span style={{ color: "red" }}> {descriptionError}</span>
+                                            <span style={{ color: "red" }}> {DescriptionLengthError}</span>
+
+
+
                                         </div>
                                     </div>
                                 </div>
@@ -434,16 +458,20 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label>Website</label>
+                                            <label>Website *</label>
                                             <input type="text" className="form-control" placeholder="https://www.sunderland.ac.uk/" name="website" required
 
                                                 value={website}
                                                 onChange={(e) => setwebsite(e.target.value)}
                                             />
+                                            <span style={{ color: "red" }}> {websiteStartError}</span>
+                                            <span style={{ color: "red" }}> {websiteEndError}</span>
+
+
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label>Phone Number</label>
+                                        <label>Phone Number *</label>
                                         <PhoneInput
                                             placeholder="Enter Phone Number"
                                             required
