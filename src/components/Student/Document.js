@@ -7,6 +7,7 @@ import EducationDocument from './Mydocument/EducationDocument'
 
 
 import WorkExperienceDocument from './Mydocument/WorkExperienceDocument';
+import RecommendationDocuments from './Mydocument/RecommendationDocuments';
 
 import ExtraCurricularDocument from './Mydocument/ExtraCurricularDocument';
 
@@ -75,6 +76,7 @@ class Document extends Component {
                                                 <WorkExperienceDocument />
                                                 <EnglishProficiencyDocument />
                                                 <ExtraCurricularDocument />
+                                                <RecommendationDocuments/>
                                                 <OtherDocument />
 
 

@@ -196,7 +196,7 @@ const NewIdentityDocument = () => {
                                         <div {...getRootProps({ className: 'dropzone' })}>
                                             <input {...getInputProps()} />
                                             <span style={{ fontSize: ".8rem" }}>
-                                                Drop hero image here, or click to select file
+                                                Upload/Drag & Drop here
                                             </span>
                                         </div>
                                     )}
@@ -284,7 +284,7 @@ const NewIdentityDocument = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}
@@ -375,7 +375,7 @@ const NewIdentityDocument = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}

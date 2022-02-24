@@ -99,7 +99,7 @@ const EnglishProficiencyDocument = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
-                  
+
                         // start for delete
                         const obj5 = new FormData();
                         obj5.append("test", "none");
@@ -240,7 +240,7 @@ const EnglishProficiencyDocument = () => {
                                                 <div {...getRootProps({ className: 'dropzone' })}>
                                                     <input {...getInputProps()} />
                                                     <span style={{ fontSize: ".8rem" }}>
-                                                        Drop hero image here, or click to select file
+                                                        Upload/Drag & Drop here
                                                     </span>
                                                 </div>
                                             )}

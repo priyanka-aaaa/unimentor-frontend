@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 const EnglishProficiencyDocument = () => {
@@ -9,6 +10,7 @@ const EnglishProficiencyDocument = () => {
     const [mounted, setMounted] = useState();
     const [firstName, setfirstName] = useState("");
     const [mymarksheet12, setmymarksheet12] = useState();
+    const [test, settest] = useState();
 
 
     const [myfile, setmyfile] = useState();
@@ -16,7 +18,14 @@ const EnglishProficiencyDocument = () => {
 
     const [nametype, setnametype] = useState("none");
     const [submitname, setsubmitname] = useState("none");
+    const [submittest, setsubmittest] = useState("none");
 
+    const [textflag, settextflag] = useState("none");
+
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
 
 
@@ -49,44 +58,80 @@ const EnglishProficiencyDocument = () => {
   
 
 
-    function onDeletefileHandle() {
-        const obj5 = new FormData();
-        obj5.append("name", " ");
-        obj5.append("file", "*");
-
-
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
-                    method: 'get',
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setname(data.studentOtherDocument.name)
-                        setmyfile(data.studentOtherDocument.file)
-                        setsubmitname(data.studentOtherDocument.name)
-
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletefileHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
 
     return (
         <div className="card">
             <a className="card-header" data-bs-toggle="collapse" href="#collapsesix">
-                <strong>6</strong>  Others Documents
+                <strong>7</strong>  Others Documents
             </a>
             <div id="collapsesix" className="collapse" data-bs-parent="#accordion">
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                    <strong></strong> {successMessage}
+                </div> : null}
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+
+                        // start for delete
+                        const obj5 = new FormData();
+                        obj5.append("name", " ");
+                        obj5.append("file", "*");
+
+                        //start for calling first api
+                        fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
+                            method: 'put',
+                            body: obj5,
+                            headers: { 'Authorization': mounted },
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setsuccessMessage("Deleted Successfully")
+
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+
+                                //start for get all newIdeneitiydocument 
+                                fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
+                                    method: 'get',
+                                    //  body: obj5,
+                                    headers: { 'Authorization': mounted },
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        setname(data.studentOtherDocument.name)
+                                        setmyfile(data.studentOtherDocument.file)
+                                        setsubmitname(data.studentOtherDocument.name)
+                        
+                                    })
+                                //end for get all newIdeneitiydocument 
+                            })
+                        // end for delete
+
+
+
+
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                 <div className="card-body">
                     <div className="form form_doc">
                         <div className="row pl-4 pr-4 mt-3">
@@ -169,7 +214,7 @@ const EnglishProficiencyDocument = () => {
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
                                                 <span style={{ fontSize: ".8rem" }}>
-                                                    Drop hero image here, or click to select file
+                                                    Upload/Drag & Drop here
                                                 </span>
                                             </div>
                                         )}

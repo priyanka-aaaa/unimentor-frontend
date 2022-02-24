@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 const ExtraCurricularDocument = () => {
@@ -9,14 +10,19 @@ const ExtraCurricularDocument = () => {
     const [mounted, setMounted] = useState();
 
     const [mymarksheet12, setmymarksheet12] = useState();
-    const [textflag, settextflag] = useState("none");
+    
 
     const [myfile, setmyfile] = useState();
     const [activity, setactivity] = useState();
 
     const [activitytype, setactivitytype] = useState("none");
     const [submitactivity, setsubmitactivity] = useState("none");
+    const [textflag, settextflag] = useState("none");
 
+    const [deleteId, setdeleteId] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
 
 
@@ -36,7 +42,7 @@ const ExtraCurricularDocument = () => {
         })
             .then(response => response.json())
             .then(data => {
-          
+
                 setactivity(data.studentExtraCurricularDocument.activity)
                 setmyfile(data.studentExtraCurricularDocument.file)
                 setsubmitactivity(data.studentExtraCurricularDocument.activity)
@@ -50,7 +56,7 @@ const ExtraCurricularDocument = () => {
     function handleChange(e) {
         // alert(e.target.value)
         setactivity(e.target.value)
-      
+
     }
 
     function ToggleButton() {
@@ -62,36 +68,9 @@ const ExtraCurricularDocument = () => {
         }
     }
 
-    function onDeletefileHandle() {
-        const obj5 = new FormData();
-        obj5.append("activity", "none");
-        obj5.append("file", "*");
-
-
-        //start for calling first api
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
-            method: 'put',
-            body: obj5,
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                //start for get all newIdeneitiydocument 
-                fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
-                    method: 'get',
-                    headers: { 'Authorization': mounted },
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setactivity(data.studentExtraCurricularDocument.activity)
-                        setmyfile(data.studentExtraCurricularDocument.file)
-                        setsubmitactivity(data.studentExtraCurricularDocument.activity)
-
-
-                    })
-                //end for get all newIdeneitiydocument 
-            })
+    function onDeletefileHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
 
     return (
@@ -100,6 +79,68 @@ const ExtraCurricularDocument = () => {
                 <strong>5</strong>  Extra Curricular Document
             </a>
             <div id="collapsefive" className="collapse" data-bs-parent="#accordion">
+                {submitSuccess === 1 ? <div className="Show_success_message">
+                    <strong></strong> {successMessage}
+                </div> : null}
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+
+                        // start for delete
+                        const obj5 = new FormData();
+                        obj5.append("activity", "none");
+                        obj5.append("file", "*");
+
+                        //start for calling first api
+                        fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
+                            method: 'put',
+                            body: obj5,
+                            headers: { 'Authorization': mounted },
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setsuccessMessage("Deleted Successfully")
+
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+
+                                //start for get all newIdeneitiydocument 
+                                fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
+                                    method: 'get',
+                                    //  body: obj5,
+                                    headers: { 'Authorization': mounted },
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        setactivity(data.studentExtraCurricularDocument.activity)
+                                        setmyfile(data.studentExtraCurricularDocument.file)
+                                        setsubmitactivity(data.studentExtraCurricularDocument.activity)
+                                    })
+                                //end for get all newIdeneitiydocument 
+                            })
+                        // end for delete
+
+
+
+
+
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+
+                    }
+                    focusCancelBtn
+                >
+
+                </SweetAlert>
+                    : null
+                }
                 <div className="card-body">
                     <div className="form form_doc">
                         <div className="row pl-4 pr-4 mt-3">
@@ -183,22 +224,22 @@ const ExtraCurricularDocument = () => {
                                                 <div {...getRootProps({ className: 'dropzone' })}>
                                                     <input {...getInputProps()} />
                                                     <span style={{ fontSize: ".8rem" }}>
-                                                        Drop hero image here, or click to select file
+                                                        Upload/Drag & Drop here
                                                     </span>
                                                 </div>
                                             )}
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalfile1">
+                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalExtraDocument">
                                                 View
                                             </button>
                                             <button type="button"
-                                                onClick={() => onDeletefileHandle()}
+                                                onClick={() => onDeletefileHandle("activity")}
                                                 //  onClick={this.onDeletecvHandle} 
                                                 className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
-                                            <div className="modal" id="myModalfile1">
+                                            <div className="modal" id="myModalExtraDocument">
                                                 <div className="modal-dialog">
                                                     <div className="modal-content">
 

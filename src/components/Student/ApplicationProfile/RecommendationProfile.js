@@ -157,7 +157,7 @@ const WorkExperienceProfile = () => {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>8</strong>
                     Recommendation
                 </a>
                 <div id="collapse8" className="collapse" data-bs-parent="#accordion">

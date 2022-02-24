@@ -4,16 +4,16 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 
 
 
-function WorkExperienceDocument(props) {
+function RecommendationDocuments(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
-    const [companyName, setcompanyName] = useState("");
+    const [name, setname] = useState("");
     const [mydocument, setmydocument] = useState();
     const [textflag, settextflag] = useState("none");
     const [deleteId, setdeleteId] = useState();
 
-    const [submitcompanyName, setsubmitcompanyName] = useState("none");
+    const [submitname, setsubmitname] = useState("none");
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [viewDetail, setviewDetail] = useState("none");
     const [document, setdocument] = useState("inline");
@@ -31,16 +31,16 @@ function WorkExperienceDocument(props) {
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
         //start for get all newIdeneitiydocument 
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
         })
             .then(response => response.json())
             .then(data => {
 
-                setcompanyName(data.studentExperienceDocument.companyName)
-                setmydocument(data.studentExperienceDocument.document)
-                setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                setname(data.studentRecommendationDocument.name)
+                setmydocument(data.studentRecommendationDocument.document)
+                setsubmitname(data.studentRecommendationDocument.name)
 
 
             })
@@ -66,10 +66,10 @@ function WorkExperienceDocument(props) {
     return (
         <div className="card">
 
-            <a className="card-header" data-bs-toggle="collapse" href="#collapse3">
-                <strong>3</strong> Work Experience Documents
+            <a className="card-header" data-bs-toggle="collapse" href="#collapse6">
+                <strong>6</strong>Recommendation Documents
             </a>
-            <div id="collapse3" className="collapse" data-bs-parent="#accordion">
+            <div id="collapse6" className="collapse" data-bs-parent="#accordion">
                 {submitSuccess === 1 ? <div className="Show_success_message">
                     <strong></strong> {successMessage}
                 </div> : null}
@@ -86,10 +86,10 @@ function WorkExperienceDocument(props) {
                         console.log(deleteId)
                         // start for delete
                         const obj5 = new FormData();
-                        obj5.append(deleteId, "*");
-                        obj5.append("companyName", " ");
+                        obj5.append("name", " ");
+                        obj5.append("document", "*");
                         //start for calling first api
-                        fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+                        fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                             method: 'put',
                             body: obj5,
                             headers: { 'Authorization': mounted },
@@ -102,15 +102,15 @@ function WorkExperienceDocument(props) {
                                 setsubmitSuccess(1)
 
                                 //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+                                fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                                     method: 'get',
                                     headers: { 'Authorization': mounted },
                                 })
                                     .then(response => response.json())
                                     .then(data => {
-                                        setcompanyName(data.studentExperienceDocument.companyName)
-                                        setmydocument(data.studentExperienceDocument.document)
-                                        setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                                        setname(data.studentRecommendationDocument.name)
+                                        setmydocument(data.studentRecommendationDocument.document)
+                                        setsubmitname(data.studentRecommendationDocument.name)
 
 
                                     })
@@ -137,7 +137,7 @@ function WorkExperienceDocument(props) {
                     <div className="form form_doc">
                         <div className="row">
                             <div className="col-md-8">
-                                <p>I don't have any work experience</p>
+                                <p>I don't have any recommender</p>
                             </div>
                             <div className="col-md-4 text-right">
                                 <label className="switch3">
@@ -157,7 +157,7 @@ function WorkExperienceDocument(props) {
                                     <div className="form form_doc document">
                                         <div className="add-more">
                                             <div className="upload_doc d-flex flex-wrap align-items-center row ">
-                                                <div className="col-3 col-sm-3 col-md-3 col-lg-3">Comapny Name</div>
+                                                <div className="col-3 col-sm-3 col-md-3 col-lg-3"></div>
 
 
                                                 <div className="col-1 col-sm-1 col-md-1 col-lg-1">&nbsp;</div>
@@ -166,9 +166,9 @@ function WorkExperienceDocument(props) {
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3">
                                                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">
                                                         <input className="ant-input w-100 form-control"
-                                                            value={companyName}
-                                                            onChange={(e) => setcompanyName(e.target.value)}
-                                                            placeholder="Enter Company Name" type="text"
+                                                            value={name}
+                                                            onChange={(e) => setname(e.target.value)}
+                                                            placeholder="Enter Recommender's Name" type="text"
                                                         />
                                                     </div>
                                                 </div>
@@ -181,12 +181,12 @@ function WorkExperienceDocument(props) {
                                                     {mydocument === "" || mydocument === "*" || mydocument === null || mydocument === undefined ?
                                                         <div>
 
-                                                            <Dropzone   onDrop={(acceptedFiles) => {
+                                                            <Dropzone onDrop={(acceptedFiles) => {
                                                                 const obj5 = new FormData();
                                                                 obj5.append("document", acceptedFiles[0]);
-                                                                obj5.append("companyName", companyName);
+                                                                obj5.append("name", name);
                                                                 //start for calling first api
-                                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+                                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                                                                     method: 'put',
                                                                     body: obj5,
                                                                     headers: { 'Authorization': mounted },
@@ -194,17 +194,17 @@ function WorkExperienceDocument(props) {
                                                                     .then(response => response.json())
                                                                     .then(data => {
                                                                         //start for get all newIdeneitiydocument 
-                                                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+                                                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                                                                             method: 'get',
                                                                             //  body: obj5,
                                                                             headers: { 'Authorization': mounted },
                                                                         })
                                                                             .then(response => response.json())
                                                                             .then(data => {
-                                                                                setcompanyName(data.studentExperienceDocument.companyName)
-                                                                                setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                                                                                setname(data.studentRecommendationDocument.name)
+                                                                                setsubmitname(data.studentRecommendationDocument.name)
 
-                                                                                setmydocument(data.studentExperienceDocument.document)
+                                                                                setmydocument(data.studentRecommendationDocument.document)
 
 
                                                                             })
@@ -232,11 +232,11 @@ function WorkExperienceDocument(props) {
                                                         :
                                                         <div>
 
-                                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalWorkExperience">
+                                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalRecommendation">
                                                                 View
                                                             </button>
                                                             <button type="button"
-                                                                onClick={() => onDeletefileHandle("document")}
+                                                                onClick={() => onDeletefileHandle()}
                                                                 //  onClick={this.onDeletecvHandle} 
                                                                 className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
@@ -251,7 +251,7 @@ function WorkExperienceDocument(props) {
                                             </div>
                                         </div>
 
-                                        <div className="modal" id="myModalWorkExperience">
+                                        <div className="modal" id="myModalRecommendation">
                                             <div className="modal-dialog">
                                                 <div className="modal-content">
 
@@ -286,4 +286,4 @@ function WorkExperienceDocument(props) {
     );
 }
 
-export default WorkExperienceDocument;
+export default RecommendationDocuments;
