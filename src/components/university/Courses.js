@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../Home/Loader';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
@@ -37,36 +38,38 @@ const Courses = () => {
 
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("0");
-   
+
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
 
     const [intakeyear, setintakeyear] = useState("2022");
     const [intakemonth, setintakemonth] = useState("jan");
+    const [loader, setmyloader] = useState("false");
+
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setmounted(mounted)
         setuniversityId(universityId)
 
-    
 
-       
+
+
 
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
-       
-        
-   
-        var child = ddlYearsEdit.lastElementChild; 
+
+
+
+        var child = ddlYearsEdit.lastElementChild;
         while (child) {
             ddlYearsEdit.removeChild(child);
             child = ddlYearsEdit.lastElementChild;
         }
 
         var currentYear = (new Date()).getFullYear();
-     
+
         for (var i = currentYear; i < 2027; i++) {
 
             var option = document.createElement("OPTION");
@@ -74,9 +77,9 @@ const Courses = () => {
             option.value = i;
             ddlYearsEdit.appendChild(option);
         }
-   
 
-  
+
+
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET',
@@ -86,7 +89,7 @@ const Courses = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-      
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
             method: 'GET',
@@ -100,11 +103,11 @@ const Courses = () => {
                 }
                 else {
                     setIntakedata(data.universityIntakes)
-                   
+
                 }
 
             })
-     
+
 
 
     }, [])
@@ -129,7 +132,7 @@ const Courses = () => {
                     setyear("");
                     setmonth("");
 
-                  
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -138,9 +141,9 @@ const Courses = () => {
                         .then(response => response.json())
                         .then(data => {
                             setIntakedata(data.universityIntakes)
-                      
+
                         })
-               
+
                 }
                 else {
 
@@ -192,21 +195,21 @@ const Courses = () => {
     function handleAdd() {
         setaddWidth("1600px");
     }
-  
+
 
     function handleDelete(value) {
 
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-  
+
 
     function handleView(value) {
 
 
         seteditId(value);
         setviewWidth("1600px");
-      
+
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
 
             .then(function (res) {
@@ -243,7 +246,7 @@ const Courses = () => {
             });
 
     }
-   
+
 
     function closebox(value) {
         setwidth("0px");
@@ -286,7 +289,7 @@ const Courses = () => {
                     setsuccessMessage("course update")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-             
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                     fetch(url, {
                         method: 'GET',
@@ -296,7 +299,7 @@ const Courses = () => {
                         .then(data => {
                             setdata(data.universityCourses)
                         })
-     
+
                 }
                 else {
 
@@ -308,6 +311,8 @@ const Courses = () => {
     }
     let handleAddSubmit = (event) => {
         event.preventDefault();
+        setmyloader("true")
+
         const obj = {
             courseName: courseName,
             duration: duration,
@@ -327,6 +332,7 @@ const Courses = () => {
 
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
 
                 if (res.data.success === true) {
                     setsuccessMessage("course add")
@@ -346,7 +352,7 @@ const Courses = () => {
                     setexam("");
                     setyear("");
                     setmonth("");
-         
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                     fetch(url, {
                         method: 'GET',
@@ -356,7 +362,7 @@ const Courses = () => {
                         .then(data => {
                             setdata(data.universityCourses)
                         })
-                 
+
                 }
                 else {
 
@@ -379,7 +385,7 @@ const Courses = () => {
         setintakemonth(myArray[1])
 
     }
-    function setChangecourseName(e){
+    function setChangecourseName(e) {
         const arr = e.split(" ");
         for (var i = 0; i < arr.length; i++) {
             arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
@@ -389,6 +395,11 @@ const Courses = () => {
     }
     return (
         <div className="container">
+            {loader === "true" ?
+
+                <Loader />
+
+                : null}
             {/* start for showing add message */}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
@@ -398,13 +409,13 @@ const Courses = () => {
             <div className="mb-4 mt-4">
                 <div className="row">
                     <div className="col-md-6">
-                    <h5>Coures</h5>
+                        <h5>Coures</h5>
                     </div>
                     <div className="col-md-6 text-right">
-                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
+                        <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
                     </div>
                 </div>
-               
+
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -421,7 +432,7 @@ const Courses = () => {
                                     setsuccessMessage("course delete")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                   
+
                                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                                     fetch(url, {
                                         method: 'GET',
@@ -431,7 +442,7 @@ const Courses = () => {
                                         .then(data => {
                                             setdata(data.universityCourses)
                                         })
-                                
+
                                 }
                                 else {
 
@@ -454,7 +465,7 @@ const Courses = () => {
                 </SweetAlert>
                     : null
                 }
-                
+
 
             </div>
 
@@ -524,18 +535,18 @@ const Courses = () => {
                                     <div className="col-md-6">
                                         <a className="closebtn" onClick={closebox} >&times;</a>
                                     </div>
-                                </div>                               
+                                </div>
                                 <div className="table-responsive mt-3">
 
                                     <div className="row">
                                         <div className="col-sm-12">
-                                          
+
                                             <form onSubmit={handleEditSubmit}>
                                                 <div className="card-body" >
 
                                                     <div className="from-block" >
 
-                                                    <h3>Edit Course</h3>
+                                                        <h3>Edit Course</h3>
 
                                                         <div className="row" >
                                                             <div className="mb-3">
@@ -545,25 +556,26 @@ const Courses = () => {
                                                                             *</label>
                                                                         <input type="text" className="form-control"
                                                                             placeholder="Course Name" name="courseName"
-                                                                          
+                                                                            required
                                                                             value={courseName}
                                                                             onChange={(e) => setChangecourseName(e.target.value)}
 
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Duration
+                                                                        <label className="form-label">Duration *
                                                                         </label>
                                                                         <input type="text" className="form-control"
+                                                                            required
                                                                             placeholder="Duration" name="duration"
                                                                             value={duration}
                                                                             onChange={(e) => setduration(e.target.value)}
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Tuition fee</label>
+                                                                        <label className="form-label">Tuition fee *</label>
                                                                         <input type="text" className="form-control" placeholder="tuition fee"
-                                                                            name="TuitionFee"
+                                                                            name="TuitionFee" required
                                                                             value={tuitionFee}
                                                                             onChange={(e) => settuitionFee(e.target.value)}
 
@@ -576,11 +588,11 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label">Study
+                                                                        <label className="form-label">Study *
                                                                             *</label>
                                                                         <select type="text" className="form-control" id="salutation"
                                                                             placeholder="Study" name="studyField"
-
+                                                                            required
                                                                             value={studyField}
                                                                             onChange={(e) => setstudyField(e.target.value)}
                                                                         >
@@ -593,37 +605,37 @@ const Courses = () => {
                                                                     <div className="col-md-8">
                                                                         <div className="row">
                                                                             <div className="col">
-                                                                                <label className="form-label">Fee</label>
+                                                                                <label className="form-label">Fee *</label>
                                                                                 <input type="text" className="form-control" placeholder="Fee"
                                                                                     name="fee"
                                                                                     value={fee}
                                                                                     onChange={(e) => setfee(e.target.value)}
-
+                                                                                    required
 
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Course Level</label>
+                                                                                <label className="form-label"> Course Level *</label>
                                                                                 <input type="text" className="form-control" placeholder=" Course Level"
                                                                                     name=" courseLevel"
                                                                                     value={courseLevel}
                                                                                     onChange={(e) => setcourseLevel(e.target.value)}
-
+                                                                                    required
 
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> CGPA </label>
+                                                                                <label className="form-label"> CGPA *</label>
                                                                                 <input type="text" className="form-control" placeholder="CGPA"
-                                                                                    name="cgpa"
+                                                                                    name="cgpa" required
                                                                                     value={cgpa}
                                                                                     onChange={(e) => setcgpa(e.target.value)}
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibility </label>
+                                                                                <label className="form-label"> Eligibility * </label>
                                                                                 <input type="text" className="form-control" placeholder=" Eligibilit(like min 55%)"
-                                                                                    name=" eligibility"
+                                                                                    name=" eligibility" required
                                                                                     value={eligibility}
                                                                                     onChange={(e) => seteligibility(e.target.value)}
                                                                                 />
@@ -636,13 +648,13 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label >English Proficiency
+                                                                        <div className="form-group"><label >English Proficiency *
                                                                         </label>
                                                                             <select
 
                                                                                 className="form-control"
                                                                                 placeholder="Month" name="english"
-                                                                                value={english}
+                                                                                value={english} required
                                                                                 onChange={(e) => setenglish(e.target.value)}>
                                                                                 <option value='IELTS'>IELTS</option>
                                                                                 <option value='PTE'>PTE</option>
@@ -652,10 +664,10 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course Website </label><input
+                                                                            <label>Course Website *</label><input
                                                                                 type="text" className="form-control" id="cour-web"
                                                                                 name="website" placeholder="Course Website "
-                                                                                value={website}
+                                                                                value={website} required
                                                                                 onChange={(e) => setwebsite(e.target.value)}
 
 
@@ -668,9 +680,9 @@ const Courses = () => {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course  Description</label>
+                                                                            <label>Course  Description *</label>
                                                                             <textarea className="form-control" row="2" col="3" name="description"
-                                                                                value={description}
+                                                                                value={description} required
                                                                                 onChange={(e) => setdescription(e.target.value)}
                                                                                 placeholder="Course  Description"
                                                                             ></textarea>
@@ -678,15 +690,16 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label
-                                                                        >Academic proficiency exam</label><select
+                                                                        >Academic proficiency exam *</label><select
                                                                             className="form-control dropdown"
                                                                             id="highest_qualification"
                                                                             name="exam"
-                                                                            value={exam}
+                                                                            value={exam} required
                                                                             onChange={(e) => setexam(e.target.value)}
 
 
                                                                         >
+                                                                                <option value="" >Select Academic proficiency exam</option>
                                                                                 <option value="GRE" >GRE</option>
                                                                                 <option value="GMAT">GMAT</option>
                                                                                 <option value="SAT">SAT</option>
@@ -701,7 +714,7 @@ const Courses = () => {
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    Intakes
+                                                                    Intakes *
 
                                                                     <select
                                                                         type="text" className="form-control" value="hii"
@@ -757,12 +770,12 @@ const Courses = () => {
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
-                                                                 
+
                                     </div>
                                     <div className="col-md-6">
                                         <a className="closebtn" onClick={closeaddbox} >&times;</a>
                                     </div>
-                                </div>                             
+                                </div>
                                 <div className="table-responsive mt-3">
 
                                     <div className="row">
@@ -783,26 +796,26 @@ const Courses = () => {
                                                                             *</label>
                                                                         <input type="text" className="form-control"
                                                                             placeholder="Course Name" name="courseName"
-                                                                          
+                                                                            required
                                                                             value={courseName}
                                                                             onChange={(e) => setChangecourseName(e.target.value)}
 
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Duration
+                                                                        <label className="form-label">Duration *
                                                                         </label>
                                                                         <input type="text" className="form-control"
                                                                             placeholder="Duration" name="duration"
-                                                                            value={duration}
+                                                                            value={duration} required
                                                                             onChange={(e) => setduration(e.target.value)}
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Tuition Fee</label>
+                                                                        <label className="form-label">Tuition Fee *</label>
                                                                         <input type="text" className="form-control" placeholder="Tuition Fee"
                                                                             name="tuitionFee"
-                                                                            value={tuitionFee}
+                                                                            value={tuitionFee} required
                                                                             onChange={(e) => settuitionFee(e.target.value)}
 
 
@@ -818,7 +831,7 @@ const Courses = () => {
                                                                             *</label>
                                                                         <select type="text" className="form-control" id="salutation"
                                                                             placeholder="Salutation" name="studyField"
-
+                                                                            required
                                                                             value={studyField}
                                                                             onChange={(e) => setstudyField(e.target.value)}
                                                                         >
@@ -831,9 +844,9 @@ const Courses = () => {
                                                                     <div className="col-md-8">
                                                                         <div className="row">
                                                                             <div className="col">
-                                                                                <label className="form-label">Fee</label>
+                                                                                <label className="form-label">Fee *</label>
                                                                                 <input type="text" className="form-control" placeholder="Fee"
-                                                                                    name="fee"
+                                                                                    name="fee" required
                                                                                     value={fee}
                                                                                     onChange={(e) => setfee(e.target.value)}
 
@@ -841,9 +854,9 @@ const Courses = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Course Level</label>
+                                                                                <label className="form-label"> Course Level *</label>
                                                                                 <input type="text" className="form-control" placeholder=" Course Level"
-                                                                                    name=" courseLevel"
+                                                                                    name=" courseLevel" required
                                                                                     value={courseLevel}
                                                                                     onChange={(e) => setcourseLevel(e.target.value)}
 
@@ -851,17 +864,17 @@ const Courses = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> CGPA </label>
+                                                                                <label className="form-label"> CGPA *</label>
                                                                                 <input type="text" className="form-control" placeholder="CGPA"
-                                                                                    name="cgpa"
+                                                                                    name="cgpa" required
                                                                                     value={cgpa}
                                                                                     onChange={(e) => setcgpa(e.target.value)}
                                                                                 />
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibility </label>
+                                                                                <label className="form-label"> Eligibility * </label>
                                                                                 <input type="text" className="form-control" placeholder="Eligibility(like min 55%)"
-                                                                                    name=" eligibility"
+                                                                                    name=" eligibility" required
                                                                                     value={eligibility}
                                                                                     onChange={(e) => seteligibility(e.target.value)}
                                                                                 />
@@ -874,10 +887,10 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label >English Proficiency
+                                                                        <div className="form-group"><label >English Proficiency *
                                                                         </label>
                                                                             <select
-
+                                                                                required
                                                                                 className="form-control"
                                                                                 placeholder="Month" name="english"
                                                                                 value={english}
@@ -891,9 +904,9 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course website </label><input
+                                                                            <label>Course website *</label><input
                                                                                 type="text" className="form-control" id="cour-web"
-                                                                                name="website" placeholder="Course website "
+                                                                                name="website" required placeholder="Course website "
                                                                                 value={website}
                                                                                 onChange={(e) => setwebsite(e.target.value)}
 
@@ -907,8 +920,8 @@ const Courses = () => {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course  Description</label>
-                                                                            <textarea className="form-control" row="2" col="3" name="description"
+                                                                            <label>Course  Description *</label>
+                                                                            <textarea required className="form-control" row="2" col="3" name="description"
                                                                                 value={description}
                                                                                 onChange={(e) => setdescription(e.target.value)}
                                                                             ></textarea>
@@ -916,7 +929,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label
-                                                                        >Academic proficiency exam</label><select
+                                                                        >Academic proficiency exam *</label><select required
                                                                             className="form-control dropdown"
                                                                             id="highest_qualification"
                                                                             name="exam"
@@ -925,6 +938,7 @@ const Courses = () => {
 
 
                                                                         >
+                                                                                <option value="" >Select Academic proficiency exam</option>
                                                                                 <option value="GRE" >GRE</option>
                                                                                 <option value="GMAT">GMAT</option>
                                                                                 <option value="SAT">SAT</option>
@@ -936,25 +950,25 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
+                                                                        <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
 
-                                                                     Add Intake</button>
+                                                                            Add Intake</button>
                                                                         <br />
                                                                         <div className="form-group mt-3">
-                                                                        Intakes
-                                                                        <select
-                                                                            type="text" className="form-control"
-                                                                            required
-                                                                            onChange={(e) => setcourseaddintake(e.target.value)}>
+                                                                            Intakes
+                                                                            <select required
+                                                                                type="text" className="form-control"
+                                                                                required
+                                                                                onChange={(e) => setcourseaddintake(e.target.value)}>
                                                                                 <option value="">Select Intake</option>
-                                                                            {Intakedata.map((object, i) => {
+                                                                                {Intakedata.map((object, i) => {
 
-                                                                                return (
-                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                                )
-                                                                            })}
+                                                                                    return (
+                                                                                        <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                    )
+                                                                                })}
 
-                                                                        </select>
+                                                                            </select>
                                                                         </div>
 
                                                                     </div>
@@ -998,12 +1012,12 @@ const Courses = () => {
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
-                                    <h3>Course Detail</h3>
+                                        <h3>Course Detail</h3>
                                     </div>
                                     <div className="col-md-6">
                                         <a className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
                                     </div>
-                                </div>                               
+                                </div>
                                 <div className="table-responsive mt-3">
 
                                     <div className="row">
