@@ -409,7 +409,7 @@ const Courses = () => {
             <div className="mb-4 mt-4">
                 <div className="row">
                     <div className="col-md-6">
-                        <h5>Coures</h5>
+                        <h5>Courses</h5>
                     </div>
                     <div className="col-md-6 text-right">
                         <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
@@ -574,7 +574,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col">
                                                                         <label className="form-label">Tuition fee *</label>
-                                                                        <input type="text" className="form-control" placeholder="tuition fee"
+                                                                        <input type="number" className="form-control" placeholder="tuition fee"
                                                                             name="TuitionFee" required
                                                                             value={tuitionFee}
                                                                             onChange={(e) => settuitionFee(e.target.value)}
@@ -606,7 +606,7 @@ const Courses = () => {
                                                                         <div className="row">
                                                                             <div className="col">
                                                                                 <label className="form-label">Fee *</label>
-                                                                                <input type="text" className="form-control" placeholder="Fee"
+                                                                                <input type="number" className="form-control" placeholder="Fee"
                                                                                     name="fee"
                                                                                     value={fee}
                                                                                     onChange={(e) => setfee(e.target.value)}
@@ -813,7 +813,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col">
                                                                         <label className="form-label">Tuition Fee *</label>
-                                                                        <input type="text" className="form-control" placeholder="Tuition Fee"
+                                                                        <input type="number" className="form-control" placeholder="Tuition Fee"
                                                                             name="tuitionFee"
                                                                             value={tuitionFee} required
                                                                             onChange={(e) => settuitionFee(e.target.value)}
@@ -845,7 +845,7 @@ const Courses = () => {
                                                                         <div className="row">
                                                                             <div className="col">
                                                                                 <label className="form-label">Fee *</label>
-                                                                                <input type="text" className="form-control" placeholder="Fee"
+                                                                                <input type="number" className="form-control" placeholder="Fee"
                                                                                     name="fee" required
                                                                                     value={fee}
                                                                                     onChange={(e) => setfee(e.target.value)}

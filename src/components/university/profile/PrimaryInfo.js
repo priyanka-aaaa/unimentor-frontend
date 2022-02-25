@@ -172,7 +172,8 @@ export default function PrimaryInfo() {
             });
     }
     function nameMethod(e) {
-        const re = /[a-zA-Z]+/s;
+        // const re = /[a-zA-Z]+/s;
+      const re = "^[a-zA-Z ]+$";
 
         if (!re.test(e.key)) {
             e.preventDefault();
