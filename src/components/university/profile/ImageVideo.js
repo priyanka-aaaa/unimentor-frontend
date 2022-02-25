@@ -468,7 +468,7 @@ class ImageVideo extends Component {
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID</th>
+                                                       
                                                         <th>Image/Video</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -476,7 +476,7 @@ class ImageVideo extends Component {
                                                 <tbody>
                                                     {this.state.imagesVideo.map((element) =>
                                                         <tr>
-                                                            <td> {element._id}</td>
+                                                     
                                                             <td> <img src={element.link} alt="passportback" /></td>
                                                             <td><p onClick={() => this.handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></p></td>
                                                         </tr>

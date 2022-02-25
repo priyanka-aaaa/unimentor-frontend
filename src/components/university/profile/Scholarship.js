@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
+
 const Document = () => {
 
     const [FormValues, setFormValues] = useState([{
@@ -28,6 +30,9 @@ const Document = () => {
     const [MYpoint, setMYpoint] = useState();
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
+    const [myTable, setTable] = useState("false");
+    const [loader, setmyloader] = useState("false");
+    const [ApplicationError, setApplicationError] = useState("");
     useEffect(() => {
        
         var universityId = localStorage.getItem('universityId');
@@ -39,6 +44,15 @@ const Document = () => {
         })
             .then(response => response.json())
             .then(data => {
+                var myresults = data.adminScholarships;
+           
+                if (Object.keys(myresults).length === 0) {
+                    setTable("true");
+                }
+                else {
+                    console.log("nono");
+
+                }
                 setformAdminValues(data.adminScholarships)
             })
 
@@ -99,21 +113,33 @@ const Document = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>"; 
         }
-        var element = document.querySelector(".addhelp")
+        var element = document.querySelector(".addhelpSCHOLARSHIP")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
     let handleAddSubmit = () => {
+        setApplicationError("")
+
         let originalString = document.getElementById("addx").value;
 
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
+        if (InsetApplication === "") {
+
+            setApplicationError("Please Enter Application")
+        }
+        else {
+            setaddWidth(0)
+            setTable("false")
+
+            setmyloader("true")
         const obj = {
             scholarship: InsetApplication
         };
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/scholarships', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
 
                 if (res.data.success === true) {
                     setaddWidth(0)
@@ -140,6 +166,7 @@ const Document = () => {
             .catch(error => {
 
             });
+        }
     }
     let clickEditAddHandler = (datum) => {
 
@@ -152,7 +179,7 @@ const Document = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";  
         }
-        var element = document.querySelector(".helpedit")
+        var element = document.querySelector(".helpeditSCHOLARSHIP")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
       
@@ -160,10 +187,20 @@ const Document = () => {
 
 
     let handleEditSubmit = () => {
+        setApplicationError("")
+
         let originalString = document.getElementById("editx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
+        if (InsetApplication === "") {
+
+            setApplicationError("Please Enter Application")
+        }
+        else {
+           
+            setwidth(0)
+            setmyloader("true")
         const obj = {
             scholarship: InsetApplication
 
@@ -172,6 +209,7 @@ const Document = () => {
         var EditUrl = process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + editId;
         axios.put(EditUrl, obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
 
                 if (res.data.success === true) {
                     setwidth(0)
@@ -196,6 +234,7 @@ const Document = () => {
             .catch(error => {
 
             });
+        }
     }
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
@@ -204,6 +243,11 @@ const Document = () => {
     return (
 
         <div>
+             {loader === "true" ?
+
+<Loader />
+
+: null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -219,8 +263,11 @@ const Document = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
+setmyloader("true")
+
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
+                                setmyloader("false")
 
                                 if (res.data.success === true) {
                                     setsuccessMessage("Document deleted")
@@ -275,6 +322,9 @@ const Document = () => {
                                 </div>
 
                                 <div className="card shadow mb-4">
+                                {myTable === "true" ?
+                                        null
+                                        : 
                                     <div className="table-responsive-sm">
                                         <table className="table table-bordered">
                                             <thead>
@@ -313,6 +363,7 @@ const Document = () => {
 
                                         </table>
                                     </div>
+}
                                 </div>
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
@@ -340,10 +391,14 @@ const Document = () => {
                                                                     <input id="addx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="addhelp"
+                                                                        onChange={event => this.changeHandler(event)} 
+                                                                        
+                                                                        class="form-control editarea addhelpSCHOLARSHIP"
                                                                         input="addx"
                                                                     >
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
+
                                                                 </div>
 
                                                             </div>
@@ -461,11 +516,12 @@ const Document = () => {
                                                                     <input id="editx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea helpedit"
+                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea helpeditSCHOLARSHIP"
                                                                         input="editx"
                                                                     >
                                                                         {MYpoint}
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
 
                                                                 </div>
                                                             </div>

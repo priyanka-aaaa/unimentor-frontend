@@ -1,6 +1,8 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../../Home/Loader';
+
 import SweetAlert from 'react-bootstrap-sweetalert';
 const Application = () => {
     const [formAdminValues, setformAdminValues] = useState([{
@@ -30,6 +32,9 @@ const Application = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
+    const [myTable, setTable] = useState("false");
+    const [loader, setmyloader] = useState("false");
+    const [ApplicationError, setApplicationError] = useState("");
 
 
 
@@ -39,21 +44,31 @@ const Application = () => {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
             var universityid = mydata.data.university._id;
-          
+
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
         setuniversityid(universityid)
-       
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
         fetch(url1, {
             method: 'GET'
         })
             .then(response => response.json())
             .then(data => {
+                var myresults = data.universityAdmissions;
+                console.log("data.universityAdmissions");
+                // console.log(data.universityAdmissions);
+                if (Object.keys(myresults).length === 0) {
+                    setTable("true");
+                }
+                else {
+                    console.log("nono");
+
+                }
                 setFormValues(data.universityAdmissions)
             })
- 
+
         const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/';
         fetch(url, {
             method: 'GET'
@@ -62,7 +77,7 @@ const Application = () => {
             .then(data => {
                 setformAdminValues(data.adminApplications)
             })
-      
+
     }, [])
     function closeaddbox(value) {
 
@@ -94,12 +109,12 @@ const Application = () => {
                     seteditPoint(myuniversityAdmission.point);
                 }
                 else {
-               
+
                 }
 
             })
             .catch(error => {
-            
+
             });
     }
 
@@ -107,58 +122,70 @@ const Application = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";    
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".help")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-     
+
     }
     let handleAddSubmit = () => {
-        setaddWidth(0)
+        setApplicationError("")
+
         let originalString = document.getElementById("addx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
         var InsetApplication = div.innerText;
+        if (InsetApplication === "") {
 
-        const obj = {
-            point: InsetApplication
-        };
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/admissions', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+            setApplicationError("Please Enter Application")
+        }
+        else {
+            setaddWidth(0)
+            setTable("false")
 
-                if (res.data.success === true) {
-                    setsuccessMessage("Admission Added")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+            setmyloader("true")
 
-                 
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityAdmissions)
+            const obj = {
+                point: InsetApplication
+            };
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/admissions', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
+
+                    if (res.data.success === true) {
+                        setsuccessMessage("Admission Added")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                        fetch(url1, {
+                            method: 'GET'
                         })
-              
-                }
-                else {
-                 
-                }
-            })
-            .catch(error => {
-           
-            });
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityAdmissions)
+                            })
+
+                    }
+                    else {
+
+                    }
+                })
+                .catch(error => {
+
+                });
+        }
     }
     let clickEditHandler = (datum) => {
         if (tempp !== 1) {
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
@@ -167,46 +194,64 @@ const Application = () => {
         var element = document.querySelector(".edithelp")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-       
+
     }
     let handleEditSubmit = () => {
-        setwidth(0)
+        setApplicationError("")
+
+
         let originalString = document.getElementById("editx").value;
 
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
-        const obj = {
-            point: InsetApplication
-        };
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + editId, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                if (res.data.success === true) {
-                    setsuccessMessage("Admission Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+        if (InsetApplication === "") {
 
-                 
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityAdmissions)
-                        })
-                  
-                }
-                else {
+            setApplicationError("Please Enter Application")
+        }
+        else {
            
-                }
-            })
-            .catch(error => {
-              
-            });
+            setwidth(0)
+            setmyloader("true")
+            const obj = {
+                point: InsetApplication
+            };
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + editId, obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
+
+                    if (res.data.success === true) {
+                        setsuccessMessage("Admission Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                        fetch(url1, {
+                            method: 'GET'
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityAdmissions)
+                            })
+
+                    }
+                    else {
+
+                    }
+                })
+                .catch(error => {
+
+                });
+        }
     }
     return (
         <div>
+            {loader === "true" ?
+
+                <Loader />
+
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -220,14 +265,17 @@ const Application = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
+setmyloader("true")
+
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
+                                setmyloader("false")
                                 if (res.data.success === true) {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
 
-                                   
+
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                                     fetch(url1, {
                                         method: 'GET'
@@ -236,11 +284,11 @@ const Application = () => {
                                         .then(data => {
                                             setFormValues(data.universityAdmissions)
                                         })
-                        
+
 
                                 }
                                 else {
-                              
+
                                 }
                             })
 
@@ -264,7 +312,7 @@ const Application = () => {
                     <div className="card-body">
                         <div className="formbody">
                             <div className="row">
-                               
+
                                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                     <h5>Application Process</h5>
                                     <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Application</button>
@@ -272,44 +320,47 @@ const Application = () => {
                                 </div>
 
                                 <div className="card shadow mb-4">
-                                    <div className="table-responsive-sm">
-                                        <table className="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
 
-                                                    <th>Action</th>
+                                    {myTable === "true" ?
+                                        null
+                                        : <div className="table-responsive-sm">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
+                                                        <th>Action</th>
 
-
-
-
-                                                {FormValues.map((element, index) => {
-
-                                                    return (
-
-                                                        <tr key={index}>
-                                                            <td> {element.point}</td>
-
-                                                            <td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
 
-                                                                <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
-                                                                <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
-
-                                                            </td>
-                                                        </tr>
-
-                                                    )
-                                                })}
-                                            </tbody>
 
 
-                                        </table>
-                                    </div>
+                                                    {FormValues.map((element, index) => {
+
+                                                        return (
+
+                                                            <tr key={index}>
+                                                                <td> {element.point}</td>
+
+                                                                <td>
+
+
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+
+                                                                </td>
+                                                            </tr>
+
+                                                        )
+                                                    })}
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>}
                                 </div>
                                 {/* start for add */}
                                 <div className="card-body course-sidenav" id="mySideAdd"
@@ -341,10 +392,11 @@ const Application = () => {
                                                                     <input id="addx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="help"
+                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea help"
                                                                         input="addx"
                                                                     >
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
 
                                                                 </div>
 
@@ -439,6 +491,8 @@ const Application = () => {
                                                                     >
                                                                         {editPoint}
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
+
                                                                 </div>
                                                             </div>
                                                             <div className="col-xl-6  mt-2 d-none d-xl-block" >

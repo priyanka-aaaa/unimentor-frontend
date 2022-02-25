@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 
@@ -33,22 +34,36 @@ const Document = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
+    const [myTable, setTable] = useState("false");
+    const [loader, setmyloader] = useState("false");
+    const [ApplicationError, setApplicationError] = useState("");
+
     useEffect(() => {
-        
+
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
- 
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
         fetch(url1, {
             method: 'GET'
         })
             .then(response => response.json())
             .then(data => {
+                var myresults = data.universityDocuments;
+
+                if (Object.keys(myresults).length === 0) {
+                    setTable("true");
+                }
+                else {
+                    console.log("nono");
+
+                }
+
                 setFormValues(data.universityDocuments)
             })
-  
+
         const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/';
         fetch(url, {
             method: 'GET'
@@ -57,7 +72,7 @@ const Document = () => {
             .then(data => {
                 setformAdminValues(data.adminDocuments)
             })
-       
+
     }, [])
 
     function closeaddbox(value) {
@@ -79,7 +94,7 @@ const Document = () => {
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
-    
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents/' + value;
 
         fetch(url1, {
@@ -90,7 +105,7 @@ const Document = () => {
             .then(data => {
                 setMYpoint(data.universityDocument.document)
             })
- 
+
 
     }
     let props = {
@@ -101,123 +116,150 @@ const Document = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".helpadd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-   
+
     }
     let handleAddSubmit = () => {
-        setaddWidth(0)
+        setApplicationError("")
+
+
         let originalString = document.getElementById("x").value;
 
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
         var InsetApplication = div.innerText;
+        if (InsetApplication === "") {
 
-        const obj = {
-            document: InsetApplication
-        };
+            setApplicationError("Please Enter Application")
+        }
+        else {
+            setaddWidth(0)
+            setTable("false")
 
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/documents', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+            setmyloader("true")
+            const obj = {
+                document: InsetApplication
+            };
 
-                if (res.data.success === true) {
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/documents', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
 
-                    setsuccessMessage("Document Add")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-               
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityDocuments)
+                    if (res.data.success === true) {
+
+                        setsuccessMessage("Document Add")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
+                        fetch(url1, {
+                            method: 'GET'
                         })
-               
-                }
-                else {
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityDocuments)
+                            })
 
-                }
-            })
-            .catch(error => {
+                    }
+                    else {
 
-            });
+                    }
+                })
+                .catch(error => {
+
+                });
+        }
     }
     let clickEditAddHandler = (datum) => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";   
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".helpedit")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-       
+
     }
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
     let handleEditSaveSubmit = () => {
-        setwidth(0);
+        setApplicationError("")
+
         let originalString = document.getElementById("editx").value;
 
         var div = document.createElement("div");
         div.innerHTML = originalString;
 
         var InsetApplication = div.innerText;
+        if (InsetApplication === "") {
 
-        const obj = {
-            document: InsetApplication
-      
+            setApplicationError("Please Enter Application")
+        }
+        else {
 
-        };
+            setwidth(0)
+            setmyloader("true")
+            const obj = {
+                document: InsetApplication
+
+
+            };
 
 
 
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/documents/' + editId, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/documents/' + editId, obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
 
-                if (res.data.success === true) {
-                    setsuccessMessage("Document Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+                    if (res.data.success === true) {
+                        setsuccessMessage("Document Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
 
-              
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityDocuments)
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
+                        fetch(url1, {
+                            method: 'GET'
                         })
-                  
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityDocuments)
+                            })
 
-                }
-                else {
 
-                }
-            })
-            .catch(error => {
+                    }
+                    else {
 
-            });
+                    }
+                })
+                .catch(error => {
+
+                });
+        }
     }
     return (
         <div>
+            {loader === "true" ?
+
+                <Loader />
+
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -234,14 +276,17 @@ const Document = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
+                        setmyloader("true")
+
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/documents/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
+                                setmyloader("false")
 
                                 if (res.data.success === true) {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                  
+
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                                     fetch(url1, {
                                         method: 'GET'
@@ -250,7 +295,7 @@ const Document = () => {
                                         .then(data => {
                                             setFormValues(data.universityDocuments)
                                         })
-                               
+
                                 }
                                 else {
 
@@ -278,56 +323,60 @@ const Document = () => {
 
                     <div className="card-body">
                         <div className="formbody">
-                          
-                             
-                                <div className=" mt-4 mb-4">
+
+
+                            <div className=" mt-4 mb-4">
                                 <div className="row">
                                     <div className="col-md-6">
-                                    <h3>Document</h3>
+                                        <h3>Document</h3>
                                     </div>
                                     <div className="col-md-6 text-right">
-                                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Document</button>
+                                        <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Document</button>
                                     </div>
                                 </div>
 
                                 <div className="card shadow mb-4">
-                                    <div className="table-responsive-sm">
-                                        <table className="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
+                                    {myTable === "true" ?
+                                        null
+                                        :
+                                        <div className="table-responsive-sm">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
 
-                                                    <th>Action</th>
+                                                        <th>Action</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
-
-
-                                                {FormValues.map((element, index) => {
-
-                                                    return (
-
-                                                        <tr key={index}>
-                                                            <td> {element.document}</td>
-
-                                                            <td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
 
-                                                                <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
-                                                                <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
-                                                            </td>
-                                                        </tr>
-
-                                                    )
-                                                })}
-                                            </tbody>
 
 
-                                        </table>
-                                    </div>
+                                                    {FormValues.map((element, index) => {
+
+                                                        return (
+
+                                                            <tr key={index}>
+                                                                <td> {element.document}</td>
+
+                                                                <td>
+
+
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                </td>
+                                                            </tr>
+
+                                                        )
+                                                    })}
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                    }
                                 </div>
                                 {/* start for add */}
                                 <div className="card-body course-sidenav" id="mySideAdd"
@@ -364,6 +413,8 @@ const Document = () => {
                                                                         input="x"
                                                                     >
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
+
                                                                 </div>
                                                             </div>
                                                             <div className="col-xl-6  mt-2 d-none d-xl-block" >
@@ -415,10 +466,10 @@ const Document = () => {
 
                                             </div>
                                         </div>
-                                  
+
                                     </div>
                                 </div>
-                        
+
                                 <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >
@@ -454,6 +505,7 @@ const Document = () => {
                                                                     >
                                                                         {MYpoint}
                                                                     </trix-editor>
+                                                                    <span style={{ color: "red" }}> {ApplicationError}</span>
 
                                                                 </div>
                                                             </div>

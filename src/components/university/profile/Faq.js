@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
+
 const Faq = () => {
     const [formValues, setFormValues] = useState([{
         question: "", answer: "",
@@ -16,13 +18,15 @@ const Faq = () => {
     const [display, setdisplay] = useState("none");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
+    const [loader, setmyloader] = useState("false");
+
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
 
-   
+
         const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',
@@ -116,6 +120,11 @@ const Faq = () => {
 
     return (
         <div>
+             {loader === "true" ?
+
+<Loader />
+
+: null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -134,8 +143,11 @@ const Faq = () => {
                             title="Are you sure?"
                             onConfirm={(value) => {
                                 setshowSweetAlert("0");
+                                setmyloader("true")
+
                                 axios.delete(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + deleteId, { headers: { 'Authorization': mounted } })
                                     .then(function (res) {
+                                        setmyloader("false")
 
                                         if (res.data.success === true) {
                                             setsuccessMessage("faq deleted")
@@ -195,7 +207,7 @@ const Faq = () => {
                                                         <form onSubmit={handleSubmit}>
                                                             {formValues.map((element, index) => (
                                                                 <div key={index}>
-                                                                   
+
 
                                                                     {/* <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p> */}
                                                                     <div className="mb-3">
@@ -209,7 +221,7 @@ const Faq = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col-md-1 text-left">
-                                                                            <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
+                                                                                <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
                                                                             </div>
                                                                         </div>
                                                                     </div>

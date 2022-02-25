@@ -342,7 +342,7 @@ class Ranking extends Component {
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
+                                                          
                                                             <th>Agency Name</th>
                                                             <th>Rank</th>
                                                             <th>Year</th>
@@ -360,7 +360,7 @@ class Ranking extends Component {
                                                             return (
 
                                                                 <tr key={i}>
-                                                                    <td>{object._id}</td>
+                                                                  
                                                                     <td>{object.agencyName}</td>
                                                                     <td>{object.rank}</td>
                                                                     <td>{object.year}</td>
