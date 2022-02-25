@@ -201,23 +201,25 @@ function setChangecampus(e){
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col">
-                                                                        <label className="form-label">Campus name
+                                                                        <label className="form-label">Campus name *
                                                                         </label>
                                                                         <input type="text" className="form-control"
-                                                                            value={campus}
+                                                                            value={campus} required
                                                                             onChange={(e) => setChangecampus(e.target.value)}
                                                                             placeholder="Course name" name="cname" />
                                                                     </div>
                                                                     <div className="col">
                                                                         {/* <label className="form-label">Eligibilit Year for UG
                                                                         </label> */}
-                                                                        <div className="form-group"><label>Eligibility Year for UG</label>
+                                                                        <div className="form-group"><label>Eligibility Year for UG *</label>
                                                                             <select id="ddlYears"
 
                                                                                 value={ugYear}
                                                                                 onChange={(e) => setugYear(e.target.value)}
                                                                                 className="form-control dropdown" name="highest_qualification">
-                                                                            </select></div>
+                                                                            </select>
+                                                                            <option value="">Select Eligibility Year for UG</option>
+                                                                            </div>
                                                                     </div>
                                                                     <div className="col">
 
@@ -227,7 +229,7 @@ function setChangecampus(e){
 
 
 
-                                                                            <label className="form-label">Eligibility Year for PG</label>
+                                                                            <label className="form-label">Eligibility Year for PG *</label>
                                                                             <select id="pgYears"
 
                                                                                 value={pgYear}
@@ -242,15 +244,15 @@ function setChangecampus(e){
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label">CAS Deposit</label>
+                                                                        <label className="form-label">CAS Deposit *</label>
                                                                         <input type="text" className="form-control"
-                                                                            value={deposit}
+                                                                            value={deposit} required
                                                                             onChange={(e) => setdeposit(e.target.value)}
                                                                             placeholder="CAS Deposit" name="tuitionfee" />
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label">Undergraduate Score Requirements(%)</label>
-                                                                        <input type="number" className="form-control"
+                                                                        <label className="form-label">Undergraduate Score Requirements(%) *</label>
+                                                                        <input type="number" required className="form-control"
                                                                             value={graduateScore}
                                                                             onChange={(e) => setgraduateScore(e.target.value)}
                                                                             placeholder="Undergraduate Score Requirements(%)" />
@@ -258,8 +260,8 @@ function setChangecampus(e){
 
 
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label"> Postgraduate Score Requirements(%)</label>
-                                                                        <input type="number"
+                                                                        <label className="form-label"> Postgraduate Score Requirements(%) *</label>
+                                                                        <input type="number" required
                                                                             value={postGraduateScore}
                                                                             onChange={(e) => setpostGraduateScore(e.target.value)}
                                                                             className="form-control" placeholder="Postgraduate Score Requirements" name=" courselevel" />
@@ -272,15 +274,15 @@ function setChangecampus(e){
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-md-6">
-                                                                        <label className="form-label">IELTS for UG</label>
-                                                                        <input type="number"
+                                                                        <label className="form-label">IELTS for UG *</label>
+                                                                        <input type="number" required
                                                                             value={ugIelts}
                                                                             onChange={(e) => setugIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for UG" name=" cgpa" />
                                                                     </div>
                                                                     <div className="col-md-6">
-                                                                        <label className="form-label">IELTS for PG </label>
-                                                                        <input type="number"
+                                                                        <label className="form-label">IELTS for PG *</label>
+                                                                        <input type="number" required
                                                                             value={pgIelts}
                                                                             onChange={(e) => setpgIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for PG" name=" eligibility" />
@@ -291,15 +293,15 @@ function setChangecampus(e){
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label>PTE for UG
-                                                                        </label><input type="number"
+                                                                        <div className="form-group"><label>PTE for UG *
+                                                                        </label><input type="number" required
                                                                             value={ugPTE}
                                                                             onChange={(e) => setugPTE(e.target.value)}
                                                                             className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" /></div>
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>PTE for PG </label><input type="number"
+                                                                            <label>PTE for PG *</label><input type="number" required
                                                                                 value={pgPTE}
                                                                                 onChange={(e) => setpgPTE(e.target.value)}
                                                                                 className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />
@@ -311,7 +313,7 @@ function setChangecampus(e){
                                                             
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label>Intake Available</label>
+                                                                        <div className="form-group"><label>Intake Available *</label>
                                                                         
                                                                         <select
                                                                             type="text" className="form-control" required

@@ -25,7 +25,7 @@ function Header(props) {
     <header id="rs-header" className="rs-header style3 modify1">
 
       {/* Menu Start */}
-    
+
 
       <div className="menu-area menu-sticky">
         <div className="container-fluid">
@@ -46,17 +46,23 @@ function Header(props) {
                 <div className="main-menu">
                   <nav className="rs-menu pr-86 lg-pr-50 md-pr-0">
                     <ul className="nav-menu">
-                      <li><Link to={'/'} className="menu-item-has-children current-menu-item" href="#">
+                      <li><Link to={'/School'} className="menu-item-has-children current-menu-item" href="#">
                         <span className='icon'><i className="fal fa-university fa-fw" ></i></span>Schools</Link>
                       </li>
-                      <li><Link to={'/About'} className="nav-link" href="#">
+                      <li><Link to={'/Recruitment'} className="nav-link" href="#">
                         Recruitment Partners</Link>
                       </li>
-                      <li><Link to={'/Contact'} href="#">
+                      <li><Link to={'/Student'} href="#">
                         Students</Link>
                       </li>
-                      <li className='mr-3'><a href="#" className="btn outline-website-btn"> Login </a></li>
-                      <li><a href="#" className="btn website-btn"> Register </a></li>
+                      <li className='mr-3'>
+                        <Link to={'/StudentLogin'} className="btn outline-website-btn" href="#">Login</Link>
+                      </li>
+                      <li>
+                      <Link to={'/StudentRegister'} className="btn website-btn" href="#">Register</Link>
+                        
+                     
+                        </li>
 
 
                     </ul> {/* //.nav-menu */}

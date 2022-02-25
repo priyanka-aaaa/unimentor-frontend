@@ -35,6 +35,7 @@ import Testing from './components/Testing';
 
 
 
+import Student from './components/Home/Student';
 
 
 import UniversityPassword from './components/university/UniversityPassword';
@@ -95,6 +96,9 @@ import Experience from './components/Home/Experience';
 import Activity from './components/Home/Activity';
 import NgoExperience from './components/Home/NgoExperience';
 import FinalFilter from './components/Home/FinalFilter';
+import Recruitment from './components/Home/Recruitment';
+import School from './components/Home/School';
+
 
 
 // import Counter from './components/Student/Counter';
@@ -127,7 +131,11 @@ function App() {
 
 
           <Switch>
+          
+          <Route path='/Student' component={Student} />
+          <Route path='/Recruitment' component={Recruitment} />
 
+          
             <Route path='/country' component={country} />
             <Route path='/Degree' component={Degree} />
             <Route path='/EducationLevel' component={EducationLevel} />
@@ -163,8 +171,9 @@ function App() {
 
             <Route  path='/About' component={About} />
             <Route  path='/Contact' component={Contact} />
+            <Route  path='/School' component={School} />
    
-
+            
 
            
             <Route path='/Universitylogin' component={Universitylogin} />
