@@ -20,6 +20,14 @@ export default function Overview() {
     const [foundedYearMessage, setfoundedYearMessage] = useState("");
     const [yearMessage, setyearMessage] = useState("");
     const [loader, setmyloader] = useState("false");
+    const [FoundedYearNoError, setFoundedYearNoError] = useState("");
+    const [RankingNoError, setRankingNoError] = useState("");
+    const [PopularCourseNoError, setPopularCourseNoError] = useState("");
+    const [YearNoError, setYearNoError] = useState("");
+
+    const [AcceptanceNoError, setAcceptanceNoError] = useState("");
+
+
 
 
     const onChangefoundedYear = (e) => {
@@ -71,18 +79,49 @@ export default function Overview() {
 
     function handleFormSubmit(event) {
         event.preventDefault();
+        var myPattern = /^[0-9_.]*$/;
 
         var foundedYearNo = foundedYear.toString().length;
 
         var yearNo = myyear.toString().length;
 
-        if (foundedYearNo !== 4) {
+
+
+        setFoundedYearNoError("")
+        setRankingNoError("")
+        setPopularCourseNoError("")
+        setYearNoError("")
+
+        setAcceptanceNoError("")
+
+        if (myPattern.test(foundedYear) === false) {
+            setFoundedYearNoError("Please Enter Only Number")
+
+        }
+        else if (foundedYearNo !== 4) {
             setfoundedYearMessage("Please Insert Four Digit")
+        }
+        else if (myPattern.test(ranking) === false) {
+            setRankingNoError("Please Enter Only Number")
+
+        }
+        else if (myPattern.test(courseNo) === false) {
+            setPopularCourseNoError("Please Enter Only Number")
+
+        }
+        else if (myPattern.test(myyear) === false) {
+            setYearNoError("Please Enter Only Number")
+
+        }
+        else if (myPattern.test(acceptanceRate) === false) {
+            setAcceptanceNoError("Please Enter Only Number")
+
         }
         else if (yearNo !== 4) {
             setyearMessage("Please Insert Four Digit")
         }
         else {
+
             setmyloader("true")
 
             const obj = {
@@ -118,6 +157,7 @@ export default function Overview() {
                 .catch(error => {
 
                 });
+
         }
 
     }
@@ -153,6 +193,7 @@ export default function Overview() {
                                             onChange={(e) => onChangefoundedYear(e.target.value)}
                                         />
                                         <span style={{ color: "red" }}> {foundedYearMessage}</span>
+                                        <div style={{ color: "red" }}> {FoundedYearNoError}</div>
 
 
 
@@ -166,6 +207,8 @@ export default function Overview() {
                                             value={ranking}
                                             onChange={(e) => setranking(e.target.value)}
                                         />
+                                        <div style={{ color: "red" }}> {RankingNoError}</div>
+
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -205,6 +248,7 @@ export default function Overview() {
                                             onChange={(e) => setcourseNo(e.target.value)}
                                             placeholder="7"
                                         />
+                                        <div style={{ color: "red" }}> {PopularCourseNoError}</div>
 
                                     </div>
                                 </div>
@@ -246,6 +290,8 @@ export default function Overview() {
                                                 />
 
                                                 <span style={{ color: "red" }}> {yearMessage}</span>
+                                                <div style={{ color: "red" }}> {YearNoError}</div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -273,11 +319,13 @@ export default function Overview() {
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="State/Province"> CGPA                                                           </label>
-                                                <input type="text" className="form-control" placeholder="CGPA"
+                                                <input type="number" className="form-control" placeholder="CGPA"
 
                                                     value={cgpa}
                                                     onChange={(e) => setcgpa(e.target.value)}
                                                 />
+
+
                                             </div>
                                         </div>
                                         <div className="col-md-4">
@@ -288,6 +336,8 @@ export default function Overview() {
                                                     required value={acceptanceRate}
                                                     onChange={(e) => setacceptanceRate(e.target.value)}
                                                 />
+                                                <div style={{ color: "red" }}> {AcceptanceNoError}</div>
+
                                             </div>
                                         </div>
                                     </div>

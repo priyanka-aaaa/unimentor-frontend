@@ -30,7 +30,9 @@ export default function PrimaryInfo() {
     const [DescriptionLengthError, setDescriptionLengthError] = useState("");
     const [websiteStartError, setwebsiteStartError] = useState("");
     const [websiteEndError, setwebsiteEndError] = useState("");
+    const [pincodeError, setpincodeError] = useState("");
 
+    
 
 
 
@@ -199,7 +201,11 @@ export default function PrimaryInfo() {
         setDescriptionLengthError("");
         setwebsiteStartError("");
         setwebsiteEndError("");
+        setpincodeError("");
+
+        
         var descriptionLength = description.split(' ').length;
+        var myPattern = /^[0-9_.]*$/;
 
 
         if (type === "") {
@@ -232,6 +238,11 @@ export default function PrimaryInfo() {
         else if (!website.endsWith('.com') && !website.endsWith('.edu') && !website.endsWith('.in')) {
             setwebsiteEndError("Please End website with .com or .edu or .in")
 
+        }
+
+        else if(myPattern.test(pincode)===false){
+            setpincodeError("Please Enter Only Number")
+            
         }
         else {
             setmyloader("true")
@@ -413,6 +424,9 @@ export default function PrimaryInfo() {
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
+                                          
+                                            <div style={{ color: "red" }}> {pincodeError}</div>
+
                                         </div>
                                     </div>
                                 </div>
