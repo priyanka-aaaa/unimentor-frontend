@@ -499,7 +499,7 @@ const UniversitySetcommission = () => {
                                                                                         <div className="mb-3">
                                                                                             <div className="row">
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Course Name</label>
+                                                                                                    <label className="form-label">Course Name *</label>
 
 
                                                                                                     <select className="form-control" onChange={(e) => handleChange(e.target.value)}>
@@ -520,7 +520,7 @@ const UniversitySetcommission = () => {
                                                                                                 </div>
 
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Select Fee</label>
+                                                                                                    <label className="form-label">Select Fee *</label>
                                                                                                     <select className="form-control">
                                                                                                         <option> {fee}</option>
 
@@ -536,7 +536,7 @@ const UniversitySetcommission = () => {
                                                                                                         onChange={(e) => setcommission(e.target.value)}
 
                                                                                                     >
-                                                                                                        <label className="form-label">Commision</label><br />
+                                                                                                        <label className="form-label">Commision *</label><br />
                                                                                                         <div className="form-check form-check-inline">
 
 
@@ -568,13 +568,13 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayAmount }}>
                                                                                                         <label className="form-label" >Enter Amount</label>
-                                                                                                        <input type="text"
+                                                                                                        <input type="number"
                                                                                                             onChange={e => amountcommissionValue(e.target.value)}
                                                                                                             className="form-control" placeholder="" name="enteramount" />
                                                                                                     </div>
                                                                                                     <div style={{ display: displayPercentage }}>
                                                                                                         <label className="form-label" >Enter Percentage(%)</label>
-                                                                                                        <input type="text" className="form-control" placeholder="" name="enter Percentage"
+                                                                                                        <input type="number" className="form-control" placeholder="" name="enter Percentage"
                                                                                                             onChange={e => percentagecommissionValue(e.target.value)}
                                                                                                         />
                                                                                                         <span>The Total commission is {Percentage}</span>
@@ -588,7 +588,7 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <fieldset
                                                                                                         onChange={(e) => setCommissionTime(e.target.value)}>
-                                                                                                        <label className="form-label">Commision Set is</label><br />
+                                                                                                        <label className="form-label">Commision Set is *</label><br />
                                                                                                         <div className="form-check form-check-inline">
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
                                                                                                                 value="one time"
@@ -614,14 +614,14 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayone }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
-                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
                                                                                                     <div style={{ display: displaymany }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
-                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
@@ -696,7 +696,7 @@ const UniversitySetcommission = () => {
                                                                                         <div className="mb-3">
                                                                                             <div className="row">
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Course Name</label>
+                                                                                                    <label className="form-label">Course Name *</label>
 
 
                                                                                                     <select className="form-control" onChange={(e) => handleChange(e.target.value)}>
@@ -716,7 +716,7 @@ const UniversitySetcommission = () => {
                                                                                                 </div>
 
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Select Fee</label>
+                                                                                                    <label className="form-label">Select Fee *</label>
                                                                                                     <select className="form-control" >
                                                                                                         <option> {fee}</option>
 
@@ -734,7 +734,7 @@ const UniversitySetcommission = () => {
                                                                                                         }
 
                                                                                                     >
-                                                                                                        <label className="form-label">Commision</label><br />
+                                                                                                        <label className="form-label">Commision *</label><br />
 
 
                                                                                                         <div className="form-check form-check-inline">
@@ -772,14 +772,14 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayEditAmount }}>
                                                                                                         <label className="form-label" >Enter Amount</label>
-                                                                                                        <input type="text"
+                                                                                                        <input type="number"
                                                                                                             value={commissionValue}
                                                                                                             onChange={e => amountcommissionValue(e.target.value)}
                                                                                                             className="form-control" placeholder="" name="enteramount" />
                                                                                                     </div>
                                                                                                     <div style={{ display: displayEditPercentage }}>
                                                                                                         <label className="form-label" >Enter Percentage(%)</label>
-                                                                                                        <input type="text" className="form-control" placeholder="" name="enter Percentage"
+                                                                                                        <input type="number" className="form-control" placeholder="" name="enter Percentage"
                                                                                                             onChange={e => percentagecommissionValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
@@ -792,7 +792,7 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <fieldset
                                                                                                         onChange={(e) => setEditCommissionTime(e.target.value)}>
-                                                                                                        <label className="form-label">Commision Set is</label><br />
+                                                                                                        <label className="form-label">Commision Set is *</label><br />
                                                                                                         <div className="form-check form-check-inline">
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
                                                                                                                 value="one time"
@@ -821,14 +821,14 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayEditone }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
-                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
                                                                                                     <div style={{ display: displayEditmany }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
-                                                                                                        <input type="text" className="form-control" placeholder="Enter Fee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
