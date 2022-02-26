@@ -210,7 +210,7 @@ const Application = () => {
             setApplicationError("Please Enter Application")
         }
         else {
-           
+
             setwidth(0)
             setmyloader("true")
             const obj = {
@@ -265,7 +265,7 @@ const Application = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
-setmyloader("true")
+                        setmyloader("true")
 
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
@@ -282,6 +282,10 @@ setmyloader("true")
                                     })
                                         .then(response => response.json())
                                         .then(data => {
+                                            var myresults=data.universityAdmissions
+                                            if (Object.keys(myresults).length === 0) {
+                                                setTable("true");
+                                            }
                                             setFormValues(data.universityAdmissions)
                                         })
 

@@ -34,7 +34,7 @@ const Document = () => {
     const [loader, setmyloader] = useState("false");
     const [ApplicationError, setApplicationError] = useState("");
     useEffect(() => {
-       
+
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
 
@@ -45,7 +45,7 @@ const Document = () => {
             .then(response => response.json())
             .then(data => {
                 var myresults = data.adminScholarships;
-           
+
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
@@ -90,7 +90,7 @@ const Document = () => {
         setwidth("1600px");
         seteditnewcomponent(1)
 
-       
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships/' + value;
 
         fetch(url1, {
@@ -101,17 +101,17 @@ const Document = () => {
             .then(data => {
                 setMYpoint(data.universityScholarship.scholarship)
             })
-  
+
     }
 
     let clickAddHandler = (datum) => {
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".addhelpSCHOLARSHIP")
         element.editor.insertHTML(datum);
@@ -134,38 +134,38 @@ const Document = () => {
             setTable("false")
 
             setmyloader("true")
-        const obj = {
-            scholarship: InsetApplication
-        };
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/scholarships', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                setmyloader("false")
+            const obj = {
+                scholarship: InsetApplication
+            };
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/scholarships', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
 
-                if (res.data.success === true) {
-                    setaddWidth(0)
-                    setsuccessMessage("Scholarship Added")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+                    if (res.data.success === true) {
+                        setaddWidth(0)
+                        setsuccessMessage("Scholarship Added")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
 
-                    
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityScholarships)
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
+                        fetch(url1, {
+                            method: 'GET'
                         })
-            
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityScholarships)
+                            })
 
-                }
-                else {
 
-                }
-            })
-            .catch(error => {
+                    }
+                    else {
 
-            });
+                    }
+                })
+                .catch(error => {
+
+                });
         }
     }
     let clickEditAddHandler = (datum) => {
@@ -173,16 +173,16 @@ const Document = () => {
 
         if (tempp !== 1) {
 
-            var datum = "<ul><li>" + datum + "</li></ul>"; 
+            var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";  
+            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
         var element = document.querySelector(".helpeditSCHOLARSHIP")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-      
+
     }
 
 
@@ -198,42 +198,42 @@ const Document = () => {
             setApplicationError("Please Enter Application")
         }
         else {
-           
+
             setwidth(0)
             setmyloader("true")
-        const obj = {
-            scholarship: InsetApplication
+            const obj = {
+                scholarship: InsetApplication
 
 
-        };
-        var EditUrl = process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + editId;
-        axios.put(EditUrl, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                setmyloader("false")
+            };
+            var EditUrl = process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + editId;
+            axios.put(EditUrl, obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
 
-                if (res.data.success === true) {
-                    setwidth(0)
-                    setsuccessMessage("Scholarship Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-              
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
-                    fetch(url1, {
-                        method: 'GET'
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setFormValues(data.universityScholarships)
+                    if (res.data.success === true) {
+                        setwidth(0)
+                        setsuccessMessage("Scholarship Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
+                        fetch(url1, {
+                            method: 'GET'
                         })
-                  
-                }
-                else {
+                            .then(response => response.json())
+                            .then(data => {
+                                setFormValues(data.universityScholarships)
+                            })
 
-                }
-            })
-            .catch(error => {
+                    }
+                    else {
 
-            });
+                    }
+                })
+                .catch(error => {
+
+                });
         }
     }
     let handleDeleteClick = (value) => {
@@ -243,11 +243,11 @@ const Document = () => {
     return (
 
         <div>
-             {loader === "true" ?
+            {loader === "true" ?
 
-<Loader />
+                <Loader />
 
-: null}
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -263,7 +263,7 @@ const Document = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
-setmyloader("true")
+                        setmyloader("true")
 
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
@@ -274,16 +274,20 @@ setmyloader("true")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
                                     setwidth(0);
-                                
+
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
                                         .then(response => response.json())
                                         .then(data => {
+                                            var myresults=data.universityScholarships
+                                            if (Object.keys(myresults).length === 0) {
+                                                setTable("true");
+                                            }
                                             setFormValues(data.universityScholarships)
                                         })
-                                  
+
 
                                 }
                                 else {
@@ -312,58 +316,58 @@ setmyloader("true")
 
                     <div className="card-body">
                         <div className="formbody">
-                        <div className="mt-4 mb-4">
-                            <div className="row">
-                              
-                           <div className="col-md-6"><h3>Scholarship</h3></div>
-                                   <div className="col-md-6 text-right"> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
-</div> 
-                                   
+                            <div className="mt-4 mb-4">
+                                <div className="row">
+
+                                    <div className="col-md-6"><h3>Scholarship</h3></div>
+                                    <div className="col-md-6 text-right"> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
+                                    </div>
+
                                 </div>
 
                                 <div className="card shadow mb-4">
-                                {myTable === "true" ?
+                                    {myTable === "true" ?
                                         null
-                                        : 
-                                    <div className="table-responsive-sm">
-                                        <table className="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
+                                        :
+                                        <div className="table-responsive-sm">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>ID</th>
 
-                                                    <th>Action</th>
+                                                        <th>Action</th>
 
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-
-
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
 
 
-                                                {FormValues.map((element, index) => {
-
-                                                    return (
-
-                                                        <tr key={index}>
-                                                            <td> {element.scholarship}</td>
-
-                                                            <td>
-
-                                                                <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
-
-                                                                <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
-
-                                                            </td>
-                                                        </tr>
-
-                                                    )
-                                                })}
-                                            </tbody>
 
 
-                                        </table>
-                                    </div>
-}
+                                                    {FormValues.map((element, index) => {
+
+                                                        return (
+
+                                                            <tr key={index}>
+                                                                <td> {element.scholarship}</td>
+
+                                                                <td>
+
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+
+                                                                </td>
+                                                            </tr>
+
+                                                        )
+                                                    })}
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                    }
                                 </div>
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
@@ -391,8 +395,8 @@ setmyloader("true")
                                                                     <input id="addx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} 
-                                                                        
+                                                                        onChange={event => this.changeHandler(event)}
+
                                                                         class="form-control editarea addhelpSCHOLARSHIP"
                                                                         input="addx"
                                                                     >

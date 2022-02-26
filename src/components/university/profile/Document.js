@@ -56,10 +56,7 @@ const Document = () => {
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-                else {
-                    console.log("nono");
 
-                }
 
                 setFormValues(data.universityDocuments)
             })
@@ -94,7 +91,7 @@ const Document = () => {
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
-
+        setApplicationError("")
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents/' + value;
 
         fetch(url1, {
@@ -139,7 +136,7 @@ const Document = () => {
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
 
-            setApplicationError("Please Enter Application")
+            setApplicationError("Please Enter Document")
         }
         else {
             setaddWidth(0)
@@ -209,7 +206,7 @@ const Document = () => {
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
 
-            setApplicationError("Please Enter Application")
+            setApplicationError("Please Enter Document")
         }
         else {
 
@@ -286,13 +283,17 @@ const Document = () => {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-
+                                    
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
                                         .then(response => response.json())
                                         .then(data => {
+                                            var myresults=data.universityDocuments
+                                            if (Object.keys(myresults).length === 0) {
+                                                setTable("true");
+                                            }
                                             setFormValues(data.universityDocuments)
                                         })
 
