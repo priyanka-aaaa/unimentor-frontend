@@ -116,7 +116,10 @@ function Recruitment(props) {
             </div>
           </div>
           <div className="rs-animation">
-            <img className="dance3" src="assets/images/banner/b4-dot-6.png" alt="images" />
+            <img className="dance3" src=
+            {images["home-b4-dot-6.png"]}
+           
+            alt="images" />
           </div>
         </div>
         {/* Banner Section End */}
