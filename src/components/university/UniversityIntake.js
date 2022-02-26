@@ -31,21 +31,28 @@ const UniversityIntake = () => {
         setMounted(mounted)
         setuniversityId(universityId)
 
- 
+
 
 
         var ddlYears = document.getElementById("myyear");
         var ddlYearsEdit = document.getElementById("myyearEdit");
 
+        // ddlYears.appendChild("");
 
-       
         var currentYear = (new Date()).getFullYear();
+        // var selectYear = 'Select Year';
+        // ddlYears.appendChild(selectYear);
         for (var i = currentYear; i < 2027; i++) {
 
             var option = document.createElement("OPTION");
             option.innerHTML = i;
             option.value = i;
+            console.log("option");
+            console.log(option);
+
+
             ddlYears.appendChild(option);
+
         }
         for (var i = currentYear; i < 2027; i++) {
 
@@ -55,7 +62,7 @@ const UniversityIntake = () => {
             ddlYearsEdit.appendChild(option);
         }
 
-   
+
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
             method: 'GET',
@@ -65,7 +72,7 @@ const UniversityIntake = () => {
             .then(data => {
                 setdata(data.universityIntakes)
             })
-   
+
     }, [])
 
     function handleClick(value) {
@@ -101,7 +108,7 @@ const UniversityIntake = () => {
         setdeleteId(value)
 
     }
- 
+
     function closebox(value) {
         setwidth("0px");
     }
@@ -127,7 +134,7 @@ const UniversityIntake = () => {
                     setsuccessMessage("course update")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-                  
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -137,7 +144,7 @@ const UniversityIntake = () => {
                         .then(data => {
                             setdata(data.universityIntakes)
                         })
-             
+
                 }
                 else {
 
@@ -167,7 +174,7 @@ const UniversityIntake = () => {
                     setyear("");
                     setmonth("");
 
-          
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -177,7 +184,7 @@ const UniversityIntake = () => {
                         .then(data => {
                             setdata(data.universityIntakes)
                         })
-                
+
                 }
                 else {
 
@@ -234,7 +241,7 @@ const UniversityIntake = () => {
                                                     setsuccessMessage("course delete")
                                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                                     setsubmitSuccess(1)
-                                                    
+
                                                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                                                     fetch(url, {
                                                         method: 'GET',
@@ -244,7 +251,7 @@ const UniversityIntake = () => {
                                                         .then(data => {
                                                             setdata(data.universityIntakes)
                                                         })
-                                                 
+
                                                 }
                                                 else {
 
@@ -337,13 +344,13 @@ const UniversityIntake = () => {
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
-                                                        <h3>Edit Intake</h3>
+                                                    <h3>Edit Intake</h3>
                                                 </div>
                                                 <div className="table-responsive mt-5">
 
                                                     <div className="row">
                                                         <div className="col-sm-12">
-                                                           
+
                                                             <form onSubmit={handleEditSubmit}>
                                                                 <div className="card-body" >
 
@@ -373,8 +380,9 @@ const UniversityIntake = () => {
 
                                                                                     className="form-control"
                                                                                     placeholder="Month" name="Month"
-                                                                                    value={month}
+                                                                                    value={month} required
                                                                                     onChange={(e) => setmonth(e.target.value)}>
+                                                                                    <option value=''>Select Month</option>
                                                                                     <option value='Jan'>Janaury</option>
                                                                                     <option value='Feb'>February</option>
                                                                                     <option value='March'>March</option>
@@ -436,7 +444,7 @@ const UniversityIntake = () => {
                                                 </div>
                                                 <div className="row mt-3">
                                                     <div className="col-md-12">
-                                                       <h3 className="pl-3">Add Intake</h3>
+                                                        <h3 className="pl-3">Add Intake</h3>
                                                     </div>
                                                 </div>
                                                 <div className="table-responsive ">
@@ -593,7 +601,7 @@ const UniversityIntake = () => {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-          
+
                     {/* <!-- End of Footer --> */}
 
                 </div>

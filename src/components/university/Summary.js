@@ -31,6 +31,10 @@ export default function Summary() {
     const [pgIeltsNoError, setpgIeltsNoError] = useState("");
     const [ugPTENoError, setugPTENoError] = useState("");
     const [pgPTENoError, setpgPTENoError] = useState("");
+    const [ugYearNoMessage, setugYearNoMessage] = useState("");
+    const [pgYearNoMessage, setpgYearNoMessage] = useState("");
+    const [pgYearOnlyNoError, setpgYearOnlyNoError] = useState("");
+    const [ugYearOnlyNoError, setugYearOnlyNoError] = useState("");
 
 
 
@@ -39,34 +43,7 @@ export default function Summary() {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-
-        var ddlYears = document.getElementById("ddlYears");
-
-
         var currentYear = (new Date()).getFullYear();
-
-
-        for (var i = currentYear; i >= 1950; i--) {
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYears.appendChild(option);
-        }
-        var pgYears = document.getElementById("pgYears");
-
-
-
-
-
-        for (var i = currentYear; i >= 1950; i--) {
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            pgYears.appendChild(option);
-        }
-
-
-
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
             method: 'GET',
@@ -121,12 +98,21 @@ export default function Summary() {
     function Summary(event) {
         event.preventDefault();
         var myPattern = /^[0-9_.]*$/;
+        var ugYearNo = ugYear.toString().length;
+        var pgYearNo = pgYear.toString().length;
+
+
         setgraduateScoreNoError("")
         setpostGraduateScoreNoError("")
         setugIeltsNoError("")
         setpgIeltsNoError('')
         setugPTENoError("")
         setpgPTENoError("")
+        setugYearNoMessage("")
+        setpgYearNoMessage("")
+        setpgYearOnlyNoError("")
+        setugYearOnlyNoError("")
+
         if (myPattern.test(graduateScore) === false) {
             setgraduateScoreNoError("Please Enter Only Number")
         }
@@ -145,7 +131,18 @@ export default function Summary() {
         else if (myPattern.test(pgPTE) === false) {
             setpgPTENoError("Please Enter Only Number")
         }
-
+        else if (myPattern.test(ugYear) === false) {
+            setugYearOnlyNoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(pgYear) === false) {
+            setpgYearOnlyNoError("Please Enter Only Number")
+        }
+        else if (ugYearNo !== 4) {
+            setugYearNoMessage("Please Insert Four Digit")
+        }
+        else if (pgYearNo !== 4) {
+            setpgYearNoMessage("Please Insert Four Digit")
+        }
         else {
             setmyloader("true")
 
@@ -258,14 +255,17 @@ export default function Summary() {
                                                                         {/* <label className="form-label">Eligibilit Year for UG
                                                                         </label> */}
                                                                         <div className="form-group"><label>Eligibility Year for UG *</label>
-                                                                            <select id="ddlYears"
 
-                                                                                value={ugYear}
+                                                                            <input type="number" className="form-control"
+                                                                                value={ugYear} required
                                                                                 onChange={(e) => setugYear(e.target.value)}
-                                                                                className="form-control dropdown" name="highest_qualification">
-                                                                            </select>
-                                                                            <option value="">Select Eligibility Year for UG</option>
+                                                                                placeholder="Course name" name="cname" />
+                                                                            <div style={{ color: "red" }}> {ugYearNoMessage}</div>
+                                                                            <div style={{ color: "red" }}> {ugYearOnlyNoError}</div>
+
                                                                         </div>
+
+
                                                                     </div>
                                                                     <div className="col">
 
@@ -276,12 +276,16 @@ export default function Summary() {
 
 
                                                                             <label className="form-label">Eligibility Year for PG *</label>
-                                                                            <select id="pgYears"
 
-                                                                                value={pgYear}
+
+                                                                            <input type="number" className="form-control"
+                                                                                value={pgYear} required
                                                                                 onChange={(e) => setpgYear(e.target.value)}
-                                                                                className="form-control dropdown" name="highest_qualification">
-                                                                            </select></div>
+                                                                                placeholder="Course name" name="cname" />
+                                                                            <div style={{ color: "red" }}> {pgYearNoMessage}</div>
+                                                                            <div style={{ color: "red" }}> {pgYearOnlyNoError}</div>
+
+                                                                        </div>
 
                                                                     </div>
                                                                 </div>
