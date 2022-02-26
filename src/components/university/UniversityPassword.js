@@ -4,7 +4,7 @@ import Loader from '../Home/Loader';
 
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import Footer from './Footer';
+
 export default function UniversityPassword() {
 
 
@@ -121,7 +121,7 @@ export default function UniversityPassword() {
                             </div> : null}
                             {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Setting</h1>
+                                <h1 className="h3 mb-0 text-gray-800">Settings</h1>
 
 
                             </div>
@@ -199,7 +199,7 @@ export default function UniversityPassword() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+                    
                     {/* <!-- End of Footer --> */}
 
                 </div>

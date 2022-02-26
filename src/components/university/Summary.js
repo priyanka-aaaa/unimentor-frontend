@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Loader from '../Home/Loader';
 
-import Footer from './Footer';
+
 
 export default function Summary() {
     const [mounted, setMounted] = useState();
@@ -389,7 +389,7 @@ export default function Summary() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+            
                     {/* <!-- End of Footer --> */}
 
                 </div>

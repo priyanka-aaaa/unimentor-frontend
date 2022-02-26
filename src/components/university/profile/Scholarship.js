@@ -49,10 +49,7 @@ const Document = () => {
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-                else {
-                    console.log("nono");
-
-                }
+               
                 setformAdminValues(data.adminScholarships)
             })
 

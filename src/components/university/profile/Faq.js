@@ -58,6 +58,7 @@ const Faq = () => {
     }
     let handleSubmit = (event) => {
         event.preventDefault();
+        setmyloader("true")
 
 
         var myvalues = JSON.stringify(formValues);
@@ -67,11 +68,26 @@ const Faq = () => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/faqs', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
+                        setmyloader("false")
 
                         if (res.data.success === true) {
                             setsuccessMessage("Faq Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
+                            fetch(url, {
+                                method: 'GET',
+                                headers: { 'Authorization': mounted }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.universityFaqs;
+                                    if (Object.keys(myresults).length === 0) {
+                                    }
+                                    else {
+                                        setFormValues(data.universityFaqs)
+                                    }
+                                })
                         }
                         else {
 
@@ -85,11 +101,26 @@ const Faq = () => {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
+                        setmyloader("false")
 
                         if (res.data.success === true) {
                             setsuccessMessage("Faq Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
+                            fetch(url, {
+                                method: 'GET',
+                                headers: { 'Authorization': mounted }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.universityFaqs;
+                                    if (Object.keys(myresults).length === 0) {
+                                    }
+                                    else {
+                                        setFormValues(data.universityFaqs)
+                                    }
+                                })
                         }
                         else {
 
@@ -120,11 +151,11 @@ const Faq = () => {
 
     return (
         <div>
-             {loader === "true" ?
+            {loader === "true" ?
 
-<Loader />
+                <Loader />
 
-: null}
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -209,7 +240,7 @@ const Faq = () => {
                                                                 <div key={index}>
 
 
-                                                                    {/* <p className="text-right" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i> </p> */}
+
                                                                     <div className="mb-3">
 
                                                                         <div className="row">
@@ -259,7 +290,7 @@ const Faq = () => {
                                                                             className="btn btn-secondary vbtn">Save
                                                                         </button>
                                                                         <button type="button" className="btn btn-success"
-                                                                            data-bs-toggle="collapse" href="#collapse1">Save &
+                                                                            data-bs-toggle="collapse" href="#collapseOne">Save &
                                                                             Preview</button>
                                                                     </div>
                                                                 </div>

@@ -57,15 +57,11 @@ const Application = () => {
             .then(response => response.json())
             .then(data => {
                 var myresults = data.universityAdmissions;
-                console.log("data.universityAdmissions");
-                // console.log(data.universityAdmissions);
+              
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-                else {
-                    console.log("nono");
-
-                }
+               
                 setFormValues(data.universityAdmissions)
             })
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import Footer from './Footer';
+
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../Home/Loader';
 
@@ -882,7 +882,7 @@ const UniversitySetcommission = () => {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+
                     {/* <!-- End of Footer --> */}
 
                 </div>

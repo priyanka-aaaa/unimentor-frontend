@@ -4,7 +4,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import Footer from './Footer';
+
 const UniversityIntake = () => {
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("");
@@ -593,7 +593,7 @@ const UniversityIntake = () => {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+          
                     {/* <!-- End of Footer --> */}
 
                 </div>

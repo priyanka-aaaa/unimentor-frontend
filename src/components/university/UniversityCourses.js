@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Courses from './Courses';
 import SweetAlert from 'react-bootstrap-sweetalert';
-import Footer from './Footer';
+
 const UniversityCourses = () => {
     
     return (
@@ -38,7 +38,7 @@ const UniversityCourses = () => {
 
                     {/* end for popup */}
                     {/* <!-- Footer --> */}
-                    <Footer />
+                   
                     {/* <!-- End of Footer --> */}
 
                 </div>

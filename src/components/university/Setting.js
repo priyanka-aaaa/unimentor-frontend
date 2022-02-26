@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-import Footer from './Footer';
+
 export default function Setting() {
  
 
@@ -141,7 +141,7 @@ export default function Setting() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+           
                     {/* <!-- End of Footer --> */}
 
                 </div>

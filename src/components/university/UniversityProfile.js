@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 
 
-import Footer from './Footer';
+
 import Application from './profile/Application';
 import CoursesFee from './profile/CoursesFee';
 import PrimaryInfo from './profile/PrimaryInfo';
@@ -90,7 +90,7 @@ function UniversityProfile(props) {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-                    <Footer />
+                   
                     {/* <!-- End of Footer --> */}
 
                 </div>
