@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import Loader from '../Home/Loader';
 
 import Footer from './Footer';
 
@@ -22,19 +23,20 @@ export default function Summary() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [Intakedata, setIntakedata] = useState([]);
+    const [loader, setmyloader] = useState("false");
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        
+
         var ddlYears = document.getElementById("ddlYears");
 
- 
+
         var currentYear = (new Date()).getFullYear();
 
-   
+
         for (var i = currentYear; i >= 1950; i--) {
             var option = document.createElement("OPTION");
             option.innerHTML = i;
@@ -46,7 +48,7 @@ export default function Summary() {
 
 
 
-  
+
         for (var i = currentYear; i >= 1950; i--) {
             var option = document.createElement("OPTION");
             option.innerHTML = i;
@@ -55,24 +57,24 @@ export default function Summary() {
         }
 
 
- 
-         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-         fetch(url2, {
-             method: 'GET',
-             headers: { 'Authorization': mounted }
-         })
-             .then(response => response.json())
-             .then(data => {
-                 var myresults = data.universityIntakes
-                 if (Object.keys(myresults).length === 0) {
- 
-                 }
-                 else {
-                     setIntakedata(data.universityIntakes)
-                    
-                 }
- 
-             })
+
+        const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+        fetch(url2, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                var myresults = data.universityIntakes
+                if (Object.keys(myresults).length === 0) {
+
+                }
+                else {
+                    setIntakedata(data.universityIntakes)
+
+                }
+
+            })
 
 
 
@@ -106,9 +108,11 @@ export default function Summary() {
             });
 
     }, [])
-  
+
     function Summary(event) {
         event.preventDefault();
+        setmyloader("true")
+
         const obj = {
             campus: campus,
             ugYear: ugYear,
@@ -123,9 +127,10 @@ export default function Summary() {
             intake: intake
 
         };
- 
+
         axios.put(process.env.REACT_APP_SERVER_URL + 'university/summary', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
 
                 if (res.data.success === true) {
                     setsuccessMessage("course delete")
@@ -142,14 +147,14 @@ export default function Summary() {
             });
     }
 
-function setChangecampus(e){
-    const arr = e.split(" ");
-    for (var i = 0; i < arr.length; i++) {
-        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    function setChangecampus(e) {
+        const arr = e.split(" ");
+        for (var i = 0; i < arr.length; i++) {
+            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        }
+        const str2 = arr.join(" ");
+        setcampus(str2)
     }
-    const str2 = arr.join(" ");
-    setcampus(str2)
-}
     return (
         <div id="page-top">
 
@@ -193,7 +198,11 @@ function setChangecampus(e){
                                         <div className="card shadow mb-4">
                                             <div id="accordion">
                                                 <div className="card-body">
+                                                    {loader === "true" ?
 
+                                                        <Loader />
+
+                                                        : null}
                                                     <div className="from-block">
                                                         <form onSubmit={Summary}>
 
@@ -219,7 +228,7 @@ function setChangecampus(e){
                                                                                 className="form-control dropdown" name="highest_qualification">
                                                                             </select>
                                                                             <option value="">Select Eligibility Year for UG</option>
-                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
 
@@ -310,28 +319,28 @@ function setChangecampus(e){
                                                                 </div>
                                                             </div>
                                                             <div className="mb-3">
-                                                            
+
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label>Intake Available *</label>
-                                                                        
-                                                                        <select
-                                                                            type="text" className="form-control" required
-                                                                            
-                                                                            onChange={(e) => setintake(e.target.value)}    value={intake}>
+
+                                                                            <select
+                                                                                type="text" className="form-control" required
+
+                                                                                onChange={(e) => setintake(e.target.value)} value={intake}>
                                                                                 <option value="">Select Intake</option>
-                                                                            {Intakedata.map((object, i) => {
+                                                                                {Intakedata.map((object, i) => {
 
-                                                                                return (
-                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                                )
-                                                                            })}
+                                                                                    return (
+                                                                                        <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                    )
+                                                                                })}
 
-                                                                        </select>
-                                                                        
-                                                                        
-                                                                        
-                                    </div>
+                                                                            </select>
+
+
+
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
 

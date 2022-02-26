@@ -3,6 +3,8 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import Footer from './Footer';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../Home/Loader';
+
 const UniversitySetcommission = () => {
     const [mounted, setMounted] = useState();
     const [Percentage, setPercentage] = useState();
@@ -14,7 +16,7 @@ const UniversitySetcommission = () => {
     const [displayPercentage, setdisplayPercentage] = useState("none");
     const [displayone, setdisplayone] = useState("none");
     const [displaymany, setdisplaymany] = useState("none");
- 
+
     const [Editid, setEditid] = useState([]);
 
     const [EditcommissionType, setEditcommissionType] = useState([]);
@@ -44,7 +46,8 @@ const UniversitySetcommission = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
-  
+    const [loader, setmyloader] = useState("false");
+
     function setEditCommissionTime(value) {
 
         setEdittimeType(value)
@@ -72,7 +75,7 @@ const UniversitySetcommission = () => {
             setdisplayEditAmount("none");
         }
     }
-   
+
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -87,7 +90,7 @@ const UniversitySetcommission = () => {
             .then(data => {
                 setcommissionData(data.universityCommissions)
             })
-       
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url2, {
             method: 'GET',
@@ -97,7 +100,7 @@ const UniversitySetcommission = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-       
+
     }, [])
 
 
@@ -128,7 +131,7 @@ const UniversitySetcommission = () => {
     function percentagecommissionValue(percentageValue) {
         var number1 = fee;
         var number2 = percentageValue;
-        var value = (number1 / number2); 
+        var value = (number1 / number2);
         setPercentage(value)
         setcommissionValue(value)
     }
@@ -146,7 +149,7 @@ const UniversitySetcommission = () => {
     function handleEditClick(value) {
         seteditId(value);
         setwidth("1600px");
-
+      
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions/' + value;
         fetch(url, {
             method: 'GET',
@@ -194,7 +197,7 @@ const UniversitySetcommission = () => {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-   
+
     function closebox(value) {
         setwidth("0px");
 
@@ -211,10 +214,12 @@ const UniversitySetcommission = () => {
     let handleAddSubmit = (event) => {
         event.preventDefault();
         setaddWidth("0");
+        setmyloader("true")
+
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
-       
+
         obj1.append("commissionType", commissionChecked);
 
         obj1.append("commissionValue", commissionValue);
@@ -229,11 +234,12 @@ const UniversitySetcommission = () => {
         })
             .then(response => response.json())
             .then(data => {
+                setmyloader("false")
 
                 setsuccessMessage("Commisssion Added")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-          
+
                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                 fetch(url, {
                     method: 'GET',
@@ -242,14 +248,16 @@ const UniversitySetcommission = () => {
                     .then(response => response.json())
                     .then(data => {
                         setcommissionData(data.universityCommissions)
-                   
+
                     })
-              
+
             })
     }
     let handleEditSubmit = (event) => {
         event.preventDefault();
         setwidth("0");
+        setmyloader("true")
+
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", fee);
@@ -265,12 +273,14 @@ const UniversitySetcommission = () => {
         })
             .then(response => response.json())
             .then(data => {
+                setmyloader("false")
                 setaddWidth("0");
                 setsuccessMessage("Commisssion Updated")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
 
-           
+
+
                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                 fetch(url, {
                     method: 'GET',
@@ -282,7 +292,7 @@ const UniversitySetcommission = () => {
 
 
 
-                     
+
                         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                         fetch(url, {
                             method: 'GET',
@@ -292,16 +302,16 @@ const UniversitySetcommission = () => {
                             .then(data => {
                                 setcommissionData(data.universityCommissions)
                             })
-                  
+
                     })
-                
+
             })
     }
 
     return (
         <div id="page-top">
 
-       
+
 
             {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
@@ -316,8 +326,13 @@ const UniversitySetcommission = () => {
 
                         {/* topbar will be come there */}
                         <Topbar />
-                     
+
                         <div className="container">
+                            {loader === "true" ?
+
+                                <Loader />
+
+                                : null}
                             {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
                             </div> : null}
@@ -334,6 +349,8 @@ const UniversitySetcommission = () => {
                                     title="Are you sure?"
                                     onConfirm={(value) => {
                                         setshowSweetAlert("0");
+                                        setmyloader("true")
+
                                         const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + deleteId
                                         fetch(url2, {
                                             method: 'delete',
@@ -342,14 +359,16 @@ const UniversitySetcommission = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
+                                                setmyloader("false")
+
                                                 setaddWidth("0");
                                                 setsuccessMessage("Commisssion Deleted")
                                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                                 setsubmitSuccess(1)
-                                         
 
 
-                                             
+
+
                                                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                                                 fetch(url, {
                                                     method: 'GET',
@@ -359,7 +378,7 @@ const UniversitySetcommission = () => {
                                                     .then(data => {
                                                         setcommissionData(data.universityCommissions)
                                                     })
-                                          
+
                                             })
 
                                     }}
@@ -435,7 +454,7 @@ const UniversitySetcommission = () => {
                                             </div>
                                         </div>
 
-                                                        
+
 
                                         <div className="card-body course-sidenav" id="mySideAdd"
                                             style={{ width: addWidth }}
@@ -452,8 +471,8 @@ const UniversitySetcommission = () => {
                                                 </div>
                                                 <div className="row mt-3">
                                                     <div className="col-md-12">
-                                                    <h3>Add Commission</h3>
-                                                    </div>    
+                                                        <h3>Add Commission</h3>
+                                                    </div>
                                                 </div>
                                                 <div className="table-responsive ">
 
@@ -469,7 +488,7 @@ const UniversitySetcommission = () => {
                                                                         <div className="card shadow mb-4">
                                                                             <div id="accordion">
 
-                                                                              
+
                                                                                 <div className="card-body">
 
                                                                                     <div className="from-block">
@@ -492,7 +511,7 @@ const UniversitySetcommission = () => {
                                                                                                                 <option
                                                                                                                     onClick={(e) => handleClick(object.fee)}
 
-                                                        
+
 
                                                                                                                     value={object.courseName + "&&" + object.fee} key={i}>{object.courseName}</option>
                                                                                                             )
@@ -558,9 +577,9 @@ const UniversitySetcommission = () => {
                                                                                                         <input type="text" className="form-control" placeholder="" name="enter Percentage"
                                                                                                             onChange={e => percentagecommissionValue(e.target.value)}
                                                                                                         />
-                                                                                                           <span>The Total commission is {Percentage}</span>
+                                                                                                        <span>The Total commission is {Percentage}</span>
                                                                                                     </div>
-                                                                                                 
+
                                                                                                 </div>
                                                                                             </div>
 
