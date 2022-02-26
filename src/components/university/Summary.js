@@ -25,6 +25,15 @@ export default function Summary() {
     const [Intakedata, setIntakedata] = useState([]);
     const [loader, setmyloader] = useState("false");
 
+    const [graduateScoreNoError, setgraduateScoreNoError] = useState("");
+    const [postGraduateScoreNoError, setpostGraduateScoreNoError] = useState("");
+    const [ugIeltsNoError, setugIeltsNoError] = useState("");
+    const [pgIeltsNoError, setpgIeltsNoError] = useState("");
+    const [ugPTENoError, setugPTENoError] = useState("");
+    const [pgPTENoError, setpgPTENoError] = useState("");
+
+
+
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -111,40 +120,68 @@ export default function Summary() {
 
     function Summary(event) {
         event.preventDefault();
-        setmyloader("true")
+        var myPattern = /^[0-9_.]*$/;
+        setgraduateScoreNoError("")
+        setpostGraduateScoreNoError("")
+        setugIeltsNoError("")
+        setpgIeltsNoError('')
+        setugPTENoError("")
+        setpgPTENoError("")
+        if (myPattern.test(graduateScore) === false) {
+            setgraduateScoreNoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(postGraduateScore) === false) {
+            setpostGraduateScoreNoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(ugIelts) === false) {
+            setugIeltsNoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(pgIelts) === false) {
+            setpgIeltsNoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(ugPTE) === false) {
+            setugPTENoError("Please Enter Only Number")
+        }
+        else if (myPattern.test(pgPTE) === false) {
+            setpgPTENoError("Please Enter Only Number")
+        }
 
-        const obj = {
-            campus: campus,
-            ugYear: ugYear,
-            pgYear: pgYear,
-            deposit: deposit,
-            graduateScore: graduateScore,
-            postGraduateScore: postGraduateScore,
-            ugIelts: ugIelts,
-            pgIelts: pgIelts,
-            ugPTE: ugPTE,
-            pgPTE: pgPTE,
-            intake: intake
+        else {
+            setmyloader("true")
 
-        };
+            const obj = {
+                campus: campus,
+                ugYear: ugYear,
+                pgYear: pgYear,
+                deposit: deposit,
+                graduateScore: graduateScore,
+                postGraduateScore: postGraduateScore,
+                ugIelts: ugIelts,
+                pgIelts: pgIelts,
+                ugPTE: ugPTE,
+                pgPTE: pgPTE,
+                intake: intake
 
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/summary', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                setmyloader("false")
+            };
 
-                if (res.data.success === true) {
-                    setsuccessMessage("course delete")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                }
-                else {
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/summary', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
 
-                }
+                    if (res.data.success === true) {
+                        setsuccessMessage("course delete")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+                    }
+                    else {
 
-            })
-            .catch(error => {
+                    }
 
-            });
+                })
+                .catch(error => {
+
+                });
+        }
     }
 
     function setChangecampus(e) {
@@ -265,6 +302,8 @@ export default function Summary() {
                                                                             value={graduateScore}
                                                                             onChange={(e) => setgraduateScore(e.target.value)}
                                                                             placeholder="Undergraduate Score Requirements(%)" />
+                                                                        <div style={{ color: "red" }}> {graduateScoreNoError}</div>
+
                                                                     </div>
 
 
@@ -274,6 +313,7 @@ export default function Summary() {
                                                                             value={postGraduateScore}
                                                                             onChange={(e) => setpostGraduateScore(e.target.value)}
                                                                             className="form-control" placeholder="Postgraduate Score Requirements" name=" courselevel" />
+                                                                        <div style={{ color: "red" }}> {postGraduateScoreNoError}</div>
 
                                                                     </div>
 
@@ -288,6 +328,8 @@ export default function Summary() {
                                                                             value={ugIelts}
                                                                             onChange={(e) => setugIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for UG" name=" cgpa" />
+                                                                        <div style={{ color: "red" }}> {ugIeltsNoError}</div>
+
                                                                     </div>
                                                                     <div className="col-md-6">
                                                                         <label className="form-label">IELTS for PG *</label>
@@ -295,6 +337,8 @@ export default function Summary() {
                                                                             value={pgIelts}
                                                                             onChange={(e) => setpgIelts(e.target.value)}
                                                                             className="form-control" placeholder="IELTS for PG" name=" eligibility" />
+                                                                        <div style={{ color: "red" }}> {pgIeltsNoError}</div>
+
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -306,7 +350,10 @@ export default function Summary() {
                                                                         </label><input type="number" required
                                                                             value={ugPTE}
                                                                             onChange={(e) => setugPTE(e.target.value)}
-                                                                            className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" /></div>
+                                                                            className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" />
+                                                                            <div style={{ color: "red" }}> {ugPTENoError}</div>
+
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
@@ -314,6 +361,8 @@ export default function Summary() {
                                                                                 value={pgPTE}
                                                                                 onChange={(e) => setpgPTE(e.target.value)}
                                                                                 className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />
+                                                                            <div style={{ color: "red" }}> {pgPTENoError}</div>
+
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -389,7 +438,7 @@ export default function Summary() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-            
+
                     {/* <!-- End of Footer --> */}
 
                 </div>
