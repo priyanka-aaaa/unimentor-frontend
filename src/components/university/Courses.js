@@ -43,7 +43,7 @@ const Courses = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
 
-    const [intakeyear, setintakeyear] = useState("2022");
+    const [intakeyear, setintakeyear] = useState("");
     const [intakemonth, setintakemonth] = useState("jan");
     const [loader, setmyloader] = useState("false");
 
@@ -52,33 +52,6 @@ const Courses = () => {
         var mounted = localStorage.getItem('universityToken');
         setmounted(mounted)
         setuniversityId(universityId)
-
-
-
-
-
-        var ddlYearsEdit = document.getElementById("myyearEdit");
-
-
-
-
-        var child = ddlYearsEdit.lastElementChild;
-        while (child) {
-            ddlYearsEdit.removeChild(child);
-            child = ddlYearsEdit.lastElementChild;
-        }
-
-        var currentYear = (new Date()).getFullYear();
-
-        for (var i = currentYear; i < 2027; i++) {
-
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYearsEdit.appendChild(option);
-        }
-
-
 
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
@@ -112,7 +85,7 @@ const Courses = () => {
 
     }, [])
     let handleIntakeSubmit = (event) => {
-
+alert("jj")
         event.preventDefault();
 
         const obj = {
@@ -582,6 +555,16 @@ const Courses = () => {
 
                                                                         />
                                                                     </div>
+                                                                    <div className="col">
+                                                                        <label className="form-label"> fee *</label>
+                                                                        <input type="number" className="form-control" placeholder="tuition fee"
+                                                                            name="TuitionFee" required
+                                                                            value={fee}
+                                                                            onChange={(e) => setfee(e.target.value)}
+
+
+                                                                        />
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -955,12 +938,12 @@ const Courses = () => {
                                                                             Add Intake</button>
                                                                         <br />
                                                                         <div className="form-group mt-3">
-                                                                            Intakes
+                                                                            Intakes *
                                                                             <select required
                                                                                 type="text" className="form-control"
                                                                                 required
                                                                                 onChange={(e) => setcourseaddintake(e.target.value)}>
-                                                                                <option value="">Select Intake</option>
+                                                                                <option value="">Select Intake </option>
                                                                                 {Intakedata.map((object, i) => {
 
                                                                                     return (
@@ -1097,37 +1080,43 @@ const Courses = () => {
                     <div className="modal-content">
                         {/* Modal Header */}
                         <div className="modal-header">
-                            <h4 className="modal-title">Add Intake</h4>
+                            <h4 className="modal-title">Add Intake </h4>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" />
                         </div>
                         {/* Modal body */}
-                        <form>
+                        <form onSubmit={handleIntakeSubmit}>
                             <div className="modal-body">
 
                                 <div className="row">
                                     <div className="col">
                                         <label className="form-label">Year
                                             *</label>
-                                        <select id="myyearEdit"
+                                        <select required
                                             className="form-control"
                                             placeholder="Year" name="year"
 
                                             value={intakeyear}
                                             onChange={(e) => setintakeyear(e.target.value)}>
-
+                                            <option value=''>Select Year</option>
+                                            <option value='2022'>2022</option>
+                                            <option value='2023'>2023</option>
+                                            <option value='2024'>2024</option>
+                                            <option value='2025'>2025</option>
+                                            <option value='2026'>2026</option>
                                         </select>
 
                                     </div>
                                     <div className="col">
-                                        <label className="form-label">Month
+                                        <label className="form-label">Month *
                                         </label>
 
                                         <select
-
+                                            required
                                             className="form-control"
                                             placeholder="Month" name="Month"
                                             value={intakemonth}
                                             onChange={(e) => setintakemonth(e.target.value)}>
+                                            <option value=''>Select Year</option>
                                             <option value='Jan'>Janaury</option>
                                             <option value='Feb'>February</option>
                                             <option value='March'>March</option>
@@ -1148,7 +1137,7 @@ const Courses = () => {
 
                             </div>
                             <div className="modal-footer">
-                                <button onClick={handleIntakeSubmit} type="button" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                <button  type="button" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
 
 
                             </div>

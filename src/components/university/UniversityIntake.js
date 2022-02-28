@@ -307,7 +307,7 @@ const UniversityIntake = () => {
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
+                                                            <th>No.</th>
                                                             <th>Year</th>
                                                             <th>Month</th>
                                                             <th>Action</th>
@@ -324,7 +324,7 @@ const UniversityIntake = () => {
                                                             return (
 
                                                                 <tr key={i}>
-                                                                    <td>{object._id}</td>
+                                                                    <td>{i+1}</td>
                                                                     <td>{object.year}</td>
                                                                     <td>{object.month}</td>
 
