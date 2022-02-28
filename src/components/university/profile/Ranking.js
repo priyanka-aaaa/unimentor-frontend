@@ -414,7 +414,7 @@ class Ranking extends Component {
                                                         <div className="row">
                                                             <div className="col">
                                                                 <label htmlFor="fname" className="form-label">Agency Name *</label>
-                                                                <input required type="text" className="form-control" placeholder="" name="agname"
+                                                                <input required type="text" className="form-control" placeholder="Agency Name" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                 />
                                                             </div>
