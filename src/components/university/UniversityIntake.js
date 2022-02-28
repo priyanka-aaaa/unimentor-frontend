@@ -4,6 +4,7 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../Home/Loader';
 
 const UniversityIntake = () => {
     const [year, setyear] = useState("");
@@ -22,6 +23,10 @@ const UniversityIntake = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
+    const [yearaddError, setyearaddError] = useState("");
+    const [monthaddError, setmonthaddError] = useState("");
+    const [loader, setmyloader] = useState("false");
+
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
@@ -30,39 +35,6 @@ const UniversityIntake = () => {
 
         setMounted(mounted)
         setuniversityId(universityId)
-
-
-
-
-        var ddlYears = document.getElementById("myyear");
-        var ddlYearsEdit = document.getElementById("myyearEdit");
-
-        // ddlYears.appendChild("");
-
-        var currentYear = (new Date()).getFullYear();
-        // var selectYear = 'Select Year';
-        // ddlYears.appendChild(selectYear);
-        for (var i = currentYear; i < 2027; i++) {
-
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            console.log("option");
-            console.log(option);
-
-
-            ddlYears.appendChild(option);
-
-        }
-        for (var i = currentYear; i < 2027; i++) {
-
-            var option = document.createElement("OPTION");
-            option.innerHTML = i;
-            option.value = i;
-            ddlYearsEdit.appendChild(option);
-        }
-
-
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
             method: 'GET',
@@ -77,6 +49,8 @@ const UniversityIntake = () => {
 
     function handleClick(value) {
 
+        setyearaddError("")
+        setmonthaddError("")
         seteditId(value);
         setwidth("1600px");
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes/' + value, { headers: { 'Authorization': mounted } })
@@ -99,6 +73,8 @@ const UniversityIntake = () => {
     }
     function handleAdd() {
         setaddWidth("1600px");
+        setyear("")
+        setmonth("")
     }
 
 
@@ -121,78 +97,109 @@ const UniversityIntake = () => {
 
     let handleEditSubmit = (event) => {
         event.preventDefault();
-        const obj = {
-            year: year,
-            month: month,
+        setyearaddError("")
+        setmonthaddError("")
+        event.preventDefault();
+        if (year === "") {
+            setyearaddError("Please Select Year")
+        }
+        else if (month === "") {
+            setmonthaddError("Please Select Month")
 
-        };
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + editId, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+        }
+        else {
 
-                if (res.data.success === true) {
-                    setwidth(0)
-                    setsuccessMessage("course update")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+            setmyloader("true")
 
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityIntakes)
+            const obj = {
+                year: year,
+                month: month,
+
+            };
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + editId, obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
+                    if (res.data.success === true) {
+                        setwidth(0)
+                        setsuccessMessage("course update")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+                        setyear("")
+                        setmonth("")
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                        fetch(url, {
+                            method: 'GET',
+                            headers: { 'Authorization': mounted }
                         })
+                            .then(response => response.json())
+                            .then(data => {
+                                setdata(data.universityIntakes)
+                            })
 
-                }
-                else {
+                    }
+                    else {
 
-                }
-            })
-            .catch(error => {
+                    }
+                })
+                .catch(error => {
 
-            });
+                });
+        }
     }
     let handleAddSubmit = (event) => {
-
+        setyearaddError("")
+        setmonthaddError("")
         event.preventDefault();
-        setaddWidth(0)
-        const obj = {
-            year: year,
-            month: month,
+        if (year === "") {
+            setyearaddError("Please Select Year")
+        }
+        else if (month === "") {
+            setmonthaddError("Please Select Month")
 
-        };
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes/', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+        }
+        else {
 
-                if (res.data.success === true) {
-                    setsuccessMessage("course add")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+            setmyloader("true")
 
-                    setyear("");
-                    setmonth("");
+            setaddWidth(0)
+            const obj = {
+                year: year,
+                month: month,
+
+            };
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes/', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
+                    if (res.data.success === true) {
 
 
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityIntakes)
+                        setsuccessMessage("course add")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+                        setyear("");
+                        setmonth("");
+
+
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+                        fetch(url, {
+                            method: 'GET',
+                            headers: { 'Authorization': mounted }
                         })
+                            .then(response => response.json())
+                            .then(data => {
+                                setdata(data.universityIntakes)
+                            })
 
-                }
-                else {
+                    }
+                    else {
 
-                }
-            })
-            .catch(error => {
+                    }
+                })
+                .catch(error => {
 
-            });
+                });
+        }
     }
     return (
         <div id="page-top">
@@ -216,6 +223,11 @@ const UniversityIntake = () => {
                         {/* the content of each page will be come there */}
                         {/* <ApplicationProfile /> */}
                         <div className="container">
+                            {loader === "true" ?
+
+                                <Loader />
+
+                                : null}
                             {/* start for showing add message */}
                             {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
@@ -234,8 +246,12 @@ const UniversityIntake = () => {
                                     title="Are you sure?"
                                     onConfirm={(value) => {
                                         setshowSweetAlert("0");
+                                        setmyloader("true")
+
                                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/intakes/' + deleteId, { headers: { 'Authorization': mounted } })
                                             .then(function (res) {
+                                                setmyloader("false")
+
                                                 var myuniversityCourse = res.data.intakes;
                                                 if (res.data.success === true) {
                                                     setsuccessMessage("course delete")
@@ -362,18 +378,26 @@ const UniversityIntake = () => {
                                                                             <div className="col">
                                                                                 <label className="form-label">Year
                                                                                     *</label>
-                                                                                <select id="myyearEdit"
+
+                                                                                <select required
                                                                                     className="form-control"
                                                                                     placeholder="Year" name="year"
-
                                                                                     value={year}
                                                                                     onChange={(e) => setyear(e.target.value)}>
+                                                                                    <option value=''>Select Year</option>
+                                                                                    <option value='2022'>2022</option>
+                                                                                    <option value='2023'>2023</option>
+                                                                                    <option value='2024'>2024</option>
+                                                                                    <option value='2025'>2025</option>
+                                                                                    <option value='2026'>2026</option>
 
                                                                                 </select>
+                                                                                <div style={{ color: "red" }}> {yearaddError}</div>
+
 
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label">Month
+                                                                                <label className="form-label">Month *
                                                                                 </label>
 
                                                                                 <select
@@ -396,6 +420,7 @@ const UniversityIntake = () => {
                                                                                     <option value='Nov'>November</option>
                                                                                     <option value='Dec'>December</option>
                                                                                 </select>
+                                                                                <div style={{ color: "red" }}> {monthaddError}</div>
 
                                                                             </div>
 
@@ -461,26 +486,34 @@ const UniversityIntake = () => {
                                                                             <div className="col">
                                                                                 <label className="form-label">Year
                                                                                     *</label>
-                                                                                <select id="myyear"
+                                                                                <select required
                                                                                     className="form-control"
                                                                                     placeholder="Year" name="year"
                                                                                     value={year}
                                                                                     onChange={(e) => setyear(e.target.value)}>
+                                                                                    <option value=''>Select Year</option>
+                                                                                    <option value='2022'>2022</option>
+                                                                                    <option value='2023'>2023</option>
+                                                                                    <option value='2024'>2024</option>
+                                                                                    <option value='2025'>2025</option>
+                                                                                    <option value='2026'>2026</option>
 
                                                                                 </select>
+                                                                                <div style={{ color: "red" }}> {yearaddError}</div>
 
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label">Month
+                                                                                <label className="form-label">Month *
                                                                                 </label>
                                                                                 <select
-
+                                                                                    required
                                                                                     className="form-control"
                                                                                     placeholder="Month" name="Month"
                                                                                     value={month}
                                                                                     onChange={(e) => setmonth(e.target.value)}
                                                                                 >
-                                                                                    <option selected value='Jan'>Janaury</option>
+                                                                                    <option value=''>Select Month</option>
+                                                                                    <option value='Jan'>Janaury</option>
                                                                                     <option value='Feb'>February</option>
                                                                                     <option value='March'>March</option>
                                                                                     <option value='April'>April</option>
@@ -493,6 +526,8 @@ const UniversityIntake = () => {
                                                                                     <option value='Nov'>November</option>
                                                                                     <option value='Dec'>December</option>
                                                                                 </select>
+                                                                                <div style={{ color: "red" }}> {monthaddError}</div>
+
 
                                                                             </div>
 

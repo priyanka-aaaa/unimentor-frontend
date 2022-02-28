@@ -39,7 +39,7 @@ class Ranking extends Component {
 
 
         };
-    
+
         this.handleAdd = this.handleAdd.bind(this);
         this.handleAddClick = this.handleAddClick.bind(this);
         this.closeaddbox = this.closeaddbox.bind(this);
@@ -64,8 +64,8 @@ class Ranking extends Component {
         this.setState({ mounted: mounted, universityId: universityId });
 
     }
-    componentDidMount() {  
-     
+    componentDidMount() {
+
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
         fetch(url, {
             method: 'GET',
@@ -76,7 +76,7 @@ class Ranking extends Component {
                 this.setState({ data: data.universityRankings })
 
             })
-     
+
     };
     logoHandleDrop = (myfiles) => {
         this.setState({ certificate: myfiles[0] });
@@ -100,7 +100,7 @@ class Ranking extends Component {
     }
     handleAddClick(value) {
         this.setState({ editId: value, width: "1600px", editnewcomponent: 1, rankingId: value })
- axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
             .then(res => {
 
                 this.setState({
@@ -119,7 +119,7 @@ class Ranking extends Component {
             .catch(error => {
 
             });
- 
+
 
     }
     handleAdd() {
@@ -150,7 +150,7 @@ class Ranking extends Component {
             obj1.append("year", this.state.year);
             obj1.append("certificate", this.state.certificate);
 
-          
+
             const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
             fetch(url2, {
                 method: 'post',
@@ -164,7 +164,7 @@ class Ranking extends Component {
                         this.setState({ submitSuccess: 0 })
                         , 3000);
 
-                
+
                     const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 
                     fetch(url3, {
@@ -176,7 +176,7 @@ class Ranking extends Component {
                             this.setState({ data: data.universityRankings })
 
                         })
-               
+
                 })
         }
     }
@@ -196,38 +196,38 @@ class Ranking extends Component {
 
         }
         else {
-        const obj1 = new FormData();
-        obj1.append("agencyName", this.state.agencyName);
-        obj1.append("rank", this.state.rank);
-        obj1.append("year", this.state.year);
-        obj1.append("certificate", this.state.certificate);
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.rankingId;
-        fetch(url2, {
-            method: 'put',
-            headers: { 'Authorization': this.state.mounted },
-            body: obj1
-        })
-            .then(response => response.json())
-            .then(data => {
-                this.setState({ successMessage: "Ranking Updated", submitSuccess: 1, width: "0px",yearMessage:"" });
-                setTimeout(() =>
-                    this.setState({ submitSuccess: 0 })
-                    , 3000);
-
-       
-                const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-
-                fetch(url3, {
-                    method: 'GET',
-                    headers: { 'Authorization': this.state.mounted }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        this.setState({ data: data.universityRankings })
-
-                    })
-         
+            const obj1 = new FormData();
+            obj1.append("agencyName", this.state.agencyName);
+            obj1.append("rank", this.state.rank);
+            obj1.append("year", this.state.year);
+            obj1.append("certificate", this.state.certificate);
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.rankingId;
+            fetch(url2, {
+                method: 'put',
+                headers: { 'Authorization': this.state.mounted },
+                body: obj1
             })
+                .then(response => response.json())
+                .then(data => {
+                    this.setState({ successMessage: "Ranking Updated", submitSuccess: 1, width: "0px", yearMessage: "" });
+                    setTimeout(() =>
+                        this.setState({ submitSuccess: 0 })
+                        , 3000);
+
+
+                    const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
+
+                    fetch(url3, {
+                        method: 'GET',
+                        headers: { 'Authorization': this.state.mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            this.setState({ data: data.universityRankings })
+
+                        })
+
+                })
 
 
 
@@ -266,7 +266,7 @@ class Ranking extends Component {
                                 title="Are you sure?"
                                 onConfirm={(value) => {
                                     this.setState({ showSweetAlert: "0" });
-                                    
+
 
 
 
@@ -284,7 +284,7 @@ class Ranking extends Component {
                                                 this.setState({ submitSuccess: 0 })
                                                 , 3000);
 
-                                      
+
 
                                             const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
 
@@ -321,9 +321,9 @@ class Ranking extends Component {
                                     <div className='col-md-6'><h3>Ranking</h3></div>
                                     <div className='col-md-6 text-right'> <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Ranking</button></div>
                                 </div>
-                              
 
-                               
+
+
                             </div>
 
 
@@ -342,7 +342,7 @@ class Ranking extends Component {
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                          
+
                                                             <th>Agency Name</th>
                                                             <th>Rank</th>
                                                             <th>Year</th>
@@ -360,7 +360,7 @@ class Ranking extends Component {
                                                             return (
 
                                                                 <tr key={i}>
-                                                                  
+
                                                                     <td>{object.agencyName}</td>
                                                                     <td>{object.rank}</td>
                                                                     <td>{object.year}</td>
@@ -395,7 +395,7 @@ class Ranking extends Component {
                                             style={{ width: this.state.addWidth }}>
 
                                             <div className="student-view">
-                                                <div className="row">                                                    
+                                                <div className="row">
                                                     <div className="col-md-12">
                                                         <a className="closebtn"
                                                             onClick={() => this.ddhandleAddClick()}
@@ -404,8 +404,8 @@ class Ranking extends Component {
                                                     </div>
                                                 </div>
                                                 <div className='row mt-3'>
-                                                    <div className='col-md-12'>                                                   
-                                                        <h3>Add New Ranking</h3>                                                    
+                                                    <div className='col-md-12'>
+                                                        <h3>Add New Ranking</h3>
                                                     </div>
                                                 </div>
 
@@ -413,19 +413,19 @@ class Ranking extends Component {
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <label htmlFor="fname" className="form-label">Agency Name</label>
+                                                                <label htmlFor="fname" className="form-label">Agency Name *</label>
                                                                 <input required type="text" className="form-control" placeholder="" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                 />
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Rank</label>
+                                                                <label htmlFor="lname" className="form-label">Rank *</label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Year</label>
+                                                                <label htmlFor="lname" className="form-label">Year *</label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
@@ -471,7 +471,7 @@ class Ranking extends Component {
                                                             <div className="col-md-6 text-right">
 
                                                                 <button type="submit"
-                                                                
+
                                                                     className="btn btn-secondary">Add
                                                                 </button>
 
@@ -489,7 +489,7 @@ class Ranking extends Component {
                                             style={{ width: this.state.width }}>
 
                                             <div className="student-view">
-                                                <div className="row">                                                   
+                                                <div className="row">
                                                     <div className="col-md-12">
                                                         <a className="closebtn"
                                                             onClick={() => this.ddhandleAddClick()}
@@ -497,31 +497,31 @@ class Ranking extends Component {
                                                     </div>
                                                 </div>
                                                 <div className='row mt-3'>
-                                                <div className='col-md-12'>
-                                                  <h3>Edit Ranking</h3>
-                                                </div>
+                                                    <div className='col-md-12'>
+                                                        <h3>Edit Ranking</h3>
+                                                    </div>
                                                 </div>
 
                                                 {/* start for edit component */}
                                                 <form onSubmit={this.submitEditRanking}>
-                                                   
+
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <label htmlFor="fname" className="form-label">Agency Name</label>
-                                                                <input  type="text" className="form-control" placeholder="" name="agname"
+                                                                <label htmlFor="fname" className="form-label">Agency Name *</label>
+                                                                <input type="text" className="form-control" placeholder="" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                     required
                                                                 />
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Rank</label>
+                                                                <label htmlFor="lname" className="form-label">Rank *</label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Year</label>
+                                                                <label htmlFor="lname" className="form-label">Year *</label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
@@ -572,7 +572,7 @@ class Ranking extends Component {
                                                             <div className="col-md-6 text-right">
 
                                                                 <button type="submit"
-                                                                 
+
                                                                     className="btn btn-secondary">Add
                                                                 </button>
 
