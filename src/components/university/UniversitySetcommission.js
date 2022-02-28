@@ -12,7 +12,7 @@ const UniversitySetcommission = () => {
 
 
     const [commissionTimeChecked, setcommissionTimeChecked] = useState("");
-    const [displayAmount, setdisplayAmount] = useState("none");
+    const [displaymyAmount, setdisplaymyAmount] = useState("none");
     const [displayPercentage, setdisplayPercentage] = useState("none");
     const [displayone, setdisplayone] = useState("none");
     const [displaymany, setdisplaymany] = useState("none");
@@ -47,7 +47,48 @@ const UniversitySetcommission = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     const [loader, setmyloader] = useState("false");
+    const [commissionCheckedError, setcommissionCheckedError] = useState("");
+    const [commissionValueError, setcommissionValueError] = useState("");
+    const [timeTypeError, settimeTypeError] = useState("");
+    const [timeValueError, settimeValueError] = useState("");
 
+
+
+
+    //start for add 
+    function changecommissionChecked(value) {
+        setcommissionChecked(value)
+        if (value === "fixed") {
+            setdisplaymyAmount("inline")
+            setdisplayPercentage("none")
+
+        }
+        else {
+            setdisplaymyAmount("none")
+
+            setdisplayPercentage("inline")
+
+        }
+
+    }
+    function changecommissionTimeChecked(value) {
+        setcommissionTimeChecked(value)
+        if (value === "one time") {
+
+            setdisplayone("inline")
+            setdisplaymany("none")
+
+        }
+        else {
+            setdisplayone("none")
+
+            setdisplaymany("inline")
+
+        }
+
+    }
+
+    //end for add
     function setEditCommissionTime(value) {
 
         setEdittimeType(value)
@@ -104,28 +145,8 @@ const UniversitySetcommission = () => {
     }, [])
 
 
-    function setcommission(value) {
 
-        if (value === "fixed") {
-            setdisplayAmount("inline");
-            setdisplayPercentage("none");
-        }
-        else {
-            setdisplayPercentage("inline");
-            setdisplayAmount("none");
-        }
-    }
-    function setCommissionTime(value) {
 
-        if (value === "one time") {
-            setdisplayone("inline");
-            setdisplaymany("none");
-        }
-        else {
-            setdisplayone("none");
-            setdisplaymany("inline");
-        }
-    }
     function handleClick(value) {
     }
     function percentagecommissionValue(percentageValue) {
@@ -149,7 +170,7 @@ const UniversitySetcommission = () => {
     function handleEditClick(value) {
         seteditId(value);
         setwidth("1600px");
-      
+
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions/' + value;
         fetch(url, {
             method: 'GET',
@@ -212,46 +233,71 @@ const UniversitySetcommission = () => {
         setwidth("0px");
     }
     let handleAddSubmit = (event) => {
+        setcommissionCheckedError("")
+        setcommissionValueError("")
+        settimeTypeError("")
+        settimeValueError("")
         event.preventDefault();
-        setaddWidth("0");
-        setmyloader("true")
 
-        const obj1 = new FormData();
-        obj1.append("courseName", courseName);
-        obj1.append("fee", tuitionFee);
 
-        obj1.append("commissionType", commissionChecked);
+        if (commissionChecked === "" || commissionChecked === undefined) {
+            setcommissionCheckedError("Please Check Commission Type")
 
-        obj1.append("commissionValue", commissionValue);
-        obj1.append("timeType", commissionTimeChecked);
-        obj1.append("timeValue", timeValue);
+        }
+        else if (commissionValue === "" || commissionValue === undefined) {
+            setcommissionValueError("Please Enter Commission Value")
 
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions'
-        fetch(url2, {
-            method: 'post',
-            headers: { 'Authorization': mounted },
-            body: obj1
-        })
-            .then(response => response.json())
-            .then(data => {
-                setmyloader("false")
+        }
+        else if (commissionTimeChecked === "" || commissionTimeChecked === undefined) {
+            settimeTypeError("Please Enter Commission Time")
 
-                setsuccessMessage("Commisssion Added")
-                setTimeout(() => setsubmitSuccess(""), 3000);
-                setsubmitSuccess(1)
+        }
+        else if (timeValue === "" || timeValue === undefined) {
+            settimeValueError("Please Enter Commission Time Value")
 
-                const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
-                fetch(url, {
-                    method: 'GET',
-                    headers: { 'Authorization': mounted }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        setcommissionData(data.universityCommissions)
+        }
 
-                    })
+        else {
 
+            setaddWidth("0");
+            setmyloader("true")
+            const obj1 = new FormData();
+            obj1.append("courseName", courseName);
+            obj1.append("fee", tuitionFee);
+
+            obj1.append("commissionType", commissionChecked);
+
+            obj1.append("commissionValue", commissionValue);
+            obj1.append("timeType", commissionTimeChecked);
+            obj1.append("timeValue", timeValue);
+
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions'
+            fetch(url2, {
+                method: 'post',
+                headers: { 'Authorization': mounted },
+                body: obj1
             })
+                .then(response => response.json())
+                .then(data => {
+                    setmyloader("false")
+
+                    setsuccessMessage("Commisssion Added")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+
+                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+                    fetch(url, {
+                        method: 'GET',
+                        headers: { 'Authorization': mounted }
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            setcommissionData(data.universityCommissions)
+
+                        })
+
+                })
+        }
     }
     let handleEditSubmit = (event) => {
         event.preventDefault();
@@ -414,7 +460,7 @@ const UniversitySetcommission = () => {
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Course Name</th>
-                                                            <th>tuitionFee</th>
+                                                            <th>Fee</th>
                                                             <th>Commission</th>
                                                             <th>Commission Set</th>
                                                             <th>Action</th>
@@ -431,7 +477,7 @@ const UniversitySetcommission = () => {
                                                                 <tr key={i}>
                                                                     <td>{object._id}</td>
                                                                     <td>{object.courseName}</td>
-                                                                    <td>{object.tuitionFee}</td>
+                                                                    <td>{object.fee}</td>
                                                                     <td>{object.commissionValue}</td>
                                                                     <td>{object.timeValue}</td>
 
@@ -503,8 +549,8 @@ const UniversitySetcommission = () => {
 
 
                                                                                                     <select className="form-control"
-                                                                                                    required
-                                                                                                    onChange={(e) => handleChange(e.target.value)}>
+                                                                                                        required
+                                                                                                        onChange={(e) => handleChange(e.target.value)}>
 
                                                                                                         <option value="" >Select Course Name</option>
                                                                                                         {data.map((object, i) => {
@@ -535,7 +581,7 @@ const UniversitySetcommission = () => {
 
                                                                                                 <div className="col-md-6">
                                                                                                     <fieldset
-                                                                                                        onChange={(e) => setcommission(e.target.value)}
+
 
                                                                                                     >
                                                                                                         <label className="form-label">Commision *</label><br />
@@ -543,9 +589,9 @@ const UniversitySetcommission = () => {
 
 
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
-                                                                                                                value="fixed"
+
                                                                                                                 checked={commissionChecked === "fixed"}
-                                                                                                                onChange={(e) => setcommissionChecked(e.target.value)}
+                                                                                                                onChange={(e) => changecommissionChecked("fixed")}
                                                                                                             />
                                                                                                             <label className="form-check-label" htmlFor="flexRadioDefault1">
                                                                                                                 Fixed
@@ -553,9 +599,9 @@ const UniversitySetcommission = () => {
                                                                                                         </div>
                                                                                                         <div className="form-check form-check-inline">
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                                                                                                                value="variable"
+
                                                                                                                 checked={commissionChecked === "variable"}
-                                                                                                                onChange={(e) => setcommissionChecked(e.target.value)}
+                                                                                                                onChange={(e) => changecommissionChecked("variable")}
 
                                                                                                             />
                                                                                                             <label className="form-check-label" htmlFor="flexRadioDefault2">
@@ -563,12 +609,13 @@ const UniversitySetcommission = () => {
                                                                                                             </label>
                                                                                                         </div>
                                                                                                     </fieldset>
+                                                                                                    <div style={{ color: "red" }}> {commissionCheckedError}</div>
                                                                                                 </div>
 
 
 
                                                                                                 <div className="col-md-6">
-                                                                                                    <div style={{ display: displayAmount }}>
+                                                                                                    <div style={{ display: displaymyAmount }}>
                                                                                                         <label className="form-label" >Enter Amount</label>
                                                                                                         <input type="number"
                                                                                                             onChange={e => amountcommissionValue(e.target.value)}
@@ -581,6 +628,7 @@ const UniversitySetcommission = () => {
                                                                                                         />
                                                                                                         <span>The Total commission is {Percentage}</span>
                                                                                                     </div>
+                                                                                                    <div style={{ color: "red" }}> {commissionValueError}</div>
 
                                                                                                 </div>
                                                                                             </div>
@@ -589,13 +637,13 @@ const UniversitySetcommission = () => {
                                                                                             <div className="row mt-3">
                                                                                                 <div className="col-md-6">
                                                                                                     <fieldset
-                                                                                                        onChange={(e) => setCommissionTime(e.target.value)}>
+                                                                                                    >
                                                                                                         <label className="form-label">Commision Set is *</label><br />
                                                                                                         <div className="form-check form-check-inline">
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                                                                                                                value="one time"
+
                                                                                                                 checked={commissionTimeChecked === "one time"}
-                                                                                                                onChange={(e) => setcommissionTimeChecked(e.target.value)}
+                                                                                                                onChange={(e) => changecommissionTimeChecked("one time")}
                                                                                                             />
                                                                                                             <label className="form-check-label" htmlFor="flexRadioDefault3">
                                                                                                                 Only One time
@@ -603,15 +651,17 @@ const UniversitySetcommission = () => {
                                                                                                         </div>
                                                                                                         <div className="form-check form-check-inline">
                                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
-                                                                                                                value="every time"
+
                                                                                                                 checked={commissionTimeChecked === "every time"}
-                                                                                                                onChange={(e) => setcommissionTimeChecked(e.target.value)}
+                                                                                                                onChange={(e) => changecommissionTimeChecked("every time")}
                                                                                                             />
                                                                                                             <label className="form-check-label" htmlFor="flexRadioDefault4">
                                                                                                                 On Every Time
                                                                                                             </label>
                                                                                                         </div>
                                                                                                     </fieldset>
+                                                                                                    <div style={{ color: "red" }}> {timeTypeError}</div>
+
                                                                                                 </div>
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayone }}>
@@ -628,6 +678,8 @@ const UniversitySetcommission = () => {
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
+                                                                                                    <div style={{ color: "red" }}> {timeValueError}</div>
+
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
@@ -681,7 +733,7 @@ const UniversitySetcommission = () => {
 
                                                                 {/* <!-- Area Chart --> */}
                                                                 <div className="col-xl-12 col-lg-7">
-                                                                    <p>Edit Commission</p>
+                                                                    <h3>Edit Commission</h3>
                                                                     <div className="card shadow mb-4">
                                                                         {/* <!-- Card Header - Dropdown --> */}
                                                                         <div className="card shadow mb-4">
