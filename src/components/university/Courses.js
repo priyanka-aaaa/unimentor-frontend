@@ -609,7 +609,7 @@ const Courses = () => {
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label className="form-label"> CGPA *</label>
-                                                                                <input type="text" className="form-control" placeholder="CGPA"
+                                                                                <input type="number" className="form-control" placeholder="CGPA"
                                                                                     name="cgpa" required
                                                                                     value={cgpa}
                                                                                     onChange={(e) => setcgpa(e.target.value)}
@@ -859,7 +859,7 @@ const Courses = () => {
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label className="form-label"> CGPA *</label>
-                                                                                <input type="text" className="form-control" placeholder="CGPA"
+                                                                                <input type="number" className="form-control" placeholder="CGPA"
                                                                                     name="cgpa" required
                                                                                     value={cgpa}
                                                                                     onChange={(e) => setcgpa(e.target.value)}

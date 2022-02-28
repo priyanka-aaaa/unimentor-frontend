@@ -31,7 +31,7 @@ const UniversitySetcommission = () => {
 
 
     const [courseName, setcourseName] = useState("");
-    const [tuitionFee, settuitionFee] = useState("");
+    const [fee, setfee] = useState("");
     const [commissionValue, setcommissionValue] = useState("");
     const [timeValue, settimeValue] = useState("");
     const [width, setwidth] = useState("");
@@ -129,7 +129,7 @@ const UniversitySetcommission = () => {
     function handleClick(value) {
     }
     function percentagecommissionValue(percentageValue) {
-        var number1 = tuitionFee;
+        var number1 = fee;
         var number2 = percentageValue;
         var value = (number1 / number2);
         setPercentage(value)
@@ -141,7 +141,7 @@ const UniversitySetcommission = () => {
     }
     function handleChange(value, q) {
         const myArray = value.split("&&");
-        settuitionFee(myArray[1])
+        setfee(myArray[1])
         setcourseName(myArray[0])
 
     }
@@ -160,7 +160,7 @@ const UniversitySetcommission = () => {
 
                 setEditid(data.universityCommission._id)
                 setcourseName(data.universityCommission.courseName)
-                settuitionFee(data.universityCommission.tuitionFee)
+                setfee(data.universityCommission.fee)
                 setEditcommissionType(data.universityCommission.commissionType)
                 setcommissionValue(data.universityCommission.commissionValue)
                 setEdittimeType(data.universityCommission.timeType)
@@ -218,7 +218,7 @@ const UniversitySetcommission = () => {
 
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
-        obj1.append("fee", tuitionFee);
+        obj1.append("fee", fee);
 
         obj1.append("commissionType", commissionChecked);
 
@@ -260,7 +260,7 @@ const UniversitySetcommission = () => {
 
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
-        obj1.append("fee", tuitionFee);
+        obj1.append("fee", fee);
         obj1.append("commissionType", EditcommissionType);
         obj1.append("commissionValue", commissionValue);
         obj1.append("timeType", EdittimeType);
@@ -414,7 +414,7 @@ const UniversitySetcommission = () => {
                                                         <tr>
                                                             <th>ID</th>
                                                             <th>Course Name</th>
-                                                            <th>tuitionFee</th>
+                                                            <th>Fee</th>
                                                             <th>Commission</th>
                                                             <th>Commission Set</th>
                                                             <th>Action</th>
@@ -431,7 +431,7 @@ const UniversitySetcommission = () => {
                                                                 <tr key={i}>
                                                                     <td>{object._id}</td>
                                                                     <td>{object.courseName}</td>
-                                                                    <td>{object.tuitionFee}</td>
+                                                                    <td>{object.fee}</td>
                                                                     <td>{object.commissionValue}</td>
                                                                     <td>{object.timeValue}</td>
 
@@ -511,20 +511,20 @@ const UniversitySetcommission = () => {
                                                                                                             return (
 
                                                                                                                 <option
-                                                                                                                    onClick={(e) => handleClick(object.tuitionFee)}
+                                                                                                                    onClick={(e) => handleClick(object.fee)}
 
 
 
-                                                                                                                    value={object.courseName + "&&" + object.tuitionFee} key={i}>{object.courseName}</option>
+                                                                                                                    value={object.courseName + "&&" + object.fee} key={i}>{object.courseName}</option>
                                                                                                             )
                                                                                                         })}
                                                                                                     </select>
                                                                                                 </div>
 
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Select tuitionFee *</label>
+                                                                                                    <label className="form-label">Select Fee *</label>
                                                                                                     <select className="form-control">
-                                                                                                        <option> {tuitionFee}</option>
+                                                                                                        <option> {fee}</option>
 
                                                                                                     </select>
                                                                                                 </div>
@@ -616,14 +616,14 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayone }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
                                                                                                     <div style={{ display: displaymany }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
@@ -709,18 +709,18 @@ const UniversitySetcommission = () => {
                                                                                                             return (
 
                                                                                                                 <option
-                                                                                                                    onClick={(e) => handleClick(object.tuitionFee)}
+                                                                                                                    onClick={(e) => handleClick(object.fee)}
 
-                                                                                                                    value={object.courseName + "&&" + object.tuitionFee} key={i}>{object.courseName}</option>
+                                                                                                                    value={object.courseName + "&&" + object.fee} key={i}>{object.courseName}</option>
                                                                                                             )
                                                                                                         })}
                                                                                                     </select>
                                                                                                 </div>
 
                                                                                                 <div className="col-md-6">
-                                                                                                    <label className="form-label">Select tuitionFee *</label>
+                                                                                                    <label className="form-label">Select Fee *</label>
                                                                                                     <select className="form-control" >
-                                                                                                        <option> {tuitionFee}</option>
+                                                                                                        <option> {fee}</option>
 
                                                                                                     </select>
                                                                                                 </div>
@@ -823,14 +823,14 @@ const UniversitySetcommission = () => {
                                                                                                 <div className="col-md-6">
                                                                                                     <div style={{ display: displayEditone }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
                                                                                                     </div>
                                                                                                     <div style={{ display: displayEditmany }}>
                                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                                                                                                        <input type="number" className="form-control" placeholder="Enter Fee" name="percentage "
                                                                                                             value={timeValue}
                                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                                         />
