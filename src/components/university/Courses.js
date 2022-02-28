@@ -85,7 +85,7 @@ const Courses = () => {
 
     }, [])
     let handleIntakeSubmit = (event) => {
-alert("jj")
+        alert("jj")
         event.preventDefault();
 
         const obj = {
@@ -556,14 +556,23 @@ alert("jj")
                                                                         />
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label"> fee *</label>
-                                                                        <input type="number" className="form-control" placeholder="tuition fee"
-                                                                            name="TuitionFee" required
+                                                                        <label className="form-label"> Currency *</label>
+                                                                        <select type="text" className="form-control"
+                                                                            placeholder="Currency" name="fee"
+                                                                            required
                                                                             value={fee}
                                                                             onChange={(e) => setfee(e.target.value)}
-
-
-                                                                        />
+                                                                        >
+                                                                            <option value="">Select Currency</option>
+                                                                            <option value="USD">USD US Dollars</option>
+                                                                            <option value="GBP">GBP British Pounds</option>
+                                                                            <option value="EUR">EUR Euros</option>
+                                                                            <option value="CAD">Canadian dollar</option>
+                                                                            <option value="AUD">AUD Australian Dollars</option>
+                                                                            <option value="NZD">NZD New Zealand Dollars</option>
+                                                                            <option value="HKD">HKD Hong Kong Dollars</option>
+                                                                            <option value="SGD">SGD Singapore Dollars</option>
+                                                                        </select>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -572,7 +581,7 @@ alert("jj")
                                                                 <div className="row">
                                                                     <div className="col-md-4">
                                                                         <label className="form-label">Study *
-                                                                            *</label>
+                                                                        </label>
                                                                         <select type="text" className="form-control" id="salutation"
                                                                             placeholder="Study" name="studyField"
                                                                             required
@@ -587,16 +596,7 @@ alert("jj")
                                                                     </div>
                                                                     <div className="col-md-8">
                                                                         <div className="row">
-                                                                            <div className="col">
-                                                                                <label className="form-label">Fee *</label>
-                                                                                <input type="number" className="form-control" placeholder="Fee"
-                                                                                    name="fee"
-                                                                                    value={fee}
-                                                                                    onChange={(e) => setfee(e.target.value)}
-                                                                                    required
 
-                                                                                />
-                                                                            </div>
                                                                             <div className="col">
                                                                                 <label className="form-label"> Course Level *</label>
                                                                                 <input type="text" className="form-control" placeholder=" Course Level"
@@ -804,6 +804,26 @@ alert("jj")
 
                                                                         />
                                                                     </div>
+                                                                    <div className="col">
+                                                                        <label className="form-label"> Currency *</label>
+                                                                        <select type="text" className="form-control"
+                                                                            placeholder="Currency" name="fee"
+                                                                            required
+                                                                            value={fee}
+                                                                            onChange={(e) => setfee(e.target.value)}
+                                                                        >
+                                                                            <option value="">Select Currency</option>
+
+                                                                            <option value="USD">USD US Dollars</option>
+                                                                            <option value="GBP">GBP British Pounds</option>
+                                                                            <option value="EUR">EUR Euros</option>
+                                                                            <option value="CAD">Canadian dollar</option>
+                                                                            <option value="AUD">AUD Australian Dollars</option>
+                                                                            <option value="NZD">NZD New Zealand Dollars</option>
+                                                                            <option value="HKD">HKD Hong Kong Dollars</option>
+                                                                            <option value="SGD">SGD Singapore Dollars</option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
                                                             </div>
 
@@ -826,16 +846,7 @@ alert("jj")
                                                                     </div>
                                                                     <div className="col-md-8">
                                                                         <div className="row">
-                                                                            <div className="col">
-                                                                                <label className="form-label">Fee *</label>
-                                                                                <input type="number" className="form-control" placeholder="Fee"
-                                                                                    name="fee" required
-                                                                                    value={fee}
-                                                                                    onChange={(e) => setfee(e.target.value)}
 
-
-                                                                                />
-                                                                            </div>
                                                                             <div className="col">
                                                                                 <label className="form-label"> Course Level *</label>
                                                                                 <input type="text" className="form-control" placeholder=" Course Level"
@@ -1137,7 +1148,7 @@ alert("jj")
 
                             </div>
                             <div className="modal-footer">
-                                <button  type="button" className="btn btn-primary" data-bs-dismiss="modal">Submit</button>
+                                <button type="button" className="btn btn-primary">Submit</button>
 
 
                             </div>

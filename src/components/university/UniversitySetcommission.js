@@ -502,7 +502,9 @@ const UniversitySetcommission = () => {
                                                                                                     <label className="form-label">Course Name *</label>
 
 
-                                                                                                    <select className="form-control" onChange={(e) => handleChange(e.target.value)}>
+                                                                                                    <select className="form-control"
+                                                                                                    required
+                                                                                                    onChange={(e) => handleChange(e.target.value)}>
 
                                                                                                         <option value="" >Select Course Name</option>
                                                                                                         {data.map((object, i) => {
