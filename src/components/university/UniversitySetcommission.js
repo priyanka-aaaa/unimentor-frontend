@@ -72,6 +72,7 @@ const UniversitySetcommission = () => {
 
     }
     function changecommissionTimeChecked(value) {
+        
         setcommissionTimeChecked(value)
         if (value === "one time") {
 
@@ -89,18 +90,7 @@ const UniversitySetcommission = () => {
     }
 
     //end for add
-    function setEditCommissionTime(value) {
 
-        setEdittimeType(value)
-        if (value === "one time") {
-            setdisplayEditone("inline");
-            setdisplayEditmany("none");
-        }
-        else {
-            setdisplayEditone("none");
-            setdisplayEditmany("inline");
-        }
-    }
     function setEditcommissionData(value) {
 
 
@@ -186,6 +176,7 @@ const UniversitySetcommission = () => {
                 setcommissionValue(data.universityCommission.commissionValue)
                 setEdittimeType(data.universityCommission.timeType)
                 settimeValue(data.universityCommission.timeValue)
+                setcommissionTimeChecked(data.universityCommission.timeType)
                 if (data.universityCommission.commissionType === "fixed") {
                     setdisplayEditAmount("inline");
                     setdisplayEditPercentage("none");
@@ -303,13 +294,13 @@ const UniversitySetcommission = () => {
         event.preventDefault();
         setwidth("0");
         setmyloader("true")
-
+      
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", tuitionFee);
-        obj1.append("commissionType", EditcommissionType);
+        obj1.append("commissionType", commissionTimeChecked);
         obj1.append("commissionValue", commissionValue);
-        obj1.append("timeType", EdittimeType);
+        obj1.append("timeType", commissionTimeChecked);
         obj1.append("timeValue", timeValue);
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/commissions/' + Editid
         fetch(url2, {
@@ -781,114 +772,111 @@ const UniversitySetcommission = () => {
                                                                                             <div className="row mt-3">
 
 
-                                                                                                <div className="col-md-6">
-                                                                                                    <fieldset
+<div className="col-md-6">
+    <fieldset onChange={(e)=> setEditcommissionData(e.target.value)
+        }
 
-                                                                                                        onChange={(e) => setEditcommissionData(e.target.value)
-                                                                                                        }
-
-                                                                                                    >
-                                                                                                        <label className="form-label">Commision *</label><br />
+        >
+        <label className="form-label">Commision *</label><br />
 
 
-                                                                                                        <div className="form-check form-check-inline">
+        <div className="form-check form-check-inline">
 
 
-                                                                                                            <input className="form-check-input" type="radio"
-                                                                                                                onChange={(e) => setEditcommissionData(e.target.value)}
-                                                                                                                value="fixed"
-                                                                                                                checked={EditcommissionType === "fixed"}
+            <input className="form-check-input" type="radio" onChange={(e)=>
+            setEditcommissionData(e.target.value)}
+            value="fixed"
+            checked={EditcommissionType === "fixed"}
 
 
-                                                                                                            />
-                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault1">
-                                                                                                                Fixed
-                                                                                                            </label>
-                                                                                                        </div>
-                                                                                                        <div className="form-check form-check-inline">
-                                                                                                            <input className="form-check-input" type="radio"
-                                                                                                                onChange={(e) => setEditcommissionData(e.target.value)}
-                                                                                                                value="variable"
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault1">
+                Fixed
+            </label>
+        </div>
+        <div className="form-check form-check-inline">
+            <input className="form-check-input" type="radio" onChange={(e)=>
+            setEditcommissionData(e.target.value)}
+            value="variable"
 
-                                                                                                                checked={EditcommissionType === "variable"}
+            checked={EditcommissionType === "variable"}
 
 
-                                                                                                            />
-                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault2">
-                                                                                                                Variable
-                                                                                                            </label>
-                                                                                                        </div>
-                                                                                                    </fieldset>
-                                                                                                </div>
+            />
+            <label className="form-check-label" htmlFor="flexRadioDefault2">
+                Variable
+            </label>
+        </div>
+    </fieldset>
+</div>
 
 
 
-                                                                                                <div className="col-md-6">
-                                                                                                    <div style={{ display: displayEditAmount }}>
-                                                                                                        <label className="form-label" >Enter Amount</label>
-                                                                                                        <input type="number"
-                                                                                                            value={commissionValue}
-                                                                                                            onChange={e => amountcommissionValue(e.target.value)}
-                                                                                                            className="form-control" placeholder="" name="enteramount" />
-                                                                                                    </div>
-                                                                                                    <div style={{ display: displayEditPercentage }}>
-                                                                                                        <label className="form-label" >Enter Percentage(%)</label>
-                                                                                                        <input type="number" className="form-control" placeholder="" name="enter Percentage"
-                                                                                                            onChange={e => percentagecommissionValue(e.target.value)}
-                                                                                                        />
-                                                                                                    </div>
-                                                                                                    <span>The Total commission is {commissionValue}</span>
-                                                                                                </div>
-                                                                                            </div>
+<div className="col-md-6">
+    <div style={{ display: displayEditAmount }}>
+        <label className="form-label">Enter Amount</label>
+        <input type="number" value={commissionValue} onChange={e=> amountcommissionValue(e.target.value)}
+        className="form-control" placeholder="" name="enteramount" />
+    </div>
+    <div style={{ display: displayEditPercentage }}>
+        <label className="form-label">Enter Percentage(%)</label>
+        <input type="number" className="form-control" placeholder="" name="enter Percentage" onChange={e=>
+        percentagecommissionValue(e.target.value)}
+        />
+    </div>
+    <span>The Total commission is {commissionValue}</span>
+</div>
+</div>
 
 
-                                                                                            <div className="row mt-3">
-                                                                                                <div className="col-md-6">
-                                                                                                    <fieldset
-                                                                                                        onChange={(e) => setEditCommissionTime(e.target.value)}>
-                                                                                                        <label className="form-label">Commision Set is *</label><br />
-                                                                                                        <div className="form-check form-check-inline">
-                                                                                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                                                                                                                value="one time"
+<div className="row mt-3">
+        <div className="col-md-6">
+            <fieldset
+            >
+                <label className="form-label">Commision Set is *</label><br />
+                <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
 
-                                                                                                                checked={EdittimeType === "one time"}
-                                                                                                                onChange={(e) => setEditCommissionTime(e.target.value)}
-                                                                                                            />
-                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault3">
-                                                                                                                Only One time
-                                                                                                            </label>
-                                                                                                        </div>
-                                                                                                        <div className="form-check form-check-inline">
-                                                                                                            <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
-                                                                                                                value="every time"
-                                                                                                                checked={EdittimeType === "every time"}
+                        checked={commissionTimeChecked === "one time"}
+                        onChange={(e) => changecommissionTimeChecked("one time")}
+                    />
+                    <label className="form-check-label" htmlFor="flexRadioDefault3">
+                        Only One time
+                    </label>
+                </div>
+                <div className="form-check form-check-inline">
+                    <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
 
+                        checked={commissionTimeChecked === "every time"}
+                        onChange={(e) => changecommissionTimeChecked("every time")}
+                    />
+                    <label className="form-check-label" htmlFor="flexRadioDefault4">
+                        On Every Time
+                    </label>
+                </div>
+            </fieldset>
+            <div style={{ color: "red" }}> {timeTypeError}</div>
 
-                                                                                                                onChange={(e) => setEditCommissionTime(e.target.value)}
-                                                                                                            />
-                                                                                                            <label className="form-check-label" htmlFor="flexRadioDefault4">
-                                                                                                                On Every Time
-                                                                                                            </label>
-                                                                                                        </div>
-                                                                                                    </fieldset>
-                                                                                                </div>
-                                                                                                <div className="col-md-6">
-                                                                                                    <div style={{ display: displayEditone }}>
-                                                                                                        <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
-                                                                                                            value={timeValue}
-                                                                                                            onChange={(e) => settimeValue(e.target.value)}
-                                                                                                        />
-                                                                                                    </div>
-                                                                                                    <div style={{ display: displayEditmany }}>
-                                                                                                        <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
-                                                                                                        <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
-                                                                                                            value={timeValue}
-                                                                                                            onChange={(e) => settimeValue(e.target.value)}
-                                                                                                        />
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </div>
+        </div>
+        <div className="col-md-6">
+            <div style={{ display: displayone }}>
+                <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
+                <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                    value={timeValue}
+                    onChange={(e) => settimeValue(e.target.value)}
+                />
+            </div>
+            <div style={{ display: displaymany }}>
+                <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
+                <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
+                    value={timeValue}
+                    onChange={(e) => settimeValue(e.target.value)}
+                />
+            </div>
+            <div style={{ color: "red" }}> {timeValueError}</div>
+
+        </div>
+    </div>
                                                                                         </div>
                                                                                         <div className="mb-3">
                                                                                             <button type="submit" className="btn btn-success">Submit</button>
