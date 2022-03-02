@@ -25,6 +25,17 @@ const EnglishProficiencyDocument = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
 
     const [completedHeading, setcompletedHeading] = useState("inline");
+    const [englishProficiencyName, setenglishProficiencyName] = useState("inline");
+
+    const [englishProficiencyIELTS, setenglishProficiencyIELTS] = useState("inline");
+    const [englishProficiencyTOEFL, setenglishProficiencyTOEFL] = useState("inline");
+    const [englishProficiencyPTE, setenglishProficiencyPTE] = useState("inline");
+    const [englishProficiencyDuolingo, setenglishProficiencyDuolingo] = useState("inline");
+
+
+
+
+
 
 
 
@@ -57,16 +68,37 @@ const EnglishProficiencyDocument = () => {
     function onChangeIelts(e) {
 
         settest(e)
+        setenglishProficiencyName("selected")
+        setenglishProficiencyIELTS("selected")
+        setenglishProficiencyTOEFL("")
+        setenglishProficiencyPTE("")
+        setenglishProficiencyDuolingo("")
     }
     function onChangeToefl(e) {
         settest(e)
+        setenglishProficiencyName("selected")
+        setenglishProficiencyIELTS("")
+        setenglishProficiencyTOEFL("selected")
+        setenglishProficiencyPTE("")
+        setenglishProficiencyDuolingo("")
     }
     function onChangePte(e) {
         settest(e)
+        setenglishProficiencyName("selected")
+        setenglishProficiencyIELTS("")
+        setenglishProficiencyTOEFL("")
+        setenglishProficiencyPTE("selected")
+        setenglishProficiencyDuolingo("")
+
     }
     function onChangeDuolingo(e) {
 
         settest(e)
+        setenglishProficiencyIELTS("")
+        setenglishProficiencyTOEFL("")
+        setenglishProficiencyPTE("")
+        setenglishProficiencyDuolingo("selected")
+
     }
     function ToggleButton() {
         if (textflag == "none") {
@@ -190,10 +222,10 @@ const EnglishProficiencyDocument = () => {
                                                     <button type="button"
                                                         onClick={() => onChangeIelts("IELTS")}
 
-                                                        className="selected btn btn-secondary">IELTS</button>
-                                                    <button type="button" onClick={() => onChangeToefl("TOEFL")} className="btn btn-secondary">TOEFL</button>
-                                                    <button type="button" onClick={() => onChangePte("PTE")} className="btn btn-secondary">PTE</button>
-                                                    <button type="button" onClick={() => onChangeDuolingo("Duolingo")} className="btn btn-secondary">Duolingo</button>
+                                                        className={englishProficiencyIELTS + " btn btn-secondary"} >IELTS</button>
+                                                    <button type="button" onClick={() => onChangeToefl("TOEFL")} className={englishProficiencyTOEFL + " btn btn-secondary"}>TOEFL</button>
+                                                    <button type="button" onClick={() => onChangePte("PTE")} className={englishProficiencyPTE + " btn btn-secondary"}>PTE</button>
+                                                    <button type="button" onClick={() => onChangeDuolingo("Duolingo")} className={englishProficiencyDuolingo + " btn btn-secondary"}>Duolingo</button>
                                                 </div>
                                             </div>
 

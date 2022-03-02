@@ -151,11 +151,14 @@ const EnglishProficiencyDocument = () => {
                             <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
                               
-
+                                <label>
+                                                    Other Document Name
+                                                </label>
                                     {submitname === "" || submitname === undefined || submitname === "none" || submitname === " " ?
                                         <div>
 
                                             <div role="group" className="doc_choice btn-group" >
+                                               
                                             <input
                                                     value={name}
                                                     onChange={(e) => setname(e.target.value)}
@@ -213,9 +216,9 @@ const EnglishProficiencyDocument = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>

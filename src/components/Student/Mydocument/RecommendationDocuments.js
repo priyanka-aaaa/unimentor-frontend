@@ -19,6 +19,7 @@ function RecommendationDocuments(props) {
     const [document, setdocument] = useState("inline");
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [completedHeading, setcompletedHeading] = useState("inline");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -58,9 +59,13 @@ function RecommendationDocuments(props) {
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
+            setcompletedHeading("none")
+
         }
         else {
             settextflag("none")
+            setcompletedHeading("inline")
+
         }
     }
     return (
@@ -137,7 +142,7 @@ function RecommendationDocuments(props) {
                     <div className="form form_doc">
                         <div className="row">
                             <div className="col-md-8">
-                                <p>I don't have any recommender</p>
+                                <p style={{ display: completedHeading }}>I don't have any recommender</p>
                             </div>
                             <div className="col-md-4 text-right">
                                 <label className="switch3">
@@ -165,6 +170,7 @@ function RecommendationDocuments(props) {
                                             <div className="upload_doc d-flex flex-wrap align-items-center row">
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3">
                                                     <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                        <label> Recommender's Name</label>
                                                         <input className="ant-input w-100 form-control"
                                                             value={name}
                                                             onChange={(e) => setname(e.target.value)}
@@ -220,11 +226,11 @@ function RecommendationDocuments(props) {
                                                                 })));
                                                             }} name="heroImage" multiple={false}>
                                                                 {({ getRootProps, getInputProps }) => (
-                                                                    <div {...getRootProps({ className: 'dropzone' })} style={{ display: document }}>
+                                                                    <div {...getRootProps({ className: 'dropzone' })} >
                                                                         <input {...getInputProps()} />
-                                                                        <span style={{ fontSize: ".8rem" }}>
+                                                                        <div style={{ fontSize: ".8rem" }}>
                                                                             Upload/Drag & Drop here
-                                                                        </span>
+                                                                        </div>
                                                                     </div>
                                                                 )}
                                                             </Dropzone>
