@@ -1,6 +1,8 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import Universityregister from '../Universityregister';
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -91,10 +93,11 @@ function School(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <img src=
+                <Universityregister/>
+                  {/* <img src=
                
                   {images["stu-banner.jpg"]}
-                  alt="" />
+                  alt="" /> */}
                 </div>
               </div>
               <div className="col-lg-6">
@@ -104,7 +107,16 @@ function School(props) {
                     From a single, easy-to-use platform trusted by over 1,500 universities worldwide, expand your global presence and the number of qualified students.
                   </p>
                   <ul className="banner-btn">
-                    <li><a className="readon started" href="#">Get Started</a></li>
+                  
+                    <li>
+                      
+                    <Link to={'/Universityregister'} className="readon started" >
+                        
+
+                    Get Started</Link>  
+                      
+                      {/* <a className="readon started" href="#">Get Started</a> */}
+                      </li>
                     {/* <li>
                                                         <div class="rs-videos">
                                                             <div class="animate-border">

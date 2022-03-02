@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import Footer from './Home/Footer'
 import Header from './Home/Header'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import logo from '../img/logo.png';
 
@@ -11,8 +10,7 @@ import axios from 'axios';
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 
-
-export default function AgentRegister() {
+export default function Studentregister2() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -43,17 +41,17 @@ export default function AgentRegister() {
                 phone: phone
 
             };
-            axios.post('/agent/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL+'student/register', obj)
                 .then(function (res) {
-                 
+              
                     if (res.data.success === true) {
-                       
+                    
                         setName("");
                         setEmail("");
                         setPhone("");
 
                     }
-                    else if (res.data.message === "agent already exist") {
+                    else if (res.data.message === "Student already exist") {
                         setemailError("Email already exist");
                     }
                     else {
@@ -61,13 +59,13 @@ export default function AgentRegister() {
                     }
                 })
                 .catch(error => {
-               
+                 
                 });
         }
 
     }
     return (
-       <div>
+      <div>
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
@@ -111,11 +109,10 @@ export default function AgentRegister() {
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
                                     Already have an account? Click here to 
-                                    <Link to={'/AgentLogin'} className="" >
+                                    <Link to={'/Studentlogin'} className="" >
                          
 
-                            Login</Link>
-                                    
+                         Login</Link>
                                 </div>
 
                             </div>
@@ -124,7 +121,7 @@ export default function AgentRegister() {
                 </div>
 
             </section>
-       
+    
         </div>
     );
 }

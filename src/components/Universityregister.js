@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
-
+import Footer from './Home/Footer'
+import Header from './Home/Header'
 import logo from '../img/logo.png';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -69,6 +71,9 @@ export default function Universityregister() {
     }
     return (
         <div>
+        {/* // <div className="main-content">
+        // {/*Full width header Start*/}
+       
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
@@ -114,6 +119,12 @@ export default function Universityregister() {
                                         </div>
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
+                                    Already have an account? Click here to 
+                                    <Link to={'/Universitylogin'} className="" >
+                         
+
+                            Login</Link>
+                                    
                                 </div>
 
                             </div>
@@ -122,6 +133,8 @@ export default function Universityregister() {
                 </div>
 
             </section>
+         
         </div>
+
     );
 }

@@ -53,18 +53,18 @@ class Sidebar extends Component {
                             <span>My Documents</span></Link>
                     </li>
                     <li className="nav-item ">
-                    <Link to={'/Bookmark'} className="nav-link" href="#">
-                    <i className="fas fa-bookmark"></i>
+                        <Link to={'/Bookmark'} className="nav-link" href="#">
+                            <i className="fas fa-bookmark"></i>
                             <span>Bookmark</span></Link>
 
-                       
+
                     </li>
                     <li className="nav-item ">
                         <a className="nav-link" href="#">
                             <i className="far fa-address-card"></i>
                             <span>My Admits</span></a>
                     </li>
-                   
+
 
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">

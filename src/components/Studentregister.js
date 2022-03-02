@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-
+import Footer from './Home/Footer'
+import Header from './Home/Header'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import logo from '../img/logo.png';
 
@@ -39,11 +41,11 @@ export default function Studentregister() {
                 phone: phone
 
             };
-            axios.post(process.env.REACT_APP_SERVER_URL+'student/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL + 'student/register', obj)
                 .then(function (res) {
-              
+
                     if (res.data.success === true) {
-                    
+
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -57,63 +59,74 @@ export default function Studentregister() {
                     }
                 })
                 .catch(error => {
-                 
+
                 });
         }
 
     }
     return (
-        <div>
-            <section className="Form-block">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="form-centerblock">
-                                <p className="logo"><img src={logo} alt="logo" /></p>
+        <div className="main-content">
+            {/*Full width header Start*/}
+            <div className="full-width-header">
+                {/*Header Start*/}
+                <Header />
+                <section className="Form-block">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">
+                                <div className="form-centerblock">
+                                    <p className="logo"><img src={logo} alt="logo" /></p>
 
-                                <div className="from-start">
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="mb-3 mt-3">
-                                            <label className="form-label">Name</label>
-                                            <input required type="text" className="form-control form-control-lg" id="uname"
-                                                placeholder="Full Name" name="name"
-                                                value={name}
-                                                onChange={(e) => setName(e.target.value)}
-                                            />
-                                        </div>
-                                        <span style={{ color: "red" }}> {nameError}</span>
-                                        <div className="mb-3 mt-3">
-                                            <label className="form-label">Email</label>
-                                            <input required type="email" className="form-control form-control-lg" id="email"
-                                                placeholder="Enter email" name="email"
+                                    <div className="from-start">
+                                        <form onSubmit={handleSubmit}>
+                                            <div className="mb-3 mt-3">
+                                                <label className="form-label">Name</label>
+                                                <input required type="text" className="form-control form-control-lg" id="uname"
+                                                    placeholder="Full Name" name="name"
+                                                    value={name}
+                                                    onChange={(e) => setName(e.target.value)}
+                                                />
+                                            </div>
+                                            <span style={{ color: "red" }}> {nameError}</span>
+                                            <div className="mb-3 mt-3">
+                                                <label className="form-label">Email</label>
+                                                <input required type="email" className="form-control form-control-lg" id="email"
+                                                    placeholder="Enter email" name="email"
 
-                                                value={email}
-                                                onChange={(e) => setEmail(e.target.value)}
-                                            />
+                                                    value={email}
+                                                    onChange={(e) => setEmail(e.target.value)}
+                                                />
 
-                                        </div>
-                                        <span style={{ color: "red" }}>{emailError}</span>
-                                        <div className="mb-3 mt-3">
-                                            <label className="form-label">Phone</label>
+                                            </div>
+                                            <span style={{ color: "red" }}>{emailError}</span>
+                                            <div className="mb-3 mt-3">
+                                                <label className="form-label">Phone</label>
 
-                                            <PhoneInput
-                                                placeholder="Enter phone number"
-                                                required
-                                                value={phone}
-                                                onChange={setPhone} />
+                                                <PhoneInput
+                                                    placeholder="Enter phone number"
+                                                    required
+                                                    value={phone}
+                                                    onChange={setPhone} />
 
-                                            <span style={{ color: "red" }}> {phoneError}</span>
-                                        </div>
-                                        <button type="submit" className="btn btn-website">Register</button>
-                                    </form>
+                                                <span style={{ color: "red" }}> {phoneError}</span>
+                                            </div>
+                                            <button type="submit" className="btn btn-website">Register</button>
+                                        </form>
+                                        Already have an account? Click here to
+                                        <Link to={'/Studentlogin'} className="" >
+
+
+                                            Login</Link>
+                                    </div>
+
                                 </div>
-
                             </div>
                         </div>
                     </div>
-                </div>
 
-            </section>
+                </section>
+            </div>
+            <Footer />
         </div>
     );
 }

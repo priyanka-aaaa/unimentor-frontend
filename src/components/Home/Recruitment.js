@@ -1,6 +1,9 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
+import AgentRegister from '../AgentRegister'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -16,7 +19,7 @@ function Recruitment(props) {
         {/*Full width header Start*/}
         <div className="full-width-header">
           {/*Header Start*/}
-      <Header/>
+          <Header />
           {/*Header End*/}
           {/* Canvas Menu start */}
           <nav className="right_menu_togle hidden-md">
@@ -88,7 +91,8 @@ function Recruitment(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <img src="assets/images/stu-banner.jpg" alt="" />
+                  <AgentRegister/>
+                  {/* <img src="assets/images/stu-banner.jpg" alt="" /> */}
                 </div>
               </div>
               <div className="col-lg-6">
@@ -99,7 +103,11 @@ function Recruitment(props) {
                     Course Mentor is more than a platform, it is your trusted partner to help you do what you do best: help as many students as possible fulfill their international education dreams.
                   </p>
                   <ul className="banner-btn">
-                    <li><a className="readon started" href="#">Partner With Us</a></li>
+
+
+                    <li>
+                      <Link to={'/AgentRegister'} className="readon started" >
+                        Partner With Us</Link></li>
                     {/* <li>
                                                   <div class="rs-videos">
                                                       <div class="animate-border">
@@ -117,9 +125,9 @@ function Recruitment(props) {
           </div>
           <div className="rs-animation">
             <img className="dance3" src=
-            {images["home-b4-dot-6.png"]}
-           
-            alt="images" />
+              {images["home-b4-dot-6.png"]}
+
+              alt="images" />
           </div>
         </div>
         {/* Banner Section End */}
@@ -589,7 +597,7 @@ function Recruitment(props) {
         </div>
         {/* Testimonial Section End */}
       </div>
-      <Footer/>
+      <Footer />
     </div>
 
   );

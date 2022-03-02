@@ -1,6 +1,9 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
+import Studentregister2 from '../Studentregister2'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -89,7 +92,8 @@ function Student(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <img src="assets/images/student-banner.jpg" alt="" />
+                <Studentregister2/>
+                  {/* <img src="assets/images/student-banner.jpg" alt="" /> */}
                 </div>
               </div>
               <div className="col-lg-6">
@@ -99,7 +103,10 @@ function Student(props) {
                     Discover programmes and schools, get matched with the best selections, and submit your applications quickly and conveniently. We'll help you every step of the journey, from research to admission to visas and arrival at your desired school!
                   </p>
                   <ul className="banner-btn">
-                    <li><a className="readon started" href="#">Explore Programs</a></li>
+                    <li>
+                    <Link to={'/StudentRegister'} className="readon started" >
+                    Explore Programs</Link>
+                </li>
                     {/* <li>
                                                   <div class="rs-videos">
                                                       <div class="animate-border">
