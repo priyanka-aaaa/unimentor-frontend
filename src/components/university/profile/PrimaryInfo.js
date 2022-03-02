@@ -32,7 +32,7 @@ export default function PrimaryInfo() {
     const [websiteEndError, setwebsiteEndError] = useState("");
     const [pincodeError, setpincodeError] = useState("");
 
-    
+
 
 
 
@@ -203,7 +203,7 @@ export default function PrimaryInfo() {
         setwebsiteEndError("");
         setpincodeError("");
 
-        
+
         var descriptionLength = description.split(' ').length;
         var myPattern = /^[0-9_.]*$/;
 
@@ -240,9 +240,9 @@ export default function PrimaryInfo() {
 
         }
 
-        else if(myPattern.test(pincode)===false){
+        else if (myPattern.test(pincode) === false) {
             setpincodeError("Please Enter Only Number")
-            
+
         }
         else {
             setmyloader("true")
@@ -424,7 +424,7 @@ export default function PrimaryInfo() {
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
-                                          
+
                                             <div style={{ color: "red" }}> {pincodeError}</div>
 
                                         </div>

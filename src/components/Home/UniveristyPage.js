@@ -40,7 +40,7 @@ export default function AllUniversity() {
 
     }])
     const [FormPrimaryInformationValues, setFormPrimaryInformationValues] = useState([{
-        website: "", country: "", phone: "",type:""
+        website: "", country: "", phone: "", type: ""
 
     }])
     const [universityImageValues, setuniversityImageValues] = useState([{
@@ -67,7 +67,7 @@ export default function AllUniversity() {
 
         }
         setMounted(mytoken)
-     
+
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
         fetch(url1, {
             method: 'GET',
@@ -78,7 +78,7 @@ export default function AllUniversity() {
 
                 setFormValues(data.universityFaqs)
             })
-       
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/admissions';
         fetch(url2, {
             method: 'GET',
@@ -88,7 +88,7 @@ export default function AllUniversity() {
             .then(data => {
                 setFormAdmissionValues(data.universityAdmissions)
             })
-    
+
         const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/documents';
         fetch(url3, {
             method: 'GET',
@@ -98,7 +98,7 @@ export default function AllUniversity() {
             .then(data => {
                 setFormDocumentValues(data.universityDocuments)
             })
-    
+
         const url4 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/overview';
         fetch(url4, {
             method: 'GET',
@@ -113,7 +113,7 @@ export default function AllUniversity() {
                 }
 
             })
-       
+
         const url5 = process.env.REACT_APP_SERVER_URL + 'universities';
         fetch(url5, {
             method: 'GET',
@@ -130,7 +130,7 @@ export default function AllUniversity() {
                     }
                 })
             })
-       
+
         const url6 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/primaryInformation';
         fetch(url6, {
             method: 'GET',
@@ -141,7 +141,7 @@ export default function AllUniversity() {
                 setFormPrimaryInformationValues(data.universityPrimaryInformation)
 
             })
- 
+
         const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
         fetch(url7, {
             method: 'GET',
@@ -167,7 +167,7 @@ export default function AllUniversity() {
                 setcoursesValues(data.universityCourses)
 
             })
-      
+
         const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
 
         fetch(url9, {
@@ -179,7 +179,7 @@ export default function AllUniversity() {
                 setrankingValues(data.universityRankings)
 
             })
-     
+
         const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
 
         fetch(url10, {
@@ -191,7 +191,7 @@ export default function AllUniversity() {
                 setimageVideoValues(data.universityImageVideos)
 
             })
-       }, [])
+    }, [])
     var divStyle = {
         backgroundImage: 'url(' + universityImageValues.coverPic + ')'
     }
@@ -199,13 +199,13 @@ export default function AllUniversity() {
 
     return (
         <div>
-             <div className="main-content">
-        {/*Full width header Start*/}
-        <div className="full-width-header">
-          {/*Header Start*/}
-        <Header/>
-        </div>
-        </div>
+            <div className="main-content">
+                {/*Full width header Start*/}
+                <div className="full-width-header">
+                    {/*Header Start*/}
+                    <Header />
+                </div>
+            </div>
             <div className="defult-home">
 
                 {/* <!--Preloader area start here--> */}
@@ -215,7 +215,7 @@ export default function AllUniversity() {
                 {/* <!--Preloader area End here--> */}
 
                 {/* <!-- Main content Start --> */}
-            
+
                 <div className="main-content">
 
                     {/* start for header */}
@@ -331,8 +331,15 @@ export default function AllUniversity() {
                                                     </div>
 
                                                     <div className="overview-box green-light">
-                                                        <span className="icon"><i className="fa fa-calendar-check-o"></i></span>
-                                                        <h3>{FormOverviewValues.foundedYear}<br /><span>Founded year </span></h3>
+                                                        <span className="icon">
+                                                            
+                                                        <i className="fas fa-plus"></i>
+                                                            <i className="fa fa-calendar-check-o"></i></span>
+                                                        <h3>{FormOverviewValues.foundedYear}<br /><span>
+
+                                                            <i className="fas fa-plus"></i>
+
+                                                            Founded year </span></h3>
                                                     </div>
 
                                                     <div className="overview-box ornage-light">
@@ -342,7 +349,7 @@ export default function AllUniversity() {
                                                         <h3>{FormOverviewValues.ranking}<br /><span>Global Rankings</span></h3>
                                                     </div>
 
-                                                   
+
                                                 </div>
                                             </div>
                                         </div>

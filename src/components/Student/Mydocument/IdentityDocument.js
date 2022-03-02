@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 const NewIdentityDocument = () => {
@@ -14,7 +15,12 @@ const NewIdentityDocument = () => {
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [submitfileError, setsubmitfileError] = useState("");
+    const [fileErrorMsg, setfileErrorMsg] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
+
+
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -23,7 +29,27 @@ const NewIdentityDocument = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
+        function identityDocumentAllDetails() {
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setmypassport(data.studentIdentityDocument.passport)
+                    setmypassportBack(data.studentIdentityDocument.passportBack)
+                    setmycv(data.studentIdentityDocument.cv)
+
+                })
+        }
+        identityDocumentAllDetails()
         //start for get all newIdeneitiydocument 
+
+        //end for get all newIdeneitiydocument 
+    }, [])
+
+    function identityDocumentAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -36,9 +62,7 @@ const NewIdentityDocument = () => {
                 setmycv(data.studentIdentityDocument.cv)
 
             })
-        //end for get all newIdeneitiydocument 
-    }, [])
-
+    }
     function onDeletePassportHandle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
@@ -55,15 +79,21 @@ const NewIdentityDocument = () => {
     }
     return (
         <div className="card">
+            {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                 <strong>1</strong>   Identity Documents
             </a>
             <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
                 <div className="card-body">
-                {submitSuccess === 1 ? <div className="Show_success_message">
-                <strong></strong> {successMessage}
-            </div> : null}
+                    {submitSuccess === 1 ? <div className="Show_success_message">
+                        <strong></strong> {successMessage}
+                    </div> : null}
 
+                    {submitfileError === 1 ? <div className="Show_success_message">
+                        <strong></strong> {fileErrorMsg}
+                    </div> : null}
                     {showSweetAlert === "1" ? <SweetAlert
                         warning
                         showCancel
@@ -73,9 +103,8 @@ const NewIdentityDocument = () => {
                         title="Are you sure?"
                         onConfirm={(value) => {
                             setshowSweetAlert("0");
-                            console.log("setdeleteId");
-                            console.log(deleteId)
-                            // start for delete
+                            setmyloader("true")
+
                             const obj5 = new FormData();
                             obj5.append(deleteId, "*");
 
@@ -87,24 +116,13 @@ const NewIdentityDocument = () => {
                             })
                                 .then(response => response.json())
                                 .then(data => {
+                                    setmyloader("false")
+
                                     setsuccessMessage("Deleted Successfully")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
 
-                                    //start for get all newIdeneitiydocument 
-                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                        method: 'get',
-                                        //  body: obj5,
-                                        headers: { 'Authorization': mounted },
-                                    })
-                                        .then(response => response.json())
-                                        .then(data => {
-                                            setmypassport(data.studentIdentityDocument.passport)
-                                            setmypassportBack(data.studentIdentityDocument.passportBack)
-                                            setmycv(data.studentIdentityDocument.cv)
-
-                                        })
-                                    //end for get all newIdeneitiydocument 
+                                    identityDocumentAll()
                                 })
                             // end for delete
 
@@ -134,6 +152,8 @@ const NewIdentityDocument = () => {
                                 {/* //start for cv */}
                                 {mypassport === "" || mypassport === "*" || mypassport === null || mypassport === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
+                                        setmyloader("true")
+
                                         const obj5 = new FormData();
                                         obj5.append("passport", acceptedFiles[0]);
                                         //start for calling first api
@@ -144,21 +164,12 @@ const NewIdentityDocument = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setmypassport(data.studentIdentityDocument.passport)
-                                                        setmypassportBack(data.studentIdentityDocument.passportBack)
-                                                        setmycv(data.studentIdentityDocument.cv)
-                                                    })
-                                                //end for get all newIdeneitiydocument 
+                                                setmyloader("false")
+
+                                                identityDocumentAll()
+
                                             })
-                                        //end for calling first api
+
 
                                         setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
 
@@ -185,7 +196,7 @@ const NewIdentityDocument = () => {
 
 
                                             onClick={() => onDeletePassportHandle("passport")}
-                                           
+
                                             className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
                                         <div className="modal" id="myModalPassport1">
@@ -220,33 +231,41 @@ const NewIdentityDocument = () => {
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                                 <div>{/* This would be the dropzone for the Hero image */}
-                                {mypassportBack === "" || mypassportBack === "*" || mypassportBack === null || mypassportBack === undefined ?
-                               
+                                    {mypassportBack === "" || mypassportBack === "*" || mypassportBack === null || mypassportBack === undefined ?
+
                                         <Dropzone onDrop={(acceptedFiles) => {
-                                            const obj5 = new FormData();
-                                            obj5.append("passportBack", acceptedFiles[0]);
-                                            //start for calling first api
-                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                                method: 'put',
-                                                body: obj5,
-                                                headers: { 'Authorization': mounted },
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    //start for get all newIdeneitiydocument 
-                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                                        method: 'get',
-                                                        //  body: obj5,
-                                                        headers: { 'Authorization': mounted },
-                                                    })
-                                                        .then(response => response.json())
-                                                        .then(data => {
-                                                            setmypassport(data.studentIdentityDocument.passport)
-                                                            setmypassportBack(data.studentIdentityDocument.passportBack)
-                                                            setmycv(data.studentIdentityDocument.cv)
-                                                        })
-                                                    //end for get all newIdeneitiydocument 
+                                            setmyloader("true")
+                                            var fileName = acceptedFiles[0].path;
+
+                                            var fileExtension = fileName.split('.').pop();
+                                            console.log("fileExtension")
+                                            console.log(fileExtension)
+                                            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                                || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                            ) {
+
+
+
+                                                const obj5 = new FormData();
+                                                obj5.append("passportBack", acceptedFiles[0]);
+                                                //start for calling first api
+                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                                    method: 'put',
+                                                    body: obj5,
+                                                    headers: { 'Authorization': mounted },
                                                 })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        setmyloader("false")
+                                                        identityDocumentAll()
+                                                    })
+                                            }
+                                            else {
+                                                setsubmitfileError("Please upload file only in required extension")
+                                                setTimeout(() => setsubmitfileError(""), 3000);
+                                                setfileErrorMsg(1)
+                                                alert("Please upload file only in required extension")
+                                            }
                                             //end for calling first api
 
                                             setHeroFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -272,7 +291,7 @@ const NewIdentityDocument = () => {
                                             </button>
                                             <button type="button"
                                                 onClick={() => onDeletePassportBackHandle("passportBack")}
-                                                
+
                                                 className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
 
                                             <div className="modal" id="myModalPassportback1">
@@ -316,6 +335,7 @@ const NewIdentityDocument = () => {
                                 {mycv === "" || mycv === "*" || mycv === null || mycv === undefined ?
 
                                     <Dropzone onDrop={(acceptedFiles) => {
+                                        setmyloader("true")
                                         const obj5 = new FormData();
                                         obj5.append("cv", acceptedFiles[0]);
                                         //start for calling first api
@@ -326,19 +346,8 @@ const NewIdentityDocument = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setmypassport(data.studentIdentityDocument.passport)
-                                                        setmypassportBack(data.studentIdentityDocument.passportBack)
-                                                        setmycv(data.studentIdentityDocument.cv)
-                                                    })
-                                                //end for get all newIdeneitiydocument 
+                                                setmyloader("false")
+                                                identityDocumentAll()
                                             })
                                         //end for calling first api
 

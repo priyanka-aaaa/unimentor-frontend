@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 const EnglishProficiencyDocument = () => {
@@ -32,6 +33,7 @@ const EnglishProficiencyDocument = () => {
     const [englishProficiencyPTE, setenglishProficiencyPTE] = useState("inline");
     const [englishProficiencyDuolingo, setenglishProficiencyDuolingo] = useState("inline");
 
+    const [loader, setmyloader] = useState("false");
 
 
 
@@ -49,6 +51,8 @@ const EnglishProficiencyDocument = () => {
         setMounted(mounted)
 
         //start for get all newIdeneitiydocument 
+      function englishProficiencyAllDetails(){
+
         fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -62,9 +66,26 @@ const EnglishProficiencyDocument = () => {
 
 
             })
+        }
+        englishProficiencyAllDetails();
         //end for get all newIdeneitiydocument 
     }, [])
+    function englishProficiencyAll(){
 
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+            method: 'get',
+            headers: { 'Authorization': mounted },
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                settest(data.studentEnglishProficiencyDocument.test)
+                setmyfile(data.studentEnglishProficiencyDocument.file)
+                setsubmittest(data.studentEnglishProficiencyDocument.test)
+
+
+            })
+        }
     function onChangeIelts(e) {
 
         settest(e)
@@ -120,6 +141,9 @@ const EnglishProficiencyDocument = () => {
 
     return (
         <div className="card">
+             {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapsefour">
                 <strong>4</strong>  English Proficiency Test Document
             </a>
@@ -135,6 +159,8 @@ const EnglishProficiencyDocument = () => {
 
                     title="Are you sure?"
                     onConfirm={(value) => {
+                        setmyloader("true")
+
                         setshowSweetAlert("0");
 
                         // start for delete
@@ -150,24 +176,14 @@ const EnglishProficiencyDocument = () => {
                         })
                             .then(response => response.json())
                             .then(data => {
+                            setmyloader("false")
+
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
+                                englishProficiencyAll()
 
-                                //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-                                    method: 'get',
-                                    //  body: obj5,
-                                    headers: { 'Authorization': mounted },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        settest(data.studentEnglishProficiencyDocument.test)
-                                        setmyfile(data.studentEnglishProficiencyDocument.file)
-                                        setsubmittest(data.studentEnglishProficiencyDocument.test)
-                                    })
-                                //end for get all newIdeneitiydocument 
                             })
                         // end for delete
 
@@ -237,6 +253,8 @@ const EnglishProficiencyDocument = () => {
                                     <p>Upload Document</p>
                                     {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                         <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                             const obj5 = new FormData();
                                             obj5.append("file", acceptedFiles[0]);
                                             obj5.append("test", test);
@@ -248,22 +266,9 @@ const EnglishProficiencyDocument = () => {
                                             })
                                                 .then(response => response.json())
                                                 .then(data => {
-                                                    //start for get all newIdeneitiydocument 
-                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-                                                        method: 'get',
-                                                        //  body: obj5,
-                                                        headers: { 'Authorization': mounted },
-                                                    })
-                                                        .then(response => response.json())
-                                                        .then(data => {
-                                                            settest(data.studentEnglishProficiencyDocument.test)
-                                                            setsubmittest(data.studentEnglishProficiencyDocument.test)
-
-                                                            setmyfile(data.studentEnglishProficiencyDocument.file)
-
-
-                                                        })
-                                                    //end for get all newIdeneitiydocument 
+                                                    setmyloader("false")
+                                                    englishProficiencyAll()
+                                                 
                                                 })
                                             //end for calling first api
 

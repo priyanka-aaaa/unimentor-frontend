@@ -315,9 +315,7 @@ const Application = () => {
 
                                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                     <h5>Application Process</h5>
-                                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span>
-                                        <i className="fas fa-plus"></i>
-                                        </span>Add New Application</button>
+                                    <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Application</button>
 
                                 </div>
 

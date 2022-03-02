@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 const ExtraCurricularDocument = () => {
@@ -25,6 +26,7 @@ const ExtraCurricularDocument = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
 
+    const [loader, setmyloader] = useState("false");
 
 
     useEffect(() => {
@@ -37,6 +39,8 @@ const ExtraCurricularDocument = () => {
         setMounted(mounted)
 
         //start for get all newIdeneitiydocument 
+   function extraCurricularAllDetails(){
+
         fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -50,10 +54,27 @@ const ExtraCurricularDocument = () => {
 
 
             })
+        }
+        extraCurricularAllDetails()
         //end for get all newIdeneitiydocument 
     }, [])
 
+    function extraCurricularAll(){
 
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
+            method: 'get',
+            headers: { 'Authorization': mounted },
+        })
+            .then(response => response.json())
+            .then(data => {
+
+                setactivity(data.studentExtraCurricularDocument.activity)
+                setmyfile(data.studentExtraCurricularDocument.file)
+                setsubmitactivity(data.studentExtraCurricularDocument.activity)
+
+
+            })
+        }
     function handleChange(e) {
         // alert(e.target.value)
         setactivity(e.target.value)
@@ -80,6 +101,9 @@ const ExtraCurricularDocument = () => {
 
     return (
         <div className="card">
+             {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapsefive">
                 <strong>5</strong>  Extra Curricular Document
             </a>
@@ -95,6 +119,8 @@ const ExtraCurricularDocument = () => {
 
                     title="Are you sure?"
                     onConfirm={(value) => {
+                        setmyloader("true")
+
                         setshowSweetAlert("0");
 
                         // start for delete
@@ -110,24 +136,13 @@ const ExtraCurricularDocument = () => {
                         })
                             .then(response => response.json())
                             .then(data => {
+                            setmyloader("false")
+
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
-
-                                //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
-                                    method: 'get',
-                                    //  body: obj5,
-                                    headers: { 'Authorization': mounted },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        setactivity(data.studentExtraCurricularDocument.activity)
-                                        setmyfile(data.studentExtraCurricularDocument.file)
-                                        setsubmitactivity(data.studentExtraCurricularDocument.activity)
-                                    })
-                                //end for get all newIdeneitiydocument 
+                                extraCurricularAll() 
                             })
                         // end for delete
 
@@ -188,6 +203,8 @@ const ExtraCurricularDocument = () => {
                                     {/* //start for cv */}
                                     {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                         <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                             const obj5 = new FormData();
                                             obj5.append("file", acceptedFiles[0]);
                                             obj5.append("activity", activity);
@@ -199,22 +216,9 @@ const ExtraCurricularDocument = () => {
                                             })
                                                 .then(response => response.json())
                                                 .then(data => {
-                                                    //start for get all newIdeneitiydocument 
-                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/extraCurricularDocument', {
-                                                        method: 'get',
-                                                        //  body: obj5,
-                                                        headers: { 'Authorization': mounted },
-                                                    })
-                                                        .then(response => response.json())
-                                                        .then(data => {
-                                                            setactivity(data.studentExtraCurricularDocument.activity)
-                                                            setsubmitactivity(data.studentExtraCurricularDocument.activity)
+                            setmyloader("false")
 
-                                                            setmyfile(data.studentExtraCurricularDocument.file)
-
-
-                                                        })
-                                                    //end for get all newIdeneitiydocument 
+                                                    extraCurricularAll()
                                                 })
                                             //end for calling first api
 

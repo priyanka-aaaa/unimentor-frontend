@@ -3,6 +3,7 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
+import Loader from '../../Home/Loader';
 
 
 const NewIdentityDocument = () => {
@@ -20,6 +21,7 @@ const NewIdentityDocument = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
+    const [loader, setmyloader] = useState("false");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -29,7 +31,26 @@ const NewIdentityDocument = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-        //start for get all newIdeneitiydocument 
+
+        function ugAllDetails() {
+
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setmyugDegree(data.studentEducationDocument.ugDegree)
+                    setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
+                    setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
+
+                })
+        }
+        ugAllDetails();
+    }, [])
+    function ugAll() {
+
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -42,9 +63,7 @@ const NewIdentityDocument = () => {
                 setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
 
             })
-        //end for get all newIdeneitiydocument 
-    }, [])
-
+    }
     function onDeleteugDegreeHandle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
@@ -71,6 +90,11 @@ const NewIdentityDocument = () => {
     return (
 
         <div className="card-body">
+            {loader === "true" ?
+
+                <Loader />
+
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong></strong> {successMessage}
             </div> : null}
@@ -82,6 +106,8 @@ const NewIdentityDocument = () => {
 
                 title="Are you sure?"
                 onConfirm={(value) => {
+                    setmyloader("true")
+
                     setshowSweetAlert("0");
                     console.log("setdeleteId");
                     console.log(deleteId)
@@ -97,24 +123,14 @@ const NewIdentityDocument = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
+                            setmyloader("false")
+
                             setsuccessMessage("Deleted Successfully")
 
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
 
-                            //start for get all newIdeneitiydocument 
-                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                method: 'get',
-                                //  body: obj5,
-                                headers: { 'Authorization': mounted },
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    setmyugDegree(data.studentEducationDocument.ugDegree)
-                                    setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                                    setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-                                })
-                            //end for get all newIdeneitiydocument 
+                            ugAll()
                         })
                     // end for delete
 
@@ -137,7 +153,7 @@ const NewIdentityDocument = () => {
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                        <p  style={{ display: completedHeading }}>I haven't completed or pursuing any UG course</p>
+                        <p style={{ display: completedHeading }}>I haven't completed or pursuing any UG course</p>
                     </div>
                     <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
                         <label className="switch">
@@ -164,6 +180,8 @@ const NewIdentityDocument = () => {
                             {/* //start for cv */}
                             {myugDegree === "" || myugDegree === "*" || myugDegree === null || myugDegree === undefined ?
                                 <Dropzone onDrop={(acceptedFiles) => {
+                                    setmyloader("true")
+
                                     const obj5 = new FormData();
                                     obj5.append("ugDegree", acceptedFiles[0]);
                                     //start for calling first api
@@ -174,19 +192,9 @@ const NewIdentityDocument = () => {
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            //start for get all newIdeneitiydocument 
-                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                                method: 'get',
-                                                //  body: obj5,
-                                                headers: { 'Authorization': mounted },
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    setmyugDegree(data.studentEducationDocument.ugDegree)
-                                                    setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                                                    setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-                                                })
-                                            //end for get all newIdeneitiydocument 
+                            setmyloader("false")
+
+                                            ugAll()
                                         })
                                     //end for calling first api
 
@@ -250,6 +258,8 @@ const NewIdentityDocument = () => {
                             <div>{/* This would be the dropzone for the Hero image */}
                                 {myugConsolidate === "" || myugConsolidate === "*" || myugConsolidate === null || myugConsolidate === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                         const obj5 = new FormData();
                                         obj5.append("ugConsolidate", acceptedFiles[0]);
                                         //start for calling first api
@@ -260,19 +270,9 @@ const NewIdentityDocument = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setmyugDegree(data.studentEducationDocument.ugDegree)
-                                                        setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                                                        setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
-                                                    })
-                                                //end for get all newIdeneitiydocument 
+                            setmyloader("false")
+
+                                                ugAll()
                                             })
                                         //end for calling first api
 
@@ -340,6 +340,8 @@ const NewIdentityDocument = () => {
                             <div>{/* This would be the dropzone for the Hero image */}
                                 {myUGMarksheet === "" || myUGMarksheet === "*" || myUGMarksheet === null || myUGMarksheet === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                         const obj5 = new FormData();
                                         obj5.append("ugMarksheet", acceptedFiles[0]);
                                         //start for calling first api
@@ -350,20 +352,9 @@ const NewIdentityDocument = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setmyugDegree(data.studentEducationDocument.ugDegree)
-                                                        setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
-                                                        setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
+                            setmyloader("false")
 
-                                                    })
-                                                //end for get all newIdeneitiydocument 
+                                                ugAll()
                                             })
                                         //end for calling first api
 

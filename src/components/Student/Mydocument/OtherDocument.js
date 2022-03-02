@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 const EnglishProficiencyDocument = () => {
@@ -26,6 +27,7 @@ const EnglishProficiencyDocument = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
 
 
 
@@ -39,23 +41,42 @@ const EnglishProficiencyDocument = () => {
         setMounted(mounted)
 
         //start for get all newIdeneitiydocument 
+        function otherAllDetails() {
+
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setname(data.studentOtherDocument.name)
+                    setmyfile(data.studentOtherDocument.file)
+                    setsubmitname(data.studentOtherDocument.name)
+
+
+                })
+        }
+        otherAllDetails()
+        //end for get all newIdeneitiydocument 
+    }, [])
+
+    function otherAll() {
+
         fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
         })
             .then(response => response.json())
             .then(data => {
-             
+
                 setname(data.studentOtherDocument.name)
                 setmyfile(data.studentOtherDocument.file)
                 setsubmitname(data.studentOtherDocument.name)
 
 
             })
-        //end for get all newIdeneitiydocument 
-    }, [])
-
-  
+    }
 
 
     function onDeletefileHandle(value) {
@@ -65,11 +86,14 @@ const EnglishProficiencyDocument = () => {
 
     return (
         <div className="card">
+            {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapsesix">
                 <strong>7</strong>  Others Documents
             </a>
             <div id="collapsesix" className="collapse" data-bs-parent="#accordion">
-            {submitSuccess === 1 ? <div className="Show_success_message">
+                {submitSuccess === 1 ? <div className="Show_success_message">
                     <strong></strong> {successMessage}
                 </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
@@ -80,6 +104,8 @@ const EnglishProficiencyDocument = () => {
 
                     title="Are you sure?"
                     onConfirm={(value) => {
+                        setmyloader("true")
+
                         setshowSweetAlert("0");
 
                         // start for delete
@@ -95,25 +121,14 @@ const EnglishProficiencyDocument = () => {
                         })
                             .then(response => response.json())
                             .then(data => {
+                                setmyloader("false")
+
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
+                                otherAll()
 
-                                //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
-                                    method: 'get',
-                                    //  body: obj5,
-                                    headers: { 'Authorization': mounted },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        setname(data.studentOtherDocument.name)
-                                        setmyfile(data.studentOtherDocument.file)
-                                        setsubmitname(data.studentOtherDocument.name)
-                        
-                                    })
-                                //end for get all newIdeneitiydocument 
                             })
                         // end for delete
 
@@ -150,32 +165,34 @@ const EnglishProficiencyDocument = () => {
                         <div className="upload_doc d-flex flex-wrap align-items-center row">
                             <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
-                              
-                                <label>
-                                                    Other Document Name
-                                                </label>
+
+                                    <label>
+                                        Other Document Name
+                                    </label>
                                     {submitname === "" || submitname === undefined || submitname === "none" || submitname === " " ?
                                         <div>
 
                                             <div role="group" className="doc_choice btn-group" >
-                                               
-                                            <input
+
+                                                <input
                                                     value={name}
                                                     onChange={(e) => setname(e.target.value)}
                                                     type="text" className="form-control" placeholder="Enter document name to upload" name="fname" />
 
-                                           
+
 
                                             </div>
                                         </div>
 
-                                        : name }
+                                        : name}
                                 </div>
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
                                 {/* //start for cv */}
                                 {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
+                                        setmyloader("true")
+
                                         const obj5 = new FormData();
                                         obj5.append("file", acceptedFiles[0]);
                                         obj5.append("name", name);
@@ -187,22 +204,10 @@ const EnglishProficiencyDocument = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setname(data.studentOtherDocument.name)
-                                                        setsubmitname(data.studentOtherDocument.name)
+                                                setmyloader("false")
 
-                                                        setmyfile(data.studentOtherDocument.file)
+                                                otherAll()
 
-
-                                                    })
-                                                //end for get all newIdeneitiydocument 
                                             })
                                         //end for calling first api
 

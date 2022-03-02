@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 const SecondaryEducation = () => {
@@ -13,11 +14,12 @@ const SecondaryEducation = () => {
     const [textflag, settextflag] = useState("none");
     const [completedHeading, setcompletedHeading] = useState("inline");
 
-    
+
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
 
 
     useEffect(() => {
@@ -28,7 +30,26 @@ const SecondaryEducation = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-        //start for get all newIdeneitiydocument 
+        function secondaryEducationAllDetails() {
+
+
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setmymarksheet10(data.studentEducationDocument.marksheet10)
+                    setmymarksheet12(data.studentEducationDocument.marksheet12)
+
+
+                })
+        }
+        secondaryEducationAllDetails();
+
+    }, [])
+    function secondaryEducationAll(){
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -41,9 +62,7 @@ const SecondaryEducation = () => {
 
 
             })
-        //end for get all newIdeneitiydocument 
-    }, [])
-
+    }
     function onDeletemarksheet10Handle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
@@ -66,6 +85,11 @@ const SecondaryEducation = () => {
     return (
 
         <div className="card-body">
+              {loader === "true" ?
+
+<Loader />
+
+: null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong></strong> {successMessage}
             </div> : null}
@@ -78,6 +102,8 @@ const SecondaryEducation = () => {
                 title="Are you sure?"
                 onConfirm={(value) => {
                     setshowSweetAlert("0");
+                    setmyloader("true")
+
                     console.log("setdeleteId");
                     console.log(deleteId)
                     // start for delete
@@ -92,23 +118,13 @@ const SecondaryEducation = () => {
                     })
                         .then(response => response.json())
                         .then(data => {
+                            setmyloader("false")
+
                             setsuccessMessage("Deleted Successfully")
 
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
-
-                            //start for get all newIdeneitiydocument 
-                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                method: 'get',
-                                //  body: obj5,
-                                headers: { 'Authorization': mounted },
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    setmymarksheet10(data.studentEducationDocument.marksheet10)
-                                    setmymarksheet12(data.studentEducationDocument.marksheet12)
-                                })
-                            //end for get all newIdeneitiydocument 
+                            secondaryEducationAll()
                         })
                     // end for delete
 
@@ -131,7 +147,7 @@ const SecondaryEducation = () => {
                 <div className="row pl-4 pr-4 mt-3">
 
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10" >
-                        <p  style={{ display: completedHeading }} >I haven't completed or pursuing Secondary Education</p>
+                        <p style={{ display: completedHeading }} >I haven't completed or pursuing Secondary Education</p>
                     </div>
                     <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
                         <label className="switch">
@@ -158,6 +174,8 @@ const SecondaryEducation = () => {
                             {/* //start for cv */}
                             {mymarksheet10 === "" || mymarksheet10 === "*" || mymarksheet10 === null || mymarksheet10 === undefined ?
                                 <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                     const obj5 = new FormData();
                                     obj5.append("marksheet10", acceptedFiles[0]);
                                     //start for calling first api
@@ -168,19 +186,9 @@ const SecondaryEducation = () => {
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            //start for get all newIdeneitiydocument 
-                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                                method: 'get',
-                                                //  body: obj5,
-                                                headers: { 'Authorization': mounted },
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    setmymarksheet10(data.studentEducationDocument.marksheet10)
-                                                    setmymarksheet12(data.studentEducationDocument.marksheet12)
+                            setmyloader("false")
 
-                                                })
-                                            //end for get all newIdeneitiydocument 
+                                            secondaryEducationAll();
                                         })
                                     //end for calling first api
 
@@ -244,6 +252,8 @@ const SecondaryEducation = () => {
                             <div>{/* This would be the dropzone for the Hero image */}
                                 {mymarksheet12 === "" || mymarksheet12 === "*" || mymarksheet12 === null || mymarksheet12 === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
+                            setmyloader("true")
+
                                         const obj5 = new FormData();
                                         obj5.append("marksheet12", acceptedFiles[0]);
                                         //start for calling first api
@@ -254,19 +264,9 @@ const SecondaryEducation = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                                                //start for get all newIdeneitiydocument 
-                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                                    method: 'get',
-                                                    //  body: obj5,
-                                                    headers: { 'Authorization': mounted },
-                                                })
-                                                    .then(response => response.json())
-                                                    .then(data => {
-                                                        setmymarksheet10(data.studentEducationDocument.marksheet10)
-                                                        setmymarksheet12(data.studentEducationDocument.marksheet12)
+                            setmyloader("false")
 
-                                                    })
-                                                //end for get all newIdeneitiydocument 
+                                                secondaryEducationAll()
                                             })
                                         //end for calling first api
 

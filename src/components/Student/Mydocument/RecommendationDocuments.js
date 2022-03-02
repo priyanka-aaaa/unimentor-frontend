@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 
@@ -20,6 +21,7 @@ function RecommendationDocuments(props) {
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
+    const [loader, setmyloader] = useState("false");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -32,6 +34,28 @@ function RecommendationDocuments(props) {
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
         //start for get all newIdeneitiydocument 
+        function recommendationAllDetails() {
+
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setname(data.studentRecommendationDocument.name)
+                    setmydocument(data.studentRecommendationDocument.document)
+                    setsubmitname(data.studentRecommendationDocument.name)
+
+
+                })
+        }
+        recommendationAllDetails()
+
+    }, [])
+
+    function recommendationAll() {
+
         fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -45,11 +69,7 @@ function RecommendationDocuments(props) {
 
 
             })
-        //end for get all newIdeneitiydocument 
-
-    }, [])
-
-
+    }
 
     function onDeletefileHandle(value) {
         setdeleteId(value)
@@ -70,7 +90,9 @@ function RecommendationDocuments(props) {
     }
     return (
         <div className="card">
-
+            {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapse6">
                 <strong>6</strong>Recommendation Documents
             </a>
@@ -86,9 +108,10 @@ function RecommendationDocuments(props) {
 
                     title="Are you sure?"
                     onConfirm={(value) => {
+                        setmyloader("true")
+
                         setshowSweetAlert("0");
-                        console.log("setdeleteId");
-                        console.log(deleteId)
+
                         // start for delete
                         const obj5 = new FormData();
                         obj5.append("name", " ");
@@ -101,6 +124,8 @@ function RecommendationDocuments(props) {
                         })
                             .then(response => response.json())
                             .then(data => {
+                                setmyloader("false")
+
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
@@ -188,6 +213,9 @@ function RecommendationDocuments(props) {
                                                         <div>
 
                                                             <Dropzone onDrop={(acceptedFiles) => {
+                                                                setmyloader("true")
+                                                                recommendationAll()
+
                                                                 const obj5 = new FormData();
                                                                 obj5.append("document", acceptedFiles[0]);
                                                                 obj5.append("name", name);
@@ -199,6 +227,8 @@ function RecommendationDocuments(props) {
                                                                 })
                                                                     .then(response => response.json())
                                                                     .then(data => {
+                                                                        setmyloader("false")
+
                                                                         //start for get all newIdeneitiydocument 
                                                                         fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                                                                             method: 'get',

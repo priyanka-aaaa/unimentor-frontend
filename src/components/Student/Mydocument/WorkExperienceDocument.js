@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 
 
 
@@ -20,6 +21,7 @@ function WorkExperienceDocument(props) {
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
+    const [loader, setmyloader] = useState("false");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -31,7 +33,25 @@ function WorkExperienceDocument(props) {
         }
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
-        //start for get all newIdeneitiydocument 
+        function workRexperienceAllDetails() {
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    setcompanyName(data.studentExperienceDocument.companyName)
+                    setmydocument(data.studentExperienceDocument.document)
+                    setsubmitcompanyName(data.studentExperienceDocument.companyName)
+
+
+                })
+        }
+        workRexperienceAllDetails();
+
+    }, [])
+    function workRexperienceAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -45,10 +65,7 @@ function WorkExperienceDocument(props) {
 
 
             })
-        //end for get all newIdeneitiydocument 
-
-    }, [])
-
+    }
 
 
     function onDeletefileHandle(value) {
@@ -70,7 +87,9 @@ function WorkExperienceDocument(props) {
     }
     return (
         <div className="card">
-
+            {loader === "true" ?
+                <Loader />
+                : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapse3">
                 <strong>3</strong> Work Experience Documents
             </a>
@@ -86,9 +105,10 @@ function WorkExperienceDocument(props) {
 
                     title="Are you sure?"
                     onConfirm={(value) => {
+                        setmyloader("true")
+
                         setshowSweetAlert("0");
-                        console.log("setdeleteId");
-                        console.log(deleteId)
+
                         // start for delete
                         const obj5 = new FormData();
                         obj5.append(deleteId, "*");
@@ -101,25 +121,14 @@ function WorkExperienceDocument(props) {
                         })
                             .then(response => response.json())
                             .then(data => {
+                                setmyloader("false")
+
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
+                                workRexperienceAll()
 
-                                //start for get all newIdeneitiydocument 
-                                fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
-                                    method: 'get',
-                                    headers: { 'Authorization': mounted },
-                                })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        setcompanyName(data.studentExperienceDocument.companyName)
-                                        setmydocument(data.studentExperienceDocument.document)
-                                        setsubmitcompanyName(data.studentExperienceDocument.companyName)
-
-
-                                    })
-                                //end for get all newIdeneitiydocument 
                             })
                         // end for delete
 
@@ -180,13 +189,15 @@ function WorkExperienceDocument(props) {
 
 
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3 text-left">
-<p>Upload Document</p>
+                                                    <p>Upload Document</p>
 
                                                     {/* //start for cv */}
                                                     {mydocument === "" || mydocument === "*" || mydocument === null || mydocument === undefined ?
                                                         <div>
 
-                                                            <Dropzone   onDrop={(acceptedFiles) => {
+                                                            <Dropzone onDrop={(acceptedFiles) => {
+                                                                setmyloader("true")
+
                                                                 const obj5 = new FormData();
                                                                 obj5.append("document", acceptedFiles[0]);
                                                                 obj5.append("companyName", companyName);
@@ -198,22 +209,9 @@ function WorkExperienceDocument(props) {
                                                                 })
                                                                     .then(response => response.json())
                                                                     .then(data => {
-                                                                        //start for get all newIdeneitiydocument 
-                                                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
-                                                                            method: 'get',
-                                                                            //  body: obj5,
-                                                                            headers: { 'Authorization': mounted },
-                                                                        })
-                                                                            .then(response => response.json())
-                                                                            .then(data => {
-                                                                                setcompanyName(data.studentExperienceDocument.companyName)
-                                                                                setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                        setmyloader("false")
 
-                                                                                setmydocument(data.studentExperienceDocument.document)
-
-
-                                                                            })
-                                                                        //end for get all newIdeneitiydocument 
+                                                                        workRexperienceAll()
                                                                     })
                                                                 //end for calling first api
 
