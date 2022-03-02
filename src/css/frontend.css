@@ -11165,8 +11165,8 @@ span.btn.btn-primary.loct {
   -webkit-animation: sk-scaleout 1s infinite ease-in-out;
   animation: sk-scaleout 1s infinite ease-in-out;
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 40%;
+  left: 15%;
   transform: translate(-50%, -50%);
 }
 .loader.orange-loader .loader-container {
@@ -11659,8 +11659,8 @@ span.btn.btn-primary.loct {
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
   position: absolute;
-  left: 50%;
-  top: 50%;
+  top: 40%;
+  left: 17%;
   z-index: 2;
   transform: translate(-50%,-50%);
 }
