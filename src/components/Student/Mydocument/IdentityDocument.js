@@ -15,8 +15,10 @@ const NewIdentityDocument = () => {
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [submitfileError, setsubmitfileError] = useState("");
-    const [fileErrorMsg, setfileErrorMsg] = useState("0");
+    const [errorMessage, seterrorMessage] = useState("");
+    const [submitError, setsubmitError] = useState("0");
+    
+
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
 
@@ -91,9 +93,12 @@ const NewIdentityDocument = () => {
                         <strong></strong> {successMessage}
                     </div> : null}
 
-                    {submitfileError === 1 ? <div className="Show_success_message">
-                        <strong></strong> {fileErrorMsg}
+                    {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
                     </div> : null}
+
+             
+
                     {showSweetAlert === "1" ? <SweetAlert
                         warning
                         showCancel
@@ -261,10 +266,12 @@ const NewIdentityDocument = () => {
                                                     })
                                             }
                                             else {
-                                                setsubmitfileError("Please upload file only in required extension")
-                                                setTimeout(() => setsubmitfileError(""), 3000);
-                                                setfileErrorMsg(1)
-                                                alert("Please upload file only in required extension")
+                                                setmyloader("false")
+                                                seterrorMessage("Admission Added")
+                                                setTimeout(() => setsubmitError(""), 3000);
+                                                setsubmitError(1)
+                                                
+                                                
                                             }
                                             //end for calling first api
 
