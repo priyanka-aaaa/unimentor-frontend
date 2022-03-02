@@ -16,6 +16,7 @@ const NewIdentityDocument = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [completedHeading, setcompletedHeading] = useState("inline");
 
 
     useEffect(() => {
@@ -58,9 +59,12 @@ const NewIdentityDocument = () => {
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
+            setcompletedHeading("none")
         }
         else {
             settextflag("none")
+            setcompletedHeading("inline")
+
         }
     }
     return (
@@ -132,7 +136,7 @@ const NewIdentityDocument = () => {
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
                     <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                        <p>I haven't completed or pursuing any PG course</p>
+                        <p  style={{ display: completedHeading }}>I haven't completed or pursuing any PG course</p>
                     </div>
                     <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
                         <label className="switch">
@@ -195,9 +199,9 @@ const NewIdentityDocument = () => {
                                     {({ getRootProps, getInputProps }) => (
                                         <div {...getRootProps({ className: 'dropzone' })}>
                                             <input {...getInputProps()} />
-                                            <span style={{ fontSize: ".8rem" }}>
+                                            <div style={{ fontSize: ".8rem" }}>
                                                 Upload/Drag & Drop here
-                                            </span>
+                                            </div>
                                         </div>
                                     )}
                                 </Dropzone>
@@ -283,9 +287,9 @@ const NewIdentityDocument = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>
@@ -374,9 +378,9 @@ const NewIdentityDocument = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>

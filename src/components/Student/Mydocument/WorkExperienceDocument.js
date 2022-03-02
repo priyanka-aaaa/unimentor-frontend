@@ -19,6 +19,7 @@ function WorkExperienceDocument(props) {
     const [document, setdocument] = useState("inline");
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [completedHeading, setcompletedHeading] = useState("inline");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -58,9 +59,13 @@ function WorkExperienceDocument(props) {
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
+            setcompletedHeading("none")
+
         }
         else {
             settextflag("none")
+            setcompletedHeading("inline")
+
         }
     }
     return (
@@ -137,7 +142,7 @@ function WorkExperienceDocument(props) {
                     <div className="form form_doc">
                         <div className="row">
                             <div className="col-md-8">
-                                <p>I don't have any work experience</p>
+                                <p style={{ display: completedHeading }}>I don't have any work experience</p>
                             </div>
                             <div className="col-md-4 text-right">
                                 <label className="switch3">
@@ -175,7 +180,7 @@ function WorkExperienceDocument(props) {
 
 
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3 text-left">
-
+<p>Upload Document</p>
 
                                                     {/* //start for cv */}
                                                     {mydocument === "" || mydocument === "*" || mydocument === null || mydocument === undefined ?
@@ -220,11 +225,11 @@ function WorkExperienceDocument(props) {
                                                                 })));
                                                             }} name="heroImage" multiple={false}>
                                                                 {({ getRootProps, getInputProps }) => (
-                                                                    <div {...getRootProps({ className: 'dropzone' })} style={{ display: document }}>
+                                                                    <div {...getRootProps({ className: 'dropzone' })}>
                                                                         <input {...getInputProps()} />
-                                                                        <span style={{ fontSize: ".8rem" }}>
+                                                                        <div style={{ fontSize: ".8rem" }}>
                                                                             Upload/Drag & Drop here
-                                                                        </span>
+                                                                        </div>
                                                                     </div>
                                                                 )}
                                                             </Dropzone>

@@ -170,9 +170,9 @@ const NewIdentityDocument = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>
@@ -259,9 +259,9 @@ const NewIdentityDocument = () => {
                                             {({ getRootProps, getInputProps }) => (
                                                 <div {...getRootProps({ className: 'dropzone' })}>
                                                     <input {...getInputProps()} />
-                                                    <span style={{ fontSize: ".8rem" }}>
+                                                    <div style={{ fontSize: ".8rem" }}>
                                                         Upload/Drag & Drop here
-                                                    </span>
+                                                    </div>
                                                 </div>
                                             )}
                                         </Dropzone>
@@ -352,9 +352,9 @@ const NewIdentityDocument = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>

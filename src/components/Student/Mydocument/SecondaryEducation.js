@@ -11,6 +11,9 @@ const SecondaryEducation = () => {
     const [mymarksheet10, setmymarksheet10] = useState();
     const [mymarksheet12, setmymarksheet12] = useState();
     const [textflag, settextflag] = useState("none");
+    const [completedHeading, setcompletedHeading] = useState("inline");
+
+    
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -53,9 +56,11 @@ const SecondaryEducation = () => {
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
+            setcompletedHeading("none")
         }
         else {
             settextflag("none")
+            setcompletedHeading("inline")
         }
     }
     return (
@@ -124,8 +129,9 @@ const SecondaryEducation = () => {
             }
             <div className="form form_doc">
                 <div className="row pl-4 pr-4 mt-3">
-                    <div className="col-8 col-sm-8 col-md-8 col-lg-10">
-                        <p>I haven't completed or pursuing Secondary Education</p>
+
+                    <div className="col-8 col-sm-8 col-md-8 col-lg-10" >
+                        <p  style={{ display: completedHeading }} >I haven't completed or pursuing Secondary Education</p>
                     </div>
                     <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
                         <label className="switch">
@@ -188,9 +194,9 @@ const SecondaryEducation = () => {
                                     {({ getRootProps, getInputProps }) => (
                                         <div {...getRootProps({ className: 'dropzone' })}>
                                             <input {...getInputProps()} />
-                                            <span style={{ fontSize: ".8rem" }}>
+                                            <div style={{ fontSize: ".8rem" }}>
                                                 Upload/Drag & Drop here
-                                            </span>
+                                            </div>
                                         </div>
                                     )}
                                 </Dropzone>
@@ -274,9 +280,9 @@ const SecondaryEducation = () => {
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
-                                                <span style={{ fontSize: ".8rem" }}>
+                                                <div style={{ fontSize: ".8rem" }}>
                                                     Upload/Drag & Drop here
-                                                </span>
+                                                </div>
                                             </div>
                                         )}
                                     </Dropzone>
