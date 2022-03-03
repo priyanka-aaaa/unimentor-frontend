@@ -9083,7 +9083,7 @@ div#ranking .author span {
   transform: unset;
 }
 .rs-testimonial.main-home.style4 .testi-item .testimonial-content {
-  position: absolute;
+  /* position: absolute; */
   display: flex;
   align-items: center;
   bottom: -40px;
