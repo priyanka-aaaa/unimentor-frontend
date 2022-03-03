@@ -187,7 +187,7 @@ function App() {
             <Route path='/UniversitySummary' component={Summary} />
             <Route path='/AllUniversity' component={AllUniversity} />
 
-            <Route path='/UniveristyPage/:id' component={UniveristyPage} />
+            <Route path='/institute/:id' component={UniveristyPage} />
 
             <Route path='/AdminLogin' component={AdminLogin} />
             <Route path='/AdminDashboard' component={AdminDashboard} />

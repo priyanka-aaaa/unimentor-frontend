@@ -118,7 +118,7 @@ export default function AdminUniversity() {
                                                             <td>
                                                                 <button className="btn" ><i className="fas fa-trash-alt"></i></button>
                                                                 <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><Link to={'/UniveristyPage/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
+                                                                <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
                                                                 <button className="btn" ><i className="fas fa-user-slash"></i></button>
                                                             </td>
                                                         </tr>

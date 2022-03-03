@@ -41,10 +41,7 @@ export default function AllUniversity() {
         name: "", email: ""
 
     }])
-
-
-
-    const [FormDocumentValues, setFormDocumentValues] = useState([{
+ const [FormDocumentValues, setFormDocumentValues] = useState([{
         document: ""
 
     }])
@@ -342,11 +339,11 @@ export default function AllUniversity() {
                                         <div className="col-lg-12 mb-50">
                                             <div className="blog-item">
                                                 <ul>
-                                                    <li><a href="#cour-overview">Overview</a></li>
+                                                    <li><a href="#overview">Overview</a></li>
                                                     <li><a href="#ranking">Ranking</a></li>
-                                                    <li><a href="#cour-fees">Courses & Fees</a></li>
-                                                    <li><a href="#ad-mission">Admissions Process </a></li>
-                                                    <li><a href="#ad-mission"> Documents Required</a></li>
+                                                    <li><a href="#courses-fees">Courses & Fees</a></li>
+                                                    <li><a href="#admission-process">Admissions Process </a></li>
+                                                    <li><a href="#admission-process"> Documents Required</a></li>
                                                     <li><a href="#img-video"> Images/Video</a></li>
                                                     <li><a href="#brow-coures"> Browse Courses</a></li>
 
@@ -382,7 +379,7 @@ export default function AllUniversity() {
                                             </div>
                                         </div>
                                         <div className="col-lg-12 mb-50">
-                                            <div className="blog-item" id="cour-overview">
+                                            <div className="blog-item" id="overview">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Overview</a></h3>
                                                     <div className="blog-meta">
@@ -434,7 +431,7 @@ export default function AllUniversity() {
 
                                         </div>
                                         <div className="col-lg-12 mb-50">
-                                            <div className="blog-item" id="cour-fees">
+                                            <div className="blog-item" id="courses-fees">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Courses & Fees</a></h3>
 
@@ -570,7 +567,7 @@ export default function AllUniversity() {
 
                                         </div>
                                         <div className="col-lg-12 mb-50">
-                                            <div className="blog-item" id="ad-mission">
+                                            <div className="blog-item" id="admission-process">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Admissions Process </a></h3>
                                                     <div className="admission-list">
