@@ -53,6 +53,7 @@ import Contact from './components/Home/Contact';
 
 import AllUniversity from './components/Home/AllUniversity';
 import UniveristyPage from './components/Home/UniveristyPage';
+import UniveristyPage2 from './components/Home/UniveristyPage2';
 
 import AdminDashboard from './components/admin/AdminDashboard';
 import AdminLogin from './components/AdminLogin';
@@ -188,7 +189,7 @@ function App() {
             <Route path='/AllUniversity' component={AllUniversity} />
 
             <Route path='/institute/:id' component={UniveristyPage} />
-
+            <Route path='/institute' component={UniveristyPage2} />
             <Route path='/AdminLogin' component={AdminLogin} />
             <Route path='/AdminDashboard' component={AdminDashboard} />
             <Route path='/AdminStudent' component={AdminStudent} />
