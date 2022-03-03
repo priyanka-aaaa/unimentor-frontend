@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 const Document = () => {
 
     const [FormValues, setFormValues] = useState([{
@@ -316,13 +320,20 @@ const Document = () => {
                             <div className="mt-4 mb-4">
                                 <div className="row">
 
-                                    <div className="col-md-6"><h3>Scholarship</h3></div>
-                                    <div className="col-md-6 text-right"> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Scholarship</button>
+                                    <div className="col-md-6"><h5>Scholarship</h5></div>
+                                    <div className="col-md-6 text-right"> <button type="button" 
+                                            data-toggle="tooltip" data-placement="right" title="Add New Scholarship"
+                                    
+                                    onClick={() => handleAdd()} className="btn btn-outline-success"><span>
+                                     
+                                        <FontAwesomeIcon icon={faPlus} />
+
+                                        </span>Add New Scholarship</button>
                                     </div>
 
                                 </div>
 
-                                <div className="card shadow mb-4">
+                                <div className="card shadow mb-4 mt-4">
                                     {myTable === "true" ?
                                         null
                                         :
@@ -330,8 +341,8 @@ const Document = () => {
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID</th>
-
+                                                    <th>No.</th>
+                                                        <th>Scholarship</th>
                                                         <th>Action</th>
 
                                                     </tr>
@@ -346,13 +357,22 @@ const Document = () => {
                                                         return (
 
                                                             <tr key={index}>
+                                                                   <td> {index+1}</td>
                                                                 <td> {element.scholarship}</td>
 
                                                                 <td>
 
-                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}>
+                                                                    
+                                                                        <FontAwesomeIcon icon={faPen} />
 
-                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                        </button>
+
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>
+                                                                  
+                                        <FontAwesomeIcon icon={faTrash} />
+
+                                                                        </button>
 
                                                                 </td>
                                                             </tr>
@@ -375,7 +395,7 @@ const Document = () => {
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
                                         <div className="row mt-3">
@@ -418,11 +438,11 @@ const Document = () => {
                                                                                     <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
                                                                                         <div className="col-sm-2x ">
                                                                                             <button
-                                                                                                className="VerticalText m-0"
+                                                                                                className="vert-btn"
                                                                                                 onClick={() => clickAddHandler(element.scholarship)}
 
 
-                                                                                            >  add</button>
+                                                                                            > <span className="VerticalText m-0">Add</span> </button>
                                                                                         </div>
                                                                                         <div className="col-sm-10x p-0 ">
                                                                                             <p className="m-0 help_text">{element.scholarship || ""}.</p>
@@ -496,7 +516,7 @@ const Document = () => {
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a className="closebtn" onClick={closebox} >&times;</a>
+                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                             </div>
                                         </div>
 
@@ -539,9 +559,9 @@ const Document = () => {
                                                                                     <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
                                                                                         <div className="col-sm-2x ">
                                                                                             <button
-                                                                                                className="VerticalText m-0"
+                                                                                                className="vert-btn"
                                                                                                 onClick={() => clickEditAddHandler(element.scholarship)}
-                                                                                            >  add</button>
+                                                                                            > <span className="VerticalText m-0">Add</span> </button>
                                                                                         </div>
                                                                                         <div className="col-sm-10x p-0 ">
                                                                                             <p className="m-0 help_text">{element.scholarship || ""}.</p>

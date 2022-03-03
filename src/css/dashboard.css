@@ -1975,7 +1975,11 @@ textarea.form-control {
 .form-group {
   margin-bottom: 1rem;
 }
-
+.form-group span {
+  display: inline-block;
+  float: none !important;
+  color: #ff0000;
+}
 .form-text {
   display: block;
   margin-top: 0.25rem;
@@ -4090,8 +4094,14 @@ input[type="button"].btn-block {
 
 .tab-content > .active {
   display: block;
+  background-color: #fff;
+  margin-bottom: 20px;
+  border-left: 1px solid #dddfeb;
+  border-bottom: 1px solid #dddfeb;
+  right: 1px solid #dddfeb;
+  border-right: 1px solid #dddfeb;
+  padding: 0px 10px 20px 10px ;
 }
-
 .navbar {
   position: relative;
   display: flex;
@@ -4100,7 +4110,10 @@ input[type="button"].btn-block {
   justify-content: space-between;
   padding: 0.5rem 1rem;
 }
-
+a.cursor-pointer {
+  display: inline-block;
+  margin-left: 10px;
+}
 .navbar .container,
 .navbar .container-fluid, .navbar .container-sm, .navbar .container-md, .navbar .container-lg, .navbar .container-xl {
   display: flex;
@@ -10783,7 +10796,9 @@ label.uploader {
   align-items: stretch;
   justify-content: center;
 }
-
+.sidebar-dark .nav-item .nav-link svg {
+  margin-right: 7px;
+}
 .btn-icon-split .icon {
   background: rgba(0, 0, 0, 0.15);
   display: inline-block;
@@ -11708,26 +11723,40 @@ a.card-header.collapsed:after{
   border-color: #6c757d30!important;
 }
 .help_content {
-  width: 30rem;
+  width: 44rem;
   display: flex;
+}
+.vert-btn{
+  background-color: #2EBE6E;
+  width: 35px;
+  height: 20vh;
+  color: #fff;
+  margin-right: 10px !important;
 }
 .VerticalText {
   height: 80px;
-  margin-right: 10px !important;
+ 
+}
+.ranking-img img {
+  box-shadow: 0px 0px 3px #ccc;
+  padding: 13px;
+  overflow: hidden;
+}
+.admission-list ul li a {
+  color: #000 !important;
+}
+button.vert-btn {
+  border: none; 
 }
 .VerticalText {
   writing-mode: vertical-lr;
   text-orientation: sideways;
-  transform: rotate(-180deg);
-  background-color: #2EBE6E;
-  color: white;
+  transform: rotate(-180deg);  
   font-weight: 600;
-  padding: 0px;
-  width: 35px;
-  height: 20vh;
+  padding: 0px; 
   margin: 0px;
   font-size: 10px;
-  color: white;
+  color: white !important;
   display: flex;
   font-weight: 600;
   padding: 0px;
@@ -11743,6 +11772,22 @@ p.VerticalText.m-0 {
 }
 textarea.form-control.editarea {
   height: 462px;
+}
+
+.form-control.editarea.help ul {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.form-control.editarea.help ul li{
+  list-style: none;
+}
+
+.form-control.editarea ul {
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.form-control.editarea ul li{
+  list-style: none;
 }
 a.card-header strong {
   background-color: #e3e6f0;

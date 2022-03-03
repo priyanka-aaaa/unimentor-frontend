@@ -112,11 +112,11 @@ export default function Studentregister() {
                                             </div>
                                             <button type="submit" className="btn btn-website">Register</button>
                                         </form>
-                                        Already have an account? Click here to
+                                        <p>Already have an account? Click here to
                                         <Link to={'/Studentlogin'} className="" >
 
 
-                                            Login</Link>
+                                            Login</Link></p>
                                     </div>
 
                                 </div>

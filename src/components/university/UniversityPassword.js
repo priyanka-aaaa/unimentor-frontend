@@ -151,7 +151,7 @@ export default function UniversityPassword() {
                                                                 <form onSubmit={setting}>
 
                                                                     <div className="form-group">
-                                                                        <label for="password">Enter Password</label>
+                                                                        <label for="password">Enter New Password</label>
                                                                         <input required="" name="password" type="password" id="password" className="form-control"
                                                                             value={password}
                                                                             onChange={(e) => setpassword(e.target.value)}
@@ -174,7 +174,9 @@ export default function UniversityPassword() {
 
 
                                                                     <div className="col-sm-12 text-danger"></div>
-                                                                    <button type="submit" className="btn btn-success">Save</button>
+                                                                    <button type="submit" className="btn btn-success"
+                                                                    title="Save"  data-toggle="tooltip" data-placement="right"
+                                                                    >Save</button>
 
                                                                 </form>
                                                             </div>

@@ -82,7 +82,7 @@ export default function Universityregister() {
             </div> : null}
                         <div className="col-lg-12">
                             <div className="form-centerblock">
-                                <p className="logo"><img src={logo} alt="logo" /></p>
+                                <h2>School Registration</h2>
 
                                 <div className="from-start">
                                     <form onSubmit={handleSubmit}>
@@ -119,11 +119,10 @@ export default function Universityregister() {
                                         </div>
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
-                                    Already have an account? Click here to 
-                                    <Link to={'/Universitylogin'} className="" >
-                         
+                                   <p> Already have an account? Click here to 
+                                    <Link to={'/Universitylogin'} className="" >                         
 
-                            Login</Link>
+                            Login</Link></p>
                                     
                                 </div>
 

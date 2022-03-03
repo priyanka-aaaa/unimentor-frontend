@@ -4,9 +4,11 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faEye
 
-
-
+} from '@fortawesome/free-solid-svg-icons';
 const ImageVideo = () => {
     // start for image video
     const [universityId, setuniversityId] = useState([]);
@@ -321,7 +323,10 @@ const ImageVideo = () => {
                                                             </button>
                                                         </div>
                                                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                            <button type="button" onClick={() => onDeletecoverPikHandle("logo")} className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                                            <button type="button" onClick={() => onDeletecoverPikHandle("logo")} className="btn btn-outline-danger">
+                                                                <FontAwesomeIcon icon={faTrash} />
+
+                                                            </button>
                                                         </div>
                                                     </div>
 
@@ -426,7 +431,11 @@ const ImageVideo = () => {
                                                             </button>
                                                         </div>
                                                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                            <button type="button" onClick={() => onDeletecoverPikHandle("coverPic")} className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                                            <button type="button" onClick={() => onDeletecoverPikHandle("coverPic")} className="btn btn-outline-danger">
+
+                                                                <FontAwesomeIcon icon={faTrash} />
+
+                                                            </button>
                                                         </div>
                                                     </div>
 
@@ -600,7 +609,7 @@ const ImageVideo = () => {
                                 <table className="table table-bordered">
                                     <thead>
                                         <tr>
-
+                                            <th>No.</th>
                                             <th>Image/Video</th>
                                             <th>Action</th>
                                         </tr>
@@ -612,6 +621,7 @@ const ImageVideo = () => {
 
                                                 <tr key={index}>
                                                     {/* <td> {element.point}</td> */}
+                                                    <td>{index+1}</td>
                                                     <td>
                                                         {element.type === "image" ?
                                                             <img style={{
@@ -628,17 +638,17 @@ const ImageVideo = () => {
 
                                                         }
 
-                                                        {/* 
-                                                                    <img style={{
-                                                                        width: "66px",
-                                                                        height: "50px"
-                                                                    }} src={element.link} alt="passportback" /> */}
+
                                                     </td>
                                                     <td>
 
 
-                                                        {/* <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button> */}
-                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+
+                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>
+
+                                                            <FontAwesomeIcon icon={faTrash} />
+
+                                                        </button>
 
                                                     </td>
                                                 </tr>

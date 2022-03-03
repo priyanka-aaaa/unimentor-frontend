@@ -186,7 +186,7 @@ export default function Overview() {
                             <div className="d-flex flex-wrap" id="Address">
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label>Founded year *</label>
+                                        <label>Founded year <span className="req-star">*</span></label>
                                         <input type="number" className="form-control"
                                             required
                                             value={foundedYear}
@@ -201,7 +201,7 @@ export default function Overview() {
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label htmlFor="State/Province">Ranking *                                                            </label>
+                                        <label htmlFor="State/Province">Ranking <span className="req-star">*</span></label>
                                         <input type="number" className="form-control"
                                             required
                                             value={ranking}
@@ -229,7 +229,7 @@ export default function Overview() {
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label>Popular Courses *</label>
+                                        <label>Popular Courses <span className="req-star">*</span></label>
                                         <input type="text" name="city" className="form-control"
                                             placeholder="Master in Architecture"
                                             required
@@ -241,7 +241,7 @@ export default function Overview() {
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
-                                        <label htmlFor="Zipcode">No. of courses *</label>
+                                        <label htmlFor="Zipcode">No. of courses <span className="req-star">*</span></label>
                                         <input type="number" name="courseNo" className="form-control"
                                             required
                                             value={courseNo}
@@ -256,7 +256,7 @@ export default function Overview() {
                                     <div className="row">
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Add Month *</label>
+                                                <label>Add Month <span className="req-star">*</span></label>
                                                 <select
                                                     required
                                                     className="form-control"
@@ -282,7 +282,7 @@ export default function Overview() {
                                         </div>
                                         <div className="col-md-6">
                                             <div className="form-group">
-                                                <label>Year *</label>
+                                                <label>Year <span className="req-star">*</span></label>
                                                 <input type="number" className="form-control"
                                                     value={myyear}
                                                     onChange={(e) => onChangeYear(e.target.value)}
@@ -300,7 +300,7 @@ export default function Overview() {
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="form-group">
-                                                <label htmlFor="State/Province"> English Proficiency *</label>
+                                                <label htmlFor="State/Province"> English Proficiency <span className="req-star">*</span></label>
                                                 <select
                                                     required
                                                     className="form-control"
@@ -318,7 +318,7 @@ export default function Overview() {
                                         </div>
                                         <div className="col-md-4">
                                             <div className="form-group">
-                                                <label htmlFor="State/Province"> CGPA                                                           </label>
+                                                <label htmlFor="State/Province"> CGPA  </label>
                                                 <input type="number" className="form-control" placeholder="CGPA"
 
                                                     value={cgpa}
@@ -330,7 +330,7 @@ export default function Overview() {
                                         </div>
                                         <div className="col-md-4">
                                             <div className="form-group">
-                                                <label htmlFor="State/Province">  Acceptance rate *                                                            </label>
+                                                <label htmlFor="State/Province">  Acceptance rate <span className="req-star">*</span> </label>
                                                 <input type="number" className="form-control" placholder=" acceptance rate"
 
                                                     required value={acceptanceRate}
@@ -351,8 +351,10 @@ export default function Overview() {
                                 <div className="row">
                                     <div className="col-md-6"></div>
                                     <div className="col-md-6 text-right">
-                                        <button type="submit" className="btn btn-secondary">Save</button>
-                                        <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success">Save & Next</button>
+                                        <button type="submit" className="btn btn-secondary" title="Save"
+                                         data-toggle="tooltip" data-placement="right"
+                                        >Save</button>
+                                        <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success" title="Save & Next">Save & Next</button>
                                     </div>
 
                                 </div>

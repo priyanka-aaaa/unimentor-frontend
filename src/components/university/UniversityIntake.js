@@ -5,7 +5,11 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 const UniversityIntake = () => {
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("");
@@ -289,7 +293,13 @@ const UniversityIntake = () => {
                                 </SweetAlert>
                                     : null
                                 }
-                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span> Add New Intake</button>
+                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
+                                title="Add New Intake"  data-toggle="tooltip" data-placement="right"
+                                ><span>
+                                  
+                                    <FontAwesomeIcon icon={faPlus} />
+                                    
+                                    </span> Add New Intake</button>
 
                             </div>
 
@@ -330,8 +340,16 @@ const UniversityIntake = () => {
 
                                                                     <td>
 
-                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}>
+                                                                           
+                                        <FontAwesomeIcon icon={faTrash} />
+                                                                            
+                                                                            </button>
+                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleClick(object._id)}>
+                                                                          
+                                        <FontAwesomeIcon icon={faPen} />
+                                                                            
+                                                                            </button>
 
                                                                     </td>
                                                                 </tr>
@@ -356,7 +374,9 @@ const UniversityIntake = () => {
 
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closebox} >&times;</a>
+                                                   
+
+                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
@@ -464,7 +484,7 @@ const UniversityIntake = () => {
 
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
@@ -571,7 +591,7 @@ const UniversityIntake = () => {
                                                         <h6 className="mt-2 font-weight-bold text-primary"></h6>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closeviewbox} >&times;</a>
+                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeviewbox} >&times;</a>
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
@@ -647,7 +667,7 @@ const UniversityIntake = () => {
 
             {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
+                {/* <i className="fas fa-angle-up"></i> */}
             </a>
 
             {/* <!-- Logout Modal--> */}

@@ -4,7 +4,11 @@ import RankingEdit from './RankingEdit';
 import DragAndDrop from './DragAndDrop';
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 class Ranking extends Component {
     constructor(props) {
         super(props);
@@ -318,8 +322,14 @@ class Ranking extends Component {
 
                             <div className="mt-4 mb-4">
                                 <div className='row'>
-                                    <div className='col-md-6'><h3>Ranking</h3></div>
-                                    <div className='col-md-6 text-right'> <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Ranking</button></div>
+                                    <div className='col-md-6'><h5>Ranking</h5></div>
+                                    <div className='col-md-6 text-right'> <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"
+                                       data-toggle="tooltip" data-placement="right" title="Add New Ranking"
+                                    ><span>
+                                      
+                                        <FontAwesomeIcon icon={faPlus} />
+
+                                    </span>Add New Ranking</button></div>
                                 </div>
 
 
@@ -372,8 +382,15 @@ class Ranking extends Component {
                                                                         <button title='Edit' className="btn btn btn-success btn-sm "
                                                                             onClick={() => this.handleAddClick(object._id)}
 
-                                                                        ><i className="fas fa-pen "></i></button>
-                                                                        <button title='Delete' className="btn btn-danger btn-sm vbtn" onClick={() => this.handleDeleteClick(object._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                        >
+                                        <FontAwesomeIcon icon={faPen} />
+
+                                                                        </button>
+                                                                        <button title='Delete' className="btn btn-danger btn-sm vbtn" onClick={() => this.handleDeleteClick(object._id)}>
+                                                                         
+                                        <FontAwesomeIcon icon={faTrash} />
+                                                                            
+                                                                            </button>
 
 
                                                                     </td>
@@ -397,7 +414,7 @@ class Ranking extends Component {
                                             <div className="student-view">
                                                 <div className="row">
                                                     <div className="col-md-12">
-                                                        <a className="closebtn"
+                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn"
                                                             onClick={() => this.ddhandleAddClick()}
 
                                                         >&times;</a>
@@ -413,24 +430,30 @@ class Ranking extends Component {
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <label htmlFor="fname" className="form-label">Agency Name *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="fname" className="form-label">Agency Name <span class="req-star">*</span></label>
                                                                 <input required type="text" className="form-control" placeholder="Agency Name" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                 />
+                                                                </div>
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Rank *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Rank <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
+                                                                </div>
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Year *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Year <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
                                                                 <span style={{ color: "red" }}> {this.state.yearMessage}</span>
 
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -472,7 +495,7 @@ class Ranking extends Component {
 
                                                                 <button type="submit"
 
-                                                                    className="btn btn-secondary">Add
+                                                                    className="btn btn-secondary" title='Add'>Add
                                                                 </button>
 
                                                             </div>
@@ -491,7 +514,7 @@ class Ranking extends Component {
                                             <div className="student-view">
                                                 <div className="row">
                                                     <div className="col-md-12">
-                                                        <a className="closebtn"
+                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn"
                                                             onClick={() => this.ddhandleAddClick()}
                                                         >&times;</a>
                                                     </div>
@@ -508,25 +531,31 @@ class Ranking extends Component {
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
-                                                                <label htmlFor="fname" className="form-label">Agency Name *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="fname" className="form-label">Agency Name <span class="req-star">*</span></label>
                                                                 <input type="text" className="form-control" placeholder="" name="agname"
                                                                     value={this.state.agencyName} onChange={this.changeagencyName}
                                                                     required
                                                                 />
+                                                                </div>
                                                             </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Rank *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Rank <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.rank} onChange={this.changerank}
                                                                 />
                                                             </div>
+                                                            </div>
                                                             <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Year *</label>
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Year <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
                                                                     value={this.state.year} onChange={this.changeyear}
                                                                 />
                                                                 <span style={{ color: "red" }}> {this.state.yearMessage}</span>
 
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -573,7 +602,7 @@ class Ranking extends Component {
 
                                                                 <button type="submit"
 
-                                                                    className="btn btn-secondary">Add
+                                                                    className="btn btn-secondary" title='Add'>Add
                                                                 </button>
 
                                                             </div>

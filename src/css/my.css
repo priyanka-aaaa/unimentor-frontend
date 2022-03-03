@@ -1,6 +1,4 @@
-trix-editor.form-control.editarea {
-  height: 27rem;
-}
+
 trix-editor:empty:not(:focus)::before {
   content: "•" !important;
   /* color: graytext;

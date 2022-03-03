@@ -32,7 +32,7 @@ export default function PrimaryInfo() {
     const [websiteEndError, setwebsiteEndError] = useState("");
     const [pincodeError, setpincodeError] = useState("");
 
-
+    
 
 
 
@@ -203,7 +203,7 @@ export default function PrimaryInfo() {
         setwebsiteEndError("");
         setpincodeError("");
 
-
+        
         var descriptionLength = description.split(' ').length;
         var myPattern = /^[0-9_.]*$/;
 
@@ -240,9 +240,9 @@ export default function PrimaryInfo() {
 
         }
 
-        else if (myPattern.test(pincode) === false) {
+        else if(myPattern.test(pincode)===false){
             setpincodeError("Please Enter Only Number")
-
+            
         }
         else {
             setmyloader("true")
@@ -316,7 +316,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="form-label">Name
-                                                *</label>
+                                                <span className="req-star">*</span></label>
                                             <input type="text" className="form-control"
                                                 placeholder="Name" name="uname"
                                                 onKeyPress={(e) => nameMethod(e)}
@@ -334,7 +334,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="form-label">Street Address
-                                                *</label>
+                                            <span className="req-star">*</span></label>
                                             <input type="text" className="form-control"
                                                 placeholder="Address" name="Address"
                                                 onKeyPress={(e) => streetAddressMethod(e)}
@@ -345,7 +345,7 @@ export default function PrimaryInfo() {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>Country *</label>
+                                            <label>Country  <span className="req-star">*</span></label>
                                             <select className="form-control" name="country" required
                                                 value={country}
                                                 onChange={(e) => handlecountry(e.target.value)}
@@ -374,7 +374,7 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label>State *
+                                            <label>State  <span className="req-star">*</span>
                                             </label>
 
                                             <select className="form-control" name="state"
@@ -395,7 +395,7 @@ export default function PrimaryInfo() {
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <div className="form-group"><label>City *</label>
+                                        <div className="form-group"><label>City  <span className="req-star">*</span></label>
                                             <select className="form-control" name="city" required
 
                                                 value={city}
@@ -419,12 +419,12 @@ export default function PrimaryInfo() {
                                     </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label>Pincode *</label>
+                                            <label>Pincode <span className="req-star">*</span></label>
                                             <input type="number" className="form-control" placeholder="1234" name="pin_code" required
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
-
+                                          
                                             <div style={{ color: "red" }}> {pincodeError}</div>
 
                                         </div>
@@ -434,7 +434,7 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label>University Type *</label>
+                                            <label>University Type  <span className="req-star">*</span></label>
                                             <select className="form-control" name="city" required
                                                 value={type}
                                                 onChange={(e) => settype(e.target.value)}
@@ -455,7 +455,7 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="form-group">
-                                            <label>Description *</label>
+                                            <label>Description  <span className="req-star">*</span></label>
                                             <textarea
                                                 value={description}
                                                 onChange={(e) => setdescription(e.target.value)}
@@ -473,7 +473,7 @@ export default function PrimaryInfo() {
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
-                                            <label>Website *</label>
+                                            <label>Website  <span className="req-star">*</span></label>
                                             <input type="text" className="form-control" placeholder="https://www.sunderland.ac.uk/" name="website" required
 
                                                 value={website}
@@ -486,7 +486,8 @@ export default function PrimaryInfo() {
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <label>Phone Number *</label>
+                                    <div className="form-group">
+                                        <label>Phone Number  <span className="req-star">*</span></label>
                                         <PhoneInput
                                             placeholder="Enter Phone Number"
                                             required
@@ -499,6 +500,7 @@ export default function PrimaryInfo() {
                                             value={phone}
                                             onChange={(e) => setphone(e.target.value)}
                                         /> */}
+                                        </div>
                                     </div>
                                     <div className="col-md-4">
                                         <label>Parent organization</label>
@@ -517,10 +519,13 @@ export default function PrimaryInfo() {
                                     <div className="row">
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6 text-right">
-                                            <button type="submit" className="btn btn-secondary" >Save
+                                            <button type="submit" className="btn btn-secondary" title="Save"
+                                            
+                                            data-toggle="tooltip" data-placement="right" >Save
                                             </button>
                                             <button data-bs-toggle="collapse" href="#collapseTwo" type="submit"
-                                                className="btn btn-success">Save &
+                                                className="btn btn-success" title="Save &
+                                                Next"  data-toggle="tooltip" data-placement="right" >Save &
                                                 Next</button>
                                         </div>
 

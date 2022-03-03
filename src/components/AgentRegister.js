@@ -73,7 +73,7 @@ export default function AgentRegister() {
                     <div className="row">
                         <div className="col-lg-12">
                             <div className="form-centerblock">
-                                <p className="logo"><img src={logo} alt="logo" /></p>
+                                <h2>Recruitment Partners</h2>
 
                                 <div className="from-start">
                                     <form onSubmit={handleSubmit}>
@@ -110,11 +110,10 @@ export default function AgentRegister() {
                                         </div>
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
-                                    Already have an account? Click here to 
-                                    <Link to={'/AgentLogin'} className="" >
-                         
+                                   <p> Already have an account? Click here to 
+                                    <Link to={'/AgentLogin'} className="" >                         
 
-                            Login</Link>
+                            Login</Link></p>
                                     
                                 </div>
 

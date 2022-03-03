@@ -62,13 +62,13 @@ class Topbar extends Component {
                     <form
                         className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div className="input-group">
-                            <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
+                            {/* <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
                                 <button className="btn btn-primary" type="button">
                                     <i className="fas fa-search fa-sm"></i>
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     </form>
 
@@ -103,12 +103,12 @@ class Topbar extends Component {
 
                         {/* <!-- Nav Item - Alerts --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
-                            <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                            {/* <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-bell fa-fw"></i>
-                                {/* <!-- Counter - Alerts --> */}
+                              
                                 <span className="badge badge-danger badge-counter">3+</span>
-                            </a>
+                            </a> */}
                             {/* <!-- Dropdown - Alerts --> */}
                             <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
@@ -154,12 +154,12 @@ class Topbar extends Component {
 
                         {/* <!-- Nav Item - Messages --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
-                            <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                            {/* <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-envelope fa-fw"></i>
-                                {/* <!-- Counter - Messages --> */}
+                             
                                 <span className="badge badge-danger badge-counter">7</span>
-                            </a>
+                            </a> */}
                             {/* <!-- Dropdown - Messages --> */}
                             <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">

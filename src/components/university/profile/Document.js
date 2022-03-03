@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 
 
 const Document = () => {
@@ -329,14 +333,19 @@ const Document = () => {
                             <div className=" mt-4 mb-4">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <h3>Document</h3>
+                                        <h5>Document</h5>
                                     </div>
                                     <div className="col-md-6 text-right">
-                                        <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Document</button>
+                                        <button type="button" 
+                                            data-toggle="tooltip" data-placement="right" title="Add New Document"
+                                        onClick={() => handleAdd()} className="btn btn-outline-success"><span>
+                                        <FontAwesomeIcon icon={faPlus} />
+
+                                            </span>Add New Document</button>
                                     </div>
                                 </div>
 
-                                <div className="card shadow mb-4">
+                                <div className="card shadow mb-4 mt-4">
                                     {myTable === "true" ?
                                         null
                                         :
@@ -344,8 +353,8 @@ const Document = () => {
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID</th>
-
+                                                    <th>No.</th>
+                                                        <th>Document</th>
                                                         <th>Action</th>
 
                                                     </tr>
@@ -358,15 +367,21 @@ const Document = () => {
                                                     {FormValues.map((element, index) => {
 
                                                         return (
-
+                                                           
                                                             <tr key={index}>
+                                                                    <td> {index+1}</td>
                                                                 <td> {element.document}</td>
 
                                                                 <td>
 
 
-                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}><i className="fas fa-pen "></i></button>
-                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}><i class="fas fa-trash-alt"></i></button>
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}>
+                                                                    
+                                        <FontAwesomeIcon icon={faPen} />
+                                                                        
+                                                                        </button>
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>                                        <FontAwesomeIcon icon={faTrash} />
+</button>
                                                                 </td>
                                                             </tr>
 
@@ -390,7 +405,7 @@ const Document = () => {
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
 
@@ -410,7 +425,7 @@ const Document = () => {
                                                                     <input id="x" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="helpadd"
+                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea helpadd"
                                                                         input="x"
                                                                     >
                                                                     </trix-editor>
@@ -430,9 +445,9 @@ const Document = () => {
                                                                                     <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
                                                                                         <div className="col-sm-2x ">
                                                                                             <button
-                                                                                                className="VerticalText m-0"
+                                                                                                className="vert-btn"
                                                                                                 onClick={() => clickAddHandler(element.document)}
-                                                                                            >  add</button>
+                                                                                            > <span className="VerticalText m-0">Add</span> </button>
                                                                                         </div>
                                                                                         <div className="col-sm-10x p-0 ">
                                                                                             <p className="m-0 help_text">{element.document || ""}.</p>
@@ -481,7 +496,7 @@ const Document = () => {
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a className="closebtn" onClick={closebox} >&times;</a>
+                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                             </div>
                                         </div>
 
@@ -524,11 +539,11 @@ const Document = () => {
                                                                                     <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
                                                                                         <div className="col-sm-2x ">
                                                                                             <button
-                                                                                                className="VerticalText m-0"
+                                                                                                className="vert-btn"
                                                                                                 onClick={() => clickEditAddHandler(element.document)}
 
 
-                                                                                            >  add</button>
+                                                                                            > <span className="VerticalText m-0">Add</span> </button>
                                                                                         </div>
                                                                                         <div className="col-sm-10x p-0 ">
                                                                                             <p className="m-0 help_text">{element.document || ""}.</p>

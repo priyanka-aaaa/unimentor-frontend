@@ -4,7 +4,11 @@ import Topbar from './Topbar';
 
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 const UniversitySetcommission = () => {
     const [mounted, setMounted] = useState();
     const [Percentage, setPercentage] = useState();
@@ -431,7 +435,13 @@ const UniversitySetcommission = () => {
                                 }
 
 
-                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span> Add Commission</button>
+                                <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
+                                title="Add Commission"  data-toggle="tooltip" data-placement="right" 
+                                ><span>
+                                 
+                                    <FontAwesomeIcon icon={faPlus} />
+
+                                    </span> Add Commission</button>
 
                             </div>
 
@@ -449,7 +459,7 @@ const UniversitySetcommission = () => {
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>ID</th>
+                                                            <th>No.</th>
                                                             <th>Course Name</th>
                                                             <th>Fee</th>
                                                             <th>Commission</th>
@@ -466,7 +476,7 @@ const UniversitySetcommission = () => {
                                                             return (
 
                                                                 <tr key={i}>
-                                                                    <td>{object._id}</td>
+                                                                    <td>{i+1}</td>
                                                                     <td>{object.courseName}</td>
                                                                     <td>{object.fee}</td>
                                                                     <td>{object.commissionValue}</td>
@@ -476,8 +486,13 @@ const UniversitySetcommission = () => {
 
                                                                     <td>
 
-                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(object._id)}><i className="fas fa-pen "></i></button>
+                                                                        <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDelete(object._id)}>
+                                                                          
+                                        <FontAwesomeIcon icon={faTrash} />
+                                                                            
+                                                                            </button>
+                                                                        <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(object._id)}>                                        <FontAwesomeIcon icon={faPen} />
+</button>
 
                                                                     </td>
                                                                 </tr>
@@ -503,7 +518,10 @@ const UniversitySetcommission = () => {
 
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                        <a 
+                                                        
+                                                        title="Close"  data-toggle="tooltip" data-placement="right" 
+                                                        className="closebtn" onClick={closeaddbox} >&times;</a>
                                                     </div>
                                                 </div>
                                                 <div className="row mt-3">
@@ -675,7 +693,10 @@ const UniversitySetcommission = () => {
                                                                                             </div>
                                                                                         </div>
                                                                                         <div className="mb-3">
-                                                                                            <button type="submit" className="btn btn-success">Submit</button>
+                                                                                            <button type="submit" className="btn btn-success"
+                                                                                            
+                                                                                            title="Submit"  data-toggle="tooltip" data-placement="right" 
+                                                                                            >Submit</button>
                                                                                         </div>
                                                                                     </form>
 
@@ -707,7 +728,9 @@ const UniversitySetcommission = () => {
                                                         <h6 className="mt-2 font-weight-bold text-primary"></h6>
                                                     </div>
                                                     <div className="col-md-6">
-                                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                        <a 
+                                                         title="Close"  data-toggle="tooltip" data-placement="right"
+                                                        className="closebtn" onClick={closeaddbox} >&times;</a>
 
                                                     </div>
                                                 </div>
@@ -879,7 +902,10 @@ const UniversitySetcommission = () => {
     </div>
                                                                                         </div>
                                                                                         <div className="mb-3">
-                                                                                            <button type="submit" className="btn btn-success">Submit</button>
+                                                                                            <button type="submit" className="btn btn-success"
+title="Submit"  data-toggle="tooltip" data-placement="right" 
+                                                                                            
+                                                                                            >Submit</button>
                                                                                         </div>
                                                                                     </form>
 
@@ -935,7 +961,10 @@ const UniversitySetcommission = () => {
 
             {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
+               
+                                       
+                
+                
             </a>
 
             {/* <!-- Logout Modal--> */}

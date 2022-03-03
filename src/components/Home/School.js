@@ -171,24 +171,12 @@ function School(props) {
                           <p>
                             200,000+</p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front purple-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Students
-                            Helped
-                          </h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">   200,000+
-                          </p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                 
                   </div>
                 </div>
               </div>
@@ -214,22 +202,12 @@ function School(props) {
                             125+
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front gold-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Student Source
-                            Countries</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc"> 125+ </p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                  
                   </div>
                 </div>
               </div>
@@ -255,22 +233,12 @@ function School(props) {
                             95%
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front blue-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Offer of
-                            Admission Rate</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">95%</p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                  
                   </div>
                 </div>
               </div>
@@ -290,6 +258,7 @@ function School(props) {
                   </h2>
                   <div className="desc">
                     <ul>
+              
                       <li><span><i className="fa fa-angle-right " /></span> Increase Student Diversity</li>
                       <li><span><i className="fa fa-angle-right " /></span> Receive Quality Applications</li>
                       <li><span><i className="fa fa-angle-right " /></span> Approved Recruiter Network</li>
@@ -439,14 +408,14 @@ function School(props) {
                   </div>
                   <div className="services-content">
                     <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Learn From Industry Experts</a></h3>
+                      <h3 className="title"><a href="#">Learn From Industry Experts</a></h3>
                     </div>
                     <div className="services-desc">
                       <p>
                         Learning top skills can bring an extra-ordinary outcome in a career.
                       </p>
                     </div>
-                    <div className="services-button"><a href="web-development.html">Read More</a></div>
+                    <div className="services-button"><a href="#">Read More</a></div>
                   </div>
                 </div>
               </div>
@@ -550,11 +519,13 @@ function School(props) {
           <div className="container-fluid">
             <div className="row">
               <div className="col-lg-6">
+              
                 <div className="testi-img">
-                  <img src=
-                 
+                <img src=
+                  
                   {images["testimonial-3.png"]}
                   alt="" />
+                 
                 </div>
               </div>
               <div className="col-lg-6 md-pt-50 modify-gap">
@@ -571,17 +542,11 @@ function School(props) {
                 <div className="rs-carousel owl-carousel owl-loaded owl-drag" data-loop="true" data-items={1} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={2000} data-smart-speed={800} data-dots="true" data-nav="false" data-nav-speed="false" data-md-device={1} data-md-device-nav="false" data-md-device-dots="false" data-center-mode="false" data-ipad-device2={1} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-ipad-device={1} data-ipad-device-nav="false" data-ipad-device-dots="true" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false">
                   <div className="owl-stage-outer"><div className="owl-stage" style={{ transform: 'translate3d(-3335px, 0px, 0px)', transition: 'all 0.8s ease 0s', width: '5336px' }}><div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                    
-                      {images["quote2.png"]}
-                      alt="" />"Based on such knowledge, we may understand several other programming languages in a more in-depth way. They have such an easy way of teaching. 5/5 rating great work keep it up"</div>
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />"Based on such knowledge, we may understand several other programming languages in a more in-depth way. They have such an easy way of teaching. 5/5 rating great work keep it up"</div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img src=
-                        {images["3.jpg"]}
-                      
-                         alt="" />
+                        <img src="assets/images/testimonial/main-home/3.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Aman</a>
@@ -590,18 +555,12 @@ function School(props) {
                     </div>
                   </div></div><div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                    
-                      {images["quote2.png"]}
-                      alt="" />"
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />"
                         "Course Mentor guided me through the application process to make sure it went smoothly. They filled me with trust because their communication is so strong. Course Mentor double-checked every part of my application and visa requirements so that everything was correct.”										</div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img src=
-                   
-                        {images["4.jpg"]}
-                        alt="" />
+                        <img src="assets/images/testimonial/main-home/4.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Parteek sharma</a>
@@ -610,18 +569,12 @@ function School(props) {
                     </div>
                   </div></div><div className="owl-item" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                      {images["quote2.png"]}
-                   
-                      alt="" />" It was important for me to get an education that would provide me with real-world skills. Studying abroad in Canada is the best decision I’ve ever made, and an experience I wouldn't trade for anything"
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />" It was important for me to get an education that would provide me with real-world skills. Studying abroad in Canada is the best decision I’ve ever made, and an experience I wouldn't trade for anything"
                       </div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img src=
-                      
-                        {images["1.jpg"]}
-                        alt="" />
+                        <img src="assets/images/testimonial/main-home/1.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Ankit</a>
@@ -630,18 +583,12 @@ function School(props) {
                     </div>
                   </div></div><div className="owl-item" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                    
-                      {images["quote2.png"]}
-                      alt="" />
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />
                         “Getting an education in Canada is an opportunity that you shouldn’t miss. The diversity I experienced in the classroom was not available in my home country. I applied to and was accepted by five colleges for my graduate studies, and the entire process was very simple.”					</div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img src=
-                        {images["2.jpg"]}
-                       
-                         alt="" />
+                        <img src="assets/images/testimonial/main-home/2.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Somya Saini</a>
@@ -650,17 +597,12 @@ function School(props) {
                     </div>
                   </div></div><div className="owl-item" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                   
-                      {images["quote2.png"]}
-                      alt="" />
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />
                         “Being an international student in Canada was the most rewarding experience of my life, and I am happy to say that it’s now my permanent home. Canada is a country that embraces multiculturalism, friendly immigration policies, and quality education.”					</div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img 
-                        
-                        src="assets/images/testimonial/main-home/3.jpg" alt="" />
+                        <img src="assets/images/testimonial/main-home/3.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Vishal</a>
@@ -669,17 +611,11 @@ function School(props) {
                     </div>
                   </div></div><div className="owl-item active" style={{ width: '637px', marginRight: '30px' }}><div className="testi-item">
                     <div className="author-desc">
-                      <div className="desc"><img className="quote" src=
-                      {images["home-about-5"]}
-                     
-                       alt="" />"I had an excellent time learning about many topics. I had a little bit of knowledge but never had the chance to study them deeply. Thank You so much for valuable information. "</div>
+                      <div className="desc"><img className="quote" src="assets/images/testimonial/main-home/quote2.png" alt="" />"I had an excellent time learning about many topics. I had a little bit of knowledge but never had the chance to study them deeply. Thank You so much for valuable information. "</div>
                     </div>
                     <div className="testimonial-content">
                       <div className="author-img">
-                        <img src=
-                          {images["tmh4.jpg"]}
-                 
-                         alt="" />
+                        <img src="assets/images/testimonial/main-home/4.jpg" alt="" />
                       </div>
                       <div className="author-part">
                         <a className="name" href="#">Parteek sharma</a>

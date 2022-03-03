@@ -93,7 +93,7 @@ function Student(props) {
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
                 <Studentregister2/>
-                  {/* <img src="assets/images/student-banner.jpg" alt="" /> */}
+                 
                 </div>
               </div>
               <div className="col-lg-6">
@@ -123,7 +123,10 @@ function Student(props) {
             </div>
           </div>
           <div className="rs-animation">
-            <img className="dance3" src="assets/images/banner/b4-dot-6.png" alt="images" />
+          <img className="dance3" src=
+            {images["b4-dot-6.png"]}
+           
+             alt="images" />
           </div>
         </div>
         {/* Banner Section End */}
@@ -144,7 +147,9 @@ function Student(props) {
                       <div className="front-content-part purple-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="assets/images/services/style6/6.png" alt="" />
+                          <img src=                            
+                            {images["home-style6-6.png"]}
+                            alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -155,24 +160,12 @@ function Student(props) {
                           <p>
                             200,000+</p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front purple-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Students
-                            Helped
-                          </h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">   200,000+
-                          </p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                   
                   </div>
                 </div>
               </div>
@@ -183,7 +176,9 @@ function Student(props) {
                       <div className="front-content-part gold-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="assets/images/services/main-home/icons/8.png" alt="" />
+                          <img src=                         
+                         {images["home-icons-8.png"]}
+                         alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -195,22 +190,12 @@ function Student(props) {
                             125+
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front gold-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Student Source
-                            Countries</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc"> 125+ </p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                  
                   </div>
                 </div>
               </div>
@@ -221,7 +206,10 @@ function Student(props) {
                       <div className="front-content-part blue-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                            <img src="assets/images/services/main-home/icons/9.png" alt="" />
+                          <img src=
+                         
+                         {images["home-icons-9.png"]}
+                         alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -233,22 +221,12 @@ function Student(props) {
                             95%
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front blue-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Offer of
-                            Admission Rate</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">95%</p>
-                        </div>
-                        <div className="back-btn-part">
+                        <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
                         </div>
                       </div>
                     </div>
+                   
                   </div>
                 </div>
               </div>
@@ -280,7 +258,10 @@ function Student(props) {
               </div>
               <div className="col-lg-6 pl-65 md-pl-15">
                 <div className="about-img">
-                  <img src="assets/images/about/about-5.png" alt="" />
+                <img src=
+                  
+                  {images["home-about-5.png"]}
+                  alt="" />
                 </div>
               </div>
             </div>
@@ -405,7 +386,7 @@ function Student(props) {
                   </div>
                   <div className="services-content">
                     <div className="services-text">
-                      <h3 className="title"><a href="web-development.html">Learn From Industry Experts</a></h3>
+                      <h3 className="title"><a href="#">Learn From Industry Experts</a></h3>
                     </div>
                     <div className="services-desc">
                       <p>
@@ -433,7 +414,10 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-1.png" alt="" />
+                      <img src=
+                     
+                      {images["pt-1.png"]} 
+                      alt="" />
                     </div>
                   </a>
                 </div>
@@ -442,7 +426,11 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-2.png" alt="" />
+                      <img src=
+                 
+                      {images["pt-2.png"]} 
+                      
+                      alt="" />
                     </div>
                   </a>
                 </div>
@@ -451,7 +439,10 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-3.png" alt="" />
+                      <img src=
+                     
+                      {images["pt-3.png"]}
+                      alt="" />
                     </div>
                   </a>
                 </div>
@@ -460,7 +451,10 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-4.png" alt="" />
+                      <img src=
+                      {images["pt-4.png"]}
+                     
+                       alt="" />
                     </div>
                   </a>
                 </div>
@@ -469,7 +463,10 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-5.png" alt="" />
+                      <img src=
+                     
+                      {images["pt-5.png"]}
+                      alt="" />
                     </div>
                   </a>
                 </div>
@@ -478,7 +475,10 @@ function Student(props) {
                 <div className="technology-item">
                   <a href="#">
                     <div className="logo-img">
-                      <img src="assets/images/pt-6.png" alt="" />
+                      <img src=
+                   
+                      {images["pt-6.png"]}
+                      alt="" />
                     </div>
                   </a>
                 </div>
@@ -498,7 +498,10 @@ function Student(props) {
             <div className="row">
               <div className="col-lg-6">
                 <div className="testi-img">
-                  <img src="assets/images/testimonial/testimonial-3.png" alt="" />
+                <img src=
+                  
+                  {images["testimonial-3.png"]}
+                  alt="" />
                 </div>
               </div>
               <div className="col-lg-6 md-pt-50 modify-gap">

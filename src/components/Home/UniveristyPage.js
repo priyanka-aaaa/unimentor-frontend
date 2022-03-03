@@ -1,10 +1,24 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
+    faEnvelope, faGlobe,faCheckCircle
+
+} from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 
 import Footer from './Footer'
 import Header from './Header'
 
+
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+}
+
+const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 
 
 export default function AllUniversity() {
@@ -259,7 +273,11 @@ export default function AllUniversity() {
                                             </div>
                                             <div className="recent-post-widget">
                                                 <div className="post-img">
-                                                    <span><i className="fa fa-phone"></i></span>
+                                                    <span>
+                                                        <FontAwesomeIcon icon={faPhone} />
+
+
+                                                    </span>
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
@@ -272,10 +290,16 @@ export default function AllUniversity() {
                                             </div>
                                             <div className="recent-post-widget">
                                                 <div className="post-img">
-                                                    <span><i className="fa fa-envelope"></i></span>
+                                                    <span>
+                                                        <FontAwesomeIcon icon={faEnvelope} />
+
+
+                                                    </span>
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
+
+
                                                         <i className="fa fa-calendar"></i>
                                                         Email
                                                     </span>
@@ -285,7 +309,11 @@ export default function AllUniversity() {
                                             </div>
                                             <div className="recent-post-widget">
                                                 <div className="post-img">
-                                                    <span><i className="fa fa-globe"></i></span>
+                                                    <span>
+<FontAwesomeIcon icon={faGlobe} />
+
+                                                      
+                                                    </span>
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
@@ -326,26 +354,26 @@ export default function AllUniversity() {
 
                                                 <div className="overviewblock">
                                                     <div className="overview-box blue-light">
-                                                        <span className="icon"><i className="fa fa-graduation-cap"></i></span>
+                                                        <span className="icon">
+                                                            <FontAwesomeIcon icon={faGraduationCap} />
+                                                            {/* <i className="fa fa-graduation-cap"></i> */}
+                                                        </span>
                                                         <h3>{FormOverviewValues.courseNo} +<br /><span>Courses</span></h3>
                                                     </div>
 
                                                     <div className="overview-box green-light">
+
                                                         <span className="icon">
-                                                            
-                                                        <i className="fas fa-plus"></i>
-                                                            <i className="fa fa-calendar-check-o"></i></span>
-                                                        <h3>{FormOverviewValues.foundedYear}<br /><span>
 
-                                                            <i className="fas fa-plus"></i>
-
-                                                            Founded year </span></h3>
+                                                            <FontAwesomeIcon icon={faCalendarCheck} /></span>
+                                                        <h3>{FormOverviewValues.foundedYear}<br /><span>Founded year </span></h3>
                                                     </div>
 
                                                     <div className="overview-box ornage-light">
                                                         <span className="icon">
+                                                            <FontAwesomeIcon icon={faStar} />
 
-                                                            <i className="fa fa-star"></i></span>
+                                                        </span>
                                                         <h3>{FormOverviewValues.ranking}<br /><span>Global Rankings</span></h3>
                                                     </div>
 
@@ -400,8 +428,7 @@ export default function AllUniversity() {
                                                         <a href="index.html#about" className="cta_bluetext__2B7BK">Find courses best-fit
                                                             for you</a>
                                                     </div>
-                                                    <div className="col-3"><img className="cta_image__3Oih8"
-                                                        src="assets/images/university/Group1169.webp" /></div>
+                                                    <div className="col-3"><img className="cta_image__3Oih8" src={images["Group1169.webp"]} alt="" /></div>
                                                 </div>
                                             </div>
 
@@ -490,21 +517,21 @@ export default function AllUniversity() {
                                                             <ul className="btm-cate" key={index}>
                                                                 <li>
                                                                     <div className="blog-date">
-                                                                        <i className="fa fa-globe"></i>
+
+                                                                  <span>  <FontAwesomeIcon icon={faGlobe} /></span>
                                                                         {element.agencyName}
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div className="blog-date">
-                                                                        <i className="fa fa-calendar-check-o"></i>
+                                                                       <span><FontAwesomeIcon icon={faCalendarCheck} />  </span>                                                                     
                                                                         {element.year}
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div className="author">
-                                                                        <i className="fas fa-file-upload"></i>
-
-                                                                        <i className="fa fa-star"></i> {element.rank}
+                                                                    <div className="author">                                                                      
+                                                                       <span><FontAwesomeIcon icon={faStar} /> </span>                                                                      
+                                                                         {element.rank}
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -513,9 +540,17 @@ export default function AllUniversity() {
 
                                                     <div className="raning-agency">
                                                         <h5>Ranking Agencies</h5>
-                                                        {rankingValues.map((element, index) => (
-                                                            <a href="#" key={index}><img src={element.certificate} alt="" /></a>
-                                                        ))}
+                                                        <div className="row">
+                                                            {rankingValues.map((element, index) => (
+                                                                <div className="col-md-6">
+                                                                    <div className="ranking-img">
+                                                                        <a href="#" key={index}><img src={element.certificate} alt="" /></a>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -529,8 +564,7 @@ export default function AllUniversity() {
                                                         <h2 className="cta_subtext__1eM4M">Realise your study abroad dream</h2>
                                                         <h2 className="cta_bluetext__2B7BK">Talk to an Expert for FREE</h2>
                                                     </div>
-                                                    <div className="col-3"><img className="cta_image__3Oih8"
-                                                        src="assets/images/university/Group1169.webp" /></div>
+                                                    <div className="col-3"><img className="cta_image__3Oih8" src={images["Group1169.webp"]} alt="" /></div>
                                                 </div>
                                             </div>
 
@@ -558,7 +592,11 @@ export default function AllUniversity() {
                                                                 {FormAdmissionValues.map((element, index) => (
 
                                                                     <ul key={index}>
-                                                                        <li><span><i className="fa fa-check-circle"></i></span>{element.point || ""}</li>
+                                                                        <li><span>
+                                                                          
+<FontAwesomeIcon icon={faCheckCircle} />
+                                                                            
+                                                                            </span>{element.point || ""}</li>
 
                                                                     </ul>
                                                                 ))}
@@ -570,7 +608,9 @@ export default function AllUniversity() {
                                                                 {FormDocumentValues.map((element, index) => (
 
                                                                     <ul key={index}>
-                                                                        <li><span><i className="fa fa-check-circle"></i></span>{element.document || ""}</li>
+                                                                        <li><span>
+                                                                        <FontAwesomeIcon icon={faCheckCircle} />
+                                                                            </span>{element.document || ""}</li>
 
                                                                     </ul>
                                                                 ))}
@@ -624,9 +664,9 @@ export default function AllUniversity() {
 
                                                             < div className="col-sm-6 mb-4" key={index} >
                                                                 <div className="subcourses_courseBox__3deGG">
-                                                                    <div className="subcourses_program__3pkFj col-sm-12 p-0"><img
-                                                                        src="https://leverageedunew.s3.us-east-1.amazonaws.com/leverageapp/assets/CoursesImage/project-management.png"
-                                                                        alt="leverage" />
+                                                                    <div className="subcourses_program__3pkFj col-sm-12 p-0">
+                                                                        <img src={images["project-management.png"]} alt="" />
+
                                                                         <div><span className="subcourses_h-title__sLV10">{element.courseName}</span><span
                                                                             className="subcourses_subHeading__zdEIg">{element.studyField}</span>
                                                                         </div>
@@ -743,61 +783,61 @@ export default function AllUniversity() {
 
                                                         <div className="slick-list">
                                                             <div className="slick-track">
-                                                                <div data-index="0" className="slick-slide slick-active slick-current"
-                                                                    tabIndex="-1" aria-hidden="false">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08">
-                                                                                <img className="similar_boxImage__2xy_q"
-                                                                                    src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/us/notredameuniversity.png"
-                                                                                    loading="lazy" />
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        University of Notre Dame</h1>
+                                                                <div className="row">
+                                                                    <div className="col-md-4">
+                                                                        <div data-index="0" className="slick-slide slick-active slick-current"
+                                                                            tabIndex="-1" aria-hidden="false">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08">
+                                                                                        <img src={images["notredameuniversity.jpg"]} alt="" />
 
-                                                                                    <h2 className="similar_unidesc__10ic3">University of
-                                                                                        Notre Dame, United States</h2>
-                                                                                </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Private
-                                                                                    | Estd. 1832
-                                                                                    | 10+ Courses
-                                                                                </h2>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
-                                                                    aria-hidden="false">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img
-                                                                                className="similar_boxImage__2xy_q"
-                                                                                src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/standrewsuniversity.png"
-                                                                                loading="lazy" />
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        University of St Andrews</h1>
-                                                                                    <div className="col-2 mt-3">
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                University of Notre Dame</h1>
+
+                                                                                            <h2 className="similar_unidesc__10ic3">University of
+                                                                                                Notre Dame, United States</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Private
+                                                                                            | Estd. 1832
+                                                                                            | 10+ Courses
+                                                                                        </h2>
                                                                                     </div>
-                                                                                    <h2 className="similar_unidesc__10ic3">University of
-                                                                                        St Andrews, United Kingdom</h2>
                                                                                 </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Public
-                                                                                    | Estd. 1413
-                                                                                    | 20+ Courses
-                                                                                </h2>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
-                                                                <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
+                                                                    <div className="col-md-4">
+                                                                         <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
+                                                                            aria-hidden="false">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08"> <img src={images["standrewsuniversity.jpg"]} alt="" />
+
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                University of St Andrews</h1>
+                                                                                            <div className="col-2 mt-3">
+                                                                                            </div>
+                                                                                            <h2 className="similar_unidesc__10ic3">University of
+                                                                                                St Andrews, United Kingdom</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Public
+                                                                                            | Estd. 1413
+                                                                                            | 20+ Courses
+                                                                                        </h2>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div className="col-md-4">
+                                                                    <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
                                                                     aria-hidden="false">
                                                                     <div>
                                                                         <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img
-                                                                                className="similar_boxImage__2xy_q"
-                                                                                src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/canada/dalhousie.jpg"
-                                                                                loading="lazy" />
+                                                                            <div className="similar_box__2Lq08"><img src={images["dalhousie.jpg"]} alt="" />
                                                                                 <div className="similar_footerText__2go-e w-100 row">
                                                                                     <h1 className="similar_unidata__1lxt7 col-10">
                                                                                         Dalhousie University</h1>
@@ -814,21 +854,19 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div data-index="3" className="slick-slide" tabIndex="-1"
+                                                                    </div>
+                                                                    <div className="col-md-4">
+                                                                    <div data-index="3" className="slick-slide" tabIndex="-1"
                                                                     aria-hidden="true">
                                                                     <div>
                                                                         <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img
-                                                                                className="similar_boxImage__2xy_q"
-                                                                                src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/2019-10-25_45_StaffordshireUniversity-cover.jpg"
-                                                                                loading="lazy" />
+                                                                            <div className="similar_box__2Lq08">
+                                                                                <img src={images["StaffordshireUniversity-cover.jpg"]} alt="" />
+
                                                                                 <div className="similar_footerText__2go-e w-100 row">
                                                                                     <h1 className="similar_unidata__1lxt7 col-10">
                                                                                         Staffordshire University</h1>
-                                                                                    <div className="col-2 mt-3"><img
-                                                                                        className="similar_footerimage__1BBqb "
-                                                                                        src="https://images.leverageedu.com/university/bluearrow.png" />
-                                                                                    </div>
+
                                                                                     <h2 className="similar_unidesc__10ic3">Staffordshire
                                                                                         University, United Kingdom</h2>
                                                                                 </div>
@@ -840,21 +878,18 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div data-index="4" className="slick-slide" tabIndex="-1"
+                                                                    </div>
+                                                                    <div className="col-md-4">
+                                                                    <div data-index="4" className="slick-slide" tabIndex="-1"
                                                                     aria-hidden="true">
                                                                     <div>
                                                                         <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img
-                                                                                className="similar_boxImage__2xy_q"
-                                                                                src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/uk/2019-10-19_44_universityofreading.jpg"
-                                                                                loading="lazy" />
+                                                                            <div className="similar_box__2Lq08">  <img src={images["universityofreading.jpg"]} alt="" />
+
                                                                                 <div className="similar_footerText__2go-e w-100 row">
                                                                                     <h1 className="similar_unidata__1lxt7 col-10">
                                                                                         University of Reading</h1>
-                                                                                    <div className="col-2 mt-3"><img
-                                                                                        className="similar_footerimage__1BBqb "
-                                                                                        src="https://images.leverageedu.com/university/bluearrow.png" />
-                                                                                    </div>
+
                                                                                     <h2 className="similar_unidesc__10ic3">University of
                                                                                         Reading, United Kingdom</h2>
                                                                                 </div>
@@ -866,21 +901,19 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div data-index="5" className="slick-slide" tabIndex="-1"
+                                                                    </div>
+                                                                    <div className="col-md-4">
+                                                                    <div data-index="5" className="slick-slide" tabIndex="-1"
                                                                     aria-hidden="true">
                                                                     <div>
                                                                         <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img
-                                                                                className="similar_boxImage__2xy_q"
-                                                                                src="https://s3.ap-south-1.amazonaws.com/leverageedu/school-cover-image/australia/2020-04-02_09_uow211846.jpg"
-                                                                                loading="lazy" />
+                                                                            <div className="similar_box__2Lq08">
+                                                                                <img src={images["uow211846.jpg"]} alt="" />
+
                                                                                 <div className="similar_footerText__2go-e w-100 row">
                                                                                     <h1 className="similar_unidata__1lxt7 col-10">
                                                                                         University of Wollongong College</h1>
-                                                                                    <div className="col-2 mt-3"><img
-                                                                                        className="similar_footerimage__1BBqb "
-                                                                                        src="https://images.leverageedu.com/university/bluearrow.png" />
-                                                                                    </div>
+
                                                                                     <h2 className="similar_unidesc__10ic3">University of
                                                                                         Wollongong College, Australia</h2>
                                                                                 </div>
@@ -893,6 +926,14 @@ export default function AllUniversity() {
                                                                     </div>
                                                                 </div>
 
+                                                                    </div>
+                                                                </div>
+                                                               
+                                                               
+                                                                
+                                                              
+                                                             
+                                                               
 
                                                             </div>
                                                         </div>

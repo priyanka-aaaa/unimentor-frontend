@@ -204,7 +204,7 @@ export default function Home() {
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">We Are Best</span>
               <h2 className="title">
-                Why Choose Coursementor
+              Course Mentor
               </h2>
             </div>
             <div className="row">
@@ -223,26 +223,15 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          We believe in your dreams and work hard to make them a reality. Get matched with and apply to programs and schools that align with your background, skills, and interests.
+                          Are you a student looking to study abroad in Canada, the United States, the United Kingdom, or Australia? Register to let our team of experts guide you through<br></br> your journey.
                           </p>
+                        </div>
+                        <div className="front-btn-part">
+                          <a className="readon view-more" href="#">Student Registration</a>
                         </div>
                       </div>
                     </div>
-                    <div className="back-front purple-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Student
-                          </h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">  We believe in your dreams and work hard to make them a reality. Get matched with and apply to programs and schools that align with your background, skills, and interests.
-                          </p>
-                        </div>
-                        <div className="back-btn-part">
-                          <a className="readon view-more" href="#">View More</a>
-                        </div>
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>
@@ -261,24 +250,15 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          Coursementor is more than a platform—we are your trusted partner—here to help you do what you do best: help as many students as possible fulfill their international education dreams.
+                          Do you recruit prospective students who want to study in Canada, the United States, the United Kingdom, or Australia? Register to become an Course Mentor Certified Recruitment Partner.
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front gold-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Recruitment Partners</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc"> Coursementor is more than a platform—we are your trusted partner—here to help you do what you do best: help as many students as possible fulfill their international education dreams. </p>
-                        </div>
-                        <div className="back-btn-part">
-                          <a className="readon view-more" href="#">View More</a>
+                        <div className="front-btn-part">
+                          <a className="readon view-more" href="#">Recruiter Registration</a>
                         </div>
                       </div>
                     </div>
+                  
                   </div>
                 </div>
               </div>
@@ -297,26 +277,15 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          Increase your global presence and the number of qualified students from a single, easy-to-use platform trusted by more than 1,500 institutions worldwide.
+                          Become an Course Mentor partner school to diversify your campus by attracting qualified students from around the world. Complete this form and our Partner Relations team will be in touch.
                           </p>
                         </div>
-                      </div>
-                    </div>
-                    <div className="back-front blue-bg">
-                      <div className="back-front-content">
-                        <div className="back-title-part">
-                          <h3 className="back-title">Immigration Agents/Partners</h3>
-                        </div>
-                        <div className="back-desc-part">
-                          <p className="back-desc">Can also apply for student applications for admission
-                            on the student’s behalf. He is the one responsible for uploading all
-                            documents of students on their behalf. </p>
-                        </div>
-                        <div className="back-btn-part">
-                          <a className="readon view-more" href="#">View More</a>
+                        <div className="front-btn-part">
+                          <a className="readon view-more" href="#">Partner Inquiry</a>
                         </div>
                       </div>
                     </div>
+                   
                   </div>
                 </div>
               </div>
@@ -438,89 +407,7 @@ Faster</h4>
             </div>
           </div>
         </div>
-        {/* Industry Section End */}
-        <div className="rs-services style3 modify1 pt-120 pb-120 md-pt-80 md-pb-80">
-          <div className="container">
-            <div className="sec-title2 text-center mb-45">
-              <span className="sub-text gold-color">SKILLS</span>
-              <h2 className="title title2">
-              Get Started With Course Mentor
-              </h2>
-              <p>Focus on the skills you need</p>
-            </div>
-            <div className="row">
-              <div className="col-lg-4 col-md-6 mb-30">
-                <div className="services-item pink-light-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["graduated.png"]} alt="" />
-                      <img className="hover-img" src={images["graduated.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="#">Students</a></h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                      Are you a student looking to study abroad in Canada, the United States, the United Kingdom, or Australia? Register to let our team of experts guide you through your journey.
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="#">Student Registration</a></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 mb-30">
-                <div className="services-item blue2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["patner.png"]} alt="" />
-                      <img className="hover-img" src={images["patner.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="#">Partner Schools</a></h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                       
-				Become an ApplyBoard partner school to diversify your campus by attracting qualified students from around the world. Complete this form and our Partner Relations team will be in touch.					
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="#">Partner Inquiry</a></div>
-                  </div>
-                </div>
-              </div>
-              <div className="col-lg-4 col-md-6 mb-30">
-                <div className="services-item paste2-bg">
-                  <div className="services-icon">
-                    <div className="image-part">
-                      <img className="main-img" src={images["ssm-6.png"]} alt="" />
-                      <img className="hover-img" src={images["ssh-6.png"]} alt="" />
-                    </div>
-                  </div>
-                  <div className="services-content">
-                    <div className="services-text">
-                      <h3 className="title"><a href="#">Recruitment Partners</a></h3>
-                    </div>
-                    <div className="services-desc">
-                      <p>
-                       
-				Do you recruit prospective students who want to study in Canada, the United States, the United Kingdom, or Australia? Register to become an ApplyBoard Certified Recruitment Partner.					
-                      </p>
-                    </div>
-                    <div className="services-button"><a href="#">Recruiter Registration</a></div>
-                  </div>
-                </div>
-              </div>
-           
-         
-           
-            </div>
-          </div>
-        </div>
-        {/* Technology Section Start */}
+     
         <div className="rs-technology gray-color pt-120 pb-120 md-pt-80 md-pb-80">
           <div className="container">
             <div className="sec-title2 text-center mb-45">

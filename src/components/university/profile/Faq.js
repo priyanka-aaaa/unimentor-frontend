@@ -3,7 +3,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 const Faq = () => {
     const [formValues, setFormValues] = useState([{
         question: "", answer: "",
@@ -19,6 +23,7 @@ const Faq = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
     const [loader, setmyloader] = useState("false");
+    const [completedHeading, setcompletedHeading] = useState("inline");
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
@@ -137,9 +142,11 @@ const Faq = () => {
     function ToggleButton() {
         if (display === "inline") {
             setdisplay("none");
+            setcompletedHeading("inline")
         }
         else {
             setdisplay("inline");
+            setcompletedHeading("none")
         }
 
     }
@@ -220,7 +227,7 @@ const Faq = () => {
 
                             <div className="row mt-3">
                                 <div className="col-md-8">
-                                    <p>I haven't have any FAQ</p>
+                                    <p style={{ display: completedHeading }}>I haven't have any FAQ</p>
                                 </div>
                                 <div className=" col-md-4 text-right">
                                     <label className="switch">
@@ -252,7 +259,14 @@ const Faq = () => {
                                                                                 />
                                                                             </div>
                                                                             <div className="col-md-1 text-left">
-                                                                                <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}><i className="fas fa-trash-alt"></i></div>
+                                                                                <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}
+
+                                                                                    data-toggle="tooltip" data-placement="right" title="Delete"
+                                                                                >
+
+                                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -283,10 +297,10 @@ const Faq = () => {
                                                                 <div className="row">
                                                                     <div className="col-md-6"></div>
                                                                     <div className="col-md-6 text-right">
-                                                                        <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New
+                                                                        <button type="button" className="btn btn-success " data-toggle="tooltip" data-placement="right" title="Add New " onClick={() => addFormFields()}>Add New
                                                                         </button>
                                                                         <button type="submit"
-
+                                                                            data-toggle="tooltip" data-placement="right" title="Save"
                                                                             className="btn btn-secondary vbtn">Save
                                                                         </button>
                                                                         <button type="button" className="btn btn-success"

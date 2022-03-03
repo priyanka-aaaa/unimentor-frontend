@@ -5,7 +5,11 @@ import Loader from '../Home/Loader';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import SweetAlert from 'react-bootstrap-sweetalert';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faEye
 
+} from '@fortawesome/free-solid-svg-icons';
 const Courses = () => {
     const [courseName, setcourseName] = useState("");
     const [duration, setduration] = useState("");
@@ -46,6 +50,8 @@ const Courses = () => {
     const [intakeyear, setintakeyear] = useState("");
     const [intakemonth, setintakemonth] = useState("jan");
     const [loader, setmyloader] = useState("false");
+    const [tuitionFeeNoError, settuitionFeeNoError] = useState("");
+
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
@@ -140,6 +146,9 @@ const Courses = () => {
 
 
                     setcourseName(myuniversityCourse.courseName);
+                    setduration(myuniversityCourse.duration);
+
+                    
                     settuitionFee(myuniversityCourse.tuitionFee);
                     setstudyField(myuniversityCourse.studyField);
                     setfee(myuniversityCourse.fee);
@@ -238,52 +247,67 @@ const Courses = () => {
 
     let handleEditSubmit = (event) => {
         event.preventDefault();
-        const obj = {
-            courseName: courseName,
-            duration: duration,
-            tuitionFee: tuitionFee,
-            studyField: studyField,
-            fee: fee,
-            courseLevel: courseLevel,
-            cgpa: cgpa,
-            eligibility: eligibility,
-            english: english,
-            website: website,
-            description: description,
-            exam: exam,
-            year: year,
-            month: month
-        };
-        axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
+        settuitionFeeNoError();
+        var myPattern = /^[0-9_.]*$/;
+        if (myPattern.test(tuitionFee) === false) {
+            settuitionFeeNoError("Please Enter Only Number")
 
-                if (res.data.success === true) {
-                    setwidth(0)
-                    setsuccessMessage("course update")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+        }
+        else {
+            const obj = {
+                courseName: courseName,
+                duration: duration,
+                tuitionFee: tuitionFee,
+                studyField: studyField,
+                fee: fee,
+                courseLevel: courseLevel,
+                cgpa: cgpa,
+                eligibility: eligibility,
+                english: english,
+                website: website,
+                description: description,
+                exam: exam,
+                year: year,
+                month: month
+            };
+            axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
 
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityCourses)
+                    if (res.data.success === true) {
+                        setwidth(0)
+                        setsuccessMessage("course update")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                        fetch(url, {
+                            method: 'GET',
+                            headers: { 'Authorization': mounted }
                         })
+                            .then(response => response.json())
+                            .then(data => {
+                                setdata(data.universityCourses)
+                            })
 
-                }
-                else {
+                    }
+                    else {
 
-                }
-            })
-            .catch(error => {
+                    }
+                })
+                .catch(error => {
 
-            });
+                });
+        }
     }
     let handleAddSubmit = (event) => {
         event.preventDefault();
+        settuitionFeeNoError();
+        var myPattern = /^[0-9_.]*$/;
+        if (myPattern.test(tuitionFee) === false) {
+            settuitionFeeNoError("Please Enter Only Number")
+
+        }
+        else{
         setmyloader("true")
 
         const obj = {
@@ -344,6 +368,7 @@ const Courses = () => {
             .catch(error => {
 
             });
+        }
     }
     function setintake(value) {
         const myArray = value.split("&&");
@@ -385,7 +410,13 @@ const Courses = () => {
                         <h5>Courses</h5>
                     </div>
                     <div className="col-md-6 text-right">
-                        <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"><span><i className="fas fa-plus"></i></span>Add New Course</button>
+                        <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
+                            data-toggle="tooltip" data-placement="right"
+                            title="Add New Course"><span>
+
+                                <FontAwesomeIcon icon={faPlus} />
+
+                            </span>Add New Course</button>
                     </div>
                 </div>
 
@@ -456,10 +487,10 @@ const Courses = () => {
                                 <table className="table table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No.</th>
                                             <th>Course Name</th>
                                             <th>Duration</th>
-                                            <th>Fee</th>
+                                            <th>Tuition Fee</th>
                                             <th>Action</th>
 
                                         </tr>
@@ -474,15 +505,22 @@ const Courses = () => {
                                             return (
 
                                                 <tr key={i}>
-                                                    <td>{object._id}</td>
+                                                    <td>{i + 1}</td>
                                                     <td>{object.courseName}</td>
                                                     <td>{object.duration}</td>
                                                     <td>{object.tuitionFee}</td>
                                                     <td>
 
-                                                        <button title="Delete" className="btn btn-danger btn-sm" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                        <button title="Edit" className="btn btn-success btn-sm" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button>
-                                                        <button title="View" className="btn btn-primary btn-sm vbtn" onClick={() => handleView(object._id)}><i className="fas fa-eye"></i></button>
+                                                        <button data-toggle="tooltip" data-placement="right" title="Delete" className="btn btn-danger btn-sm" onClick={() => handleDelete(object._id)}>
+                                                            <FontAwesomeIcon icon={faTrash} />
+                                                        </button>
+                                                        <button data-toggle="tooltip" data-placement="right" title="Edit" className="btn btn-success btn-sm" onClick={() => handleClick(object._id)}>
+                                                            <FontAwesomeIcon icon={faPen} />
+
+                                                        </button>
+                                                        <button data-toggle="tooltip" data-placement="right" title="View" className="btn btn-primary btn-sm vbtn" onClick={() => handleView(object._id)}>
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                        </button>
                                                     </td>
                                                 </tr>
 
@@ -506,7 +544,7 @@ const Courses = () => {
 
                                     </div>
                                     <div className="col-md-6">
-                                        <a className="closebtn" onClick={closebox} >&times;</a>
+                                        <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                     </div>
                                 </div>
                                 <div className="table-responsive mt-3">
@@ -525,54 +563,64 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col">
-                                                                        <label className="form-label">Course Name
-                                                                            *</label>
-                                                                        <input type="text" className="form-control"
-                                                                            placeholder="Course Name" name="courseName"
-                                                                            required
-                                                                            value={courseName}
-                                                                            onChange={(e) => setChangecourseName(e.target.value)}
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Course Name
+                                                                                <span className="req-star">*</span></label>
+                                                                            <input type="text" className="form-control"
+                                                                                placeholder="Course Name" name="courseName"
+                                                                                required
+                                                                                value={courseName}
+                                                                                onChange={(e) => setChangecourseName(e.target.value)}
 
-                                                                        />
+                                                                            />
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Duration *
-                                                                        </label>
-                                                                        <input type="text" className="form-control"
-                                                                            required
-                                                                            placeholder="Duration" name="duration"
-                                                                            value={duration}
-                                                                            onChange={(e) => setduration(e.target.value)}
-                                                                        />
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Duration <span className="req-star">*</span>
+                                                                            </label>
+                                                                            <input type="text" className="form-control"
+                                                                                required
+                                                                                placeholder="Duration" name="duration"
+                                                                                value={duration}
+                                                                                onChange={(e) => setduration(e.target.value)}
+                                                                            />
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Tuition fee *</label>
-                                                                        <input type="number" className="form-control" placeholder="tuition fee"
-                                                                            name="TuitionFee" required
-                                                                            value={tuitionFee}
-                                                                            onChange={(e) => settuitionFee(e.target.value)}
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Tuition fee <span className="req-star">*</span></label>
+                                                                            <input type="number" className="form-control" placeholder="tuition fee"
+                                                                                name="TuitionFee" required
+                                                                                value={tuitionFee}
+                                                                                onChange={(e) => settuitionFee(e.target.value)}
 
 
-                                                                        />
+                                                                            />
+                                        <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
+
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label"> Currency *</label>
-                                                                        <select type="text" className="form-control"
-                                                                            placeholder="Currency" name="fee"
-                                                                            required
-                                                                            value={fee}
-                                                                            onChange={(e) => setfee(e.target.value)}
-                                                                        >
-                                                                            <option value="">Select Currency</option>
-                                                                            <option value="USD">USD US Dollars</option>
-                                                                            <option value="GBP">GBP British Pounds</option>
-                                                                            <option value="EUR">EUR Euros</option>
-                                                                            <option value="CAD">Canadian dollar</option>
-                                                                            <option value="AUD">AUD Australian Dollars</option>
-                                                                            <option value="NZD">NZD New Zealand Dollars</option>
-                                                                            <option value="HKD">HKD Hong Kong Dollars</option>
-                                                                            <option value="SGD">SGD Singapore Dollars</option>
-                                                                        </select>
+                                                                        <div className="form-group">
+                                                                            <label className="form-label"> Currency<span className="req-star">*</span></label>
+                                                                            <select type="text" className="form-control"
+                                                                                placeholder="Currency" name="fee"
+                                                                                required
+                                                                                value={fee}
+                                                                                onChange={(e) => setfee(e.target.value)}
+                                                                            >
+                                                                                <option value="">Select Currency</option>
+                                                                                <option value="USD">USD US Dollars</option>
+                                                                                <option value="GBP">GBP British Pounds</option>
+                                                                                <option value="EUR">EUR Euros</option>
+                                                                                <option value="CAD">Canadian dollar</option>
+                                                                                <option value="AUD">AUD Australian Dollars</option>
+                                                                                <option value="NZD">NZD New Zealand Dollars</option>
+                                                                                <option value="HKD">HKD Hong Kong Dollars</option>
+                                                                                <option value="SGD">SGD Singapore Dollars</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -580,48 +628,56 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label">Study *
-                                                                        </label>
-                                                                        <select type="text" className="form-control" id="salutation"
-                                                                            placeholder="Study" name="studyField"
-                                                                            required
-                                                                            value={studyField}
-                                                                            onChange={(e) => setstudyField(e.target.value)}
-                                                                        >
-                                                                            <option >Machine Learning</option>
-                                                                            <option value="Indigenous Canada">Indigenous Canada</option>
-                                                                            <option value="The Science of Well-Being">The Science of Well-Being</option>
-                                                                            <option value="Introduction to Statistics">Introduction to Statistics</option>
-                                                                        </select>
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Study <span className="req-star">*</span>
+                                                                            </label>
+                                                                            <select type="text" className="form-control" id="salutation"
+                                                                                placeholder="Study" name="studyField"
+                                                                                required
+                                                                                value={studyField}
+                                                                                onChange={(e) => setstudyField(e.target.value)}
+                                                                            >
+                                                                                <option >Machine Learning</option>
+                                                                                <option value="Indigenous Canada">Indigenous Canada</option>
+                                                                                <option value="The Science of Well-Being">The Science of Well-Being</option>
+                                                                                <option value="Introduction to Statistics">Introduction to Statistics</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col-md-8">
                                                                         <div className="row">
 
                                                                             <div className="col">
-                                                                                <label className="form-label"> Course Level *</label>
-                                                                                <input type="text" className="form-control" placeholder=" Course Level"
-                                                                                    name=" courseLevel"
-                                                                                    value={courseLevel}
-                                                                                    onChange={(e) => setcourseLevel(e.target.value)}
-                                                                                    required
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> Course Level <span className="req-star">*</span></label>
+                                                                                    <input type="text" className="form-control" placeholder=" Course Level"
+                                                                                        name=" courseLevel"
+                                                                                        value={courseLevel}
+                                                                                        onChange={(e) => setcourseLevel(e.target.value)}
+                                                                                        required
 
-                                                                                />
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> CGPA *</label>
-                                                                                <input type="number" className="form-control" placeholder="CGPA"
-                                                                                    name="cgpa" required
-                                                                                    value={cgpa}
-                                                                                    onChange={(e) => setcgpa(e.target.value)}
-                                                                                />
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> CGPA <span className="req-star">*</span></label>
+                                                                                    <input type="number" className="form-control" placeholder="CGPA"
+                                                                                        name="cgpa" required
+                                                                                        value={cgpa}
+                                                                                        onChange={(e) => setcgpa(e.target.value)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibility * </label>
-                                                                                <input type="text" className="form-control" placeholder=" Eligibilit(like min 55%)"
-                                                                                    name=" eligibility" required
-                                                                                    value={eligibility}
-                                                                                    onChange={(e) => seteligibility(e.target.value)}
-                                                                                />
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> Eligibility <span className="req-star">*</span> </label>
+                                                                                    <input type="text" className="form-control" placeholder=" Eligibilit(like min 55%)"
+                                                                                        name=" eligibility" required
+                                                                                        value={eligibility}
+                                                                                        onChange={(e) => seteligibility(e.target.value)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -631,7 +687,7 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label >English Proficiency *
+                                                                        <div className="form-group"><label >English Proficiency <span className="req-star">*</span>
                                                                         </label>
                                                                             <select
 
@@ -647,7 +703,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course Website *</label><input
+                                                                            <label>Course Website <span className="req-star">*</span></label><input
                                                                                 type="text" className="form-control" id="cour-web"
                                                                                 name="website" placeholder="Course Website "
                                                                                 value={website} required
@@ -663,7 +719,7 @@ const Courses = () => {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course  Description *</label>
+                                                                            <label>Course  Description <span className="req-star">*</span></label>
                                                                             <textarea className="form-control" row="2" col="3" name="description"
                                                                                 value={description} required
                                                                                 onChange={(e) => setdescription(e.target.value)}
@@ -673,7 +729,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label
-                                                                        >Academic proficiency exam *</label><select
+                                                                        >Academic proficiency exam <span className="req-star">*</span></label><select
                                                                             className="form-control dropdown"
                                                                             id="highest_qualification"
                                                                             name="exam"
@@ -697,22 +753,23 @@ const Courses = () => {
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                    Intakes *
+                                                                    <div className="form-group">
+                                                                        Intakes <span className="req-star">*</span>
 
-                                                                    <select
-                                                                        type="text" className="form-control" value="hii"
-                                                                        required
-                                                                        onChange={(e) => setintake(e.target.value)}>
-                                                                        <option value={year + "&&" + month}>{year + " " + month}</option>
-                                                                        {Intakedata.map((object, i) => {
+                                                                        <select
+                                                                            type="text" className="form-control" value="hii"
+                                                                            required
+                                                                            onChange={(e) => setintake(e.target.value)}>
+                                                                            <option value={year + "&&" + month}>{year + " " + month}</option>
+                                                                            {Intakedata.map((object, i) => {
 
-                                                                            return (
-                                                                                <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                            )
-                                                                        })}
+                                                                                return (
+                                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                                )
+                                                                            })}
 
-                                                                    </select>
-
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
 
                                                             </div>
@@ -726,7 +783,7 @@ const Courses = () => {
 
 
 
-                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                    <button type="submit" className="btn btn-secondary" title="Save">Save
                                                                     </button>
 
                                                                 </div>
@@ -756,7 +813,7 @@ const Courses = () => {
 
                                     </div>
                                     <div className="col-md-6">
-                                        <a className="closebtn" onClick={closeaddbox} >&times;</a>
+                                        <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                     </div>
                                 </div>
                                 <div className="table-responsive mt-3">
@@ -775,54 +832,64 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col">
-                                                                        <label className="form-label">Course Name
-                                                                            *</label>
-                                                                        <input type="text" className="form-control"
-                                                                            placeholder="Course Name" name="courseName"
-                                                                            required
-                                                                            value={courseName}
-                                                                            onChange={(e) => setChangecourseName(e.target.value)}
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Course Name
+                                                                                <span className="req-star">*</span></label>
+                                                                            <input type="text" className="form-control"
+                                                                                placeholder="Course Name" name="courseName"
+                                                                                required
+                                                                                value={courseName}
+                                                                                onChange={(e) => setChangecourseName(e.target.value)}
 
-                                                                        />
+                                                                            />
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Duration *
-                                                                        </label>
-                                                                        <input type="text" className="form-control"
-                                                                            placeholder="Duration" name="duration"
-                                                                            value={duration} required
-                                                                            onChange={(e) => setduration(e.target.value)}
-                                                                        />
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Duration <span className="req-star">*</span>
+                                                                            </label>
+                                                                            <input type="text" className="form-control"
+                                                                                placeholder="Duration" name="duration"
+                                                                                value={duration} required
+                                                                                onChange={(e) => setduration(e.target.value)}
+                                                                            />
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label">Tuition Fee *</label>
-                                                                        <input type="number" className="form-control" placeholder="Tuition Fee"
-                                                                            name="tuitionFee"
-                                                                            value={tuitionFee} required
-                                                                            onChange={(e) => settuitionFee(e.target.value)}
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Tuition Fee <span className="req-star">*</span></label>
+                                                                            <input type="number" className="form-control" placeholder="Tuition Fee"
+                                                                                name="tuitionFee"
+                                                                                value={tuitionFee} required
+                                                                                onChange={(e) => settuitionFee(e.target.value)}
 
 
-                                                                        />
+                                                                            />
+                                        <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
+
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col">
-                                                                        <label className="form-label"> Currency *</label>
-                                                                        <select type="text" className="form-control"
-                                                                            placeholder="Currency" name="fee"
-                                                                            required
-                                                                            value={fee}
-                                                                            onChange={(e) => setfee(e.target.value)}
-                                                                        >
-                                                                            <option value="">Select Currency</option>
+                                                                        <div className="form-group">
+                                                                            <label className="form-label"> Currency <span className="req-star">*</span></label>
+                                                                            <select type="text" className="form-control"
+                                                                                placeholder="Currency" name="fee"
+                                                                                required
+                                                                                value={fee}
+                                                                                onChange={(e) => setfee(e.target.value)}
+                                                                            >
+                                                                                <option value="">Select Currency</option>
 
-                                                                            <option value="USD">USD US Dollars</option>
-                                                                            <option value="GBP">GBP British Pounds</option>
-                                                                            <option value="EUR">EUR Euros</option>
-                                                                            <option value="CAD">Canadian dollar</option>
-                                                                            <option value="AUD">AUD Australian Dollars</option>
-                                                                            <option value="NZD">NZD New Zealand Dollars</option>
-                                                                            <option value="HKD">HKD Hong Kong Dollars</option>
-                                                                            <option value="SGD">SGD Singapore Dollars</option>
-                                                                        </select>
+                                                                                <option value="USD">USD US Dollars</option>
+                                                                                <option value="GBP">GBP British Pounds</option>
+                                                                                <option value="EUR">EUR Euros</option>
+                                                                                <option value="CAD">Canadian dollar</option>
+                                                                                <option value="AUD">AUD Australian Dollars</option>
+                                                                                <option value="NZD">NZD New Zealand Dollars</option>
+                                                                                <option value="HKD">HKD Hong Kong Dollars</option>
+                                                                                <option value="SGD">SGD Singapore Dollars</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -830,48 +897,56 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-md-4">
-                                                                        <label className="form-label">Study
-                                                                            *</label>
-                                                                        <select type="text" className="form-control" id="salutation"
-                                                                            placeholder="Salutation" name="studyField"
-                                                                            required
-                                                                            value={studyField}
-                                                                            onChange={(e) => setstudyField(e.target.value)}
-                                                                        >
-                                                                            <option value="">Select Study</option>
-                                                                            <option value="Indigenous Canada">Indigenous Canada</option>
-                                                                            <option value="The Science of Well-Being">The Science of Well-Being</option>
-                                                                            <option value="Introduction to Statistics">Introduction to Statistics</option>
-                                                                        </select>
+                                                                        <div className="form-group">
+                                                                            <label className="form-label">Study
+                                                                                <span className="req-star">*</span></label>
+                                                                            <select type="text" className="form-control" id="salutation"
+                                                                                placeholder="Salutation" name="studyField"
+                                                                                required
+                                                                                value={studyField}
+                                                                                onChange={(e) => setstudyField(e.target.value)}
+                                                                            >
+                                                                                <option value="">Select Study</option>
+                                                                                <option value="Indigenous Canada">Indigenous Canada</option>
+                                                                                <option value="The Science of Well-Being">The Science of Well-Being</option>
+                                                                                <option value="Introduction to Statistics">Introduction to Statistics</option>
+                                                                            </select>
+                                                                        </div>
                                                                     </div>
                                                                     <div className="col-md-8">
                                                                         <div className="row">
 
                                                                             <div className="col">
-                                                                                <label className="form-label"> Course Level *</label>
-                                                                                <input type="text" className="form-control" placeholder=" Course Level"
-                                                                                    name=" courseLevel" required
-                                                                                    value={courseLevel}
-                                                                                    onChange={(e) => setcourseLevel(e.target.value)}
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> Course Level <span className="req-star">*</span></label>
+                                                                                    <input type="text" className="form-control" placeholder=" Course Level"
+                                                                                        name=" courseLevel" required
+                                                                                        value={courseLevel}
+                                                                                        onChange={(e) => setcourseLevel(e.target.value)}
 
 
-                                                                                />
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> CGPA *</label>
-                                                                                <input type="number" className="form-control" placeholder="CGPA"
-                                                                                    name="cgpa" required
-                                                                                    value={cgpa}
-                                                                                    onChange={(e) => setcgpa(e.target.value)}
-                                                                                />
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> CGPA <span className="req-star">*</span></label>
+                                                                                    <input type="number" className="form-control" placeholder="CGPA"
+                                                                                        name="cgpa" required
+                                                                                        value={cgpa}
+                                                                                        onChange={(e) => setcgpa(e.target.value)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                             <div className="col">
-                                                                                <label className="form-label"> Eligibility * </label>
-                                                                                <input type="text" className="form-control" placeholder="Eligibility(like min 55%)"
-                                                                                    name=" eligibility" required
-                                                                                    value={eligibility}
-                                                                                    onChange={(e) => seteligibility(e.target.value)}
-                                                                                />
+                                                                                <div className="form-group">
+                                                                                    <label className="form-label"> Eligibility <span className="req-star">*</span> </label>
+                                                                                    <input type="text" className="form-control" placeholder="Eligibility(like min 55%)"
+                                                                                        name=" eligibility" required
+                                                                                        value={eligibility}
+                                                                                        onChange={(e) => seteligibility(e.target.value)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -881,7 +956,8 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label >English Proficiency *
+
+                                                                        <div className="form-group"><label >English Proficiency <span className="req-star">*</span>
                                                                         </label>
                                                                             <select
                                                                                 required
@@ -914,7 +990,7 @@ const Courses = () => {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course  Description *</label>
+                                                                            <label>Course  Description <span className="req-star">*</span></label>
                                                                             <textarea required className="form-control" row="2" col="3" name="description"
                                                                                 value={description}
                                                                                 onChange={(e) => setdescription(e.target.value)}
@@ -923,7 +999,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group"><label
-                                                                        >Academic proficiency exam *</label><select required
+                                                                        >Academic proficiency exam <span className="req-star">*</span></label><select required
                                                                             className="form-control dropdown"
                                                                             id="highest_qualification"
                                                                             name="exam"
@@ -949,7 +1025,7 @@ const Courses = () => {
                                                                             Add Intake</button>
                                                                         <br />
                                                                         <div className="form-group mt-3">
-                                                                            Intakes *
+                                                                            Intakes <span className="req-star">*</span>
                                                                             <select required
                                                                                 type="text" className="form-control"
                                                                                 required
@@ -979,7 +1055,7 @@ const Courses = () => {
 
 
 
-                                                                    <button type="submit" className="btn btn-secondary">Save
+                                                                    <button type="submit" className="btn btn-secondary" title="Save">Save
                                                                     </button>
 
                                                                 </div>
@@ -1009,7 +1085,7 @@ const Courses = () => {
                                         <h3>Course Detail</h3>
                                     </div>
                                     <div className="col-md-6">
-                                        <a className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
+                                        <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn closeviewbox" onClick={closeviewbox} >&times;</a>
                                     </div>
                                 </div>
                                 <div className="table-responsive mt-3">
@@ -1100,55 +1176,58 @@ const Courses = () => {
 
                                 <div className="row">
                                     <div className="col">
-                                        <label className="form-label">Year
-                                            *</label>
-                                        <select required
-                                            className="form-control"
-                                            placeholder="Year" name="year"
+                                        <div className="form-group">
+                                            <label className="form-label">Year
+                                                <span className="req-star">*</span></label>
+                                            <select required
+                                                className="form-control"
+                                                placeholder="Year" name="year"
 
-                                            value={intakeyear}
-                                            onChange={(e) => setintakeyear(e.target.value)}>
-                                            <option value=''>Select Year</option>
-                                            <option value='2022'>2022</option>
-                                            <option value='2023'>2023</option>
-                                            <option value='2024'>2024</option>
-                                            <option value='2025'>2025</option>
-                                            <option value='2026'>2026</option>
-                                        </select>
+                                                value={intakeyear}
+                                                onChange={(e) => setintakeyear(e.target.value)}>
+                                                <option value=''>Select Year</option>
+                                                <option value='2022'>2022</option>
+                                                <option value='2023'>2023</option>
+                                                <option value='2024'>2024</option>
+                                                <option value='2025'>2025</option>
+                                                <option value='2026'>2026</option>
+                                            </select>
+                                        </div>
 
                                     </div>
                                     <div className="col">
-                                        <label className="form-label">Month *
-                                        </label>
+                                        <div className="form-group">
+                                            <label className="form-label">Month <span className="req-star">*</span>
+                                            </label>
 
-                                        <select
-                                            required
-                                            className="form-control"
-                                            placeholder="Month" name="Month"
-                                            value={intakemonth}
-                                            onChange={(e) => setintakemonth(e.target.value)}>
-                                            <option value=''>Select Year</option>
-                                            <option value='Jan'>Janaury</option>
-                                            <option value='Feb'>February</option>
-                                            <option value='March'>March</option>
-                                            <option value='April'>April</option>
-                                            <option value='May'>May</option>
-                                            <option value='June'>June</option>
-                                            <option value='July'>July</option>
-                                            <option value='Aug'>August</option>
-                                            <option value='Sep'>September</option>
-                                            <option value='Oct'>October</option>
-                                            <option value='Nov'>November</option>
-                                            <option value='Dec'>December</option>
-                                        </select>
+                                            <select
+                                                required
+                                                className="form-control"
+                                                placeholder="Month" name="Month"
+                                                value={intakemonth}
+                                                onChange={(e) => setintakemonth(e.target.value)}>
+                                                <option value=''>Select Year</option>
+                                                <option value='Jan'>Janaury</option>
+                                                <option value='Feb'>February</option>
+                                                <option value='March'>March</option>
+                                                <option value='April'>April</option>
+                                                <option value='May'>May</option>
+                                                <option value='June'>June</option>
+                                                <option value='July'>July</option>
+                                                <option value='Aug'>August</option>
+                                                <option value='Sep'>September</option>
+                                                <option value='Oct'>October</option>
+                                                <option value='Nov'>November</option>
+                                                <option value='Dec'>December</option>
+                                            </select>
 
+                                        </div>
                                     </div>
-
                                 </div>
 
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary">Submit</button>
+                                <button type="button" className="btn btn-primary" title="Submit">Submit</button>
 
 
                             </div>
