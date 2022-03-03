@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
-    faEnvelope, faGlobe,faCheckCircle
+    faEnvelope, faGlobe, faCheckCircle
 
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -41,7 +41,7 @@ export default function AllUniversity() {
         name: "", email: ""
 
     }])
- const [FormDocumentValues, setFormDocumentValues] = useState([{
+    const [FormDocumentValues, setFormDocumentValues] = useState([{
         document: ""
 
     }])
@@ -307,9 +307,9 @@ export default function AllUniversity() {
                                             <div className="recent-post-widget">
                                                 <div className="post-img">
                                                     <span>
-<FontAwesomeIcon icon={faGlobe} />
+                                                        <FontAwesomeIcon icon={faGlobe} />
 
-                                                      
+
                                                     </span>
                                                 </div>
                                                 <div className="post-desc">
@@ -342,10 +342,10 @@ export default function AllUniversity() {
                                                     <li><a href="#overview">Overview</a></li>
                                                     <li><a href="#ranking">Ranking</a></li>
                                                     <li><a href="#courses-fees">Courses & Fees</a></li>
-                                                    <li><a href="#admission-process">Admissions Process </a></li>
-                                                    <li><a href="#admission-process"> Documents Required</a></li>
-                                                    <li><a href="#img-video"> Images/Video</a></li>
-                                                    <li><a href="#brow-coures"> Browse Courses</a></li>
+                                                    <li><a href="#admission-requirements">Admissions Requirements </a></li>
+                                                    
+                                                    <li><a href="#images-video"> Images/Video</a></li>
+                                                    <li><a href="#courses"> Browse Courses</a></li>
 
                                                 </ul>
 
@@ -515,20 +515,20 @@ export default function AllUniversity() {
                                                                 <li>
                                                                     <div className="blog-date">
 
-                                                                  <span>  <FontAwesomeIcon icon={faGlobe} /></span>
+                                                                        <span>  <FontAwesomeIcon icon={faGlobe} /></span>
                                                                         {element.agencyName}
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div className="blog-date">
-                                                                       <span><FontAwesomeIcon icon={faCalendarCheck} />  </span>                                                                     
+                                                                        <span><FontAwesomeIcon icon={faCalendarCheck} />  </span>
                                                                         {element.year}
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div className="author">                                                                      
-                                                                       <span><FontAwesomeIcon icon={faStar} /> </span>                                                                      
-                                                                         {element.rank}
+                                                                    <div className="author">
+                                                                        <span><FontAwesomeIcon icon={faStar} /> </span>
+                                                                        {element.rank}
                                                                     </div>
                                                                 </li>
                                                             </ul>
@@ -567,9 +567,9 @@ export default function AllUniversity() {
 
                                         </div>
                                         <div className="col-lg-12 mb-50">
-                                            <div className="blog-item" id="admission-process">
+                                            <div className="blog-item" id="admission-requirements">
                                                 <div className="blog-content">
-                                                    <h3 className="blog-title"><a href="#">Admissions Process </a></h3>
+                                                    <h3 className="blog-title"><a href="#">Admissions Requirements </a></h3>
                                                     <div className="admission-list">
                                                         <ul className="nav nav-tabs" role="tablist">
                                                             <li className="nav-item">
@@ -590,10 +590,10 @@ export default function AllUniversity() {
 
                                                                     <ul key={index}>
                                                                         <li><span>
-                                                                          
-<FontAwesomeIcon icon={faCheckCircle} />
-                                                                            
-                                                                            </span>{element.point || ""}</li>
+
+                                                                            <FontAwesomeIcon icon={faCheckCircle} />
+
+                                                                        </span>{element.point || ""}</li>
 
                                                                     </ul>
                                                                 ))}
@@ -606,8 +606,8 @@ export default function AllUniversity() {
 
                                                                     <ul key={index}>
                                                                         <li><span>
-                                                                        <FontAwesomeIcon icon={faCheckCircle} />
-                                                                            </span>{element.document || ""}</li>
+                                                                            <FontAwesomeIcon icon={faCheckCircle} />
+                                                                        </span>{element.document || ""}</li>
 
                                                                     </ul>
                                                                 ))}
@@ -621,7 +621,7 @@ export default function AllUniversity() {
                                             </div>
                                         </div>
                                         <div className="col-lg-12 mb-50">
-                                            <div className="blog-item" id="img-video">
+                                            <div className="blog-item" id="images-video">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Images/Video </a></h3>
 
@@ -644,7 +644,7 @@ export default function AllUniversity() {
 
 
                                         <div className="col-lg-12">
-                                            <div className="blog-item" id="brow-coures">
+                                            <div className="blog-item" id="courses">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Browse Courses</a></h3>
 
@@ -806,7 +806,7 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                         <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
+                                                                        <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
                                                                             aria-hidden="false">
                                                                             <div>
                                                                                 <div tabIndex="-1">
@@ -830,107 +830,107 @@ export default function AllUniversity() {
                                                                         </div>
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                    <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
-                                                                    aria-hidden="false">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08"><img src={images["dalhousie.jpg"]} alt="" />
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        Dalhousie University</h1>
-                                                                                    <div className="col-2 mt-3">
+                                                                        <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
+                                                                            aria-hidden="false">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08"><img src={images["dalhousie.jpg"]} alt="" />
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                Dalhousie University</h1>
+                                                                                            <div className="col-2 mt-3">
+                                                                                            </div>
+                                                                                            <h2 className="similar_unidesc__10ic3">Dalhousie
+                                                                                                University, Canada</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Public
+                                                                                            | Estd. 1818
+                                                                                            | 1 Courses
+                                                                                        </h2>
                                                                                     </div>
-                                                                                    <h2 className="similar_unidesc__10ic3">Dalhousie
-                                                                                        University, Canada</h2>
                                                                                 </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Public
-                                                                                    | Estd. 1818
-                                                                                    | 1 Courses
-                                                                                </h2>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                    <div data-index="3" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08">
-                                                                                <img src={images["StaffordshireUniversity-cover.jpg"]} alt="" />
+                                                                        <div data-index="3" className="slick-slide" tabIndex="-1"
+                                                                            aria-hidden="true">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08">
+                                                                                        <img src={images["StaffordshireUniversity-cover.jpg"]} alt="" />
 
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        Staffordshire University</h1>
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                Staffordshire University</h1>
 
-                                                                                    <h2 className="similar_unidesc__10ic3">Staffordshire
-                                                                                        University, United Kingdom</h2>
+                                                                                            <h2 className="similar_unidesc__10ic3">Staffordshire
+                                                                                                University, United Kingdom</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Public
+                                                                                            | Estd. 1971
+                                                                                            | 190+ Courses
+                                                                                        </h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Public
-                                                                                    | Estd. 1971
-                                                                                    | 190+ Courses
-                                                                                </h2>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                    <div data-index="4" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08">  <img src={images["universityofreading.jpg"]} alt="" />
+                                                                        <div data-index="4" className="slick-slide" tabIndex="-1"
+                                                                            aria-hidden="true">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08">  <img src={images["universityofreading.jpg"]} alt="" />
 
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        University of Reading</h1>
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                University of Reading</h1>
 
-                                                                                    <h2 className="similar_unidesc__10ic3">University of
-                                                                                        Reading, United Kingdom</h2>
+                                                                                            <h2 className="similar_unidesc__10ic3">University of
+                                                                                                Reading, United Kingdom</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Public
+                                                                                            | Estd. 1892
+                                                                                            | 130+ Courses
+                                                                                        </h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Public
-                                                                                    | Estd. 1892
-                                                                                    | 130+ Courses
-                                                                                </h2>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
                                                                     </div>
                                                                     <div className="col-md-4">
-                                                                    <div data-index="5" className="slick-slide" tabIndex="-1"
-                                                                    aria-hidden="true">
-                                                                    <div>
-                                                                        <div tabIndex="-1">
-                                                                            <div className="similar_box__2Lq08">
-                                                                                <img src={images["uow211846.jpg"]} alt="" />
+                                                                        <div data-index="5" className="slick-slide" tabIndex="-1"
+                                                                            aria-hidden="true">
+                                                                            <div>
+                                                                                <div tabIndex="-1">
+                                                                                    <div className="similar_box__2Lq08">
+                                                                                        <img src={images["uow211846.jpg"]} alt="" />
 
-                                                                                <div className="similar_footerText__2go-e w-100 row">
-                                                                                    <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                        University of Wollongong College</h1>
+                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+                                                                                                University of Wollongong College</h1>
 
-                                                                                    <h2 className="similar_unidesc__10ic3">University of
-                                                                                        Wollongong College, Australia</h2>
+                                                                                            <h2 className="similar_unidesc__10ic3">University of
+                                                                                                Wollongong College, Australia</h2>
+                                                                                        </div>
+                                                                                        <h2 className="similar_facts__1i5bJ">Public
+                                                                                            | Estd. 1951
+                                                                                            | 4 Courses
+                                                                                        </h2>
+                                                                                    </div>
                                                                                 </div>
-                                                                                <h2 className="similar_facts__1i5bJ">Public
-                                                                                    | Estd. 1951
-                                                                                    | 4 Courses
-                                                                                </h2>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                </div>
 
                                                                     </div>
                                                                 </div>
-                                                               
-                                                               
-                                                                
-                                                              
-                                                             
-                                                               
+
+
+
+
+
+
 
                                                             </div>
                                                         </div>

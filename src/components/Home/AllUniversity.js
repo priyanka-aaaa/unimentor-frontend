@@ -17,7 +17,7 @@ export default function AllUniversity() {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
-          
+
             var mytoken = mydata.data.token;
 
         }
@@ -26,17 +26,17 @@ export default function AllUniversity() {
 
 
         const url = process.env.REACT_APP_SERVER_URL + "universities";
-      
+
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
-              
+
                 setdata(data.universities);
                 setFormValues(data.universities)
-               
+
             })
 
 
@@ -66,7 +66,7 @@ export default function AllUniversity() {
                     <table className="table table-bordered">
                         <thead>
                             <tr>
-                               
+
                                 <th>University Name</th>
 
 
@@ -82,8 +82,16 @@ export default function AllUniversity() {
                                 return (
 
                                     <tr key={i}>
-                                      
-                                        <td> <Link to={'/UniveristyPage/' + object._id} className="nav-link" >{object.name}</Link></td>
+
+                                        <td>
+
+                                            <Link to={'/institute/' + object._id} className="nav-link" >{object.name}</Link>
+                                            <Link to={{
+                                                pathname: "/institute",
+                                                state: { id: object._id }
+                                            }}>{object.name}</Link>
+
+                                        </td>
 
 
                                     </tr>

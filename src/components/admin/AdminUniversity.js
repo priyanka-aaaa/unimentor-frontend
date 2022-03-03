@@ -7,7 +7,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Footer from './Footer';
 
 export default function AdminUniversity() {
-  
+
     const [mounted, setMounted] = useState();
 
 
@@ -31,16 +31,16 @@ export default function AdminUniversity() {
         setMounted(mytoken)
 
 
- 
+
         const url = process.env.REACT_APP_SERVER_URL + "universities";
-       
+
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
-             
+
                 setdata(data.universities);
                 setFormValues(data.universities)
             })
@@ -89,13 +89,13 @@ export default function AdminUniversity() {
                                         {/* <!-- Card Header - Dropdown --> */}
                                         <div className="card shadow mb-4">
                                             <div className="table-responsive-sm">
-    
+
 
                                                 <table className="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                        <th>No.</th>
-                                                        <th>Id</th>
+                                                            <th>No.</th>
+                                                            <th>Id</th>
                                                             <th>Name</th>
 
                                                             <th>Email</th>
@@ -105,28 +105,28 @@ export default function AdminUniversity() {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                               
-                                                    {formValues.map((object, i) => {
-                                                        return(
-                                                    <tr key={i}>
-                                                          <td>{i+1}</td>
-                                                             <td>{object._id}</td>
-                                                            <td> {object.name}</td>
-                                                            <td>priyanka.calinfo500@gmail.com</td>
-                                                            <td>9817961998</td>
 
-                                                            <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
-                                                                <button className="btn" ><i className="fas fa-user-slash"></i></button>
-                                                            </td>
-                                                        </tr>
-                                                        )
-                                                    
-                                                    })}
-                                                     
-                                                       
+                                                        {formValues.map((object, i) => {
+                                                            return (
+                                                                <tr key={i}>
+                                                                    <td>{i + 1}</td>
+                                                                    <td>{object._id}</td>
+                                                                    <td> {object.name}</td>
+                                                                    <td>priyanka.calinfo500@gmail.com</td>
+                                                                    <td>9817961998</td>
+
+                                                                    <td>
+                                                                        <button className="btn" ><i className="fas fa-trash-alt"></i></button>
+                                                                        <button className="btn"><i className="fas fa-pen "></i></button>
+                                                                        <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
+                                                                        <button className="btn" ><i className="fas fa-user-slash"></i></button>
+                                                                    </td>
+                                                                </tr>
+                                                            )
+
+                                                        })}
+
+
                                                     </tbody>
                                                 </table>
                                             </div>
