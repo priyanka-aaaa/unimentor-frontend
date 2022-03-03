@@ -87,10 +87,19 @@ export default function AllUniversity() {
 
                                             <Link to={'/institute/' + object._id} className="nav-link" >{object.name}</Link>
                                             <Link to={{
-                                                pathname: "/institute",
-                                                state: { id: object._id }
-                                            }}>{object.name}</Link>
+                                                pathname: "/institutemy",
 
+                                                state: { id: 123456788 }
+                                            }}>{object.name}</Link>
+                                            <Link
+                                                to={{
+                                                    pathname: `/institutemy`,
+                                                    state: {
+                                                        projectDetails: "eee",
+                                                        id: 545 // id you want to get in Project component
+                                                    }
+                                                }}
+                                            />
                                         </td>
 
 

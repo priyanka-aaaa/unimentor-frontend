@@ -204,7 +204,7 @@ export default function Home() {
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">We Are Best</span>
               <h2 className="title">
-              Course Mentor
+                Course Mentor
               </h2>
             </div>
             <div className="row">
@@ -223,7 +223,7 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          Are you a student looking to study abroad in Canada, the United States, the United Kingdom, or Australia? Register to let our team of experts guide you through<br></br> your journey.
+                            Are you a student looking to study abroad in Canada, the United States, the United Kingdom, or Australia? Register to let our team of experts guide you through<br></br> your journey.
                           </p>
                         </div>
                         <div className="front-btn-part">
@@ -231,7 +231,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                   
+
                   </div>
                 </div>
               </div>
@@ -250,7 +250,7 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          Do you recruit prospective students who want to study in Canada, the United States, the United Kingdom, or Australia? Register to become an Course Mentor Certified Recruitment Partner.
+                            Do you recruit prospective students who want to study in Canada, the United States, the United Kingdom, or Australia? Register to become an Course Mentor Certified Recruitment Partner.
                           </p>
                         </div>
                         <div className="front-btn-part">
@@ -258,7 +258,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                  
+
                   </div>
                 </div>
               </div>
@@ -277,7 +277,7 @@ export default function Home() {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                          Become an Course Mentor partner school to diversify your campus by attracting qualified students from around the world. Complete this form and our Partner Relations team will be in touch.
+                            Become an Course Mentor partner school to diversify your campus by attracting qualified students from around the world. Complete this form and our Partner Relations team will be in touch.
                           </p>
                         </div>
                         <div className="front-btn-part">
@@ -285,7 +285,7 @@ export default function Home() {
                         </div>
                       </div>
                     </div>
-                   
+
                   </div>
                 </div>
               </div>
@@ -348,7 +348,7 @@ export default function Home() {
                   </div>
                   <div className="services-text">
                     <h4 className="title">Find Programs<br></br>
-Faster</h4>
+                      Faster</h4>
                   </div>
                 </div>
               </div>
@@ -399,15 +399,15 @@ Faster</h4>
                   </div>
                   <div className="services-text">
                     <h4 className="title">Data Driven<br></br>
-                     Insights</h4>
+                      Insights</h4>
                   </div>
                 </div>
               </div>
-             
+
             </div>
           </div>
         </div>
-     
+
         <div className="rs-technology gray-color pt-120 pb-120 md-pt-80 md-pb-80">
           <div className="container">
             <div className="sec-title2 text-center mb-45">
@@ -718,163 +718,163 @@ Faster</h4>
                   </div>
                 </div>
                 <div className="rs-carousel owl-carousel owl-loaded owl-drag" data-loop="true" data-items={1} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="true" data-nav="false" data-nav-speed="false" data-md-device={1} data-md-device-nav="false" data-md-device-dots="false" data-center-mode="false" data-ipad-device2={1} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-ipad-device={1} data-ipad-device-nav="false" data-ipad-device-dots="true" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false">
-                
-                    <div className="owl-stage" style={{ transform: 'translate3d(-3335px, 0px, 0px)', transition: 'all 0.8s ease 0s', width: '5336px' }}>
-                      <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
-                              programming languages in a more in-depth way. They have such an easy
-                              way of teaching. 5/5 rating great work keep it up"</div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh3.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Imran Khan</a>
-                              {/* <span className="designation">Web Developer</span> */}
-                            </div>
-                          </div>
+
+                  <div className="owl-stage" style={{ transform: 'translate3d(-3335px, 0px, 0px)', transition: 'all 0.8s ease 0s', width: '5336px' }}>
+                    <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
+                            programming languages in a more in-depth way. They have such an easy
+                            way of teaching. 5/5 rating great work keep it up"</div>
                         </div>
-                      </div>
-                      <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
-                              had an excellent time learning about many topics. I had a little bit
-                              of knowledge but never had the chance to study them deeply. Thank
-                              You so much for valuable information. "</div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh3.jpg"]} alt="" />
                           </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh4.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Parteek sharma</a>
-                              {/* <span className="designation">Arist</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                              Someone
-                              told me Python is not easy to understand if you are a newbie in it.
-                              But they taught everything from the ground level. I really enjoyed
-                              learning from such a nice course. "
-                            </div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh1.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Keli</a>
-                              {/* <span className="designation">CEO, Brick Consulting</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                              It's a great course. The starting can be a bit tough if you're not
-                              from a programming background, but later, you start to understand
-                              everything because they will explain everything step by step."</div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh2.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Somya Saini</a>
-                              {/* <span className="designation">CEO, Keen IT Solution</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
-                              programming languages in a more in-depth way. They have such an easy
-                              way of teaching. 5/5 rating great work keep it up"</div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh3.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Imran Khan</a>
-                              {/* <span className="designation">Web Developer</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
-                              had an excellent time learning about many topics. I had a little bit
-                              of knowledge but never had the chance to study them deeply. Thank
-                              You so much for valuable information. "</div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh4.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Parteek sharma</a>
-                              {/* <span className="designation">Arist</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                              Someone told me Python is not easy to understand if you are a newbie
-                              in it. But they taught everything from the ground level. I really
-                              enjoyed learning from such a nice course. "
-                            </div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh1.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Keli</a>
-                              {/* <span className="designation">CEO, Brick Consulting</span> */}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
-                        <div className="testi-item">
-                          <div className="author-desc">
-                            <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                              It's a great course. The starting can be a bit tough if you're not
-                              from a programming background, but later, you start to understand
-                              everything because they will explain everything step by step."</div>
-                          </div>
-                          <div className="testimonial-content">
-                            <div className="author-img">
-                              <img src={images["tmh2.jpg"]} alt="" />
-                            </div>
-                            <div className="author-part">
-                              <a className="name" href="#">Somya Saini</a>
-                              {/* <span className="designation">CEO, Keen IT Solution</span> */}
-                            </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Imran Khan</a>
+                            {/* <span className="designation">Web Developer</span> */}
                           </div>
                         </div>
                       </div>
                     </div>
-               
+                    <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
+                            had an excellent time learning about many topics. I had a little bit
+                            of knowledge but never had the chance to study them deeply. Thank
+                            You so much for valuable information. "</div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh4.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Parteek sharma</a>
+                            {/* <span className="designation">Arist</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                            Someone
+                            told me Python is not easy to understand if you are a newbie in it.
+                            But they taught everything from the ground level. I really enjoyed
+                            learning from such a nice course. "
+                          </div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh1.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Keli</a>
+                            {/* <span className="designation">CEO, Brick Consulting</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                            It's a great course. The starting can be a bit tough if you're not
+                            from a programming background, but later, you start to understand
+                            everything because they will explain everything step by step."</div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh2.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Somya Saini</a>
+                            {/* <span className="designation">CEO, Keen IT Solution</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
+                            programming languages in a more in-depth way. They have such an easy
+                            way of teaching. 5/5 rating great work keep it up"</div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh3.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Imran Khan</a>
+                            {/* <span className="designation">Web Developer</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
+                            had an excellent time learning about many topics. I had a little bit
+                            of knowledge but never had the chance to study them deeply. Thank
+                            You so much for valuable information. "</div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh4.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Parteek sharma</a>
+                            {/* <span className="designation">Arist</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                            Someone told me Python is not easy to understand if you are a newbie
+                            in it. But they taught everything from the ground level. I really
+                            enjoyed learning from such a nice course. "
+                          </div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh1.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Keli</a>
+                            {/* <span className="designation">CEO, Brick Consulting</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="owl-item cloned" style={{ width: '637px', marginRight: '30px' }}>
+                      <div className="testi-item">
+                        <div className="author-desc">
+                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                            It's a great course. The starting can be a bit tough if you're not
+                            from a programming background, but later, you start to understand
+                            everything because they will explain everything step by step."</div>
+                        </div>
+                        <div className="testimonial-content">
+                          <div className="author-img">
+                            <img src={images["tmh2.jpg"]} alt="" />
+                          </div>
+                          <div className="author-part">
+                            <a className="name" href="#">Somya Saini</a>
+                            {/* <span className="designation">CEO, Keen IT Solution</span> */}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div className="owl-nav disabled">
                     <div className="owl-prev"><i className="fa fa-angle-left" /></div>
                     <div className="owl-next"><i className="fa fa-angle-right" /></div>
@@ -946,7 +946,7 @@ Faster</h4>
                   </a>
                 </div>
               </div>
-           
+
             </div>
           </div>
         </div>

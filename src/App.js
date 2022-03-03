@@ -189,7 +189,9 @@ function App() {
             <Route path='/AllUniversity' component={AllUniversity} />
 
             <Route path='/institute/:id' component={UniveristyPage} />
-            <Route path='/institute' component={UniveristyPage2} />
+        
+            {/* <Route exact path="/institutemy" render={() => (<UniveristyPage2 id={54} />)} /> */}
+            <Route path='/institutemy' component={UniveristyPage2} />
             <Route path='/AdminLogin' component={AdminLogin} />
             <Route path='/AdminDashboard' component={AdminDashboard} />
             <Route path='/AdminStudent' component={AdminStudent} />

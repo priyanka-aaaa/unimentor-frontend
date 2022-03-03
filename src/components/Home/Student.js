@@ -3,7 +3,12 @@ import Footer from './Footer'
 import Header from './Header'
 import Studentregister2 from '../Studentregister2'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye,faUser,faFile,faFileUpload,faUserTie,
+    faCheck,faPaperPlane,faGraduationCap
 
+} from '@fortawesome/free-solid-svg-icons';
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -281,7 +286,11 @@ function Student(props) {
                 <div className="services-item pink-light-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-user " /></span>
+                      <span>
+                      
+                    <FontAwesomeIcon icon={faUser} />
+                        
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -301,7 +310,11 @@ function Student(props) {
                 <div className="services-item blue2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-file " /></span>
+                      <span>
+                      <FontAwesomeIcon icon={faFile} />
+                        
+                      
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -321,7 +334,11 @@ function Student(props) {
                 <div className="services-item paste2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-check " /></span>
+                      <span>
+                       
+                        <FontAwesomeIcon icon={faCheck} />
+                        
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -341,7 +358,11 @@ function Student(props) {
                 <div className="services-item purple2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-file " /></span>
+                      <span>
+                      <FontAwesomeIcon icon={faFile} />
+                        
+                      
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -361,7 +382,11 @@ function Student(props) {
                 <div className="services-item cyan2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-paper-plane " /></span>
+                      <span>
+                      
+                      <FontAwesomeIcon icon={faPaperPlane} />
+                        
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -381,7 +406,11 @@ function Student(props) {
                 <div className="services-item pink2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-graduation-cap" /></span>
+                      <span>
+                   
+                    <FontAwesomeIcon icon={faGraduationCap} />
+                        
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">

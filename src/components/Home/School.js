@@ -1,6 +1,12 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen,faEye,faUser,faFile,faFileUpload,faUserTie,
+    faCheck,faPaperPlane,faGraduationCap
+
+} from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Universityregister from '../Universityregister';
 function importAll(r) {
@@ -10,6 +16,7 @@ function importAll(r) {
 }
 
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
+
 function School(props) {
 
   return (
@@ -78,8 +85,17 @@ function School(props) {
                 </div>
               </div>
               <ul className="social">
-                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                <li><a href="#"><i className="fa fa-twitter" /></a></li>
+                <li><a href="#">
+                {/* <FontAwesomeIcon icon={Facebook} /> */}
+                {/* <FontAwesomeIcon icon={faFacebookF}/> */}
+          
+              
+                  </a></li>
+                <li><a href="#">
+              
+                  
+                  <i className="fa fa-twitter" />
+                  </a></li>
                 <li><a href="#"><i className="fa fa-instagram" /></a></li>
               </ul>
             </div>
@@ -115,17 +131,9 @@ function School(props) {
 
                     Get Started</Link>  
                       
-                      {/* <a className="readon started" href="#">Get Started</a> */}
+                     
                       </li>
-                    {/* <li>
-                                                        <div class="rs-videos">
-                                                            <div class="animate-border">
-                                                                <a class="popup-border popup-videos" href="https://www.youtube.com/watch?v=YLN1Argi7ik">
-                                                                    <i class="fa fa-play"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div> 
-                                                    </li> */}
+                
                   </ul>
                 </div>
                 {/* Partner Start */}
@@ -303,7 +311,12 @@ function School(props) {
                 <div className="services-item pink-light-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-user " /></span>
+
+                      <span>
+                      <FontAwesomeIcon icon={faUser} />
+                        
+                        {/* <i className="fa fa-user " /> */}
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -323,7 +336,11 @@ function School(props) {
                 <div className="services-item blue2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-file " /></span>
+                      <span>
+                     
+                    <FontAwesomeIcon icon={faFile} />
+
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -343,7 +360,11 @@ function School(props) {
                 <div className="services-item paste2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-check " /></span>
+                      <span>
+                    <FontAwesomeIcon icon={faCheck} />
+
+                     
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -363,7 +384,11 @@ function School(props) {
                 <div className="services-item purple2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-file " /></span>
+                      <span>
+                    <FontAwesomeIcon icon={faFile} />
+
+                    
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -383,7 +408,11 @@ function School(props) {
                 <div className="services-item cyan2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-paper-plane " /></span>
+                      <span>
+                    <FontAwesomeIcon icon={faPaperPlane} />
+
+                    
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -403,7 +432,11 @@ function School(props) {
                 <div className="services-item pink2-bg">
                   <div className="services-icon">
                     <div className="image-part">
-                      <span><i className="fa fa-graduation-cap" /></span>
+                      <span>
+                    <FontAwesomeIcon icon={faGraduationCap} />
+
+              
+                        </span>
                     </div>
                   </div>
                   <div className="services-content">
