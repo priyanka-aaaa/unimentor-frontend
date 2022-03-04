@@ -3,7 +3,10 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
 const ExtraCurricularDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
@@ -27,6 +30,7 @@ const ExtraCurricularDocument = () => {
     const [completedHeading, setcompletedHeading] = useState("inline");
 
     const [loader, setmyloader] = useState("false");
+    const [submitError, setsubmitError] = useState("0");
 
 
     useEffect(() => {
@@ -111,6 +115,9 @@ const ExtraCurricularDocument = () => {
                 {submitSuccess === 1 ? <div className="Show_success_message">
                     <strong></strong> {successMessage}
                 </div> : null}
+                {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
+                    </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -204,7 +211,12 @@ const ExtraCurricularDocument = () => {
                                     {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                         <Dropzone onDrop={(acceptedFiles) => {
                             setmyloader("true")
-
+                            var fileName = acceptedFiles[0].path;
+                            var fileExtension = fileName.split('.').pop();
+                            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                            ) {
+                            
                                             const obj5 = new FormData();
                                             obj5.append("file", acceptedFiles[0]);
                                             obj5.append("activity", activity);
@@ -220,6 +232,13 @@ const ExtraCurricularDocument = () => {
 
                                                     extraCurricularAll()
                                                 })
+                                            }
+                                            else {
+                                                setmyloader("false")
+                                            
+                                                setTimeout(() => setsubmitError(""), 3000);
+                                                setsubmitError(1)
+                                            }
                                             //end for calling first api
 
                                             setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -246,7 +265,10 @@ const ExtraCurricularDocument = () => {
                                             <button type="button"
                                                 onClick={() => onDeletefileHandle("activity")}
                                                 //  onClick={this.onDeletecvHandle} 
-                                                className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                                className="btn btn-outline-danger">  
+                                                                                          <FontAwesomeIcon icon={faTrash} />
+
+                                                </button>
 
                                             <div className="modal" id="myModalExtraDocument">
                                                 <div className="modal-dialog">

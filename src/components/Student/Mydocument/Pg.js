@@ -3,7 +3,11 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
 
+} from '@fortawesome/free-solid-svg-icons';
 const NewIdentityDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
@@ -19,6 +23,7 @@ const NewIdentityDocument = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
+    const [submitError, setsubmitError] = useState("0");
 
 
     useEffect(() => {
@@ -93,6 +98,9 @@ const NewIdentityDocument = () => {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong></strong> {successMessage}
             </div> : null}
+            {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
+                    </div> : null}
             {showSweetAlert === "1" ? <SweetAlert
                 warning
                 showCancel
@@ -176,7 +184,13 @@ const NewIdentityDocument = () => {
                             {mypgDegree === "" || mypgDegree === "*" || mypgDegree === null || mypgDegree === undefined ?
                                 <Dropzone onDrop={(acceptedFiles) => {
                                     setmyloader("true")
-
+                                    var fileName = acceptedFiles[0].path;
+                                    var fileExtension = fileName.split('.').pop();
+                                    if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                        || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                    ) {
+                                    
+                                    
                                     const obj5 = new FormData();
                                     obj5.append("pgDegree", acceptedFiles[0]);
                                     //start for calling first api
@@ -192,6 +206,13 @@ const NewIdentityDocument = () => {
                                             pgAll()
 
                                         })
+                                    }
+                                    else {
+                                        setmyloader("false")
+                                    
+                                        setTimeout(() => setsubmitError(""), 3000);
+                                        setsubmitError(1)
+                                    }
                                     //end for calling first api
 
                                     setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -218,7 +239,10 @@ const NewIdentityDocument = () => {
                                     <button type="button"
                                         onClick={() => onDeletepgDegreeHandle("pgDegree")}
                                         //  onClick={this.onDeletecvHandle} 
-                                        className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                        className="btn btn-outline-danger">  
+                                                                                  <FontAwesomeIcon icon={faTrash} />
+
+                                        </button>
 
                                     <div className="modal" id="myModalpgDegree1">
                                         <div className="modal-dialog">
@@ -257,7 +281,11 @@ const NewIdentityDocument = () => {
                                 {mypgDegreeConsolidatedMarksheet === "" || mypgDegreeConsolidatedMarksheet === "*" || mypgDegree === null || mypgDegreeConsolidatedMarksheet === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
-
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
                                         const obj5 = new FormData();
                                         obj5.append("pgDegreeConsolidatedMarksheet", acceptedFiles[0]);
                                         //start for calling first api
@@ -272,6 +300,14 @@ const NewIdentityDocument = () => {
 
                                                 pgAll()
                                             })
+                                        }
+                                        
+    else {
+        setmyloader("false")
+    
+        setTimeout(() => setsubmitError(""), 3000);
+        setsubmitError(1)
+    }
                                         //end for calling first api
 
                                         setHeroFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -298,7 +334,10 @@ const NewIdentityDocument = () => {
                                         <button type="button"
                                             onClick={() => onDeletepgDegreeConsolidatedMarksheetHandle("pgDegreeConsolidatedMarksheet")}
                                             //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">  
+                                                                                        <FontAwesomeIcon icon={faTrash} />
+
+                                            </button>
 
                                         <div className="modal" id="myModalpgDegreeConsolidatedMarksheet1">
                                             <div className="modal-dialog">
@@ -339,7 +378,12 @@ const NewIdentityDocument = () => {
                                 {mypgMarksheet === "" || mypgMarksheet === "*" || mypgDegree === null || mypgMarksheet === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
-
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
+                                        
                                         const obj5 = new FormData();
                                         obj5.append("pgMarksheet", acceptedFiles[0]);
                                         //start for calling first api
@@ -354,6 +398,13 @@ setmyloader("false")
 
                                                 pgAll()
                                             })
+                                        }
+                                        else {
+                                            setmyloader("false")
+                                        
+                                            setTimeout(() => setsubmitError(""), 3000);
+                                            setsubmitError(1)
+                                        }
                                         //end for calling first api
 
                                         setHeroFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -380,7 +431,10 @@ setmyloader("false")
                                         <button type="button"
                                             onClick={() => onDeletepgMarksheetConsolidateHandle("pgMarksheet")}
                                             //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">  
+                                                                                     <FontAwesomeIcon icon={faTrash} />
+
+                                            </button>
 
                                         <div className="modal" id="myModalpgMarksheetConsolidate1">
                                             <div className="modal-dialog">

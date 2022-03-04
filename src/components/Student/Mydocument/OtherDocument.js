@@ -4,6 +4,10 @@ import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
 const EnglishProficiencyDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
@@ -28,6 +32,7 @@ const EnglishProficiencyDocument = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
+    const [submitError, setsubmitError] = useState("0");
 
 
 
@@ -96,6 +101,9 @@ const EnglishProficiencyDocument = () => {
                 {submitSuccess === 1 ? <div className="Show_success_message">
                     <strong></strong> {successMessage}
                 </div> : null}
+                {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
+                    </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -192,7 +200,12 @@ const EnglishProficiencyDocument = () => {
                                 {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
-
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
+                                        
                                         const obj5 = new FormData();
                                         obj5.append("file", acceptedFiles[0]);
                                         obj5.append("name", name);
@@ -209,6 +222,13 @@ const EnglishProficiencyDocument = () => {
                                                 otherAll()
 
                                             })
+                                        }
+                                        else {
+                                            setmyloader("false")
+                                        
+                                            setTimeout(() => setsubmitError(""), 3000);
+                                            setsubmitError(1)
+                                        }
                                         //end for calling first api
 
                                         setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -235,7 +255,10 @@ const EnglishProficiencyDocument = () => {
                                         <button type="button"
                                             onClick={() => onDeletefileHandle()}
                                             //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">  
+                                                                                     <FontAwesomeIcon icon={faTrash} />
+
+                                            </button>
 
                                         <div className="modal" id="myModalOtherDocument">
                                             <div className="modal-dialog">

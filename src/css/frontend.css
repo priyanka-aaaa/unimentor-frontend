@@ -4106,6 +4106,22 @@ body .search-modal .close:hover {
   text-align: center;
 
 }
+.Show_error_message{
+  color: #fff;
+  background-color: #e74c3c !important;
+  border-color: #e64844 !important;
+  width: 23%;
+  position: fixed;
+  top: 7%;
+  right: 31%;
+  border-radius: 4px;
+  z-index: 1;
+  font-weight: 700;
+  padding: 14px 0px;
+  text-align: center;
+
+}
+
 /* .rs-breadcrumbs.img4 {
   background: url(assets/images/breadcrumbs/4.jpg);
 } */

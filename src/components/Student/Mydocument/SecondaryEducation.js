@@ -4,7 +4,11 @@ import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
 
+} from '@fortawesome/free-solid-svg-icons';
 const SecondaryEducation = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
@@ -20,6 +24,7 @@ const SecondaryEducation = () => {
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
+    const [submitError, setsubmitError] = useState("0");
 
 
     useEffect(() => {
@@ -49,7 +54,7 @@ const SecondaryEducation = () => {
         secondaryEducationAllDetails();
 
     }, [])
-    function secondaryEducationAll(){
+    function secondaryEducationAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -85,14 +90,17 @@ const SecondaryEducation = () => {
     return (
 
         <div className="card-body">
-              {loader === "true" ?
+            {loader === "true" ?
 
-<Loader />
+                <Loader />
 
-: null}
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong></strong> {successMessage}
             </div> : null}
+            {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
+                    </div> : null}
             {showSweetAlert === "1" ? <SweetAlert
                 warning
                 showCancel
@@ -104,8 +112,7 @@ const SecondaryEducation = () => {
                     setshowSweetAlert("0");
                     setmyloader("true")
 
-                    console.log("setdeleteId");
-                    console.log(deleteId)
+
                     // start for delete
                     const obj5 = new FormData();
                     obj5.append(deleteId, "*");
@@ -174,22 +181,34 @@ const SecondaryEducation = () => {
                             {/* //start for cv */}
                             {mymarksheet10 === "" || mymarksheet10 === "*" || mymarksheet10 === null || mymarksheet10 === undefined ?
                                 <Dropzone onDrop={(acceptedFiles) => {
-                            setmyloader("true")
-
-                                    const obj5 = new FormData();
-                                    obj5.append("marksheet10", acceptedFiles[0]);
-                                    //start for calling first api
-                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
-                                        method: 'put',
-                                        body: obj5,
-                                        headers: { 'Authorization': mounted },
-                                    })
-                                        .then(response => response.json())
-                                        .then(data => {
-                            setmyloader("false")
-
-                                            secondaryEducationAll();
+                                    setmyloader("true")
+                                    var fileName = acceptedFiles[0].path;
+                                    var fileExtension = fileName.split('.').pop();
+                                    if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                        || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                    ) {
+                                        const obj5 = new FormData();
+                                        obj5.append("marksheet10", acceptedFiles[0]);
+                                        //start for calling first api
+                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
+                                            method: 'put',
+                                            body: obj5,
+                                            headers: { 'Authorization': mounted },
                                         })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                setmyloader("false")
+
+                                                secondaryEducationAll();
+                                            })
+                                    }
+
+                                    else {
+                                        setmyloader("false")
+
+                                        setTimeout(() => setsubmitError(""), 3000);
+                                        setsubmitError(1)
+                                    }
                                     //end for calling first api
 
                                     setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -198,7 +217,8 @@ const SecondaryEducation = () => {
 
 
                                     })));
-                                }} name="heroImage" multiple={false}>
+                                }
+                                } name="heroImage" multiple={false}>
                                     {({ getRootProps, getInputProps }) => (
                                         <div {...getRootProps({ className: 'dropzone' })}>
                                             <input {...getInputProps()} />
@@ -216,7 +236,10 @@ const SecondaryEducation = () => {
                                     <button type="button"
                                         onClick={() => onDeletemarksheet10Handle("marksheet10")}
                                         //  onClick={this.onDeletecvHandle} 
-                                        className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                        className="btn btn-outline-danger">
+                                        <FontAwesomeIcon icon={faTrash} />
+
+                                    </button>
 
                                     <div className="modal" id="myModalmarksheet101">
                                         <div className="modal-dialog">
@@ -252,8 +275,13 @@ const SecondaryEducation = () => {
                             <div>{/* This would be the dropzone for the Hero image */}
                                 {mymarksheet12 === "" || mymarksheet12 === "*" || mymarksheet12 === null || mymarksheet12 === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
-                            setmyloader("true")
-
+                                        setmyloader("true")
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
+                                        
                                         const obj5 = new FormData();
                                         obj5.append("marksheet12", acceptedFiles[0]);
                                         //start for calling first api
@@ -264,10 +292,17 @@ const SecondaryEducation = () => {
                                         })
                                             .then(response => response.json())
                                             .then(data => {
-                            setmyloader("false")
+                                                setmyloader("false")
 
                                                 secondaryEducationAll()
                                             })
+                                        }
+                                        else {
+                                            setmyloader("false")
+                                        
+                                            setTimeout(() => setsubmitError(""), 3000);
+                                            setsubmitError(1)
+                                        }
                                         //end for calling first api
 
                                         setHeroFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -294,7 +329,11 @@ const SecondaryEducation = () => {
                                         <button type="button"
                                             onClick={() => onDeletemarksheet12Handle("marksheet12")}
                                             //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">
+                                            <FontAwesomeIcon icon={faTrash} />
+
+
+                                        </button>
 
                                         <div className="modal" id="myModalmarksheet121">
                                             <div className="modal-dialog">

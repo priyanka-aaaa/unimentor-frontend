@@ -5,6 +5,11 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
+
 const NewIdentityDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
@@ -15,9 +20,9 @@ const NewIdentityDocument = () => {
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-    const [errorMessage, seterrorMessage] = useState("");
+
     const [submitError, setsubmitError] = useState("0");
-    
+
 
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
@@ -97,7 +102,7 @@ const NewIdentityDocument = () => {
                         <strong></strong> File extension not supported
                     </div> : null}
 
-             
+
 
                     {showSweetAlert === "1" ? <SweetAlert
                         warning
@@ -158,23 +163,34 @@ const NewIdentityDocument = () => {
                                 {mypassport === "" || mypassport === "*" || mypassport === null || mypassport === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
-
-                                        const obj5 = new FormData();
-                                        obj5.append("passport", acceptedFiles[0]);
-                                        //start for calling first api
-                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                            method: 'put',
-                                            body: obj5,
-                                            headers: { 'Authorization': mounted },
-                                        })
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                setmyloader("false")
-
-                                                identityDocumentAll()
-
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
+                                            const obj5 = new FormData();
+                                            obj5.append("passport", acceptedFiles[0]);
+                                            //start for calling first api
+                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                                method: 'put',
+                                                body: obj5,
+                                                headers: { 'Authorization': mounted },
                                             })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    setmyloader("false")
 
+                                                    identityDocumentAll()
+
+                                                })
+                                        }
+
+                                        else {
+                                            setmyloader("false")
+                                           
+                                            setTimeout(() => setsubmitError(""), 3000);
+                                            setsubmitError(1)
+                                        }
 
                                         setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
 
@@ -202,7 +218,11 @@ const NewIdentityDocument = () => {
 
                                             onClick={() => onDeletePassportHandle("passport")}
 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">
+
+                                            <FontAwesomeIcon icon={faTrash} />
+
+                                        </button>
 
                                         <div className="modal" id="myModalPassport1">
                                             <div className="modal-dialog">
@@ -241,10 +261,7 @@ const NewIdentityDocument = () => {
                                         <Dropzone onDrop={(acceptedFiles) => {
                                             setmyloader("true")
                                             var fileName = acceptedFiles[0].path;
-
                                             var fileExtension = fileName.split('.').pop();
-                                            console.log("fileExtension")
-                                            console.log(fileExtension)
                                             if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                                 || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                             ) {
@@ -267,11 +284,9 @@ const NewIdentityDocument = () => {
                                             }
                                             else {
                                                 setmyloader("false")
-                                                seterrorMessage("Admission Added")
+
                                                 setTimeout(() => setsubmitError(""), 3000);
                                                 setsubmitError(1)
-                                                
-                                                
                                             }
                                             //end for calling first api
 
@@ -299,7 +314,10 @@ const NewIdentityDocument = () => {
                                             <button type="button"
                                                 onClick={() => onDeletePassportBackHandle("passportBack")}
 
-                                                className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                                className="btn btn-outline-danger">
+                                                <FontAwesomeIcon icon={faTrash} />
+
+                                            </button>
 
                                             <div className="modal" id="myModalPassportback1">
                                                 <div className="modal-dialog">
@@ -343,19 +361,44 @@ const NewIdentityDocument = () => {
 
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
-                                        const obj5 = new FormData();
-                                        obj5.append("cv", acceptedFiles[0]);
-                                        //start for calling first api
-                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
-                                            method: 'put',
-                                            body: obj5,
-                                            headers: { 'Authorization': mounted },
-                                        })
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                setmyloader("false")
-                                                identityDocumentAll()
+                                        var fileName = acceptedFiles[0].path;
+                                        var fileExtension = fileName.split('.').pop();
+                                        if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                            || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                        ) {
+
+                                            const obj5 = new FormData();
+                                            obj5.append("cv", acceptedFiles[0]);
+
+                                            //start for calling first api
+                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                                method: 'put',
+                                                body: obj5,
+                                                headers: { 'Authorization': mounted },
                                             })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    setmyloader("false")
+                                                    fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                                        method: 'get',
+                                                        headers: { 'Authorization': mounted },
+                                                    })
+                                                        .then(response => response.json())
+                                                        .then(data => {
+                                        
+                                                            setmypassport(data.studentIdentityDocument.passport)
+                                                            setmypassportBack(data.studentIdentityDocument.passportBack)
+                                                            setmycv(data.studentIdentityDocument.cv)
+                                        
+                                                        })
+                                                })
+                                        }
+                                        else {
+                                            setmyloader("false")
+
+                                            setTimeout(() => setsubmitError(""), 3000);
+                                            setsubmitError(1)
+                                        }
                                         //end for calling first api
 
                                         setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -364,7 +407,8 @@ const NewIdentityDocument = () => {
 
 
                                         })));
-                                    }} name="heroImage" multiple={false}>
+                                    }
+                                    } name="heroImage" multiple={false}>
                                         {({ getRootProps, getInputProps }) => (
                                             <div {...getRootProps({ className: 'dropzone' })}>
                                                 <input {...getInputProps()} />
@@ -382,7 +426,10 @@ const NewIdentityDocument = () => {
                                         <button type="button"
                                             onClick={() => onDeletecvHandle("cv")}
                                             //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                            className="btn btn-outline-danger">
+                                            <FontAwesomeIcon icon={faTrash} />
+
+                                        </button>
 
                                         <div className="modal" id="myModalcv1">
                                             <div className="modal-dialog">

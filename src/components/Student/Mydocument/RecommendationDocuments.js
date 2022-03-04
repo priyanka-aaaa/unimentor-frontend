@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
 
 function RecommendationDocuments(props) {
@@ -22,6 +25,7 @@ function RecommendationDocuments(props) {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
+    const [submitError, setsubmitError] = useState("0");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -100,6 +104,9 @@ function RecommendationDocuments(props) {
                 {submitSuccess === 1 ? <div className="Show_success_message">
                     <strong></strong> {successMessage}
                 </div> : null}
+                {submitError === 1 ? <div className="Show_error_message">
+                        <strong></strong> File extension not supported
+                    </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -214,8 +221,13 @@ function RecommendationDocuments(props) {
 
                                                             <Dropzone onDrop={(acceptedFiles) => {
                                                                 setmyloader("true")
-                                                                recommendationAll()
-
+                                                              
+                                                                var fileName = acceptedFiles[0].path;
+                                                                var fileExtension = fileName.split('.').pop();
+                                                                if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                                                    || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                                                ) {
+                                                                
                                                                 const obj5 = new FormData();
                                                                 obj5.append("document", acceptedFiles[0]);
                                                                 obj5.append("name", name);
@@ -229,23 +241,16 @@ function RecommendationDocuments(props) {
                                                                     .then(data => {
                                                                         setmyloader("false")
 
-                                                                        //start for get all newIdeneitiydocument 
-                                                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
-                                                                            method: 'get',
-                                                                            //  body: obj5,
-                                                                            headers: { 'Authorization': mounted },
-                                                                        })
-                                                                            .then(response => response.json())
-                                                                            .then(data => {
-                                                                                setname(data.studentRecommendationDocument.name)
-                                                                                setsubmitname(data.studentRecommendationDocument.name)
-
-                                                                                setmydocument(data.studentRecommendationDocument.document)
-
-
-                                                                            })
-                                                                        //end for get all newIdeneitiydocument 
+                                                                        recommendationAll()
                                                                     })
+                                                                }
+                                                                
+    else {
+        setmyloader("false")
+    
+        setTimeout(() => setsubmitError(""), 3000);
+        setsubmitError(1)
+    }
                                                                 //end for calling first api
 
                                                                 setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
@@ -274,7 +279,10 @@ function RecommendationDocuments(props) {
                                                             <button type="button"
                                                                 onClick={() => onDeletefileHandle()}
                                                                 //  onClick={this.onDeletecvHandle} 
-                                                                className="btn btn-outline-danger">  <i className="fa fa-trash" aria-hidden="true"></i></button>
+                                                                className="btn btn-outline-danger">
+                                            <FontAwesomeIcon icon={faTrash} />
+
+                                                                      </button>
 
 
 
