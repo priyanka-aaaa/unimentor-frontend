@@ -3,12 +3,10 @@ import Dropzone from "react-dropzone";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
-
 const EnglishProficiencyDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
@@ -16,26 +14,18 @@ const EnglishProficiencyDocument = () => {
     const [firstName, setfirstName] = useState("");
     const [mymarksheet12, setmymarksheet12] = useState();
     const [test, settest] = useState();
-
-
     const [myfile, setmyfile] = useState();
     const [name, setname] = useState();
-
     const [nametype, setnametype] = useState("none");
     const [submitname, setsubmitname] = useState("none");
     const [submittest, setsubmittest] = useState("none");
-
     const [textflag, settextflag] = useState("none");
-
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
-
-
-
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -44,51 +34,36 @@ const EnglishProficiencyDocument = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-
-        //start for get all newIdeneitiydocument 
         function otherAllDetails() {
-
             fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
                 method: 'get',
                 headers: { 'Authorization': mounted },
             })
                 .then(response => response.json())
                 .then(data => {
-
                     setname(data.studentOtherDocument.name)
                     setmyfile(data.studentOtherDocument.file)
                     setsubmitname(data.studentOtherDocument.name)
-
-
                 })
         }
         otherAllDetails()
-        //end for get all newIdeneitiydocument 
     }, [])
-
     function otherAll() {
-
         fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
         })
             .then(response => response.json())
             .then(data => {
-
                 setname(data.studentOtherDocument.name)
                 setmyfile(data.studentOtherDocument.file)
                 setsubmitname(data.studentOtherDocument.name)
-
-
             })
     }
-
-
     function onDeletefileHandle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
     }
-
     return (
         <div className="card">
             {loader === "true" ?
@@ -102,8 +77,8 @@ const EnglishProficiencyDocument = () => {
                     <strong></strong> {successMessage}
                 </div> : null}
                 {submitError === 1 ? <div className="Show_error_message">
-                        <strong></strong> File extension not supported
-                    </div> : null}
+                    <strong></strong> File extension not supported
+                </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
@@ -113,15 +88,10 @@ const EnglishProficiencyDocument = () => {
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setmyloader("true")
-
                         setshowSweetAlert("0");
-
-                        // start for delete
                         const obj5 = new FormData();
                         obj5.append("name", " ");
                         obj5.append("file", "*");
-
-                        //start for calling first api
                         fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
                             method: 'put',
                             body: obj5,
@@ -130,73 +100,45 @@ const EnglishProficiencyDocument = () => {
                             .then(response => response.json())
                             .then(data => {
                                 setmyloader("false")
-
                                 setsuccessMessage("Deleted Successfully")
-
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 otherAll()
-
                             })
-                        // end for delete
-
-
-
-
-
                     }}
                     onCancel={() =>
                         setshowSweetAlert("0")
-
                     }
                     focusCancelBtn
                 >
-
                 </SweetAlert>
                     : null
                 }
                 <div className="card-body">
                     <div className="form form_doc">
                         <div className="row pl-4 pr-4 mt-3">
-
                             <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-
-
                             </div>
-                            {/* start after toogle contact will come */}
-
-                            {/* start after toogle contact will come */}
-
                         </div>
-
-                        {/* start for cv */}
                         <div className="upload_doc d-flex flex-wrap align-items-center row">
                             <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                 <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
-
                                     <label>
                                         Other Document Name
                                     </label>
                                     {submitname === "" || submitname === undefined || submitname === "none" || submitname === " " ?
                                         <div>
-
                                             <div role="group" className="doc_choice btn-group" >
-
                                                 <input
                                                     value={name}
                                                     onChange={(e) => setname(e.target.value)}
                                                     type="text" className="form-control" placeholder="Enter document name to upload" name="fname" />
-
-
-
                                             </div>
                                         </div>
-
                                         : name}
                                 </div>
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
-                                {/* //start for cv */}
                                 {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
@@ -205,37 +147,27 @@ const EnglishProficiencyDocument = () => {
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                             || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                         ) {
-                                        
-                                        const obj5 = new FormData();
-                                        obj5.append("file", acceptedFiles[0]);
-                                        obj5.append("name", name);
-                                        //start for calling first api
-                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
-                                            method: 'put',
-                                            body: obj5,
-                                            headers: { 'Authorization': mounted },
-                                        })
-                                            .then(response => response.json())
-                                            .then(data => {
-                                                setmyloader("false")
-
-                                                otherAll()
-
+                                            const obj5 = new FormData();
+                                            obj5.append("file", acceptedFiles[0]);
+                                            obj5.append("name", name);
+                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/otherDocument', {
+                                                method: 'put',
+                                                body: obj5,
+                                                headers: { 'Authorization': mounted },
                                             })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    setmyloader("false")
+                                                    otherAll()
+                                                })
                                         }
                                         else {
                                             setmyloader("false")
-                                        
                                             setTimeout(() => setsubmitError(""), 3000);
                                             setsubmitError(1)
                                         }
-                                        //end for calling first api
-
                                         setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
-
                                             preview: URL.createObjectURL(file)
-
-
                                         })));
                                     }} name="heroImage" multiple={false}>
                                         {({ getRootProps, getInputProps }) => (
@@ -254,40 +186,24 @@ const EnglishProficiencyDocument = () => {
                                         </button>
                                         <button type="button"
                                             onClick={() => onDeletefileHandle()}
-                                            //  onClick={this.onDeletecvHandle} 
-                                            className="btn btn-outline-danger">  
-                                                                                     <FontAwesomeIcon icon={faTrash} />
-
-                                            </button>
-
+                                            className="btn btn-outline-danger">
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </button>
                                         <div className="modal" id="myModalOtherDocument">
                                             <div className="modal-dialog">
                                                 <div className="modal-content">
-
-                                                    {/* <!-- Modal Header --> */}
                                                     <div className="modal-header">
                                                         <h4 className="modal-title">file </h4>
                                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
-
                                                     <img src={myfile} alt="marksheet12" />
-
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 }
-                                {/* //end for file */}
                             </div>
                         </div>
-                        {/* end for cv */}
-
-
-
-
-
-
                     </div>
                 </div>
             </div>

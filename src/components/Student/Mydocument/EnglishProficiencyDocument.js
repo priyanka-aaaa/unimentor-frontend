@@ -7,44 +7,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
-
 const EnglishProficiencyDocument = () => {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
-
     const [mymarksheet12, setmymarksheet12] = useState();
-
     const [myfile, setmyfile] = useState();
     const [test, settest] = useState();
-
     const [testtype, settesttype] = useState("none");
     const [submittest, setsubmittest] = useState("none");
-
     const [textflag, settextflag] = useState("none");
-
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [englishProficiencyName, setenglishProficiencyName] = useState("inline");
-
     const [englishProficiencyIELTS, setenglishProficiencyIELTS] = useState("inline");
     const [englishProficiencyTOEFL, setenglishProficiencyTOEFL] = useState("inline");
     const [englishProficiencyPTE, setenglishProficiencyPTE] = useState("inline");
     const [englishProficiencyDuolingo, setenglishProficiencyDuolingo] = useState("inline");
-
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
-
-
-
-
-
-
-
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -53,45 +37,33 @@ const EnglishProficiencyDocument = () => {
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-
-        //start for get all newIdeneitiydocument 
-      function englishProficiencyAllDetails(){
-
-        fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-            method: 'get',
-            headers: { 'Authorization': mounted },
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                settest(data.studentEnglishProficiencyDocument.test)
-                setmyfile(data.studentEnglishProficiencyDocument.file)
-                setsubmittest(data.studentEnglishProficiencyDocument.test)
-
-
+        function englishProficiencyAllDetails() {
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
             })
+                .then(response => response.json())
+                .then(data => {
+                    settest(data.studentEnglishProficiencyDocument.test)
+                    setmyfile(data.studentEnglishProficiencyDocument.file)
+                    setsubmittest(data.studentEnglishProficiencyDocument.test)
+                })
         }
         englishProficiencyAllDetails();
-        //end for get all newIdeneitiydocument 
     }, [])
-    function englishProficiencyAll(){
-
+    function englishProficiencyAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
             method: 'get',
             headers: { 'Authorization': mounted },
         })
             .then(response => response.json())
             .then(data => {
-
                 settest(data.studentEnglishProficiencyDocument.test)
                 setmyfile(data.studentEnglishProficiencyDocument.file)
                 setsubmittest(data.studentEnglishProficiencyDocument.test)
-
-
             })
-        }
+    }
     function onChangeIelts(e) {
-
         settest(e)
         setenglishProficiencyName("selected")
         setenglishProficiencyIELTS("selected")
@@ -137,15 +109,13 @@ const EnglishProficiencyDocument = () => {
 
         }
     }
-
     function onDeletefileHandle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
     }
-
     return (
         <div className="card">
-             {loader === "true" ?
+            {loader === "true" ?
                 <Loader />
                 : null}
             <a className="card-header" data-bs-toggle="collapse" href="#collapsefour">
@@ -156,26 +126,20 @@ const EnglishProficiencyDocument = () => {
                     <strong></strong> {successMessage}
                 </div> : null}
                 {submitError === 1 ? <div className="Show_error_message">
-                        <strong></strong> File extension not supported
-                    </div> : null}
+                    <strong></strong> File extension not supported
+                </div> : null}
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
                     confirmBtnText="Yes, delete it!"
                     confirmBtnBsStyle="danger"
-
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setmyloader("true")
-
                         setshowSweetAlert("0");
-
-                        // start for delete
                         const obj5 = new FormData();
                         obj5.append("test", "none");
                         obj5.append("file", "*");
-
-                        //start for calling first api
                         fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
                             method: 'put',
                             body: obj5,
@@ -183,29 +147,20 @@ const EnglishProficiencyDocument = () => {
                         })
                             .then(response => response.json())
                             .then(data => {
-                            setmyloader("false")
+                                setmyloader("false")
 
                                 setsuccessMessage("Deleted Successfully")
 
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 englishProficiencyAll()
-
                             })
-                        // end for delete
-
-
-
-
-
                     }}
                     onCancel={() =>
                         setshowSweetAlert("0")
-
                     }
                     focusCancelBtn
                 >
-
                 </SweetAlert>
                     : null
                 }
@@ -220,23 +175,14 @@ const EnglishProficiencyDocument = () => {
                                     <input type="checkbox" />
                                     <span className="slider round"
                                         onClick={() => ToggleButton()}
-
                                     ></span>
                                 </label>
-
                             </div>
-                            {/* start after toogle contact will come */}
-
-                            {/* start after toogle contact will come */}
-
                         </div>
                         <div style={{ display: textflag }}>
-                            {/* start for cv */}
                             <div className="upload_doc d-flex flex-wrap align-items-center row">
                                 <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                     <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
-
-
                                         {submittest === "" || submittest === undefined || submittest === "none" ?
                                             <div>
                                                 <label>Please select English Proficiency Test</label><br />
@@ -244,58 +190,46 @@ const EnglishProficiencyDocument = () => {
                                                     <input type="hidden" />
                                                     <button type="button"
                                                         onClick={() => onChangeIelts("IELTS")}
-
                                                         className={englishProficiencyIELTS + " btn btn-secondary"} >IELTS</button>
                                                     <button type="button" onClick={() => onChangeToefl("TOEFL")} className={englishProficiencyTOEFL + " btn btn-secondary"}>TOEFL</button>
                                                     <button type="button" onClick={() => onChangePte("PTE")} className={englishProficiencyPTE + " btn btn-secondary"}>PTE</button>
                                                     <button type="button" onClick={() => onChangeDuolingo("Duolingo")} className={englishProficiencyDuolingo + " btn btn-secondary"}>Duolingo</button>
                                                 </div>
                                             </div>
-
                                             : test + " Score Card"}
                                     </div>
                                 </div>
                                 <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
-                                    {/* //start for cv */}
                                     <p>Upload Document</p>
                                     {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                         <Dropzone onDrop={(acceptedFiles) => {
-                            setmyloader("true")
-                            var fileName = acceptedFiles[0].path;
-                            var fileExtension = fileName.split('.').pop();
-                            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
-                                || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
-                            ) {
-                            
-                                            const obj5 = new FormData();
-                                            obj5.append("file", acceptedFiles[0]);
-                                            obj5.append("test", test);
-                                            //start for calling first api
-                                            fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
-                                                method: 'put',
-                                                body: obj5,
-                                                headers: { 'Authorization': mounted },
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    setmyloader("false")
-                                                    englishProficiencyAll()
-                                                 
+                                            setmyloader("true")
+                                            var fileName = acceptedFiles[0].path;
+                                            var fileExtension = fileName.split('.').pop();
+                                            if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                                || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                            ) {
+                                                const obj5 = new FormData();
+                                                obj5.append("file", acceptedFiles[0]);
+                                                obj5.append("test", test);
+                                                fetch(process.env.REACT_APP_SERVER_URL + 'student/englishProficiencyDocument', {
+                                                    method: 'put',
+                                                    body: obj5,
+                                                    headers: { 'Authorization': mounted },
                                                 })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        setmyloader("false")
+                                                        englishProficiencyAll()
+                                                    })
                                             }
                                             else {
                                                 setmyloader("false")
-                                            
                                                 setTimeout(() => setsubmitError(""), 3000);
                                                 setsubmitError(1)
                                             }
-                                            //end for calling first api
-
                                             setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
-
                                                 preview: URL.createObjectURL(file)
-
-
                                             })));
                                         }} name="heroImage" multiple={false}>
                                             {({ getRootProps, getInputProps }) => (
@@ -314,40 +248,27 @@ const EnglishProficiencyDocument = () => {
                                             </button>
                                             <button type="button"
                                                 onClick={() => onDeletefileHandle("file")}
-
-                                                className="btn btn-outline-danger"> 
-                                                                                            <FontAwesomeIcon icon={faTrash} />
-
-                                                 </button>
+                                                className="btn btn-outline-danger">
+                                                <FontAwesomeIcon icon={faTrash} />
+                                            </button>
 
                                             <div className="modal" id="myModalEnglishProficiecny">
                                                 <div className="modal-dialog">
                                                     <div className="modal-content">
-
-                                                        {/* <!-- Modal Header --> */}
                                                         <div className="modal-header">
                                                             <h4 className="modal-title">file </h4>
                                                             <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                         </div>
-
                                                         <img src={myfile} alt="marksheet12" />
-
                                                     </div>
                                                 </div>
                                             </div>
 
                                         </div>
                                     }
-                                    {/* //end for file */}
                                 </div>
                             </div>
-                            {/* end for cv */}
-
-
                         </div>
-
-
-
                     </div>
                 </div>
             </div>

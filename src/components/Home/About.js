@@ -2,26 +2,18 @@ import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
   return images
 }
-
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 export default function About() {
   return (
-
-
-    <div className="main-content">
-      {/*Full width header Start*/}
-      <div className="full-width-header">
-        {/*Header Start*/}
-        <Header />
-        {/*Header End*/}
-        {/* Canvas Menu start */}
-        <nav className="right_menu_togle hidden-md">
+ <div className="main-content">
+    <div className="full-width-header">
+      <Header />
+      <nav className="right_menu_togle hidden-md">
           <div className="close-btn">
             <div className="nav-link">
               <a id="nav-close" className="humburger nav-expander" href="#">
@@ -39,8 +31,7 @@ export default function About() {
           </div>
           <div className="canvas-logo">
             <a href="index.html"><img
-
-              src={images["logo.png"]} alt="logo" /></a>
+    src={images["logo.png"]} alt="logo" /></a>
           </div>
           <div className="offcanvas-text">
             <p> Coursementor.com is a 24*7 Online Tutoring Platform. Get online tutoring on-demand on hundreds
@@ -84,26 +75,19 @@ export default function About() {
             </ul>
           </div>
         </nav>
-        {/* Canvas Menu end */}
       </div>
-      {/*Full width header End*/}
-      {/* Breadcrumbs Start */}
-      <div className="rs-breadcrumbs img1">
+   <div className="rs-breadcrumbs img1">
         <div className="breadcrumbs-inner text-center">
           <h1 className="page-title">About</h1>
           <ul>
             <li title="Braintech - IT Solutions and Technology Startup HTML Template">
               <a className="active" href="index.html">Home</a>
             </li>
-          
-
-            <li>About</li>
+          <li>About</li>
           </ul>
         </div>
       </div>
-      {/* Breadcrumbs End */}
-      {/* About Section Start */}
-      <div className="rs-about gray-color pt-120 pb-120 md-pt-80 md-pb-80">
+    <div className="rs-about gray-color pt-120 pb-120 md-pt-80 md-pb-80">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6 md-mb-30">
@@ -156,9 +140,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      {/* About Section End */}
-      {/* Team Section Start */}
-      <div className="rs-team pt-120 pb-120 md-pt-80 md-pb-80 xs-pb-54">
+     <div className="rs-team pt-120 pb-120 md-pt-80 md-pb-80 xs-pb-54">
         <div className="sec-title2 text-center mb-30">
           <span className="sub-text style-bg white-color">Team</span>
           <h2 className="title white-color">
@@ -172,8 +154,7 @@ export default function About() {
                 <div className="team-wrap">
                   <div className="image-inner">
                     <a href="single-team.html"><img src=
-
-                      {images["team1.jpg"]}
+  {images["team1.jpg"]}
                       alt="" /></a>
                   </div>
                 </div>
@@ -232,8 +213,7 @@ export default function About() {
                 <div className="team-wrap">
                   <div className="image-inner">
                     <a href="single-team.html"><img src=
-
-                      {images["team4.jpg"]}
+  {images["team4.jpg"]}
                       alt="" /></a>
                   </div>
                 </div>
@@ -252,8 +232,7 @@ export default function About() {
                 <div className="team-wrap">
                   <div className="image-inner">
                     <a href="single-team.html"><img src=
-
-                      {images["team5.jpg"]}
+    {images["team5.jpg"]}
                       alt="" /></a>
                   </div>
                 </div>
