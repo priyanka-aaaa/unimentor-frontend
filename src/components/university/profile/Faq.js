@@ -5,7 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,  faAngleDown,faAngleUp
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 const Faq = () => {
@@ -31,8 +31,6 @@ const Faq = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-
-
         const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',
@@ -47,18 +45,16 @@ const Faq = () => {
                     setFormValues(data.universityFaqs)
                 }
             })
-
-
     }, [])
     function handleClick() {
-        if(down==="1"){
-             setdown("0");
-             setup("1")
-         }
-         else{
-             setdown("1");
-             setup("0")
-         }
+        if (down === "1") {
+            setdown("0");
+            setup("1")
+        }
+        else {
+            setdown("1");
+            setup("0")
+        }
     }
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
@@ -75,11 +71,7 @@ const Faq = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         setmyloader("true")
-
-
         var myvalues = JSON.stringify(formValues);
-
-
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'university/faqs', item, { headers: { 'Authorization': mounted } })
@@ -105,9 +97,6 @@ const Faq = () => {
                                     }
                                 })
                         }
-                        else {
-
-                        }
                     })
                     .catch(error => {
 
@@ -115,10 +104,8 @@ const Faq = () => {
             }
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'university/faqs/' + item._id, item, { headers: { 'Authorization': mounted } })
-
                     .then(function (res) {
                         setmyloader("false")
-
                         if (res.data.success === true) {
                             setsuccessMessage("Faq Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
@@ -138,17 +125,11 @@ const Faq = () => {
                                     }
                                 })
                         }
-                        else {
-
-                        }
                     })
                     .catch(error => {
-
                     });
             }
-
         })
-
     }
     function ToggleButton() {
         if (display === "inline") {
@@ -159,20 +140,15 @@ const Faq = () => {
             setdisplay("inline");
             setcompletedHeading("none")
         }
-
     }
-
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-
     return (
         <div>
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
@@ -181,31 +157,28 @@ const Faq = () => {
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse9" onClick={() => handleClick()}><strong>9</strong>
                     FAQ
                     {down === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleDown} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                                        
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
 
-                                        {up === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleUp} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
+                        }} />
+                    }
                 </a>
                 <div id="collapse9" className="collapse" data-bs-parent="#accordion">
                     <div className="card-body">
@@ -247,7 +220,6 @@ const Faq = () => {
                                     .catch(error => {
 
                                     });
-
                             }}
                             onCancel={() =>
                                 setshowSweetAlert("0")
@@ -255,8 +227,6 @@ const Faq = () => {
                             }
                             focusCancelBtn
                         >
-
-
                         </SweetAlert>
                             : null
                         }
@@ -288,51 +258,39 @@ const Faq = () => {
                                                                     <div className="mb-3">
 
                                                                         <div className="row">
-                                                                        
+
                                                                             <div className="col-md-11">
-                                                                            <div className="form-group">
-                                                                                <label htmlFor="fname" className="form-label"> Question<span className="req-star">*</span></label>
-                                                                                <input required type="text" className="form-control" placeholder="Question" name="question"
-                                                                                    value={element.question || ""} onChange={e => handleChange(index, e)}
-                                                                                />
-                                                                            </div>
+                                                                                <div className="form-group">
+                                                                                    <label htmlFor="fname" className="form-label"> Question<span className="req-star">*</span></label>
+                                                                                    <input required type="text" className="form-control" placeholder="Question" name="question"
+                                                                                        value={element.question || ""} onChange={e => handleChange(index, e)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                             <div className="col-md-1 text-left">
                                                                                 <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}
 
                                                                                     data-toggle="tooltip" data-placement="right" title="Delete"
                                                                                 >
-
                                                                                     <FontAwesomeIcon icon={faTrash} />
-
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
 
                                                                     <div className="mb-3">
-
                                                                         <div className="row">
-
-
                                                                             <div className="col">
-                                                                            <div className="form-group">
-                                                                                <label htmlFor="fname" className="form-label">Answer<span className="req-star">*</span></label>
-                                                                                <input required type="text" className="form-control" placeholder="Answer" name="answer"
-                                                                                    value={element.answer || ""} onChange={e => handleChange(index, e)}
-                                                                                />
-                                                                            </div>
+                                                                                <div className="form-group">
+                                                                                    <label htmlFor="fname" className="form-label">Answer<span className="req-star">*</span></label>
+                                                                                    <input required type="text" className="form-control" placeholder="Answer" name="answer"
+                                                                                        value={element.answer || ""} onChange={e => handleChange(index, e)}
+                                                                                    />
+                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-
-
-
-
-
                                                                 </div>
-
                                                             ))}
                                                             <div className="mb-3">
                                                                 <div className="row">
@@ -353,14 +311,9 @@ const Faq = () => {
                                                         </form>
                                                     </div>
                                                 </div>
-                                                {/* end for form    */}
-
                                             </div>
-
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>

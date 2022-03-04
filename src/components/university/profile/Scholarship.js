@@ -5,20 +5,17 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,  faAngleDown,faAngleUp
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 const Document = () => {
-
     const [FormValues, setFormValues] = useState([{
         point: ""
-
     }])
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
     }])
     const [editnewcomponent, seteditnewcomponent] = useState(0);
-
     const [addnewcomponent, setaddnewcomponent] = useState(0);
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -40,10 +37,8 @@ const Document = () => {
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
     useEffect(() => {
-
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
-
         const url = process.env.REACT_APP_SERVER_URL + 'admin/scholarships/';
         fetch(url, {
             method: 'GET'
@@ -55,13 +50,11 @@ const Document = () => {
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-               
+
                 setformAdminValues(data.adminScholarships)
             })
-
         setMounted(mounted)
         setuniversityId(universityId)
-
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
         fetch(url1, {
             method: 'GET'
@@ -73,38 +66,30 @@ const Document = () => {
 
     }, [])
     function handleClick() {
-        if(down==="1"){
-             setdown("0");
-             setup("1")
-         }
-         else{
-             setdown("1");
-             setup("0")
-         }
+        if (down === "1") {
+            setdown("0");
+            setup("1")
+        }
+        else {
+            setdown("1");
+            setup("0")
+        }
     }
     function closeaddbox(value) {
-
         setaddWidth("0px");
     }
     function closebox(value) {
         setwidth("0px");
-
     }
-
     function handleAdd() {
         setaddWidth("1600px");
         setaddnewcomponent(1);
-
     }
     function handleEditClick(value) {
-
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
-
-
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships/' + value;
-
         fetch(url1, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -113,12 +98,9 @@ const Document = () => {
             .then(data => {
                 setMYpoint(data.universityScholarship.scholarship)
             })
-
     }
-
     let clickAddHandler = (datum) => {
         if (tempp !== 1) {
-
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
@@ -131,20 +113,16 @@ const Document = () => {
     }
     let handleAddSubmit = () => {
         setApplicationError("")
-
         let originalString = document.getElementById("addx").value;
-
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
-
             setApplicationError("Please Enter Application")
         }
         else {
             setaddWidth(0)
             setTable("false")
-
             setmyloader("true")
             const obj = {
                 scholarship: InsetApplication
@@ -152,14 +130,11 @@ const Document = () => {
             axios.post(process.env.REACT_APP_SERVER_URL + 'university/scholarships', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setaddWidth(0)
                         setsuccessMessage("Scholarship Added")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
-
                         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
                         fetch(url1, {
                             method: 'GET'
@@ -168,23 +143,14 @@ const Document = () => {
                             .then(data => {
                                 setFormValues(data.universityScholarships)
                             })
-
-
-                    }
-                    else {
-
                     }
                 })
                 .catch(error => {
-
                 });
         }
     }
     let clickEditAddHandler = (datum) => {
-
-
         if (tempp !== 1) {
-
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
@@ -194,35 +160,26 @@ const Document = () => {
         var element = document.querySelector(".helpeditSCHOLARSHIP")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-
     }
-
-
     let handleEditSubmit = () => {
         setApplicationError("")
-
         let originalString = document.getElementById("editx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
-
             setApplicationError("Please Enter Application")
         }
         else {
-
             setwidth(0)
             setmyloader("true")
             const obj = {
                 scholarship: InsetApplication
-
-
             };
             var EditUrl = process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + editId;
             axios.put(EditUrl, obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setwidth(0)
                         setsuccessMessage("Scholarship Updated")
@@ -237,14 +194,9 @@ const Document = () => {
                             .then(data => {
                                 setFormValues(data.universityScholarships)
                             })
-
-                    }
-                    else {
-
                     }
                 })
                 .catch(error => {
-
                 });
         }
     }
@@ -253,34 +205,27 @@ const Document = () => {
         setdeleteId(value)
     }
     return (
-
         <div>
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <input id="x" type="hidden" />
-
             <div className="card">
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
                     confirmBtnText="Yes, delete it!"
                     confirmBtnBsStyle="danger"
-
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
                         setmyloader("true")
-
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/scholarships/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
                                 setmyloader("false")
-
                                 if (res.data.success === true) {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
@@ -293,83 +238,66 @@ const Document = () => {
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            var myresults=data.universityScholarships
+                                            var myresults = data.universityScholarships
                                             if (Object.keys(myresults).length === 0) {
                                                 setTable("true");
                                             }
                                             setFormValues(data.universityScholarships)
                                         })
-
-
-                                }
-                                else {
-
                                 }
                             })
                             .catch(error => {
-
                             });
-
                     }}
                     onCancel={() =>
                         setshowSweetAlert("0")
-
                     }
                     focusCancelBtn
                 >
-
                 </SweetAlert>
                     : null
                 }
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse6"  onClick={() => handleClick()}><strong>6</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse6" onClick={() => handleClick()}><strong>6</strong>
                     Scholarship
                     {down === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleDown} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                                        
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
 
-                                        {up === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleUp} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
                 </a>
                 <div id="collapse6" className="collapse" data-bs-parent="#accordion">
-
                     <div className="card-body">
                         <div className="formbody">
                             <div className="mt-4 mb-4">
                                 <div className="row">
 
                                     <div className="col-md-6"><h5>Scholarship</h5></div>
-                                    <div className="col-md-6 text-right"> <button type="button" 
-                                            data-toggle="tooltip" data-placement="right" title="Add New Scholarship"
-                                    
-                                    onClick={() => handleAdd()} className="btn btn-outline-success"><span>
-                                     
-                                        <FontAwesomeIcon icon={faPlus} />
-
+                                    <div className="col-md-6 text-right"> <button type="button"
+                                        data-toggle="tooltip" data-placement="right" title="Add New Scholarship"
+                                        onClick={() => handleAdd()} className="btn btn-outline-success"><span>
+                                            <FontAwesomeIcon icon={faPlus} />
                                         </span>Add New Scholarship</button>
                                     </div>
-
                                 </div>
-
                                 <div className="card shadow mb-4 mt-4">
                                     {myTable === "true" ?
                                         null
@@ -378,47 +306,31 @@ const Document = () => {
                                             <table className="table table-bordered">
                                                 <thead>
                                                     <tr>
-                                                    <th>No.</th>
+                                                        <th>No.</th>
                                                         <th>Scholarship</th>
                                                         <th>Action</th>
 
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
-
-
-
                                                     {FormValues.map((element, index) => {
 
                                                         return (
-
                                                             <tr key={index}>
-                                                                   <td> {index+1}</td>
+                                                                <td> {index + 1}</td>
                                                                 <td> {element.scholarship}</td>
-
                                                                 <td>
-
                                                                     <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}>
-                                                                    
                                                                         <FontAwesomeIcon icon={faPen} />
-
-                                                                        </button>
-
+                                                                    </button>
                                                                     <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>
-                                                                  
-                                        <FontAwesomeIcon icon={faTrash} />
-
-                                                                        </button>
-
+                                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                    </button>
                                                                 </td>
                                                             </tr>
-
                                                         )
                                                     })}
                                                 </tbody>
-
-
                                             </table>
                                         </div>
                                     }
@@ -432,7 +344,7 @@ const Document = () => {
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
                                         <div className="row mt-3">
@@ -468,10 +380,7 @@ const Document = () => {
                                                                     <div className="row">
                                                                         <div className="col-md-12">
                                                                             <div className="WriterPoints">
-
                                                                                 {formAdminValues.map((element, index) => (
-
-
                                                                                     <div key={index} className="rowx mt-3 ml-2 border border-secondary help_content" id="content_1">
                                                                                         <div className="col-sm-2x ">
                                                                                             <button
@@ -498,12 +407,8 @@ const Document = () => {
                                                         </div> </div>
                                                 </div>
 
-
                                             </div>
-
-
                                         </div>
-
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-md-6"></div>
@@ -518,48 +423,19 @@ const Document = () => {
 
                                             </div>
                                         </div>
-
-                                        {/* end for add scholarship */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     </div>
                                 </div>
-                                {/* end for add */}
-                                {/* start for view */}
                                 <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >
-
                                     <div className="student-view">
                                         <div className="row">
                                             <div className="col-md-6">
-
                                             </div>
                                             <div className="col-md-6">
-                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                             </div>
                                         </div>
-
-                                        {/* start for edit scholarship */}
-
-
                                         <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Edit Scholarship</h3>
@@ -605,29 +481,19 @@ const Document = () => {
                                                                                         </div>
                                                                                     </div>
                                                                                 ))}
-
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-
                                                                 </div>
                                                             </div>
                                                         </div> </div>
                                                 </div>
-
-
                                             </div>
-
-
                                         </div>
-
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-md-6"></div>
                                                 <div className="col-md-6 text-right">
-
                                                     <button type="button"
                                                         onClick={() => handleEditSubmit()}
                                                         className="btn btn-secondary">Save
@@ -637,21 +503,11 @@ const Document = () => {
 
                                             </div>
                                         </div>
-
-
-
-                                        {/* end for edit scholarship */}
-
-
                                     </div>
                                 </div>
-                                {/* end for view */}
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div >

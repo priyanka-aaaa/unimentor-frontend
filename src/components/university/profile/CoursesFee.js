@@ -1,13 +1,8 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
 import Courses from '../Courses'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import SweetAlert from 'react-bootstrap-sweetalert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faAngleDown,faAngleUp
-
+    faAngleDown, faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
 const CoursesFee = () => {
     const [down, setdown] = useState("1");
@@ -28,39 +23,36 @@ const CoursesFee = () => {
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse3" onClick={() => handleClick()}><strong>3</strong>
                     Courses & Fees
                     {down === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleDown} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                                        
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
 
-                                        {up === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleUp} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
                 </a>
                 <div id="collapse3" className="collapse" data-bs-parent="#accordion">
-                  <Courses/>
+                    <Courses />
                 </div>
 
             </div>
         </div>
     );
 }
-
 export default CoursesFee;

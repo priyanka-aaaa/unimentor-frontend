@@ -14,33 +14,21 @@ class Topbar extends Component {
     }
     logout = () => {
         localStorage.removeItem("universityId");
-
         localStorage.removeItem("universityToken");
-
         localStorage.removeItem("universityEmail");
-
         localStorage.removeItem("universityName");
-
-
-
         localStorage.clear();
     }
     componentWillMount() {
-        
         if (localStorage.getItem("universityData")) {
-     
             var universityId = localStorage.getItem('universityId');
-
             var mounted = localStorage.getItem('universityToken');
-
             var user_email = localStorage.getItem('universityEmail');
-
             this.setState({ email: user_email });
         }
         else {
             var user_email = "";
             this.setState({ redirectToReferrer: true });
-
         }
     }
     render() {
@@ -49,39 +37,21 @@ class Topbar extends Component {
         }
         return (
             <div>
-
-                {/* <!-- Topbar --> */}
                 <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    {/* <!-- Sidebar Toggle (Topbar) --> */}
                     <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
                         <i className="fa fa-bars"></i>
                     </button>
-
-                    {/* <!-- Topbar Search --> */}
                     <form
                         className="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div className="input-group">
-                            {/* <input type="text" className="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2" />
-                            <div className="input-group-append">
-                                <button className="btn btn-primary" type="button">
-                                    <i className="fas fa-search fa-sm"></i>
-                                </button>
-                            </div> */}
                         </div>
                     </form>
-
-                    {/* <!-- Topbar Navbar --> */}
                     <ul className="navbar-nav ml-auto">
-
-                        {/* <!-- Nav Item - Search Dropdown (Visible Only XS) --> */}
                         <li className="nav-item dropdown no-arrow d-sm-none">
                             <a className="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-search fa-fw"></i>
                             </a>
-                            {/* <!-- Dropdown - Messages --> */}
                             <div className="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form className="form-inline mr-auto w-100 navbar-search">
@@ -98,18 +68,7 @@ class Topbar extends Component {
                                 </form>
                             </div>
                         </li>
-                     
-
-
-                        {/* <!-- Nav Item - Alerts --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
-                            {/* <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i className="fas fa-bell fa-fw"></i>
-                              
-                                <span className="badge badge-danger badge-counter">3+</span>
-                            </a> */}
-                            {/* <!-- Dropdown - Alerts --> */}
                             <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 className="dropdown-header">
@@ -151,16 +110,7 @@ class Topbar extends Component {
                                 <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
-
-                        {/* <!-- Nav Item - Messages --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
-                            {/* <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i className="fas fa-envelope fa-fw"></i>
-                             
-                                <span className="badge badge-danger badge-counter">7</span>
-                            </a> */}
-                            {/* <!-- Dropdown - Messages --> */}
                             <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 className="dropdown-header">
@@ -168,10 +118,7 @@ class Topbar extends Component {
                                 </h6>
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <div className="dropdown-list-image mr-3">
-                                        {/* <img src={require('./logo.jpeg')} /> */}
                                         <img className="rounded-circle" src={require('../../img/undraw_profile_1.svg')} alt="..." />
-
-                                        {/* <img className="rounded-circle" src="img/undraw_profile_1.svg" alt="..." /> */}
                                         <div className="status-indicator bg-success"></div>
                                     </div>
                                     <div className="font-weight-bold">
@@ -217,16 +164,10 @@ class Topbar extends Component {
                                 <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-
                         <div className="topbar-divider d-none d-sm-block"></div>
-
-                        {/* <!-- Nav Item - User Information --> */}
                         <li className="nav-item dropdown no-arrow">
-
                             <a className="nav-link dropdown-toggle" href="#collapseEleven" id="userDropdown" role="button" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-
                                 <img className="img-profile rounded-circle" src={undraw_profile}
-
                                 />
                             </a>
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" id="collapseEleven" data-bs-parent="#accordion" >
@@ -235,11 +176,6 @@ class Topbar extends Component {
                                     Logout
                                 </a>
                             </div>
-
-
-
-
-                            {/* <!-- Dropdown - User Information --> */}
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a className="dropdown-item" href="#">
@@ -261,11 +197,8 @@ class Topbar extends Component {
                                 </a>
                             </div>
                         </li>
-
                     </ul>
-
                 </nav>
-                {/* <!-- End of Topbar --> */}
             </div>
         );
     }

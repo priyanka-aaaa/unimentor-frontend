@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faAngleDown,faAngleUp
+    faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 export default function PrimaryInfo() {
@@ -37,13 +37,7 @@ export default function PrimaryInfo() {
     const [pincodeError, setpincodeError] = useState("");
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
-
-    
-
-
-
     const [loader, setmyloader] = useState("false");
-
     const [countries, setcountries] = useState([{
         country_name: ""
     }]);
@@ -53,22 +47,15 @@ export default function PrimaryInfo() {
     const [cities, setcities] = useState([{
         city_name: ""
     }])
-
-
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
-
         setMounted(mounted)
         setuniversityId(universityId);
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
-
                     setname(student_universityPrimaryInformation.name);
                     setaddress(student_universityPrimaryInformation.address);
                     setcountry(student_universityPrimaryInformation.country);
@@ -81,42 +68,20 @@ export default function PrimaryInfo() {
                     setphone(student_universityPrimaryInformation.phone);
                     setorganization(student_universityPrimaryInformation.organization);
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setcountries(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
 
             });
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
             .then(function (res) {
-                if (res.data.success === true) {
-
-                }
-                else {
-
-                }
-
             })
             .catch(error => {
 
@@ -133,54 +98,31 @@ export default function PrimaryInfo() {
         setname(str2)
     }
     function handlecountry(e) {
-
         setcountry(e)
         setCheckState("1")
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setstates(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
     }
-
     function handlestate(e) {
-
         setstate(e)
         setCheckCity("1")
-
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setcities(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
 
             });
     }
     function nameMethod(e) {
-        // const re = /[a-zA-Z]+/s;
         const re = "^[a-zA-Z ]+$";
 
         if (!re.test(e.key)) {
@@ -188,27 +130,21 @@ export default function PrimaryInfo() {
         }
     }
     function streetAddressMethod(e) {
-        // const re = /[a-zA-Z]+/s;
         const re = /[!@$%^*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-        // const re = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
-
         if (re.test(e.key)) {
             e.preventDefault();
         }
     }
-
     function handleClick() {
-       if(down==="1"){
+        if (down === "1") {
             setdown("0");
             setup("1")
         }
-        else{
+        else {
             setdown("1");
             setup("0")
         }
-   }
-
-
+    }
     function handleFormSubmit(event) {
         event.preventDefault();
         setdescriptionError("");
@@ -220,15 +156,10 @@ export default function PrimaryInfo() {
         setwebsiteStartError("");
         setwebsiteEndError("");
         setpincodeError("");
-
-
         var descriptionLength = description.split(' ').length;
         var myPattern = /^[0-9_.]*$/;
-
-
         if (type === "") {
             settypeError("Please Select University Type");
-
         }
         else if (phone === "") {
             setphoneError("Please enter phone number");
@@ -247,20 +178,15 @@ export default function PrimaryInfo() {
         }
         else if (descriptionLength < 49) {
             setDescriptionLengthError("Please Enter Aleast 50-60 words")
-
         }
         else if (!website.startsWith('www.')) {
             setwebsiteStartError("Please Start website with www.")
-
         }
         else if (!website.endsWith('.com') && !website.endsWith('.edu') && !website.endsWith('.in')) {
             setwebsiteEndError("Please End website with .com or .edu or .in")
-
         }
-
         else if (myPattern.test(pincode) === false) {
             setpincodeError("Please Enter Only Number")
-
         }
         else {
             setmyloader("true")
@@ -276,89 +202,60 @@ export default function PrimaryInfo() {
                 website: website,
                 phone: phone,
                 organization: organization
-
             };
-
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/primaryInformation', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
-
                         setsuccessMessage("Primary Information Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
                     }
-                    else {
-
-                    }
-
                 })
                 .catch(error => {
 
                 });
         }
-
     }
     return (
         <div>
-
-
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-
-
-
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapseOne" onClick={() => handleClick()}  ><strong>1</strong>
                     Primary Info
                     {down === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleDown} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                                        
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
 
-                                        {up === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleUp} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                  
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+                        }} />
+                    }
                 </a>
-                                        
-
                 <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
-                    
                     <div className="card-body">
-                        {/* start for shwongi popup */}
-
-                        {/* end for showing popup */}
-
                         <form onSubmit={handleFormSubmit}>
                             <div className="from-block">
-
-
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -372,7 +269,6 @@ export default function PrimaryInfo() {
                                                 required
                                             />
                                         </div>
-
                                     </div>
                                 </div>
                                 <hr />
@@ -399,21 +295,13 @@ export default function PrimaryInfo() {
                                                 required
                                             >
                                                 <option
-
-
                                                     value="" >Select country</option>
                                                 {countries.map((element, index) => {
-
-
                                                     return (
-
                                                         <option
-
-
                                                             value={element.country_name} key={index}>{element.country_name}</option>
                                                     )
                                                 })}
-
                                             </select>
                                         </div>
                                     </div>
@@ -423,7 +311,6 @@ export default function PrimaryInfo() {
                                         <div className="form-group">
                                             <label>State  <span className="req-star">*</span>
                                             </label>
-
                                             <select className="form-control" name="state"
                                                 onChange={(e) => handlestate(e.target.value)}
                                                 required
@@ -436,7 +323,6 @@ export default function PrimaryInfo() {
                                                             value={element.state_name} key={index}>{element.state_name}</option>
                                                     )
                                                 })}
-
                                             </select>
                                             <span style={{ color: "red" }}> {stateError}</span>
                                         </div>
@@ -444,18 +330,13 @@ export default function PrimaryInfo() {
                                     <div className="col-md-4">
                                         <div className="form-group"><label>City  <span className="req-star">*</span></label>
                                             <select className="form-control" name="city" required
-
                                                 value={city}
                                                 onChange={(e) => setcity(e.target.value)}
                                             >
                                                 {CheckCity === "0" ? <option value={city}>{city}</option> : <option value="">Please select City</option>}
                                                 {cities.map((element, index) => {
-
                                                     return (
-
                                                         <option
-
-
                                                             value={element.city_name} key={index}>{element.city_name}</option>
                                                     )
                                                 })}
@@ -473,11 +354,9 @@ export default function PrimaryInfo() {
                                             />
 
                                             <div style={{ color: "red" }}> {pincodeError}</div>
-
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
@@ -496,9 +375,6 @@ export default function PrimaryInfo() {
                                         </div>
                                     </div>
                                 </div>
-
-
-
                                 <div className="row">
                                     <div className="col-md-12">
                                         <div className="form-group">
@@ -509,14 +385,9 @@ export default function PrimaryInfo() {
                                                 className="form-control" row="2" col="3"></textarea>
                                             <span style={{ color: "red" }}> {descriptionError}</span>
                                             <span style={{ color: "red" }}> {DescriptionLengthError}</span>
-
-
-
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div className="row">
                                     <div className="col-md-4">
                                         <div className="form-group">
@@ -528,8 +399,6 @@ export default function PrimaryInfo() {
                                             />
                                             <span style={{ color: "red" }}> {websiteStartError}</span>
                                             <span style={{ color: "red" }}> {websiteEndError}</span>
-
-
                                         </div>
                                     </div>
                                     <div className="col-md-4">
@@ -541,12 +410,6 @@ export default function PrimaryInfo() {
                                                 value={phone}
                                                 onChange={setphone} />
                                             <span style={{ color: "red" }}> {phoneError}</span>
-
-                                            {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required
-
-                                            value={phone}
-                                            onChange={(e) => setphone(e.target.value)}
-                                        /> */}
                                         </div>
                                     </div>
                                     <div className="col-md-4">
@@ -558,10 +421,6 @@ export default function PrimaryInfo() {
                                         />
                                     </div>
                                 </div>
-
-
-
-
                                 <div className="mb-3">
                                     <div className="row">
                                         <div className="col-md-6"></div>
@@ -575,19 +434,12 @@ export default function PrimaryInfo() {
                                                 Next"  data-toggle="tooltip" data-placement="right" >Save &
                                                 Next</button>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-
-
                             </div>
                         </form>
                     </div>
-                    {/* end for primary info */}
                 </div>
-
             </div>
         </div>
 

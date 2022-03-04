@@ -4,7 +4,7 @@ import axios from 'axios';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,  faAngleDown,faAngleUp
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
@@ -12,15 +12,12 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 const Application = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
-
     }])
     const [FormValues, setFormValues] = useState([{
         point: ""
 
     }])
-
     const [editnewcomponent, seteditnewcomponent] = useState(0);
-
     const [addnewcomponent, setaddnewcomponent] = useState(0);
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -32,7 +29,6 @@ const Application = () => {
     const [editPoint, seteditPoint] = useState("");
     const [universityid, setuniversityid] = useState("");
     const [MYpoint, setMYpoint] = useState();
-
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
@@ -40,22 +36,17 @@ const Application = () => {
     const [myTable, setTable] = useState("false");
     const [loader, setmyloader] = useState("false");
     const [ApplicationError, setApplicationError] = useState("");
-
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
-
-
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
             var mydata = JSON.parse(a);
             var universityid = mydata.data.university._id;
-
             var mytoken = mydata.data.token;
         }
         setMounted(mytoken)
         setuniversityid(universityid)
-
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
         fetch(url1, {
             method: 'GET'
@@ -63,14 +54,11 @@ const Application = () => {
             .then(response => response.json())
             .then(data => {
                 var myresults = data.universityAdmissions;
-              
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-               
                 setFormValues(data.universityAdmissions)
             })
-
         const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/';
         fetch(url, {
             method: 'GET'
@@ -79,61 +67,48 @@ const Application = () => {
             .then(data => {
                 setformAdminValues(data.adminApplications)
             })
-
     }, [])
     function handleClick() {
-        if(down==="1"){
-             setdown("0");
-             setup("1")
-         }
-         else{
-             setdown("1");
-             setup("0")
-         }
+        if (down === "1") {
+            setdown("0");
+            setup("1")
+        }
+        else {
+            setdown("1");
+            setup("0")
+        }
     }
     function closeaddbox(value) {
-
         setaddWidth("0px");
     }
     function closebox(value) {
         setwidth("0px");
-
     }
     function handleAdd() {
         setaddWidth("1600px");
         setaddnewcomponent(1);
-
     }
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
     function handleEditClick(value) {
-
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
                 var myuniversityAdmission = res.data.universityAdmission;
                 if (res.data.success === true) {
                     seteditPoint(myuniversityAdmission.point);
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
     }
 
     let clickAddHandler = (datum) => {
-
         if (tempp !== 1) {
-
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
         }
@@ -143,39 +118,30 @@ const Application = () => {
         var element = document.querySelector(".help")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-
     }
     let handleAddSubmit = () => {
         setApplicationError("")
-
         let originalString = document.getElementById("addx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
-
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
-
             setApplicationError("Please Enter Application")
         }
         else {
             setaddWidth(0)
             setTable("false")
-
             setmyloader("true")
-
             const obj = {
                 point: InsetApplication
             };
             axios.post(process.env.REACT_APP_SERVER_URL + 'university/admissions', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setsuccessMessage("Admission Added")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
-
                         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                         fetch(url1, {
                             method: 'GET'
@@ -184,10 +150,6 @@ const Application = () => {
                             .then(data => {
                                 setFormValues(data.universityAdmissions)
                             })
-
-                    }
-                    else {
-
                     }
                 })
                 .catch(error => {
@@ -206,23 +168,17 @@ const Application = () => {
         var element = document.querySelector(".edithelp")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
-
     }
     let handleEditSubmit = () => {
         setApplicationError("")
-
-
         let originalString = document.getElementById("editx").value;
-
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
         if (InsetApplication === "") {
-
             setApplicationError("Please Enter Application")
         }
         else {
-
             setwidth(0)
             setmyloader("true")
             const obj = {
@@ -231,13 +187,10 @@ const Application = () => {
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + editId, obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setsuccessMessage("Admission Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
-
                         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                         fetch(url1, {
                             method: 'GET'
@@ -246,10 +199,6 @@ const Application = () => {
                             .then(data => {
                                 setFormValues(data.universityAdmissions)
                             })
-
-                    }
-                    else {
-
                     }
                 })
                 .catch(error => {
@@ -260,9 +209,7 @@ const Application = () => {
     return (
         <div>
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
@@ -278,7 +225,6 @@ const Application = () => {
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
                         setmyloader("true")
-
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/admissions/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
                                 setmyloader("false")
@@ -286,82 +232,69 @@ const Application = () => {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-
-
                                     const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            var myresults=data.universityAdmissions
+                                            var myresults = data.universityAdmissions
                                             if (Object.keys(myresults).length === 0) {
                                                 setTable("true");
                                             }
                                             setFormValues(data.universityAdmissions)
                                         })
-
-
-                                }
-                                else {
-
                                 }
                             })
 
                     }}
                     onCancel={() =>
                         setshowSweetAlert("0")
-
                     }
                     focusCancelBtn
                 >
-
                 </SweetAlert>
                     : null
                 }
-
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse4"  onClick={() => handleClick()}><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse4" onClick={() => handleClick()}><strong>4</strong>
                     Application Process
                     {down === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleDown} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
-                                        
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
 
-                                        {up === "0" ?
-                                        null
-                                        : 
-                                        <FontAwesomeIcon icon={faAngleUp} style={{
-                                            position: "absolute",
-                                            fontWeight: 900,
-                                            fontFamily: 'Font Awesome 5 Free',
-                                            marginRight: "0.1rem",
-                                            right: "16px",
-                    
-                                        }} />
-                                    }
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
                 </a>
                 <div id="collapse4" className="collapse" data-bs-parent="#accordion">
 
                     <div className="card-body">
                         <div className="formbody">
                             <div className="row">
-
                                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                     <h5>Application Process</h5>
-                                    <button type="button" onClick={() => handleAdd()} 
-                                      data-toggle="tooltip" data-placement="right" title="Add New Application"
-                                    className="btn btn-outline-success"><span>
-                                       
-                                        <FontAwesomeIcon icon={faPlus} />
+                                    <button type="button" onClick={() => handleAdd()}
+                                        data-toggle="tooltip" data-placement="right" title="Add New Application"
+                                        className="btn btn-outline-success"><span>
+
+                                            <FontAwesomeIcon icon={faPlus} />
 
                                         </span>Add New Application</button>
 
@@ -382,58 +315,41 @@ const Application = () => {
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-
-
-
-
                                                     {FormValues.map((element, index) => {
 
                                                         return (
-
                                                             <tr key={index}>
-                                                                <td> {index+1}</td>
+                                                                <td> {index + 1}</td>
                                                                 <td> {element.point}</td>
-
                                                                 <td>
-
-
                                                                     <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}>
-                                                                     
-                                        <FontAwesomeIcon icon={faPen} />
 
-                                                                        </button>
+                                                                        <FontAwesomeIcon icon={faPen} />
+
+                                                                    </button>
                                                                     <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>
-                                        <FontAwesomeIcon icon={faTrash} />
-
-                                                                        </button>
-
+                                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                    </button>
                                                                 </td>
                                                             </tr>
-
                                                         )
                                                     })}
                                                 </tbody>
-
-
                                             </table>
                                         </div>}
                                 </div>
-                                {/* start for add */}
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
-
                                     <div className="student-view">
                                         <div className="row">
                                             <div className="col-md-6">
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
-
-                                        {/* start for add admission */}
                                         <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Add Application Process</h3>
@@ -481,14 +397,10 @@ const Application = () => {
                                                                                             <p className="m-0 help_text">{element.application || ""}.</p>
                                                                                         </div>
                                                                                     </div>
-
-
                                                                                 ))}
                                                                             </div>
                                                                         </div>
                                                                     </div>
-
-
                                                                 </div>
                                                             </div>
                                                         </div> </div>
@@ -508,26 +420,20 @@ const Application = () => {
 
                                             </div>
                                         </div>
-                                        {/* end for add admission */}
                                     </div>
                                 </div>
-                                {/* end for add */}
-                                {/* start for view */}
                                 <div className="card-body course-sidenav" id="mySidenav"
                                     style={{ width: width }}
                                 >
-
                                     <div className="student-view">
                                         <div className="row">
                                             <div className="col-md-6">
 
                                             </div>
                                             <div className="col-md-6">
-                                                <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
                                             </div>
                                         </div>
-
-                                        {/* start for edit admission */}
                                         <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
                                                 <h3>Edit Application Process</h3>
@@ -580,38 +486,24 @@ const Application = () => {
                                                             </div>
                                                         </div> </div>
                                                 </div>
-
-
                                             </div>
-
-
                                         </div>
-
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-md-6"></div>
                                                 <div className="col-md-6 text-right">
-
                                                     <button type="button"
                                                         onClick={() => handleEditSubmit()}
                                                         className="btn btn-secondary" title="Save">Save
                                                     </button>
-
                                                 </div>
-
                                             </div>
                                         </div>
-                                        {/* end for edit admission */}
-
                                     </div>
                                 </div>
-                                {/* end for view */}
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div >

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import SweetAlert from 'react-bootstrap-sweetalert';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen, faEye
-
 } from '@fortawesome/free-solid-svg-icons';
 const Courses = () => {
     const [courseName, setcourseName] = useState("");
@@ -24,41 +21,30 @@ const Courses = () => {
     const [description, setdescription] = useState("");
     const [exam, setexam] = useState("");
     const [courseId, setcourseId] = useState("");
-
     const [width, setwidth] = useState("");
     const [viewWidth, setviewWidth] = useState("");
     const [addWidth, setaddWidth] = useState("");
     const [mounted, setmounted] = useState();
     const [data, setdata] = useState([]);
     const [Intakedata, setIntakedata] = useState([]);
-
-
     const [editId, seteditId] = useState([]);
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [successIntakeMessage, setsuccessIntakeMessage] = useState("0");
-
-
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("0");
-
-
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");
-
     const [intakeyear, setintakeyear] = useState("");
     const [intakemonth, setintakemonth] = useState("jan");
     const [loader, setmyloader] = useState("false");
     const [tuitionFeeNoError, settuitionFeeNoError] = useState("");
-
-
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setmounted(mounted)
         setuniversityId(universityId)
-
         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET',
@@ -68,7 +54,6 @@ const Courses = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
             method: 'GET',
@@ -82,36 +67,24 @@ const Courses = () => {
                 }
                 else {
                     setIntakedata(data.universityIntakes)
-
                 }
-
             })
-
-
-
     }, [])
     let handleIntakeSubmit = (event) => {
         alert("jj")
         event.preventDefault();
-
         const obj = {
             year: intakeyear,
             month: intakemonth,
-
         };
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes/', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
                 if (res.data.success === true) {
-
                     setsuccessIntakeMessage("Intake add")
                     setTimeout(() => setsuccessIntakeMessage(""), 3000);
                     setsuccessIntakeMessage(1)
-
                     setyear("");
                     setmonth("");
-
-
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -120,35 +93,21 @@ const Courses = () => {
                         .then(response => response.json())
                         .then(data => {
                             setIntakedata(data.universityIntakes)
-
                         })
-
-                }
-                else {
-
                 }
             })
             .catch(error => {
-
             });
     }
     function handleClick(value) {
-
-
         seteditId(value);
         setwidth("1600px");
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
-
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
-
-
                     setcourseName(myuniversityCourse.courseName);
                     setduration(myuniversityCourse.duration);
-
-                    
                     settuitionFee(myuniversityCourse.tuitionFee);
                     setstudyField(myuniversityCourse.studyField);
                     setfee(myuniversityCourse.fee);
@@ -161,49 +120,28 @@ const Courses = () => {
                     setexam(myuniversityCourse.exam);
                     setyear(myuniversityCourse.year);
                     setmonth(myuniversityCourse.month);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
-
     }
     function handleAdd() {
         setaddWidth("1600px");
     }
-
-
     function handleDelete(value) {
-
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-
-
     function handleView(value) {
-
-
         seteditId(value);
         setviewWidth("1600px");
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses/' + value, { headers: { 'Authorization': mounted } })
-
             .then(function (res) {
-
-
                 var myuniversityCourse = res.data.universityCourse;
                 if (res.data.success === true) {
-
                     setcourseId(myuniversityCourse._id);
                     setcourseName(myuniversityCourse.courseName);
                     setduration(myuniversityCourse.duration);
-
                     settuitionFee(myuniversityCourse.tuitionFee);
                     setstudyField(myuniversityCourse.studyField);
                     setfee(myuniversityCourse.fee);
@@ -216,42 +154,26 @@ const Courses = () => {
                     setexam(myuniversityCourse.exam);
                     setyear(myuniversityCourse.year);
                     setmonth(myuniversityCourse.month);
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
-
     }
-
-
     function closebox(value) {
         setwidth("0px");
-
     }
     function closeviewbox(value) {
-
         setviewWidth("0px");
     }
     function closeaddbox(value) {
-
         setaddWidth("0px");
     }
-
-
-
     let handleEditSubmit = (event) => {
         event.preventDefault();
         settuitionFeeNoError();
         var myPattern = /^[0-9_.]*$/;
         if (myPattern.test(tuitionFee) === false) {
             settuitionFeeNoError("Please Enter Only Number")
-
         }
         else {
             const obj = {
@@ -272,13 +194,72 @@ const Courses = () => {
             };
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-
                     if (res.data.success === true) {
                         setwidth(0)
                         setsuccessMessage("course update")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+                        fetch(url, {
+                            method: 'GET',
+                            headers: { 'Authorization': mounted }
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setdata(data.universityCourses)
+                            })
+                    }
+                })
+                .catch(error => {
+                });
+        }
+    }
+    let handleAddSubmit = (event) => {
+        event.preventDefault();
+        settuitionFeeNoError();
+        var myPattern = /^[0-9_.]*$/;
+        if (myPattern.test(tuitionFee) === false) {
+            settuitionFeeNoError("Please Enter Only Number")
+        }
+        else {
+            setmyloader("true")
+            const obj = {
+                courseName: courseName,
+                duration: duration,
+                tuitionFee: tuitionFee,
+                studyField: studyField,
+                fee: fee,
+                courseLevel: courseLevel,
+                cgpa: cgpa,
+                eligibility: eligibility,
+                english: english,
+                website: website,
+                description: description,
+                exam: exam,
+                year: intakeyear,
+                month: intakemonth
+            };
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/', obj, { headers: { 'Authorization': mounted } })
+                .then(function (res) {
+                    setmyloader("false")
+                    if (res.data.success === true) {
+                        setsuccessMessage("course add")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+                        setaddWidth(0)
+                        setcourseName("");
+                        settuitionFee("");
+                        setstudyField("");
+                        setfee("");
+                        setcourseLevel("");
+                        setcgpa("");
+                        seteligibility("");
+                        setenglish("");
+                        setwebsite("");
+                        setdescription("");
+                        setexam("");
+                        setyear("");
+                        setmonth("");
                         const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                         fetch(url, {
                             method: 'GET',
@@ -290,98 +271,20 @@ const Courses = () => {
                             })
 
                     }
-                    else {
-
-                    }
                 })
                 .catch(error => {
-
                 });
-        }
-    }
-    let handleAddSubmit = (event) => {
-        event.preventDefault();
-        settuitionFeeNoError();
-        var myPattern = /^[0-9_.]*$/;
-        if (myPattern.test(tuitionFee) === false) {
-            settuitionFeeNoError("Please Enter Only Number")
-
-        }
-        else{
-        setmyloader("true")
-
-        const obj = {
-            courseName: courseName,
-            duration: duration,
-            tuitionFee: tuitionFee,
-            studyField: studyField,
-            fee: fee,
-            courseLevel: courseLevel,
-            cgpa: cgpa,
-            eligibility: eligibility,
-            english: english,
-            website: website,
-            description: description,
-            exam: exam,
-            year: intakeyear,
-            month: intakemonth
-        };
-
-        axios.post(process.env.REACT_APP_SERVER_URL + 'university/courses/', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                setmyloader("false")
-
-                if (res.data.success === true) {
-                    setsuccessMessage("course add")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    setaddWidth(0)
-                    setcourseName("");
-                    settuitionFee("");
-                    setstudyField("");
-                    setfee("");
-                    setcourseLevel("");
-                    setcgpa("");
-                    seteligibility("");
-                    setenglish("");
-                    setwebsite("");
-                    setdescription("");
-                    setexam("");
-                    setyear("");
-                    setmonth("");
-
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setdata(data.universityCourses)
-                        })
-
-                }
-                else {
-
-                }
-            })
-            .catch(error => {
-
-            });
         }
     }
     function setintake(value) {
         const myArray = value.split("&&");
         setyear(myArray[0])
         setmonth(myArray[1])
-
     }
     function setcourseaddintake(value) {
-
         const myArray = value.split("&&");
         setintakeyear(myArray[0])
         setintakemonth(myArray[1])
-
     }
     function setChangecourseName(e) {
         const arr = e.split(" ");
@@ -394,16 +297,11 @@ const Courses = () => {
     return (
         <div className="container">
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
-            {/* start for showing add message */}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-            {/* start for showing add message */}
-            {/* <!-- Page Heading --> */}
             <div className="mb-4 mt-4">
                 <div className="row">
                     <div className="col-md-6">
@@ -413,19 +311,15 @@ const Courses = () => {
                         <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
                             data-toggle="tooltip" data-placement="right"
                             title="Add New Course"><span>
-
                                 <FontAwesomeIcon icon={faPlus} />
-
                             </span>Add New Course</button>
                     </div>
                 </div>
-
                 {showSweetAlert === "1" ? <SweetAlert
                     warning
                     showCancel
                     confirmBtnText="Yes, delete it!"
                     confirmBtnBsStyle="danger"
-
                     title="Are you sure?"
                     onConfirm={(value) => {
                         setshowSweetAlert("0");
@@ -436,7 +330,6 @@ const Courses = () => {
                                     setsuccessMessage("course delete")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-
                                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
                                     fetch(url, {
                                         method: 'GET',
@@ -446,42 +339,23 @@ const Courses = () => {
                                         .then(data => {
                                             setdata(data.universityCourses)
                                         })
-
                                 }
-                                else {
-
-                                }
-
                             })
                             .catch(error => {
-
                             });
-
-
                     }}
                     onCancel={() =>
                         setshowSweetAlert("0")
-
                     }
                     focusCancelBtn
                 >
-
                 </SweetAlert>
                     : null
                 }
-
-
             </div>
-
-
-            {/* <!-- Content Row --> */}
-
             <div className="row">
-
-                {/* <!-- Area Chart --> */}
                 <div className="col-xl-12 col-lg-7">
                     <div className="card shadow mb-4">
-                        {/* <!-- Card Header - Dropdown --> */}
                         <div className="card shadow mb-4">
                             <div className="table-responsive-sm">
                                 <table className="table table-bordered">
@@ -496,14 +370,9 @@ const Courses = () => {
                                         </tr>
                                     </thead>
                                     <tbody>
-
-
-
-
                                         {data.map((object, i) => {
 
                                             return (
-
                                                 <tr key={i}>
                                                     <td>{i + 1}</td>
                                                     <td>{object.courseName}</td>
@@ -527,21 +396,15 @@ const Courses = () => {
                                             )
                                         })}
                                     </tbody>
-
-
                                 </table>
                             </div>
                         </div>
-
-
                         <div className="card-body course-sidenav" id="mySidenav"
                             style={{ width: width }}
                         >
-
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
-
                                     </div>
                                     <div className="col-md-6">
                                         <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closebox} >&times;</a>
@@ -551,12 +414,9 @@ const Courses = () => {
 
                                     <div className="row">
                                         <div className="col-sm-12">
-
                                             <form onSubmit={handleEditSubmit}>
                                                 <div className="card-body" >
-
                                                     <div className="from-block" >
-
                                                         <h3>Edit Course</h3>
 
                                                         <div className="row" >
@@ -593,12 +453,8 @@ const Courses = () => {
                                                                             <input type="number" className="form-control" placeholder="tuition fee"
                                                                                 name="TuitionFee" required
                                                                                 value={tuitionFee}
-                                                                                onChange={(e) => settuitionFee(e.target.value)}
-
-
-                                                                            />
-                                        <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
-
+                                                                                onChange={(e) => settuitionFee(e.target.value)} />
+                                                                            <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
                                                                         </div>
                                                                     </div>
                                                                     <div className="col">
@@ -708,8 +564,6 @@ const Courses = () => {
                                                                                 name="website" placeholder="Course Website "
                                                                                 value={website} required
                                                                                 onChange={(e) => setwebsite(e.target.value)}
-
-
                                                                             />
                                                                         </div>
                                                                     </div>
@@ -735,8 +589,6 @@ const Courses = () => {
                                                                             name="exam"
                                                                             value={exam} required
                                                                             onChange={(e) => setexam(e.target.value)}
-
-
                                                                         >
                                                                                 <option value="" >Select Academic proficiency exam</option>
                                                                                 <option value="GRE" >GRE</option>
@@ -748,14 +600,11 @@ const Courses = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        {/* start for intake */}
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                     <div className="form-group">
                                                                         Intakes <span className="req-star">*</span>
-
                                                                         <select
                                                                             type="text" className="form-control" value="hii"
                                                                             required
@@ -774,26 +623,15 @@ const Courses = () => {
 
                                                             </div>
                                                         </div>
-
-                                                        {/* end for intake */}
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-md-6"></div>
                                                                 <div className="col-md-6 text-right">
-
-
-
                                                                     <button type="submit" className="btn btn-secondary" title="Save">Save
                                                                     </button>
-
                                                                 </div>
-
                                                             </div>
-
                                                         </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </form>
@@ -806,7 +644,6 @@ const Courses = () => {
                         <div className="card-body course-sidenav" id="mySideAdd"
                             style={{ width: addWidth }}
                         >
-
                             <div className="student-view">
                                 <div className="row">
                                     <div className="col-md-6">
@@ -865,7 +702,7 @@ const Courses = () => {
 
 
                                                                             />
-                                        <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
+                                                                            <div style={{ color: "red" }}> {tuitionFeeNoError}</div>
 
                                                                         </div>
                                                                     </div>
@@ -1046,15 +883,10 @@ const Courses = () => {
                                                                 </div>
                                                             </div>
                                                         </div>
-
-
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-md-6"></div>
                                                                 <div className="col-md-6 text-right">
-
-
-
                                                                     <button type="submit" className="btn btn-secondary" title="Save">Save
                                                                     </button>
 
@@ -1063,9 +895,6 @@ const Courses = () => {
                                                             </div>
 
                                                         </div>
-
-
-
                                                     </div>
                                                 </div>
                                             </form>
@@ -1131,12 +960,7 @@ const Courses = () => {
                                                         <td>{exam}</td>
                                                         <td>{year}</td>
                                                         <td>{month}</td>
-
                                                     </tr>
-
-
-
-
                                                 </tbody>
                                             </table>
                                         </div>
@@ -1145,35 +969,18 @@ const Courses = () => {
 
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-                        {/* end for edit */}
                     </div>
                 </div>
-
-
             </div>
-            {/* <!-- Card Body --> */}
-
-
             <div className="modal" id="myModal">
                 <div className="modal-dialog">
                     <div className="modal-content">
-                        {/* Modal Header */}
                         <div className="modal-header">
                             <h4 className="modal-title">Add Intake </h4>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" />
                         </div>
-                        {/* Modal body */}
                         <form onSubmit={handleIntakeSubmit}>
                             <div className="modal-body">
-
                                 <div className="row">
                                     <div className="col">
                                         <div className="form-group">
@@ -1193,7 +1000,6 @@ const Courses = () => {
                                                 <option value='2026'>2026</option>
                                             </select>
                                         </div>
-
                                     </div>
                                     <div className="col">
                                         <div className="form-group">
@@ -1220,20 +1026,14 @@ const Courses = () => {
                                                 <option value='Nov'>November</option>
                                                 <option value='Dec'>December</option>
                                             </select>
-
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-primary" title="Submit">Submit</button>
-
-
                             </div>
                         </form>
-                        {/* Modal footer */}
-
                     </div>
                 </div>
             </div>

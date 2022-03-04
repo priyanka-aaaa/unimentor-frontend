@@ -4,9 +4,7 @@ import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleDown, faAngleUp
-
 } from '@fortawesome/free-solid-svg-icons';
-
 export default function Overview() {
     const [mounted, setMounted] = useState();
     const [foundedYear, setfoundedYear] = useState("");
@@ -28,36 +26,25 @@ export default function Overview() {
     const [RankingNoError, setRankingNoError] = useState("");
     const [PopularCourseNoError, setPopularCourseNoError] = useState("");
     const [YearNoError, setYearNoError] = useState("");
-
     const [AcceptanceNoError, setAcceptanceNoError] = useState("");
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
-
-
-
     const onChangefoundedYear = (e) => {
-
         setfoundedYear(e);
         setfoundedYearMessage("")
     }
     const onChangeYear = (e) => {
-
         setmyyear(e);
         setyearMessage("")
     }
     useEffect(() => {
-
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/overview')
-
             .then(function (res) {
-
                 if (res.data.success === true) {
                     var student_universityOverview = res.data.universityOverview;
-
                     setfoundedYear(student_universityOverview.foundedYear);
                     setranking(student_universityOverview.ranking);
                     setrate(student_universityOverview.rate);
@@ -68,16 +55,9 @@ export default function Overview() {
                     setenglish(student_universityOverview.english);
                     setcgpa(student_universityOverview.cgpa);
                     setacceptanceRate(student_universityOverview.acceptanceRate);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
     }, [])
     function handleClick() {
@@ -90,27 +70,18 @@ export default function Overview() {
             setup("0")
         }
     }
-
     function handleFormSubmit(event) {
         event.preventDefault();
         var myPattern = /^[0-9_.]*$/;
-
         var foundedYearNo = foundedYear.toString().length;
-
         var yearNo = myyear.toString().length;
-
-
-
         setFoundedYearNoError("")
         setRankingNoError("")
         setPopularCourseNoError("")
         setYearNoError("")
-
         setAcceptanceNoError("")
-
         if (myPattern.test(foundedYear) === false) {
             setFoundedYearNoError("Please Enter Only Number")
-
         }
         else if (foundedYearNo !== 4) {
             setfoundedYearMessage("Please Insert Four Digit")
@@ -135,13 +106,10 @@ export default function Overview() {
             setyearMessage("Please Insert Four Digit")
         }
         else {
-
             setmyloader("true")
-
             const obj = {
                 foundedYear: foundedYear,
                 ranking: ranking,
-
                 rate: rate,
                 course: course,
                 courseNo: courseNo,
@@ -150,37 +118,25 @@ export default function Overview() {
                 english: english,
                 cgpa: cgpa,
                 acceptanceRate: acceptanceRate
-
             };
-
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/overview', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setsuccessMessage("Overview Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-
                     }
-                    else {
-
-                    }
-
                 })
                 .catch(error => {
 
                 });
-
         }
-
     }
     return (
         <div>
             {loader === "true" ?
-
                 <Loader />
-
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
@@ -189,7 +145,6 @@ export default function Overview() {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
-
                 <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo" onClick={() => handleClick()} ><strong>2</strong>
                     Overview
                     {down === "0" ?
@@ -204,8 +159,6 @@ export default function Overview() {
 
                         }} />
                     }
-
-
                     {up === "0" ?
                         null
                         :
@@ -215,14 +168,12 @@ export default function Overview() {
                             fontFamily: 'Font Awesome 5 Free',
                             marginRight: "0.1rem",
                             right: "16px",
-
                         }} />
                     }
                 </a>
                 <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
                     <form onSubmit={handleFormSubmit}>
                         <div className="card-body">
-
                             <div className="d-flex flex-wrap" id="Address">
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group">
@@ -234,9 +185,6 @@ export default function Overview() {
                                         />
                                         <span style={{ color: "red" }}> {foundedYearMessage}</span>
                                         <div style={{ color: "red" }}> {FoundedYearNoError}</div>
-
-
-
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -254,7 +202,6 @@ export default function Overview() {
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                     <div className="form-group"><label htmlFor="City/Town">International Student Rate *</label>
                                         <select
-
                                             value={rate}
                                             onChange={(e) => setrate(e.target.value)}
                                             className="form-control" name="city" required>
@@ -276,7 +223,6 @@ export default function Overview() {
                                             value={course}
                                             onChange={(e) => setcourse(e.target.value)}
                                         />
-
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -289,7 +235,6 @@ export default function Overview() {
                                             placeholder="7"
                                         />
                                         <div style={{ color: "red" }}> {PopularCourseNoError}</div>
-
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -351,28 +296,22 @@ export default function Overview() {
                                                     <option value=''>Select English Proficiency</option>
                                                     <option value='IELTS'>IELTS</option>
                                                     <option value='PTE'>PTE</option>
-
                                                 </select>
-
                                             </div>
                                         </div>
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="State/Province"> CGPA  </label>
                                                 <input type="number" className="form-control" placeholder="CGPA"
-
                                                     value={cgpa}
                                                     onChange={(e) => setcgpa(e.target.value)}
                                                 />
-
-
                                             </div>
                                         </div>
                                         <div className="col-md-4">
                                             <div className="form-group">
                                                 <label htmlFor="State/Province">  Acceptance rate <span className="req-star">*</span> </label>
                                                 <input type="number" className="form-control" placholder=" acceptance rate"
-
                                                     required value={acceptanceRate}
                                                     onChange={(e) => setacceptanceRate(e.target.value)}
                                                 />
@@ -382,11 +321,8 @@ export default function Overview() {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="clearfix"></div>
-
                             </div>
-
                             <div className="mb-3">
                                 <div className="row">
                                     <div className="col-md-6"></div>
@@ -400,7 +336,6 @@ export default function Overview() {
                                 </div>
 
                             </div>
-
                         </div>
                     </form>
                 </div>
