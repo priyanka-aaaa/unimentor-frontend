@@ -251,12 +251,14 @@ const Faq = () => {
                                                                     <div className="mb-3">
 
                                                                         <div className="row">
-
+                                                                        
                                                                             <div className="col-md-11">
-                                                                                <label htmlFor="fname" className="form-label">Question</label>
+                                                                            <div className="form-group">
+                                                                                <label htmlFor="fname" className="form-label"> Question<span className="req-star">*</span></label>
                                                                                 <input required type="text" className="form-control" placeholder="Question" name="question"
                                                                                     value={element.question || ""} onChange={e => handleChange(index, e)}
                                                                                 />
+                                                                            </div>
                                                                             </div>
                                                                             <div className="col-md-1 text-left">
                                                                                 <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}
@@ -277,10 +279,12 @@ const Faq = () => {
 
 
                                                                             <div className="col">
-                                                                                <label htmlFor="fname" className="form-label">Answer</label>
+                                                                            <div className="form-group">
+                                                                                <label htmlFor="fname" className="form-label">Answer<span className="req-star">*</span></label>
                                                                                 <input required type="text" className="form-control" placeholder="Answer" name="answer"
                                                                                     value={element.answer || ""} onChange={e => handleChange(index, e)}
                                                                                 />
+                                                                            </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
