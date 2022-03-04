@@ -746,99 +746,82 @@ export default function Home() {
                     </div>
                   </div>
                   <div>
-                  <div className="testi-item">
-                        <div className="author-desc">
-                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                            It's a great course. The starting can be a bit tough if you're not
-                            from a programming background, but later, you start to understand
-                            everything because they will explain everything step by step."</div>
+                    <div className="testi-item">
+                      <div className="author-desc">
+                        <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                          It's a great course. The starting can be a bit tough if you're not
+                          from a programming background, but later, you start to understand
+                          everything because they will explain everything step by step."</div>
+                      </div>
+                      <div className="testimonial-content">
+                        <div className="author-img">
+                          <img src={images["tmh2.jpg"]} alt="" />
                         </div>
-                        <div className="testimonial-content">
-                          <div className="author-img">
-                            <img src={images["tmh2.jpg"]} alt="" />
-                          </div>
-                          <div className="author-part">
-                            <a className="name" href="#">Somya Saini</a>
-                            {/* <span className="designation">CEO, Keen IT Solution</span> */}
-                          </div>
+                        <div className="author-part">
+                          <a className="name" href="#">Somya Saini</a>
+                          {/* <span className="designation">CEO, Keen IT Solution</span> */}
                         </div>
                       </div>
+                    </div>
                   </div>
                   <div>
-                  <div className="testi-item">
-                        <div className="author-desc">
-                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
-                            programming languages in a more in-depth way. They have such an easy
-                            way of teaching. 5/5 rating great work keep it up"</div>
+                    <div className="testi-item">
+                      <div className="author-desc">
+                        <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"Based on such knowledge, we may understand several other
+                          programming languages in a more in-depth way. They have such an easy
+                          way of teaching. 5/5 rating great work keep it up"</div>
+                      </div>
+                      <div className="testimonial-content">
+                        <div className="author-img">
+                          <img src={images["tmh3.jpg"]} alt="" />
                         </div>
-                        <div className="testimonial-content">
-                          <div className="author-img">
-                            <img src={images["tmh3.jpg"]} alt="" />
-                          </div>
-                          <div className="author-part">
-                            <a className="name" href="#">Imran Khan</a>
-                            {/* <span className="designation">Web Developer</span> */}
-                          </div>
+                        <div className="author-part">
+                          <a className="name" href="#">Imran Khan</a>
+                          {/* <span className="designation">Web Developer</span> */}
                         </div>
                       </div>
+                    </div>
                   </div>
                   <div>
-                  <div className="testi-item">
-                        <div className="author-desc">
-                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
-                            had an excellent time learning about many topics. I had a little bit
-                            of knowledge but never had the chance to study them deeply. Thank
-                            You so much for valuable information. "</div>
+                    <div className="testi-item">
+                      <div className="author-desc">
+                        <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"I
+                          had an excellent time learning about many topics. I had a little bit
+                          of knowledge but never had the chance to study them deeply. Thank
+                          You so much for valuable information. "</div>
+                      </div>
+                      <div className="testimonial-content">
+                        <div className="author-img">
+                          <img src={images["tmh4.jpg"]} alt="" />
                         </div>
-                        <div className="testimonial-content">
-                          <div className="author-img">
-                            <img src={images["tmh4.jpg"]} alt="" />
-                          </div>
-                          <div className="author-part">
-                            <a className="name" href="#">Parteek sharma</a>
-                            {/* <span className="designation">Arist</span> */}
-                          </div>
+                        <div className="author-part">
+                          <a className="name" href="#">Parteek sharma</a>
+                          {/* <span className="designation">Arist</span> */}
                         </div>
                       </div>
+                    </div>
                   </div>
                   <div>
-                  <div className="testi-item">
-                        <div className="author-desc">
-                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                            Someone told me Python is not easy to understand if you are a newbie
-                            in it. But they taught everything from the ground level. I really
-                            enjoyed learning from such a nice course. "
-                          </div>
-                        </div>
-                        <div className="testimonial-content">
-                          <div className="author-img">
-                            <img src={images["tmh1.jpg"]} alt="" />
-                          </div>
-                          <div className="author-part">
-                            <a className="name" href="#">Keli</a>
-                            {/* <span className="designation">CEO, Brick Consulting</span> */}
-                          </div>
-                        </div>
-                      </div>
+             
                   </div>
                   <div>
-                  <div className="testi-item">
-                        <div className="author-desc">
-                          <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
-                            It's a great course. The starting can be a bit tough if you're not
-                            from a programming background, but later, you start to understand
-                            everything because they will explain everything step by step."</div>
+                    <div className="testi-item">
+                      <div className="author-desc">
+                        <div className="desc"><img className="quote" src={images["quote2.png"]} alt="" />"
+                          It's a great course. The starting can be a bit tough if you're not
+                          from a programming background, but later, you start to understand
+                          everything because they will explain everything step by step."</div>
+                      </div>
+                      <div className="testimonial-content">
+                        <div className="author-img">
+                          <img src={images["tmh2.jpg"]} alt="" />
                         </div>
-                        <div className="testimonial-content">
-                          <div className="author-img">
-                            <img src={images["tmh2.jpg"]} alt="" />
-                          </div>
-                          <div className="author-part">
-                            <a className="name" href="#">Somya Saini</a>
-                            {/* <span className="designation">CEO, Keen IT Solution</span> */}
-                          </div>
+                        <div className="author-part">
+                          <a className="name" href="#">Somya Saini</a>
+                          {/* <span className="designation">CEO, Keen IT Solution</span> */}
                         </div>
                       </div>
+                    </div>
                   </div>
                 </Slider>
               </div>

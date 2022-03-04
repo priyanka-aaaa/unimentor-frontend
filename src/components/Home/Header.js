@@ -47,7 +47,7 @@ function Header(props) {
                   <nav className="rs-menu pr-86 lg-pr-50 md-pr-0">
                     <ul className="nav-menu">
                       <li><Link to={'/School'} className="menu-item-has-children current-menu-item" href="#">
-                        <span className='icon'><i className="fal fa-university fa-fw" ></i></span>Universities
+                        <span className='icon'><i className="fal fa-university fa-fw" ></i></span>Schools
 </Link>
                       </li>
                       <li><Link to={'/Recruitment'} className="nav-link" href="#">
