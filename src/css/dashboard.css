@@ -11605,7 +11605,7 @@ h4.modal-title {
 }
 
 
-a.card-header:after {
+/* a.card-header:after {
   position: absolute;
   font-weight: 900;
   content: '\f104';
@@ -11623,7 +11623,7 @@ a.card-header.collapsed:after{
   right: 16px;
   transform: rotate(90deg);
 
-}
+} */
 
 .btn-website {
   background-color: #fe8d07;

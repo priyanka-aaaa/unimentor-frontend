@@ -4,10 +4,11 @@ import axios from 'axios';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,faEye
+    faPlus, faTrash, faPen,  faAngleDown,faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
+
 const Application = () => {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
@@ -40,7 +41,8 @@ const Application = () => {
     const [loader, setmyloader] = useState("false");
     const [ApplicationError, setApplicationError] = useState("");
 
-
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
 
 
     useEffect(() => {
@@ -79,6 +81,16 @@ const Application = () => {
             })
 
     }, [])
+    function handleClick() {
+        if(down==="1"){
+             setdown("0");
+             setup("1")
+         }
+         else{
+             setdown("1");
+             setup("0")
+         }
+    }
     function closeaddbox(value) {
 
         setaddWidth("0px");
@@ -308,8 +320,34 @@ const Application = () => {
                     : null
                 }
 
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse4"><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse4"  onClick={() => handleClick()}><strong>4</strong>
                     Application Process
+                    {down === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleDown} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
+                                        
+
+                                        {up === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleUp} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
                 </a>
                 <div id="collapse4" className="collapse" data-bs-parent="#accordion">
 

@@ -5,7 +5,7 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faEye
+    faPlus, faTrash, faPen,  faAngleDown,faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 const Faq = () => {
@@ -24,7 +24,8 @@ const Faq = () => {
     const [deleteId, setdeleteId] = useState("");
     const [loader, setmyloader] = useState("false");
     const [completedHeading, setcompletedHeading] = useState("inline");
-
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -49,6 +50,16 @@ const Faq = () => {
 
 
     }, [])
+    function handleClick() {
+        if(down==="1"){
+             setdown("0");
+             setup("1")
+         }
+         else{
+             setdown("1");
+             setup("0")
+         }
+    }
     let handleChange = (i, e) => {
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
@@ -167,8 +178,34 @@ const Faq = () => {
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             <div className="card">
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse9"><strong>9</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse9" onClick={() => handleClick()}><strong>9</strong>
                     FAQ
+                    {down === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleDown} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
+                                        
+
+                                        {up === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleUp} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
                 </a>
                 <div id="collapse9" className="collapse" data-bs-parent="#accordion">
                     <div className="card-body">

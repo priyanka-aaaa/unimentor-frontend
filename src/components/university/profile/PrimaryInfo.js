@@ -3,7 +3,11 @@ import axios from 'axios';
 import Loader from '../../Home/Loader';
 import PhoneInput from 'react-phone-number-input'
 import { isValidPhoneNumber } from 'react-phone-number-input'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faAngleDown,faAngleUp
 
+} from '@fortawesome/free-solid-svg-icons';
 export default function PrimaryInfo() {
     const [mounted, setMounted] = useState();
     const [universityId, setuniversityId] = useState();
@@ -31,6 +35,8 @@ export default function PrimaryInfo() {
     const [websiteStartError, setwebsiteStartError] = useState("");
     const [websiteEndError, setwebsiteEndError] = useState("");
     const [pincodeError, setpincodeError] = useState("");
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
 
     
 
@@ -191,6 +197,18 @@ export default function PrimaryInfo() {
         }
     }
 
+    function handleClick() {
+       if(down==="1"){
+            setdown("0");
+            setup("1")
+        }
+        else{
+            setdown("1");
+            setup("0")
+        }
+   }
+
+
     function handleFormSubmit(event) {
         event.preventDefault();
         setdescriptionError("");
@@ -203,7 +221,7 @@ export default function PrimaryInfo() {
         setwebsiteEndError("");
         setpincodeError("");
 
-        
+
         var descriptionLength = description.split(' ').length;
         var myPattern = /^[0-9_.]*$/;
 
@@ -240,9 +258,9 @@ export default function PrimaryInfo() {
 
         }
 
-        else if(myPattern.test(pincode)===false){
+        else if (myPattern.test(pincode) === false) {
             setpincodeError("Please Enter Only Number")
-            
+
         }
         else {
             setmyloader("true")
@@ -298,11 +316,40 @@ export default function PrimaryInfo() {
 
 
             <div className="card">
-                <a className="card-header" data-bs-toggle="collapse" href="#collapseOne"><strong>1</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapseOne" onClick={() => handleClick()}  ><strong>1</strong>
                     Primary Info
+                    {down === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleDown} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
+                                        
 
+                                        {up === "0" ?
+                                        null
+                                        : 
+                                        <FontAwesomeIcon icon={faAngleUp} style={{
+                                            position: "absolute",
+                                            fontWeight: 900,
+                                            fontFamily: 'Font Awesome 5 Free',
+                                            marginRight: "0.1rem",
+                                            right: "16px",
+                    
+                                        }} />
+                                    }
+                  
                 </a>
+                                        
+
                 <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
+                    
                     <div className="card-body">
                         {/* start for shwongi popup */}
 
@@ -334,7 +381,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="form-label">Street Address
-                                            <span className="req-star">*</span></label>
+                                                <span className="req-star">*</span></label>
                                             <input type="text" className="form-control"
                                                 placeholder="Address" name="Address"
                                                 onKeyPress={(e) => streetAddressMethod(e)}
@@ -424,7 +471,7 @@ export default function PrimaryInfo() {
                                                 value={pincode}
                                                 onChange={(e) => setpincode(e.target.value)}
                                             />
-                                          
+
                                             <div style={{ color: "red" }}> {pincodeError}</div>
 
                                         </div>
@@ -486,16 +533,16 @@ export default function PrimaryInfo() {
                                         </div>
                                     </div>
                                     <div className="col-md-4">
-                                    <div className="form-group">
-                                        <label>Phone Number  <span className="req-star">*</span></label>
-                                        <PhoneInput
-                                            placeholder="Enter Phone Number"
-                                            required
-                                            value={phone}
-                                            onChange={setphone} />
-                                        <span style={{ color: "red" }}> {phoneError}</span>
+                                        <div className="form-group">
+                                            <label>Phone Number  <span className="req-star">*</span></label>
+                                            <PhoneInput
+                                                placeholder="Enter Phone Number"
+                                                required
+                                                value={phone}
+                                                onChange={setphone} />
+                                            <span style={{ color: "red" }}> {phoneError}</span>
 
-                                        {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required
+                                            {/* <input type="text" className="form-control" placeholder="phone number" name="ph-no" required
 
                                             value={phone}
                                             onChange={(e) => setphone(e.target.value)}
@@ -520,8 +567,8 @@ export default function PrimaryInfo() {
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6 text-right">
                                             <button type="submit" className="btn btn-secondary" title="Save"
-                                            
-                                            data-toggle="tooltip" data-placement="right" >Save
+
+                                                data-toggle="tooltip" data-placement="right" >Save
                                             </button>
                                             <button data-bs-toggle="collapse" href="#collapseTwo" type="submit"
                                                 className="btn btn-success" title="Save &

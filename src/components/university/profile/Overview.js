@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faAngleDown, faAngleUp
 
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function Overview() {
     const [mounted, setMounted] = useState();
@@ -26,7 +30,8 @@ export default function Overview() {
     const [YearNoError, setYearNoError] = useState("");
 
     const [AcceptanceNoError, setAcceptanceNoError] = useState("");
-
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
 
 
 
@@ -75,7 +80,16 @@ export default function Overview() {
 
             });
     }, [])
-
+    function handleClick() {
+        if (down === "1") {
+            setdown("0");
+            setup("1")
+        }
+        else {
+            setdown("1");
+            setup("0")
+        }
+    }
 
     function handleFormSubmit(event) {
         event.preventDefault();
@@ -176,8 +190,34 @@ export default function Overview() {
             </div> : null}
             <div className="card">
 
-                <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo"><strong>2</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo" onClick={() => handleClick()} ><strong>2</strong>
                     Overview
+                    {down === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
+
+
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
                 </a>
                 <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
                     <form onSubmit={handleFormSubmit}>
@@ -352,7 +392,7 @@ export default function Overview() {
                                     <div className="col-md-6"></div>
                                     <div className="col-md-6 text-right">
                                         <button type="submit" className="btn btn-secondary" title="Save"
-                                         data-toggle="tooltip" data-placement="right"
+                                            data-toggle="tooltip" data-placement="right"
                                         >Save</button>
                                         <button type="button" data-bs-toggle="collapse" href="#collapse3" className="btn btn-success" title="Save & Next">Save & Next</button>
                                     </div>
