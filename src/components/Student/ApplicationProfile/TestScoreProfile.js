@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loader from '../../Home/Loader';
 
 import axios from 'axios';
 function PersonalInformationProfile(props) {
@@ -9,6 +10,8 @@ function PersonalInformationProfile(props) {
     const [scoreenglishProficiency, setscoreenglishProficiency] = useState();
     const [scoregre, setscoregre] = useState();
     const [scoresat, setscoresat] = useState();
+    const [loader, setmyloader] = useState("false");
+
    useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -48,6 +51,8 @@ function PersonalInformationProfile(props) {
 
     function Personal_test(event) {
         event.preventDefault();
+        setmyloader("true")
+
         const obj = {
             marks: scoremarks,
             englishProficiency: scoreenglishProficiency,
@@ -56,6 +61,7 @@ function PersonalInformationProfile(props) {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/score', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+        setmyloader("false")
           
                 if (res.data.success === true) {
                     setsuccessMessage("Score Updated")
@@ -73,6 +79,9 @@ function PersonalInformationProfile(props) {
     return (
 
         <div className="card">
+               {loader === "true" ?
+                <Loader />
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -98,14 +107,14 @@ function PersonalInformationProfile(props) {
                             <div className="col-sm-12 col-md-12 col-lg-4">
                                 <div className="form-group"><label htmlFor="has_eng">Have you taken any
                                     English Proficiency Test?</label><br /><input
-                                        value={scoreenglishProficiency}
-                                        onChange={(e) => setscoreenglishProficiency(e.target.value)}
+                                      
+                                        onChange={(e) => setscoreenglishProficiency("yes")}
                                         checked={scoreenglishProficiency === "yes"}
-                                        type="radio" id="1" name="has_eng" value="yes" /><label className="mr-1" htmlFor="1">Yes</label>&nbsp;&nbsp;<input
-                                        value={scoreenglishProficiency}
-                                        onChange={(e) => setscoreenglishProficiency(e.target.value)}
+                                        type="radio" id="1" name="has_eng" /><label className="mr-1" htmlFor="1">Yes</label>&nbsp;&nbsp;<input
+                                     
+                                        onChange={(e) => setscoreenglishProficiency("no")}
                                         checked={scoreenglishProficiency === "no"}
-                                        type="radio" id="0" name="has_eng" value="no" /><label className="mr-1" htmlFor="0">No</label>&nbsp;&nbsp;<br /></div>
+                                        type="radio" id="0" name="has_eng"  /><label className="mr-1" htmlFor="0">No</label>&nbsp;&nbsp;<br /></div>
                             </div>
                         </div>
 
@@ -113,14 +122,14 @@ function PersonalInformationProfile(props) {
                             <div className="col-sm-12 col-md-12 col-lg-4">
                                 <div className="form-group"><label htmlFor="has_pg">Have you taken
                                     GRE/GMAT?</label><br /><input
-                                        value={scoregre}
-                                        onChange={(e) => setscoregre(e.target.value)}
+                                      
+                                        onChange={(e) => setscoregre("yes")}
                                         checked={scoregre === "yes"}
-                                        type="radio" id="has_pg_1" name="has_pg" value="yes" /><label className="mr-1" htmlFor="has_pg_1">Yes</label>&nbsp;&nbsp;<input
-                                        value={scoregre}
-                                        onChange={(e) => setscoregre(e.target.value)}
+                                        type="radio" id="has_pg_1" name="has_pg"  /><label className="mr-1" htmlFor="has_pg_1">Yes</label>&nbsp;&nbsp;<input
+                                     
+                                        onChange={(e) => setscoregre("no")}
                                         checked={scoregre === "no"}
-                                        type="radio" id="has_pg_0" name="has_pg" value="no" /><label className="mr-1" htmlFor="has_pg_0">No</label>&nbsp;&nbsp;<br /></div>
+                                        type="radio" id="has_pg_0" name="has_pg"  /><label className="mr-1" htmlFor="has_pg_0">No</label>&nbsp;&nbsp;<br /></div>
                             </div>
                         </div>
 
@@ -128,15 +137,15 @@ function PersonalInformationProfile(props) {
                             <div className="col-sm-12 col-md-12 col-lg-4">
                                 <div className="form-group"><label htmlFor="has_ug">Have you taken
                                     SAT/ACT?</label><br /><input
-                                        value={scoresat}
-                                        onChange={(e) => setscoresat(e.target.value)}
+                                        
+                                        onChange={(e) => setscoresat("yes")}
                                         checked={scoresat === "yes"}
-                                        type="radio" id="has_ug_1" name="has_ug" value="yes" /><label className="mr-1" htmlFor="has_ug_1">Yes</label>&nbsp;&nbsp;
+                                        type="radio" id="has_ug_1" name="has_ug" /><label className="mr-1" htmlFor="has_ug_1">Yes</label>&nbsp;&nbsp;
                                     <input
-                                        value={scoresat}
-                                        onChange={(e) => setscoresat(e.target.value)}
-                                        checked={scoresat === "yes"}
-                                        type="radio" id="has_ug_0" name="has_ug" value="no" /><label className="mr-1" htmlFor="has_ug_0">No</label>&nbsp;&nbsp;<br /></div>
+                                    
+                                        onChange={(e) => setscoresat("no")}
+                                        checked={scoresat === "no"}
+                                        type="radio" id="has_ug_0" name="has_ug" /><label className="mr-1" htmlFor="has_ug_0">No</label>&nbsp;&nbsp;<br /></div>
                             </div>
                         </div>
 
