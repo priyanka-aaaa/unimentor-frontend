@@ -80,9 +80,7 @@ const EducationProfile = () => {
                         if (res.data.success === true) {
 
                         }
-                        else {
 
-                        }
                     })
                     .catch(error => {
 
@@ -173,7 +171,7 @@ const EducationProfile = () => {
                                                     <select
                                                         value={element.highestEducation || ""} onChange={e => handleChange(index, e)}
 
-required
+                                                        required
 
                                                         className="form-control" id="Highest Level of Education" name="highestEducation">
                                                         <option value=''>Select</option>
@@ -240,7 +238,7 @@ required
                                                         value={element.degree || ""} onChange={e => handleChange(index, e)}
 
                                                         className="form-control" id="education_degree" name="degree" required="">
-                                                       <option value="">Select</option> <option value="BEd">BEd</option> <option value="MA">MA</option> <option value="MM">MM</option> <option value="MBM">MBM</option> <option value="MIM">MIM</option> <option value="MIB">MIB</option> <option value="MBA">MBA</option> <option value="PGPM">PGPM</option> <option value="MBS">MBS</option> <option value="MCA">MCA</option> <option value="MFA">MFA</option> <option value="MVA">MVA</option> <option value="MPA">MPA</option> <option value="CFA - Level 1">CFA - Level 1</option> <option value="CFA - Level 2">CFA - Level 2</option> <option value="CFA - Level 3">CFA - Level 3</option> <option value="JD">JD</option> <option value="LLM">LLM</option> <option value="MCom">MCom</option> <option value="MEng">MEng</option> <option value="ME">ME</option> <option value="MSE">MSE</option> <option value="MTech">MTech</option> <option value="MS">MS</option> <option value="MSc">MSc</option> <option value="MPH">MPH</option> <option value="MPharm">MPharm</option> <option value="MDS">MDS</option> <option value="MEd">MEd</option> <option value="MArch">MArch</option> <option value="MDes">MDes</option> <option value="MPT">MPT</option> <option value="MD">MD</option> <option value="MS">MS</option> <option value="Other Masters">Other Masters</option> <option value="PG Certificate">PG Certificate</option> <option value="MMus">MMus</option>
+                                                        <option value="">Select</option> <option value="BEd">BEd</option> <option value="MA">MA</option> <option value="MM">MM</option> <option value="MBM">MBM</option> <option value="MIM">MIM</option> <option value="MIB">MIB</option> <option value="MBA">MBA</option> <option value="PGPM">PGPM</option> <option value="MBS">MBS</option> <option value="MCA">MCA</option> <option value="MFA">MFA</option> <option value="MVA">MVA</option> <option value="MPA">MPA</option> <option value="CFA - Level 1">CFA - Level 1</option> <option value="CFA - Level 2">CFA - Level 2</option> <option value="CFA - Level 3">CFA - Level 3</option> <option value="JD">JD</option> <option value="LLM">LLM</option> <option value="MCom">MCom</option> <option value="MEng">MEng</option> <option value="ME">ME</option> <option value="MSE">MSE</option> <option value="MTech">MTech</option> <option value="MS">MS</option> <option value="MSc">MSc</option> <option value="MPH">MPH</option> <option value="MPharm">MPharm</option> <option value="MDS">MDS</option> <option value="MEd">MEd</option> <option value="MArch">MArch</option> <option value="MDes">MDes</option> <option value="MPT">MPT</option> <option value="MD">MD</option> <option value="MS">MS</option> <option value="Other Masters">Other Masters</option> <option value="PG Certificate">PG Certificate</option> <option value="MMus">MMus</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -372,7 +370,7 @@ required
                                                     <div className="form-group"><label htmlFor="institute_address_zipcode">Zipcode</label><input
                                                         value={element.zipcode || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="zipcode" required="" /></div>
+                                                        type="number" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="zipcode" required="" /></div>
                                                 </div>
                                             </div>
 
