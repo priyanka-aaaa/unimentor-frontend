@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
+import StudentRegisterForm from '../StudentRegisterForm'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -8,8 +9,8 @@ import Studentregister2 from '../Studentregister2'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,faEye,faUser,faFile,faFileUpload,faUserTie,
-    faCheck,faPaperPlane,faGraduationCap
+  faPlus, faTrash, faPen, faEye, faUser, faFile, faFileUpload, faUserTie,
+  faCheck, faPaperPlane, faGraduationCap
 
 } from '@fortawesome/free-solid-svg-icons';
 function importAll(r) {
@@ -106,8 +107,21 @@ function Student(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                <Studentregister2/>
-                 
+
+                  {/* start for student register */}
+                  <section className="Form-block">
+                    <div className="container">
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <StudentRegisterForm />
+                        </div>
+                      </div>
+                    </div>
+
+                  </section>
+                  {/* end for student register */}
+
+
                 </div>
               </div>
               <div className="col-lg-6">
@@ -118,9 +132,9 @@ function Student(props) {
                   </p>
                   <ul className="banner-btn">
                     <li>
-                    <Link to={'/StudentRegister'} className="readon started" >
-                    Explore Programs</Link>
-                </li>
+                      <Link to={'/StudentRegister'} className="readon started" >
+                        Explore Programs</Link>
+                    </li>
                     {/* <li>
                                                   <div class="rs-videos">
                                                       <div class="animate-border">
@@ -137,10 +151,10 @@ function Student(props) {
             </div>
           </div>
           <div className="rs-animation">
-          <img className="dance3" src=
-            {images["b4-dot-6.png"]}
-           
-             alt="images" />
+            <img className="dance3" src=
+              {images["b4-dot-6.png"]}
+
+              alt="images" />
           </div>
         </div>
         {/* Banner Section End */}
@@ -161,9 +175,9 @@ function Student(props) {
                       <div className="front-content-part purple-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                          <img src=                            
-                            {images["home-style6-6.png"]}
-                            alt="" />
+                            <img src=
+                              {images["home-style6-6.png"]}
+                              alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -179,7 +193,7 @@ function Student(props) {
                         </div>
                       </div>
                     </div>
-                   
+
                   </div>
                 </div>
               </div>
@@ -190,9 +204,9 @@ function Student(props) {
                       <div className="front-content-part gold-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                          <img src=                         
-                         {images["home-icons-8.png"]}
-                         alt="" />
+                            <img src=
+                              {images["home-icons-8.png"]}
+                              alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -209,7 +223,7 @@ function Student(props) {
                         </div>
                       </div>
                     </div>
-                  
+
                   </div>
                 </div>
               </div>
@@ -220,10 +234,10 @@ function Student(props) {
                       <div className="front-content-part blue-bg">
                         <div className="front-icon-part">
                           <div className="icon-part">
-                          <img src=
-                         
-                         {images["home-icons-9.png"]}
-                         alt="" />
+                            <img src=
+
+                              {images["home-icons-9.png"]}
+                              alt="" />
                           </div>
                         </div>
                         <div className="front-title-part">
@@ -240,7 +254,7 @@ function Student(props) {
                         </div>
                       </div>
                     </div>
-                   
+
                   </div>
                 </div>
               </div>
@@ -272,10 +286,10 @@ function Student(props) {
               </div>
               <div className="col-lg-6 pl-65 md-pl-15">
                 <div className="about-img">
-                <img src=
-                  
-                  {images["home-about-5.png"]}
-                  alt="" />
+                  <img src=
+
+                    {images["home-about-5.png"]}
+                    alt="" />
                 </div>
               </div>
             </div>
@@ -296,10 +310,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                      
-                    <FontAwesomeIcon icon={faUser} />
-                        
-                        </span>
+
+                        <FontAwesomeIcon icon={faUser} />
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -320,10 +334,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                      <FontAwesomeIcon icon={faFile} />
-                        
-                      
-                        </span>
+                        <FontAwesomeIcon icon={faFile} />
+
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -344,10 +358,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                       
+
                         <FontAwesomeIcon icon={faCheck} />
-                        
-                        </span>
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -368,10 +382,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                      <FontAwesomeIcon icon={faFile} />
-                        
-                      
-                        </span>
+                        <FontAwesomeIcon icon={faFile} />
+
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -392,10 +406,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                      
-                      <FontAwesomeIcon icon={faPaperPlane} />
-                        
-                        </span>
+
+                        <FontAwesomeIcon icon={faPaperPlane} />
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -416,10 +430,10 @@ function Student(props) {
                   <div className="services-icon">
                     <div className="image-part">
                       <span>
-                   
-                    <FontAwesomeIcon icon={faGraduationCap} />
-                        
-                        </span>
+
+                        <FontAwesomeIcon icon={faGraduationCap} />
+
+                      </span>
                     </div>
                   </div>
                   <div className="services-content">
@@ -453,9 +467,9 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                     
-                      {images["pt-1.png"]} 
-                      alt="" />
+
+                        {images["pt-1.png"]}
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -465,10 +479,10 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                 
-                      {images["pt-2.png"]} 
-                      
-                      alt="" />
+
+                        {images["pt-2.png"]}
+
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -478,9 +492,9 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                     
-                      {images["pt-3.png"]}
-                      alt="" />
+
+                        {images["pt-3.png"]}
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -490,9 +504,9 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                      {images["pt-4.png"]}
-                     
-                       alt="" />
+                        {images["pt-4.png"]}
+
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -502,9 +516,9 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                     
-                      {images["pt-5.png"]}
-                      alt="" />
+
+                        {images["pt-5.png"]}
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -514,9 +528,9 @@ function Student(props) {
                   <a href="#">
                     <div className="logo-img">
                       <img src=
-                   
-                      {images["pt-6.png"]}
-                      alt="" />
+
+                        {images["pt-6.png"]}
+                        alt="" />
                     </div>
                   </a>
                 </div>
@@ -536,10 +550,10 @@ function Student(props) {
             <div className="row">
               <div className="col-lg-6">
                 <div className="testi-img">
-                <img src=
-                  
-                  {images["testimonial-3.png"]}
-                  alt="" />
+                  <img src=
+
+                    {images["testimonial-3.png"]}
+                    alt="" />
                 </div>
               </div>
               <div className="col-lg-6 md-pt-50 modify-gap">
@@ -631,7 +645,7 @@ function Student(props) {
                     </div>
                   </div>
                   <div>
-             
+
                   </div>
                   <div>
                     <div className="testi-item">
@@ -673,9 +687,9 @@ function Student(props) {
             <div className="blog-item">
               <div className="image-wrap">
                 <a href="#">
-                <img src={images["canda.jpg"]} alt="" />
-                  
-                 </a>
+                  <img src={images["canda.jpg"]} alt="" />
+
+                </a>
                 <ul className="post-categories">
                   <li><a href="#">Canada</a></li>
                 </ul>
@@ -689,9 +703,9 @@ function Student(props) {
             <div className="blog-item">
               <div className="image-wrap">
                 <a href="#">
-                <img src={images["united-kingdom.jpg"]} alt="" />
-             
-                  </a>
+                  <img src={images["united-kingdom.jpg"]} alt="" />
+
+                </a>
                 <ul className="post-categories">
                   <li><a href="#"> United Kingdom</a></li>
                 </ul>
@@ -705,8 +719,8 @@ function Student(props) {
             <div className="blog-item">
               <div className="image-wrap">
                 <a href="#">
-                <img src={images["united-state.jpg"]} alt="" />
-              </a>
+                  <img src={images["united-state.jpg"]} alt="" />
+                </a>
                 <ul className="post-categories">
                   <li><a href="#"> United States</a></li>
                 </ul>
@@ -720,9 +734,9 @@ function Student(props) {
             <div className="blog-item">
               <div className="image-wrap">
                 <a href="#">
-                <img src={images["austrila.jpg"]} alt="" />
-              
-                  </a>
+                  <img src={images["austrila.jpg"]} alt="" />
+
+                </a>
                 <ul className="post-categories">
                   <li><a href="#">Australia</a></li>
                 </ul>

@@ -10,7 +10,7 @@ import axios from 'axios';
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 import SweetAlert from 'react-bootstrap-sweetalert';
-import StudentRegisterForm from './StudentRegisterForm';
+
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -19,7 +19,7 @@ function importAll(r) {
 
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
 
-export default function Studentregister() {
+export default function StudentRegisterForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
@@ -76,43 +76,51 @@ export default function Studentregister() {
 
     }
     return (
-        <div className="main-content">
+        <div className="form-centerblock">
+            <h2>Students Register</h2>
 
-            {showSweetAlert === "1" ?
-
-                <SweetAlert
-                    success
-                    title="Success!"
-                    onConfirm={(value) => {
-                        setshowSweetAlert("0")
-                    }}
-                >
-                    You Are Register Successfully. Please Check Your Mail For Password
-                </SweetAlert>
-                : null
-            }
-            {/*Full width header Start*/}
-            <div className="full-width-header">
-                {/*Header Start*/}
-                <Header />
-                <section className="Form-block">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <img src={images["login.png"]} alt="login" />
-
-                            </div>
-                            <div className="col-lg-6">
-                                {/* start for student register form */}
-                                <StudentRegisterForm/>
-                                {/* end for student register form */}
-                            </div>
-                        </div>
+            <div className="from-start">
+                <form onSubmit={handleSubmit}>
+                    <div className="mb-3 mt-3">
+                        <label className="form-label">Name</label>
+                        <input required type="text" className="form-control form-control-lg" id="uname"
+                            placeholder="Full Name" name="name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                     </div>
+                    <span style={{ color: "red" }}> {nameError}</span>
+                    <div className="mb-3 mt-3">
+                        <label className="form-label">Email</label>
+                        <input required type="email" className="form-control form-control-lg" id="email"
+                            placeholder="Enter email" name="email"
 
-                </section>
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+
+                    </div>
+                    <span style={{ color: "red" }}>{emailError}</span>
+                    <div className="mb-3 mt-3">
+                        <label className="form-label">Phone</label>
+
+                        <PhoneInput
+                            placeholder="Enter phone number"
+                            required
+                            value={phone}
+                            onChange={setPhone} />
+
+                        <span style={{ color: "red" }}> {phoneError}</span>
+                    </div>
+                    <button type="submit" className="btn btn-website">Register</button>
+                </form>
+                <p> Already have an account? Click here to
+                    <Link to={'/Studentlogin'} className="" >
+
+
+                        Login</Link></p>
             </div>
-            <Footer />
+
         </div>
     );
 }
