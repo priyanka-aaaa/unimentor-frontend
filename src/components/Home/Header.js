@@ -36,8 +36,12 @@ function Header(props) {
           <div className="row align-items-center">
             <div className="col-lg-2">
               <div className="logo-part">
-                <a href="/">
-                  <img src={images["logo.png"]} alt="" /></a>
+              <Link to={'/'}  href="#"
+                    >
+                       <img src={images["logo.png"]} alt="" />
+                        </Link>
+
+           
               </div>
               <div className="mobile-menu">
                 <a href="#" className="rs-menu-toggle rs-menu-toggle-close secondary">
