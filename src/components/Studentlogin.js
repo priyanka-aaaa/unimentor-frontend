@@ -4,15 +4,13 @@ import axios from 'axios';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+}
 
-// function importAll(r) {
-//     let images = {};
-//     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
-//     return images
-//   }
-  
-//   const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
-  
+const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
 export default function Studentlogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -67,7 +65,7 @@ export default function Studentlogin() {
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6">
-                                {/* <img src={images["login.png"]} alt="login" /> */}
+                                <img src={images["login.png"]} alt="login" />
                                 
                                 </div>
                                 <div className="col-lg-6">
