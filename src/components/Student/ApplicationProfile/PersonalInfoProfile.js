@@ -142,7 +142,7 @@ function handlemaritalStatus(value){
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-            <div className="card">
+         
 
                 <div className="card">
                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
@@ -447,7 +447,7 @@ function handlemaritalStatus(value){
 
 
                 </div>
-            </div>
+         
 
 
 

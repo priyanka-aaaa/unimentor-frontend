@@ -93,7 +93,7 @@ export default function UniversityPassword() {
                                                             <div className="col-sm-12">
                                                                 <form onSubmit={setting}>
                                                                     <div className="form-group">
-                                                                        <label for="password">Enter New Password</label>
+                                                                        <label for="password">Enter New Password *</label>
                                                                         <input required="" name="password" type="password" id="password" className="form-control"
                                                                             value={password}
                                                                             onChange={(e) => setpassword(e.target.value)}
@@ -103,7 +103,7 @@ export default function UniversityPassword() {
 
                                                                     </div>
                                                                     <div className="form-group">
-                                                                        <label for="c_password">Confirm Password</label>
+                                                                        <label for="c_password">Confirm Password *</label>
                                                                         <input required="" name="c_password" type="password" id="c_password" className="form-control"
                                                                             value={conformPassword}
                                                                             onChange={(e) => setconformPassword(e.target.value)}
