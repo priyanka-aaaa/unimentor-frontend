@@ -18,6 +18,7 @@ import './css/dashboard.css';
 import './css/frontend.css';
 import './css/my.css';
 import "./css/drag.css";
+import "./css/responsive.css";
 
 
 // import './components/admin_css/style.css';

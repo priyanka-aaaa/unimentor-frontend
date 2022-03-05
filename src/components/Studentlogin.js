@@ -4,6 +4,15 @@ import axios from 'axios';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+
+// function importAll(r) {
+//     let images = {};
+//     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+//     return images
+//   }
+  
+//   const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
+  
 export default function Studentlogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -43,6 +52,7 @@ export default function Studentlogin() {
                 });
         }
     }
+
     if (redirectToReferrer === true || localStorage.getItem('userData')) {
         return (<Redirect to={'/Dashboard'} />)
     }
@@ -53,16 +63,21 @@ export default function Studentlogin() {
                 <div className="full-width-header">
                     <Header />
                     <section className="Form-block">
+
                         <div className="container">
                             <div className="row">
-                                <div className="col-lg-12">
+                                <div className="col-lg-6">
+                                {/* <img src={images["login.png"]} alt="login" /> */}
+                                
+                                </div>
+                                <div className="col-lg-6">
                                     <div className="form-centerblock">
-                                        {/* <a className="logo"><img src={logo} /></a> */}
-                                        <p className="logo"><img src={logo} alt="logo" /></p>
+                                        <h2>Students Login</h2>
+                               
                                         <div className="from-start">
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-3 mt-3">
-                                                    <label className="form-label">Email</label>
+                                                    <label className="form-label">Email </label>
                                                     <input type="email" className="form-control form-control-lg" id="email"
                                                         placeholder="Enter email" name="email"
                                                         value={email}
@@ -79,8 +94,12 @@ export default function Studentlogin() {
                                                     />
                                                 </div>
                                                 <span style={{ color: "red" }}> {passwordError}</span>
-                                                <button type="submit" className="btn btn-website">Register</button>
+                                                <button type="submit" className="btn btn-website">Login</button>
                                             </form>
+                                            <p>Don't have an account? Click here to
+                                        <Link to={'/Studentregister'} className="" >
+                                            Register</Link></p>
+                                             
                                         </div>
 
                                     </div>

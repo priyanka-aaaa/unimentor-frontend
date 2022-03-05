@@ -173,7 +173,7 @@ function Recruitment(props) {
                         </div>
                         <div className="front-desc-part">
                           <p>
-                            Quick and reliable commissions so you get paid for your hard work.</p>
+                            Quick and reliable commissions<br></br> so you get paid for your<br></br> hard work.</p>
                         </div>
                         <div className="front-btn-part">
                           <a className="readon view-more" href="#">View More</a>
@@ -312,7 +312,7 @@ function Recruitment(props) {
                     </div>
                     <div className="services-desc">
                       <p>
-                        Our international recruitment experts are there to support you every step of the way.
+                        Our international recruitment experts are there to <br></br>support you every<br></br> step of the way.
                       </p>
                     </div>
                     <div className="services-button"><a href="#">Read More</a></div>

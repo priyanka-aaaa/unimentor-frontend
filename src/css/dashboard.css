@@ -11887,3 +11887,30 @@ trix-editor.form-control.editarea {
 }
 
 /* end priyanka */
+
+img.edit-certificate {
+
+  width:
+  95px
+  
+  ;
+  height:
+  54px
+  
+  ;
+  }
+  p.selected-certificate {
+
+    text-align: center;
+    }
+    .ranking-dropzone {
+
+      border: 1px dotted black;
+    
+      padding: 10px 0px;
+    
+      text-align: center;
+    
+      width: 99%;
+    
+    }

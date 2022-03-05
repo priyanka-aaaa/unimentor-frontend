@@ -6031,9 +6031,9 @@ body .search-modal .close:hover {
 .rs-services.style2 .flip-box-inner:hover .flip-box-wrap .back-front .back-front-content .back-desc-part .back-desc {
   color: #ffffff;
 }
-.rs-services.style2.modify1 .flip-box-inner .flip-box-wrap .front-part .front-content-part {
+/* .rs-services.style2.modify1 .flip-box-inner .flip-box-wrap .front-part .front-content-part {
   height: 420px;
-}
+} */
 .rs-services.style2.modify1 .flip-box-inner .flip-box-wrap .front-part .front-content-part .front-icon-part {
   margin-bottom: 15px;
 }
@@ -8631,10 +8631,19 @@ div#ranking .author span {
 .banner-img section.Form-block {
   display: inherit;
   height: auto;
+  background: none;
 }
 .banner-img .form-centerblock h2 {
   color: #ff7f0e;
   text-align: center;
+}
+p.selected-certificate {
+
+  text-align: center;
+  }
+  .form-centerblock h2 {
+    text-align: center;
+    color: #ff7f0e;
 }
 .blog-meta {
   background-color: #f7f5f5;
@@ -10772,6 +10781,18 @@ span.btn.btn-primary.loct {
 /*------------------------------------
     35. Footer Section CSS
 ------------------------------------*/
+
+section.Form-block {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: url(../img/login-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.from-start p a {
+  font-weight: 700;
+}
+
 .rs-footer {
   background: url(assets/images/bg/footer-bg.png);
   background-color: #F5F6F9;

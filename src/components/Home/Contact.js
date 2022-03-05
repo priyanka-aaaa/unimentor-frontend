@@ -106,7 +106,7 @@ export default function About() {
                         <div className="contact-box">
                             <div className="sec-title mb-45">
                                 <span className="sub-text new-text white-color">Let's Talk</span>
-                                <h2 className="title white-color">Speak With Expert Engineers.</h2>
+                                <h2 className="title white-color">Speak With Expert Coursementor.</h2>
                             </div>
                             <div className="address-box mb-25">
                                 <div className="address-icon">
@@ -114,7 +114,7 @@ export default function About() {
                                 </div>
                                 <div className="address-text">
                                     <span className="label">Email:</span>
-                                    <a href="tel:123222-8888">(123) 222-8888</a>
+                                    <a href="mailto:hello@coursementor.com">hello@coursementor.com</a>
                                 </div>
                             </div>
                             <div className="address-box mb-25">
@@ -123,7 +123,7 @@ export default function About() {
                                 </div>
                                 <div className="address-text">
                                     <span className="label">Phone:</span>
-                                    <a href="#">support@rstheme.com</a>
+                                    <a href="tel:18008906477">1800-890-6477</a>
                                 </div>
                             </div>
                             <div className="address-box">
@@ -132,7 +132,7 @@ export default function About() {
                                 </div>
                                 <div className="address-text">
                                     <span className="label">Address:</span>
-                                    <div className="desc">New Jesrsy, 1201, USA</div>
+                                    <div className="desc">#211 P,Sector7 Kurukshetra,haryana 136118</div>
                                 </div>
                             </div>
                         </div>
@@ -182,7 +182,7 @@ export default function About() {
                 </div>
             </div>
             <div className="map-canvas pt-120 md-pt-80">
-                <iframe src="https://maps.google.com/maps?q=rstheme&t=&z=13&ie=UTF8&iwloc=&output=embed" />
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.1746672514537!2d76.87280201547092!3d29.974409878831935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e477a7988733f%3A0xba0ec1c16e425f5c!2sCAL%20Info%20-%20Website%20Development%20Company%20in%20Kurukshetra!5e0!3m2!1sen!2sin!4v1646391492819!5m2!1sen!2sin" />
             </div>
         </div>
         {/* Contact Section Start */}

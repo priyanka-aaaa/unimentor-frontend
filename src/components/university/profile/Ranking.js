@@ -1,637 +1,606 @@
-import React, { Component } from 'react';
 
-import RankingEdit from './RankingEdit';
-import DragAndDrop from './DragAndDrop';
+import React, { useState, useEffect } from "react";
+import Dropzone from "react-dropzone";
+
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen,faEye
-
+    faAngleDown, faAngleUp, faTrash, faPlus, faPen
 } from '@fortawesome/free-solid-svg-icons';
-class Ranking extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            test: "",
-            rankingId: "",
-            mounted: "",
-            files: [
-            ],
-            data: [],
-            editId: "",
-            width: "",
-            editnewcomponent: "0",
-            addWidth: "0",
-            addnewcomponent: 1,
-            successMessage: "",
-            submitSuccess: "",
-            test: "",
-            agencyName: "",
-            rank: "",
-            year: "",
-            onFileChangeLogo: "",
-            certificate: "",
-            universityId: "",
-            myUgDegree: "",
-            myugConsolidatedMarksheet: "",
-            myugMarksheet: "",
-
-            showSweetAlert: "",
-            deleteId: "",
-            yearMessage: ""
+const Ranking = () => {
 
 
-        };
-
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleAddClick = this.handleAddClick.bind(this);
-        this.closeaddbox = this.closeaddbox.bind(this);
-        this.submitAddRanking = this.submitAddRanking.bind(this);
-        this.changeagencyName = this.changeagencyName.bind(this);
-        this.changerank = this.changerank.bind(this);
-        this.changeyear = this.changeyear.bind(this);
-        this.onFileChangeLogo = this.onFileChangeLogo.bind(this);
-        this.submitEditRanking = this.submitEditRanking.bind(this);
-        this.handleDeleteClick = this.handleDeleteClick.bind(this);
-        this.ddhandleAddClick = this.ddhandleAddClick.bind(this);
+    const [agencyName, setagencyName] = useState("");
+    const [rank, setrank] = useState("");
+    const [year, setyear] = useState("");
+    const [certificate, setcertificate] = useState("");
+    const [showCertificate, setshowCertificate] = useState("");
+    const [certificateError, setcertificateError] = useState("");
 
 
-    }
+    const [editdata, seteditdata] = useState([]);
+    const [formAdminValues, setformAdminValues] = useState([{
+        application: ""
+    }])
 
-    componentWillMount() {
+    const [editPoint, seteditPoint] = useState([{
+        agencyName: "", rank: "", year: "", certificate: ""
+    }])
+    const [thumbnailFiles, setThumbnailFiles] = useState([]);
 
-        var universityId = localStorage.getItem('universityId');
-        var mounted = localStorage.getItem('universityToken');
+    const [editnewcomponent, seteditnewcomponent] = useState(0);
+    const [addnewcomponent, setaddnewcomponent] = useState(0);
+    const [mounted, setMounted] = useState();
+    const [data, setdata] = useState([]);
+    const [tempp, settempp] = useState("0");
+    const [myapplication, setmyapplication] = useState();
+    const [addWidth, setaddWidth] = useState("");
+    const [editId, seteditId] = useState([]);
+    const [width, setwidth] = useState("");
+
+    const [universityid, setuniversityid] = useState("");
+    const [MYpoint, setMYpoint] = useState();
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
+    const [myTable, setTable] = useState("false");
+    const [loader, setmyloader] = useState("false");
+    const [ApplicationError, setApplicationError] = useState("");
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
+    const [extensionError, setextensionError] = useState("0");
+
+    const [submitError, setsubmitError] = useState("0");
+
+    useEffect(() => {
+        if (localStorage.getItem("universityData")) {
+            var a = localStorage.getItem('universityData');
+            var mydata = JSON.parse(a);
+            var universityid = mydata.data.university._id;
+            var mytoken = mydata.data.token;
+        }
+        setMounted(mytoken)
+        setuniversityid(universityid)
 
 
-        this.setState({ mounted: mounted, universityId: universityId });
-
-    }
-    componentDidMount() {
-
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': this.state.mounted }
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+        fetch(url1, {
+            method: 'GET'
         })
             .then(response => response.json())
             .then(data => {
-                this.setState({ data: data.universityRankings })
-
+                var myresults = data.universityRankings;
+                if (Object.keys(myresults).length === 0) {
+                    setTable("true");
+                }
+                setdata(data.universityRankings)
             })
 
-    };
-    logoHandleDrop = (myfiles) => {
-        this.setState({ certificate: myfiles[0] });
+    }, [])
+
+
+    function handleAdd() {
+
+        setaddWidth("1600px");
+        setaddnewcomponent(1);
     }
-    onFileChangeLogo = eventpassportback => {
-        this.setState({ certificate: eventpassportback.target.files[0] });
-    };
-    changeagencyName(event) {
-        this.setState({ agencyName: event.target.value });
+  
+    function closeaddbox(value) {
+        setaddWidth("0px");
+        setwidth("0PX")
     }
-    changerank(event) {
-        this.setState({ rank: event.target.value });
-    }
-    changeyear(event) {
 
-        this.setState({ year: event.target.value });
-    }
-    ddhandleAddClick() {
-        this.setState({ width: "0px", addWidth: "0px" })
-
-    }
-    handleAddClick(value) {
-        this.setState({ editId: value, width: "1600px", editnewcomponent: 1, rankingId: value })
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings/' + value, { headers: { 'Authorization': this.state.mounted } })
-            .then(res => {
-
-                this.setState({
-
-                    agencyName: res.data.universityRanking.agencyName,
-                    rank: res.data.universityRanking.rank,
-                    year: res.data.universityRanking.year,
-                    certificate: res.data.universityRanking.certificate,
-                });
-                if (res.data.success === true) {
-                }
-                else {
-
-                }
-            })
-            .catch(error => {
-
-            });
-
-
-    }
-    handleAdd() {
-
-        this.setState({ addWidth: "1600px", addnewcomponent: 1 })
-
-    }
-    closeaddbox() {
-        this.setState({ width: "0px", addWidth: "0px" })
-
-
-    }
-    submitAddRanking(event) {
+    function handleFormSubmit(event) {
         event.preventDefault();
-        var yearNo = this.state.year.toString().length;
-        if (yearNo !== 4) {
-            this.setState({ yearMessage: "Please Insert Four Digit" })
-
+        setcertificateError("")
+        setshowCertificate("")
+        var fileName = certificate.path;
+        var fileExtension = fileName.split('.').pop();
+        if (certificate === "") {
+            setcertificateError("Certificate Is Required")
+        }
+        else if (fileExtension !== "jpeg" && fileExtension !== "jpg" && fileExtension !== "png"
+        ) {
+            setTimeout(() => setsubmitError(""), 3000);
+            setsubmitError(1)
         }
         else {
-
-
-            this.setState({ addWidth: "0px" })
-
+            setaddWidth(0)
+            setTable("false")
+            setmyloader("true")
             const obj1 = new FormData();
-            obj1.append("agencyName", this.state.agencyName);
-            obj1.append("rank", this.state.rank);
-            obj1.append("year", this.state.year);
-            obj1.append("certificate", this.state.certificate);
-
-
+            obj1.append("agencyName", agencyName);
+            obj1.append("rank", rank);
+            obj1.append("year", year);
+            obj1.append("certificate", certificate);
             const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
             fetch(url2, {
                 method: 'post',
-                headers: { 'Authorization': this.state.mounted },
+                headers: { 'Authorization': mounted },
                 body: obj1
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.setState({ successMessage: "Ranking Added", submitSuccess: 1, addWidth: "0px", yearMessage: "" });
-                    setTimeout(() =>
-                        this.setState({ submitSuccess: 0 })
-                        , 3000);
-
-
-                    const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-
-                    fetch(url3, {
-                        method: 'GET',
-                        headers: { 'Authorization': this.state.mounted }
+                    setmyloader("false")
+                    setsuccessMessage("Ranking Added")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    setagencyName("")
+                    setrank("")
+                    setyear("")
+                    setcertificate("")
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                    fetch(url1, {
+                        method: 'GET'
                     })
                         .then(response => response.json())
                         .then(data => {
-                            this.setState({ data: data.universityRankings })
-
+                            var myresults = data.universityRankings;
+                            if (Object.keys(myresults).length === 0) {
+                                setTable("true");
+                            }
+                            setdata(data.universityRankings)
                         })
-
                 })
         }
     }
-    renderElement() {
+    function handleEditClick(value) {
 
-        if (this.state.submitSuccess === 1)
-            return <div className="Show_success_message">
-                <strong>Success!</strong> {this.state.successMessage}
-            </div>;
-        return null;
+        seteditId(value);
+        setwidth("1600px");
+        seteditnewcomponent(1)
+
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings/' + value;
+        fetch(url1, {
+            method: 'GET',
+
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                var myresults = data.universityRanking;
+
+                setagencyName(myresults.agencyName)
+                setrank(myresults.rank)
+                setyear(myresults.year)
+                setcertificate(myresults.certificate)
+
+            })
+
+
+
+
+
     }
-    submitEditRanking(event) {
+    let handleEditSubmit = (event) => {
         event.preventDefault();
-        var yearNo = this.state.year.toString().length;
-        if (yearNo !== 4) {
-            this.setState({ yearMessage: "Please Insert Four Digit" })
+        setcertificateError("")
+        setshowCertificate("")
+      
+        if (certificate === "") {
+            setcertificateError("Certificate Is Required")
+        
 
         }
+
         else {
+          
+
+            setwidth(0)
+
+            setTable("false")
+            setmyloader("true")
             const obj1 = new FormData();
-            obj1.append("agencyName", this.state.agencyName);
-            obj1.append("rank", this.state.rank);
-            obj1.append("year", this.state.year);
-            obj1.append("certificate", this.state.certificate);
-            const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.rankingId;
+            obj1.append("agencyName", agencyName);
+            obj1.append("rank", rank);
+            obj1.append("year", year);
+            obj1.append("certificate", certificate);
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + editId;
+            // const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings';
             fetch(url2, {
                 method: 'put',
-                headers: { 'Authorization': this.state.mounted },
+                headers: { 'Authorization': mounted },
                 body: obj1
             })
                 .then(response => response.json())
                 .then(data => {
-                    this.setState({ successMessage: "Ranking Updated", submitSuccess: 1, width: "0px", yearMessage: "" });
-                    setTimeout(() =>
-                        this.setState({ submitSuccess: 0 })
-                        , 3000);
+                    setsuccessMessage("Ranking Updated")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
 
+                    setmyloader("false")
 
-                    const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-
-                    fetch(url3, {
-                        method: 'GET',
-                        headers: { 'Authorization': this.state.mounted }
+                    // setagencyName("")
+                    // setrank("")
+                    // setyear("")
+                    // setcertificate("")
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                    fetch(url1, {
+                        method: 'GET'
                     })
                         .then(response => response.json())
                         .then(data => {
-                            this.setState({ data: data.universityRankings })
-
+                            var myresults = data.universityRankings;
+                            if (Object.keys(myresults).length === 0) {
+                                setTable("true");
+                            }
+                            setdata(data.universityRankings)
                         })
-
                 })
-
-
-
-
-
-
         }
 
 
-
     }
-    handleDeleteClick(value) {
 
-        this.setState({ showSweetAlert: "1", deleteId: value })
+    function handleDeleteClick(value) {
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
-    render() {
-        return (
+    return (
+        <div>
+            <div className="card">
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
 
-
-
-
-            < div id="page-top" >
-                {this.renderElement()}
-                <div className="card">
-                    <a className="card-header" data-bs-toggle="collapse" href="#collapse7"><strong>7</strong>
-                        Ranking
-                    </a>
-                    <div id="collapse7" className="collapse" data-bs-parent="#accordion">
-                        <div className="container">
-                            {this.state.showSweetAlert === "1" ? <SweetAlert
-                                warning
-                                showCancel
-                                confirmBtnText="Yes, delete it!"
-                                confirmBtnBsStyle="danger"
-
-                                title="Are you sure?"
-                                onConfirm={(value) => {
-                                    this.setState({ showSweetAlert: "0" });
-
-
-
-
-
-                                    const url2 = process.env.REACT_APP_SERVER_URL + 'university/rankings/' + this.state.deleteId;
-                                    fetch(url2, {
-                                        method: 'delete',
-                                        headers: { 'Authorization': this.state.mounted },
-
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        setmyloader("true")
+                        axios.delete(process.env.REACT_APP_SERVER_URL + 'university/rankings/' + deleteId, { headers: { 'Authorization': mounted } })
+                            .then(function (res) {
+                                setmyloader("false")
+                                if (res.data.success === true) {
+                                    setsuccessMessage("Document deleted")
+                                    setTimeout(() => setsubmitSuccess(""), 3000);
+                                    setsubmitSuccess(1)
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                                    fetch(url1, {
+                                        method: 'GET'
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            this.setState({ successMessage: "Ranking Deleted", submitSuccess: 1, width: "0px" });
-                                            setTimeout(() =>
-                                                this.setState({ submitSuccess: 0 })
-                                                , 3000);
-
-
-
-                                            const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + this.state.universityId + '/rankings';
-
-                                            fetch(url3, {
-                                                method: 'GET',
-                                                headers: { 'Authorization': this.state.mounted }
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    this.setState({ data: data.universityRankings })
-
-                                                })
-
+                                            var myresults = data.universityRankings;
+                                            if (Object.keys(myresults).length === 0) {
+                                                setTable("true");
+                                            }
+                                            setdata(data.universityRankings)
                                         })
-
-
-
-                                }}
-                                onCancel={() =>
-
-                                    this.setState({ showSweetAlert: "0" })
-
                                 }
-                                focusCancelBtn
-                            >
+                            })
 
-                            </SweetAlert>
-                                : null
-                            }
-                            {/* <!-- Page Heading --> */}
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+                    }
+                    focusCancelBtn
+                >
+                </SweetAlert>
+                    : null
+                }
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse7"
 
+
+                ><strong>7</strong>
+                    Ranking
+                    {down === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+
+                        }} />
+                    }
+                </a>
+                <div id="collapse7" className="collapse" data-bs-parent="#accordion">
+                    <div className="card-body">
+                        {loader === "true" ?
+                            <Loader />
+                            : null}
+
+                        {submitSuccess === 1 ? <div className="Show_success_message">
+                            <strong></strong> {successMessage}
+                        </div> : null}
+
+
+                        <div className="container">
                             <div className="mt-4 mb-4">
                                 <div className='row'>
                                     <div className='col-md-6'><h5>Ranking</h5></div>
-                                    <div className='col-md-6 text-right'> <button type="button" onClick={() => this.handleAdd()} className="btn btn-outline-success"
-                                       data-toggle="tooltip" data-placement="right" title="Add New Ranking"
+                                    <div className='col-md-6 text-right'> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
+                                        data-toggle="tooltip" data-placement="right" title="Add New Ranking"
                                     ><span>
-                                      
-                                        <FontAwesomeIcon icon={faPlus} />
 
-                                    </span>Add New Ranking</button></div>
+                                            <FontAwesomeIcon icon={faPlus} />
+
+                                        </span>Add New Ranking</button></div>
                                 </div>
+                  
+                                <div className="card shadow mb-4">
 
+                                    {myTable === "true" ?
+                                        null
+                                        : <div className="table-responsive-sm">
+                                            <table className="table table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Agency Name</th>
+                                                        <th>Rank</th>
+                                                        <th>Year</th>
+                                                        <th>Certificate</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {data.map((element, index) => {
 
+                                                        return (
+                                                            <tr key={index}>
+                                                                <td> {index + 1}</td>
+                                                                <td> {element.agencyName}</td>
+                                                                <td> {element.rank}</td>
+                                                                <td> {element.year}</td>
+                                                                <td className='img-table'>  <img src={element.certificate} alt="certificate" /> </td>
+                                                                <td>
+                                                                    <button title="Edit" className="btn btn-success btn-sm " onClick={() => handleEditClick(element._id)}>
 
-                            </div>
+                                                                        <FontAwesomeIcon icon={faPen} />
 
+                                                                    </button>
+                                                                    <button title="Delete" className="btn btn-danger btn-sm vbtn" onClick={() => handleDeleteClick(element._id)}>
+                                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })}
+                                                </tbody>
+                                            </table>
+                                        </div>}
+                                </div>
+                   
+                                <div className="card-body course-sidenav" id="mySideAdd"
+                                    style={{ width: addWidth }}
+                                >
+                                    <div className="student-view">
+                                        <div className="row">
+                                            <div className="col-md-6">
 
-
-
-                            {/* <!-- Content Row --> */}
-
-                            <div className="row">
-
-                                {/* <!-- Area Chart --> */}
-                                <div className="col-xl-12 col-lg-7">
-                                    <div className="card shadow mb-4">
-                                        {/* <!-- Card Header - Dropdown --> */}
-                                        <div className="card shadow mb-4">
-                                            <div className="table-responsive-sm">
-                                                <table className="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-
-                                                            <th>Agency Name</th>
-                                                            <th>Rank</th>
-                                                            <th>Year</th>
-                                                            <th>Image</th>
-                                                            <th>Action</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-
-
-
-
-                                                        {this.state.data.map((object, i) => {
-
-                                                            return (
-
-                                                                <tr key={i}>
-
-                                                                    <td>{object.agencyName}</td>
-                                                                    <td>{object.rank}</td>
-                                                                    <td>{object.year}</td>
-                                                                    <td className='img-table'>  <img src={object.certificate} alt="passportback" /> </td>
-
-                                                                    <td>
-
-
-                                                                        <button title='Edit' className="btn btn btn-success btn-sm "
-                                                                            onClick={() => this.handleAddClick(object._id)}
-
-                                                                        >
-                                        <FontAwesomeIcon icon={faPen} />
-
-                                                                        </button>
-                                                                        <button title='Delete' className="btn btn-danger btn-sm vbtn" onClick={() => this.handleDeleteClick(object._id)}>
-                                                                         
-                                        <FontAwesomeIcon icon={faTrash} />
-                                                                            
-                                                                            </button>
-
-
-                                                                    </td>
-                                                                </tr>
-
-                                                            )
-                                                        })}
-                                                    </tbody>
-
-
-                                                </table>
+                                            </div>
+                                            <div className="col-md-6">
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
                                             </div>
                                         </div>
+                                        <div className="row mt-3">
+                                            {submitError === 1 ? <div className="Show_error_message">
+                                                <strong></strong> File extension not supported
+                                            </div> : null}
+                                            <div className="col-lg-12 col-12 ">
+                                                <h3>Add Ranking</h3>
+                                            </div>
 
-
-
-                                        {/* start for add ranking */}
-                                        <div className="card-body course-sidenav" id="mySideAdd"
-                                            style={{ width: this.state.addWidth }}>
-
-                                            <div className="student-view">
-                                                <div className="row">
-                                                    <div className="col-md-12">
-                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn"
-                                                            onClick={() => this.ddhandleAddClick()}
-
-                                                        >&times;</a>
-                                                    </div>
-                                                </div>
-                                                <div className='row mt-3'>
-                                                    <div className='col-md-12'>
-                                                        <h3>Add New Ranking</h3>
-                                                    </div>
-                                                </div>
-
-                                                <form onSubmit={this.submitAddRanking}>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
+                                            <form onSubmit={handleFormSubmit}>
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="col">
                                                             <div className="form-group ">
                                                                 <label htmlFor="fname" className="form-label">Agency Name <span class="req-star">*</span></label>
                                                                 <input required type="text" className="form-control" placeholder="Agency Name" name="agname"
-                                                                    value={this.state.agencyName} onChange={this.changeagencyName}
+                                                                    value={agencyName}
+                                                                    onChange={(e) => setagencyName(e.target.value)}
                                                                 />
-                                                                </div>
                                                             </div>
-                                                            <div className="col">
+                                                        </div>
+                                                        <div className="col">
                                                             <div className="form-group ">
                                                                 <label htmlFor="lname" className="form-label">Rank <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
-                                                                    value={this.state.rank} onChange={this.changerank}
+                                                                    value={rank}
+                                                                    onChange={(e) => setrank(e.target.value)}
                                                                 />
-                                                                </div>
                                                             </div>
-                                                            <div className="col">
+                                                        </div>
+                                                        <div className="col">
                                                             <div className="form-group ">
                                                                 <label htmlFor="lname" className="form-label">Year <span class="req-star">*</span></label>
                                                                 <input required type="number" className="form-control" placeholder="" name="rank"
-                                                                    value={this.state.year} onChange={this.changeyear}
+                                                                    value={year}
+                                                                    onChange={(e) => setyear(e.target.value)}
                                                                 />
-                                                                <span style={{ color: "red" }}> {this.state.yearMessage}</span>
 
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <DragAndDrop handleDrop={this.logoHandleDrop}>
-                                                                <section className="drag-and-drop-new-section">
-                                                                    <div className="containerx" id="drop_section">
-                                                                        <label htmlFor="files">
-                                                                            <div id="drag" className="drag-and-drop-new class_add">
-                                                                                <div className="row">
-                                                                                    <div className="col-md-12 email-con">
-                                                                                        <label htmlFor="uploadlogo">
-                                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
-                                                                                            <input type="file" onChange={this.onFileChangeLogo} id="uploadlogo" />
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <section className="file-upload">
-                                                                        <div className="container">
-                                                                            <div className="uploads">
-                                                                                <div className="drop_lower" id="gallery"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </section>
-                                                                </section>
-                                                            </DragAndDrop>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col-md-6"></div>
-                                                            <div className="col-md-6 text-right">
-
-                                                                <button type="submit"
-
-                                                                    className="btn btn-secondary" title='Add'>Add
-                                                                </button>
 
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-
-                                            </div>
-                                        </div>
-                                        {/* end for add ranking */}
-
-
-                                        <div className="card-body course-sidenav" id="mySideAdd"
-                                            style={{ width: this.state.width }}>
-
-                                            <div className="student-view">
-                                                <div className="row">
-                                                    <div className="col-md-12">
-                                                        <a title="Close"  data-toggle="tooltip" data-placement="right" className="closebtn"
-                                                            onClick={() => this.ddhandleAddClick()}
-                                                        >&times;</a>
                                                     </div>
                                                 </div>
-                                                <div className='row mt-3'>
-                                                    <div className='col-md-12'>
-                                                        <h3>Edit Ranking</h3>
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="form-group ">
+                                                            <label htmlFor="fname" className="form-label">Certificate <span class="req-star">*</span>
+
+                                                            </label>
+                                                            {/* <p>File extensions supported  .jpeg, .jpg, .png</p> */}
+                                                            <Dropzone onDrop={(acceptedFiles) => {
+                                                                setcertificate(acceptedFiles[0])
+                                                                setshowCertificate(acceptedFiles[0].path)
+
+                                                                setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
+                                                                    preview: URL.createObjectURL(file)
+
+                                                                })));
+                                                            }} name="heroImage" multiple={false}>
+                                                                {({ getRootProps, getInputProps }) => (
+                                                                    <div {...getRootProps({ className: 'ranking-dropzone' })}>
+                                                                        <input {...getInputProps()} />
+                                                                        <div style={{ fontSize: ".8rem" }}>
+                                                                            Upload/Drag & Drop here
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </Dropzone>
+
+                                                            <span style={{ color: "red" }}> {certificateError}</span>
+
+                                                            <p Class="selected-certificate"> {showCertificate}</p>
+                                                        </div>
                                                     </div>
                                                 </div>
 
-                                                {/* start for edit component */}
-                                                <form onSubmit={this.submitEditRanking}>
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="col-md-6"></div>
+                                                        <div className="col-md-6 text-right">
 
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                            <div className="form-group ">
-                                                                <label htmlFor="fname" className="form-label">Agency Name <span class="req-star">*</span></label>
-                                                                <input type="text" className="form-control" placeholder="" name="agname"
-                                                                    value={this.state.agencyName} onChange={this.changeagencyName}
-                                                                    required
-                                                                />
-                                                                </div>
-                                                            </div>
-                                                            <div className="col">
-                                                            <div className="form-group ">
-                                                                <label htmlFor="lname" className="form-label">Rank <span class="req-star">*</span></label>
-                                                                <input required type="number" className="form-control" placeholder="" name="rank"
-                                                                    value={this.state.rank} onChange={this.changerank}
-                                                                />
-                                                            </div>
-                                                            </div>
-                                                            <div className="col">
-                                                            <div className="form-group ">
-                                                                <label htmlFor="lname" className="form-label">Year <span class="req-star">*</span></label>
-                                                                <input required type="number" className="form-control" placeholder="" name="rank"
-                                                                    value={this.state.year} onChange={this.changeyear}
-                                                                />
-                                                                <span style={{ color: "red" }}> {this.state.yearMessage}</span>
+                                                            <button type="submit"
 
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <p>Certificate</p>
-                                                            <div>  <img src={this.state.certificate} alt="passportback" /></div>
-
-                                                            <DragAndDrop handleDrop={this.logoHandleDrop}>
-                                                                <section className="drag-and-drop-new-section">
-                                                                    <div className="containerx" id="drop_section">
-                                                                        <label htmlFor="files">
-                                                                            <div id="drag" className="drag-and-drop-new class_add">
-                                                                                <div className="row">
-                                                                                    <div className="col-md-12 email-con">
-                                                                                        <label htmlFor="uploadlogo">
-                                                                                            <span className="myuploadbutton">   upload/Drag & Drop Here</span>
-                                                                                            <input type="file" onChange={this.onFileChangeLogo} id="uploadlogo" />
-                                                                                        </label>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </label>
-
-                                                                    </div>
-                                                                    <section className="file-upload">
-                                                                        <div className="container">
-                                                                            <div className="uploads">
-                                                                                <div className="drop_lower" id="gallery"></div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </section>
-                                                                </section>
-                                                            </DragAndDrop>
-
+                                                                className="btn btn-secondary" title='Add'>Add
+                                                            </button>
 
                                                         </div>
                                                     </div>
-
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col-md-6"></div>
-                                                            <div className="col-md-6 text-right">
-
-                                                                <button type="submit"
-
-                                                                    className="btn btn-secondary" title='Add'>Add
-                                                                </button>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                                {/* end for edit compobent */}
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        {/* end for edit ranking */}
 
-
-
-
-
-                                        {/* end for edit */}
                                     </div>
                                 </div>
+                             
+                                <div className="card-body course-sidenav" id="mySidenav" style={{ width: width }}>
+
+                                    <div className="student-view">
+                                        <div className="row">
+                                            <div className="col-md-6">
+
+                                            </div>
+                                            <div className="col-md-6">
+                                                <a title="Close" data-toggle="tooltip" data-placement="right" className="closebtn" onClick={closeaddbox} >&times;</a>
+                                            </div>
+                                        </div>
+                                        <div className="row mt-3">
+                                            <div className="col-lg-12 col-12 ">
+                                                <h3>Edit Ranking</h3>
+                                            </div>
+                                            <form onSubmit={handleEditSubmit}>
+
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="col">
+                                                            <div className="form-group ">
+                                                                <label htmlFor="fname" className="form-label">Agency Name <span class="req-star">*</span></label>
+                                                                <input required type="text" className="form-control" placeholder="Agency Name" name="agname"
+                                                                    value={agencyName}
+                                                                    onChange={(e) => setagencyName(e.target.value)}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Rank <span class="req-star">*</span></label>
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
+                                                                    value={rank}
+                                                                    onChange={(e) => setrank(e.target.value)}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                        <div className="col">
+                                                            <div className="form-group ">
+                                                                <label htmlFor="lname" className="form-label">Year <span class="req-star">*</span></label>
+                                                                <input required type="number" className="form-control" placeholder="" name="rank"
+                                                                    value={year}
+                                                                    onChange={(e) => setyear(e.target.value)}
+                                                                />
 
 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="form-group ">
+
+                                                            <label htmlFor="fname" className="form-label">Certificate <span class="req-star">*</span>
+
+                                                            </label>
+
+                                                            {/* <p>File extensions supported  .jpeg, .jpg, .png</p> */}
+
+                                                            <img src={certificate} alt="certificate" class="edit-certificate" />
+                                                            <Dropzone onDrop={(acceptedFiles) => {
+
+                                                                setcertificate(acceptedFiles[0])
+                                                                setshowCertificate(acceptedFiles[0].path)
+
+                                                                setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
+                                                                    preview: URL.createObjectURL(file)
+
+                                                                })));
+                                                            }} name="heroImage" multiple={false}>
+                                                                {({ getRootProps, getInputProps }) => (
+                                                                    <div {...getRootProps({ className: 'ranking-dropzone' })}>
+                                                                        <input {...getInputProps()} />
+                                                                        <div style={{ fontSize: ".8rem" }}>
+                                                                            Upload/Drag & Drop here
+                                                                        </div>
+                                                                    </div>
+                                                                )}
+                                                            </Dropzone>
+
+                                                            <span style={{ color: "red" }}> {certificateError}</span>
+
+                                                            {/* <p Class="selected-certificate"> {certificate}</p> */}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="col-md-6"></div>
+                                                        <div className="col-md-6 text-right">
+
+                                                            <button type="submit"
+
+                                                                className="btn btn-secondary" title='Submit'>Submit
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                             
                             </div>
-                            {/* <!-- Card Body --> */}
-
                         </div>
                     </div>
                 </div>
+
             </div >
-        );
-    }
+        </div >
+    );
 }
 
-export default Ranking;
+export default Ranking

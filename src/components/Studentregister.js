@@ -10,6 +10,14 @@ import axios from 'axios';
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+  }
+  
+  const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
+
 export default function Studentregister() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -73,15 +81,19 @@ export default function Studentregister() {
                 <section className="Form-block">
                     <div className="container">
                         <div className="row">
-                            <div className="col-lg-12">
+                            <div className="col-lg-6">
+                                <img src={images["login.png"]} alt="login" />
+                                
+                                </div>
+                            <div className="col-lg-6">
                                 <div className="form-centerblock">
-                                    <p className="logo"><img src={logo} alt="logo" /></p>
-
+                                <h2>Students Register</h2>
+                                    
                                     <div className="from-start">
                                         <form onSubmit={handleSubmit}>
                                             <div className="mb-3 mt-3">
                                                 <label className="form-label">Name</label>
-                                                <input required type="text" className="form-control form-control-lg" id="uname"
+                                                <input required type="text" className="form-control" id="uname"
                                                     placeholder="Full Name" name="name"
                                                     value={name}
                                                     onChange={(e) => setName(e.target.value)}
@@ -90,7 +102,7 @@ export default function Studentregister() {
                                             <span style={{ color: "red" }}> {nameError}</span>
                                             <div className="mb-3 mt-3">
                                                 <label className="form-label">Email</label>
-                                                <input required type="email" className="form-control form-control-lg" id="email"
+                                                <input required type="email" className="form-control" id="email"
                                                     placeholder="Enter email" name="email"
 
                                                     value={email}
@@ -114,8 +126,6 @@ export default function Studentregister() {
                                         </form>
                                         <p>Already have an account? Click here to
                                         <Link to={'/Studentlogin'} className="" >
-
-
                                             Login</Link></p>
                                     </div>
 

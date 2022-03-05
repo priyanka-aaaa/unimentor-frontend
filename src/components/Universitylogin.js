@@ -2,6 +2,13 @@ import React, { useState, useEffect } from "react";
 import logo from '../img/logo.png';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+  }
+  
+  const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
 export default function Universitylogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -70,7 +77,15 @@ export default function Universitylogin() {
                         {submitSuccess === 1 ? <div className="Show_success_message">
                             <strong>Danger!</strong> {successMessage}
                         </div> : null}
-                        <div className="col-lg-12">
+
+                        <div className="col-lg-6">
+                        <div className="col-lg-6">
+                                <img src={images["login.png"]} alt="login" />
+                                
+                                </div>
+                        </div>
+                        <div className="col-lg-6">
+
                             <div className="form-centerblock">
                                 {/* <a className="logo"><img src={logo} /></a> */}
                                 <p className="logo"><img src={logo} alt="logo" /></p>
@@ -78,7 +93,7 @@ export default function Universitylogin() {
                                     <form onSubmit={handleSubmit}>
                                         <div className="mb-3 mt-3">
                                             <label className="form-label">Email</label>
-                                            <input type="email" className="form-control form-control-lg" id="email"
+                                            <input type="email" className="form-control " id="email"
                                                 placeholder="Enter email" name="email"
                                                 value={email}
                                                 onChange={(e) => setEmail(e.target.value)}
@@ -87,7 +102,7 @@ export default function Universitylogin() {
                                         <span style={{ color: "red" }}>{emailError}</span>
                                         <div className="mb-3 mt-3">
                                             <label className="form-label">Password</label>
-                                            <input type="text" className="form-control form-control-lg" id="uname"
+                                            <input type="text" className="form-control " id="uname"
                                                 placeholder="Password" name="name"
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}

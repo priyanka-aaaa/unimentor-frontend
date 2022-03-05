@@ -20,13 +20,14 @@ font-family: 'Roboto', sans-serif;
     background-color: #067393;
     color: #fff;
 }
-section.Form-block {
+/* section.Form-block {
     height: 100vh;
     display: grid;
     place-items: center;
-    /* background: url(../img/login-bg.jpg) no-repeat center; */
+    background: url(assets/images/bg/login-bg.png) no-repeat center;
     background-size: cover;
-}
+} */
+
 section.Form-block .logo {
     text-align: center;
     width: 100%;
@@ -34,7 +35,7 @@ section.Form-block .logo {
     margin-bottom: 20px;
 }
 .from-start {
-    width: 45%;
+    width: 100%;
     box-shadow: 0px 0px 30px #e9adad;
     margin: 0px auto;
     display: table;

@@ -353,7 +353,7 @@ const ImageVideo = () => {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label><b>Images(size 250*250px)</b></label><br />
+                                    <label><b>Images(size 600*600px)</b></label><br />
                                     <div className="documentUpload ant-upload-picture-card-wrapper" >
                                         <div className="ant-upload-list ant-upload-list-picture-card">
                                         </div>
@@ -401,7 +401,7 @@ const ImageVideo = () => {
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label><b>Videos(size 1920*377px)</b></label><br />
+                                    <label><b>Videos(size 600*600px)</b></label><br />
                                     <div className="documentUpload ant-upload-picture-card-wrapper" >
                                         <div className="ant-upload-list ant-upload-list-picture-card">
                                         </div>
