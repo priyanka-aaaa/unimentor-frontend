@@ -9,14 +9,15 @@ import axios from 'axios';
 
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
     return images
-  }
-  
-  const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
+}
+
+const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
 
 export default function Studentregister() {
     const [name, setName] = useState("");
@@ -25,6 +26,8 @@ export default function Studentregister() {
     const [nameError, setnameError] = useState("");
     const [emailError, setemailError] = useState("");
     const [phoneError, setphoneError] = useState("");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+
     function handleSubmit(event) {
         setnameError("");
         setemailError("");
@@ -53,7 +56,7 @@ export default function Studentregister() {
                 .then(function (res) {
 
                     if (res.data.success === true) {
-
+                        setshowSweetAlert("1")
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -74,6 +77,20 @@ export default function Studentregister() {
     }
     return (
         <div className="main-content">
+          
+            {showSweetAlert === "1" ?
+            
+            <SweetAlert
+            success
+            title="Success!"
+            onConfirm={(value) => {
+                setshowSweetAlert("0")
+            }}
+        >
+           You Are Register Successfully. Please Check Your Mail For Password
+        </SweetAlert>
+                : null
+            }
             {/*Full width header Start*/}
             <div className="full-width-header">
                 {/*Header Start*/}
@@ -83,12 +100,12 @@ export default function Studentregister() {
                         <div className="row">
                             <div className="col-lg-6">
                                 <img src={images["login.png"]} alt="login" />
-                                
-                                </div>
+
+                            </div>
                             <div className="col-lg-6">
                                 <div className="form-centerblock">
-                                <h2>Students Register</h2>
-                                    
+                                    <h2>Students Register</h2>
+
                                     <div className="from-start">
                                         <form onSubmit={handleSubmit}>
                                             <div className="mb-3 mt-3">
@@ -125,8 +142,8 @@ export default function Studentregister() {
                                             <button type="submit" className="btn btn-website">Register</button>
                                         </form>
                                         <p>Already have an account? Click here to
-                                        <Link to={'/Studentlogin'} className="" >
-                                            Login</Link></p>
+                                            <Link to={'/Studentlogin'} className="" >
+                                                Login</Link></p>
                                     </div>
 
                                 </div>

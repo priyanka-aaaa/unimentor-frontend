@@ -9,7 +9,7 @@ import axios from 'axios';
 
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 export default function Universityregister() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -19,6 +19,8 @@ export default function Universityregister() {
     const [phoneError, setphoneError] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+
     function handleSubmit(event) {
         setnameError("");
         setemailError("");
@@ -43,14 +45,11 @@ export default function Universityregister() {
                 phone: phone
 
             };
-            axios.post(process.env.REACT_APP_SERVER_URL+'university/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/register', obj)
                 .then(function (res) {
-             
-                    if (res.data.success === true) {
-                        setsuccessMessage("Register")
-                        setTimeout(() => setsubmitSuccess(""), 3000);
-                        setsubmitSuccess(1)
 
+                    if (res.data.success === true) {
+                        setshowSweetAlert("1")
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -64,22 +63,34 @@ export default function Universityregister() {
                     }
                 })
                 .catch(error => {
-                 
+
                 });
         }
 
     }
     return (
         <div>
-        {/* // <div className="main-content">
+            {/* // <div className="main-content">
         // {/*Full width header Start*/}
-       
+  {showSweetAlert === "1" ?
+            
+            <SweetAlert
+            success
+            title="Success!"
+            onConfirm={(value) => {
+                setshowSweetAlert("0")
+            }}
+        >
+           You Are Register Successfully. Please Check Your Mail For Password
+        </SweetAlert>
+                : null
+            }
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
-                    {submitSuccess === 1 ? <div className="Show_success_message">
-                <strong>Success!</strong> {successMessage}
-            </div> : null}
+                        {submitSuccess === 1 ? <div className="Show_success_message">
+                            <strong>Success!</strong> {successMessage}
+                        </div> : null}
                         <div className="col-lg-12">
                             <div className="form-centerblock">
                                 <h2>School Registration</h2>
@@ -119,11 +130,11 @@ export default function Universityregister() {
                                         </div>
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
-                                   <p> Already have an account? Click here to 
-                                    <Link to={'/Universitylogin'} className="" >                         
+                                    <p> Already have an account? Click here to
+                                        <Link to={'/Universitylogin'} className="" >
 
-                            Login</Link></p>
-                                    
+                                            Login</Link></p>
+
                                 </div>
 
                             </div>
@@ -132,7 +143,7 @@ export default function Universityregister() {
                 </div>
 
             </section>
-         
+
         </div>
 
     );

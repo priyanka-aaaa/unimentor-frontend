@@ -10,7 +10,7 @@ import axios from 'axios';
 
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
-
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 export default function AgentRegister() {
     const [name, setName] = useState("");
@@ -19,6 +19,7 @@ export default function AgentRegister() {
     const [nameError, setnameError] = useState("");
     const [emailError, setemailError] = useState("");
     const [phoneError, setphoneError] = useState("");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
     function handleSubmit(event) {
         setnameError("");
         setemailError("");
@@ -43,10 +44,11 @@ export default function AgentRegister() {
                 phone: phone
 
             };
-            axios.post('/agent/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL+'agent/register', obj)
                 .then(function (res) {
                  
                     if (res.data.success === true) {
+                        setshowSweetAlert("1")
                        
                         setName("");
                         setEmail("");
@@ -68,6 +70,19 @@ export default function AgentRegister() {
     }
     return (
        <div>
+               {showSweetAlert === "1" ?
+            
+            <SweetAlert
+            success
+            title="Success!"
+            onConfirm={(value) => {
+                setshowSweetAlert("0")
+            }}
+        >
+           You Are Register Successfully. Please Check Your Mail For Password
+        </SweetAlert>
+                : null
+            }
             <section className="Form-block">
                 <div className="container">
                     <div className="row">
