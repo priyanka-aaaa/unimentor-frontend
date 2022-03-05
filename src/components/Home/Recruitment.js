@@ -4,7 +4,7 @@ import Header from './Header'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
-import AgentRegister from '../AgentRegister'
+import AgentRegisterForm from '../AgentRegisterForm'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -106,8 +106,8 @@ function Recruitment(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <AgentRegister/>
-                  {/* <img src="assets/images/stu-banner.jpg" alt="" /> */}
+                  <AgentRegisterForm/>
+                
                 </div>
               </div>
               <div className="col-lg-6">
@@ -123,18 +123,10 @@ function Recruitment(props) {
                     <li>
                       <Link to={'/AgentRegister'} className="readon started" >
                         Partner With Us</Link></li>
-                    {/* <li>
-                                                  <div class="rs-videos">
-                                                      <div class="animate-border">
-                                                          <a class="popup-border popup-videos" href="https://www.youtube.com/watch?v=YLN1Argi7ik">
-                                                              <i class="fa fa-play"></i>
-                                                          </a>
-                                                      </div>
-                                                  </div> 
-                                              </li> */}
+               
                   </ul>
                 </div>
-                {/* Partner Start */}
+            
               </div>
             </div>
           </div>
