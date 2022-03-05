@@ -1,4 +1,8 @@
 import React from 'react';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+import {faFacebookF, faGoogle, faTwitter,faFacebook,
+  faPinterest,faInstagram} from "@fortawesome/free-brands-svg-icons";
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -23,16 +27,27 @@ function Footer(props) {
               </div>
               <ul className="footer-social md-mb-30">
                 <li>
-                  <a href="#" target="_blank"><span><i className="fa fa-facebook" /></span></a>
+                  <a href="#" target="_blank"><span>
+                  <FontAwesomeIcon icon={faFacebook} />
+                  </span></a>
                 </li>
                 <li>
-                  <a href="# " target="_blank"><span><i className="fa fa-twitter" /></span></a>
+                  <a href="# " target="_blank"><span>
+                 
+                    <FontAwesomeIcon icon={faTwitter} />
+                    </span></a>
                 </li>
                 <li>
-                  <a href="# " target="_blank"><span><i className="fa fa-pinterest-p" /></span></a>
+                  <a href="# " target="_blank"><span>
+                  <FontAwesomeIcon icon={faPinterest} />
+                    
+                 </span></a>
                 </li>
                 <li>
-                  <a href="# " target="_blank"><span><i className="fa fa-instagram" /></span></a>
+                  <a href="# " target="_blank"><span>
+                  <FontAwesomeIcon icon={faInstagram} />
+                    
+             </span></a>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp,faBars
 
+} from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
@@ -37,7 +41,9 @@ function Header(props) {
               </div>
               <div className="mobile-menu">
                 <a href="#" className="rs-menu-toggle rs-menu-toggle-close secondary">
-                  <i className="fa fa-bars" />
+                  {/* <i className="fa fa-bars" /> */}
+                  <FontAwesomeIcon icon={faBars} />
+
                 </a>
               </div>
             </div>

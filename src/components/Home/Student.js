@@ -672,7 +672,10 @@ function Student(props) {
           <div className="rs-carousel owl-carousel" data-loop="true" data-items={3} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={2} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={2} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={3} data-md-device-nav="false" data-md-device-dots="false">
             <div className="blog-item">
               <div className="image-wrap">
-                <a href="#"><img src="assets/images/canda.jpg" alt="" /></a>
+                <a href="#">
+                <img src={images["canda.jpg"]} alt="" />
+                  
+                 </a>
                 <ul className="post-categories">
                   <li><a href="#">Canada</a></li>
                 </ul>
@@ -685,7 +688,10 @@ function Student(props) {
             </div>
             <div className="blog-item">
               <div className="image-wrap">
-                <a href="#"><img src="assets/images/united-kingdom.jpg" alt="" /></a>
+                <a href="#">
+                <img src={images["united-kingdom.jpg"]} alt="" />
+             
+                  </a>
                 <ul className="post-categories">
                   <li><a href="#"> United Kingdom</a></li>
                 </ul>
@@ -698,7 +704,9 @@ function Student(props) {
             </div>
             <div className="blog-item">
               <div className="image-wrap">
-                <a href="#"><img src="assets/images/united-state.jpg" alt="" /></a>
+                <a href="#">
+                <img src={images["united-state.jpg"]} alt="" />
+              </a>
                 <ul className="post-categories">
                   <li><a href="#"> United States</a></li>
                 </ul>
@@ -711,7 +719,10 @@ function Student(props) {
             </div>
             <div className="blog-item">
               <div className="image-wrap">
-                <a href="#"><img src="assets/images/austrila.jpg" alt="" /></a>
+                <a href="#">
+                <img src={images["austrila.jpg"]} alt="" />
+              
+                  </a>
                 <ul className="post-categories">
                   <li><a href="#">Australia</a></li>
                 </ul>

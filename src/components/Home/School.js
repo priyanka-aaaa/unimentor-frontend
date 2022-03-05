@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen,faEye,faUser,faFile,faFileUpload,faUserTie,
-    faCheck,faPaperPlane,faGraduationCap
+    faCheck,faPaperPlane,faGraduationCap,faAngleRight
 
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -276,12 +276,15 @@ function School(props) {
                   <div className="desc">
                     <ul>
               
-                      <li><span><i className="fa fa-angle-right " /></span> Increase Student Diversity</li>
-                      <li><span><i className="fa fa-angle-right " /></span> Receive Quality Applications</li>
-                      <li><span><i className="fa fa-angle-right " /></span> Approved Recruiter Network</li>
-                      <li><span><i className="fa fa-angle-right " /></span> Document Verification</li>
-                      <li><span><i className="fa fa-angle-right " /></span> Promotional Channels</li>
-                      <li><span><i className="fa fa-angle-right " /></span> Applicant Matching</li>
+                      <li><span>
+                       
+                        <FontAwesomeIcon icon={faAngleRight} />
+                        </span> Increase Student Diversity</li>
+                      <li><span><FontAwesomeIcon icon={faAngleRight} /></span> Receive Quality Applications</li>
+                      <li><span><FontAwesomeIcon icon={faAngleRight} /></span> Approved Recruiter Network</li>
+                      <li><span><FontAwesomeIcon icon={faAngleRight} /></span> Document Verification</li>
+                      <li><span><FontAwesomeIcon icon={faAngleRight} /></span> Promotional Channels</li>
+                      <li><span><FontAwesomeIcon icon={faAngleRight} /></span> Applicant Matching</li>
                     </ul>
                   </div>
                 </div>
