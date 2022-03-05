@@ -292,7 +292,7 @@ export default function PrimaryInfo() {
                                             <select className="form-control" name="country" required
                                                 value={country}
                                                 onChange={(e) => handlecountry(e.target.value)}
-                                                required
+                                                
                                             >
                                                 <option
                                                     value="" >Select country</option>

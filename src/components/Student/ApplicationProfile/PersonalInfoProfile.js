@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Loader from '../../Home/Loader';
 
 import axios from 'axios';
 function PersonalInformationProfile(props) {
@@ -25,6 +26,8 @@ function PersonalInformationProfile(props) {
     const [countries, setcountries] = useState([{
         country_name: ""
     }]);
+    const [loader, setmyloader] = useState("false");
+
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -59,11 +62,7 @@ function PersonalInformationProfile(props) {
                     setrefusedVisa(student_personal.refusedVisa);
 
                 }
-                else {
-
-                }
-
-            })
+          })
             .catch(error => {
 
             });
@@ -73,8 +72,7 @@ function PersonalInformationProfile(props) {
                 if (res.data.success === true) {
                     setcountries(res.data.result);
                 }
-                else {
-                }
+               
             })
             .catch(error => {
             });
@@ -88,6 +86,8 @@ function handlemaritalStatus(value){
 
     function Personal_Information(event) {
         event.preventDefault();
+        setmyloader("true")
+
         const obj = {
             salutation: salutation,
             firstName: firstName,
@@ -111,6 +111,7 @@ function handlemaritalStatus(value){
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
 
                 if (res.data.success === true) {
 
@@ -139,6 +140,9 @@ function handlemaritalStatus(value){
     return (
 
         <div id="accordion">
+              {loader === "true" ?
+                <Loader />
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -160,10 +164,10 @@ function handlemaritalStatus(value){
                                                 <label htmlFor="state" className="form-label">Salutation
                                                     *</label>
                                                 <select type="text" className="form-control" id="salutation"
-                                                    value={salutation}
+                                                    value={salutation} required
                                                     onChange={(e) => setsalutation(e.target.value)}
                                                     placeholder="Salutation" name="salutation">
-                                                    <option >Select</option>
+                                                    <option value="">Select</option>
                                                     <option value="Ms.">Ms.</option>
                                                     <option value="Mr.">Mr.</option>
                                                     <option value="Mrs.">Mrs.</option>
@@ -181,7 +185,7 @@ function handlemaritalStatus(value){
                                                 <input
                                                     value={firstName}
                                                     onChange={(e) => setfirstName(e.target.value)}
-                                                    type="text" className="form-control" placeholder="First Name" name="fname" />
+                                                    type="text" className="form-control" placeholder="First Name" name="fname"  required/>
                                             </div>
                                             <div className="col">
                                                 <label htmlFor="Mname" className="form-label">Middle
@@ -197,7 +201,7 @@ function handlemaritalStatus(value){
                                                 <input
                                                     value={lastName}
                                                     onChange={(e) => setlastName(e.target.value)}
-                                                    type="text" className="form-control" placeholder="" name="lname" />
+                                                    type="text" className="form-control" placeholder="" name="lname" required/>
                                             </div>
                                         </div>
                                     </div>
