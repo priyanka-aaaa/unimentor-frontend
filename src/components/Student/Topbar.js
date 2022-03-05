@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp,faBars
 
+} from '@fortawesome/free-solid-svg-icons';
 class Topbar extends Component {
     constructor(props) {
         super(props);
@@ -42,7 +46,10 @@ class Topbar extends Component {
 
                     {/* <!-- Sidebar Toggle (Topbar) --> */}
                     <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
-                        <i className="fa fa-bars"></i>
+                        {/* <i className="fa fa-bars"></i> */}
+                        <FontAwesomeIcon icon={faBars} />
+
+
                     </button>
 
                     {/* <!-- Topbar Search --> */}
