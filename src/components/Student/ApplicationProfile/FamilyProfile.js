@@ -1,12 +1,13 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
+} from '@fortawesome/free-solid-svg-icons';
 const FamilyProfile = () => {
-
-
-
-
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -17,16 +18,18 @@ const FamilyProfile = () => {
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [loader, setmyloader] = useState("false");
+
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-       
+
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
         setMounted(mounted)
-     
+
         const url = process.env.REACT_APP_SERVER_URL + 'student/families';
         fetch(url, {
             method: 'GET',
@@ -68,42 +71,45 @@ const FamilyProfile = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
+        setmyloader("true")
 
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/families', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-                      
-                        
+                        setmyloader("false")
+
+
                         if (res.data.success === true) {
-                       
+                            setsuccessMessage("Family Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
-                        else {
-                     
-                        }
+
                     })
                     .catch(error => {
-                 
+
                     });
 
             }
             else {
-            
+
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'student/families/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
-                    
+                        setmyloader("false")
+
                         if (res.data.success === true) {
                             setsuccessMessage("Family Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
                         }
                         else {
-                        
+
                         }
                     })
                     .catch(error => {
-              
+
                     });
             }
         })
@@ -111,46 +117,50 @@ const FamilyProfile = () => {
 
     }
     function handleDelete(value) {
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'student/families/' + value
         fetch(url2, {
-            
+
             method: 'delete',
             headers: { 'Authorization': mounted }
 
         })
             .then(response => response.json())
             .then(data => {
-           
+
                 setsuccessMessage("Family Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-         
 
 
-           
+
+
                 const url = process.env.REACT_APP_SERVER_URL + 'student/families';
                 fetch(url, {
                     method: 'GET',
                     headers: {
                         'Authorization': mounted,
-        
+
                     }
                 })
                     .then(response => response.json())
                     .then(data => {
                         var myresults = data.studentFamilies;
                         if (Object.keys(myresults).length === 0) {
-        
+
                         }
                         else {
                             setFormValues(data.studentFamilies)
                         }
                     })
-             
+
             })
     }
     return (
         <div>
+            {loader === "true" ?
+                <Loader />
+                : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -166,7 +176,10 @@ const FamilyProfile = () => {
                             <div key={index}>
 
                                 {/* start */}
-                                <button className="btn deleteFamily" onClick={() => handleDelete(element._id)}><i className="fas fa-trash-alt"></i></button>
+                                <a className="btn deleteFamily" onClick={() => handleDelete(element._id)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+
+                                </a>
 
                                 <div className="mb-3">
                                     <div className="row">
@@ -177,20 +190,20 @@ const FamilyProfile = () => {
 
 
                                                 value={element.relationship || ""} onChange={e => handleChange(index, e)}
-
+                                                required
 
                                                 className="form-control" id="Relationship" name="relationship">
-                                                <option>Select</option>
-                                                <option>Father</option>
-                                                <option>Mother</option>
-                                                <option>Brother</option>
-                                                <option>Sister</option>
-                                                <option>Guardian</option>
-                                                <option >Sibling</option>
-                                                <option>Husband</option>
-                                                <option >Wife</option>
-                                                <option >Son</option>
-                                                <option>Daughter</option>
+                                                <option value="">Select</option>
+                                                <option value="Father">Father</option>
+                                                <option value="Mother">Mother</option>
+                                                <option value="Brother">Brother</option>
+                                                <option value="Sister">Sister</option>
+                                                <option value="Guardian">Guardian</option>
+                                                <option value="Sibling">Sibling</option>
+                                                <option value="Husband">Husband</option>
+                                                <option value="Wife">Wife</option>
+                                                <option value="Son">Son</option>
+                                                <option value="Daughter">Daughter</option>
                                             </select>
                                         </div>
                                     </div>
@@ -203,9 +216,9 @@ const FamilyProfile = () => {
                                                 *</label>
                                             <select
                                                 value={element.salutation || ""} onChange={e => handleChange(index, e)}
-
+                                                required
                                                 type="text" className="form-control" id="salutation" placeholder="Salutation" name="salutation">
-                                                <option >Select</option>
+                                                <option value="">Select</option>
                                                 <option value="Ms.">Ms.</option>
                                                 <option value="Mr.">Mr.</option>
                                                 <option value="Mrs.">Mrs.</option>
@@ -217,23 +230,23 @@ const FamilyProfile = () => {
                                                 *</label>
                                             <input
                                                 value={element.firstName || ""} onChange={e => handleChange(index, e)}
-
-                                                type="text" className="form-control" placeholder="First Name" name="fname" />
+                                                required
+                                                type="text" className="form-control" placeholder="First Name" name="firstName" />
                                         </div>
                                         <div className="col">
                                             <label htmlFor="Mname" className="form-label">Middle
                                                 Name</label>
                                             <input
                                                 value={element.middleName || ""} onChange={e => handleChange(index, e)}
-                                                type="text" className="form-control" placeholder="Middle Name" name="Mname" />
+                                                type="text" className="form-control" placeholder="Middle Name" name="middleName" />
                                         </div>
                                         <div className="col">
                                             <label htmlFor="lname" className="form-label">L-Name/
                                                 S-name/ Family Name *</label>
                                             <input
                                                 value={element.lastName || ""} onChange={e => handleChange(index, e)}
-
-                                                type="text" className="form-control" placeholder="" name="lname" />
+                                                required
+                                                type="text" className="form-control" placeholder="L-Name" name="lastName" />
                                         </div>
                                     </div>
                                 </div>
@@ -247,10 +260,16 @@ const FamilyProfile = () => {
                                                 className="form-control" id="email" name="email" placeholder="Email" /></div>
                                         </div>
                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                            <div className="form-group"><label htmlFor="2-qualification">Mobile </label><input
-                                                value={element.mobile || ""} onChange={e => handleChange(index, e)}
+                                            <div className="form-group"><label htmlFor="2-qualification">Mobile </label>
 
-                                                type="number" className="form-control" id="mobile" name="mobile" placeholder="Mobile" />
+
+
+                                                <input
+
+                                                    value={element.mobile || ""} onChange={e => handleChange(index, e)}
+
+                                                    type="number" className="form-control" name="mobile"
+                                                    placeholder="Mobile" />
                                             </div>
                                         </div>
                                     </div>
@@ -267,8 +286,8 @@ const FamilyProfile = () => {
                                             <div className="form-group"><label htmlFor="highest_qualification">Highest
                                                 Qualification </label><select
                                                     value={element.qualification || ""} onChange={e => handleChange(index, e)}
-                                                    className="form-control dropdown" id="highest_qualification" name="highest_qualification">
-                                                    <option >Select Qualification</option>
+                                                    className="form-control dropdown" id="highest_qualification" name="qualification">
+                                                    <option value="">Select Qualification</option>
                                                     <option value="Diploma">Diploma</option>
                                                     <option value="Secondary">Secondary</option>
                                                     <option value="Higher Secondary">Higher
@@ -283,13 +302,13 @@ const FamilyProfile = () => {
                                 </div>
                             </div>
                         ))}
-              
+
                         <div className="mb-3">
                             <div className="row">
                                 <div className="col-md-6"></div>
                                 <div className="col-md-6 text-right">
 
-                                    <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                    <button className="btn btn-success " type="button" onClick={() => addFormFields()}>Add New</button>
 
                                     <button type="submit" className="btn btn-secondary">Save
                                     </button>
