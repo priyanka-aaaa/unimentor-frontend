@@ -173,10 +173,10 @@ const EducationProfile = () => {
                                                     <select
                                                         value={element.highestEducation || ""} onChange={e => handleChange(index, e)}
 
-
+required
 
                                                         className="form-control" id="Highest Level of Education" name="highestEducation">
-                                                        <option >Select</option>
+                                                        <option value=''>Select</option>
                                                         <option value="Secondary">Secondary</option>
                                                         <option value="Undergraduate Degree">Undergraduate Degree</option>
                                                         <option value="Postgraduate Degree">Postgraduate Degree</option>
