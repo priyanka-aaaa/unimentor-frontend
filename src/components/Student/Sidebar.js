@@ -12,7 +12,8 @@ class Sidebar extends Component {
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
                     {/* <!-- Sidebar - Brand --> */}
-                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="
+                    #">
                         {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
 <i className="fas fa-graduation-cap"></i>
 </div> --> */}
@@ -68,7 +69,7 @@ class Sidebar extends Component {
 
                     {/* <!-- Sidebar Toggler (Sidebar) --> */}
                     <div className="text-center d-none d-md-inline">
-                        <button className="rounded-circle border-0" id="sidebarToggle"></button>
+                        <button className="rounded-circle border-0" id="sidebarToggle" > </button>
                     </div>
 
                 </ul>

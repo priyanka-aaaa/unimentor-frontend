@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,6 +20,10 @@ const WorkExperienceProfile = () => {
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [loader, setmyloader] = useState("false");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+
+
+    const [deleteId, setdeleteId] = useState("");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -168,44 +173,9 @@ const WorkExperienceProfile = () => {
         setFormValues(newFormValues);
 
     }
-    function handleDelete(value) {
-        const url2 = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + value
-
-        fetch(url2, {
-            method: 'delete',
-            headers: { 'Authorization': mounted }
-
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                setsuccessMessage("Family Deleted")
-                setTimeout(() => setsubmitSuccess(""), 3000);
-                setsubmitSuccess(1)
-
-
-
-
-                const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': mounted,
-
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        var myresults = data.studentExperience;
-                        if (Object.keys(myresults).length === 0) {
-
-                        }
-                        else {
-                            setFormValues(data.studentExperience)
-                        }
-                    })
-
-            })
+    function handleDeleteClick(value) {
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
 
     return (
@@ -216,6 +186,63 @@ const WorkExperienceProfile = () => {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                            warning
+                            showCancel
+                            confirmBtnText="Yes, delete it!"
+                            confirmBtnBsStyle="danger"
+
+                            title="Are you sure?"
+                            onConfirm={(value) => {
+                                setshowSweetAlert("0");
+                                setmyloader("true")
+
+                                axios.delete(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + deleteId, { headers: { 'Authorization': mounted } })
+                                    .then(function (res) {
+                                        setmyloader("false")
+
+                                        if (res.data.success === true) {
+                                            setsuccessMessage("Recommendation Deleted")
+                                            setTimeout(() => setsubmitSuccess(""), 3000);
+                                            setsubmitSuccess(1)
+
+                                            const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
+                                            fetch(url, {
+                                                method: 'GET',
+                                                headers: {
+                                                    'Authorization': mounted,
+                                    
+                                                }
+                                            })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    var myresults = data.studentExperience;
+                                                    if (Object.keys(myresults).length === 0) {
+                                    
+                                                    }
+                                                    else {
+                                                        setFormValues(data.studentExperience)
+                                                    }
+                                                })
+
+                                        }
+                                        else {
+
+                                        }
+                                    })
+                                    .catch(error => {
+
+                                    });
+                            }}
+                            onCancel={() =>
+                                setshowSweetAlert("0")
+
+                            }
+                            focusCancelBtn
+                        >
+                        </SweetAlert>
+                            : null
+                        }
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>8</strong>
                     Recommendation
@@ -226,7 +253,7 @@ const WorkExperienceProfile = () => {
 
                         {formValues.map((element, index) => (
                             <div key={index}>
-                                <a onClick={() => handleDelete(element._id)}>
+                                <a onClick={() => handleDeleteClick(element._id)}>
                                     <FontAwesomeIcon icon={faTrash} />
 
 
