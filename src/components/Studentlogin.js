@@ -95,7 +95,7 @@ export default function Studentlogin() {
                                                 <button type="submit" className="btn btn-website">Login</button>
                                             </form>
                                             <p>Don't have an account? Click here to
-                                        <Link to={'/Studentregister'} className="" >
+                                        <Link to={'/Studentregister'} className="" href="#">
                                             Register</Link></p>
                                              
                                         </div>
