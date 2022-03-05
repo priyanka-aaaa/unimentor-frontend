@@ -5,7 +5,7 @@ import StudentRegisterForm from '../StudentRegisterForm'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
-import Studentregister2 from '../Studentregister2'
+
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
