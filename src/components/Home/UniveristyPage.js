@@ -440,7 +440,7 @@ export default function AllUniversity() {
                                                         <h2 className="cta_subtext__1eM4M">See personalized recommendations basis your
                                                             profile and preferences from RMIT University & similar universities.
                                                         </h2>
-                                                        <a href="index.html#about" className="cta_bluetext__2B7BK">Find courses best-fit
+                                                        <a href="#" className="cta_bluetext__2B7BK">Find courses best-fit
                                                             for you</a>
                                                     </div>
                                                     <div className="col-3"><img className="cta_image__3Oih8" src={images["Group1169.webp"]} alt="" /></div>
@@ -460,12 +460,12 @@ export default function AllUniversity() {
 
                                                             <h5>   <a
 
-                                                                data-bs-toggle="collapse" href={"#collapse" + index}
+                                                                data-bs-toggle="collapse" href={"#collapseCourse" + index}
                                                             >
                                                                 {element.courseName || ""}
                                                             </a>
                                                             </h5>
-                                                            <div id={"collapse" + index} className="collapse" data-bs-parent="#accordion">
+                                                            <div id={"collapseCourse" + index} className="collapse" data-bs-parent="#accordion">
                                                                 <div className="blog-meta">
 
                                                                     <h5> Duration</h5>
@@ -648,8 +648,23 @@ export default function AllUniversity() {
                                                         {imageVideoValues.map((element, index) => (
                                                             <div className="col-md-6" key={index}>
                                                                 <div className="blog-img">
-                                                                    <a href="blog-details.html"><img
-                                                                        src={element.link || ""} alt="" /></a>
+
+                                                                    {element.type === "image" ?
+                                                                     <a href="blog-details.html">
+                                                                        <img  src={element.link} alt="image" />
+                                                                       </a>
+                                                                        :
+                                                                        <a href="blog-details.html">
+                                                                    
+
+                                                                        <video width="320" height="240" controls>
+                                                                            <source src={element.link} type="video/ogg" />
+                                                                        </video>
+                                                                        </a>
+                                                                    }
+                                                                 
+
+
                                                                 </div>
                                                             </div>
                                                         ))}
@@ -664,7 +679,7 @@ export default function AllUniversity() {
                                         <div className="col-lg-12">
                                             <div className="blog-item" id="courses">
                                                 <div className="blog-content">
-                                                    <h3 className="blog-title"><a href="#">Browse Courses</a></h3>
+                                                    <h3 className="blog-title">Browse Courses</h3>
 
 
 
