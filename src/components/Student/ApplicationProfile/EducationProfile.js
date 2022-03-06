@@ -82,15 +82,38 @@ const EducationProfile = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
+        setmyloader("true")
 
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/educations', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
 
+                        setmyloader("false")
 
                         if (res.data.success === true) {
+                            setsuccessMessage("Work Experience Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
 
+                            fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': mounted,
+
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.studentEducations;
+                                    if (Object.keys(myresults).length === 0) {
+
+                                    }
+                                    else {
+                                        setFormValues(data.studentEducations)
+                                    }
+                                })
                         }
 
                     })
@@ -105,11 +128,31 @@ const EducationProfile = () => {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'student/educations/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
+                        setmyloader("false")
 
                         if (res.data.success === true) {
-                            setsuccessMessage("Family Updated")
+                            setsuccessMessage("Education Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
+
+                            fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': mounted,
+
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.studentEducations;
+                                    if (Object.keys(myresults).length === 0) {
+
+                                    }
+                                    else {
+                                        setFormValues(data.studentEducations)
+                                    }
+                                })
                         }
                         else {
 
@@ -134,7 +177,7 @@ const EducationProfile = () => {
         newFormValues[i]["status"] = myvalue;
         setFormValues(newFormValues);
     }
-    
+
     return (
         <div>
             {loader === "true" ?
