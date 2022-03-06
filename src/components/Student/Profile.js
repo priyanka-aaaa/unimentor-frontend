@@ -8,7 +8,7 @@ export default function Studentregister() {
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
-    
+
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
     const [location, setlocation] = useState("");
@@ -20,11 +20,44 @@ export default function Studentregister() {
     const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
-    
+
     useEffect(() => {
-       
+
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
+        var myurl = process.env.REACT_APP_SERVER_URL;
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                
+
+                if (res.data.success === true) {
+                   
+                    var student_personal = res.data.studentPersonalDetails;
+
+                    console.log("student_personal");
+                    console.log(student_personal);
+                    setaboutMe(student_personal.aboutMe);
+
+                    setemail(student_personal.email);
+                    setlocation(student_personal.location);
+                    setstate(student_personal.state);
+                    setcity(student_personal.city);
+             
+                    setdateOfBirth(student_personal.dateOfBirth);
+                    setcountry(student_personal.countryCode);
+                    setmobile(student_personal.phone);
+                 
+                    // setpicture(student_personal.picture);
+
+
+
+                }
+            })
+            .catch(error => {
+
+            });
+
     }, [])
     function change_password(event) {
         setconfirmpasswordError("");
@@ -38,16 +71,16 @@ export default function Studentregister() {
             };
             axios.post('/student/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-                    
+
                     if (res.data.success === true) {
-                      
+
                     }
                     else {
-                       
+
                     }
                 })
                 .catch(error => {
-               
+
                 });
         }
     }
@@ -68,18 +101,18 @@ export default function Studentregister() {
             phone: mobile,
             gender: gender
         };
-        axios.put('/student/personalDetails', obj, { headers: { 'Authorization': mounted } })
+        axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-          
+
                 if (res.data.success === true) {
-             
+
                 }
                 else {
-          
+
                 }
             })
             .catch(error => {
-             
+
             });
 
     }
@@ -88,28 +121,22 @@ export default function Studentregister() {
         <div id="page-top">
 
 
-            {/* <!-- Page Wrapper --> */}
+
             <div id="wrapper">
                 <Sidebar />
-                {/* there will be come sidebar */}
 
-                {/* <!-- Content Wrapper --> */}
                 <div id="content-wrapper" className="d-flex flex-column">
 
-                    {/* <!-- Main Content --> */}
+
                     <div id="content">
 
-                        {/* topbar will be come there */}
                         <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
-                        {/* profile content come here */}
+
                         <div className="container">
 
-                            {/* <!-- Page Heading --> */}
+
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Profile</h1>
+                                <h1 className="h3 mb-0 text-gray-800">Personal Details</h1>
 
 
                             </div>
@@ -122,7 +149,7 @@ export default function Studentregister() {
                                 {/* <!-- Area Chart --> */}
                                 <div className="col-xl-12 col-lg-7">
                                     <div className="card shadow mb-4">
-                                        {/* <!-- Card Header - Dropdown --> */}
+
                                         <div className="card shadow mb-4">
                                             <div id="accordion">
                                                 <div className="card">
@@ -172,7 +199,7 @@ export default function Studentregister() {
                                                                                 <label htmlFor="fname" className="form-label">First
                                                                                     Name</label>
                                                                                 <input
-                                                                                  
+
                                                                                     type="text" className="form-control"
                                                                                     placeholder="" name="fname" />
                                                                             </div>
@@ -180,7 +207,7 @@ export default function Studentregister() {
                                                                                 <label htmlFor="lname" className="form-label">Last
                                                                                     Name</label>
                                                                                 <input type="text"
-                                                                                 
+
                                                                                     className="form-control"
                                                                                     placeholder="" name="lname" />
                                                                             </div>
@@ -192,10 +219,13 @@ export default function Studentregister() {
                                                                                 <label htmlFor="email"
                                                                                     className="form-label">Email</label>
                                                                                 <input type="email"
+                                                                                readonly
                                                                                     value={email}
                                                                                     onChange={(e) => setemail(e.target.value)}
                                                                                     className="form-control"
-                                                                                    id="email" placeholder="" name="email" />
+                                                                                    id="email" placeholder="" name="email"
+                                                                                    
+                                                                                    />
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="clocation"
@@ -217,7 +247,7 @@ export default function Studentregister() {
                                                                                     value={state}
                                                                                     onChange={(e) => setstate(e.target.value)}
                                                                                     name="state" className="form-control"
-                                                                                    type="input" id="state"  />
+                                                                                    type="input" id="state" />
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="city"
@@ -226,7 +256,7 @@ export default function Studentregister() {
                                                                                     value={city}
                                                                                     onChange={(e) => setcity(e.target.value)}
                                                                                     name="city" className="form-control"
-                                                                                    type="input" id="city"  />
+                                                                                    type="input" id="city" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -285,7 +315,7 @@ export default function Studentregister() {
                                                                                     value={mobile}
                                                                                     onChange={(e) => setmobile(e.target.value)}
                                                                                     name="mobile" className="form-control"
-                                                                                    type="tel" id="mobile" value="7355336105" />
+                                                                                    type="tel" id="mobile" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -350,53 +380,7 @@ export default function Studentregister() {
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div className="card">
-                                                    <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo">
-                                                        Account Settings
 
-                                                    </a>
-                                                    <div id="collapseTwo" className="collapse" data-bs-parent="#accordion">
-                                                        <div className="card-body">
-                                                            <div className="form-block">
-                                                                <div className="col-sm-12">
-                                                                    <h3 className="h-title">Change Password</h3>
-                                                                    <p className="p-desc">Choose a unique password to protect your account</p>
-                                                                    <div className="row">
-                                                                        <div className="col-sm-12">
-                                                                            <hr />
-                                                                            <form onSubmit={change_password}>
-                                                                                <div className="row">
-                                                                                    <div className="col-sm-12">
-                                                                                        <div className="form-group">
-                                                                                            <label htmlFor="password">Enter Password</label>
-                                                                                            <input required=""
-                                                                                                value={password}
-                                                                                                onChange={(e) => setpassword(e.target.value)}
-                                                                                                name="password" type="password" id="password" className="form-control" />
-                                                                                        </div>
-                                                                                    </div>
-                                                                                    <div className="col-sm-12">
-                                                                                        <div className="form-group">
-                                                                                            <label htmlFor="c_password">Confirm Password</label>
-                                                                                            <input
-                                                                                                value={confirmpassword}
-                                                                                                onChange={(e) => setconfirmpassword(e.target.value)}
-                                                                                                required="" name="c_password" type="password" id="c_password" className="form-control" />
-
-                                                                                        </div>
-                                                                                        <span style={{ color: "red" }}> {confirmpasswordError}</span>
-                                                                                    </div>
-                                                                                    <div className="col-sm-12 text-danger"></div>
-                                                                                    <div className="col-sm-12"><button type="submit" className="btn btn-success">Save</button></div>
-                                                                                </div>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
 
                                             </div>
                                         </div>
@@ -418,7 +402,7 @@ export default function Studentregister() {
                     {/* <!-- End of Main Content --> */}
 
                     {/* <!-- Footer --> */}
-     
+
                     {/* <!-- End of Footer --> */}
 
                 </div>
