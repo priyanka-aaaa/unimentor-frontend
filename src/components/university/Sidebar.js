@@ -18,8 +18,11 @@ function Sidebar(props) {
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
             >
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                    <div className="sidebar-brand-text mx-3"> <a href="/">
-                        <img src={images["dash-logo.png"]} alt="" /></a></div>
+                    <div className="sidebar-brand-text mx-3">
+                    <Link to={'/UniversityDashboard'}  >
+                    <img src={images["dash-logo.png"]} alt="" />
+                       </Link>
+                      </div>
                 </a>
                 <hr className="sidebar-divider my-0" />
                 <li className="nav-item" data-toggle="tooltip" data-placement="right" title="University">
