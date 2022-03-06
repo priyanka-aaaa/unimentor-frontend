@@ -11250,27 +11250,8 @@ section.Form-block {
 /* ------------------------------------
     38. Preloader CSS
 ---------------------------------------*/
-.loader {
-  background-color: #ffffff;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  margin-top: 0;
-  top: 0;
-  z-index: 999999;
-}
-.loader .loader-container {
-  width: 50px;
-  height: 50px;
-  background-color: #097594;
-  border-radius: 100%;
-  -webkit-animation: sk-scaleout 1s infinite ease-in-out;
-  animation: sk-scaleout 1s infinite ease-in-out;
-  position: absolute;
-  top: 40%;
-  left: 15%;
-  transform: translate(-50%, -50%);
-}
+
+
 .loader.orange-loader .loader-container {
   background: #ff7045;
 }
@@ -11763,6 +11744,20 @@ section.Form-block {
   position: absolute;
   top: 40%;
   left: 17%;
+  z-index: 2;
+  transform: translate(-50%,-50%);
+}
+.loader-frontend {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #FF9300;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 48%;
   z-index: 2;
   transform: translate(-50%,-50%);
 }

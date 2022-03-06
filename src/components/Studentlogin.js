@@ -3,7 +3,10 @@ import logo from '../img/logo.png';
 import axios from 'axios';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
+import LoaderFrontend from './Home/LoaderFrontend';
+
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
+
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -18,6 +21,8 @@ export default function Studentlogin() {
     const [redirectToReferrer, setredirectToReferrer] = useState(false);
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
+    const [loader, setmyloader] = useState("false");
+
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
@@ -29,12 +34,16 @@ export default function Studentlogin() {
             setPassword("Please enter password");
         }
         else {
+            setmyloader("true")
+
             const obj = {
                 email: email,
                 password: password
             };
             axios.post(process.env.REACT_APP_SERVER_URL + 'student/login', obj)
                 .then(result => {
+                    setmyloader("false")
+
                     let responseJson = result;
 
                     if (responseJson.data.success === true) {
@@ -56,6 +65,9 @@ export default function Studentlogin() {
     }
     return (
         <div>
+               {loader === "true" ?
+                <LoaderFrontend />
+                : null}
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -85,7 +97,7 @@ export default function Studentlogin() {
                                                 <span style={{ color: "red" }}>{emailError}</span>
                                                 <div className="mb-3 mt-3">
                                                     <label className="form-label">Password</label>
-                                                    <input type="text" className="form-control form-control-lg" id="uname"
+                                                    <input type="password" className="form-control form-control-lg" id="uname"
                                                         placeholder="Password" name="name"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
