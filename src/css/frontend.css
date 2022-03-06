@@ -10210,32 +10210,8 @@ p.selected-certificate {
   font-weight: 600;
   margin-right: 10px;
 }
-a.card-header.card-link:before {
-  content: "\f078";
-  color: #000;
-  position: absolute;
-  font-family: "Font Awesome";
-  /* font-weight: 900; */
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  right: 20px;
-}
-a.card-header.card-link.collapsed:after {
-  content: "\f077";
-  color: #000;
-  position: absolute;
-  font-family: "Font Awesome";
-  /* font-weight: 900; */
-  display: inline-block;
-  font: normal normal normal 14px/1 FontAwesome;
-  font-size: inherit;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-  right: 20px;
-}
+
+
 a.card-header.card-link.collapsed:before {
   display: none;
 }

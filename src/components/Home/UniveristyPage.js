@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
-    faEnvelope, faGlobe, faCheckCircle
+    faEnvelope, faGlobe, faCheckCircle,faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -66,7 +66,8 @@ export default function AllUniversity() {
 
     const [rankingValues, setrankingValues] = useState([])
     const [imageVideoValues, setimageVideoValues] = useState([])
-
+    const [down, setdown] = useState("1");
+    const [up, setup] = useState("0");
     useEffect(() => {
         if (localStorage.getItem("universityData")) {
             var a = localStorage.getItem('universityData');
@@ -211,10 +212,20 @@ export default function AllUniversity() {
     var divStyle = {
         backgroundImage: 'url(' + universityImageValues.coverPic + ')'
     }
-
+    function handleClick() {
+        if (down === "1") {
+            setdown("0");
+            setup("1")
+        }
+        else {
+            setdown("1");
+            setup("0")
+        }
+    }
 
     return (
         <div>
+             
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -756,10 +767,44 @@ export default function AllUniversity() {
                                                         <div key={index}>
 
                                                             <div className="card">
-                                                                <a className="card-header  card-link"
+                                                                <a className="card-header  card-link" onClick={() => handleClick()}
 
                                                                     data-bs-toggle="collapse" href={"#collapse" + index}
                                                                 >
+                                                                      {down === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleDown} style={{
+
+
+                            color: "#000",
+                            position: "absolute",
+                          
+                          
+                            display: "inline-block",
+                          
+                            fontSize: "inherit",
+                            textRendering: "auto",
+                          
+                            right: "20px"
+
+
+
+                          
+
+                        }} />
+                    }
+                    {up === "0" ?
+                        null
+                        :
+                        <FontAwesomeIcon icon={faAngleUp} style={{
+                            position: "absolute",
+                            fontWeight: 900,
+                            fontFamily: 'Font Awesome 5 Free',
+                            marginRight: "0.1rem",
+                            right: "16px",
+                        }} />
+                    }
                                                                     {element.question || ""}
                                                                 </a>
                                                                 <div id={"collapse" + index} className="collapse" data-bs-parent="#accordion">
