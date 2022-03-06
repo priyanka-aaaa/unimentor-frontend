@@ -31,6 +31,8 @@ class Topbar extends Component {
             var user_email = "";
             this.setState({ redirectToReferrer: true });
         }
+
+      
     }
 
 
