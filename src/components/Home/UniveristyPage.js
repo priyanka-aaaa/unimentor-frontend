@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
-    faEnvelope, faGlobe, faCheckCircle,faAngleDown, faAngleUp
+    faEnvelope, faGlobe, faCheckCircle, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
@@ -152,10 +152,10 @@ export default function AllUniversity() {
             .then(data => {
                 var myresults = data.universityPrimaryInformation;
                 if (Object.keys(myresults).length === 0) {
-                setFormPrimaryInformationValues(data.universityPrimaryInformation)
-                 
+                    setFormPrimaryInformationValues(data.universityPrimaryInformation)
+
                 }
-             
+
 
             })
 
@@ -225,7 +225,7 @@ export default function AllUniversity() {
 
     return (
         <div>
-             
+
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -294,9 +294,9 @@ export default function AllUniversity() {
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
-                                                    <FontAwesomeIcon icon={faPhone} />
+                                                        <FontAwesomeIcon icon={faPhone} />
 
-                                                      
+
                                                         Call Now
                                                     </span>
                                                     <a href="tel:4401915153000">{FormPrimaryInformationValues.phone}</a>
@@ -361,7 +361,7 @@ export default function AllUniversity() {
                                                     <li><a href="#ranking">Ranking</a></li>
                                                     <li><a href="#courses-fees">Courses & Fees</a></li>
                                                     <li><a href="#admission-requirements">Admissions Requirements </a></li>
-                                                    
+
                                                     <li><a href="#images-video"> Images/Video</a></li>
                                                     <li><a href="#courses"> Browse Courses</a></li>
 
@@ -757,11 +757,11 @@ export default function AllUniversity() {
 
                                         <div className="col-lg-12 mb-3 mt-5">
 
-                                            {/* start for fetching faq */}
+
 
                                             <div id="accordion" className="blog-item">
                                                 <div className=" blog-content">
-                                                    <h3 className="blog-title"><a href="#">FAQ</a></h3>
+                                                    <h3 className="blog-title">FAQ</h3>
                                                     {formValues.map((element, index) => (
 
                                                         <div key={index}>
@@ -769,45 +769,45 @@ export default function AllUniversity() {
                                                             <div className="card">
                                                                 <a className="card-header  card-link" onClick={() => handleClick()}
 
-                                                                    data-bs-toggle="collapse" href={"#collapse" + index}
+                                                                    data-bs-toggle="collapse" href={"#collapsefaq" + index}
                                                                 >
-                                                                      {down === "0" ?
-                        null
-                        :
-                        <FontAwesomeIcon icon={faAngleDown} style={{
+                                                                    {down === "0" ?
+                                                                        null
+                                                                        :
+                                                                        <FontAwesomeIcon icon={faAngleDown} style={{
 
 
-                            color: "#000",
-                            position: "absolute",
-                          
-                          
-                            display: "inline-block",
-                          
-                            fontSize: "inherit",
-                            textRendering: "auto",
-                          
-                            right: "20px"
+                                                                            color: "#000",
+                                                                            position: "absolute",
+
+
+                                                                            display: "inline-block",
+
+                                                                            fontSize: "inherit",
+                                                                            textRendering: "auto",
+
+                                                                            right: "20px"
 
 
 
-                          
 
-                        }} />
-                    }
-                    {up === "0" ?
-                        null
-                        :
-                        <FontAwesomeIcon icon={faAngleUp} style={{
-                            position: "absolute",
-                            fontWeight: 900,
-                            fontFamily: 'Font Awesome 5 Free',
-                            marginRight: "0.1rem",
-                            right: "16px",
-                        }} />
-                    }
+
+                                                                        }} />
+                                                                    }
+                                                                    {up === "0" ?
+                                                                        null
+                                                                        :
+                                                                        <FontAwesomeIcon icon={faAngleUp} style={{
+                                                                            position: "absolute",
+                                                                            fontWeight: 900,
+                                                                            fontFamily: 'Font Awesome 5 Free',
+                                                                            marginRight: "0.1rem",
+                                                                            right: "16px",
+                                                                        }} />
+                                                                    }
                                                                     {element.question || ""}
                                                                 </a>
-                                                                <div id={"collapse" + index} className="collapse" data-bs-parent="#accordion">
+                                                                <div id={"collapsefaq" + index} className="collapse" data-bs-parent="#accordion">
                                                                     <div className="card-body">
                                                                         {element.answer || ""}
                                                                     </div>
@@ -820,7 +820,7 @@ export default function AllUniversity() {
                                                 </div>
                                             </div>
 
-                                            {/* end for fetching faq */}
+
                                         </div>
 
 
