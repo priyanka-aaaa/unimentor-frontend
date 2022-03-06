@@ -3,13 +3,10 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
-import Footer from './Footer';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp , 
-  
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp,
+
 } from '@fortawesome/free-solid-svg-icons';
 export default function ApplicationStep() {
 
@@ -20,18 +17,18 @@ export default function ApplicationStep() {
     const [universityApplication, setuniversityApplication] = useState(
         []
     )
- const [data, setdata] = useState([]);
+    const [data, setdata] = useState([]);
     const [mounted, setMounted] = useState();
-  function handleCloseView() {
+    function handleCloseView() {
         setviewWidth("0px");
     }
     function handleEdit(value) {
-     
+
         setcountryId(value)
 
         setviewWidth("1600px");
 
-    
+
 
         const url2 = process.env.REACT_APP_SERVER_URL + 'admin/countries/' + value;
         fetch(url2, {
@@ -51,9 +48,9 @@ export default function ApplicationStep() {
         let person = prompt("Enter string");
 
 
-        if(person){
+        if (person) {
             setuniversityApplication([...universityApplication, person]
- )
+            )
         }
 
 
@@ -71,10 +68,10 @@ export default function ApplicationStep() {
             var mydata = JSON.parse(a);
             var mounted = mydata.data.token;
             var adminId = mydata.data.admin._id;
-      
+
         }
         setMounted(mounted)
-       const url = process.env.REACT_APP_SERVER_URL + 'admin/countries';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/countries';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -82,9 +79,9 @@ export default function ApplicationStep() {
             .then(response => response.json())
             .then(data => {
                 setdata(data.adminCountrys)
-               
+
             })
-      
+
     }, [])
 
 
@@ -92,7 +89,7 @@ export default function ApplicationStep() {
         event.preventDefault();
         const item = {
             countrySteps: universityApplication,
-           };
+        };
         axios.put(process.env.REACT_APP_SERVER_URL + 'admin/countries/' + countryId, item, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -101,40 +98,22 @@ export default function ApplicationStep() {
                     setsubmitSuccess(1)
                 }
                 else {
-              
+
                 }
             })
-            .catch(error => {  
-               
+            .catch(error => {
+
             });
     }
 
     return (
         <div id="page-top">
-            {/*
-    <!-- Page Wrapper --> */}
             <div id="wrapper">
                 <Sidebar />
-                {/* there will be come sidebar */}
-
-                {/*
-        <!-- Content Wrapper --> */}
                 <div id="content-wrapper" className="d-flex flex-column">
-
-                    {/*
-            <!-- Main Content --> */}
                     <div id="content">
-
-                        {/* topbar will be come there */}
                         <Topbar />
-                        {/*
-                <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/*
-                <ApplicationProfile /> */}
                         <div className="container">
-                            {/*
-                    <!-- Page Heading --> */}
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Application Step</h1>
                                 {submitSuccess === 1 ? <div className="Show_success_message">
@@ -142,15 +121,7 @@ export default function ApplicationStep() {
                                 </div> : null}
 
                             </div>
-
-                            {/*
-                    <!-- Content Row --> */}
-
                             <div class="row">
-
-                                {/*
-                        <!-- Area Chart --> */}
-                                {/* start for table of country */}
                                 <table className="table table-hover">
                                     <thead>
                                         <tr>
@@ -172,13 +143,13 @@ export default function ApplicationStep() {
 
                                                     <td>
 
-                                                     
+
 
                                                         <button className="btn" onClick={() => handleEdit(object._id)}>
-                                                        <FontAwesomeIcon icon={faPen} />
+                                                            <FontAwesomeIcon icon={faPen} />
 
-                                                        
-                                                            </button>
+
+                                                        </button>
                                                     </td>
                                                 </tr>
 
@@ -240,7 +211,7 @@ export default function ApplicationStep() {
                                                                         <div className="col-md-6"></div>
                                                                         <div className="col-md-6 text-right">
 
-                                                                            <button  type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                                                            <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                                                             <button type="submit" className="btn btn-secondary">Save
                                                                             </button>
@@ -260,47 +231,14 @@ export default function ApplicationStep() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* end for sideview */}
-
-                                {/* end for table of country */}
-
-
-
                             </div>
-                            {/*
-                    <!-- Card Body --> */}
-
                         </div>
-                        {/*
-                <!-- /.container-fluid --> */}
-
                     </div>
-                    {/*
-            <!-- End of Main Content --> */}
-
-                    {/*
-            <!-- Footer --> */}
-                    <Footer />
-                    {/*
-            <!-- End of Footer --> */}
-
                 </div>
-                {/*
-        <!-- End of Content Wrapper --> */}
-
             </div>
-            {/*
-    <!-- End of Page Wrapper --> */}
-
-            {/*
-    <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>
-
-            {/*
-    <!-- Logout Modal--> */}
-
         </div>
     );
 }

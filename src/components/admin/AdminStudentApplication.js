@@ -4,13 +4,12 @@ import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import JSZip from 'jszip';
-import Footer from './Footer';
 import { saveAs } from "file-saver";
 import JSZipUtils from './zputils.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp,faEye,faCloudDownload,
-    faCheckCircle, faCheckSquare,faUserCircle,faRedo,faTimesCircle
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp, faEye, faCloudDownload,
+    faCheckCircle, faCheckSquare, faUserCircle, faRedo, faTimesCircle
 
 } from '@fortawesome/free-solid-svg-icons';
 export default function AdminStudentApplication() {
@@ -21,47 +20,47 @@ export default function AdminStudentApplication() {
         var zipFilename = "zipFilename.zip";
         var urls = [
             {
-                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-                name:'image1'
+                link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name: 'image1'
             },
             {
-                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-                name:'image2'
+                link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name: 'image2'
             },
             {
-                link:'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-                name:'image3'
+                link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
+                name: 'image3'
             },
-            
+
         ];
 
-        urls.forEach(function(url){
-           JSZipUtils.getBinaryContent(url.link, function (err, data) {
-                if(err) {
-                    throw err; 
+        urls.forEach(function (url) {
+            JSZipUtils.getBinaryContent(url.link, function (err, data) {
+                if (err) {
+                    throw err;
                 }
-                zip.file(url.name, data, {binary:true});
+                zip.file(url.name, data, { binary: true });
                 count++;
                 if (count == urls.length) {
-                    zip.generateAsync({type:'blob'}).then(function(content) {
+                    zip.generateAsync({ type: 'blob' }).then(function (content) {
                         saveAs(content, zipFilename);
                         return
                     });
                 }
             });
         });
-      };
+    };
 
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [firstviewWidth, setfirstviewWidth] = useState("0px");
     const [viewId, setviewId] = useState("0px");
     const [thirdviewWidth, setthirdviewWidth] = useState("0px");
-    
+
     const [universityApplication, setuniversityApplication] = useState(
         []
     )
-   
+
     const [FormStudentApplicationValues, setFormStudentApplicationValues] = useState([]);
     const [viewSingleApplication, setviewSingleApplication] = useState("");
 
@@ -82,7 +81,7 @@ export default function AdminStudentApplication() {
     const [firstLanguage, setfirstLanguage] = useState("");
     const [visa, setvisa] = useState("");
     const [refusedVisa, setrefusedVisa] = useState("");
- 
+
     const [country, setcountry] = useState();
     const [state, setstate] = useState();
     const [city, setcity] = useState();
@@ -90,11 +89,11 @@ export default function AdminStudentApplication() {
     const [zipcode, setzipcode] = useState();
     const [communication_address, setcommunication_address] = useState("no");
     const [secondviewWidth, setsecondviewWidth] = useState("0px");
- const [FormFamilyValues, setFormFamilyValues] = useState([{
+    const [FormFamilyValues, setFormFamilyValues] = useState([{
         relationship: "", salutation: "", firstName: "", middleName: "", lastName: "", email: "",
         mobile: "", occupation: "", qualification: "", _id: "null"
     }])
-   const [formEducationValues, setformEducationValues] = useState([{
+    const [formEducationValues, setformEducationValues] = useState([{
         highestEducation: "", status: "", specialization: "", degree: "", gradePercentage: "", marks: "", attendedForm: "",
         institution: "", affiliationUniversity: "", language: "", country: "", state: "", city: "", address: "", zipcode: "",
         _id: "null"
@@ -120,16 +119,16 @@ export default function AdminStudentApplication() {
 
         _id: "null"
     }])
-  useEffect(() => {
+    useEffect(() => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
             var mydata = JSON.parse(a);
             var mounted = mydata.data.token;
             var adminId = mydata.data.admin._id;
-           
+
         }
         setMounted(mounted)
-      const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
+        const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -138,7 +137,7 @@ export default function AdminStudentApplication() {
             .then(data => {
                 setdata(data.applications)
             })
-      
+
     }, [])
     function handleCloseView() {
         setfirstviewWidth("0px");
@@ -153,7 +152,7 @@ export default function AdminStudentApplication() {
         setthirdviewWidth("1800px")
         setfirstviewWidth("0px")
         setsecondviewWidth("0px")
-       const url4 = process.env.REACT_APP_SERVER_URL + 'admin/countries/620a48a37cef50e6815393ce';
+        const url4 = process.env.REACT_APP_SERVER_URL + 'admin/countries/620a48a37cef50e6815393ce';
         fetch(url4, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -161,7 +160,7 @@ export default function AdminStudentApplication() {
             .then(response => response.json())
             .then(data => {
                 setuniversityApplication(data.adminCountry.countrySteps)
-             
+
             })
         const url7 = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications/';
         fetch(url7, {
@@ -188,7 +187,7 @@ export default function AdminStudentApplication() {
                 setviewSingleApplication(myresult)
 
             })
-     
+
     }
     function handleView(value) {
         const myArray = value.split("&&");
@@ -203,13 +202,13 @@ export default function AdminStudentApplication() {
 
                 }
                 else {
-                   
+
                 }
             })
             .catch(error => {
-           
+
             });
-       var url2 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/personalInformation';
+        var url2 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/personalInformation';
         axios.get(url2, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var myuniversityCourse = res.data.studentPersonalInformation;
@@ -234,14 +233,14 @@ export default function AdminStudentApplication() {
                     setrefusedVisa(myuniversityCourse.refusedVisa);
                 }
                 else {
-                  
+
                 }
 
             })
             .catch(error => {
-              
+
             });
-         var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/address';
+        var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/address';
         axios.get(url3, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var studentAddress = res.data.studentAddress;
@@ -254,26 +253,26 @@ export default function AdminStudentApplication() {
                     setcommunication_address(studentAddress.communication_address);
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-          
+
             });
-       var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
+        var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
         axios.get(url3, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
                     setFormFamilyValues(res.data.studentFamilies)
                 }
                 else {
-                  
+
                 }
 
             })
             .catch(error => {
-            
+
             });
         var url4 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/educations';
         axios.get(url4, { headers: { 'Authorization': mounted } })
@@ -282,14 +281,14 @@ export default function AdminStudentApplication() {
                     setformEducationValues(res.data.studentEducations)
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-           
+
             });
-         var url5 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/score';
+        var url5 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/score';
         axios.get(url5, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -300,12 +299,12 @@ export default function AdminStudentApplication() {
                     setscoresat(resultStudentScore.sat);
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-        
+
             });
         var url6 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/experiences';
         axios.get(url6, { headers: { 'Authorization': mounted } })
@@ -315,12 +314,12 @@ export default function AdminStudentApplication() {
                     setFormExperienceValues(res.data.studentExperiences)
                 }
                 else {
-                   
+
                 }
 
             })
             .catch(error => {
-           
+
             });
         var url6 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/activities';
         axios.get(url6, { headers: { 'Authorization': mounted } })
@@ -330,14 +329,14 @@ export default function AdminStudentApplication() {
                     setformActivityValues(res.data.studentActivities)
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-                
+
             });
-         var url7 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/profileRecommendations';
+        var url7 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/profileRecommendations';
         axios.get(url7, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -345,98 +344,73 @@ export default function AdminStudentApplication() {
                     setFormRecommendationValues(res.data.studentProfileRecommendations)
                 }
                 else {
-                  
+
                 }
 
             })
             .catch(error => {
-          
+
             });
-      }
+    }
 
 
-    function downloadPassport(){
+    function downloadPassport() {
 
         var id = '61d9176d3ccf1bfc23b1ebee';
-        var url= process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/identityDocument';
+        var url = process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/identityDocument';
         axios.get(url, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    
-                   
-                    saveFile(res.data?.studentIdentityDocument?.passportBack,"passportBack");
-                    
+
+
+                    saveFile(res.data?.studentIdentityDocument?.passportBack, "passportBack");
+
                 }
                 else {
-                
+
                 }
 
             })
             .catch(error => {
-        
+
             });
 
     }
-    function download10thdmc(){
+    function download10thdmc() {
 
         var id = '61d9176d3ccf1bfc23b1ebee';
-        var url= process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/educationDocument';
+        var url = process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/educationDocument';
         axios.get(url, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
-                    
-            
-                    saveFile(res.data?.studentEducationDocument?.marksheet10,"10th");
-                    saveFile(res.data?.studentEducationDocument?.marksheet12,"");
-                    saveFile(res.data?.studentEducationDocument?.ugDegree,"cv");
-                    
+
+
+                    saveFile(res.data?.studentEducationDocument?.marksheet10, "10th");
+                    saveFile(res.data?.studentEducationDocument?.marksheet12, "");
+                    saveFile(res.data?.studentEducationDocument?.ugDegree, "cv");
+
                 }
                 else {
-                  
+
                 }
 
             })
             .catch(error => {
-            
+
             });
 
     }
     return (
         <div id="page-top">
-
-
-            {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 <Sidebar />
-                {/* there will be come sidebar */}
-
-                {/* <!-- Content Wrapper --> */}
                 <div id="content-wrapper" className="d-flex flex-column">
-
-                    {/* <!-- Main Content --> */}
                     <div id="content">
-
-                        {/* topbar will be come there */}
                         <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
-
-
-                        {/* <!-- Page Heading --> */}
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
-
-
                         </div>
-
-
-                        {/* <!-- Content Row --> */}
-
-
-
                         <div className="row">
-                            {/* [ Hover-table ] start */}
                             <div className="col-md-12">
                                 <div className="card">
                                     <div className="card-header">
@@ -483,12 +457,12 @@ export default function AdminStudentApplication() {
 
                                                                 <td>
 
-                                                                   
+
                                                                     <button className="btn" onClick={() => handleView(object._id + '&&' + object.studentID)}>
-                                                                      
-                                                                    <FontAwesomeIcon icon={faEye} />
-                                                                        
-                                                                        </button>
+
+                                                                        <FontAwesomeIcon icon={faEye} />
+
+                                                                    </button>
                                                                 </td>
                                                             </tr>
 
@@ -1004,13 +978,13 @@ export default function AdminStudentApplication() {
 
                                                                     <td>
 
-                                                                      
+
                                                                         <button className="btn" onClick={() => handlesecondView(object._id)}>
-                                                                          
-                                                                        <FontAwesomeIcon icon={faEye} />
-                                                                            
-                                                                            </button>
-                                                               </td>
+
+                                                                            <FontAwesomeIcon icon={faEye} />
+
+                                                                        </button>
+                                                                    </td>
                                                                 </tr>
 
                                                             )
@@ -1075,8 +1049,8 @@ export default function AdminStudentApplication() {
                                                             <div className="btn-block"><button type="button" className="btn btn-outline-primary btn-download"><span>
                                                                 <i className="fas fa-cloud-download-alt" />
                                                                 <FontAwesomeIcon icon={faCloudDownload} />
-                                                                
-                                                                </span>Download</button></div>
+
+                                                            </span>Download</button></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1265,12 +1239,12 @@ export default function AdminStudentApplication() {
                                                                                     <div key={i}>
 
                                                                                         <li className="statusBox ">{object}<span>
-                                                                                            
+
                                                                                             <i className="fas fa-check-circle" />
-                                                                                            
-                                                                        <FontAwesomeIcon icon={faCheckCircle} />
-                                                                                            
-                                                                                            </span></li>
+
+                                                                                            <FontAwesomeIcon icon={faCheckCircle} />
+
+                                                                                        </span></li>
 
 
                                                                                     </div>
@@ -1348,9 +1322,9 @@ export default function AdminStudentApplication() {
                                                                                 <div className="row">
                                                                                     <div className="col-md-6">
                                                                                         <span><i className="fas fa-check-square" />
-                                                                                        
-                                                                        <FontAwesomeIcon icon={faCheckSquare} />
-                                                                                        
+
+                                                                                            <FontAwesomeIcon icon={faCheckSquare} />
+
                                                                                         </span>
                                                                                         <div className="con-info">
                                                                                             <h6>Note</h6>
@@ -1365,17 +1339,17 @@ export default function AdminStudentApplication() {
                                                                                 </div>
                                                                                 <div className="chat-msg">
                                                                                     <h6><span><i className="fas fa-user-circle" />
-                                                                                    
-                                                                        <FontAwesomeIcon icon={faUserCircle} />
-                                                                                     Khushi left a
+
+                                                                                        <FontAwesomeIcon icon={faUserCircle} />
+                                                                                        Khushi left a
                                                                                         note.</span></h6>
                                                                                     <div className="msg-content">
                                                                                         <div className="row">
                                                                                             <div className="col-md-6">
                                                                                                 <span><i className="fas fa-check-square" />
-                                                                                                
-                                                                        <FontAwesomeIcon icon={faCheckSquare} />
-                                                                                                
+
+                                                                                                    <FontAwesomeIcon icon={faCheckSquare} />
+
                                                                                                 </span>
                                                                                                 <div className="con-info">
                                                                                                     <h6>@Satnam singh</h6>
@@ -1394,10 +1368,10 @@ export default function AdminStudentApplication() {
                                                                                             <div className="col-md-12">
                                                                                                 <button type="button" className="btn btn-success" onclick="opencoment()"><span>
                                                                                                     <i className="fas fa-plus" />
-                                                                                                    
-                                                                        <FontAwesomeIcon icon={faPlus} />
-                                                                                                    
-                                                                                                    </span>Add
+
+                                                                                                    <FontAwesomeIcon icon={faPlus} />
+
+                                                                                                </span>Add
                                                                                                     Comment</button>
                                                                                             </div>
                                                                                         </div>
@@ -1445,35 +1419,35 @@ export default function AdminStudentApplication() {
                                                                 <h4>Documents</h4>
                                                             </div>
                                                             <div className="col-md-6 text-right"><button type="button" className="btn btn-success" onclick="openNav()"><span><i className="fas fa-eye" />
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                            
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                             </span>All
                                                                 Document</button></div>
                                                         </div>
                                                         <ul>
                                                             <li onClick={downloadPassport}>PASSPORT <span><i className="fas fa-eye" />
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                            
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                             </span></li>
                                                             <li>10TH<span>
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                                
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                                 <i className="fas fa-eye" /></span></li>
                                                             <li>12TH<span><i className="fas fa-eye" /></span></li>
                                                             <li>MEDIUM OF INSTRUCTION<span>
-                                                                
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                                
+
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                                 <i className="fas fa-eye" /></span></li>
                                                             <li>LETTER OF RECOMMENDATION<span>
-                                                                
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                                
+
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                                 <i className="fas fa-eye" /></span></li>
                                                             <li>OFFER LETTER<span>
-                                                                
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                                
+
+                                                                <FontAwesomeIcon icon={faEye} />
+
                                                                 <i className="fas fa-eye" /></span></li>
                                                         </ul>
                                                     </div>
@@ -1676,8 +1650,8 @@ export default function AdminStudentApplication() {
                                                         <div className="col-md-12">
                                                             <div className="refresh-sednmsg refresh-sednmsg2">
                                                                 <span style={{ cursor: 'pointer' }} onclick="window.location.reload();" className="btn-refersh" title="Reload the Chat conversation">
-                                                            <FontAwesomeIcon icon={faRedo} />
-                                                                    
+                                                                    <FontAwesomeIcon icon={faRedo} />
+
                                                                     <i className="fas fa-redo" aria-hidden="true" />
                                                                     Refresh</span>
                                                                 <a href="javascript:void(0)" id="send_reply" className="btn-send-msg" title="chat conversation"><span><i className="far fa-comments" /></span>Chat
@@ -1685,12 +1659,12 @@ export default function AdminStudentApplication() {
                                                                 <style dangerouslySetInnerHTML={{ __html: "\n\t\t\t\t\t\t\t\t\t\t\t#sendmsg {\n\t\t\t\t\t\t\t\t\t\t\t\tdisplay: none;\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t" }} />
                                                                 <div className="btn-accept-reject">
                                                                     <button title="Accept solution" className="accept"><span>
-                                                                    <FontAwesomeIcon icon={faCheckCircle} />
-                                                                        
+                                                                        <FontAwesomeIcon icon={faCheckCircle} />
+
                                                                         <i className="fas fa-check-circle" aria-hidden="true" /></span>Accept</button>
                                                                     <button title="Reject solution" id="reject_solution" className="reject"><span>
-                                                                    <FontAwesomeIcon icon={faTimesCircle} />
-                                                                        
+                                                                        <FontAwesomeIcon icon={faTimesCircle} />
+
                                                                         <i className="fas fa-times-circle" aria-hidden="true" /></span>Reject</button>
                                                                 </div>
                                                                 {/* accept solution form*/}
@@ -1801,37 +1775,12 @@ export default function AdminStudentApplication() {
                                             </div>
                                         </div>
                                     </div>
-                                    {/* [ Hover-table ] end */}
                                 </div>
                             </section>
                         </div>
-                        {/* end for third sidebar */}
-
-                        {/* <!-- Card Body --> */}
-
-
-                        {/* <!-- /.container-fluid --> */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-                    <Footer />
-                    {/* <!-- End of Footer --> */}
-
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div >
-
-            {/* <!-- End of Page Wrapper --> */}
-
-
-
-
-
-
-            {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>

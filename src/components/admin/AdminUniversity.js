@@ -3,12 +3,10 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import Footer from './Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp , faEye,faUserSlash
-  
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp, faEye, faUserSlash
+
 } from '@fortawesome/free-solid-svg-icons';
 export default function AdminUniversity() {
 
@@ -55,36 +53,15 @@ export default function AdminUniversity() {
     }, [])
     return (
         <div id="page-top">
-
-
-            {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 <Sidebar />
-                {/* there will be come sidebar */}
-
-                {/* <!-- Content Wrapper --> */}
                 <div id="content-wrapper" className="d-flex flex-column">
-
-                    {/* <!-- Main Content --> */}
                     <div id="content">
-
-                        {/* topbar will be come there */}
                         <Topbar />
-                        {/* <!-- Begin Page Content --> */}
-                        {/* the content of each page will be come there */}
-                        {/* <ApplicationProfile /> */}
                         <div className="container">
-
-                            {/* <!-- Page Heading --> */}
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">University</h1>
-
-
                             </div>
-
-
-                            {/* <!-- Content Row --> */}
-
                             <div className="row">
 
                                 {/* <!-- Area Chart --> */}
@@ -121,25 +98,25 @@ export default function AdminUniversity() {
 
                                                                     <td>
                                                                         <button className="btn" >
-                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                            <FontAwesomeIcon icon={faTrash} />
 
-                                                                          
-                                                                            </button>
+
+                                                                        </button>
                                                                         <button className="btn">
-                                                        <FontAwesomeIcon icon={faPen} />
+                                                                            <FontAwesomeIcon icon={faPen} />
 
-                                                                          
-                                                                            </button>
+
+                                                                        </button>
                                                                         <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" >
-                                                        <FontAwesomeIcon icon={faEye} />
-                                                                           
-                                                                          
-                                                                            </Link></button>
-                                                                        <button className="btn" >
-                                                        <FontAwesomeIcon icon={faUserSlash} />
+                                                                            <FontAwesomeIcon icon={faEye} />
 
-                                                                         
-                                                                            </button>
+
+                                                                        </Link></button>
+                                                                        <button className="btn" >
+                                                                            <FontAwesomeIcon icon={faUserSlash} />
+
+
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             )
@@ -151,38 +128,16 @@ export default function AdminUniversity() {
                                                 </table>
                                             </div>
                                         </div>
-                                        {/* <!-- Card Body --> */}
-
                                     </div>
                                 </div>
-
-
                             </div>
-                            {/* <!-- Card Body --> */}
-
                         </div>
-                        {/* <!-- /.container-fluid --> */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-                    <Footer />
-                    {/* <!-- End of Footer --> */}
-
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div>
-            {/* <!-- End of Page Wrapper --> */}
-
-            {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>
-
-            {/* <!-- Logout Modal--> */}
-
         </div >
     );
 }

@@ -2,26 +2,14 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
-import Footer from './Footer';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 export default function AdminStudentApplicationView() {
     return (
         <div id="page-top">
-
-
-            {/* <!-- Page Wrapper --> */}
             <div id="wrapper">
                 <Sidebar />
-                {/* there will be come sidebar */}
-
-                {/* <!-- Content Wrapper --> */}
                 <div id="content-wrapper" className="d-flex flex-column">
-
-                    {/* <!-- Main Content --> */}
                     <div className="container-fluid">
-                        {/* Page Heading */}
                         <div className="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 className="h3 mb-0 text-gray-800">Student Application Details </h1>
                         </div>
@@ -2371,7 +2359,7 @@ ormat">Institute</span>
                                                                                         </div>
                                                                                         <div className="col-sm-6">
                                                                                             <span className="td-format">71</span>
-                                                                                   </div>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
@@ -2404,54 +2392,54 @@ ormat">Institute</span>
                                         <div className="profile-box-inner">
                                             <h5>Priyanka</h5>
                                             <table class="table">
-                                                   
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>Student Id</td>
-                                                            <td>1</td>
-                                                          
 
-                                                           
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Name</td>
-                                                            <td>priyanka</td>
-                                                         
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Email</td>
-                                                            <td>priyanka.calinfo500@gmail.com</td>
-                                                            
-                                                        </tr>
-                                                        
-                                                        <tr>
-                                                            <td>Phone</td>
-                                                            <td>+919817961998</td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>University Name</td>
-                                                            <td>Kurukshetra university</td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Course Name</td>
-                                                            <td>Btech</td>
-                                                            
-                                                        </tr>
-                                                        <tr>
-                                                            <td>Session</td>
-                                                            <td>2022</td>
-                                                            
-                                                        </tr>
-                                                      
-                                                    </tbody>
-                                                </table>
-                                           
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Student Id</td>
+                                                        <td>1</td>
 
-                                           
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Name</td>
+                                                        <td>priyanka</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Email</td>
+                                                        <td>priyanka.calinfo500@gmail.com</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>Phone</td>
+                                                        <td>+919817961998</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>University Name</td>
+                                                        <td>Kurukshetra university</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Course Name</td>
+                                                        <td>Btech</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Session</td>
+                                                        <td>2022</td>
+
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+
+
+
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
@@ -2496,34 +2484,13 @@ ormat">Institute</span>
                             </div>
 
                         </div>
-                        {/* start for dummy */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-                    <Footer />
-                    {/* <!-- End of Footer --> */}
 
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div>
-
-            {/* <!-- End of Page Wrapper --> */}
-
-
-
-
-
-
-            {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>
-
-            {/* <!-- Logout Modal--> */}
-
         </div >
     );
 }

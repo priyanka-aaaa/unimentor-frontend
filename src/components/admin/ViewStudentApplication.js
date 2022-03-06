@@ -3,9 +3,6 @@ import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
-import Footer from './Footer';
-
 export default function AdminStudentApplication() {
 
   const [mounted, setMounted] = useState();
@@ -251,42 +248,16 @@ export default function AdminStudentApplication() {
   }
   return (
     <div id="page-top">
-
-
-      {/* <!-- Page Wrapper --> */}
-      <div id="wrapper">
+ <div id="wrapper">
         <Sidebar />
-        {/* there will be come sidebar */}
-
-        {/* <!-- Content Wrapper --> */}
-        <div id="content-wrapper" className="d-flex flex-column">
-
-          {/* <!-- Main Content --> */}
-          <div id="content">
-
-            {/* topbar will be come there */}
-            <Topbar />
-            {/* <!-- Begin Page Content --> */}
-            {/* the content of each page will be come there */}
-            {/* <ApplicationProfile /> */}
-
-
-            {/* <!-- Page Heading --> */}
-            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+     <div id="content-wrapper" className="d-flex flex-column">
+ <div id="content">
+   <Topbar />
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
-
-
-            </div>
-
-
-            {/* <!-- Content Row --> */}
-
-
-
-
-            <section className="pcoded-main-container">
+  </div>
+  <section className="pcoded-main-container">
               <div className="pcoded-content">
-                {/* [ breadcrumb ] start */}
                 <div className="page-header">
                   <div className="page-block">
                     <div className="row align-items-center">
@@ -303,9 +274,7 @@ export default function AdminStudentApplication() {
                     </div>
                   </div>
                 </div>
-                {/* [ breadcrumb ] end */}
-                {/* [ Main Content ] start */}
-                <div className="row">
+              <div className="row">
                   {/* [ Hover-table ] start */}
                   <div className="col-md-12">
                     <div className="card">
@@ -985,42 +954,14 @@ export default function AdminStudentApplication() {
                     </div>
                   </div>
                 </div>
-                {/* [ Hover-table ] end */}
               </div>
             </section>
-
-            {/* end for second sidenav */}
-            {/* <!-- Card Body --> */}
-
-
-            {/* <!-- /.container-fluid --> */}
-
-          </div>
-          {/* <!-- End of Main Content --> */}
-
-          {/* <!-- Footer --> */}
-          <Footer />
-          {/* <!-- End of Footer --> */}
-
-        </div>
-        {/* <!-- End of Content Wrapper --> */}
-
-      </div >
-
-      {/* <!-- End of Page Wrapper --> */}
-
-
-
-
-
-
-      {/* <!-- Scroll to Top Button--> */}
-      <a className="scroll-to-top rounded" href="#page-top">
+ </div>
+         </div>
+       </div >
+  <a className="scroll-to-top rounded" href="#page-top">
         <i className="fas fa-angle-up"></i>
       </a>
-
-      {/* <!-- Logout Modal--> */}
-
-    </div >
+ </div >
   );
 }

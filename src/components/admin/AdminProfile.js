@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
-import Footer from './Footer';
 import AdminApplication from './AdminApplication';
 import AdminDocument from './AdminDocument';
 import AdminScholarship from './AdminScholarship';
@@ -33,7 +31,7 @@ function AdminProfile(props) {
                                     </div>
                                 </div>
                             </div>
-                            <Footer />
+                      
                         </div>
                     </div>
                     <a className="scroll-to-top rounded" href="#page-top">
