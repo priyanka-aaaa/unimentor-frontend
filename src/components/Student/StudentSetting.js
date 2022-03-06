@@ -1,153 +1,137 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../Home/Loader';
+
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-
 export default function StudentSetting() {
     const [mounted, setMounted] = useState();
-    const [password, setpassword] = useState();
-    const [confirmpassword, setconfirmpassword] = useState();
+    const [studentEmail, setstudentEmail] = useState();
+    const [password, setpassword] = useState("");
+    const [conformPassword, setconformPassword] = useState("");
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
-
-    // const [aboutMe, setaboutMe] = useState("");
-    // const [email, setemail] = useState("");
-    // const [location, setlocation] = useState("");
-    // const [state, setstate] = useState("");
-    // const [city, setcity] = useState("");
-    // const [citizenship, setcitizenship] = useState("");
-    // const [dateOfBirth, setdateOfBirth] = useState("");
-    // const [country, setcountry] = useState("");
-    // const [mobile, setmobile] = useState("");
-    // const [gender, setgender] = useState("");
-    // const [picture, setpicture] = useState("");
-
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [cpasswordError, setcpasswordError] = useState("");
+    const [loader, setmyloader] = useState("false");
     useEffect(() => {
-
-        var mounted = localStorage.getItem("studentToken")
+        var studentId = localStorage.getItem('studentId');
+        var mounted = localStorage.getItem('studentToken');
+        var studentEmail = localStorage.getItem('studentEmail');
         setMounted(mounted)
+        setstudentEmail(studentEmail)
     }, [])
-    function change_password(event) {
+    function setting(event) {
+        setcpasswordError("");
         setconfirmpasswordError("");
         event.preventDefault();
-        if (password !== confirmpassword) {
+        if (password.length < 6) {
+            setcpasswordError("Enter password with atleast 6 digit");
+        }
+        else if (password !== conformPassword) {
             setconfirmpasswordError("confirm password is not match");
         }
         else {
+            setmyloader("true")
             const obj = {
-                password: password
+                password: password,
             };
-            axios.post('/student/changePassword', obj, { headers: { 'Authorization': mounted } })
+            axios.post(process.env.REACT_APP_SERVER_URL + 'student/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
-
+                    setmyloader("false")
                     if (res.data.success === true) {
-
-                    }
-                    else {
-
+                        setsuccessMessage("Password Updated")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+                        const obj2 = new FormData();
+                        obj2.append("email", studentEmail);
+                        obj2.append("password", password);
+                        const url = process.env.REACT_APP_SERVER_URL + 'student/login';
+                        fetch(url, {
+                            method: 'POST',
+                            body: obj2
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                localStorage.setItem('studentId', data.student._id);
+                                localStorage.setItem('studentToken', data.token);
+                                localStorage.setItem('studentName', data.student.name);
+                                localStorage.setItem('studentEmail', data.student.email);
+                            })
                     }
                 })
                 .catch(error => {
-
                 });
         }
     }
-
-
     return (
         <div id="page-top">
-
-
-
-        <div id="wrapper">
-            <Sidebar />
-        
-            <div id="content-wrapper" className="d-flex flex-column">
-        
-                <div id="content">
-                    <Topbar />
-                    <div className="container">
-        
-        
-        
-                        <div className="row">
-        
-                            {/* <!-- Area Chart --> */}
-                            <div className="col-xl-12 col-lg-7">
-                            <h3> Account Settings</h3>
-                                <div className="card shadow mb-4">
-                                    {/* <!-- Card Header - Dropdown --> */}
-                                 
+            <div id="wrapper">
+                <Sidebar />
+                <div id="content-wrapper" className="d-flex flex-column">
+                    <div id="content">
+                        <Topbar />
+                        <div className="container">
+                            {submitSuccess === 1 ? <div className="Show_success_message">
+                                <strong>Success!</strong> {successMessage}
+                            </div> : null}
+                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 className="h3 mb-0 text-gray-800">Settings</h1>
+                            </div>
+                            <div className="row">
+                                <div className="col-xl-12 col-lg-7">
                                     <div className="card shadow mb-4">
-                                        <div id="accordion">
-                                           
-                                               
-                                                
-                                                        <div className="form-block">
+                                        <div className="card-body">
+                                            {loader === "true" ?
+                                                <Loader />
+                                                : null}
+                                            <div className="form-block">
+                                                <div className="card-body">
+                                                    <h3>Change Password</h3>
+                                                    <div className="col-sm-12">
+                                                        <div className="row">
                                                             <div className="col-sm-12">
-                                                                <h3 className="h-title">Change Password</h3>
-                                                                <p className="p-desc">Choose a unique password to protect your account</p>
-                                                                <div className="row">
-                                                                    <div className="col-sm-12">
-                                                                        <hr />
-                                                                        <form onSubmit={change_password}>
-                                                                            <div className="row">
-                                                                                <div className="col-sm-12">
-                                                                                    <div className="form-group">
-                                                                                        <label htmlFor="password">Enter Password</label>
-                                                                                        <input required=""
-                                                                                            value={password}
-                                                                                            onChange={(e) => setpassword(e.target.value)}
-                                                                                            name="password" type="password" id="password" className="form-control" />
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-sm-12">
-                                                                                    <div className="form-group">
-                                                                                        <label htmlFor="c_password">Confirm Password</label>
-                                                                                        <input
-                                                                                            value={confirmpassword}
-                                                                                            onChange={(e) => setconfirmpassword(e.target.value)}
-                                                                                            required="" name="c_password" type="password" id="c_password" className="form-control" />
-        
-                                                                                    </div>
-                                                                                    <span style={{ color: "red" }}> {confirmpasswordError}</span>
-                                                                                </div>
-                                                                                <div className="col-sm-12 text-danger"></div>
-                                                                                <div className="col-sm-12"><button type="submit" className="btn btn-success">Save</button></div>
-                                                                            </div>
-                                                                        </form>
+                                                                <form onSubmit={setting}>
+                                                                    <div className="form-group">
+                                                                        <label for="password">Enter New Password *</label>
+                                                                        <input required="" name="password" type="password" id="password" className="form-control"
+                                                                            value={password}
+                                                                            onChange={(e) => setpassword(e.target.value)}
+                                                                            placeholder="Password"
+                                                                        />
+                                                                        <div style={{ color: "red" }}> {cpasswordError}</div>
+
                                                                     </div>
-                                                                </div>
+                                                                    <div className="form-group">
+                                                                        <label for="c_password">Confirm Password *</label>
+                                                                        <input required="" name="c_password" type="password" id="c_password" className="form-control"
+                                                                            value={conformPassword}
+                                                                            onChange={(e) => setconformPassword(e.target.value)}
+                                                                            placeholder="Confirm Password"
+                                                                        />
+                                                                    </div>
+                                                                    <div style={{ color: "red" }}> {confirmpasswordError}</div>
+                                                                    <div className="col-sm-12 text-danger"></div>
+                                                                    <button type="submit" className="btn btn-success"
+                                                                        title="Save" data-toggle="tooltip" data-placement="right"
+                                                                    >Save</button>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                   
-                                           
-        
-        
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    {/* <!-- Card Body --> */}
-        
                                 </div>
                             </div>
-        
-        
                         </div>
-        
-        
                     </div>
                 </div>
-        
-        
             </div>
-        
-        
-        </div>
-        
-        
+            <a className="scroll-to-top rounded" href="#page-top">
+                <i className="fas fa-angle-up"></i>
+            </a>
         </div >
-
-
-
-
     );
 }
