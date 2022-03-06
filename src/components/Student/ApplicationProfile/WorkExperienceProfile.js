@@ -5,6 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
+
 const WorkExperienceProfile = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -14,6 +17,9 @@ const WorkExperienceProfile = () => {
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [deleteId, setdeleteId] = useState("");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -66,14 +72,17 @@ const WorkExperienceProfile = () => {
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
+        setmyloader("true")
 
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/experiences', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
 
-
+                        setmyloader("false")
                         if (res.data.success === true) {
+                    
+
                             setsuccessMessage("Work Experience Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
@@ -108,6 +117,7 @@ const WorkExperienceProfile = () => {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'student/experiences/' + item._id, item, { headers: { 'Authorization': mounted } })
 
                     .then(function (res) {
+                        setmyloader("false")
 
                         if (res.data.success === true) {
                             setsuccessMessage("Work Experience Updated")
@@ -148,45 +158,64 @@ const WorkExperienceProfile = () => {
         newFormValues[i]["status"] = myvalue;
         setFormValues(newFormValues);
     }
-    function handleDelete(value) {
-        const url2 = process.env.REACT_APP_SERVER_URL + 'student/experiences/' + value
-
-        fetch(url2, {
-            method: 'delete',
-            headers: { 'Authorization': mounted }
-
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                setsuccessMessage("Family Deleted")
-                setTimeout(() => setsubmitSuccess(""), 3000);
-                setsubmitSuccess(1)
-
-                const url = process.env.REACT_APP_SERVER_URL + 'student/experiences';
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': mounted,
-
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        var myresults = data.studentExperiences;
-                        if (Object.keys(myresults).length === 0) {
-
-                        }
-                        else {
-                            setFormValues(data.studentExperiences)
-                        }
-                    })
-
-            })
+    let handleDeleteClick = (value) => {
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
 
     return (
         <div>
+              {loader === "true" ?
+                <Loader />
+                : null}
+             {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    setmyloader("true")
+                    axios.delete(process.env.REACT_APP_SERVER_URL + 'student/experiences/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            setmyloader("false")
+                            if (res.data.success === true) {
+                                setsuccessMessage("Document deleted")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                const url = process.env.REACT_APP_SERVER_URL + 'student/experiences';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': mounted,
+
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        var myresults = data.studentExperiences;
+                                        if (Object.keys(myresults).length === 0) {
+
+                                        }
+                                        else {
+                                            setFormValues(data.studentExperiences)
+                                        }
+                                    })
+
+                            }
+                        })
+
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+                }
+                focusCancelBtn
+            >
+            </SweetAlert>
+                : null
+            }
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -200,7 +229,7 @@ const WorkExperienceProfile = () => {
 
                         {formValues.map((element, index) => (
                             <div key={index}>
-                                <a onClick={() => handleDelete(element._id)}>
+                                <a onClick={() => handleDeleteClick(element._id)}>
                                     <FontAwesomeIcon icon={faTrash} />
 
 
