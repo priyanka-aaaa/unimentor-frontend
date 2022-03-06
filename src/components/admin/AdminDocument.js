@@ -151,7 +151,7 @@ const AdminDocument = () => {
                                                 <div className="col-md-6"></div>
                                                 <div className="col-md-6 text-right">
 
-                                                    <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                                    <button  type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                                     <button type="submit" className="btn btn-secondary">Save
                                                     </button>

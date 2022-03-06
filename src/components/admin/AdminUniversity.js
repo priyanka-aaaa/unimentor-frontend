@@ -5,7 +5,11 @@ import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import Footer from './Footer';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp , faEye,faUserSlash
+  
+} from '@fortawesome/free-solid-svg-icons';
 export default function AdminUniversity() {
 
     const [mounted, setMounted] = useState();
@@ -100,7 +104,7 @@ export default function AdminUniversity() {
 
                                                             <th>Email</th>
                                                             <th>Phone</th>
-                                                            <th></th>
+                                                            <th>Action</th>
 
                                                         </tr>
                                                     </thead>
@@ -116,10 +120,26 @@ export default function AdminUniversity() {
                                                                     <td>9817961998</td>
 
                                                                     <td>
-                                                                        <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                        <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                        <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" ><i className="fas fa-eye"></i></Link></button>
-                                                                        <button className="btn" ><i className="fas fa-user-slash"></i></button>
+                                                                        <button className="btn" >
+                                                        <FontAwesomeIcon icon={faTrash} />
+
+                                                                          
+                                                                            </button>
+                                                                        <button className="btn">
+                                                        <FontAwesomeIcon icon={faPen} />
+
+                                                                          
+                                                                            </button>
+                                                                        <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" >
+                                                        <FontAwesomeIcon icon={faEye} />
+                                                                           
+                                                                          
+                                                                            </Link></button>
+                                                                        <button className="btn" >
+                                                        <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                         
+                                                                            </button>
                                                                     </td>
                                                                 </tr>
                                                             )
