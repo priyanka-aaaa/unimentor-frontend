@@ -42,13 +42,13 @@ export default function AdminStudentApplication() {
     relationship: "", salutation: "", firstName: "", middleName: "", lastName: "", email: "",
     mobile: "", occupation: "", qualification: "", _id: "null"
   }])
- 
+
   const [formEducationValues, setformEducationValues] = useState([{
     highestEducation: "", status: "", specialization: "", degree: "", gradePercentage: "", marks: "", attendedForm: "",
     institution: "", affiliationUniversity: "", language: "", country: "", state: "", city: "", address: "", zipcode: "",
     _id: "null"
   }])
- 
+
   const [scoremarks, setscoremarks] = useState();
   const [scoreenglishProficiency, setscoreenglishProficiency] = useState();
   const [scoregre, setscoregre] = useState();
@@ -58,7 +58,7 @@ export default function AdminStudentApplication() {
     status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
     _id: "null"
   }])
- 
+
   const [formActivityValues, setformActivityValues] = useState([{
     activityStatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
 
@@ -77,7 +77,7 @@ export default function AdminStudentApplication() {
       var mydata = JSON.parse(a);
       var mounted = mydata.data.token;
       var adminId = mydata.data.admin._id;
- 
+
     }
     setMounted(mounted)
     const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
@@ -89,7 +89,7 @@ export default function AdminStudentApplication() {
       .then(data => {
         setdata(data.applications)
       })
-   
+
   }, [])
   function handleCloseView() {
     setviewWidth("0px");
@@ -101,7 +101,7 @@ export default function AdminStudentApplication() {
     const myArray = value.split("&&");
     setviewId(myArray[0]);
     setviewWidth("1600px");
- 
+
     var url2 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/personalInformation';
     axios.get(url2, { headers: { 'Authorization': mounted } })
       .then(function (res) {
@@ -155,7 +155,7 @@ export default function AdminStudentApplication() {
       .catch(error => {
 
       });
-     var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
+    var url3 = process.env.REACT_APP_SERVER_URL + 'admin/students/' + myArray[1] + '/families';
     axios.get(url3, { headers: { 'Authorization': mounted } })
       .then(function (res) {
         if (res.data.success === true) {
@@ -247,7 +247,7 @@ export default function AdminStudentApplication() {
       .catch(error => {
 
       });
-   
+
   }
   return (
     <div id="page-top">

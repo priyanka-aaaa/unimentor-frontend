@@ -26,7 +26,7 @@ class Sidebar extends Component {
                        <li className="nav-item ">
                         <Link to={'/AdminProfile'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
-                            <span>Admin</span></Link>
+                            <span>Dashboard</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/AdminStudentApplication'} className="nav-link" href="#">
@@ -57,16 +57,7 @@ class Sidebar extends Component {
                             <i className="fas fa-file-upload"></i>
                             <span>University</span></Link>
                     </li>
-                    <li className="nav-item ">
-                        <Link to={'/AdminCountry'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Country</span></Link>
-                    </li>
-                    <li className="nav-item ">
-                        <Link to={'/AdminStudy'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
-                            <span>Field Of Study</span></Link>
-                    </li>
+                 
                     <li className="nav-item ">
                         <Link to={'/ApplicationStep'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>

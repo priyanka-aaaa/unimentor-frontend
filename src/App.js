@@ -64,8 +64,8 @@ import AdminLogin from './components/AdminLogin';
 import AdminStudent from './components/admin/AdminStudent';
 import AdminAgent from './components/admin/AdminAgent';
 import AdminUniversity from './components/admin/AdminUniversity';
-import AdminCountry from './components/admin/AdminCountry';
-import AdminStudy from './components/admin/AdminStudy';
+
+
 import AdminApplication from './components/admin/AdminApplication';
 import AdminDocument from './components/admin/AdminDocument';
 import AdminScholarship from './components/admin/AdminScholarship';
@@ -201,9 +201,8 @@ function App() {
             <Route path='/AdminStudent' component={AdminStudent} />
             <Route path='/AdminAgent' component={AdminAgent} />
             <Route path='/AdminUniversity' component={AdminUniversity} />
-            <Route path='/AdminCountry' component={AdminCountry} />
-            <Route path='/AdminCountry' component={AdminCountry} />
-            <Route path='/AdminStudy' component={AdminStudy} />
+         
+       
             <Route path='/AdminDashboard' component={AdminDashboard} />
             <Route path='/AdminApplication' component={AdminApplication} />
             <Route path='/AdminDocument' component={AdminDocument} />
