@@ -1,10 +1,19 @@
+
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
+import SweetAlert from 'react-bootstrap-sweetalert';
+import Loader from '../../Home/Loader';
+
 
 const EducationProfile = () => {
 
 
 
+    const [deleteId, setdeleteId] = useState("");
 
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -15,6 +24,9 @@ const EducationProfile = () => {
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
+
     useEffect(() => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
@@ -112,43 +124,70 @@ const EducationProfile = () => {
 
 
     }
-    function handleDelete(value) {
-        const url2 = process.env.REACT_APP_SERVER_URL + 'student/families/' + value
-        fetch(url2, {
-            method: 'delete',
-            headers: { 'Authorization': mounted }
-
-        })
-            .then(response => response.json())
-            .then(data => {
-
-                setsuccessMessage("Education Deleted")
-                setTimeout(() => setsubmitSuccess(""), 3000);
-                setsubmitSuccess(1)
-
-                const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-                fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': mounted,
-
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        var myresults = data.studentEducations;
-                        if (Object.keys(myresults).length === 0) {
-
-                        }
-                        else {
-                            setFormValues(data.studentEducations)
-                        }
-                    })
-
-            })
+    let handleDeleteClick = (value) => {
+        setshowSweetAlert("1")
+        setdeleteId(value)
     }
+
+    function setstatusType(i, myvalue) {
+        let newFormValues = [...formValues];
+        newFormValues[i]["status"] = myvalue;
+        setFormValues(newFormValues);
+    }
+    
     return (
         <div>
+            {loader === "true" ?
+                <Loader />
+                : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    setmyloader("true")
+                    axios.delete(process.env.REACT_APP_SERVER_URL + 'student/educations/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            setmyloader("false")
+                            if (res.data.success === true) {
+                                setsuccessMessage("Document deleted")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': mounted,
+
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        var myresults = data.studentEducations;
+                                        if (Object.keys(myresults).length === 0) {
+
+                                        }
+                                        else {
+                                            setFormValues(data.studentEducations)
+                                        }
+                                    })
+
+                            }
+                        })
+
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+                }
+                focusCancelBtn
+            >
+            </SweetAlert>
+                : null
+            }
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
@@ -162,7 +201,11 @@ const EducationProfile = () => {
                             <div className="form-block">
                                 {formValues.map((element, index) => (
                                     <div key={index}>
+                                        <a onClick={() => handleDeleteClick(element._id)}>
+                                            <FontAwesomeIcon icon={faTrash} />
 
+
+                                        </a>
                                         <div className="row">
                                             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                 <div className="form-group">
@@ -191,18 +234,20 @@ const EducationProfile = () => {
                                                     <label className="ant-radio-wrapper ant-radio-wrapper-checked">
                                                         <span className="ant-radio ant-radio-checked"><input
 
-                                                            value={element.status || ""} onChange={e => handleChange(index, e)}
 
-
+                                                            onChange={(e) => setstatusType(index, "Pursuing")}
                                                             checked={element.status === "Pursuing"}
-                                                            name="status" type="radio" className="ant-radio-input" value="Pursuing" />
+                                                            required
+
+
+                                                            name="status" type="radio" className="ant-radio-input" />
                                                             <span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
-
-                                                                value={element.status || ""} onChange={e => handleChange(index, e)}
-
-
+                                                                onChange={(e) => setstatusType(index, "Completed")}
                                                                 checked={element.status === "Completed"}
-                                                                value="Completed"
+                                                                required
+
+
+
                                                                 name="status" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
                                                         <span>Completed</span></label> <br />
                                                 </div>
@@ -217,9 +262,9 @@ const EducationProfile = () => {
                                                     <select
                                                         value={element.specialization || ""} onChange={e => handleChange(index, e)}
 
-
-                                                        className="form-control" id="specialisation" name="specialization" required="">
-                                                        <option >Select</option>
+                                                        required
+                                                        className="form-control" id="specialisation" name="specialization" >
+                                                        <option value="">Select</option>
                                                         <option value="Social Science and Humanities">Social Science and Humanities</option>
                                                         <option value="Management">Management</option>
                                                         <option value="Law">Law</option>
@@ -236,8 +281,8 @@ const EducationProfile = () => {
                                                         <span className="text-danger"> *</span></label>
                                                     <select
                                                         value={element.degree || ""} onChange={e => handleChange(index, e)}
-
-                                                        className="form-control" id="education_degree" name="degree" required="">
+                                                        required
+                                                        className="form-control" id="education_degree" name="degree" >
                                                         <option value="">Select</option> <option value="BEd">BEd</option> <option value="MA">MA</option> <option value="MM">MM</option> <option value="MBM">MBM</option> <option value="MIM">MIM</option> <option value="MIB">MIB</option> <option value="MBA">MBA</option> <option value="PGPM">PGPM</option> <option value="MBS">MBS</option> <option value="MCA">MCA</option> <option value="MFA">MFA</option> <option value="MVA">MVA</option> <option value="MPA">MPA</option> <option value="CFA - Level 1">CFA - Level 1</option> <option value="CFA - Level 2">CFA - Level 2</option> <option value="CFA - Level 3">CFA - Level 3</option> <option value="JD">JD</option> <option value="LLM">LLM</option> <option value="MCom">MCom</option> <option value="MEng">MEng</option> <option value="ME">ME</option> <option value="MSE">MSE</option> <option value="MTech">MTech</option> <option value="MS">MS</option> <option value="MSc">MSc</option> <option value="MPH">MPH</option> <option value="MPharm">MPharm</option> <option value="MDS">MDS</option> <option value="MEd">MEd</option> <option value="MArch">MArch</option> <option value="MDes">MDes</option> <option value="MPT">MPT</option> <option value="MD">MD</option> <option value="MS">MS</option> <option value="Other Masters">Other Masters</option> <option value="PG Certificate">PG Certificate</option> <option value="MMus">MMus</option>
                                                     </select>
                                                 </div>
@@ -249,7 +294,7 @@ const EducationProfile = () => {
                                                 <div className="form-group"><label htmlFor="grading_scheme_id">Grade
                                                     Scheme(GPA/Percentage)</label><select
                                                         value={element.gradePercentage || ""} onChange={e => handleChange(index, e)}
-                                                        className="form-control" id="grading_scheme_id" name="gradePercentage" required="">
+                                                        className="form-control" id="grading_scheme_id" name="gradePercentage" >
                                                         <option >Select</option>
                                                         <option value="Grade Scale 0-4">Grade Scale 0-4</option>
                                                         <option value="Grade Scale 0-10">Grade Scale 0-10</option>
@@ -263,7 +308,7 @@ const EducationProfile = () => {
                                                     Average/Marks Obtained</label><input
                                                         value={element.marks || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="grade_marks" name="marks" placeholder="Grade Average/Marks Obtained" required="" /></div>
+                                                        type="text" className="form-control" id="grade_marks" name="marks" placeholder="Grade Average/Marks Obtained" /></div>
                                             </div>
                                         </div>
 
@@ -310,7 +355,7 @@ const EducationProfile = () => {
                                                         value={element.language || ""} onChange={e => handleChange(index, e)}
 
 
-                                                        className="form-control" id="language_of_study" name="language" required="">
+                                                        className="form-control" id="language_of_study" name="language" >
                                                         <option value="English">English</option>
                                                         <option value="Hindi">Hindi</option>
                                                         <option value="Other">Other</option>
@@ -328,7 +373,7 @@ const EducationProfile = () => {
                                                         value={element.country || ""} onChange={e => handleChange(index, e)}
 
                                                         className="form-control" id="Nationality" name="country">
-                                                        <option >Select Country</option>
+                                                        <option value="">Select Country</option>
                                                         <option value="India">India</option>
                                                         <option value="Afghanistan">Afghanistan</option>
                                                         <option value="Albania">Albania</option>
@@ -343,7 +388,7 @@ const EducationProfile = () => {
                                                 <div className="form-group"><label htmlFor="institute_address_state">State/Province</label><select
                                                     value={element.state || ""} onChange={e => handleChange(index, e)}
 
-                                                    className="form-control" id="institute_address_state" name="state" required="">
+                                                    className="form-control" id="institute_address_state" name="state" >
                                                     <option>Select State</option>
                                                 </select></div>
                                             </div>
@@ -353,14 +398,14 @@ const EducationProfile = () => {
                                                     <div className="form-group"><label htmlFor="City/institute_address_city">City/Town</label><input
                                                         value={element.city || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_city" placeholder="City/Town" name="city" required="" />
+                                                        type="text" className="form-control" id="institute_address_city" placeholder="City/Town" name="city" />
                                                     </div>
                                                 </div>
                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                     <div className="form-group"><label htmlFor="institute_address_text_1">Address</label><input
                                                         value={element.address || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="text" className="form-control" id="institute_address_text_1" placeholder="Address" name="address" required="" />
+                                                        type="text" className="form-control" id="institute_address_text_1" placeholder="Address" name="address" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -370,7 +415,7 @@ const EducationProfile = () => {
                                                     <div className="form-group"><label htmlFor="institute_address_zipcode">Zipcode</label><input
                                                         value={element.zipcode || ""} onChange={e => handleChange(index, e)}
 
-                                                        type="number" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="zipcode" required="" /></div>
+                                                        type="number" className="form-control" id="institute_address_zipcode" placeholder="Zipcode" name="zipcode" /></div>
                                                 </div>
                                             </div>
 
@@ -382,7 +427,7 @@ const EducationProfile = () => {
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6 text-right">
 
-                                            <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                            <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                             <button type="submit" className="btn btn-secondary">Save
                                             </button>
