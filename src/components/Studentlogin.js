@@ -22,10 +22,13 @@ export default function Studentlogin() {
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
     const [loader, setmyloader] = useState("false");
-
+    const [wrongPassword, setwrongPassword] = useState("");
+    const [wrongUsername, setwrongUsername] = useState("")
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
+        setwrongUsername("")
+        setwrongPassword("")
         event.preventDefault();
         if (email === "") {
             setemailError("Please enter email");
@@ -50,7 +53,15 @@ export default function Studentlogin() {
                         localStorage.setItem('userData', JSON.stringify(responseJson));
                         setredirectToReferrer(true)
                     }
-                    else {
+                    else{
+                        if (responseJson.data.message === "Password not matched") {
+                            setwrongPassword(" Please enter a correct password")
+                           
+                        }
+                        else {
+                          
+                            setwrongUsername("Please enter a correct email")
+                        }
 
                     }
                 }
@@ -95,6 +106,7 @@ export default function Studentlogin() {
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
                                                     />
+                                                     <div style={{ color: "red" }}> {wrongUsername}</div>
                                                 </div>
                                                 <span style={{ color: "red" }}>{emailError}</span>
                                                 <div className="mb-3 mt-3">
@@ -104,6 +116,7 @@ export default function Studentlogin() {
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
                                                     />
+                                                      <div style={{ color: "red" }}> {wrongPassword}</div>
                                                 </div>
                                                 <span style={{ color: "red" }}> {passwordError}</span>
                                                 <button type="submit" className="btn btn-website">Login</button>

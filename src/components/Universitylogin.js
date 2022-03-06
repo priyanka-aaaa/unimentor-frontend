@@ -5,17 +5,14 @@ import Header from './Home/Header'
 import axios from 'axios';
 import LoaderFrontend from './Home/LoaderFrontend';
 
-
-
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
     return images
-  }
-  
-  const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
+}
+
+const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|webp)$/));
 export default function Universitylogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -25,10 +22,15 @@ export default function Universitylogin() {
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
     const [loader, setmyloader] = useState("false");
+    const [wrongPassword, setwrongPassword] = useState("");
+    const [wrongUsername, setwrongUsername] = useState("");
+
 
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
+        setwrongUsername("")
+        setwrongPassword("")
         event.preventDefault();
         if (email === "") {
             setemailError("Please enter email");
@@ -51,6 +53,7 @@ export default function Universitylogin() {
                     let responseJson = result;
                     setmyloader("false")
 
+
                     if (responseJson.data.success === true) {
 
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
@@ -66,12 +69,18 @@ export default function Universitylogin() {
 
                         setredirectToReferrer(true)
                     }
-                    else {
+                    else{
+                        if (responseJson.data.message === "Password not matched") {
+                            setwrongPassword(" Please enter a correct password")
 
-                        setsuccessMessage("Username or Password is incorrect")
-                        setTimeout(() => setsubmitSuccess(""), 3000);
-                        setsubmitSuccess(1)
+                        }
+                        else {
+
+                            setwrongUsername("Please enter a correct email")
+                        }
+
                     }
+
                 }
                 )
                 .catch(error => {
@@ -83,7 +92,7 @@ export default function Universitylogin() {
     }
     return (
         <div>
-                 
+
             {loader === "true" ?
                 <LoaderFrontend />
                 : null}
@@ -96,13 +105,13 @@ export default function Universitylogin() {
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6">
-                                <img src={images["login.png"]} alt="login" />
-                                
+                                    <img src={images["login.png"]} alt="login" />
+
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="form-centerblock">
                                         <h2>Schools Login</h2>
-                               
+
                                         <div className="from-start">
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-3 mt-3">
@@ -112,6 +121,9 @@ export default function Universitylogin() {
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
                                                     />
+
+                                                    <div style={{ color: "red" }}> {wrongUsername}</div>
+
                                                 </div>
                                                 <span style={{ color: "red" }}>{emailError}</span>
                                                 <div className="mb-3 mt-3">
@@ -121,14 +133,15 @@ export default function Universitylogin() {
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
                                                     />
+                                                    <div style={{ color: "red" }}> {wrongPassword}</div>
                                                 </div>
                                                 <span style={{ color: "red" }}> {passwordError}</span>
                                                 <button type="submit" className="btn btn-website">Login</button>
                                             </form>
                                             <p>Don't have an account? Click here to
-                                        <Link to={'/Universityregister'} className="" >
-                                            Register</Link></p>
-                                             
+                                                <Link to={'/Universityregister'} className="" >
+                                                    Register</Link></p>
+
                                         </div>
 
                                     </div>
