@@ -5,7 +5,7 @@ import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp, faEye, faUserSlash
+     faTrash, faPen,  faEye, faUserSlash
 
 } from '@fortawesome/free-solid-svg-icons';
 export default function AdminUniversity() {

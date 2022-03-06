@@ -2,14 +2,19 @@ import React, { useState, useEffect } from "react";
 
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash, faPen, faEye, faUserSlash
+
+} from '@fortawesome/free-solid-svg-icons';
 export default function AdminStudent() {
     return (
         <div id="page-top">
             <div id="wrapper">
-                <Sidebar/>
+                <Sidebar />
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <Topbar/>
+                        <Topbar />
                         <div className="container">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Student</h1>
@@ -30,7 +35,7 @@ export default function AdminStudent() {
                                                             <th> Name</th>
                                                             <th>Email</th>
                                                             <th>Phone</th>
-                                                            <th></th>
+                                                            <th>Action</th>
 
                                                         </tr>
                                                     </thead>
@@ -42,10 +47,22 @@ export default function AdminStudent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -55,10 +72,22 @@ export default function AdminStudent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -68,10 +97,22 @@ export default function AdminStudent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -81,10 +122,22 @@ export default function AdminStudent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </tbody>

@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash, faPen, faEye, faUserSlash
+
+} from '@fortawesome/free-solid-svg-icons';
 export default function AdminAgent() {
     return (
         <div id="page-top">
@@ -19,14 +24,14 @@ export default function AdminAgent() {
                                     <div class="card shadow mb-4">
                                         <div class="card shadow mb-4">
                                             <div class="table-responsive-sm">
-                                                <table class="table table-bordered">
+                                            <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
                                                             <th>ID</th>
                                                             <th> Name</th>
                                                             <th>Email</th>
                                                             <th>Phone</th>
-                                                            <th></th>
+                                                            <th>Action</th>
 
                                                         </tr>
                                                     </thead>
@@ -38,10 +43,22 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -51,10 +68,22 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -64,10 +93,22 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -77,10 +118,22 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" ><i className="fas fa-trash-alt"></i></button>
-                                                                <button className="btn"><i className="fas fa-pen "></i></button>
-                                                                <button className="btn" ><i className="fas fa-eye"></i></button>
-                                                                <button className="btn" ><i class="fas fa-user-slash"></i></button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faTrash} />
+
+                                                                </button>
+                                                                <button className="btn">
+                                                                    <FontAwesomeIcon icon={faPen} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faEye} />
+
+                                                                </button>
+                                                                <button className="btn" >
+                                                                    <FontAwesomeIcon icon={faUserSlash} />
+
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </tbody>
