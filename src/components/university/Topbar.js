@@ -30,7 +30,7 @@ class Topbar extends Component {
     }
     render() {
         return this.state.redirectToReferrer ?
-            <Redirect to={'/sign-in'} /> :
+            <Redirect to={'/Universitylogin'} /> :
 
 
 
