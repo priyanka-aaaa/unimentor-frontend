@@ -149,7 +149,12 @@ export default function AllUniversity() {
         })
             .then(response => response.json())
             .then(data => {
+                var myresults = data.universityPrimaryInformation;
+                if (Object.keys(myresults).length === 0) {
                 setFormPrimaryInformationValues(data.universityPrimaryInformation)
+                 
+                }
+             
 
             })
 
@@ -278,7 +283,9 @@ export default function AllUniversity() {
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
-                                                        <i className="fas fa-phone-alt"></i>
+                                                    <FontAwesomeIcon icon={faPhone} />
+
+                                                      
                                                         Call Now
                                                     </span>
                                                     <a href="tel:4401915153000">{FormPrimaryInformationValues.phone}</a>
