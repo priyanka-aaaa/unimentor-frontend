@@ -4,8 +4,8 @@ import axios from 'axios';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp
-
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp , 
+  
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
 

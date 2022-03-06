@@ -6,7 +6,11 @@ import Topbar from './Topbar';
 
 import Footer from './Footer';
 
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp , 
+  
+} from '@fortawesome/free-solid-svg-icons';
 export default function ApplicationStep() {
 
     const [viewWidth, setviewWidth] = useState("0px");
@@ -168,10 +172,13 @@ export default function ApplicationStep() {
 
                                                     <td>
 
-                                                        {/* <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                    <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button> */}
+                                                     
 
-                                                        <button className="btn" onClick={() => handleEdit(object._id)}><i className="fas fa-pen"></i></button>
+                                                        <button className="btn" onClick={() => handleEdit(object._id)}>
+                                                        <FontAwesomeIcon icon={faPen} />
+
+                                                        
+                                                            </button>
                                                     </td>
                                                 </tr>
 
@@ -233,7 +240,7 @@ export default function ApplicationStep() {
                                                                         <div className="col-md-6"></div>
                                                                         <div className="col-md-6 text-right">
 
-                                                                            <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                                                            <button  type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                                                             <button type="submit" className="btn btn-secondary">Save
                                                                             </button>

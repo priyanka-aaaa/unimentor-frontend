@@ -29,10 +29,10 @@ export default function Studentregister() {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                
+
 
                 if (res.data.success === true) {
-                   
+
                     var student_personal = res.data.studentPersonalDetails;
 
                     console.log("student_personal");
@@ -43,11 +43,11 @@ export default function Studentregister() {
                     setlocation(student_personal.location);
                     setstate(student_personal.state);
                     setcity(student_personal.city);
-             
+
                     setdateOfBirth(student_personal.dateOfBirth);
                     setcountry(student_personal.countryCode);
                     setmobile(student_personal.phone);
-                 
+
                     // setpicture(student_personal.picture);
 
 
@@ -219,13 +219,13 @@ export default function Studentregister() {
                                                                                 <label htmlFor="email"
                                                                                     className="form-label">Email</label>
                                                                                 <input type="email"
-                                                                                readonly
+                                                                                    readonly
                                                                                     value={email}
                                                                                     onChange={(e) => setemail(e.target.value)}
                                                                                     className="form-control"
                                                                                     id="email" placeholder="" name="email"
-                                                                                    
-                                                                                    />
+
+                                                                                />
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="clocation"

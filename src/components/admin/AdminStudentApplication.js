@@ -7,6 +7,12 @@ import JSZip from 'jszip';
 import Footer from './Footer';
 import { saveAs } from "file-saver";
 import JSZipUtils from './zputils.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp,faEye,faCloudDownload,
+    faCheckCircle, faCheckSquare,faUserCircle,faRedo,faTimesCircle
+
+} from '@fortawesome/free-solid-svg-icons';
 export default function AdminStudentApplication() {
 
     const saveFile = (url) => {
@@ -477,9 +483,12 @@ export default function AdminStudentApplication() {
 
                                                                 <td>
 
-                                                                    {/* <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                                                    <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button> */}
-                                                                    <button className="btn" onClick={() => handleView(object._id + '&&' + object.studentID)}><i className="fas fa-eye"></i></button>
+                                                                   
+                                                                    <button className="btn" onClick={() => handleView(object._id + '&&' + object.studentID)}>
+                                                                      
+                                                                    <FontAwesomeIcon icon={faEye} />
+                                                                        
+                                                                        </button>
                                                                 </td>
                                                             </tr>
 
@@ -995,16 +1004,13 @@ export default function AdminStudentApplication() {
 
                                                                     <td>
 
-                                                                        {/* <button className="btn" onClick={() => handleDelete(object._id)}><i className="fas fa-trash-alt"></i></button>
-                                        <button className="btn" onClick={() => handleClick(object._id)}><i className="fas fa-pen "></i></button> */}
-                                                                        <button className="btn" onClick={() => handlesecondView(object._id)}><i className="fas fa-eye"></i></button>
-                                                                        {/*                   
-                                            <Link to={'/ViewStudentApplication/'+ object._id} className="btn" href="#">
-
-                                          
-                                                <i className="fas fa-eye"></i>
-                                            </Link> */}
-                                                                    </td>
+                                                                      
+                                                                        <button className="btn" onClick={() => handlesecondView(object._id)}>
+                                                                          
+                                                                        <FontAwesomeIcon icon={faEye} />
+                                                                            
+                                                                            </button>
+                                                               </td>
                                                                 </tr>
 
                                                             )
@@ -1066,7 +1072,11 @@ export default function AdminStudentApplication() {
                                                                 Initiated</button></div>
                                                         </div>
                                                         <div className="col-md-4">
-                                                            <div className="btn-block"><button type="button" className="btn btn-outline-primary btn-download"><span><i className="fas fa-cloud-download-alt" /></span>Download</button></div>
+                                                            <div className="btn-block"><button type="button" className="btn btn-outline-primary btn-download"><span>
+                                                                <i className="fas fa-cloud-download-alt" />
+                                                                <FontAwesomeIcon icon={faCloudDownload} />
+                                                                
+                                                                </span>Download</button></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1254,7 +1264,13 @@ export default function AdminStudentApplication() {
 
                                                                                     <div key={i}>
 
-                                                                                        <li className="statusBox ">{object}<span><i className="fas fa-check-circle" /></span></li>
+                                                                                        <li className="statusBox ">{object}<span>
+                                                                                            
+                                                                                            <i className="fas fa-check-circle" />
+                                                                                            
+                                                                        <FontAwesomeIcon icon={faCheckCircle} />
+                                                                                            
+                                                                                            </span></li>
 
 
                                                                                     </div>
@@ -1331,7 +1347,11 @@ export default function AdminStudentApplication() {
                                                                             <div className="note">
                                                                                 <div className="row">
                                                                                     <div className="col-md-6">
-                                                                                        <span><i className="fas fa-check-square" /></span>
+                                                                                        <span><i className="fas fa-check-square" />
+                                                                                        
+                                                                        <FontAwesomeIcon icon={faCheckSquare} />
+                                                                                        
+                                                                                        </span>
                                                                                         <div className="con-info">
                                                                                             <h6>Note</h6>
                                                                                             <p><strong>@Khushi</strong> Dear Sir, Kindly Provide
@@ -1344,12 +1364,19 @@ export default function AdminStudentApplication() {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="chat-msg">
-                                                                                    <h6><span><i className="fas fa-user-circle" /> Khushi left a
+                                                                                    <h6><span><i className="fas fa-user-circle" />
+                                                                                    
+                                                                        <FontAwesomeIcon icon={faUserCircle} />
+                                                                                     Khushi left a
                                                                                         note.</span></h6>
                                                                                     <div className="msg-content">
                                                                                         <div className="row">
                                                                                             <div className="col-md-6">
-                                                                                                <span><i className="fas fa-check-square" /></span>
+                                                                                                <span><i className="fas fa-check-square" />
+                                                                                                
+                                                                        <FontAwesomeIcon icon={faCheckSquare} />
+                                                                                                
+                                                                                                </span>
                                                                                                 <div className="con-info">
                                                                                                     <h6>@Satnam singh</h6>
                                                                                                     <p>Please ignore. It is by mistake. Sorry
@@ -1365,7 +1392,12 @@ export default function AdminStudentApplication() {
                                                                                         </div>
                                                                                         <div className="row text-right">
                                                                                             <div className="col-md-12">
-                                                                                                <button type="button" className="btn btn-success" onclick="opencoment()"><span><i className="fas fa-plus" /></span>Add
+                                                                                                <button type="button" className="btn btn-success" onclick="opencoment()"><span>
+                                                                                                    <i className="fas fa-plus" />
+                                                                                                    
+                                                                        <FontAwesomeIcon icon={faPlus} />
+                                                                                                    
+                                                                                                    </span>Add
                                                                                                     Comment</button>
                                                                                             </div>
                                                                                         </div>
@@ -1412,16 +1444,37 @@ export default function AdminStudentApplication() {
                                                             <div className="col-md-6">
                                                                 <h4>Documents</h4>
                                                             </div>
-                                                            <div className="col-md-6 text-right"><button type="button" className="btn btn-success" onclick="openNav()"><span><i className="fas fa-eye" /></span>All
+                                                            <div className="col-md-6 text-right"><button type="button" className="btn btn-success" onclick="openNav()"><span><i className="fas fa-eye" />
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                            
+                                                            </span>All
                                                                 Document</button></div>
                                                         </div>
                                                         <ul>
-                                                            <li onClick={downloadPassport}>PASSPORT <span><i className="fas fa-eye" /></span></li>
-                                                            <li>10TH<span><i className="fas fa-eye" /></span></li>
+                                                            <li onClick={downloadPassport}>PASSPORT <span><i className="fas fa-eye" />
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                            
+                                                            </span></li>
+                                                            <li>10TH<span>
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                                
+                                                                <i className="fas fa-eye" /></span></li>
                                                             <li>12TH<span><i className="fas fa-eye" /></span></li>
-                                                            <li>MEDIUM OF INSTRUCTION<span><i className="fas fa-eye" /></span></li>
-                                                            <li>LETTER OF RECOMMENDATION<span><i className="fas fa-eye" /></span></li>
-                                                            <li>OFFER LETTER<span><i className="fas fa-eye" /></span></li>
+                                                            <li>MEDIUM OF INSTRUCTION<span>
+                                                                
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                                
+                                                                <i className="fas fa-eye" /></span></li>
+                                                            <li>LETTER OF RECOMMENDATION<span>
+                                                                
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                                
+                                                                <i className="fas fa-eye" /></span></li>
+                                                            <li>OFFER LETTER<span>
+                                                                
+                                                            <FontAwesomeIcon icon={faEye} />
+                                                                
+                                                                <i className="fas fa-eye" /></span></li>
                                                         </ul>
                                                     </div>
                                                     <div className="card-body sidenav" id="mySidenav">
@@ -1622,13 +1675,23 @@ export default function AdminStudentApplication() {
                                                     <div className="row mt-3">
                                                         <div className="col-md-12">
                                                             <div className="refresh-sednmsg refresh-sednmsg2">
-                                                                <span style={{ cursor: 'pointer' }} onclick="window.location.reload();" className="btn-refersh" title="Reload the Chat conversation"><i className="fas fa-redo" aria-hidden="true" />Refresh</span>
+                                                                <span style={{ cursor: 'pointer' }} onclick="window.location.reload();" className="btn-refersh" title="Reload the Chat conversation">
+                                                            <FontAwesomeIcon icon={faRedo} />
+                                                                    
+                                                                    <i className="fas fa-redo" aria-hidden="true" />
+                                                                    Refresh</span>
                                                                 <a href="javascript:void(0)" id="send_reply" className="btn-send-msg" title="chat conversation"><span><i className="far fa-comments" /></span>Chat
                                                                     Conversation</a>
                                                                 <style dangerouslySetInnerHTML={{ __html: "\n\t\t\t\t\t\t\t\t\t\t\t#sendmsg {\n\t\t\t\t\t\t\t\t\t\t\t\tdisplay: none;\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t" }} />
                                                                 <div className="btn-accept-reject">
-                                                                    <button title="Accept solution" className="accept"><span><i className="fas fa-check-circle" aria-hidden="true" /></span>Accept</button>
-                                                                    <button title="Reject solution" id="reject_solution" className="reject"><span><i className="fas fa-times-circle" aria-hidden="true" /></span>Reject</button>
+                                                                    <button title="Accept solution" className="accept"><span>
+                                                                    <FontAwesomeIcon icon={faCheckCircle} />
+                                                                        
+                                                                        <i className="fas fa-check-circle" aria-hidden="true" /></span>Accept</button>
+                                                                    <button title="Reject solution" id="reject_solution" className="reject"><span>
+                                                                    <FontAwesomeIcon icon={faTimesCircle} />
+                                                                        
+                                                                        <i className="fas fa-times-circle" aria-hidden="true" /></span>Reject</button>
                                                                 </div>
                                                                 {/* accept solution form*/}
                                                                 <div className="send-msg-block" style={{ display: 'none' }}>
@@ -1710,7 +1773,9 @@ export default function AdminStudentApplication() {
                                                                                     <div className="col-md-12">
                                                                                         <label className="open" htmlFor="files">
                                                                                             <div className="droped_data">
-                                                                                                <div className="drop_img"><i className="fas fa-cloud-upload-alt" />
+                                                                                                <div className="drop_img">
+                                                                                                    <i className="fas fa-cloud-upload-alt" />
+
                                                                                                 </div>
                                                                                                 <div className="drag_dropsection">
                                                                                                     <div id="drag_h3" className="drop_text">
