@@ -13,13 +13,10 @@ class Topbar extends Component {
         }
     }
     logout = () => {
-        localStorage.removeItem("universityId");
-        localStorage.removeItem("universityToken");
-        localStorage.removeItem("universityEmail");
-        localStorage.removeItem("universityName");
         localStorage.clear();
+        window.location.href = "/Universitylogin";
     }
-    componentWillMount() {
+    componentDidMount() {
         if (localStorage.getItem("universityData")) {
             var universityId = localStorage.getItem('universityId');
             var mounted = localStorage.getItem('universityToken');
@@ -31,11 +28,27 @@ class Topbar extends Component {
             this.setState({ redirectToReferrer: true });
         }
     }
+
+    // componentWillMount() {
+    //     if (localStorage.getItem("universityData")) {
+    //         var universityId = localStorage.getItem('universityId');
+    //         var mounted = localStorage.getItem('universityToken');
+    //         var user_email = localStorage.getItem('universityEmail');
+    //         this.setState({ email: user_email });
+    //     }
+    //     else {
+    //         var user_email = "";
+    //         this.setState({ redirectToReferrer: true });
+    //     }
+    // }
+
+
     render() {
-        if (this.state.redirectToReferrer) {
-            return (<Redirect to={'/Universitylogin'} />)
-        }
-        return (
+        return this.state.redirectToReferrer ?
+            <Redirect to={'/sign-in'} /> :
+
+
+
             <div>
                 <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
@@ -200,7 +213,7 @@ class Topbar extends Component {
                     </ul>
                 </nav>
             </div>
-        );
+
     }
 }
 
