@@ -24,6 +24,7 @@ const WorkExperienceProfile = () => {
 
 
     const [deleteId, setdeleteId] = useState("");
+    const [submitError, setsubmitError] = useState("0");
 
     useEffect(() => {
         if (localStorage.getItem("userData")) {
@@ -84,76 +85,87 @@ const WorkExperienceProfile = () => {
         var myvalues = JSON.stringify(formValues);
 
         formValues.map(async (item) => {
-            if (item._id === "null") {
-                await axios.post(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations', item, { headers: { 'Authorization': mounted } })
-                    .then(function (res) {
-                        setmyloader("false")
 
-
-                        if (res.data.success === true) {
-                            setsuccessMessage("Work Experience Updated")
-                            setTimeout(() => setsubmitSuccess(""), 3000);
-                            setsubmitSuccess(1)
-                            const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
-                            fetch(url, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': mounted,
-
-                                }
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    var myresults = data.studentProfileRecommendations;
-                                    if (Object.keys(myresults).length === 0) {
-
-                                    }
-                                    else {
-                                        setFormValues(data.studentProfileRecommendations)
-                                    }
-                                })
-                        }
-
-                    })
-                    .catch(error => {
-
-                    });
+            if (item.type === "") {
+              
+                setmyloader("false")
+                setTimeout(() => setsubmitError(""), 3000);
+                setsubmitError(1)
 
             }
             else {
+               
+                if (item._id === "null") {
+                    await axios.post(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations', item, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            setmyloader("false")
 
-                await axios.put(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + item._id, item, { headers: { 'Authorization': mounted } })
 
-                    .then(function (res) {
+                            if (res.data.success === true) {
+                                setsuccessMessage("Work Experience Updated")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': mounted,
 
-                        if (res.data.success === true) {
-                            setsuccessMessage("Work Experience Updated")
-                            setTimeout(() => setsubmitSuccess(""), 3000);
-                            setsubmitSuccess(1)
-                            const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
-                            fetch(url, {
-                                method: 'GET',
-                                headers: {
-                                    'Authorization': mounted,
-
-                                }
-                            })
-                                .then(response => response.json())
-                                .then(data => {
-                                    var myresults = data.studentProfileRecommendations;
-                                    if (Object.keys(myresults).length === 0) {
-
-                                    }
-                                    else {
-                                        setFormValues(data.studentProfileRecommendations)
                                     }
                                 })
-                        }
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        var myresults = data.studentProfileRecommendations;
+                                        if (Object.keys(myresults).length === 0) {
 
-                    })
-                    .catch(error => {
+                                        }
+                                        else {
+                                            setFormValues(data.studentProfileRecommendations)
+                                        }
+                                    })
+                            }
 
-                    });
+                        })
+                        .catch(error => {
+
+                        });
+
+                }
+                else {
+
+                    await axios.put(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + item._id, item, { headers: { 'Authorization': mounted } })
+
+                        .then(function (res) {
+                            setmyloader("false")
+                            if (res.data.success === true) {
+                                setsuccessMessage("Work Experience Updated")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': mounted,
+
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        var myresults = data.studentProfileRecommendations;
+                                        if (Object.keys(myresults).length === 0) {
+
+                                        }
+                                        else {
+                                            setFormValues(data.studentProfileRecommendations)
+                                        }
+                                    })
+                            }
+
+                        })
+                        .catch(error => {
+
+                        });
+                }
             }
         })
 
@@ -183,66 +195,69 @@ const WorkExperienceProfile = () => {
             {loader === "true" ?
                 <Loader />
                 : null}
+            {submitError === 1 ? <div className="Show_error_message">
+                <strong></strong> Type Is Required
+            </div> : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
             {showSweetAlert === "1" ? <SweetAlert
-                            warning
-                            showCancel
-                            confirmBtnText="Yes, delete it!"
-                            confirmBtnBsStyle="danger"
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
 
-                            title="Are you sure?"
-                            onConfirm={(value) => {
-                                setshowSweetAlert("0");
-                                setmyloader("true")
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    setmyloader("true")
 
-                                axios.delete(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + deleteId, { headers: { 'Authorization': mounted } })
-                                    .then(function (res) {
-                                        setmyloader("false")
+                    axios.delete(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            setmyloader("false")
 
-                                        if (res.data.success === true) {
-                                            setsuccessMessage("Recommendation Deleted")
-                                            setTimeout(() => setsubmitSuccess(""), 3000);
-                                            setsubmitSuccess(1)
+                            if (res.data.success === true) {
+                                setsuccessMessage("Recommendation Deleted")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
 
-                                            const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
-                                            fetch(url, {
-                                                method: 'GET',
-                                                headers: {
-                                                    'Authorization': mounted,
-                                    
-                                                }
-                                            })
-                                                .then(response => response.json())
-                                                .then(data => {
-                                                    var myresults = data.studentExperience;
-                                                    if (Object.keys(myresults).length === 0) {
-                                    
-                                                    }
-                                                    else {
-                                                        setFormValues(data.studentExperience)
-                                                    }
-                                                })
+                                const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
+                                fetch(url, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': mounted,
+
+                                    }
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        var myresults = data.studentProfileRecommendations;
+                                        if (Object.keys(myresults).length === 0) {
 
                                         }
                                         else {
-
+                                            setFormValues(data.studentProfileRecommendations)
                                         }
                                     })
-                                    .catch(error => {
-
-                                    });
-                            }}
-                            onCancel={() =>
-                                setshowSweetAlert("0")
 
                             }
-                            focusCancelBtn
-                        >
-                        </SweetAlert>
-                            : null
-                        }
+                            else {
+
+                            }
+                        })
+                        .catch(error => {
+
+                        });
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+
+                }
+                focusCancelBtn
+            >
+            </SweetAlert>
+                : null
+            }
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse8"><strong>8</strong>
                     Recommendation
@@ -266,11 +281,12 @@ const WorkExperienceProfile = () => {
                                             onChange={(e) => setreferenceType(index, "Professional")}
 
                                             checked={element.type === "Professional"}
-
+                                            required
 
                                             name="type" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span><span>Professional</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
+                                                required
                                                 onChange={(e) => setreferenceType(index, "Academic")}
-                                                hecked={element.type === "Academic"}
+                                                checked={element.type === "Academic"}
                                                 name="type" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span><span>Academic</span></label>
                                             <br />
                                         </div>
@@ -280,7 +296,7 @@ const WorkExperienceProfile = () => {
                                             of Organisation/Institution <span className="text-danger">
                                                 *</span></label><input
                                                 value={element.organization || ""} onChange={e => handleChange(index, e)}
-
+                                                required
                                                 type="text" className="form-control" id="Name_of_organisation" name="organization" placeholder="Name of Organisation/Institution" />
                                         </div>
                                     </div>
@@ -290,7 +306,7 @@ const WorkExperienceProfile = () => {
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                         <div className="form-group"><label htmlFor="recommender_name">Recommender Name <span className="text-danger"> *</span></label><input
                                             value={element.recommenderName || ""} onChange={e => handleChange(index, e)}
-
+                                            required
                                             type="text" className="form-control" id="recommender_name" name="recommenderName" placeholder="Recommender Name" /></div>
                                     </div>
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -298,8 +314,8 @@ const WorkExperienceProfile = () => {
                                             Email ID <span className="text-danger">
                                                 *</span></label><input
                                                 value={element.email || ""} onChange={e => handleChange(index, e)}
-
-                                                type="text" className="form-control" id="official_email_id" name="email" placeholder="Email" />
+                                                required
+                                                type="email" className="form-control" id="official_email_id" name="email" placeholder="Email" />
                                         </div>
                                     </div>
                                 </div>
