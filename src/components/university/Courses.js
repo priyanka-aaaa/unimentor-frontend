@@ -71,7 +71,7 @@ const Courses = () => {
             })
     }, [])
     let handleIntakeSubmit = (event) => {
-        alert("jj")
+     
         event.preventDefault();
         const obj = {
             year: intakeyear,
@@ -865,7 +865,7 @@ const Courses = () => {
                                                                             Intakes <span className="req-star">*</span>
                                                                             <select required
                                                                                 type="text" className="form-control"
-                                                                                required
+
                                                                                 onChange={(e) => setcourseaddintake(e.target.value)}>
                                                                                 <option value="">Select Intake </option>
                                                                                 {Intakedata.map((object, i) => {
@@ -1031,7 +1031,7 @@ const Courses = () => {
                                 </div>
                             </div>
                             <div className="modal-footer">
-                                <button type="button" className="btn btn-primary" title="Submit">Submit</button>
+                                <button type="submit" className="btn btn-primary" title="Submit">Submit</button>
                             </div>
                         </form>
                     </div>
