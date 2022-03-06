@@ -87,14 +87,14 @@ const WorkExperienceProfile = () => {
         formValues.map(async (item) => {
 
             if (item.type === "") {
-              
+
                 setmyloader("false")
                 setTimeout(() => setsubmitError(""), 3000);
                 setsubmitError(1)
 
             }
             else {
-               
+
                 if (item._id === "null") {
                     await axios.post(process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations', item, { headers: { 'Authorization': mounted } })
                         .then(function (res) {
@@ -279,7 +279,6 @@ const WorkExperienceProfile = () => {
                                         <div className="form-group"><label>Reference Type <span className="text-danger"> *</span></label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
 
                                             onChange={(e) => setreferenceType(index, "Professional")}
-
                                             checked={element.type === "Professional"}
                                             required
 

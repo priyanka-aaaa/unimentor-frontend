@@ -1,12 +1,15 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
 const ExtraCurricultarActivityProfile = () => {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
-        activityStatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
+        Activitiestatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
 
         _id: "null"
     }])
@@ -16,7 +19,7 @@ const ExtraCurricultarActivityProfile = () => {
         if (localStorage.getItem("userData")) {
             var a = localStorage.getItem('userData');
             var mydata = JSON.parse(a);
-      
+
             var studentId = mydata.data.student._id;
             var mounted = mydata.data.token;
         }
@@ -47,9 +50,22 @@ const ExtraCurricultarActivityProfile = () => {
         setFormValues(newFormValues);
     }
 
+    function setstudentActivitiestatus(i, myvalue) {
+        let newFormValues = [...formValues];
+        newFormValues[i]["Activitiestatus"] = myvalue;
+        setFormValues(newFormValues);
+    }
+    function setstudentApply(i, myvalue) {
+
+        let newFormValues = [...formValues];
+        newFormValues[i]["apply"] = myvalue;
+        setFormValues(newFormValues);
+    }
+
+
     let addFormFields = () => {
         setFormValues([...formValues, {
-            activityStatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
+            Activitiestatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
 
             _id: "null"
         }])
@@ -65,6 +81,7 @@ const ExtraCurricultarActivityProfile = () => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
 
+
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/activities', item, { headers: { 'Authorization': mounted } })
@@ -75,13 +92,29 @@ const ExtraCurricultarActivityProfile = () => {
                             setsuccessMessage("ExtraCurricultural Activity Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + 'student/activities';
+                            fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': mounted,
+
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.studentActivities;
+                                    if (Object.keys(myresults).length === 0) {
+
+                                    }
+                                    else {
+                                        setFormValues(data.studentActivities)
+                                    }
+                                })
                         }
-                        else {
-                            
-                        }
+
                     })
                     .catch(error => {
-                     
+
                     });
 
             }
@@ -95,13 +128,29 @@ const ExtraCurricultarActivityProfile = () => {
                             setsuccessMessage("ExtraCurricultural Activity Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + 'student/activities';
+                            fetch(url, {
+                                method: 'GET',
+                                headers: {
+                                    'Authorization': mounted,
+
+                                }
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.studentActivities;
+                                    if (Object.keys(myresults).length === 0) {
+
+                                    }
+                                    else {
+                                        setFormValues(data.studentActivities)
+                                    }
+                                })
                         }
-                        else {
-              
-                        }
+
                     })
                     .catch(error => {
-                     
+
                     });
             }
         })
@@ -110,7 +159,7 @@ const ExtraCurricultarActivityProfile = () => {
     }
     function handleDelete(value) {
         const url2 = process.env.REACT_APP_SERVER_URL + 'student/activities/' + value
-     
+
         fetch(url2, {
             method: 'delete',
             headers: { 'Authorization': mounted }
@@ -122,7 +171,7 @@ const ExtraCurricultarActivityProfile = () => {
                 setsuccessMessage("ExtraCurricultural Activity Deleted")
                 setTimeout(() => setsubmitSuccess(""), 3000);
                 setsubmitSuccess(1)
-               const url = process.env.REACT_APP_SERVER_URL + 'student/activities';
+                const url = process.env.REACT_APP_SERVER_URL + 'student/activities';
                 fetch(url, {
                     method: 'GET',
                     headers: {
@@ -140,7 +189,7 @@ const ExtraCurricultarActivityProfile = () => {
                             setFormValues(data.studentActivities)
                         }
                     })
-              
+
             })
     }
 
@@ -159,7 +208,10 @@ const ExtraCurricultarActivityProfile = () => {
 
                         {formValues.map((element, index) => (
                             <div key={index}>
-                                <a onClick={() => handleDelete(element._id)}><i className="fas fa-trash-alt"></i></a>
+                                <a onClick={() => handleDelete(element._id)}>
+                                    <FontAwesomeIcon icon={faTrash} />
+
+                                </a>
 
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -167,21 +219,31 @@ const ExtraCurricultarActivityProfile = () => {
                                             <label>Acitvity Status <span className="text-danger">
                                                 *</span></label>
                                             <br />
-                                            <label className="ant-radio-wrapper"><span className="ant-radio">
-                                                <input name="activity_status_0"
-                                                    value={element.activityStatus || ""} onChange={e => handleChange(index, e)}
 
-                                                    type="radio" className="ant-radio-input" value="Ongoing"
-                                                    name="activityStatus" /><span
-                                                        className="ant-radio-inner"></span></span>
+                                            <label className="ant-radio-wrapper"><span className="ant-radio">
+                                                <input name="Activitiestatus"
+
+                                                    onChange={(e) => setstudentActivitiestatus(index, "Ongoing")}
+                                                    checked={element.Activitiestatus === "Ongoing"}
+                                                    required
+
+
+
+                                                    type="radio" className="ant-radio-input"
+                                                /><span
+                                                    className="ant-radio-inner"></span></span>
                                                 <span>Ongoing</span></label>
                                             <label className="ant-radio-wrapper ant-radio-wrapper-checked">
                                                 <span className="ant-radio ant-radio-checked">
                                                     <input
-                                                        value={element.activityStatus || ""} onChange={e => handleChange(index, e)}
+                                                        onChange={(e) => setstudentActivitiestatus(index, "Completed")}
+                                                        checked={element.Activitiestatus === "Completed"}
+                                                        required
 
-                                                        name="activityStatus" type="radio" className="ant-radio-input"
-                                                        value="Completed" />
+
+
+                                                        name="Activitiestatus" type="radio" className="ant-radio-input"
+                                                    />
                                                     <span className="ant-radio-inner"></span></span>
                                                 <span>Completed</span></label> <br />
                                         </div>
@@ -190,10 +252,11 @@ const ExtraCurricultarActivityProfile = () => {
                                         <div className="form-group"><label>Activity <span className="text-danger"> *</span>
                                         </label>
                                             <select
+                                                required
                                                 value={element.activity || ""} onChange={e => handleChange(index, e)}
 
                                                 className="form-control" name="activity">
-                                                <option>Select Activity</option>
+                                                <option value="">Select Activity</option>
                                                 <option value="Student Government">Student Government
                                                 </option>
                                                 <option value="Academic Teams and Clubs">Academic Teams
@@ -222,7 +285,7 @@ const ExtraCurricultarActivityProfile = () => {
                                         <div className="form-group"><label htmlFor="designation">Position/Designation <span
                                             className="text-danger"> *</span></label><input
                                                 value={element.position || ""} onChange={e => handleChange(index, e)}
-
+                                                required
                                                 type="text" className="form-control" id="designation" name="position"
                                                 placeholder="Position/Designation" /></div>
                                     </div>
@@ -264,20 +327,28 @@ const ExtraCurricultarActivityProfile = () => {
                                             you apply?<span className="text-danger">
                                                 *</span></label><br /><label className="ant-radio-wrapper"><span
                                                     className="ant-radio"><input
-                                                        value={element.apply || ""} onChange={e => handleChange(index, e)}
+                                                        onChange={(e) => setstudentApply(index, "yes")}
+                                                        checked={element.apply === "yes"}
+                                                        required
+
+
 
 
                                                         name="apply" type="radio" className="ant-radio-input"
-                                                        value="yes" /><span
-                                                            className="ant-radio-inner"></span></span><span>Yes</span></label><label
-                                                                className="ant-radio-wrapper ant-radio-wrapper-checked"><span
-                                                                    className="ant-radio ant-radio-checked"><input
-                                                        value={element.apply || ""} onChange={e => handleChange(index, e)}
+                                                    /><span
+                                                        className="ant-radio-inner"></span></span><span>Yes</span></label><label
+                                                            className="ant-radio-wrapper ant-radio-wrapper-checked"><span
+                                                                className="ant-radio ant-radio-checked"><input
+                                                        onChange={(e) => setstudentApply(index, "no")}
+                                                        checked={element.apply === "no"}
+                                                        required
+
+
 
 
                                                         name="apply" type="radio" className="ant-radio-input"
-                                                        value="no" /><span
-                                                            className="ant-radio-inner"></span></span><span>No</span></label>
+                                                    /><span
+                                                        className="ant-radio-inner"></span></span><span>No</span></label>
                                             <br />
                                         </div>
                                     </div>
@@ -289,7 +360,7 @@ const ExtraCurricultarActivityProfile = () => {
                                 <div className="col-md-6"></div>
                                 <div className="col-md-6 text-right">
 
-                                    <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                    <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
                                     <button type="submit" className="btn btn-secondary">Save
                                     </button>
