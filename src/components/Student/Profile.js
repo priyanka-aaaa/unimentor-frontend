@@ -22,14 +22,9 @@ export default function Studentregister() {
     const [picture, setpicture] = useState("");
     
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
-   
-            var user_email = mydata.data.student.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+       
+        var mounted = localStorage.getItem("studentToken")
+        setMounted(mounted)
     }, [])
     function change_password(event) {
         setconfirmpasswordError("");

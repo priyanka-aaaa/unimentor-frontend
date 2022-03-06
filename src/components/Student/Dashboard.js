@@ -8,16 +8,10 @@ function PersonalInformation(props) {
   const [mounted, setMounted] = useState();
 
   useEffect(() => {
-    if (localStorage.getItem("userData")) {
-      var a = localStorage.getItem('userData');
-      var mydata = JSON.parse(a);
-   
-      var user_email = mydata.data.student.email;
-      var mounted = mydata.data.token;
-    }
+    var mounted = localStorage.getItem("studentToken")
     setMounted(mounted)
     var myurl = process.env.REACT_APP_SERVER_URL;
-  
+
     axios.get(process.env.REACT_APP_SERVER_URL + 'student/applications', { headers: { 'Authorization': mounted } })
       .then(function (res) {
         if (res.data.success === true) {
@@ -27,14 +21,14 @@ function PersonalInformation(props) {
 
         }
         else {
-      
+
         }
 
       })
       .catch(error => {
-      
+
       });
-   
+
 
 
   }, [])
@@ -245,7 +239,7 @@ function PersonalInformation(props) {
           {/* <!-- End of Main Content --> */}
 
           {/* <!-- Footer --> */}
-        
+
           {/* <!-- End of Footer --> */}
 
         </div>
