@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import LoaderRegister from './Home/LoaderRegister';
 
 import logo from '../img/logo.png';
 
@@ -27,6 +28,8 @@ export default function StudentRegisterForm() {
     const [emailError, setemailError] = useState("");
     const [phoneError, setphoneError] = useState("");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
+
 
     function handleSubmit(event) {
         setnameError("");
@@ -46,6 +49,8 @@ export default function StudentRegisterForm() {
             setphoneError("Please enter correct phone number");
         }
         else {
+            setmyloader("true")
+
             const obj = {
                 name: name,
                 email: email,
@@ -54,6 +59,7 @@ export default function StudentRegisterForm() {
             };
             axios.post(process.env.REACT_APP_SERVER_URL + 'student/register', obj)
                 .then(function (res) {
+                    setmyloader("false")
 
                     if (res.data.success === true) {
                         setshowSweetAlert("1")
@@ -77,6 +83,24 @@ export default function StudentRegisterForm() {
     }
     return (
         <div className="form-centerblock">
+            {/* <LoaderRegister /> */}
+
+            {loader === "true" ?
+                <LoaderRegister />
+                : null}
+            {showSweetAlert === "1" ?
+
+                <SweetAlert
+                    success
+                    title="Success!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                    You Are Register Successfully. Please Check Your Mail For Password
+                </SweetAlert>
+                : null
+            }
             <h2>Students Register</h2>
 
             <div className="from-start">

@@ -65,6 +65,8 @@ export default function Studentlogin() {
     }
     return (
         <div>
+                
+
                {loader === "true" ?
                 <LoaderFrontend />
                 : null}

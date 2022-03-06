@@ -11,6 +11,7 @@ import axios from 'axios';
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 import SweetAlert from 'react-bootstrap-sweetalert';
+import LoaderRegister from './Home/LoaderRegister';
 
 export default function AgentRegisterForm() {
     const [name, setName] = useState("");
@@ -20,6 +21,8 @@ export default function AgentRegisterForm() {
     const [emailError, setemailError] = useState("");
     const [phoneError, setphoneError] = useState("");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
+
     function handleSubmit(event) {
         setnameError("");
         setemailError("");
@@ -38,18 +41,21 @@ export default function AgentRegisterForm() {
             setphoneError("Please enter correct phone number");
         }
         else {
+            setmyloader("true")
+
             const obj = {
                 name: name,
                 email: email,
                 phone: phone
 
             };
-            axios.post(process.env.REACT_APP_SERVER_URL+'agent/register', obj)
+            axios.post(process.env.REACT_APP_SERVER_URL + 'agent/register', obj)
                 .then(function (res) {
-                 
+                    setmyloader("false")
+
                     if (res.data.success === true) {
                         setshowSweetAlert("1")
-                       
+
                         setName("");
                         setEmail("");
                         setPhone("");
@@ -63,24 +69,27 @@ export default function AgentRegisterForm() {
                     }
                 })
                 .catch(error => {
-               
+
                 });
         }
 
     }
     return (
-       <div>
-               {showSweetAlert === "1" ?
-            
-            <SweetAlert
-            success
-            title="Success!"
-            onConfirm={(value) => {
-                setshowSweetAlert("0")
-            }}
-        >
-           You Are Register Successfully. Please Check Your Mail For Password
-        </SweetAlert>
+        <div>
+              {loader === "true" ?
+    <LoaderRegister />
+    : null}
+            {showSweetAlert === "1" ?
+
+                <SweetAlert
+                    success
+                    title="Success!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                    You Are Register Successfully. Please Check Your Mail For Password
+                </SweetAlert>
                 : null
             }
             <section className="Form-block">
@@ -125,11 +134,11 @@ export default function AgentRegisterForm() {
                                         </div>
                                         <button type="submit" className="btn btn-website">Register</button>
                                     </form>
-                                   <p> Already have an account? Click here to 
-                                    <Link to={'/AgentLogin'} className="" >                         
+                                    <p> Already have an account? Click here to
+                                        <Link to={'/AgentLogin'} className="" >
 
-                            Login</Link></p>
-                                    
+                                            Login</Link></p>
+
                                 </div>
 
                             </div>
@@ -138,7 +147,7 @@ export default function AgentRegisterForm() {
                 </div>
 
             </section>
-       
+
         </div>
     );
 }

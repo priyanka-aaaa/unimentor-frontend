@@ -11758,6 +11758,22 @@ section.Form-block {
   position: absolute;
   top: 50%;
   left: 48%;
+  /* left: 0%; */
+  z-index: 2;
+  transform: translate(-50%,-50%);
+}
+.loader-Register{
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #FF9300;
+  width: 100px;
+  height: 100px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  position: absolute;
+  top: 50%;
+  /* left: 48%; */
+  left: 0%;
   z-index: 2;
   transform: translate(-50%,-50%);
 }

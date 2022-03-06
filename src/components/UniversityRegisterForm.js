@@ -10,6 +10,8 @@ import axios from 'axios';
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 import SweetAlert from 'react-bootstrap-sweetalert';
+import LoaderRegister from './Home/LoaderRegister';
+
 export default function UniversityRegisterForm() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -20,6 +22,7 @@ export default function UniversityRegisterForm() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
 
     function handleSubmit(event) {
         setnameError("");
@@ -39,6 +42,8 @@ export default function UniversityRegisterForm() {
             setphoneError("Please enter correct phone number");
         }
         else {
+            setmyloader("true")
+
             const obj = {
                 name: name,
                 email: email,
@@ -47,6 +52,7 @@ export default function UniversityRegisterForm() {
             };
             axios.post(process.env.REACT_APP_SERVER_URL + 'university/register', obj)
                 .then(function (res) {
+                    setmyloader("false")
 
                     if (res.data.success === true) {
                         setshowSweetAlert("1")
@@ -70,6 +76,22 @@ export default function UniversityRegisterForm() {
     }
     return (
         <div className="form-centerblock">
+              {loader === "true" ?
+                <LoaderRegister />
+                : null}
+            {showSweetAlert === "1" ?
+
+                <SweetAlert
+                    success
+                    title="Success!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                    You Are Register Successfully. Please Check Your Mail For Password
+                </SweetAlert>
+                : null
+            }
             <h2>Schools Register</h2>
 
             <div className="from-start">
