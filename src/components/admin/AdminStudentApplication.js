@@ -9,7 +9,7 @@ import JSZipUtils from './zputils.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp, faEye, faCloudDownload,
-    faCheckCircle, faCheckSquare, faUserCircle, faRedo, faTimesCircle
+    faCheckCircle, faCheckSquare, faUserCircle, faRedo, faTimesCircle,faCloudUpload
 
 } from '@fortawesome/free-solid-svg-icons';
 export default function AdminStudentApplication() {
@@ -1047,7 +1047,8 @@ export default function AdminStudentApplication() {
                                                         </div>
                                                         <div className="col-md-4">
                                                             <div className="btn-block"><button type="button" className="btn btn-outline-primary btn-download"><span>
-                                                                <i className="fas fa-cloud-download-alt" />
+
+
                                                                 <FontAwesomeIcon icon={faCloudDownload} />
 
                                                             </span>Download</button></div>
@@ -1240,7 +1241,7 @@ export default function AdminStudentApplication() {
 
                                                                                         <li className="statusBox ">{object}<span>
 
-                                                                                            <i className="fas fa-check-circle" />
+
 
                                                                                             <FontAwesomeIcon icon={faCheckCircle} />
 
@@ -1321,7 +1322,7 @@ export default function AdminStudentApplication() {
                                                                             <div className="note">
                                                                                 <div className="row">
                                                                                     <div className="col-md-6">
-                                                                                        <span><i className="fas fa-check-square" />
+                                                                                        <span>
 
                                                                                             <FontAwesomeIcon icon={faCheckSquare} />
 
@@ -1338,7 +1339,7 @@ export default function AdminStudentApplication() {
                                                                                     </div>
                                                                                 </div>
                                                                                 <div className="chat-msg">
-                                                                                    <h6><span><i className="fas fa-user-circle" />
+                                                                                    <h6><span>
 
                                                                                         <FontAwesomeIcon icon={faUserCircle} />
                                                                                         Khushi left a
@@ -1346,7 +1347,7 @@ export default function AdminStudentApplication() {
                                                                                     <div className="msg-content">
                                                                                         <div className="row">
                                                                                             <div className="col-md-6">
-                                                                                                <span><i className="fas fa-check-square" />
+                                                                                                <span>
 
                                                                                                     <FontAwesomeIcon icon={faCheckSquare} />
 
@@ -1367,7 +1368,7 @@ export default function AdminStudentApplication() {
                                                                                         <div className="row text-right">
                                                                                             <div className="col-md-12">
                                                                                                 <button type="button" className="btn btn-success" onclick="opencoment()"><span>
-                                                                                                    <i className="fas fa-plus" />
+
 
                                                                                                     <FontAwesomeIcon icon={faPlus} />
 
@@ -1418,37 +1419,40 @@ export default function AdminStudentApplication() {
                                                             <div className="col-md-6">
                                                                 <h4>Documents</h4>
                                                             </div>
-                                                            <div className="col-md-6 text-right"><button type="button" className="btn btn-success" onclick="openNav()"><span><i className="fas fa-eye" />
+                                                            <div className="col-md-6 text-right"><button type="button" className="btn btn-success" onclick="openNav()"><span>
+
                                                                 <FontAwesomeIcon icon={faEye} />
 
                                                             </span>All
                                                                 Document</button></div>
                                                         </div>
                                                         <ul>
-                                                            <li onClick={downloadPassport}>PASSPORT <span><i className="fas fa-eye" />
+                                                            <li onClick={downloadPassport}>PASSPORT <span>
                                                                 <FontAwesomeIcon icon={faEye} />
 
                                                             </span></li>
                                                             <li>10TH<span>
                                                                 <FontAwesomeIcon icon={faEye} />
 
-                                                                <i className="fas fa-eye" /></span></li>
-                                                            <li>12TH<span><i className="fas fa-eye" /></span></li>
+
+                                                            </span></li>
+                                                            <li>12TH<span></span></li>
                                                             <li>MEDIUM OF INSTRUCTION<span>
 
                                                                 <FontAwesomeIcon icon={faEye} />
 
-                                                                <i className="fas fa-eye" /></span></li>
+
+                                                            </span></li>
                                                             <li>LETTER OF RECOMMENDATION<span>
 
                                                                 <FontAwesomeIcon icon={faEye} />
 
-                                                                <i className="fas fa-eye" /></span></li>
+                                                            </span></li>
                                                             <li>OFFER LETTER<span>
 
                                                                 <FontAwesomeIcon icon={faEye} />
 
-                                                                <i className="fas fa-eye" /></span></li>
+                                                            </span></li>
                                                         </ul>
                                                     </div>
                                                     <div className="card-body sidenav" id="mySidenav">
@@ -1652,7 +1656,7 @@ export default function AdminStudentApplication() {
                                                                 <span style={{ cursor: 'pointer' }} onclick="window.location.reload();" className="btn-refersh" title="Reload the Chat conversation">
                                                                     <FontAwesomeIcon icon={faRedo} />
 
-                                                                    <i className="fas fa-redo" aria-hidden="true" />
+
                                                                     Refresh</span>
                                                                 <a href="javascript:void(0)" id="send_reply" className="btn-send-msg" title="chat conversation"><span><i className="far fa-comments" /></span>Chat
                                                                     Conversation</a>
@@ -1661,11 +1665,11 @@ export default function AdminStudentApplication() {
                                                                     <button title="Accept solution" className="accept"><span>
                                                                         <FontAwesomeIcon icon={faCheckCircle} />
 
-                                                                        <i className="fas fa-check-circle" aria-hidden="true" /></span>Accept</button>
+                                                                    </span>Accept</button>
                                                                     <button title="Reject solution" id="reject_solution" className="reject"><span>
                                                                         <FontAwesomeIcon icon={faTimesCircle} />
 
-                                                                        <i className="fas fa-times-circle" aria-hidden="true" /></span>Reject</button>
+                                                                    </span>Reject</button>
                                                                 </div>
                                                                 {/* accept solution form*/}
                                                                 <div className="send-msg-block" style={{ display: 'none' }}>
@@ -1748,7 +1752,9 @@ export default function AdminStudentApplication() {
                                                                                         <label className="open" htmlFor="files">
                                                                                             <div className="droped_data">
                                                                                                 <div className="drop_img">
-                                                                                                    <i className="fas fa-cloud-upload-alt" />
+                                                                                                
+                                                                                                    <FontAwesomeIcon icon={faCloudUpload} />
+
 
                                                                                                 </div>
                                                                                                 <div className="drag_dropsection">
