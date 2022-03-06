@@ -217,7 +217,7 @@ export default function Studentregister() {
                                                                                     value={state}
                                                                                     onChange={(e) => setstate(e.target.value)}
                                                                                     name="state" className="form-control"
-                                                                                    type="input" id="state" value="" />
+                                                                                    type="input" id="state"  />
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="city"
@@ -226,7 +226,7 @@ export default function Studentregister() {
                                                                                     value={city}
                                                                                     onChange={(e) => setcity(e.target.value)}
                                                                                     name="city" className="form-control"
-                                                                                    type="input" id="city" value="" />
+                                                                                    type="input" id="city"  />
                                                                             </div>
                                                                         </div>
                                                                     </div>

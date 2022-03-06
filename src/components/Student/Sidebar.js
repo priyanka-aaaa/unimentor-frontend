@@ -60,9 +60,11 @@ function Sidebar(props) {
 
             </li>
             <li className="nav-item ">
-                <a className="nav-link" href="#">
-                    <i className="far fa-address-card"></i>
-                    <span>My Admits</span></a>
+            <Link to={'/StudentSetting'} className="nav-link" href="#">
+                    <i className="fas fa-bookmark"></i>
+                    <span>Settings</span></Link>
+
+            
             </li>
             <div className="text-center d-none d-md-inline">
                 <button className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>
