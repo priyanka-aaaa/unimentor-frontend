@@ -1,8 +1,11 @@
 import React from 'react';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-import {faFacebookF, faGoogle, faTwitter,faFacebook,
-  faPinterest,faInstagram} from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebookF, faGoogle, faTwitter, faFacebook,
+  faPinterest, faInstagram
+} from "@fortawesome/free-brands-svg-icons";
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -13,7 +16,7 @@ const images = importAll(require.context('../../images', false, /\.(png|jpe?g|sv
 function Footer(props) {
   return (
     <footer id="rs-footer" className="rs-footer">
-      
+
       <div className="footer-top">
         <div className="container">
           <div className="row">
@@ -28,26 +31,26 @@ function Footer(props) {
               <ul className="footer-social md-mb-30">
                 <li>
                   <a href="#" target="_blank"><span>
-                  <FontAwesomeIcon icon={faFacebook} />
+                    <FontAwesomeIcon icon={faFacebook} />
                   </span></a>
                 </li>
                 <li>
                   <a href="# " target="_blank"><span>
-                 
+
                     <FontAwesomeIcon icon={faTwitter} />
-                    </span></a>
+                  </span></a>
                 </li>
                 <li>
                   <a href="# " target="_blank"><span>
-                  <FontAwesomeIcon icon={faPinterest} />
-                    
-                 </span></a>
+                    <FontAwesomeIcon icon={faPinterest} />
+
+                  </span></a>
                 </li>
                 <li>
                   <a href="# " target="_blank"><span>
-                  <FontAwesomeIcon icon={faInstagram} />
-                    
-             </span></a>
+                    <FontAwesomeIcon icon={faInstagram} />
+
+                  </span></a>
                 </li>
               </ul>
             </div>
@@ -55,10 +58,13 @@ function Footer(props) {
             <div className="col-lg-3 col-md-12 col-sm-12">
               <h3 className="widget-title">Exploring</h3>
               <ul className="site-map">
-                <li><a href="/">Home</a></li>
-                <li><a href="/About">About Us</a></li>
+                <li> <Link to={'/'} href="#">
+                  Home</Link></li>
+                <li> <Link to={'/About'} href="#">
+                  About Us</Link></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                <li>  <Link to={'/contact'} href="#">
+                  Contact Us</Link>  </li>
               </ul>
               {/* <p className="widget-desc">We denounce with righteous and in and dislike men who are so beguiled and demo realized.</p> */}
             </div>
@@ -112,15 +118,7 @@ function Footer(props) {
       <div className="footer-bottom">
         <div className="container">
           <div className="row y-middle">
-            {/* <div className="col-lg-6 text-right md-mb-10 order-last">
-                            <ul className="copy-right-menu">
-                               <li><a href="index.html">Home</a></li>
-                               <li><a href="about.html">About</a></li>
-                               <li><a href="blog.html">Blog</a></li>
-                               <li><a href="shop.html">Shop</a></li>
-                               <li><a href=case-studies-single.html></a></li>
-                            </ul>
-                        </div> */}
+
             <div className="col-lg-6">
               <div className="copyright">
                 <p>©Copyright 2018 - 2022 <a href="http://Coursementor.com/"> Coursementor.com</a> All
