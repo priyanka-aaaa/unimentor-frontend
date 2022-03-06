@@ -21,12 +21,7 @@ const NewIdentityDocument = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.student.email;
-            var mounted = mydata.data.token;
-        }
+        var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         function identityDocumentAllDetails() {
             fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {

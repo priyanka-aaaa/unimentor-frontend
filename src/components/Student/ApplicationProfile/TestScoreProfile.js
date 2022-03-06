@@ -13,17 +13,13 @@ function PersonalInformationProfile(props) {
     const [loader, setmyloader] = useState("false");
 
    useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
-          
-            var user_email = mydata.data.student.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+       
+        var mounted = localStorage.getItem("studentToken")
+
+        setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
     
-        axios.get(process.env.REACT_APP_SERVER_URL + 'student/score', { headers: { 'Authorization': mytoken } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'student/score', { headers: { 'Authorization': mounted } })
             .then(function (res) {
              
                 if (res.data.success === true) {

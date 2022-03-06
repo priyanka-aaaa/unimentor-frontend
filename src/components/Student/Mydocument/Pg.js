@@ -23,12 +23,7 @@ const NewIdentityDocument = () => {
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.student.email;
-            var mounted = mydata.data.token;
-        }
+        var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         function pgAllDetails() {
             fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {

@@ -28,12 +28,8 @@ const SecondaryEducation = () => {
 
 
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
-            var user_email = mydata.data.student.email;
-            var mounted = mydata.data.token;
-        }
+       
+        var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         function secondaryEducationAllDetails() {
 

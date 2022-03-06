@@ -21,13 +21,9 @@ const WorkExperienceProfile = () => {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
+        var mounted = localStorage.getItem("studentToken")
 
-            var studentId = mydata.data.student._id;
-            var mounted = mydata.data.token;
-        }
+
         setMounted(mounted)
 
 

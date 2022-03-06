@@ -17,23 +17,23 @@ class Topbar extends Component {
         }
     }
     logout = () => {
-        localStorage.removeItem("userData");
-        localStorage.clear(); 
+        localStorage.clear();
+        window.location.href = "/Studentlogin";
     }
-    componentWillMount() {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var b = JSON.parse(a);
-          
-            var user_email = b.data.student.email;
+    componentDidMount() {
+        if (localStorage.getItem("studentData")) {
+            var studentId = localStorage.getItem('studentId');
+            var mounted = localStorage.getItem('studentToken');
+            var user_email = localStorage.getItem('studentEmail');
             this.setState({ email: user_email });
         }
         else {
             var user_email = "";
             this.setState({ redirectToReferrer: true });
-
         }
     }
+
+
     render() {
         if (this.state.redirectToReferrer) {
             return (<Redirect to={'/Studentlogin'} />)

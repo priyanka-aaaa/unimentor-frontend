@@ -27,13 +27,8 @@ const WorkExperienceProfile = () => {
     const [submitError, setsubmitError] = useState("0");
 
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
+        var mounted = localStorage.getItem("studentToken")
 
-            var studentId = mydata.data.student._id;
-            var mounted = mydata.data.token;
-        }
         setMounted(mounted)
 
 

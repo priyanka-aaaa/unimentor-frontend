@@ -28,21 +28,6 @@ class Topbar extends Component {
             this.setState({ redirectToReferrer: true });
         }
     }
-
-    // componentWillMount() {
-    //     if (localStorage.getItem("universityData")) {
-    //         var universityId = localStorage.getItem('universityId');
-    //         var mounted = localStorage.getItem('universityToken');
-    //         var user_email = localStorage.getItem('universityEmail');
-    //         this.setState({ email: user_email });
-    //     }
-    //     else {
-    //         var user_email = "";
-    //         this.setState({ redirectToReferrer: true });
-    //     }
-    // }
-
-
     render() {
         return this.state.redirectToReferrer ?
             <Redirect to={'/sign-in'} /> :

@@ -24,13 +24,8 @@ const ExtraCurricultarActivityProfile = () => {
     const [loader, setmyloader] = useState("false");
 
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
+        var mounted = localStorage.getItem("studentToken")
 
-            var studentId = mydata.data.student._id;
-            var mounted = mydata.data.token;
-        }
         setMounted(mounted)
 
         const url = process.env.REACT_APP_SERVER_URL + 'student/activities';

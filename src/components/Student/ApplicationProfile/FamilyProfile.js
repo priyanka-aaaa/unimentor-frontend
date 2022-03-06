@@ -25,13 +25,8 @@ const FamilyProfile = () => {
     const [deleteId, setdeleteId] = useState("");
 
     useEffect(() => {
-        if (localStorage.getItem("userData")) {
-            var a = localStorage.getItem('userData');
-            var mydata = JSON.parse(a);
+        var mounted = localStorage.getItem("studentToken")
 
-         
-            var mounted = mydata.data.token;
-        }
         setMounted(mounted)
 
         const url = process.env.REACT_APP_SERVER_URL + 'student/families';
