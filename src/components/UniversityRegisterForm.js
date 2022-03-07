@@ -53,7 +53,6 @@ export default function UniversityRegisterForm() {
             axios.post(process.env.REACT_APP_SERVER_URL + 'university/register', obj)
                 .then(function (res) {
                     setmyloader("false")
-
                     if (res.data.success === true) {
                         setshowSweetAlert("1")
                         setName("");

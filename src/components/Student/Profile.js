@@ -8,16 +8,17 @@ export default function Studentregister() {
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
+    const [citizenship, setcitizenship] = useState("");
 
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
     const [location, setlocation] = useState("");
     const [state, setstate] = useState("");
     const [city, setcity] = useState("");
-    const [citizenship, setcitizenship] = useState("");
-    const [dateOfBirth, setdateOfBirth] = useState("");
     const [country, setcountry] = useState("");
-    const [mobile, setmobile] = useState("");
+    const [dateOfBirth, setdateOfBirth] = useState("");
+    const [countryCode, setcountryCode] = useState("");
+   const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
 
@@ -29,29 +30,18 @@ export default function Studentregister() {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
-
                 if (res.data.success === true) {
-
                     var student_personal = res.data.studentPersonalDetails;
-
-                    console.log("student_personal");
-                    console.log(student_personal);
                     setaboutMe(student_personal.aboutMe);
-
                     setemail(student_personal.email);
                     setlocation(student_personal.location);
                     setstate(student_personal.state);
                     setcity(student_personal.city);
-
+                    setcountry(student_personal.country);
                     setdateOfBirth(student_personal.dateOfBirth);
-                    setcountry(student_personal.countryCode);
+                    setcountryCode(student_personal.countryCode);
                     setmobile(student_personal.phone);
-
-                    // setpicture(student_personal.picture);
-
-
-
+                    setgender(student_personal.gender);
                 }
             })
             .catch(error => {
