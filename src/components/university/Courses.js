@@ -322,11 +322,14 @@ const Courses = () => {
                     confirmBtnBsStyle="danger"
                     title="Are you sure?"
                     onConfirm={(value) => {
+
                         setshowSweetAlert("0");
+                        setmyloader("true")
                         axios.delete(process.env.REACT_APP_SERVER_URL + 'university/courses/' + deleteId, { headers: { 'Authorization': mounted } })
                             .then(function (res) {
                                 var myuniversityCourse = res.data.universityCourse;
                                 if (res.data.success === true) {
+                                    setmyloader("false")
                                     setsuccessMessage("course delete")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)

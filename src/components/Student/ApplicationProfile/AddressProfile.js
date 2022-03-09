@@ -27,7 +27,7 @@ function PersonalInformation(props) {
 
 
     useEffect(() => {
-       
+
         var mounted = localStorage.getItem("studentToken")
 
         setMounted(mounted)
@@ -46,46 +46,25 @@ function PersonalInformation(props) {
                     setzipcode(studentAddress.zipcode);
                     setcommunication_address(studentAddress.communication_address);
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
 
             });
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setcountries(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
             .then(function (res) {
                 if (res.data.success === true) {
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
-
     }, [])
     function application_address(event) {
         event.preventDefault();
@@ -98,23 +77,15 @@ function PersonalInformation(props) {
             address: address,
             zipcode: zipcode,
             communication_address: communication_address
-
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/address', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-              
                 setmyloader("false")
                 if (res.data.success === true) {
-                  
                     setsuccessMessage("Address Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
 
@@ -168,13 +139,13 @@ function PersonalInformation(props) {
     return (
 
         <div className="card">
-             {loader === "true" ?
+            {loader === "true" ?
                 <Loader />
                 : null}
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-           
+
             <a className="card-header" data-bs-toggle="collapse" href="#collapseTwo">
                 <strong>2</strong>   Address & Contact
             </a>
@@ -207,7 +178,7 @@ function PersonalInformation(props) {
                             </div>
                             <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                 <div className="form-group">
-                                    <label htmlFor="State/Province">State/Province <span className="text-danger"> *</span> 
+                                    <label htmlFor="State/Province">State/Province <span className="text-danger"> *</span>
                                     </label>
                                     <select
                                         value={state}
@@ -215,7 +186,7 @@ function PersonalInformation(props) {
                                         className="form-control" name="state" required>
                                         <option value={state}>{state}</option>
                                         {states.map((element, index) => {
-                                            if (element.state_name !== state){
+                                            if (element.state_name !== state) {
                                                 return (
 
                                                     <option
@@ -223,7 +194,7 @@ function PersonalInformation(props) {
 
                                                         value={element.state_name} key={index}>{element.state_name}</option>
                                                 )
-                                                }
+                                            }
                                         })}
                                     </select>
                                 </div>
@@ -234,17 +205,17 @@ function PersonalInformation(props) {
                                         value={city}
                                         onChange={(e) => setcity(e.target.value)}
                                         className="form-control" name="city" required>
-                                              <option value={city}>{city}</option>
+                                        <option value={city}>{city}</option>
                                         {cities.map((element, index) => {
-                                              if (element.city_name !== city){
-                                            return (
+                                            if (element.city_name !== city) {
+                                                return (
 
-                                                <option
+                                                    <option
 
 
-                                                    value={element.city_name} key={index}>{element.city_name}</option>
-                                            )
-                                              }
+                                                        value={element.city_name} key={index}>{element.city_name}</option>
+                                                )
+                                            }
                                         })}
                                     </select>
                                 </div>
