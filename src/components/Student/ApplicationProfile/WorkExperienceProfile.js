@@ -225,7 +225,7 @@ const WorkExperienceProfile = () => {
                                                     type="text" className="form-control" id="company_name" name="organization" placeholder="Name of Organization" /></div>
                                         </div>
                                         <div className="col-12 col-sm-1 col-md-1 col-lg-1 text-right mt-4">
-                                            <a class="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
+                                            <a className="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
                                                 <FontAwesomeIcon icon={faTrash} />
                                             </a>
                                         </div>

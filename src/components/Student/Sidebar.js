@@ -29,7 +29,7 @@ function Sidebar(props) {
     }
     return (
         <ul className={width} id="accordionSidebar">
-            <div class="sidebar-brand-icon ">
+            <div className="sidebar-brand-icon ">
                 CM
             </div>
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -72,7 +72,7 @@ function Sidebar(props) {
             </li>
             <div className="text-center d-none d-md-inline">
                 <button className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>
-                    <i class="fa-solid fa-arrow-right"></i>
+                    <i className="fa-solid fa-arrow-right"></i>
                     <FontAwesomeIcon icon={faAngleLeft} style={{
                         fontWeight: 900,
                         marginRight: "0.1rem",

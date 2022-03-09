@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import Loader from '../Home/Loader';
 
 export default function Studentregister() {
     const [mounted, setMounted] = useState();
@@ -20,6 +21,19 @@ export default function Studentregister() {
     const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
+    const [loader, setmyloader] = useState("false");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [successMessage, setsuccessMessage] = useState("");
+
+    const [countries, setcountries] = useState([{
+        country_name: ""
+    }]);
+    const [states, setstates] = useState([{
+        state_name: ""
+    }])
+    const [cities, setcities] = useState([{
+        city_name: ""
+    }])
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -42,8 +56,25 @@ export default function Studentregister() {
             })
             .catch(error => {
             });
+        axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
+            .then(function (res) {
+                if (res.data.success === true) {
+                    setcountries(res.data.result);
+                }
+            })
+            .catch(error => {
+            });
+        axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
+            .then(function (res) {
+                if (res.data.success === true) {
+                }
+            })
+            .catch(error => {
+            });
     }, [])
     function personalDetails(event) {
+        setmyloader("true")
+
         event.preventDefault();
         const obj = {
             picture: picture,
@@ -60,14 +91,46 @@ export default function Studentregister() {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
+
                 if (res.data.success === true) {
+                    setsuccessMessage("Profile Updated")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
                 }
             })
             .catch(error => {
             });
     }
+    function handlecountry(e) {
+        setcitizenship(e)
+        axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
+            .then(function (res) {
+                if (res.data.success === true) {
+                    setstates(res.data.result);
+                }
+            })
+            .catch(error => {
+            });
+    }
+    function handlestate(e) {
+        setstate(e)
+        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
+            .then(function (res) {
+                if (res.data.success === true) {
+                    setcities(res.data.result);
+                }
+            })
+            .catch(error => {
+            });
+    }
+    function setstudentGender(value) {
+        setgender(value);
+
+    }
     return (
         <div id="page-top">
+
             <div id="wrapper">
                 <Sidebar />
                 <div id="content-wrapper" className="d-flex flex-column">
@@ -77,12 +140,19 @@ export default function Studentregister() {
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Personal Details</h1>
                             </div>
+
                             <div className="row">
                                 <div className="col-xl-12 col-lg-7">
                                     <div className="card shadow mb-4">
                                         <div className="card shadow mb-4">
                                             <div id="accordion">
                                                 <div className="card">
+                                                    {loader === "true" ?
+                                                        <Loader />
+                                                        : null}
+                                                         {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                                                         Personal Details
                                                     </a>
@@ -163,20 +233,38 @@ export default function Studentregister() {
                                                                             <div className="col">
                                                                                 <label htmlFor="state"
                                                                                     className="form-label">State</label>
-                                                                                <input
+                                                                                <select
                                                                                     value={state}
-                                                                                    onChange={(e) => setstate(e.target.value)}
-                                                                                    name="state" className="form-control"
-                                                                                    type="input" id="state" />
+                                                                                    onChange={(e) => handlestate(e.target.value)}
+                                                                                    className="form-control" name="state" required>
+                                                                                    <option value={state}>{state}</option>
+                                                                                    {states.map((element, index) => {
+                                                                                        if (element.state_name !== state) {
+                                                                                            return (
+                                                                                                <option
+                                                                                                    value={element.state_name} key={index}>{element.state_name}</option>
+                                                                                            )
+                                                                                        }
+                                                                                    })}
+                                                                                </select>
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="city"
                                                                                     className="form-label">City</label>
-                                                                                <input
+                                                                                <select
                                                                                     value={city}
                                                                                     onChange={(e) => setcity(e.target.value)}
-                                                                                    name="city" className="form-control"
-                                                                                    type="input" id="city" />
+                                                                                    className="form-control" name="city" required>
+                                                                                    <option value={city}>{city}</option>
+                                                                                    {cities.map((element, index) => {
+                                                                                        if (element.city_name !== city) {
+                                                                                            return (
+                                                                                                <option
+                                                                                                    value={element.city_name} key={index}>{element.city_name}</option>
+                                                                                            )
+                                                                                        }
+                                                                                    })}
+                                                                                </select>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -187,16 +275,17 @@ export default function Studentregister() {
                                                                                     citizenship</label>
                                                                                 <select
                                                                                     value={citizenship}
-                                                                                    onChange={(e) => setcitizenship(e.target.value)}
-                                                                                    className="form-select "
-                                                                                    aria-label=".form-select-sm example">
-                                                                                    <option selected></option>
-                                                                                    <option value="1">India</option>
-                                                                                    <option value="2">Afghanistan</option>
-                                                                                    <option value="3">Albania</option>
-                                                                                    <option value="4">Algeria</option>
-                                                                                    <option value="5">American Samoa</option>
+                                                                                    onChange={(e) => handlecountry(e.target.value)}
+                                                                                    className="form-control" name="country" required>
+                                                                                    {countries.map((element, index) => {
+                                                                                        return (
+                                                                                            <option
+                                                                                                value={element.country_name} key={index}>{element.country_name}</option>
+                                                                                        )
+                                                                                    })}
                                                                                 </select>
+
+
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="city" className="form-label">Date of
@@ -214,19 +303,12 @@ export default function Studentregister() {
                                                                             <div className="col">
                                                                                 <label htmlFor="state" className="form-label">Country
                                                                                     Code</label>
-                                                                                <select
-                                                                                    value={country}
-                                                                                    onChange={(e) => setcountry(e.target.value)}
-                                                                                    className="form-select "
-                                                                                    aria-label=".form-select-sm example">
-                                                                                    <option selected></option>
-                                                                                    <option value="1">91 India</option>
-                                                                                    <option value="2">93 Afghanistan</option>
-                                                                                    <option value="3">355 Albania</option>
-                                                                                    <option value="3">213 Algeria</option>
-                                                                                    <option value="3">1684 American Samoa
-                                                                                    </option>
-                                                                                </select>
+                                                                                <input name="countryCode"
+                                                                                    value={countryCode}
+                                                                                    onChange={(e) => setcountryCode(e.target.value)}
+                                                                                    className="form-control" type="number"
+                                                                                />
+
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="city" className="form-label">Mobile
@@ -247,8 +329,9 @@ export default function Studentregister() {
                                                                                     className="form-label">Gender</label><br />
                                                                                 <div className="form-check form-check-inline">
                                                                                     <input
-                                                                                        value={gender}
-                                                                                        onChange={(e) => setgender(e.target.value)}
+                                                                                        checked={gender === "male"}
+                                                                                        onChange={(e) => setstudentGender("male")}
+
                                                                                         className="form-check-input" type="radio"
                                                                                         name="flexRadioDefault"
                                                                                         id="flexRadioDefault1" />
@@ -259,11 +342,11 @@ export default function Studentregister() {
                                                                                 </div>
                                                                                 <div className="form-check form-check-inline">
                                                                                     <input
-                                                                                        value={gender}
-                                                                                        onChange={(e) => setgender(e.target.value)}
+                                                                                        checked={gender === "female"}
+                                                                                        onChange={(e) => setstudentGender("female")}
                                                                                         className="form-check-input" type="radio"
                                                                                         name="flexRadioDefault"
-                                                                                        id="flexRadioDefault2" checked />
+                                                                                        id="flexRadioDefault2" />
                                                                                     <label className="form-check-label"
                                                                                         htmlFor="flexRadioDefault2">
                                                                                         Female
@@ -271,8 +354,10 @@ export default function Studentregister() {
                                                                                 </div>
                                                                                 <div className="form-check form-check-inline">
                                                                                     <input
-                                                                                        value={gender}
-                                                                                        onChange={(e) => setgender(e.target.value)}
+                                                                                        checked={gender === "other"}
+                                                                                        onChange={(e) => setstudentGender("other")}
+
+
                                                                                         className="form-check-input" type="radio"
                                                                                         name="flexRadioDefault"
                                                                                         id="flexRadioDefault3" />
@@ -325,5 +410,5 @@ export default function Studentregister() {
                 </div>
             </div>
         </div >
- );
+    );
 }
