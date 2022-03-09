@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -33,16 +32,10 @@ class Topbar extends Component {
             var user_email = "";
             this.setState({ redirectToReferrer: true });
         }
-
-
     }
-
     render() {
         return this.state.redirectToReferrer ?
             <Redirect to={'/Studentlogin'} /> :
-
-
-
             <div>
                 <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
@@ -171,9 +164,9 @@ class Topbar extends Component {
                                 <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-                     
-                          {/* <!-- Nav Item - Alerts --> */}
-                          <li className="nav-item dropdown no-arrow mx-1">
+
+                        {/* <!-- Nav Item - Alerts --> */}
+                        <li className="nav-item dropdown no-arrow mx-1">
                             <a className="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-bell fa-fw"></i>
@@ -222,16 +215,12 @@ class Topbar extends Component {
                                 <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li>
-
-                        {/* <!-- Nav Item - Messages --> */}
                         <li className="nav-item dropdown no-arrow mx-1">
                             <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i className="fas fa-envelope fa-fw"></i>
-                                {/* <!-- Counter - Messages --> */}
                                 <span className="badge badge-danger badge-counter">7</span>
                             </a>
-                            {/* <!-- Dropdown - Messages --> */}
                             <div className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="messagesDropdown">
                                 <h6 className="dropdown-header">
@@ -239,10 +228,7 @@ class Topbar extends Component {
                                 </h6>
                                 <a className="dropdown-item d-flex align-items-center" href="#">
                                     <div className="dropdown-list-image mr-3">
-                                        {/* <img src={require('./logo.jpeg')} /> */}
                                         <img className="rounded-circle" src={require('../../img/undraw_profile_1.svg')} alt="..." />
-
-                                        {/* <img className="rounded-circle" src="img/undraw_profile_1.svg" alt="..." /> */}
                                         <div className="status-indicator bg-success"></div>
                                     </div>
                                     <div className="font-weight-bold">
@@ -288,18 +274,18 @@ class Topbar extends Component {
                                 <a className="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
                             </div>
                         </li>
-                      
+
                         <div className="topbar-divider d-none d-sm-block"></div>
                         <li className="nav-item dropdown no-arrow">
-                            
+
                             <a className="nav-link dropdown-toggle" href="#collapseEleven" id="userDropdown" role="button" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                            <span className="mr-2 d-none d-lg-inline text-gray-600 small">{this.state.email}</span>
+                                <span className="mr-2 d-none d-lg-inline text-gray-600 small">{this.state.email}</span>
 
                                 <img className="img-profile rounded-circle" src={undraw_profile}
                                 />
-                                
+
                             </a>
-                            
+
                             <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown" id="collapseEleven" data-bs-parent="#accordion" >
                                 <a className="dropdown-item" onClick={this.logout} href="" data-toggle="modal" data-target="#logoutModal">
                                     <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -330,7 +316,6 @@ class Topbar extends Component {
                     </ul>
                 </nav>
             </div>
-
     }
 }
 

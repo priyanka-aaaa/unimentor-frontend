@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
 import SweetAlert from 'react-bootstrap-sweetalert';
-
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {

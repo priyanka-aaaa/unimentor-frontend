@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
-
 import axios from 'axios';
 function PersonalInformationProfile(props) {
     const [successMessage, setsuccessMessage] = useState("");
@@ -27,14 +26,10 @@ function PersonalInformationProfile(props) {
         country_name: ""
     }]);
     const [loader, setmyloader] = useState("false");
-
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
-
-
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -56,34 +51,25 @@ function PersonalInformationProfile(props) {
                     setfirstLanguage(student_personal.firstLanguage);
                     setvisa(student_personal.visa);
                     setrefusedVisa(student_personal.refusedVisa);
-
                 }
             })
             .catch(error => {
-
             });
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
             .then(function (res) {
                 if (res.data.success === true) {
                     setcountries(res.data.result);
                 }
-
             })
             .catch(error => {
             });
-
     }, [])
-
     function handlemaritalStatus(value) {
-
         setmaritalStatus(value)
     }
-
     function Personal_Information(event) {
         event.preventDefault();
         setmyloader("true")
-
         const obj = {
             salutation: salutation,
             firstName: firstName,
@@ -96,8 +82,6 @@ function PersonalInformationProfile(props) {
             nationality: nationality,
             dualNationality: dualNationality,
             maritalStatus: maritalStatus,
-
-
             differentlyAble: differentlyAble,
             passport: passport,
             aadharCard: aadharCard,
@@ -108,33 +92,24 @@ function PersonalInformationProfile(props) {
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalInformation', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 setmyloader("false")
-
                 if (res.data.success === true) {
-
                     setsuccessMessage("Personal Info Updated")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                 }
                 else {
-
                 }
-
             })
             .catch(error => {
-
             });
     }
     function handlecountryOfBirth(e) {
-
         setcountryOfBirth(e)
     }
     function handlenationality(e) {
-
         setnationality(e)
     }
-
     return (
-
         <div id="accordion">
             {loader === "true" ?
                 <Loader />
@@ -142,16 +117,12 @@ function PersonalInformationProfile(props) {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-
-
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                     <strong>1</strong>  Personal Information
-
                 </a>
                 <div id="collapseOne" className="collapse" data-bs-parent="#accordion">
                     <div className="card-body">
-
                         <div className="from-block">
                             <form onSubmit={Personal_Information}>
                                 <div className="mb-3">
@@ -172,7 +143,6 @@ function PersonalInformationProfile(props) {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="mb-3">
                                     <div className="row">
                                         <div className="col">
@@ -299,43 +269,24 @@ function PersonalInformationProfile(props) {
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="mt">
-
-
                                                 <label htmlFor="">Marital
                                                     Status</label><br />
-
                                                 <input
-
                                                     checked={maritalStatus === "married"}
                                                     onChange={(e) => handlemaritalStatus("married")}
-
                                                     type="radio" id="married" name="marital_status" />
                                                 <label className="mr-1" htmlFor="married">Married</label>&nbsp;&nbsp;
-
-
-
                                                 <input type="radio" id="unmarried" name="marital_status"
-
                                                     checked={maritalStatus === "unmarried"}
                                                     onChange={(e) => handlemaritalStatus("unmarried")}
                                                 />
                                                 <label className="mr-1" htmlFor="unmarried">Unmarried</label>&nbsp;&nbsp;
-
-
-
-
-
                                                 <input type="radio" id="widowed" name="marital_status"
-
                                                     checked={maritalStatus === "widowed"}
                                                     onChange={(e) => handlemaritalStatus("widowed")}
                                                 />
                                                 <label htmlFor="widowed">Widowed</label></div>
-
-
                                         </div>
-
-
                                         <div className="col-md-4">
                                             <div className="mt"><label htmlFor="abled">Are
                                                 you differently abled?</label><select
@@ -364,8 +315,6 @@ function PersonalInformationProfile(props) {
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div className="mb-3">
                                     <div className="row">
                                         <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -381,8 +330,6 @@ function PersonalInformationProfile(props) {
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-4">
                                         <div className="mt">
@@ -404,7 +351,6 @@ function PersonalInformationProfile(props) {
                                             </select></div>
                                     </div>
                                 </div>
-
                                 <div className="mb-3">
                                     <div className="row">
                                         <div className="col-12 col-sm-6 col-md-6 col-lg-4">
@@ -421,7 +367,6 @@ function PersonalInformationProfile(props) {
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="mb-3">
                                     <div className="row">
                                         <div className="col-md-6"></div>
@@ -431,28 +376,14 @@ function PersonalInformationProfile(props) {
                                             <button type="submit" data-bs-toggle="collapse" className="btn btn-success " href="#collapseTwo">Save
                                                 Next</button>
                                         </div>
-
                                     </div>
-
                                 </div>
-
-
                             </form>
                         </div>
                     </div>
-
                 </div>
-
-
-
-
             </div>
-
-
-
-
         </div>
-
     );
 }
 

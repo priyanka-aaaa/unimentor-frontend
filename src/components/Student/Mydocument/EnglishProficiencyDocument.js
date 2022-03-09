@@ -84,25 +84,21 @@ const EnglishProficiencyDocument = () => {
 
     }
     function onChangeDuolingo(e) {
-
-        settest(e)
+ settest(e)
         setenglishProficiencyIELTS("")
         setenglishProficiencyTOEFL("")
         setenglishProficiencyPTE("")
         setenglishProficiencyDuolingo("selected")
-
-    }
+ }
     function ToggleButton() {
         if (textflag == "none") {
             settextflag("inline")
             setcompletedHeading("none")
-
-        }
+ }
         else {
             settextflag("none")
             setcompletedHeading("inline")
-
-        }
+  }
     }
     function onDeletefileHandle(value) {
         setdeleteId(value)
@@ -143,10 +139,8 @@ const EnglishProficiencyDocument = () => {
                             .then(response => response.json())
                             .then(data => {
                                 setmyloader("false")
-
-                                setsuccessMessage("Deleted Successfully")
-
-                                setTimeout(() => setsubmitSuccess(""), 3000);
+ setsuccessMessage("Deleted Successfully")
+ setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 englishProficiencyAll()
                             })

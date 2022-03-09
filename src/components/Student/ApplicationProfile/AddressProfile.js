@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
-
 import axios from 'axios';
 function PersonalInformation(props) {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
-
-
     const [country, setcountry] = useState();
     const [state, setstate] = useState();
     const [city, setcity] = useState();
@@ -24,20 +21,13 @@ function PersonalInformation(props) {
         city_name: ""
     }])
     const [loader, setmyloader] = useState("false");
-
-
     useEffect(() => {
-
         var mounted = localStorage.getItem("studentToken")
-
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/address', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
                 if (res.data.success === true) {
-
                     var studentAddress = res.data.studentAddress;
                     setcountry(studentAddress.country);
                     setstate(studentAddress.state);
@@ -48,7 +38,6 @@ function PersonalInformation(props) {
                 }
             })
             .catch(error => {
-
             });
         axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
             .then(function (res) {
@@ -69,7 +58,6 @@ function PersonalInformation(props) {
     function application_address(event) {
         event.preventDefault();
         setmyloader("true")
-
         const obj = {
             country: country,
             state: state,
@@ -88,56 +76,31 @@ function PersonalInformation(props) {
                 }
             })
             .catch(error => {
-
             });
     }
-
     function handlecountry(e) {
-
         setcountry(e)
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setstates(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
     }
     function handlestate(e) {
-
         setstate(e)
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
-
-
             .then(function (res) {
                 if (res.data.success === true) {
                     setcities(res.data.result);
-
-
                 }
-                else {
-
-                }
-
             })
             .catch(error => {
-
             });
     }
     return (
-
         <div className="card">
             {loader === "true" ?
                 <Loader />
@@ -161,15 +124,10 @@ function PersonalInformation(props) {
                                     <select
                                         value={country}
                                         onChange={(e) => handlecountry(e.target.value)}
-
-
                                         className="form-control" name="country" required>
                                         {countries.map((element, index) => {
                                             return (
-
                                                 <option
-
-
                                                     value={element.country_name} key={index}>{element.country_name}</option>
                                             )
                                         })}
@@ -188,10 +146,7 @@ function PersonalInformation(props) {
                                         {states.map((element, index) => {
                                             if (element.state_name !== state) {
                                                 return (
-
                                                     <option
-
-
                                                         value={element.state_name} key={index}>{element.state_name}</option>
                                                 )
                                             }
@@ -209,10 +164,7 @@ function PersonalInformation(props) {
                                         {cities.map((element, index) => {
                                             if (element.city_name !== city) {
                                                 return (
-
                                                     <option
-
-
                                                         value={element.city_name} key={index}>{element.city_name}</option>
                                                 )
                                             }
@@ -259,9 +211,7 @@ function PersonalInformation(props) {
                                 </div>
                             </div>
                             <div className="clearfix"></div>
-
                         </div>
-
                         <div className="mb-3">
                             <div className="row">
                                 <div className="col-md-6"></div>
@@ -271,15 +221,12 @@ function PersonalInformation(props) {
                                     <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse3">Save
                                         Next</button>
                                 </div>
-
                             </div>
-
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
     );
 }
 

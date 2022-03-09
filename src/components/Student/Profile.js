@@ -9,7 +9,6 @@ export default function Studentregister() {
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
     const [citizenship, setcitizenship] = useState("");
-
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
     const [location, setlocation] = useState("");
@@ -18,16 +17,13 @@ export default function Studentregister() {
     const [country, setcountry] = useState("");
     const [dateOfBirth, setdateOfBirth] = useState("");
     const [countryCode, setcountryCode] = useState("");
-   const [mobile, setmobile] = useState("");
+    const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
-
     useEffect(() => {
-
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
-
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
@@ -45,39 +41,10 @@ export default function Studentregister() {
                 }
             })
             .catch(error => {
-
             });
-
     }, [])
-    function change_password(event) {
-        setconfirmpasswordError("");
-        event.preventDefault();
-        if (password !== confirmpassword) {
-            setconfirmpasswordError("confirm password is not match");
-        }
-        else {
-            const obj = {
-                password: password
-            };
-            axios.post('/student/changePassword', obj, { headers: { 'Authorization': mounted } })
-                .then(function (res) {
-
-                    if (res.data.success === true) {
-
-                    }
-                    else {
-
-                    }
-                })
-                .catch(error => {
-
-                });
-        }
-    }
     function personalDetails(event) {
-
         event.preventDefault();
-
         const obj = {
             picture: picture,
             aboutMe: aboutMe,
@@ -93,70 +60,41 @@ export default function Studentregister() {
         };
         axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
                 if (res.data.success === true) {
-
-                }
-                else {
-
                 }
             })
             .catch(error => {
-
             });
-
     }
-
     return (
         <div id="page-top">
-
-
-
             <div id="wrapper">
                 <Sidebar />
-
                 <div id="content-wrapper" className="d-flex flex-column">
-
-
                     <div id="content">
-
                         <Topbar />
-
                         <div className="container">
-
-
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">Personal Details</h1>
-
-
                             </div>
-
-
-                            {/* <!-- Content Row --> */}
-
                             <div className="row">
-
-                                {/* <!-- Area Chart --> */}
                                 <div className="col-xl-12 col-lg-7">
                                     <div className="card shadow mb-4">
-
                                         <div className="card shadow mb-4">
                                             <div id="accordion">
                                                 <div className="card">
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                                                         Personal Details
                                                     </a>
-                                          
                                                     <div id="collapseOne" className="collapse show" data-bs-parent="#accordion">
                                                         <div className="card-body">
-
                                                             <div className="from-block">
                                                                 <form onSubmit={personalDetails}>
 
                                                                     <div className="mb-3">
                                                                         <label htmlFor="upprofile" className="form-label">Upload Your
                                                                             Profile Picture</label>
-                                                                            
+
                                                                         <div className="drag-drop">
                                                                             <label htmlFor="profile-picture" className="uploader"><input
                                                                                 type="file" id="profile-picture"
@@ -168,9 +106,7 @@ export default function Studentregister() {
                                                                                     className="dummy-img" alt="">
                                                                                 </img></label>
                                                                         </div>
-                                                                        {/* <!-- <input type="file" className="form-control" id="upload" placeholder="Upload Your Profile Picture" name="upload"/> --> */}
                                                                     </div>
-
                                                                     <div className="mb-3">
                                                                         <label htmlFor="msg">About Me</label>
                                                                         <textarea
@@ -180,14 +116,12 @@ export default function Studentregister() {
                                                                             name="text"
                                                                             placeholder="Tell us about yourself"></textarea>
                                                                     </div>
-
                                                                     <div className="mb-3">
                                                                         <div className="row">
                                                                             <div className="col">
                                                                                 <label htmlFor="fname" className="form-label">First
                                                                                     Name</label>
                                                                                 <input
-
                                                                                     type="text" className="form-control"
                                                                                     placeholder="" name="fname" />
                                                                             </div>
@@ -211,9 +145,7 @@ export default function Studentregister() {
                                                                                     value={email}
                                                                                     onChange={(e) => setemail(e.target.value)}
                                                                                     className="form-control"
-                                                                                    id="email" placeholder="" name="email"
-
-                                                                                />
+                                                                                    id="email" placeholder="" name="email" />
                                                                             </div>
                                                                             <div className="col">
                                                                                 <label htmlFor="clocation"
@@ -349,8 +281,6 @@ export default function Studentregister() {
                                                                                         Other
                                                                                     </label>
                                                                                 </div>
-
-
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -361,50 +291,21 @@ export default function Studentregister() {
                                                                     </div>
                                                                 </form>
                                                             </div>
-
-
-
-
                                                         </div>
                                                     </div>
                                                 </div>
-
-
                                             </div>
                                         </div>
-                                        {/* <!-- Card Body --> */}
-
                                     </div>
                                 </div>
-
-
                             </div>
-
-
                         </div>
-
-
-                        {/* <!-- /.container-fluid --> */}
-
                     </div>
-                    {/* <!-- End of Main Content --> */}
-
-                    {/* <!-- Footer --> */}
-
-                    {/* <!-- End of Footer --> */}
-
                 </div>
-                {/* <!-- End of Content Wrapper --> */}
-
             </div>
-            {/* <!-- End of Page Wrapper --> */}
-
-            {/* <!-- Scroll to Top Button--> */}
             <a className="scroll-to-top rounded" href="#page-top">
                 <i className="fas fa-angle-up"></i>
             </a>
-
-            {/* <!-- Logout Modal--> */}
             <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -424,9 +325,5 @@ export default function Studentregister() {
                 </div>
             </div>
         </div >
-
-
-
-
-    );
+ );
 }

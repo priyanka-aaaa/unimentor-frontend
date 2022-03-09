@@ -1,8 +1,6 @@
 import React from 'react';
 import SecondaryEducation from './SecondaryEducation';
-
 import Ug from './Ug';
-
 import Pg from './Pg';
 
 function NewEducationDocument() {

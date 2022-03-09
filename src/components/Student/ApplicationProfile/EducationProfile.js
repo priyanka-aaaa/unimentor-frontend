@@ -7,14 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
-
-
 const EducationProfile = () => {
-
-
-
     const [deleteId, setdeleteId] = useState("");
-
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -26,27 +20,20 @@ const EducationProfile = () => {
     const [data, setdata] = useState([]);
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
-
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
-
         setMounted(mounted)
-
         const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-
-
         fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': mounted,
-
             }
         })
             .then(response => response.json())
             .then(data => {
                 var myresults = data.studentEducations;
                 if (Object.keys(myresults).length === 0) {
-
                 }
                 else {
                     setFormValues(data.studentEducations)
@@ -54,12 +41,10 @@ const EducationProfile = () => {
             })
     }, [])
     let handleChange = (i, e) => {
-
         let newFormValues = [...formValues];
         newFormValues[i][e.target.name] = e.target.value;
         setFormValues(newFormValues);
     }
-
     let addFormFields = () => {
         setFormValues([...formValues, {
             highestEducation: "", status: "", specialization: "", degree: "", gradePercentage: "", marks: "", attendedForm: "",
@@ -67,82 +52,59 @@ const EducationProfile = () => {
             _id: "null"
         }])
     }
-
-    let removeFormFields = (i) => {
-        let newFormValues = [...formValues];
-        newFormValues.splice(i, 1);
-        setFormValues(newFormValues)
-    }
-
     let handleSubmit = (event) => {
         event.preventDefault();
         var myvalues = JSON.stringify(formValues);
         setmyloader("true")
-
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/educations', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
-
                         setmyloader("false")
-
                         if (res.data.success === true) {
                             setsuccessMessage("Work Experience Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
                             const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-
                             fetch(url, {
                                 method: 'GET',
                                 headers: {
                                     'Authorization': mounted,
-
                                 }
                             })
                                 .then(response => response.json())
                                 .then(data => {
                                     var myresults = data.studentEducations;
                                     if (Object.keys(myresults).length === 0) {
-
                                     }
                                     else {
                                         setFormValues(data.studentEducations)
                                     }
                                 })
                         }
-
                     })
                     .catch(error => {
-
-
                     });
-
             }
             else {
-
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'student/educations/' + item._id, item, { headers: { 'Authorization': mounted } })
-
                     .then(function (res) {
                         setmyloader("false")
-
                         if (res.data.success === true) {
                             setsuccessMessage("Education Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
                             const url = process.env.REACT_APP_SERVER_URL + 'student/educations';
-
                             fetch(url, {
                                 method: 'GET',
                                 headers: {
                                     'Authorization': mounted,
-
                                 }
                             })
                                 .then(response => response.json())
                                 .then(data => {
                                     var myresults = data.studentEducations;
                                     if (Object.keys(myresults).length === 0) {
-
                                     }
                                     else {
                                         setFormValues(data.studentEducations)
@@ -150,29 +112,22 @@ const EducationProfile = () => {
                                 })
                         }
                         else {
-
                         }
                     })
                     .catch(error => {
-
-
                     });
             }
         })
-
-
     }
     let handleDeleteClick = (value) => {
         setshowSweetAlert("1")
         setdeleteId(value)
     }
-
     function setstatusType(i, myvalue) {
         let newFormValues = [...formValues];
         newFormValues[i]["status"] = myvalue;
         setFormValues(newFormValues);
     }
-
     return (
         <div>
             {loader === "true" ?
@@ -183,7 +138,6 @@ const EducationProfile = () => {
                 showCancel
                 confirmBtnText="Yes, delete it!"
                 confirmBtnBsStyle="danger"
-
                 title="Are you sure?"
                 onConfirm={(value) => {
                     setshowSweetAlert("0");
@@ -200,29 +154,24 @@ const EducationProfile = () => {
                                     method: 'GET',
                                     headers: {
                                         'Authorization': mounted,
-
                                     }
                                 })
                                     .then(response => response.json())
                                     .then(data => {
                                         var myresults = data.studentEducations;
                                         if (Object.keys(myresults).length === 0) {
-
                                         }
                                         else {
                                             setFormValues(data.studentEducations)
                                         }
                                     })
-
                             }
                         })
-
                 }}
                 onCancel={() =>
                     setshowSweetAlert("0")
                 }
-                focusCancelBtn
-            >
+                focusCancelBtn  >
             </SweetAlert>
                 : null
             }
@@ -239,7 +188,6 @@ const EducationProfile = () => {
                             <div className="form-block">
                                 {formValues.map((element, index) => (
                                     <div key={index}>
-                                       
                                         <div className="row">
                                             <div className="col-12 col-sm-5 col-md-5 col-lg-5">
                                                 <div className="form-group">
@@ -247,9 +195,7 @@ const EducationProfile = () => {
                                                         Education <span className="text-danger"> *</span></label>
                                                     <select
                                                         value={element.highestEducation || ""} onChange={e => handleChange(index, e)}
-
                                                         required
-
                                                         className="form-control" id="Highest Level of Education" name="highestEducation">
                                                         <option value=''>Select</option>
                                                         <option value="Secondary">Secondary</option>
@@ -267,21 +213,14 @@ const EducationProfile = () => {
                                                     <label htmlFor="education_status">Education Status <span className="text-danger"> *</span></label><br />
                                                     <label className="ant-radio-wrapper ant-radio-wrapper-checked">
                                                         <span className="ant-radio ant-radio-checked"><input
-
-
                                                             onChange={(e) => setstatusType(index, "Pursuing")}
                                                             checked={element.status === "Pursuing"}
                                                             required
-
-
                                                             name="status" type="radio" className="ant-radio-input" />
                                                             <span className="ant-radio-inner"></span></span><span>Pursuing</span></label><label className="ant-radio-wrapper"><span className="ant-radio"><input
                                                                 onChange={(e) => setstatusType(index, "Completed")}
                                                                 checked={element.status === "Completed"}
                                                                 required
-
-
-
                                                                 name="status" type="radio" className="ant-radio-input" /><span className="ant-radio-inner"></span></span>
                                                         <span>Completed</span></label> <br />
                                                 </div>
@@ -291,9 +230,7 @@ const EducationProfile = () => {
                                                     <FontAwesomeIcon icon={faTrash} />
                                                 </a>
                                             </div>
-
                                         </div>
-
                                         <div className="row">
                                             <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                 <div className="form-group">
@@ -301,7 +238,6 @@ const EducationProfile = () => {
                                                     </label>
                                                     <select
                                                         value={element.specialization || ""} onChange={e => handleChange(index, e)}
-
                                                         required
                                                         className="form-control" id="specialisation" name="specialization" >
                                                         <option value="">Select</option>

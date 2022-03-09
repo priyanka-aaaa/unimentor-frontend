@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp, faAngleLeft
-
-} from '@fortawesome/free-solid-svg-icons'
-
 import ApplicationProfile from './ApplicationProfile';
 import Profile from './Profile';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
     return images
-  }
-  const settings = {
-    // dots: true,
+}
+const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1
-  };
-  const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
-
+};
+const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 function Sidebar(props) {
     const [width, setwidth] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
     function handletoogleClick() {
@@ -32,20 +25,17 @@ function Sidebar(props) {
         }
         else {
             setwidth("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
-
         }
     }
     return (
-
-
         <ul className={width} id="accordionSidebar">
-               <div class="sidebar-brand-icon ">
-                    CM
-                </div>
+            <div class="sidebar-brand-icon ">
+                CM
+            </div>
             <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div className="sidebar-brand-text mx-3"> <Link to={'/UniversityDashboard'}  >
                     <img src={images["dash-logo.png"]} alt="" />
-                       </Link> </div>
+                </Link> </div>
             </a>
             <hr className="sidebar-divider my-0" />
             <li className="nav-item active">
@@ -74,33 +64,23 @@ function Sidebar(props) {
                 <Link to={'/Bookmark'} className="nav-link" href="#">
                     <i className="fas fa-bookmark"></i>
                     <span>Bookmark</span></Link>
-
-
             </li>
             <li className="nav-item ">
-            <Link to={'/StudentSetting'} className="nav-link" href="#">
+                <Link to={'/StudentSetting'} className="nav-link" href="#">
                     <i className="fas fa-bookmark"></i>
                     <span>Settings</span></Link>
-
-            
             </li>
             <div className="text-center d-none d-md-inline">
                 <button className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>
                     <i class="fa-solid fa-arrow-right"></i>
-
                     <FontAwesomeIcon icon={faAngleLeft} style={{
                         fontWeight: 900,
-
-
                         marginRight: "0.1rem",
                         color: "rgba(255, 255, 255, 0.5)"
-
                     }} />
                 </button>
             </div>
-
         </ul>
-
     );
 }
 
