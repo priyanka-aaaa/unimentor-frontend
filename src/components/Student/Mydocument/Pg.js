@@ -134,7 +134,7 @@ const NewIdentityDocument = () => {
                     </div>
                 </div>
                 <div style={{ display: textflag }}>
-                    <div className="upload_doc d-flex flex-wrap align-items-center row">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <p className="pl-4 pr-4 pt-0 pb-0">PG Degree Certificate <span className="text-danger"> *</span></p>
                         </div>
@@ -205,7 +205,7 @@ const NewIdentityDocument = () => {
                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
                         </div>
                     </div>
-                    <div className="upload_doc d-flex flex-wrap align-items-center row">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <p className="pl-4 pr-4 pt-0 pb-0">PG Consolidated Marksheet <span className="text-danger"> *</span></p>
                         </div>
@@ -278,7 +278,7 @@ const NewIdentityDocument = () => {
                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
                         </div>
                     </div>
-                    <div className="upload_doc d-flex flex-wrap align-items-center row">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <p className="pl-4 pr-4 pt-0 pb-0">PG Marksheet  <span className="text-danger"> *</span></p>
                         </div>

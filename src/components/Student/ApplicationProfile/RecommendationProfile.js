@@ -258,19 +258,16 @@ const WorkExperienceProfile = () => {
                     Recommendation
                 </a>
                 <div id="collapse8" className="collapse" data-bs-parent="#accordion">
+                    <div className="card-body">
                     {/* <form> */}
                     <form onSubmit={handleSubmit}>
 
                         {formValues.map((element, index) => (
                             <div key={index}>
-                                <a onClick={() => handleDeleteClick(element._id)}>
-                                    <FontAwesomeIcon icon={faTrash} />
-
-
-                                </a>
+                                
 
                                 <div className="row">
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div className="col-12 col-sm-5 col-md-5 col-lg-5">
                                         <div className="form-group"><label>Reference Type <span className="text-danger"> *</span></label><br /><label className="ant-radio-wrapper ant-radio-wrapper-checked"><span className="ant-radio ant-radio-checked"><input
 
                                             onChange={(e) => setreferenceType(index, "Professional")}
@@ -293,6 +290,11 @@ const WorkExperienceProfile = () => {
                                                 required
                                                 type="text" className="form-control" id="Name_of_organisation" name="organization" placeholder="Name of Organisation/Institution" />
                                         </div>
+                                    </div>
+                                    <div className="col-12 col-sm-1 col-md-1 col-lg-1 text-right mt-4">
+                                        <a className="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
+                                        <FontAwesomeIcon icon={faTrash} />
+                                        </a>
                                     </div>
                                 </div>
 
@@ -370,7 +372,7 @@ const WorkExperienceProfile = () => {
 
                                     <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                    <button type="submit" className="btn btn-secondary">Save
+                                    <button type="submit" className="btn btn-secondary ml-2">Save
                                     </button>
                                     <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
                                         Next</button>
@@ -380,6 +382,7 @@ const WorkExperienceProfile = () => {
 
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>

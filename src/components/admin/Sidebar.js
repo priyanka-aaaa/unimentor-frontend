@@ -2,19 +2,37 @@ import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+  }
+  const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+  const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
+
 class Sidebar extends Component {
     render() {
         return (
             <div>
                 {/* <!-- Sidebar --> */}
                 <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
+                <div class="sidebar-brand-icon ">
+                    CM
+                </div>
                     {/* <!-- Sidebar - Brand --> */}
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                         {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
 <i className="fas fa-graduation-cap"></i>
 </div> --> */}
-                        <div className="sidebar-brand-text mx-3">Coursementor </div>
+                        <div className="sidebar-brand-text mx-3"> <Link to={'/UniversityDashboard'}  >
+                    <img src={images["dash-logo.png"]} alt="" />
+                       </Link> </div>
                     </a>
 
                     {/* <!-- Divider --> */}

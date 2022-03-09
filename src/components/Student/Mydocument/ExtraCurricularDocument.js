@@ -139,7 +139,7 @@ const ExtraCurricularDocument = () => {
                             <div className="upload_doc d-flex flex-wrap align-items-center row">
                                 <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                                     <div className="col-12 col-sm-12 col-md-12 col-lg-12" >
-                                        <select name="activity" value={activity}
+                                        <select className="form-control" name="activity" value={activity}
                                             onChange={(e) => handleChange(e)}
                                         >
                                             <option value="">Search Activity</option>

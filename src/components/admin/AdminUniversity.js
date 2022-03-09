@@ -96,23 +96,24 @@ export default function AdminUniversity() {
                                                                     <td>priyanka.calinfo500@gmail.com</td>
                                                                     <td>9817961998</td>
 
+
                                                                     <td>
-                                                                        <button className="btn" >
+                                                                        <button className="btn btn-danger btn-sm" >
                                                                             <FontAwesomeIcon icon={faTrash} />
 
 
                                                                         </button>
-                                                                        <button className="btn">
+                                                                        <button className="btn btn-success btn-sm">
                                                                             <FontAwesomeIcon icon={faPen} />
 
 
                                                                         </button>
-                                                                        <button className="btn" ><Link to={'/institute/' + object._id} className="nav-link" >
+                                                                        <button className="btn btn-primary btn-sm vbtn" ><Link to={'/institute/' + object._id} className="nav-link" >
                                                                             <FontAwesomeIcon icon={faEye} />
 
 
                                                                         </Link></button>
-                                                                        <button className="btn" >
+                                                                        <button className="btn btn-info  btn-sm ml-2" >
                                                                             <FontAwesomeIcon icon={faUserSlash} />
 
 

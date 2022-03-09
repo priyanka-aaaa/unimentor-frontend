@@ -97,7 +97,7 @@ export default function Home() {
         {/* Banner Section Start */}
         <div className="rs-banner style3 modify2">
           <div className="container">
-            <div className="row align-items-end">
+            <div className="row">
               <div className="col-lg-6 md-mb-50 order-last">
                 <div className="banner-img">
 
@@ -134,7 +134,7 @@ export default function Home() {
                   </ul>
                 </div>
                 {/* Partner Start */}
-                <div className="rs-partner style2 modify1 pt-120 pb-100 md-pt-70 pb-lg-0 md-pb-0">
+                <div className="rs-partner style2 modify1 pt-50 ">
                   <div className="container">
                     <p className="title">Trusted By 5000+ Worldwide Customers:</p>
                     <div className="rs-carousel owl-carousel" data-loop="true" data-items={3} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={2} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={3} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={3} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={3} data-md-device-nav="false" data-md-device-dots="false">
@@ -304,7 +304,7 @@ export default function Home() {
         {/* About Section Start */}
         <div className="rs-about style2 modify2 gray-color pt-120 pb-120 md-pt-80 md-pb-80">
           <div className="container">
-            <div className="row">
+            <div className="row align-items-center">
               <div className="col-lg-6 md-mb-50">
                 <div className="sec-title mb-30">
                   <div className="sub-text style4-bg">CourseMentor</div>
@@ -416,7 +416,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="rs-technology gray-color pt-120 pb-120 md-pt-80 md-pb-80">
+        <div className="rs-technology gray-color pt-50 pb-50 mt-50 mb-50">
           <div className="container">
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">Technology Index</span>
@@ -597,7 +597,7 @@ export default function Home() {
         </div>
         {/* Technology Section End */}
         {/* Blog Section Start */}
-        <div id="rs-blog" className="rs-blog pt-120 pb-120 md-pt-80 md-pb-80">
+        <div id="rs-blog" className="rs-blog pt-50 pb-50 mt-50 mb-50">
           <div className="container">
             <div className="sec-title2 text-center mb-30">
               <span className="sub-text">Blogs</span>

@@ -8,16 +8,17 @@ export default function Studentregister() {
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
+    const [citizenship, setcitizenship] = useState("");
 
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
     const [location, setlocation] = useState("");
     const [state, setstate] = useState("");
     const [city, setcity] = useState("");
-    const [citizenship, setcitizenship] = useState("");
-    const [dateOfBirth, setdateOfBirth] = useState("");
     const [country, setcountry] = useState("");
-    const [mobile, setmobile] = useState("");
+    const [dateOfBirth, setdateOfBirth] = useState("");
+    const [countryCode, setcountryCode] = useState("");
+   const [mobile, setmobile] = useState("");
     const [gender, setgender] = useState("");
     const [picture, setpicture] = useState("");
 
@@ -29,29 +30,18 @@ export default function Studentregister() {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-
-
                 if (res.data.success === true) {
-
                     var student_personal = res.data.studentPersonalDetails;
-
-                    console.log("student_personal");
-                    console.log(student_personal);
                     setaboutMe(student_personal.aboutMe);
-
                     setemail(student_personal.email);
                     setlocation(student_personal.location);
                     setstate(student_personal.state);
                     setcity(student_personal.city);
-
+                    setcountry(student_personal.country);
                     setdateOfBirth(student_personal.dateOfBirth);
-                    setcountry(student_personal.countryCode);
+                    setcountryCode(student_personal.countryCode);
                     setmobile(student_personal.phone);
-
-                    // setpicture(student_personal.picture);
-
-
-
+                    setgender(student_personal.gender);
                 }
             })
             .catch(error => {
@@ -156,10 +146,7 @@ export default function Studentregister() {
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                                                         Personal Details
                                                     </a>
-                                                    <a href="#" className="btn btn-success edit ">
-                                                        <i className="fas fa-check"></i>Edit
-                                                    </a>
-
+                                          
                                                     <div id="collapseOne" className="collapse show" data-bs-parent="#accordion">
                                                         <div className="card-body">
 
@@ -169,6 +156,7 @@ export default function Studentregister() {
                                                                     <div className="mb-3">
                                                                         <label htmlFor="upprofile" className="form-label">Upload Your
                                                                             Profile Picture</label>
+                                                                            
                                                                         <div className="drag-drop">
                                                                             <label htmlFor="profile-picture" className="uploader"><input
                                                                                 type="file" id="profile-picture"
@@ -369,7 +357,7 @@ export default function Studentregister() {
 
                                                                     <div className="mb-3">
                                                                         <button type="submit"
-                                                                            className="btn btn-success btn-lg">Save Changes</button>
+                                                                            className="btn btn-success ">Save Changes</button>
                                                                     </div>
                                                                 </form>
                                                             </div>

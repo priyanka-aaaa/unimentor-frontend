@@ -116,7 +116,7 @@ export default function Universitylogin() {
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-3 mt-3">
                                                     <label className="form-label">Email </label>
-                                                    <input type="email" className="form-control form-control-lg" id="email"
+                                                    <input type="email" className="form-control " id="email"
                                                         placeholder="Enter email" name="email"
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
@@ -128,7 +128,7 @@ export default function Universitylogin() {
                                                 <span style={{ color: "red" }}>{emailError}</span>
                                                 <div className="mb-3 mt-3">
                                                     <label className="form-label">Password</label>
-                                                    <input type="password" className="form-control form-control-lg" id="uname"
+                                                    <input type="password" className="form-control " id="uname"
                                                         placeholder="Password" name="name"
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}

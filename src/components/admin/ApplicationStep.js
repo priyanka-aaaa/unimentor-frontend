@@ -113,7 +113,7 @@ export default function ApplicationStep() {
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
                         <Topbar />
-                        <div className="container">
+                        <div className="container admin-dashboard">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Application Step</h1>
                                 {submitSuccess === 1 ? <div className="Show_success_message">
@@ -145,7 +145,7 @@ export default function ApplicationStep() {
 
 
 
-                                                        <button className="btn" onClick={() => handleEdit(object._id)}>
+                                                        <button className="btn btn-success btn-sm" onClick={() => handleEdit(object._id)}>
                                                             <FontAwesomeIcon icon={faPen} />
 
 
@@ -161,13 +161,14 @@ export default function ApplicationStep() {
 
                                 </table>
                                 {/* start for sideview */}
-                                <div className="sidenav" style={{ width: viewWidth }}>
+                                <div id="mySidenav" className="sidenav" style={{ width: viewWidth }}>
 
-                                    <a onClick={() => handleCloseView()} className="closebtn" >×</a>
+                                    
 
                                     <div class="card-body">
                                         <div class="form-block">
                                             <div class="card-body">
+                                            <a onClick={() => handleCloseView()} className="closebtn mt-50" >×</a>
                                                 <h1 class="h3 mb-3 text-gray-800">Add Application Step</h1>
                                                 <div class="col-sm-12">
 
@@ -213,7 +214,7 @@ export default function ApplicationStep() {
 
                                                                             <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                                                            <button type="submit" className="btn btn-secondary">Save
+                                                                            <button type="submit" className="btn btn-secondary ml-2">Save
                                                                             </button>
 
                                                                         </div>

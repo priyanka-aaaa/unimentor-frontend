@@ -227,18 +227,16 @@ const ExtraCurricultarActivityProfile = () => {
                     Extra Curricular Activities
                 </a>
                 <div id="collapse7" className="collapse" data-bs-parent="#accordion">
+                    <div className="card-body">
                     {/* <form> */}
                     <form onSubmit={handleSubmit}>
 
                         {formValues.map((element, index) => (
                             <div key={index}>
-                                <a onClick={() => handleDeleteClick(element._id)}>
-                                    <FontAwesomeIcon icon={faTrash} />
-
-                                </a>
+                                
 
                                 <div className="row">
-                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                    <div className="col-12 col-sm-5 col-md-5 col-lg-5">
                                         <div className="form-group">
                                             <label>Acitvity Status <span className="text-danger">
                                                 *</span></label>
@@ -303,6 +301,12 @@ const ExtraCurricultarActivityProfile = () => {
                                             </select>
                                         </div>
                                     </div>
+                                    <div className="col-12 col-sm-1 col-md-1 col-lg-1 text-right mt-4">
+                                        <a className="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
+                                            <FontAwesomeIcon icon={faTrash} />
+                                        </a>
+                                    </div>
+
                                 </div>
                                 <div className="row">
                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
@@ -386,7 +390,7 @@ const ExtraCurricultarActivityProfile = () => {
 
                                     <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                    <button type="submit" className="btn btn-secondary">Save
+                                    <button type="submit" className="btn btn-secondary ml-2">Save
                                     </button>
                                     <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
                                         Next</button>
@@ -396,6 +400,7 @@ const ExtraCurricultarActivityProfile = () => {
 
                         </div>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>

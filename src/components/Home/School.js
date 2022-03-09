@@ -155,7 +155,7 @@ function School(props) {
         </div>
         {/* Banner Section End */}
         {/* Services Section Start */}
-        <div className="rs-services style2 modify1 pt-40 pb-120 md-pt-80 md-pb-80">
+        <div className="rs-services style2 modify1 pt-50 pb-50 md-pt-80 md-pb-80">
           <div className="container">
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">We Are Best</span>
@@ -465,7 +465,7 @@ function School(props) {
           </div>
         </div>
         {/* Technology Section Start */}
-        <div className="rs-technology gray-color pt-120 pb-120 md-pt-80 md-pb-80">
+        <div className="rs-technology gray-color pt-50 pb-50 mt-50 mb-50">
           <div className="container">
             <div className="sec-title2 text-center mb-45">
               <span className="sub-text gold-color">Student</span>

@@ -194,7 +194,7 @@ const EnglishProficiencyDocument = () => {
                                             : test + " Score Card"}
                                     </div>
                                 </div>
-                                <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center my-auto">
+                                <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-left my-auto">
                                     <p>Upload Document</p>
                                     {myfile === "" || myfile === "*" || myfile === null || myfile === undefined ?
                                         <Dropzone onDrop={(acceptedFiles) => {

@@ -139,7 +139,7 @@ function Bookmark(props) {
                               <div className="bool-markcontent">
                                 <h5>Unversity</h5>
                                 <p>{object.name}</p>
-                                <a onClick={() => onHandleUnBookmark(object._id)} >UnBookmark</a>
+                                <a href="" onClick={() => onHandleUnBookmark(object._id)} >UnBookmark</a>
                                 {/* <button className="button add" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button> */}
 
                               </div>

@@ -120,8 +120,9 @@ const AdminScholarship = () => {
                                                 <div className="mb-3">
                                                     <div className="row">
                                                         <div className="col">
+                                                        <div className="form-group">
                                                             <label className="form-label">Scholarship
-                                                                *</label>
+                                                            <span className="text-danger"> *</span></label>
                                                             <input type="text" className="form-control"
                                                                 placeholder="scholarship" name="scholarship"
                                                                 value={element.scholarship || ""} onChange={e => handleChange(index, e)}
@@ -129,8 +130,7 @@ const AdminScholarship = () => {
                                                            
                                                             />
                                                         </div>
-
-
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -144,11 +144,11 @@ const AdminScholarship = () => {
                                                 <div className="col-md-6"></div>
                                                 <div className="col-md-6 text-right">
 
-                                                    <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                                    <button title="Add New" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                                    <button type="submit" className="btn btn-secondary">Save
+                                                    <button title="Save" type="submit" className="btn btn-secondary ml-2">Save
                                                     </button>
-                                                    <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
+                                                    <button title="Save & Next" type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
                                                         Next</button>
                                                 </div>
 

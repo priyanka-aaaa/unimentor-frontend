@@ -169,7 +169,7 @@ const SecondaryEducation = () => {
                 </div>
                 <div style={{ display: textflag }}>
                     {/* start for cv */}
-                    <div className="upload_doc d-flex flex-wrap align-items-center row">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <p className="pl-4 pr-4 pt-0 pb-0">marksheet10 Front <span className="text-danger"> *</span></p>
                         </div>
@@ -263,7 +263,7 @@ const SecondaryEducation = () => {
                     </div>
                     {/* end for cv */}
                     {/* start for marksheet10 */}
-                    <div className="upload_doc d-flex flex-wrap align-items-center row">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
                             <p className="pl-4 pr-4 pt-0 pb-0">marksheet10 Back Front <span className="text-danger"> *</span></p>
                         </div>

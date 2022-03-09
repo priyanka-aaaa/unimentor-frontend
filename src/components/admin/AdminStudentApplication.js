@@ -406,7 +406,9 @@ export default function AdminStudentApplication() {
                 <Sidebar />
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        <Topbar />
+                    <Topbar />
+                        <div className="container-fluid admin-dashboard admin-icon" >
+                        
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
                         </div>
@@ -458,7 +460,7 @@ export default function AdminStudentApplication() {
                                                                 <td>
 
 
-                                                                    <button className="btn" onClick={() => handleView(object._id + '&&' + object.studentID)}>
+                                                                    <button title="View Student Application" className="btn btn-success" onClick={() => handleView(object._id + '&&' + object.studentID)}>
 
                                                                         <FontAwesomeIcon icon={faEye} />
 
@@ -479,13 +481,14 @@ export default function AdminStudentApplication() {
                         </div>
                         {/* start for first sidebar */}
 
-                        <div className="sidenav" style={{ width: firstviewWidth }}>
+                        <div id="mySidenav" className="sidenav" style={{ width: firstviewWidth }}>
 
+                           
+                            <section className="pcoded-main-containerx ">
                             <a onClick={() => handleCloseView()} className="closebtn" >×</a>
-                            <section className="pcoded-main-containerx">
                                 <div className="pcoded-content">
                                     {/* [ breadcrumb ] start */}
-                                    <div className="page-header">
+                                    <div className="page-header m-t-20">
                                         <div className="page-block">
                                             <div className="row align-items-center">
                                                 <div className="col-md-12">
@@ -512,7 +515,7 @@ export default function AdminStudentApplication() {
                                                         </div>
                                                         <div className="col-md-3 text-right">
 
-                                                            <button className="btn btn-primary" onClick={() => handleAppliedView()}>   Applied Application <span className="badge badge-light">3</span></button>
+                                                            <button title="Applied Application" className="btn btn-primary" onClick={() => handleAppliedView()}>   Applied Application <span className="badge badge-light">3</span></button>
 
 
                                                         </div>
@@ -927,7 +930,7 @@ export default function AdminStudentApplication() {
                         </div>
                         {/* end for first sidebar */}
                         {/* start for second sidebar */}
-                        <div className="sidenav" style={{ width: secondviewWidth }}>
+                        <div id="mySidenav" className="sidenav" style={{ width: secondviewWidth }}>
 
 
                             <div className="row">
@@ -979,7 +982,7 @@ export default function AdminStudentApplication() {
                                                                     <td>
 
 
-                                                                        <button className="btn" onClick={() => handlesecondView(object._id)}>
+                                                                        <button title="View Application Detail" className="btn btn-success" onClick={() => handlesecondView(object._id)}>
 
                                                                             <FontAwesomeIcon icon={faEye} />
 
@@ -1003,15 +1006,12 @@ export default function AdminStudentApplication() {
                         {/* end for second sidebar */}
                         {/* start for third sidebar */}
 
-                        <div className="sidenav" style={{ width: thirdviewWidth }}>
+                        <div id="mySidenav" className="sidenav" style={{ width: thirdviewWidth }}>
 
+                           
+                            <section className="pcoded-main-containerx">
                             <a onClick={() => handlesecondCloseView()} className="closebtn" >×</a>
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
-
-
-                            </div>
-                            <section className="pcoded-main-container">
+                            
                                 <div className="pcoded-content">
                                     {/* [ breadcrumb ] start */}
                                     <div className="page-header">
@@ -1045,8 +1045,8 @@ export default function AdminStudentApplication() {
                                                             <div className="btn-block"><button type="button" className="btn btn-success">Application
                                                                 Initiated</button></div>
                                                         </div>
-                                                        <div className="col-md-4">
-                                                            <div className="btn-block"><button type="button" className="btn btn-outline-primary btn-download"><span>
+                                                        <div className="col-md-4 text-right">
+                                                            <div className="btn-block "><button type="button" className="btn btn-outline-primary btn-download"><span>
 
 
                                                                 <FontAwesomeIcon icon={faCloudDownload} />
@@ -1278,7 +1278,7 @@ export default function AdminStudentApplication() {
                                                     </div>
                                                     <div className="activite">
                                                         <div className="row">
-                                                            <div className="card mb-4">
+                                                            <div className="cardx mb-4">
                                                                 <div className="act-note">
                                                                     <ul className="nav nav-tabs" role="tablist">
                                                                         <li className="nav-item">
@@ -1342,6 +1342,7 @@ export default function AdminStudentApplication() {
                                                                                     <h6><span>
 
                                                                                         <FontAwesomeIcon icon={faUserCircle} />
+                                                                                        
                                                                                         Khushi left a
                                                                                         note.</span></h6>
                                                                                     <div className="msg-content">
@@ -1784,6 +1785,7 @@ export default function AdminStudentApplication() {
                                 </div>
                             </section>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div >

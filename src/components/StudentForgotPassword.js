@@ -103,7 +103,7 @@ class StudentForgotPassword extends Component {
                                         <form>
                                             <div className="mb-3 mt-3">
                                                 <label className="form-label">Email</label>
-                                                <input type="email" className="form-control form-control-lg" id="email"
+                                                <input type="email" className="form-control " id="email"
                                                     placeholder="Enter email" name="email"
                                                     value={this.state.email}
                                                     onChange={this.onChangeEmail}

@@ -107,7 +107,7 @@ export default function StudentRegisterForm() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3 mt-3">
                         <label className="form-label">Name</label>
-                        <input required type="text" className="form-control form-control-lg" id="uname"
+                        <input required type="text" className="form-control " id="uname"
                             placeholder="Full Name" name="name"
                             value={name}
                             onChange={(e) => setName(e.target.value)}
@@ -116,7 +116,7 @@ export default function StudentRegisterForm() {
                     <span style={{ color: "red" }}> {nameError}</span>
                     <div className="mb-3 mt-3">
                         <label className="form-label">Email</label>
-                        <input required type="email" className="form-control form-control-lg" id="email"
+                        <input required type="email" className="form-control " id="email"
                             placeholder="Enter email" name="email"
 
                             value={email}

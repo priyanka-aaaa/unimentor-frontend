@@ -45,19 +45,19 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-danger btn-sm " >
                                                                     <FontAwesomeIcon icon={faTrash} />
 
                                                                 </button>
-                                                                <button className="btn">
+                                                                <button className="btn btn-success btn-sm">
                                                                     <FontAwesomeIcon icon={faPen} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-primary btn-sm vbtn" >
                                                                     <FontAwesomeIcon icon={faEye} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-info  btn-sm ml-2" >
                                                                     <FontAwesomeIcon icon={faUserSlash} />
 
                                                                 </button>
@@ -70,19 +70,19 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-danger btn-sm " >
                                                                     <FontAwesomeIcon icon={faTrash} />
 
                                                                 </button>
-                                                                <button className="btn">
+                                                                <button className="btn btn-success btn-sm">
                                                                     <FontAwesomeIcon icon={faPen} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-primary btn-sm vbtn" >
                                                                     <FontAwesomeIcon icon={faEye} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-info  btn-sm ml-2" >
                                                                     <FontAwesomeIcon icon={faUserSlash} />
 
                                                                 </button>
@@ -95,19 +95,19 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-danger btn-sm " >
                                                                     <FontAwesomeIcon icon={faTrash} />
 
                                                                 </button>
-                                                                <button className="btn">
+                                                                <button className="btn btn-success btn-sm">
                                                                     <FontAwesomeIcon icon={faPen} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-primary btn-sm vbtn" >
                                                                     <FontAwesomeIcon icon={faEye} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-info  btn-sm ml-2" >
                                                                     <FontAwesomeIcon icon={faUserSlash} />
 
                                                                 </button>
@@ -120,19 +120,19 @@ export default function AdminAgent() {
                                                             <td>9817961998</td>
 
                                                             <td>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-danger btn-sm " >
                                                                     <FontAwesomeIcon icon={faTrash} />
 
                                                                 </button>
-                                                                <button className="btn">
+                                                                <button className="btn btn-success btn-sm">
                                                                     <FontAwesomeIcon icon={faPen} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-primary btn-sm vbtn" >
                                                                     <FontAwesomeIcon icon={faEye} />
 
                                                                 </button>
-                                                                <button className="btn" >
+                                                                <button className="btn btn-info  btn-sm ml-2" >
                                                                     <FontAwesomeIcon icon={faUserSlash} />
 
                                                                 </button>

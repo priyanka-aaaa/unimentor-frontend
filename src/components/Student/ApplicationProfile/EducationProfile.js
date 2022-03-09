@@ -239,13 +239,9 @@ const EducationProfile = () => {
                             <div className="form-block">
                                 {formValues.map((element, index) => (
                                     <div key={index}>
-                                        <a onClick={() => handleDeleteClick(element._id)}>
-                                            <FontAwesomeIcon icon={faTrash} />
-
-
-                                        </a>
+                                       
                                         <div className="row">
-                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                            <div className="col-12 col-sm-5 col-md-5 col-lg-5">
                                                 <div className="form-group">
                                                     <label htmlFor="Highest Level of Education">Highest Level of
                                                         Education <span className="text-danger"> *</span></label>
@@ -266,7 +262,7 @@ const EducationProfile = () => {
                                                     </select>
                                                 </div>
                                             </div>
-                                            <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                            <div className="col-12 col-sm-5 col-md-5 col-lg-5">
                                                 <div className="form-group">
                                                     <label htmlFor="education_status">Education Status <span className="text-danger"> *</span></label><br />
                                                     <label className="ant-radio-wrapper ant-radio-wrapper-checked">
@@ -290,6 +286,12 @@ const EducationProfile = () => {
                                                         <span>Completed</span></label> <br />
                                                 </div>
                                             </div>
+                                            <div className="col-12 col-sm-2 col-md-2 col-lg-2 text-right mt-2">
+                                                <a title="Delet" className="btn btn-danger" onClick={() => handleDeleteClick(element._id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </a>
+                                            </div>
+
                                         </div>
 
                                         <div className="row">
@@ -467,7 +469,7 @@ const EducationProfile = () => {
 
                                             <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                            <button type="submit" className="btn btn-secondary">Save
+                                            <button type="submit" className="btn btn-secondary ml-2">Save
                                             </button>
 
                                             <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse5">Save

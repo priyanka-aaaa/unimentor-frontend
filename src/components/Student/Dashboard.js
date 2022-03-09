@@ -63,7 +63,7 @@ function PersonalInformation(props) {
 
 
 
-              <div className="container">
+              
                 {/* Page Heading */}
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                   <h1 className="h3 mb-0 text-gray-800">My Application</h1>
@@ -74,7 +74,7 @@ function PersonalInformation(props) {
                   <div className="col-xl-12 col-lg-7">
                     {data.map((object, i) => {
                       return (
-                        <div className="card shadow mb-4" key={i}>
+                        <div className="card shadow mb-4 appblock" key={i}>
                           <div className="row">
                             <div className="col-md-10">
                               <div className="unv-name">
@@ -138,7 +138,7 @@ function PersonalInformation(props) {
 
                   </div>
                 </div>
-              </div>
+            
 
 
               {/* <!-- Content Row --> */}
@@ -155,19 +155,19 @@ function PersonalInformation(props) {
                       <h6 className="m-0 font-weight-bold text-primary">To Do List</h6>
                     </div>
                     <div className="card-body">
-                      <h4 className="small font-weight-bold">1 Visit our Facebook Profile <a href="#"
+                      <h4 className="small ">1 Visit our Facebook Profile <a href="#"
                         className="float-right">Visit</a></h4>
 
-                      <h4 className="small font-weight-bold">2 Download our latest E-book <a href="#"
+                      <h4 className="small">2 Download our latest E-book <a href="#"
                         className="float-right">Download</a></h4>
 
-                      <h4 className="small font-weight-bold">3 Link your Facebook profile <a href="#"
+                      <h4 className="small">3 Link your Facebook profile <a href="#"
                         className="float-right">Update</a></h4>
 
-                      <h4 className="small font-weight-bold">4 Link your LinkedIn profile <a href="#"
+                      <h4 className="small">4 Link your LinkedIn profile <a href="#"
                         className="float-right">Update</a></h4>
 
-                      <h4 className="small font-weight-bold">5 Write a short introduction about yourself <a
+                      <h4 className="small">5 Write a short introduction about yourself <a
                         href="#" className="float-right">Write</a></h4>
 
                     </div>

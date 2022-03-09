@@ -336,7 +336,7 @@ const Ranking = () => {
                                         </span>Add New Ranking</button></div>
                                 </div>
                   
-                                <div className="card shadow mb-4">
+                                <div className="card shadow mb-4 mt-3">
 
                                     {myTable === "true" ?
                                         null

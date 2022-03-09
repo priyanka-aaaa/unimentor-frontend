@@ -154,7 +154,7 @@ function WorkExperienceDocument(props) {
                             <div className="col-md-8">
                                 <p style={{ display: completedHeading }}>I don't have any work experience</p>
                             </div>
-                            <div className="col-md-4 text-right">
+                            <div className="col-md-4">
                                 <label className="switch3">
                                     <input type="checkbox" />
                                     <span className="slider round"
@@ -173,13 +173,10 @@ function WorkExperienceDocument(props) {
                                         <div className="add-more">
                                             <div className="upload_doc d-flex flex-wrap align-items-center row ">
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3">Company Name</div>
-
-
-                                                <div className="col-1 col-sm-1 col-md-1 col-lg-1">&nbsp;</div>
                                             </div>
                                             <div className="upload_doc d-flex flex-wrap align-items-center row">
                                                 <div className="col-3 col-sm-3 col-md-3 col-lg-3">
-                                                    <div className="col-12 col-sm-12 col-md-12 col-lg-12">
+                                                    <div className="from-group">
                                                         <input className="ant-input w-100 form-control"
                                                             value={companyName}
                                                             onChange={(e) => setcompanyName(e.target.value)}

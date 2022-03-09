@@ -130,7 +130,7 @@ function RecommendationDocuments(props) {
                             <div className="col-md-8">
                                 <p style={{ display: completedHeading }}>I don't have any recommender</p>
                             </div>
-                            <div className="col-md-4 text-right">
+                            <div className="col-md-4 ">
                                 <label className="switch3">
                                     <input type="checkbox" />
                                     <span className="slider round"
