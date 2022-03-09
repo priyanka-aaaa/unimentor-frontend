@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Dropzone from "react-dropzone";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
@@ -9,6 +12,7 @@ export default function Studentregister() {
     const [password, setpassword] = useState();
     const [confirmpassword, setconfirmpassword] = useState();
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
+    const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [citizenship, setcitizenship] = useState("");
     const [aboutMe, setaboutMe] = useState("");
     const [email, setemail] = useState("");
@@ -42,6 +46,9 @@ export default function Studentregister() {
             .then(function (res) {
                 if (res.data.success === true) {
                     var student_personal = res.data.studentPersonalDetails;
+                    setpicture(student_personal.picture);
+
+
                     setaboutMe(student_personal.aboutMe);
                     setemail(student_personal.email);
                     setlocation(student_personal.location);
@@ -74,7 +81,6 @@ export default function Studentregister() {
     }, [])
     function personalDetails(event) {
         setmyloader("true")
-
         event.preventDefault();
         const obj = {
             picture: picture,
@@ -128,6 +134,8 @@ export default function Studentregister() {
         setgender(value);
 
     }
+
+
     return (
         <div id="page-top">
 
@@ -150,9 +158,9 @@ export default function Studentregister() {
                                                     {loader === "true" ?
                                                         <Loader />
                                                         : null}
-                                                         {submitSuccess === 1 ? <div className="Show_success_message">
-                <strong>Success!</strong> {successMessage}
-            </div> : null}
+                                                    {submitSuccess === 1 ? <div className="Show_success_message">
+                                                        <strong>Success!</strong> {successMessage}
+                                                    </div> : null}
                                                     <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
                                                         Personal Details
                                                     </a>
@@ -162,19 +170,42 @@ export default function Studentregister() {
                                                                 <form onSubmit={personalDetails}>
 
                                                                     <div className="mb-3">
-                                                                        <label htmlFor="upprofile" className="form-label">Upload Your
-                                                                            Profile Picture</label>
+                                                                        <div className="row">
+                                                                            <div className="col-md-6">
+                                                                                <Dropzone onDrop={(acceptedFiles) => {
+                                                                                    setpicture(acceptedFiles[0])
+                                                                                    var fileName = acceptedFiles[0].path;
+                                                                                    var fileExtension = fileName.split('.').pop();
 
-                                                                        <div className="drag-drop">
-                                                                            <label htmlFor="profile-picture" className="uploader"><input
-                                                                                type="file" id="profile-picture"
-                                                                                value={picture}
-                                                                                onChange={(e) => setpicture(e.target.value)}
-                                                                            />
-                                                                                <img
-                                                                                    src=""
-                                                                                    className="dummy-img" alt="">
-                                                                                </img></label>
+                                                                                    setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
+                                                                                        preview: URL.createObjectURL(file)
+                                                                                    })));
+                                                                                }} name="heroImage" multiple={false}>
+                                                                                    {({ getRootProps, getInputProps }) => (
+                                                                                        <div {...getRootProps({ className: 'dropzone' })}>
+                                                                                            <input {...getInputProps()} />
+                                                                                            <div style={{ fontSize: ".8rem" }}>
+                                                                                                Upload/Drag & Drop Profile Picture
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    )}
+                                                                                </Dropzone>
+
+                                                                            </div>
+
+                                                                            <div className="col-md-6">
+
+                                                                                <div className="drag-drop">
+                                                                                    <label htmlFor="profile-picture" className="uploader"><input
+
+                                                                                    />
+
+                                                                                        <img src={picture} alt="picture" className="dummy-img" />
+
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+
                                                                         </div>
                                                                     </div>
                                                                     <div className="mb-3">

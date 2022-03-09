@@ -96,7 +96,7 @@ const WorkExperienceProfile = () => {
 
 
                             if (res.data.success === true) {
-                                setsuccessMessage("Work Experience Updated")
+                                setsuccessMessage("Recommendation Updated")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';
@@ -132,7 +132,7 @@ const WorkExperienceProfile = () => {
                         .then(function (res) {
                             setmyloader("false")
                             if (res.data.success === true) {
-                                setsuccessMessage("Work Experience Updated")
+                                setsuccessMessage("Recommendation Updated")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'student/profileRecommendations';

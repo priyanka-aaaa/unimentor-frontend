@@ -2254,7 +2254,17 @@ textarea.form-control {
 .form-inline .form-check {
   width: 100%;
 }
-
+.ant-radio-wrapper span {
+  color: #000;
+}
+.uploader .dummy-img {
+  height: 120px;
+  width: 120px;
+  border: 1px dashed rgba(0,0,0,.15);
+  border-radius: 100px;
+  text-align: center;
+  cursor: pointer;
+}
 @media (min-width: 576px) {
   .form-inline label {
     display: flex;

@@ -150,7 +150,7 @@ const ExtraCurricultarActivityProfile = () => {
                         .then(function (res) {
                             setmyloader("false")
                             if (res.data.success === true) {
-                                setsuccessMessage("Document deleted")
+                                setsuccessMessage("ExtraCurricultural Activity Deleted")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'student/activities';

@@ -146,7 +146,7 @@ const EducationProfile = () => {
                         .then(function (res) {
                             setmyloader("false")
                             if (res.data.success === true) {
-                                setsuccessMessage("Document deleted")
+                                setsuccessMessage("Education deleted")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'student/educations';

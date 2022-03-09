@@ -144,7 +144,7 @@ const WorkExperienceProfile = () => {
                         .then(function (res) {
                             setmyloader("false")
                             if (res.data.success === true) {
-                                setsuccessMessage("Document deleted")
+                                setsuccessMessage("Work Experience deleted")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'student/experiences';
