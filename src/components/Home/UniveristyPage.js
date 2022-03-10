@@ -23,8 +23,7 @@ const images = importAll(require.context('../../images', false, /\.(png|jpe?g|sv
 
 export default function UniveristyPage() {
     let { slug } = useParams();
-    console.log("slug")
-    console.log(slug)
+  
 
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -91,12 +90,10 @@ export default function UniveristyPage() {
         })
             .then(response => response.json())
             .then(data => {
-                console.log("data")
-                console.log(data)
+            
 
                 var id = data.universities[0]._id;
-                console.log("idfid")
-                console.log(id)
+              
                 //start for calling all other api
                 const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
                 fetch(url1, {
