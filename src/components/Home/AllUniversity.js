@@ -85,7 +85,7 @@ export default function AllUniversity() {
 
                                         <td>
 
-                                            <Link to={'/institute/' + object.slug} className="nav-link" >{object.slug} ghjhgjgh{object.name}</Link>
+                                            <Link to={'/institute/' + object.slug} className="nav-link" >{object.name}</Link>
 
                                         </td>
 

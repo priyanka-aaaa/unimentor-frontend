@@ -179,12 +179,12 @@ export default function PrimaryInfo() {
         else if (descriptionLength < 49) {
             setDescriptionLengthError("Please Enter Aleast 50-60 words")
         }
-        else if (!website.startsWith('www.')) {
-            setwebsiteStartError("Please Start website with www.")
-        }
-        else if (!website.endsWith('.com') && !website.endsWith('.edu') && !website.endsWith('.in')) {
-            setwebsiteEndError("Please End website with .com or .edu or .in")
-        }
+        // else if (!website.startsWith('www.')) {
+        //     setwebsiteStartError("Please Start website with www.")
+        // }
+        // else if (!website.endsWith('.com') && !website.endsWith('.edu') && !website.endsWith('.in')) {
+        //     setwebsiteEndError("Please End website with .com or .edu or .in")
+        // }
         else if (myPattern.test(pincode) === false) {
             setpincodeError("Please Enter Only Number")
         }

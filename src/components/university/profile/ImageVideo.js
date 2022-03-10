@@ -274,10 +274,13 @@ const ImageVideo = () => {
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label><b>Cover Pict(size 1920*377px)</b></label><br />
+                                    <label><b>Cover Pict(size 1920*377px) 
+                                
+                                </b></label><br />
                                     <div className="documentUpload ant-upload-picture-card-wrapper" >
                                         <div className="ant-upload-list ant-upload-list-picture-card">
                                         </div>
+                                       
                                         {
                                             mycoverPic === "" || mycoverPic === "*" || mycoverPic === null || mycoverPic === undefined ?
                                                 <Dropzone onDrop={(acceptedFiles) => {
