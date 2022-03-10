@@ -33,7 +33,8 @@ export default function AllUniversity() {
         })
             .then(response => response.json())
             .then(data => {
-
+                console.log("data.universities");
+                console.log(data.universities)
                 setdata(data.universities);
                 setFormValues(data.universities)
 
@@ -85,21 +86,8 @@ export default function AllUniversity() {
 
                                         <td>
 
-                                            <Link to={'/institute/' + object._id} className="nav-link" >{object.name}</Link>
-                                            <Link to={{
-                                                pathname: "/institutemy",
+                                            <Link to={'/institute/' + object.slug} className="nav-link" >{object.slug} ghjhgjgh{object.name}</Link>
 
-                                                state: { id: 123456788 }
-                                            }}>{object.name}</Link>
-                                            <Link
-                                                to={{
-                                                    pathname: `/institutemy`,
-                                                    state: {
-                                                        projectDetails: "eee",
-                                                        id: 545 // id you want to get in Project component
-                                                    }
-                                                }}
-                                            />
                                         </td>
 
 

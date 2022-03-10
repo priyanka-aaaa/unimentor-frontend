@@ -21,8 +21,11 @@ function importAll(r) {
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 
 
-export default function AllUniversity() {
-    let { id } = useParams();
+export default function UniveristyPage() {
+    let { slug } = useParams();
+    console.log("slug")
+    console.log(slug)
+
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [foundedYear, setfoundedYear] = useState("");
@@ -80,134 +83,156 @@ export default function AllUniversity() {
         }
         setMounted(mytoken)
 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
-        fetch(url1, {
+
+        const urlMain = process.env.REACT_APP_SERVER_URL + 'universitySlug/' + slug;
+        fetch(urlMain, {
             method: 'GET',
             headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
+                console.log("data")
+                console.log(data)
 
-                setFormValues(data.universityFaqs)
-            })
-
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/admissions';
-        fetch(url2, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setFormAdmissionValues(data.universityAdmissions)
-            })
-
-        const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/documents';
-        fetch(url3, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setFormDocumentValues(data.universityDocuments)
-            })
-
-        const url4 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/overview';
-        fetch(url4, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myResult = data.universityOverview
-
-                if (myResult !== undefined) {
-                    setFormOverviewValues(data.universityOverview)
-                }
-
-            })
-
-        const url5 = process.env.REACT_APP_SERVER_URL + 'universities';
-        fetch(url5, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myuniversitiesResult = data.universities
-                myuniversitiesResult.map((element) => {
-
-                    if (element._id === id) {
-
-                        setFormuniversitiesValues(element)
-                    }
+                var id = data.universities[0]._id;
+                console.log("idfid")
+                console.log(id)
+                //start for calling all other api
+                const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
+                fetch(url1, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
                 })
+                    .then(response => response.json())
+                    .then(data => {
+
+                        setFormValues(data.universityFaqs)
+                    })
+
+                const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/admissions';
+                fetch(url2, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setFormAdmissionValues(data.universityAdmissions)
+                    })
+
+                const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/documents';
+                fetch(url3, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setFormDocumentValues(data.universityDocuments)
+                    })
+
+                const url4 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/overview';
+                fetch(url4, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var myResult = data.universityOverview
+
+                        if (myResult !== undefined) {
+                            setFormOverviewValues(data.universityOverview)
+                        }
+
+                    })
+
+                const url5 = process.env.REACT_APP_SERVER_URL + 'universities';
+                fetch(url5, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var myuniversitiesResult = data.universities
+                        myuniversitiesResult.map((element) => {
+
+                            if (element._id === id) {
+
+                                setFormuniversitiesValues(element)
+                            }
+                        })
+                    })
+
+                const url6 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/primaryInformation';
+                fetch(url6, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var myresults = data.universityPrimaryInformation;
+                        if (Object.keys(myresults).length === 0) {
+                            setFormPrimaryInformationValues(data.universityPrimaryInformation)
+
+                        }
+
+
+                    })
+
+                const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
+                fetch(url7, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        var myuniversityImage = data.universityImage
+                        if (myuniversityImage !== undefined) {
+                            setuniversityImageValues(myuniversityImage)
+                        }
+
+
+                    })
+
+                const url8 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/courses';
+                fetch(url8, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setcoursesValues(data.universityCourses)
+
+                    })
+
+                const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
+
+                fetch(url9, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setrankingValues(data.universityRankings)
+
+                    })
+
+                const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
+
+                fetch(url10, {
+                    method: 'GET',
+                    headers: { 'Authorization': mytoken }
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setimageVideoValues(data.universityImageVideos)
+
+                    })
+
+                //end for calling all other ap0i
+
             })
 
-        const url6 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/primaryInformation';
-        fetch(url6, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myresults = data.universityPrimaryInformation;
-                if (Object.keys(myresults).length === 0) {
-                    setFormPrimaryInformationValues(data.universityPrimaryInformation)
-
-                }
 
 
-            })
-
-        const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
-        fetch(url7, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myuniversityImage = data.universityImage
-                if (myuniversityImage !== undefined) {
-                    setuniversityImageValues(myuniversityImage)
-                }
-
-
-            })
-
-        const url8 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/courses';
-        fetch(url8, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setcoursesValues(data.universityCourses)
-
-            })
-
-        const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
-
-        fetch(url9, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setrankingValues(data.universityRankings)
-
-            })
-
-        const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
-
-        fetch(url10, {
-            method: 'GET',
-            headers: { 'Authorization': mytoken }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setimageVideoValues(data.universityImageVideos)
-
-            })
     }, [])
     var divStyle = {
         backgroundImage: 'url(' + universityImageValues.coverPic + ')'
@@ -650,19 +675,19 @@ export default function AllUniversity() {
                                                                 <div className="blog-img">
 
                                                                     {element.type === "image" ?
-                                                                     <a href="blog-details.html">
-                                                                        <img  src={element.link} alt="image" />
-                                                                       </a>
+                                                                        <a href="blog-details.html">
+                                                                            <img src={element.link} alt="image" />
+                                                                        </a>
                                                                         :
                                                                         <a href="blog-details.html">
-                                                                    
 
-                                                                        <video width="320" height="240" controls>
-                                                                            <source src={element.link} type="video/ogg" />
-                                                                        </video>
+
+                                                                            <video width="320" height="240" controls>
+                                                                                <source src={element.link} type="video/ogg" />
+                                                                            </video>
                                                                         </a>
                                                                     }
-                                                                 
+
 
 
                                                                 </div>
