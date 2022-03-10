@@ -127,7 +127,7 @@ const ExtraCurricularDocument = () => {
                                 <p style={{ display: completedHeading }}>I haven't done any extra curricular activites</p>
                             </div>
                             <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-                                <label className="switch">
+                                <label className="switch" title="Show extra curricular activites">
                                     <input type="checkbox" />
                                     <span className="slider round"
                                         onClick={() => ToggleButton()}
@@ -198,10 +198,10 @@ const ExtraCurricularDocument = () => {
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalExtraDocument">
+                                            <button title="View activites" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalExtraDocument">
                                                 View
                                             </button>
-                                            <button type="button"
+                                            <button title="Delet Entry" type="button"
                                                 onClick={() => onDeletefileHandle("activity")}
                                                 className="btn btn-outline-danger">
                                                 <FontAwesomeIcon icon={faTrash} />

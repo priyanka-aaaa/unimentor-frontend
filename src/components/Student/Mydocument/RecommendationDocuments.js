@@ -131,7 +131,7 @@ function RecommendationDocuments(props) {
                                 <p style={{ display: completedHeading }}>I don't have any recommender</p>
                             </div>
                             <div className="col-md-4 ">
-                                <label className="switch3">
+                                <label className="switch3" title="Show Recommendation Documents">
                                     <input type="checkbox" />
                                     <span className="slider round"
                                         onClick={() => ToggleButton()}
@@ -210,10 +210,10 @@ function RecommendationDocuments(props) {
                                                         </div>
                                                         :
                                                         <div>
-                                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalRecommendation">
+                                                            <button title="View Recommendation Documents" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalRecommendation">
                                                                 View
                                                             </button>
-                                                            <button type="button"
+                                                            <button title="Delet Entry" type="button"
                                                                 onClick={() => onDeletefileHandle()}
                                                                 className="btn btn-outline-danger">
                                                                 <FontAwesomeIcon icon={faTrash} />

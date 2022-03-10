@@ -403,12 +403,12 @@ const EducationProfile = () => {
                                         <div className="col-md-6"></div>
                                         <div className="col-md-6 text-right">
 
-                                            <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                            <button type="button" title="Add New Education" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                            <button type="submit" className="btn btn-secondary ml-2">Save
+                                            <button title="Save" type="submit" className="btn btn-secondary ml-2">Save
                                             </button>
 
-                                            <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse5">Save
+                                            <button title="Save & Next" type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse5">Save &
                                                 Next</button>
 
                                         </div>

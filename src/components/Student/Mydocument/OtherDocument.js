@@ -176,10 +176,10 @@ const EnglishProficiencyDocument = () => {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalOtherDocument">
+                                        <button title="View Other Document" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalOtherDocument">
                                             View
                                         </button>
-                                        <button type="button"
+                                        <button title="Delet Entry" type="button"
                                             onClick={() => onDeletefileHandle()}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />

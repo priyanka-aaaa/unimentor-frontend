@@ -88,7 +88,7 @@ function PersonalInformation(props) {
                           </div>
                           <div className="col-md-2">
                             <div className="btn-groups">
-                              <button type="button" className="btn btn-primary">Upload Doc</button>
+                              <button type="button" className="btn btn-primary" title="Upload Document">Upload Doc</button>
                             </div>
                           </div>
                         </div>

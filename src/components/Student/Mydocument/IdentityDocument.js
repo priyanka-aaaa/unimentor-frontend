@@ -159,10 +159,10 @@ const NewIdentityDocument = () => {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
+                                        <button title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
                                             View
                                         </button>
-                                        <button type="button"
+                                        <button title="Delet Entry" type="button"
                                             onClick={() => onDeletePassportHandle("passport")}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />
@@ -234,10 +234,10 @@ const NewIdentityDocument = () => {
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassportback1">
+                                            <button title="Passport Back View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassportback1">
                                                 View
                                             </button>
-                                            <button type="button"
+                                            <button title="Delet Entry" type="button"
                                                 onClick={() => onDeletePassportBackHandle("passportBack")}
                                                 className="btn btn-outline-danger">
                                                 <FontAwesomeIcon icon={faTrash} />
@@ -320,10 +320,10 @@ const NewIdentityDocument = () => {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalcv1">
+                                        <button title="View CV" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalcv1">
                                             View
                                         </button>
-                                        <button type="button"
+                                        <button title="Delet Entry" type="button"
                                             onClick={() => onDeletecvHandle("cv")}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />

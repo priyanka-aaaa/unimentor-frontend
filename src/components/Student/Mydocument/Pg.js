@@ -124,7 +124,7 @@ const NewIdentityDocument = () => {
                         <p style={{ display: completedHeading }}>I haven't completed or pursuing any PG course</p>
                     </div>
                     <div className="col-4 col-sm-4 col-md-4 col-lg-2 text-right pr-0">
-                        <label className="switch">
+                        <label className="switch" title="Show PG course Degree">
                             <input type="checkbox" />
                             <span className="slider round"
                                 onClick={() => ToggleButton()}
@@ -180,10 +180,10 @@ const NewIdentityDocument = () => {
                                 </Dropzone>
                                 :
                                 <div>
-                                    <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegree1">
+                                    <button title="PG Degree Certificate View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegree1">
                                         View
                                     </button>
-                                    <button type="button"
+                                    <button title="Delet Entry" type="button"
                                         onClick={() => onDeletepgDegreeHandle("pgDegree")}
                                         className="btn btn-outline-danger">
                                         <FontAwesomeIcon icon={faTrash} />
@@ -252,10 +252,10 @@ const NewIdentityDocument = () => {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegreeConsolidatedMarksheet1">
+                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegreeConsolidatedMarksheet1">
                                             View
                                         </button>
-                                        <button type="button"
+                                        <button title="Marksheet Delet" type="button"
                                             onClick={() => onDeletepgDegreeConsolidatedMarksheetHandle("pgDegreeConsolidatedMarksheet")}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />
@@ -325,10 +325,10 @@ const NewIdentityDocument = () => {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgMarksheetConsolidate1">
+                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgMarksheetConsolidate1">
                                             View
                                         </button>
-                                        <button type="button"
+                                        <button title="Delet Entry " type="button"
                                             onClick={() => onDeletepgMarksheetConsolidateHandle("pgMarksheet")}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />

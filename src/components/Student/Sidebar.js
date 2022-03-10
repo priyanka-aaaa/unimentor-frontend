@@ -39,39 +39,39 @@ function Sidebar(props) {
             </a>
             <hr className="sidebar-divider my-0" />
             <li className="nav-item active">
-                <Link to={'/Dashboard'} className="nav-link" >
+                <Link to={'/Dashboard'} className="nav-link" title="Dashboard" >
                     <i className="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></Link>
             </li>
             <li className="nav-item">
-                <Link to={'/Profile'} className="nav-link" href="personal-profile.html">
+                <Link to={'/Profile'} className="nav-link" href="#" title="Profile">
                     <i className="fas fa-user"></i>
                     <span>Profile</span></Link>
 
             </li>
             <li className="nav-item">
 
-                <Link to={'/ApplicationProfile'} className="nav-link" >
+                <Link to={'/ApplicationProfile'} className="nav-link" tiele="Application Profile">
                     <i className="fas fa-file-alt"></i>
                     <span>Application Profile</span></Link>
             </li>
             <li className="nav-item ">
-                <Link to={'/Document'} className="nav-link" href="#">
+                <Link to={'/Document'} className="nav-link" href="#"  tiele="My Documents" >
                     <i className="fas fa-file-upload"></i>
                     <span>My Documents</span></Link>
             </li>
             <li className="nav-item ">
-                <Link to={'/Bookmark'} className="nav-link" href="#">
+                <Link to={'/Bookmark'} className="nav-link" href="#" title="Bookmark">
                     <i className="fas fa-bookmark"></i>
                     <span>Bookmark</span></Link>
             </li>
             <li className="nav-item ">
-                <Link to={'/StudentSetting'} className="nav-link" href="#">
+                <Link to={'/StudentSetting'} className="nav-link" href="#" title="Settings">
                     <i className="fas fa-bookmark"></i>
                     <span>Settings</span></Link>
             </li>
             <div className="text-center d-none d-md-inline">
-                <button className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>
+                <button title="Sidenar-toggle" className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>
                     <i className="fa-solid fa-arrow-right"></i>
                     <FontAwesomeIcon icon={faAngleLeft} style={{
                         fontWeight: 900,

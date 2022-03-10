@@ -113,9 +113,9 @@ function PersonalInformationProfile(props) {
                             <div className="row">
                                 <div className="col-md-6"></div>
                                 <div className="col-md-6 text-right">
-                                    <button type="submit" className="btn btn-secondary">Save
+                                    <button type="submit" className="btn btn-secondary" title="Save">Save
                                     </button>
-                                    <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse6">Save
+                                    <button type="submit" data-bs-toggle="collapse" className="btn btn-success" href="#collapse6" title="Save & Next">Save &
                                         Next</button>
                                 </div>
                             </div>

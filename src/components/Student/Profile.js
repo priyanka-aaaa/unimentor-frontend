@@ -171,7 +171,22 @@ export default function Studentregister() {
 
                                                                     <div className="mb-3">
                                                                         <div className="row">
+                                                                            
+                                                                        <div className="col-md-6">
+
+                                                                        <div className="drag-drop">
+                                                                            <h6>Profile Pict</h6>
+                                                                            <label htmlFor="profile-picture" className="uploader"><input
+
+                                                                            />
+
+                                                                                <img src={picture} alt="picture" className="dummy-img" />
+
+                                                                            </label>
+                                                                        </div>
+                                                                        </div>
                                                                             <div className="col-md-6">
+                                                                                <label> Profile Picture Edit</label>
                                                                                 <Dropzone onDrop={(acceptedFiles) => {
                                                                                     setpicture(acceptedFiles[0])
                                                                                     var fileName = acceptedFiles[0].path;
@@ -193,22 +208,10 @@ export default function Studentregister() {
 
                                                                             </div>
 
-                                                                            <div className="col-md-6">
-
-                                                                                <div className="drag-drop">
-                                                                                    <label htmlFor="profile-picture" className="uploader"><input
-
-                                                                                    />
-
-                                                                                        <img src={picture} alt="picture" className="dummy-img" />
-
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
 
                                                                         </div>
                                                                     </div>
-                                                                    <div className="mb-3">
+                                                                    <div className="mb-3 mt-5">
                                                                         <label htmlFor="msg">About Me</label>
                                                                         <textarea
                                                                             value={aboutMe}
@@ -403,7 +406,7 @@ export default function Studentregister() {
 
                                                                     <div className="mb-3">
                                                                         <button type="submit"
-                                                                            className="btn btn-success ">Save Changes</button>
+                                                                            className="btn btn-success " title="Save Changes">Save Changes</button>
                                                                     </div>
                                                                 </form>
                                                             </div>

@@ -297,11 +297,11 @@ const FamilyProfile = () => {
                                     <div className="col-md-6"></div>
                                     <div className="col-md-6 text-right">
 
-                                        <button className="btn btn-success " type="button" onClick={() => addFormFields()}>Add New</button>
+                                        <button title="Add New Family Information" className="btn btn-success " type="button" onClick={() => addFormFields()}>Add New</button>
 
-                                        <button type="submit" className="btn btn-secondary ml-2">Save
+                                        <button type="submit" className="btn btn-secondary ml-2" title="Save ">Save
                                         </button>
-                                        <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
+                                        <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success " title="Save & Next">Save &
                                             Next</button>
                                     </div>
 

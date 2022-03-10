@@ -350,11 +350,11 @@ const ExtraCurricultarActivityProfile = () => {
                                     <div className="col-md-6"></div>
                                     <div className="col-md-6 text-right">
 
-                                        <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
+                                        <button title="Add New Activities" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                        <button type="submit" className="btn btn-secondary ml-2">Save
+                                        <button title="Save" type="submit" className="btn btn-secondary ml-2">Save
                                         </button>
-                                        <button type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
+                                        <button title="Save & Next" type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
                                             Next</button>
                                     </div>
 

@@ -119,7 +119,7 @@ function WorkExperienceDocument(props) {
                                 <p style={{ display: completedHeading }}>I don't have any work experience</p>
                             </div>
                             <div className="col-md-4">
-                                <label className="switch3">
+                                <label className="switch3" title="Show Work Experience">
                                     <input type="checkbox" />
                                     <span className="slider round"
                                         onClick={() => ToggleButton()}  ></span>
@@ -190,10 +190,10 @@ function WorkExperienceDocument(props) {
                                                         </div>
                                                         :
                                                         <div>
-                                                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalWorkExperience">
+                                                            <button title="View Work Experience" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalWorkExperience">
                                                                 View
                                                             </button>
-                                                            <button type="button"
+                                                            <button title="Delet Entry" type="button"
                                                                 onClick={() => onDeletefileHandle("document")}
                                                                 className="btn btn-outline-danger">
                                                                 <FontAwesomeIcon icon={faTrash} />
