@@ -27,9 +27,12 @@ export default function Universitylogin() {
     const [wrongUsername, setwrongUsername] = useState("");
     const [resetEmail, setresetEmail] = useState("");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-
-
-
+    const [mounted, setMounted] = useState();
+    useEffect(() => {
+        if (localStorage.getItem('universityId')) {
+            setredirectToReferrer(true)
+        }
+    }, [])
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
@@ -131,7 +134,7 @@ export default function Universitylogin() {
                         setshowSweetAlert("0")
                     }}
                 >
-                  A link is send on your mail for reset password.
+                    A link is send on your mail for reset password.
                 </SweetAlert>
                 : null
             }

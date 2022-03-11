@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import logo from '../img/logo.png';
-
 import axios from 'axios';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 
 export default function Studentlogin() {
@@ -13,6 +10,11 @@ export default function Studentlogin() {
     const [redirectToReferrer, setredirectToReferrer] = useState(false);
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
+    useEffect(() => {
+        if (localStorage.getItem('adminId')) {
+            setredirectToReferrer(true)
+        }
+    }, [])
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");

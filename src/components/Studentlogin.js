@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import logo from '../img/logo.png';
 import axios from 'axios';
 import Footer from './Home/Footer'
@@ -18,8 +19,8 @@ const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg|w
 export default function Studentlogin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    const [redirectToReferrer, setredirectToReferrer] = useState(false);
+    const [mounted, setMounted] = useState();
+ const [redirectToReferrer, setredirectToReferrer] = useState(false);
     const [emailError, setemailError] = useState("");
     const [passwordError, setpasswordError] = useState();
     const [loader, setmyloader] = useState("false");
@@ -27,7 +28,11 @@ export default function Studentlogin() {
     const [wrongUsername, setwrongUsername] = useState("")
     const [resetEmail, setresetEmail] = useState("");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-
+    useEffect(() => {
+        if (localStorage.getItem('studentId')) {
+            setredirectToReferrer(true)
+        }
+    }, [])
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
