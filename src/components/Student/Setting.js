@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 export default function StudentSetting() {
     const [mounted, setMounted] = useState();
     const [studentEmail, setstudentEmail] = useState();
@@ -86,7 +84,7 @@ export default function StudentSetting() {
                                         <div className="col-sm-12">
                                             <form onSubmit={setting}>
                                                 <div className="form-group">
-                                                    <label for="password">Enter New Password *</label>
+                                                    <label htmlFor="password">Enter New Password *</label>
                                                     <input required="" name="password" type="password" id="password" className="form-control"
                                                         value={password}
                                                         onChange={(e) => setpassword(e.target.value)}
@@ -96,7 +94,7 @@ export default function StudentSetting() {
 
                                                 </div>
                                                 <div className="form-group">
-                                                    <label for="c_password">Confirm Password *</label>
+                                                    <label htmlFor="c_password">Confirm Password *</label>
                                                     <input required="" name="c_password" type="password" id="c_password" className="form-control"
                                                         value={conformPassword}
                                                         onChange={(e) => setconformPassword(e.target.value)}

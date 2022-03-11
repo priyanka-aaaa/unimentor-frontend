@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-// import Sidebar from './Sidebar';
-// import Topbar from './Topbar';
 import Loader from '../Home/Loader';
-import Sidebar, {Topbar} from './Sidebar.js'
-
 export default function Studentregister() {
     const [mounted, setMounted] = useState();
     const [password, setpassword] = useState();

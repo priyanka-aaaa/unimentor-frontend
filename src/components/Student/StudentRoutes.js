@@ -1,6 +1,4 @@
 import Dashboard from './Dashboard';
-
-
 import ApplicationProfile from './ApplicationProfile';
 import Profile from './Profile';
 import Document from './Document';

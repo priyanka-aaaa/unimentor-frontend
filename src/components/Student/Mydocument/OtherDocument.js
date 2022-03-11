@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
-import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

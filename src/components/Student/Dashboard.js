@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import axios from 'axios';
 function PersonalInformation(props) {
   const [data, setdata] = useState([]);
