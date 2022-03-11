@@ -4,6 +4,7 @@ import axios from 'axios';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import LoaderFrontend from './Home/LoaderFrontend';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 
@@ -24,6 +25,9 @@ export default function Studentlogin() {
     const [loader, setmyloader] = useState("false");
     const [wrongPassword, setwrongPassword] = useState("");
     const [wrongUsername, setwrongUsername] = useState("")
+    const [resetEmail, setresetEmail] = useState("");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
@@ -78,6 +82,28 @@ export default function Studentlogin() {
     if (redirectToReferrer === true || localStorage.getItem('userData')) {
         return (<Redirect to={'/student/dashboard'} />)
     }
+    function onChangeresetEmail(e) {
+        setresetEmail(e)
+    }
+    function handleforgotPasswordSubmit(event) {
+        event.preventDefault();
+        const obj1 = new FormData();
+        obj1.append("email", resetEmail);
+        const url4 = process.env.REACT_APP_SERVER_URL + 'student/forgotPassword';
+        fetch(url4, {
+            method: 'POST',
+            body: obj1
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data");
+                if (data.success === true) {
+                    setshowSweetAlert("1")
+
+                }
+
+            })
+    }
     return (
         <div>
                 
@@ -85,6 +111,19 @@ export default function Studentlogin() {
                {loader === "true" ?
                 <LoaderFrontend />
                 : null}
+                       {showSweetAlert === "1" ?
+
+<SweetAlert
+    success
+    title="Send Link For Reset Password!"
+    onConfirm={(value) => {
+        setshowSweetAlert("0")
+    }}
+>
+  A link is send on your mail for reset password.
+</SweetAlert>
+: null
+}
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -125,6 +164,9 @@ export default function Studentlogin() {
                                                 <span style={{ color: "red" }}> {passwordError}</span>
                                                 <button type="submit" className="btn btn-website">Login</button>
                                             </form>
+                                            <p data-bs-toggle="modal" data-bs-target="#forgotStudentModal">
+                                                Forgot your Password?
+                                            </p>
                                             <p>Don't have an account? Click here to
                                         <Link to={'/Studentregister'} className="" href="#">
                                             Register</Link></p>
@@ -137,7 +179,39 @@ export default function Studentlogin() {
                         </div>
                     </section>
                     <Footer />
+                    <div class="modal" id="forgotStudentModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
 
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Forgot Password</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <form onSubmit={handleforgotPasswordSubmit}>
+
+                                        <div class="mb-3 mt-3">
+                                            <label for="email">Email Address:</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+                                                value={resetEmail}
+                                                onChange={(e) => onChangeresetEmail(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary" >Send Password Reset Link</button>
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
