@@ -1,6 +1,4 @@
 import { BrowserRouter as Router, Switch, Route, Link, BrowserRouter, Redirect } from 'react-router-dom';
-
-
 import 'react-phone-number-input/style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
@@ -38,14 +36,10 @@ import Universityregister from './components/Universityregister';
 import AdminLogin from './components/AdminLogin';
 //end for home
 import AgentLayout from './components/AgentLayout';
-
 import AdminLayout from './components/AdminLayout';
 import StudentLayout from './components/StudentLayout';
 import UniversityLayout from './components/UniversityLayout';
-
 import Student from './components/Home/Student';
-
-
 
 function App() {
   return (
