@@ -85,7 +85,7 @@ export default function Studentlogin() {
         event.preventDefault();
         const obj1 = new FormData();
         obj1.append("email", resetEmail);
-        const url4 = process.env.REACT_APP_SERVER_URL + 'student/forgotPassword';
+        const url4 = process.env.REACT_APP_SERVER_URL + 'agent/forgotPassword';
         fetch(url4, {
             method: 'POST',
             body: obj1
