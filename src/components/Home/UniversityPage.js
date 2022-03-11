@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LoaderFrontend from './LoaderFrontend';
+import SweetAlert from 'react-bootstrap-sweetalert';
+
+
 import {
     faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
     faEnvelope, faGlobe, faCheckCircle, faAngleDown, faAngleUp
@@ -23,12 +27,15 @@ const images = importAll(require.context('../../images', false, /\.(png|jpe?g|sv
 
 export default function UniversityPage() {
     let { slug } = useParams();
-  
-
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [universityId, setuniversityId] = useState([]);
     const [foundedYear, setfoundedYear] = useState("");
+    const [loader, setmyloader] = useState("false");
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
 
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
 
     const [formValues, setFormValues] = useState([{
         question: "", answer: ""
@@ -90,10 +97,10 @@ export default function UniversityPage() {
         })
             .then(response => response.json())
             .then(data => {
-            
+
 
                 var id = data.universities[0]._id;
-              
+                setuniversityId(id)
                 //start for calling all other api
                 const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
                 fetch(url1, {
@@ -166,14 +173,11 @@ export default function UniversityPage() {
                     .then(response => response.json())
                     .then(data => {
                         var myresults = data.universityPrimaryInformation;
-                        if (Object.keys(myresults).length === 0) {
+                        if (Object.keys(myresults).length !== 0) {
                             setFormPrimaryInformationValues(data.universityPrimaryInformation)
-
                         }
 
-
                     })
-
                 const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
                 fetch(url7, {
                     method: 'GET',
@@ -244,10 +248,74 @@ export default function UniversityPage() {
             setup("0")
         }
     }
+    function handleApplyNow(universityID, courseID, session, applicationProgress, mycountry) {
+        // console.log("universityID")
+        // console.log(universityID)
+        // console.log("courseID")
+        // console.log(courseID)
 
+        // console.log("session")
+        // console.log(session)
+
+        // console.log("applicationProgress")
+
+        // console.log(applicationProgress)
+        // console.log("mycountry")
+
+        // console.log(mycountry)
+        // return;
+        if (!localStorage.getItem("studentId")) {
+            alert("Please login first")
+        }
+        else {
+            var studentToken = localStorage.getItem("studentToken")
+            setmyloader("true")
+
+            const obj = {
+                universityID: universityID,
+                courseID: courseID,
+                session: session,
+                applicationProgress: applicationProgress,
+                country: mycountry,
+
+
+
+            };
+            axios.post(process.env.REACT_APP_SERVER_URL + 'student/applications', obj, { headers: { 'Authorization': studentToken } })
+                .then(function (res) {
+                    setmyloader("false")
+                    if (res.data.success === true) {
+
+                        // setsuccessMessage("Admission Added")
+                        // setTimeout(() => setsubmitSuccess(""), 3000);
+                        // setsubmitSuccess(1)
+                        setshowSweetAlert("1")
+                    }
+                })
+                .catch(error => {
+
+                });
+        }
+    }
     return (
         <div>
 
+            {loader === "true" ?
+                <LoaderFrontend />
+                : null}
+            {showSweetAlert === "1" ?
+
+                <SweetAlert
+                    success
+                    title="Success!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                    You Are Apply Successfully
+                </SweetAlert>
+                : null
+            }
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -760,7 +828,7 @@ export default function UniversityPage() {
                                                                         </div>
                                                                         <div className="col-6 col-sm-4 mt-2">
                                                                             <div className="subcourses_details__3g8AB">
-                                                                                <h3 className="subcourses_c-desc__Dzhnk">N.A.</h3>
+                                                                                <h3 className="subcourses_c-desc__Dzhnk">{element.year}{' '}{element.month}</h3>
                                                                                 <p className="subcourses_c-title__2MKAy">Intakes</p>
                                                                             </div>
                                                                         </div>
@@ -774,7 +842,9 @@ export default function UniversityPage() {
                                                                     </div>
                                                                 </div>
                                                                 <div className="text-right w-100">
-                                                                    <button className="btn btn-primary  w-100">Apply Now
+                                                                    {/* universityID,courseID,session,applicationProgress,country */}
+
+                                                                    <button className="btn btn-primary  w-100" onClick={() => handleApplyNow(universityId, element._id, element.year + element.month, "first", FormPrimaryInformationValues.country)}>Apply Now
                                                                         <img
                                                                             src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                                     </button>
