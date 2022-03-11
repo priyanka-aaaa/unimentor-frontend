@@ -860,7 +860,7 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <button data-bs-toggle="modal" data-bs-target="#myModal" type="button" className="btn btn-outline-success">
+                                                                        <button data-bs-toggle="modal" data-bs-target="#intakeModel" type="button" className="btn btn-outline-success">
 
                                                                             Add Intake</button>
                                                                         <br />
@@ -975,7 +975,7 @@ const Courses = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal" id="myModal">
+            <div className="modal" id="intakeModel">
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">

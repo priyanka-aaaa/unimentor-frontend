@@ -4,6 +4,7 @@ import Footer from './Home/Footer'
 import Header from './Home/Header'
 import axios from 'axios';
 import LoaderFrontend from './Home/LoaderFrontend';
+import SweetAlert from 'react-bootstrap-sweetalert';
 
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 function importAll(r) {
@@ -24,6 +25,9 @@ export default function Universitylogin() {
     const [loader, setmyloader] = useState("false");
     const [wrongPassword, setwrongPassword] = useState("");
     const [wrongUsername, setwrongUsername] = useState("");
+    const [resetEmail, setresetEmail] = useState("");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+
 
 
     function handleSubmit(event) {
@@ -69,7 +73,7 @@ export default function Universitylogin() {
 
                         setredirectToReferrer(true)
                     }
-                    else{
+                    else {
                         if (responseJson.data.message === "Password not matched") {
                             setwrongPassword(" Please enter a correct password")
 
@@ -90,12 +94,47 @@ export default function Universitylogin() {
     if (redirectToReferrer === true || localStorage.getItem('universityData')) {
         return (<Redirect to={'/university/dashboard'} />)
     }
+    function onChangeresetEmail(e) {
+        setresetEmail(e)
+    }
+    function handleforgotPasswordSubmit(event) {
+        event.preventDefault();
+        const obj1 = new FormData();
+        obj1.append("email", resetEmail);
+        const url4 = process.env.REACT_APP_SERVER_URL + 'student/forgotPassword';
+        fetch(url4, {
+            method: 'POST',
+            body: obj1
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("data");
+                if (data.success === true) {
+                    setshowSweetAlert("1")
+
+                }
+
+            })
+    }
     return (
         <div>
 
             {loader === "true" ?
                 <LoaderFrontend />
                 : null}
+            {showSweetAlert === "1" ?
+
+                <SweetAlert
+                    success
+                    title="Send Link For Reset Password!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                  A link is send on your mail for reset password.
+                </SweetAlert>
+                : null
+            }
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -138,6 +177,11 @@ export default function Universitylogin() {
                                                 <span style={{ color: "red" }}> {passwordError}</span>
                                                 <button type="submit" className="btn btn-website">Login</button>
                                             </form>
+
+                                            <p data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+                                                Forgot your Password?
+                                            </p>
+
                                             <p>Don't have an account? Click here to
                                                 <Link to={'/Universityregister'} className="" >
                                                     Register</Link></p>
@@ -151,6 +195,39 @@ export default function Universitylogin() {
                     </section>
                     <Footer />
 
+                    <div class="modal" id="forgotPasswordModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Forgot Password</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+
+
+                                <div class="modal-body">
+                                    <form onSubmit={handleforgotPasswordSubmit}>
+
+                                        <div class="mb-3 mt-3">
+                                            <label for="email">Email Address:</label>
+                                            <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
+                                                value={resetEmail}
+                                                onChange={(e) => onChangeresetEmail(e.target.value)}
+                                                required
+                                            />
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary" >Send Password Reset Link</button>
+                                    </form>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
