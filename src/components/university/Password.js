@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
+
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
-export default function StudentSetting() {
+export default function UniversityPassword() {
     const [mounted, setMounted] = useState();
-    const [studentEmail, setstudentEmail] = useState();
+    const [universityEmail, setuniversityEmail] = useState();
     const [password, setpassword] = useState("");
     const [conformPassword, setconformPassword] = useState("");
     const [confirmpasswordError, setconfirmpasswordError] = useState("");
@@ -14,11 +15,11 @@ export default function StudentSetting() {
     const [cpasswordError, setcpasswordError] = useState("");
     const [loader, setmyloader] = useState("false");
     useEffect(() => {
-        var studentId = localStorage.getItem('studentId');
-        var mounted = localStorage.getItem('studentToken');
-        var studentEmail = localStorage.getItem('studentEmail');
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        var universityEmail = localStorage.getItem('universityEmail');
         setMounted(mounted)
-        setstudentEmail(studentEmail)
+        setuniversityEmail(universityEmail)
     }, [])
     function setting(event) {
         setcpasswordError("");
@@ -35,7 +36,7 @@ export default function StudentSetting() {
             const obj = {
                 password: password,
             };
-            axios.post(process.env.REACT_APP_SERVER_URL + 'student/changePassword', obj, { headers: { 'Authorization': mounted } })
+            axios.post(process.env.REACT_APP_SERVER_URL + 'university/changePassword', obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
@@ -43,19 +44,19 @@ export default function StudentSetting() {
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
                         const obj2 = new FormData();
-                        obj2.append("email", studentEmail);
+                        obj2.append("email", universityEmail);
                         obj2.append("password", password);
-                        const url = process.env.REACT_APP_SERVER_URL + 'student/login';
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/login';
                         fetch(url, {
                             method: 'POST',
                             body: obj2
                         })
                             .then(response => response.json())
                             .then(data => {
-                                localStorage.setItem('studentId', data.student._id);
-                                localStorage.setItem('studentToken', data.token);
-                                localStorage.setItem('studentName', data.student.name);
-                                localStorage.setItem('studentEmail', data.student.email);
+                                localStorage.setItem('universityId', data.university._id);
+                                localStorage.setItem('universityToken', data.token);
+                                localStorage.setItem('universityName', data.university.name);
+                                localStorage.setItem('universityEmail', data.university.email);
                             })
                     }
                 })
@@ -64,12 +65,7 @@ export default function StudentSetting() {
         }
     }
     return (
-        <div id="page-top">
-            <div id="wrapper">
-                <Sidebar />
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <Topbar />
+
                         <div className="container">
                             {submitSuccess === 1 ? <div className="Show_success_message">
                                 <strong>Success!</strong> {successMessage}
@@ -125,12 +121,6 @@ export default function StudentSetting() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-        </div >
+           
     );
 }

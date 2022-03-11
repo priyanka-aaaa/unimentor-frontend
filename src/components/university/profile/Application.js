@@ -256,7 +256,8 @@ const Application = () => {
                 </SweetAlert>
                     : null
                 }
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse4" onClick={() => handleClick()}><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse4" 
+                onClick={() => handleClick()}><strong>4</strong>
                     Application Process
                     {down === "0" ?
                         null

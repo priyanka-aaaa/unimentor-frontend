@@ -25,7 +25,7 @@ class Sidebar extends Component {
 
                     <li className="nav-item">
 
-                        <Link to={'/AgentTeam'} className="nav-link" >
+                        <Link to={'/agent/dashboard'} className="nav-link" >
                             <i className="fas fa-file-alt"></i>
                             <span>Partner Team</span></Link>
                     </li>
@@ -37,14 +37,14 @@ class Sidebar extends Component {
                         </a>
                         <div id="collapseTwo" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >
                             <div className="bg-white py-2 collapse-inner rounded">
-                                <Link to={'/AddStudent'} className="collapse-item">
+                                <Link to={'/agent/addStudent'} className="collapse-item">
                                     <span>Add Student</span></Link>
-                                    <Link to={'/AgentStudent'} className="collapse-item">
+                                <Link to={'/agent/student'} className="collapse-item">
                                     <span>Student</span></Link>
-                                    <Link to={'/AgentApplication'} className="collapse-item">
+                                <Link to={'/agent/application'} className="collapse-item">
                                     <span>Student Application</span></Link>
-                     
-                              
+
+
                             </div>
                         </div>
                     </li>
@@ -52,19 +52,19 @@ class Sidebar extends Component {
 
 
                     <li className="nav-item ">
-                        <Link to={'/AgentEvaluate'} className="nav-link" href="#">
+                        <Link to={'/agent/evaluate'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Evaluate Profile</span></Link>
                     </li>
                     <li className="nav-item ">
-                        <Link to={'/AgentCommission'} className="nav-link" href="#">
+                        <Link to={'/agent/commission'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Commissions</span></Link>
                     </li>
-                    
+
 
                     <li className="nav-item ">
-                        <Link to={'/AgentCertificate'} className="nav-link" href="#">
+                        <Link to={'/agent/certificate'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Download Certificate</span></Link>
                     </li>

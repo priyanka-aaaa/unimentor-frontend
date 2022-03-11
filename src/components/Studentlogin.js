@@ -76,7 +76,7 @@ export default function Studentlogin() {
     }
 
     if (redirectToReferrer === true || localStorage.getItem('userData')) {
-        return (<Redirect to={'/Dashboard'} />)
+        return (<Redirect to={'/student/dashboard'} />)
     }
     return (
         <div>

@@ -12,38 +12,38 @@ function importAll(r) {
 }
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 function Sidebar(props) {
-    const [addWidth, setaddWidth] = useState(0);
+
     return (
         <div>
             <ul className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar"
             >
                 <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                     <div className="sidebar-brand-text mx-3">
-                    <Link to={'/UniversityDashboard'}  >
-                    <img src={images["dash-logo.png"]} alt="" />
-                       </Link>
-                      </div>
+                        <Link to={'/university/dashboard'}  >
+                            <img src={images["dash-logo.png"]} alt="" />
+                        </Link>
+                    </div>
                 </a>
                 <hr className="sidebar-divider my-0" />
                 <li className="nav-item" data-toggle="tooltip" data-placement="right" title="University">
-                    <Link to={'/UniversityProfile'} className="nav-link" >
+                    <Link to={'/university/dashboard'} className="nav-link" >
                         <FontAwesomeIcon icon={faUser} />
                         <span>University</span></Link>
                 </li>
                 <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Coures Listingn">
-                    <Link to={'/UniversityCourses'} className="nav-link" data-toggle="tooltip" data-placement="right" title="Coures Listing">
+                    <Link to={'/university/courses'} className="nav-link" data-toggle="tooltip" data-placement="right" title="Coures Listing">
                         <FontAwesomeIcon icon={faFile} />
                         <span>Courses Listing</span></Link>
                 </li>
                 <li className="nav-item " data-toggle="tooltip" data-placement="right" title="Set Commission">
-                    <Link to={'/UniversitySetcommission'} className="nav-link" href="#">
+                    <Link to={'/university/commission'} className="nav-link" href="#">
                         <FontAwesomeIcon icon={faFile} />
                         <span>Set Commission</span></Link>
                 </li>
 
                 <li className="nav-item " data-toggle="tooltip" data-placement="right" title="Summary Information"
                 >
-                    <Link to={'/UniversitySummary'} className="nav-link" href="#"
+                    <Link to={'/university/summary'} className="nav-link" href="#"
                     >
                         <FontAwesomeIcon icon={faFileUpload} />
                         <span >Summary Information</span></Link>
@@ -55,9 +55,9 @@ function Sidebar(props) {
                     </a>
                     <div id="collapseTen" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >
                         <div className="bg-white py-2 collapse-inner rounded">
-                            <Link to={'/UniversityPassword'} className="collapse-item" href="#">
+                            <Link to={'/university/password'} className="collapse-item" href="#">
                                 <span>Change Password</span></Link>
-                            <Link to={'/UniversityIntake'} className="collapse-item" href="#">
+                            <Link to={'/university/intake'} className="collapse-item" href="#">
                                 <span>Intake</span></Link>
                         </div>
                     </div>

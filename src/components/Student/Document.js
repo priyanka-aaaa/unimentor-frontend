@@ -12,38 +12,26 @@ import IdentityDocument from './Mydocument/IdentityDocument';
 
 function Document(props) {
     return (
-        <div id="page-top" className="component-a">
-        <div id="wrapper">
-            <Sidebar />
-            <div id="content-wrapper" className="d-flex flex-column">
-                <div id="content">
-                    <Topbar />
-                    <div className="container">
-                        <div className=" align-items-center justify-content-between mb-4">
-                            <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
-                            <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
+        <div className="container">
+        <div className=" align-items-center justify-content-between mb-4">
+            <h1 className="h3 mb-0 text-gray-800">Application Documents</h1>
+            <p>File extensions supported .pdf, .doc, .docx, .jpeg, .jpg, .png</p>
 
-                            <div className="row">
-                                <div className="col-xl-12 col-lg-7">
-                                    <div id="accordion">
-                                        <IdentityDocument />
-                                        <EducationDocument />
-                                        <WorkExperienceDocument />
-                                        <EnglishProficiencyDocument />
-                                        <ExtraCurricularDocument />
-                                        <RecommendationDocuments />
-                                        <OtherDocument />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+            <div className="row">
+                <div className="col-xl-12 col-lg-7">
+                    <div id="accordion">
+                        <IdentityDocument />
+                        <EducationDocument />
+                        <WorkExperienceDocument />
+                        <EnglishProficiencyDocument />
+                        <ExtraCurricularDocument />
+                        <RecommendationDocuments />
+                        <OtherDocument />
                     </div>
                 </div>
             </div>
         </div>
-        <a className="scroll-to-top rounded" href="#page-top">
-        </a>
+
     </div>
     );
 }

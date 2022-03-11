@@ -107,13 +107,7 @@ export default function ApplicationStep() {
     }
 
     return (
-        <div id="page-top">
-            <div id="wrapper">
-                <Sidebar />
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <Topbar />
-                        <div className="container admin-dashboard">
+        <div className="container admin-dashboard">
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Application Step</h1>
                                 {submitSuccess === 1 ? <div className="Show_success_message">
@@ -234,12 +228,5 @@ export default function ApplicationStep() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-        </div>
     );
 }

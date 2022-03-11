@@ -42,42 +42,42 @@ class Sidebar extends Component {
                    
                     d --> */}
                        <li className="nav-item ">
-                        <Link to={'/AdminProfile'} className="nav-link" href="#">
+                        <Link to={'/admin/dashboard'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Dashboard</span></Link>
                     </li>
                     <li className="nav-item ">
-                        <Link to={'/AdminStudentApplication'} className="nav-link" href="#">
+                        <Link to={'/admin/studentApplication'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>New Application</span></Link>
                     </li>
                     <li className="nav-item ">
-                        <Link to={'/AdminStudentApplication'} className="nav-link" href="#">
+                        <Link to={'/admin/studentApplication'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Old Application</span></Link>
                     </li>
                  
                     <li className="nav-item">
 
-                        <Link to={'/AdminStudent'} className="nav-link" >
+                        <Link to={'/admin/student'} className="nav-link" >
                             <i className="fas fa-file-alt"></i>
                             <span>Student</span></Link>
                     </li>
 
 
                     <li className="nav-item ">
-                        <Link to={'/AdminAgent'} className="nav-link" href="#">
+                        <Link to={'/admin/agent'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Agent</span></Link>
                     </li>
                     <li className="nav-item ">
-                        <Link to={'/AdminUniversity'} className="nav-link" href="#">
+                        <Link to={'/admin/university'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>University</span></Link>
                     </li>
                  
                     <li className="nav-item ">
-                        <Link to={'/ApplicationStep'} className="nav-link" href="#">
+                        <Link to={'/admin/applicationStep'} className="nav-link" href="#">
                             <i className="fas fa-file-upload"></i>
                             <span>Application Step</span></Link>
                     </li>
@@ -88,7 +88,7 @@ class Sidebar extends Component {
                     </div>
 
                 </ul>
-                {/* <!-- End of Sidebar --> */}
+            
             </div>
         );
     }

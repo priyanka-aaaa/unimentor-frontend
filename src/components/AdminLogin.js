@@ -46,7 +46,7 @@ export default function Studentlogin() {
         }
     }
     if (redirectToReferrer === true || localStorage.getItem('adminData')) {
-        return (<Redirect to={'/AdminDashboard'} />)
+        return (<Redirect to={'/admin/dashboard'} />)
     }
     return (
         <div>

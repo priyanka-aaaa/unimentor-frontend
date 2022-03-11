@@ -156,184 +156,171 @@ export default function Summary() {
         setcampus(str2)
     }
     return (
-        <div id="page-top">
-            <div id="wrapper">
-                <Sidebar />
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <Topbar />
-                        <div className="container">
-                            {submitSuccess === 1 ? <div className="Show_success_message">
-                                <strong>Success!</strong> {successMessage}
-                            </div> : null}
-                            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 className="h3 mb-0 text-gray-800">Summary Information</h1>
-                            </div>
-                            <div className="row">
-                                <div className="col-xl-12 col-lg-7">
-                                    <div className="card shadow mb-4">
-                                        <div className="card shadow mb-4">
-                                            <div id="accordion">
-                                                <div className="card-body">
-                                                    {loader === "true" ?
-                                                        <Loader /> : null}
-                                                    <div className="from-block">
-                                                        <form onSubmit={Summary}>
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col">
-                                                                        <label className="form-label">Campus name *
-                                                                        </label>
-                                                                        <input type="text" className="form-control"
-                                                                            value={campus} required
-                                                                            onChange={(e) => setChangecampus(e.target.value)}
-                                                                            placeholder="Course name" name="cname" />
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        <div className="form-group"><label>Eligibility Year for UG *</label>
-                                                                            <input type="number" className="form-control"
-                                                                                value={ugYear} required
-                                                                                onChange={(e) => setugYear(e.target.value)}
-                                                                                placeholder="Course name" name="cname" />
-                                                                            <div style={{ color: "red" }}> {ugYearNoMessage}</div>
-                                                                            <div style={{ color: "red" }}> {ugYearOnlyNoError}</div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col">
-                                                                        <div className="form-group">
-                                                                            <label className="form-label">Eligibility Year for PG *</label>
-                                                                            <input type="number" className="form-control"
-                                                                                value={pgYear} required
-                                                                                onChange={(e) => setpgYear(e.target.value)}
-                                                                                placeholder="Course name" name="cname" />
-                                                                            <div style={{ color: "red" }}> {pgYearNoMessage}</div>
-                                                                            <div style={{ color: "red" }}> {pgYearOnlyNoError}</div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-md-4">
-                                                                        <label className="form-label">CAS Deposit *</label>
-                                                                        <input type="text" className="form-control"
-                                                                            value={deposit} required
-                                                                            onChange={(e) => setdeposit(e.target.value)}
-                                                                            placeholder="CAS Deposit" name="tuitionfee" />
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <label className="form-label">Undergraduate Score Requirements(%) *</label>
-                                                                        <input type="number" required className="form-control"
-                                                                            value={graduateScore}
-                                                                            onChange={(e) => setgraduateScore(e.target.value)}
-                                                                            placeholder="Undergraduate Score Requirements(%)" />
-                                                                        <div style={{ color: "red" }}> {graduateScoreNoError}</div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <label className="form-label"> Postgraduate Score Requirements(%) *</label>
-                                                                        <input type="number" required
-                                                                            value={postGraduateScore}
-                                                                            onChange={(e) => setpostGraduateScore(e.target.value)}
-                                                                            className="form-control" placeholder="Postgraduate Score Requirements" name=" courselevel" />
-                                                                        <div style={{ color: "red" }}> {postGraduateScoreNoError}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-md-6">
-                                                                        <label className="form-label">IELTS for UG *</label>
-                                                                        <input type="number" required
-                                                                            value={ugIelts}
-                                                                            onChange={(e) => setugIelts(e.target.value)}
-                                                                            className="form-control" placeholder="IELTS for UG" name=" cgpa" />
-                                                                        <div style={{ color: "red" }}> {ugIeltsNoError}</div>
-                                                                    </div>
-                                                                    <div className="col-md-6">
-                                                                        <label className="form-label">IELTS for PG *</label>
-                                                                        <input type="number" required
-                                                                            value={pgIelts}
-                                                                            onChange={(e) => setpgIelts(e.target.value)}
-                                                                            className="form-control" placeholder="IELTS for PG" name=" eligibility" />
-                                                                        <div style={{ color: "red" }}> {pgIeltsNoError}</div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label>PTE for UG *
-                                                                        </label><input type="number" required
-                                                                            value={ugPTE}
-                                                                            onChange={(e) => setugPTE(e.target.value)}
-                                                                            className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" />
-                                                                            <div style={{ color: "red" }}> {ugPTENoError}</div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group">
-                                                                            <label>PTE for PG *</label><input type="number" required
-                                                                                value={pgPTE}
-                                                                                onChange={(e) => setpgPTE(e.target.value)}
-                                                                                className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />
-                                                                            <div style={{ color: "red" }}> {pgPTENoError}</div>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="mb-3">
-
-                                                                <div className="row">
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <div className="form-group"><label>Intake Available *</label>
-
-                                                                            <select
-                                                                                type="text" className="form-control" required
-
-                                                                                onChange={(e) => setintake(e.target.value)} value={intake}>
-                                                                                <option value="">Select Intake</option>
-                                                                                {Intakedata.map((object, i) => {
-
-                                                                                    return (
-                                                                                        <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
-                                                                                    )
-                                                                                })}
-
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div className="mb-3">
-                                                                <div className="row">
-                                                                    <div className="col-md-6"></div>
-                                                                    <div className="col-md-6 text-right">
-                                                                        <button type="submit" className="btn btn-secondary">Save
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form></div>
+        <div className="container">
+        {submitSuccess === 1 ? <div className="Show_success_message">
+            <strong>Success!</strong> {successMessage}
+        </div> : null}
+        <div className="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 className="h3 mb-0 text-gray-800">Summary Information</h1>
+        </div>
+        <div className="row">
+            <div className="col-xl-12 col-lg-7">
+                <div className="card shadow mb-4">
+                    <div className="card shadow mb-4">
+                        <div id="accordion">
+                            <div className="card-body">
+                                {loader === "true" ?
+                                    <Loader /> : null}
+                                <div className="from-block">
+                                    <form onSubmit={Summary}>
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col">
+                                                    <label className="form-label">Campus name *
+                                                    </label>
+                                                    <input type="text" className="form-control"
+                                                        value={campus} required
+                                                        onChange={(e) => setChangecampus(e.target.value)}
+                                                        placeholder="Course name" name="cname" />
+                                                </div>
+                                                <div className="col">
+                                                    <div className="form-group"><label>Eligibility Year for UG *</label>
+                                                        <input type="number" className="form-control"
+                                                            value={ugYear} required
+                                                            onChange={(e) => setugYear(e.target.value)}
+                                                            placeholder="Course name" name="cname" />
+                                                        <div style={{ color: "red" }}> {ugYearNoMessage}</div>
+                                                        <div style={{ color: "red" }}> {ugYearOnlyNoError}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col">
+                                                    <div className="form-group">
+                                                        <label className="form-label">Eligibility Year for PG *</label>
+                                                        <input type="number" className="form-control"
+                                                            value={pgYear} required
+                                                            onChange={(e) => setpgYear(e.target.value)}
+                                                            placeholder="Course name" name="cname" />
+                                                        <div style={{ color: "red" }}> {pgYearNoMessage}</div>
+                                                        <div style={{ color: "red" }}> {pgYearOnlyNoError}</div>
+                                                    </div>
                                                 </div>
                                             </div>
-
                                         </div>
-                                    </div>
-                                </div>
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <label className="form-label">CAS Deposit *</label>
+                                                    <input type="text" className="form-control"
+                                                        value={deposit} required
+                                                        onChange={(e) => setdeposit(e.target.value)}
+                                                        placeholder="CAS Deposit" name="tuitionfee" />
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="form-label">Undergraduate Score Requirements(%) *</label>
+                                                    <input type="number" required className="form-control"
+                                                        value={graduateScore}
+                                                        onChange={(e) => setgraduateScore(e.target.value)}
+                                                        placeholder="Undergraduate Score Requirements(%)" />
+                                                    <div style={{ color: "red" }}> {graduateScoreNoError}</div>
+                                                </div>
+                                                <div className="col-md-4">
+                                                    <label className="form-label"> Postgraduate Score Requirements(%) *</label>
+                                                    <input type="number" required
+                                                        value={postGraduateScore}
+                                                        onChange={(e) => setpostGraduateScore(e.target.value)}
+                                                        className="form-control" placeholder="Postgraduate Score Requirements" name=" courselevel" />
+                                                    <div style={{ color: "red" }}> {postGraduateScoreNoError}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <label className="form-label">IELTS for UG *</label>
+                                                    <input type="number" required
+                                                        value={ugIelts}
+                                                        onChange={(e) => setugIelts(e.target.value)}
+                                                        className="form-control" placeholder="IELTS for UG" name=" cgpa" />
+                                                    <div style={{ color: "red" }}> {ugIeltsNoError}</div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <label className="form-label">IELTS for PG *</label>
+                                                    <input type="number" required
+                                                        value={pgIelts}
+                                                        onChange={(e) => setpgIelts(e.target.value)}
+                                                        className="form-control" placeholder="IELTS for PG" name=" eligibility" />
+                                                    <div style={{ color: "red" }}> {pgIeltsNoError}</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div className="form-group"><label>PTE for UG *
+                                                    </label><input type="number" required
+                                                        value={ugPTE}
+                                                        onChange={(e) => setugPTE(e.target.value)}
+                                                        className="form-control" id="eng-pro" name="email" placeholder="PTE for UG" />
+                                                        <div style={{ color: "red" }}> {ugPTENoError}</div>
+
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div className="form-group">
+                                                        <label>PTE for PG *</label><input type="number" required
+                                                            value={pgPTE}
+                                                            onChange={(e) => setpgPTE(e.target.value)}
+                                                            className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />
+                                                        <div style={{ color: "red" }}> {pgPTENoError}</div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-3">
+
+                                            <div className="row">
+                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                    <div className="form-group"><label>Intake Available *</label>
+
+                                                        <select
+                                                            type="text" className="form-control" required
+
+                                                            onChange={(e) => setintake(e.target.value)} value={intake}>
+                                                            <option value="">Select Intake</option>
+                                                            {Intakedata.map((object, i) => {
+
+                                                                return (
+                                                                    <option value={object.year + "&&" + object.month}>{object.year + " " + object.month}</option>
+                                                                )
+                                                            })}
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className="mb-3">
+                                            <div className="row">
+                                                <div className="col-md-6"></div>
+                                                <div className="col-md-6 text-right">
+                                                    <button type="submit" className="btn btn-secondary">Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form></div>
                             </div>
                         </div>
+
                     </div>
                 </div>
-            </div >
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-        </div >
+            </div>
+        </div>
+    </div>
     );
 }

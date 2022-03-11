@@ -52,13 +52,7 @@ export default function AdminUniversity() {
 
     }, [])
     return (
-        <div id="page-top">
-            <div id="wrapper">
-                <Sidebar />
-                <div id="content-wrapper" className="d-flex flex-column">
-                    <div id="content">
-                        <Topbar />
-                        <div className="container">
+        <div className="container">
                             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 className="h3 mb-0 text-gray-800">University</h1>
                             </div>
@@ -133,12 +127,5 @@ export default function AdminUniversity() {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <a className="scroll-to-top rounded" href="#page-top">
-                <i className="fas fa-angle-up"></i>
-            </a>
-        </div >
     );
 }

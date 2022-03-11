@@ -88,7 +88,7 @@ export default function Universitylogin() {
         }
     }
     if (redirectToReferrer === true || localStorage.getItem('universityData')) {
-        return (<Redirect to={'/UniversityDashboard'} />)
+        return (<Redirect to={'/university/dashboard'} />)
     }
     return (
         <div>

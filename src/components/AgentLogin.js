@@ -73,7 +73,7 @@ export default function Studentlogin() {
         }
     }
     if (redirectToReferrer === true || localStorage.getItem('agentData')) {
-        return (<Redirect to={'/AgentDashboard'} />)
+        return (<Redirect to={'/agent/dashboard'} />)
     }
     return (
         <div>
