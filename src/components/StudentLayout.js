@@ -113,6 +113,11 @@ function UniversityLayout(props) {
                             <span>Bookmark</span></Link>
                     </li>
                     <li className="nav-item ">
+                        <Link to={'/student/message'} className="nav-link" href="#" title="Settings">
+                            <i className="fas fa-bookmark"></i>
+                            <span>Message</span></Link>
+                    </li>
+                    <li className="nav-item ">
                         <Link to={'/student/setting'} className="nav-link" href="#" title="Settings">
                             <i className="fas fa-bookmark"></i>
                             <span>Settings</span></Link>

@@ -4,6 +4,8 @@ import Profile from './Profile';
 import Document from './Document';
 import Bookmark from './Bookmark';
 import Setting from './Setting';
+import Message from './Message';
+
 const StudentRoutes = [
   {
     upgrade: true,
@@ -48,6 +50,13 @@ const StudentRoutes = [
     name: "Typography",
     icon: "nc-icon nc-paper-2",
     component: Setting,
+    layout: "/student",
+  }, 
+  {
+    path: "/message",
+    name: "Typography",
+    icon: "nc-icon nc-paper-2",
+    component: Message,
     layout: "/student",
   }, 
 ];
