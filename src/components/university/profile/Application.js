@@ -108,6 +108,7 @@ const Application = () => {
     }
 
     let clickAddHandler = (datum) => {
+     
         if (tempp !== 1) {
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
@@ -115,13 +116,14 @@ const Application = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-        var element = document.querySelector(".help")
+        console.log("jj")
+        var element = document.querySelector(".applicationTrixAdd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
     let handleAddSubmit = () => {
         setApplicationError("")
-        let originalString = document.getElementById("addx").value;
+        let originalString = document.getElementById("addApplicationx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
@@ -158,6 +160,7 @@ const Application = () => {
         }
     }
     let clickEditHandler = (datum) => {
+       
         if (tempp !== 1) {
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
@@ -165,13 +168,13 @@ const Application = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-        var element = document.querySelector(".edithelp")
+        var element = document.querySelector(".applicationTrixEdit")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
     let handleEditSubmit = () => {
         setApplicationError("")
-        let originalString = document.getElementById("editx").value;
+        let originalString = document.getElementById("editApplicationx").value;
         var div = document.createElement("div");
         div.innerHTML = originalString;
         var InsetApplication = div.innerText;
@@ -362,11 +365,11 @@ const Application = () => {
                                                             <div className="col-xl-6 col-md-12 " >
                                                                 <div className="form-group ">
                                                                     <label htmlFor="comment">Add Application:</label>
-                                                                    <input id="addx" type="hidden" />
+                                                                    <input id="addApplicationx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea help"
-                                                                        input="addx"
+                                                                        onChange={event => this.changeHandler(event)} class="applicationTrixAdd form-control editarea help "
+                                                                        input="addApplicationx"
                                                                     >
                                                                     </trix-editor>
                                                                     <span style={{ color: "red" }}> {ApplicationError}</span>
@@ -446,11 +449,11 @@ const Application = () => {
                                                             <div className="col-xl-6 col-md-12 " >
                                                                 <div className="form-group ">
                                                                     <label htmlFor="comment">Application:</label>
-                                                                    <input id="editx" type="hidden" />
+                                                                    <input id="editApplicationx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea edithelp"
-                                                                        input="editx"
+                                                                        onChange={event => this.changeHandler(event)} class="applicationTrixEdit form-control editarea "
+                                                                        input="editApplicationx"
                                                                     >
                                                                         {editPoint}
                                                                     </trix-editor>

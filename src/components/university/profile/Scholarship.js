@@ -107,7 +107,7 @@ const Document = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-        var element = document.querySelector(".addhelpSCHOLARSHIP")
+        var element = document.querySelector(".scholarshipTrixAdd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
@@ -157,7 +157,7 @@ const Document = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-        var element = document.querySelector(".helpeditSCHOLARSHIP")
+        var element = document.querySelector(".scholarshipTrixEdit")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
@@ -363,7 +363,7 @@ const Document = () => {
                                                                         name="universityApplication"
                                                                         onChange={event => this.changeHandler(event)}
 
-                                                                        class="form-control editarea addhelpSCHOLARSHIP"
+                                                                        class="scholarshipTrixAdd form-control editarea addhelpSCHOLARSHIP"
                                                                         input="addx"
                                                                     >
                                                                     </trix-editor>
@@ -450,7 +450,7 @@ const Document = () => {
                                                                     <input id="editx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
-                                                                        onChange={event => this.changeHandler(event)} class="form-control editarea helpeditSCHOLARSHIP"
+                                                                        onChange={event => this.changeHandler(event)} class="scholarshipTrixEdit form-control editarea helpeditSCHOLARSHIP"
                                                                         input="editx"
                                                                     >
                                                                         {MYpoint}
