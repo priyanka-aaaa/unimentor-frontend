@@ -63,7 +63,7 @@ function Header(props) {
                       <li><Link to={'/Recruitment'} className="nav-link" href="#">
                         Recruitment Partners</Link>
                       </li>
-                      <li><Link to={'/Student'} href="#">
+                      <li><Link to={'/students'} href="#">
                         Students</Link>
                       </li>
                       <li className='mr-3'>

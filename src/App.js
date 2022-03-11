@@ -43,7 +43,8 @@ import AdminLayout from './components/AdminLayout';
 import StudentLayout from './components/StudentLayout';
 import UniversityLayout from './components/UniversityLayout';
 
-import Student from './components/Student';
+import Student from './components/Home/Student';
+
 
 
 function App() {
@@ -56,7 +57,7 @@ function App() {
         <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
         <Route path="/agent" render={(props) => <AgentLayout {...props} />} />
 
-        <Route path='/Student' component={Student} />
+        <Route path='/students' component={Student} />
         <Route path='/Recruitment' component={Recruitment} />
         <Route path='/country' component={country} />
         <Route path='/Degree' component={Degree} />
