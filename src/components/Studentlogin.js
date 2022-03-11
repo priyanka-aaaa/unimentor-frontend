@@ -61,13 +61,13 @@ export default function Studentlogin() {
                         localStorage.setItem('studentEmail', responseJson.data.student.email);
                         setredirectToReferrer(true)
                     }
-                    else{
+                    else {
                         if (responseJson.data.message === "Password not matched") {
                             setwrongPassword(" Please enter a correct password")
-                           
+
                         }
                         else {
-                          
+
                             setwrongUsername("Please enter a correct email")
                         }
 
@@ -106,24 +106,24 @@ export default function Studentlogin() {
     }
     return (
         <div>
-                
 
-               {loader === "true" ?
+
+            {loader === "true" ?
                 <LoaderFrontend />
                 : null}
-                       {showSweetAlert === "1" ?
+            {showSweetAlert === "1" ?
 
-<SweetAlert
-    success
-    title="Send Link For Reset Password!"
-    onConfirm={(value) => {
-        setshowSweetAlert("0")
-    }}
->
-  A link is send on your mail for reset password.
-</SweetAlert>
-: null
-}
+                <SweetAlert
+                    success
+                    title="Send Link For Reset Password!"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0")
+                    }}
+                >
+                    A link is send on your mail for reset password.
+                </SweetAlert>
+                : null
+            }
             <div className="main-content">
                 {/*Full width header Start*/}
                 <div className="full-width-header">
@@ -133,13 +133,13 @@ export default function Studentlogin() {
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6">
-                                <img src={images["login.png"]} alt="login" />
-                                
+                                    <img src={images["login.png"]} alt="login" />
+
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="form-centerblock">
                                         <h2>Students Login</h2>
-                               
+
                                         <div className="from-start">
                                             <form onSubmit={handleSubmit}>
                                                 <div className="mb-3 mt-3">
@@ -149,7 +149,7 @@ export default function Studentlogin() {
                                                         value={email}
                                                         onChange={(e) => setEmail(e.target.value)}
                                                     />
-                                                     <div style={{ color: "red" }}> {wrongUsername}</div>
+                                                    <div style={{ color: "red" }}> {wrongUsername}</div>
                                                 </div>
                                                 <span style={{ color: "red" }}>{emailError}</span>
                                                 <div className="mb-3 mt-3">
@@ -159,7 +159,7 @@ export default function Studentlogin() {
                                                         value={password}
                                                         onChange={(e) => setPassword(e.target.value)}
                                                     />
-                                                      <div style={{ color: "red" }}> {wrongPassword}</div>
+                                                    <div style={{ color: "red" }}> {wrongPassword}</div>
                                                 </div>
                                                 <span style={{ color: "red" }}> {passwordError}</span>
                                                 <button type="submit" className="btn btn-website">Login</button>
@@ -168,9 +168,9 @@ export default function Studentlogin() {
                                                 Forgot your Password?
                                             </p>
                                             <p>Don't have an account? Click here to
-                                        <Link to={'/Studentregister'} className="" href="#">
-                                            Register</Link></p>
-                                             
+                                                <Link to={'/Studentregister'} className="" href="#">
+                                                    Register</Link></p>
+
                                         </div>
 
                                     </div>
