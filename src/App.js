@@ -26,7 +26,7 @@ import FinalFilter from './components/Home/FinalFilter';
 import Recruitment from './components/Home/Recruitment';
 import School from './components/Home/School';
 import AllUniversity from './components/Home/AllUniversity';
-import UniveristyPage from './components/Home/UniveristyPage';
+import UniversityPage from './components/Home/UniversityPage';
 import AgentLogin from './components/AgentLogin';
 import AgentRegister from './components/AgentRegister';
 import Studentregister from './components/Studentregister';
@@ -68,7 +68,7 @@ function App() {
         <Route path='/Contact' component={Contact} />
         <Route path='/School' component={School} />
         <Route path='/AllUniversity' component={AllUniversity} />
-        <Route path='/institute/:slug' component={UniveristyPage} />
+        <Route path='/institute/:slug' component={UniversityPage} />
         <Route path='/Universitylogin' component={Universitylogin} />
         <Route path='/Universityregister' component={Universityregister} />
         <Route path='/AdminLogin' component={AdminLogin} />

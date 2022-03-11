@@ -21,7 +21,7 @@ function importAll(r) {
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 
 
-export default function UniveristyPage() {
+export default function UniversityPage() {
     let { slug } = useParams();
   
 
