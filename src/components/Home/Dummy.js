@@ -1,38 +1,26 @@
-import React, { Component, PropTypes } from 'react';
+import React, { useState, useEffect } from "react";
 import { Modal, Button } from 'react-bootstrap';
-// import './GenericModal.scss';
-
-class Dummy extends Component {
-  constructor(props, context) {
-  super(props, context);
-
-  this.state = {
-    showModal: false
-  };
-
-  this.open = this.open.bind(this);
-  this.close = this.close.bind(this);
-}
 
 
-open() {
-  this.setState({showModal: true});
-}
+function Dummy(props) {
+  const [showModal, setshowModal] = useState(false);
+  function open() {
+    setshowModal(true)
+  }
+  function close() {
+    setshowModal(false)
+  }
 
-close() {
-  this.setState({showModal: false});
-}
-
-render() {
-  return(
+  return (
     <div>
       <div>I am a Bootstrap Modal</div>
-      <Button onClick={this.open}>Show Modal</Button>
+      <Button onClick={() => open()} >Show Modal</Button>
       <div>
-        <Modal className="modal-container" 
-          show={this.state.showModal} 
-          onHide={this.close}
-          animation={true} 
+        <Modal className="modal-container"
+          show={showModal}
+          onHide={() => close()}
+
+          animation={true}
           bsSize="small">
 
           <Modal.Header closeButton>
@@ -44,14 +32,13 @@ render() {
           </Modal.Body>
 
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button onClick={() => close()}>Close</Button>
             <Button bsStyle="primary">Save changes</Button>
-          </Modal.Footer>         
-        </Modal> 
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   );
- }
 }
 
 export default Dummy;

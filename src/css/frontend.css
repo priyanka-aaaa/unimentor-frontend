@@ -11644,16 +11644,6 @@ section.Form-block {
   animation-duration: 2s;
   animation-name: fadeInRight;
 }
-@keyframes  {
-  0% {
-    opacity: 0;
-    transform: translate3d(100%, 0, 0);
-  }
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
 
 
 
@@ -11796,9 +11786,18 @@ div#img-video .blog-img a img {
   width: 100%;
   margin-bottom: 20px;
 }
+/* start priyanka */
 .error-content{
   text-align: center
 }
 a.frontend-main-search {
   color: #101010 !important;
 }
+.custom-modal{
+  width: 100VW;
+  height: 100VH;
+ }
+ div#front-search-modal {
+    max-width: 59% !important;
+}
+/*end  priyanka */

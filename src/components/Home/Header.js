@@ -5,6 +5,7 @@ import {
 
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Modal, Button } from 'react-bootstrap';
 
 function importAll(r) {
   let images = {};
@@ -15,6 +16,14 @@ function importAll(r) {
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
 function Header(props) {
   const [textflag, settextflag] = useState("-500px");
+  const [showModal, setshowModal] = useState(false);
+  function open() {
+    setshowModal(true)
+  }
+  function close() {
+    setshowModal(false)
+  }
+
   function ToggleButton() {
 
     if (textflag == "-500px") {
@@ -84,8 +93,8 @@ function Header(props) {
                 <div className="expand-btn-inner search-icon hidden-md">
                   <ul>
                     <li className="sidebarmenu-search">
-             
-                      <a data-bs-toggle="modal" data-bs-target="#search-modal" type="button" className="frontend-main-search">
+
+                      <a onClick={() => open()} className="frontend-main-search">
 
                         <FontAwesomeIcon icon={faSearch} /></a>
 
@@ -184,11 +193,18 @@ function Header(props) {
       </nav>
       {/* end for toogle */}
       {/* start for search model */}
-      <div aria-hidden="true" className="modal fade search-modal" id="search-modal" role="dialog" tabIndex={-1}>
+
+
+      <Modal dialogClassName="custom-modal" className="modal-container custom-map-modal search-modal" id="front-search-modal"
+        show={showModal}
+        onHide={() => close()}
+
+        animation={true}
+      >
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span className="flaticon-cross" />
         </button>
-        <div className="modal-dialog modal-xl">
+        <div className="">
           <div className="modal-content">
             <div className="search-block clearfix">
               <form>
@@ -202,15 +218,18 @@ function Header(props) {
                 <div className="row">
                   <div className="col-lg-3 col-sm-6 md-mb-50">
                     <div className="addon-process">
-                    <Link to={'/study-in-australia'} className="process-wrap" >
-                      <div className="process-wrap">
-                        <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/process/1.png" alt="" /></a>
+                      <Link to={'/study-in-australia'} className="process-wrap" onClick={() => close()}>
+                        <div className="process-wrap">
+                          <div className="process-img">
+                            <a href="#">
+                              <img src={images["process-1.png"]}
+                                alt="" />
+                          </a>
+                          </div>
+                          <div className="process-text">
+                            <h3 className="title">Australia</h3>
+                          </div>
                         </div>
-                        <div className="process-text">
-                          <h3 className="title">Australia</h3>
-                        </div>
-                      </div>
                       </Link>
                     </div>
                   </div>
@@ -218,7 +237,7 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/process/2.png" alt="" /></a>
+                          <a href="#"><img src={images["process-2.png"]} alt="" /></a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">Canada</h3>
@@ -230,7 +249,7 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/process/3.png" alt="" /></a>
+                          <a href="#"><img src={images["process-3.png"]} alt="" /></a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">United Kingdom</h3>
@@ -242,7 +261,7 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/process/4.png" alt="" /></a>
+                          <a href="#"><img src={images["process-4.png"]}alt="" /></a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">United States</h3>
@@ -308,7 +327,7 @@ function Header(props) {
             </div>
           </div>
         </div>
-      </div>
+      </Modal>
 
       {/* end for search model */}
     </header>
