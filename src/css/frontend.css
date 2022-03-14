@@ -306,6 +306,7 @@ ul {
   background-position: center;
   background-size: cover;
   background-color: #065268;
+  height: 360px;
 }
 .bg6 {
   background: url(assets/images/bg/project-bg.png);
@@ -1113,11 +1114,16 @@ blockquote cite:before {
   padding: 12px 25px 12px 25px;
   font-size: 14px;
   margin-top: 20px;
-  font-weight: 500;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #ffffff;
-  background-color: #ff7f0e;
+  color: #ff7f0e;
+  background-color: transparent;
+  border: 1px solid #ff7f0e;
   border-radius: 30px 30px 30px 30px;
+}
+.readon.view-more:hover {
+  background-color:#ff7f0e;
+  color:#fff;
 }
 .readon.discover {
   font-size: 16px;
@@ -1819,6 +1825,10 @@ blockquote cite:before {
   font-weight: 400;
   margin: 30px 0 50px 0;
 }
+.sec-title .desc ul li span {
+  font-size: 14px;
+  margin-right: 8px;
+}
 .sec-title .desc.white-color {
   color: #fff;
 }
@@ -1832,11 +1842,11 @@ blockquote cite:before {
   position: relative;
 }
 .sec-title2 .sub-text {
-  margin: 0 0 10px;
+  margin: 0 0 0px;
   display: block;
   line-height: 28px;
   font-family: Source Sans Pro, sans-serif!important;
-  font-size: 14px;
+  font-size: 20px;
   font-weight: 400;
   color: #03228F;
   text-transform: uppercase;
@@ -1859,8 +1869,14 @@ blockquote cite:before {
   display: inline-block;
   padding: 6px 25px;
   color: #1273eb;
+  font-size: 14px;
   border-radius: 30px;
+  margin-bottom: 13px;
   text-transform: uppercase;
+}
+
+.mb-45 {
+  margin-bottom: 45px;
 }
 .sec-title2 .sub-text.style-bg.white-color {
   color: #ffffff;
@@ -3176,7 +3192,8 @@ blockquote cite:before {
   color: #106eea;
 }
 .full-width-header .mobile-menu .rs-menu-toggle.secondary {
-  color: #03228f;
+  color: #067393;
+  font-size: 30px;
 }
 .full-width-header .right_menu_togle {
   background-image: linear-gradient(90deg, #e2e9f7 0%, #ffffff 100%);
@@ -3187,6 +3204,7 @@ blockquote cite:before {
   transition: all 0.3s ease;
   position: fixed;
 }
+
 .full-width-header .right_menu_togle .close-btn {
   overflow: visible;
 }
@@ -3375,6 +3393,18 @@ body .search-modal .close:hover {
   width: 100%;
   top: 0;
   position: relative;
+}
+span.sub-text.contact {
+  font-size: 16px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+.mb-25 {
+  margin-bottom: 25px;
+}
+.pt-120 {
+  padding-top: 120px;
 }
 @-webkit-keyframes sticky-animation {
   0% {
@@ -4413,6 +4443,7 @@ body .search-modal .close:hover {
   max-width: 100%;
   opacity: 1;
   padding: 10px 18px;
+  margin-bottom: 20px;
   border: 1px solid #F1F5FB;
 }
 .rs-video-wrap .rs-requset textarea {
@@ -4443,7 +4474,7 @@ body .search-modal .close:hover {
   opacity: 1;
 }
 .rs-video-wrap.style2 {
-  margin-top: -380px;
+
   z-index: -111;
 }
 .rs-video-wrap.style2 .rs-requset {
@@ -4885,7 +4916,7 @@ body .search-modal .close:hover {
 }
 .rs-contact .contact-box {
   background-image:linear-gradient(250deg, #1e91b3 0%, #067393 100%);
-  padding: 80px 30px 80px 30px;
+  padding:36px 30px 36px 30px;
   border-radius: 5px 5px 5px 5px;
 }
 .rs-contact .contact-box .address-box {
@@ -6103,26 +6134,17 @@ body .search-modal .close:hover {
   background-color: #f6f1ff !important;
   cursor: pointer;
 }
-.front-content-part.purple-bg .readon.view-more {
-  background-color: #fff !important;
-  color: #000;
-}
+
 .front-content-part.gold-bg:hover {
   background-color: #ffead7 !important;
   cursor: pointer;
 }
-.front-content-part.gold-bg .readon.view-more {
-  background-color: #fff !important;
-  color: #000;
-}
+
 .front-content-part.blue-bg:hover {
   background-color: #d5e7ed !important;
   cursor: pointer;
 }
-.front-content-part.blue-bg .readon.view-more {
-  background-color: #fff !important;
-  color: #000;
-}
+
 .rs-services.style2.modify1 .flip-box-inner .flip-box-wrap .back-front {
   transform: rotateX(180deg);
   position: absolute;
@@ -7159,8 +7181,12 @@ body .search-modal .close:hover {
 .rs-industry .all-services .services-item .services-wrap {
   padding: 35px 27px 35px 27px;
   background: #ffffff;
-  box-shadow: 0px 0px 50px 2px rgba(0, 0, 0, 0.03);
+  /* box-shadow: 0px 0px 50px 2px rgba(0, 0, 0, 0.03); */
   text-align: center;
+}
+.services-wrap:hover {
+  box-shadow: 0px 0px 50px 2px rgb(0 0 0 / 3%);
+  cursor: pointer;
 }
 .rs-industry .all-services .services-item .services-wrap .services-icon {
   margin-bottom: 15px;
@@ -9105,7 +9131,7 @@ p.selected-certificate {
   height: 100%;
 }
 .rs-testimonial.main-home.style4 {
-  padding: 120px 0px 120px 0px;
+  padding: 20px 0px 120px 0px;
   border-radius: 270px 0px 0px 0px;
 }
 .rs-testimonial.main-home.style4 .testi-item {
@@ -9114,7 +9140,7 @@ p.selected-certificate {
 }
 .rs-testimonial.main-home.style4 .testi-item .author-desc {
   background: #ffffff;
-  padding: 40px 40px 80px 43px;
+  padding: 0px 40px 20px 0px;
   border-radius: 10px 10px 10px 10px;
   box-shadow: -2px 16px 44px -32px rgba(0, 0, 0, 0);
 }
@@ -9122,15 +9148,15 @@ p.selected-certificate {
   text-align: unset;
   position: unset;
   color: #333333;
-  padding: 73px 0px 10px 0px;
+  padding: 60px 0px 10px 0px;
   font-size: 17px;
   line-height: 33px;
   font-weight: 400;
 }
 .rs-testimonial.main-home.style4 .testi-item .author-desc .desc .quote {
-  top: 44px;
+  top:10px;
   position: absolute;
-  left: 7%;
+  left:0;
   transform: unset;
 }
 .rs-testimonial.main-home.style4 .testi-item .testimonial-content {
@@ -9158,7 +9184,7 @@ p.selected-certificate {
   padding-left: 50px;
 }
 .rs-testimonial.main-home.style4.modify1 .testi-img img {
-  max-width: 900px;
+  max-width: 100%;
 }
 .rs-testimonial.main-home.style4.modify2 .testi-item .author-desc {
   padding: 40px 40px 160px 43px;
@@ -10301,6 +10327,7 @@ a.card-header.card-link.collapsed:before {
 }
 .sec-title .desc ul li {
   list-style: none;
+  line-height: 30px;
 }
 .form-centerblock p {
   margin-top: 10px;
@@ -10788,9 +10815,34 @@ section.Form-block {
   height: 100vh;
   display: grid;
   place-items: center;
-  background: url(../img/login-bg.jpg) no-repeat center;
+  /* background: url(../img/login-bg.jpg) no-repeat center; */
   background-size: cover;
+  background-color: #067393;
 }
+
+section.Form-block {
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background: url(../img/Bottom-BG-01.svg);
+  background-size: cover;
+  background-color: #067393;
+  position: relative;
+}
+section.Form-block:before {
+  content: "";
+  position: absolute;
+  background: #0673937d;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.banner-img section.Form-block::before{
+  content:"";
+  background-color: transparent !important;
+}
+
 .from-start p a {
   font-weight: 700;
 }

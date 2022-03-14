@@ -278,7 +278,11 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/ielts.webp" alt="" /></a>
+
+                          <a href="course_finder_select_degree.html">
+                         
+                          <img src={images["ielts.webp"]} alt="" />
+                            </a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">IELTS</h3>
@@ -290,7 +294,10 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/gmat.webp" alt="" /></a>
+                          <a href="course_finder_select_degree.html">
+                      
+                            <img src={images["gmat.webp"]} alt="" />
+                            </a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">GMAT</h3>
@@ -302,7 +309,10 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/gre.webp" alt="" /></a>
+                          <a href="course_finder_select_degree.html">
+                          
+                            <img src={images["gre.webp"]} alt="" />
+                            </a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">GRE</h3>
@@ -314,7 +324,11 @@ function Header(props) {
                     <div className="addon-process">
                       <div className="process-wrap">
                         <div className="process-img">
-                          <a href="course_finder_select_degree.html"><img src="assets/images/sat.webp" alt="" /></a>
+                          <a href="course_finder_select_degree.html">
+                           
+                            <img src={images["sat.webp"]} alt="" />
+                            
+                            </a>
                         </div>
                         <div className="process-text">
                           <h3 className="title">SAT</h3>
