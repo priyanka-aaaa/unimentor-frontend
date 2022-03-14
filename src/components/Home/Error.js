@@ -1,11 +1,49 @@
 import React from 'react';
-
-function Error(props) {
+import Footer from './Footer'
+import Header from './Header'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import "slick-carousel/slick/slick.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+function importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+}
+const settings = {
+    // dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+};
+const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
+export default function Home() {
     return (
-        <div>
-            404 page not found
-        </div>
-    );
+      
+            <div className="main-content">
+                <div className="full-width-header">
+                    <Header />
+                    <div class="error-page">
+                        <div class="row">
+
+                            <div class="col-md-12 error-content">
+                                <div class="error-pict">
+                                    <img src={images["404-error.png"]} alt="error" />
+
+                                </div>
+                            <Link to={'/'} className="btn-homepage">
+                            Go To Home page
+                                   </Link>
+                               
+                            </div>
+                        </div>
+                        <Footer />
+                    </div>
+
+                </div>
+            </div>
+
+            );
 }
 
-export default Error;
