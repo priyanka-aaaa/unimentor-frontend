@@ -11799,3 +11799,6 @@ div#img-video .blog-img a img {
 .error-content{
   text-align: center
 }
+a.frontend-main-search {
+  color: #101010 !important;
+}
