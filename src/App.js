@@ -40,7 +40,7 @@ import AdminLayout from './components/AdminLayout';
 import StudentLayout from './components/StudentLayout';
 import UniversityLayout from './components/UniversityLayout';
 import Student from './components/Home/Student';
-
+import Error from './components/Home/Error';
 function App() {
   return (
     <BrowserRouter>
@@ -76,6 +76,7 @@ function App() {
         <Route path='/AgentLogin' component={AgentLogin} />
         <Route path='/Studentlogin' component={Studentlogin} />
         <Route path='/Studentregister' component={Studentregister} />
+        <Route component={Error} />
       </Switch>
     </BrowserRouter>
 
