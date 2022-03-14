@@ -41,6 +41,9 @@ import StudentLayout from './components/StudentLayout';
 import UniversityLayout from './components/UniversityLayout';
 import Student from './components/Home/Student';
 import Error from './components/Home/Error';
+import StudyAustralia from './components/Home/StudyAustralia';
+import Dummy from './components/Home/Dummy';
+
 function App() {
   return (
     <BrowserRouter>
@@ -76,6 +79,10 @@ function App() {
         <Route path='/AgentLogin' component={AgentLogin} />
         <Route path='/Studentlogin' component={Studentlogin} />
         <Route path='/Studentregister' component={Studentregister} />
+        <Route path='/study-in-australia' component={StudyAustralia} />
+        <Route path='/Dummy' component={Dummy} />
+
+        
         <Route component={Error} />
       </Switch>
     </BrowserRouter>

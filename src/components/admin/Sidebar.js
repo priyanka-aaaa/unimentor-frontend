@@ -30,7 +30,8 @@ class Sidebar extends Component {
                         {/* <!-- <div className="sidebar-brand-icon rotate-n-15">
 <i className="fas fa-graduation-cap"></i>
 </div> --> */}
-                        <div className="sidebar-brand-text mx-3"> <Link to={'/UniversityDashboard'}  >
+                        <div className="sidebar-brand-text mx-3">
+                             <Link to={'/UniversityDashboard'}  >
                     <img src={images["dash-logo.png"]} alt="" />
                        </Link> </div>
                     </a>

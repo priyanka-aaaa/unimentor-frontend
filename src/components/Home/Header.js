@@ -202,6 +202,7 @@ function Header(props) {
                 <div className="row">
                   <div className="col-lg-3 col-sm-6 md-mb-50">
                     <div className="addon-process">
+                    <Link to={'/study-in-australia'} className="process-wrap" >
                       <div className="process-wrap">
                         <div className="process-img">
                           <a href="course_finder_select_degree.html"><img src="assets/images/process/1.png" alt="" /></a>
@@ -210,6 +211,7 @@ function Header(props) {
                           <h3 className="title">Australia</h3>
                         </div>
                       </div>
+                      </Link>
                     </div>
                   </div>
                   <div className="col-lg-3 col-sm-6 md-mb-50">
