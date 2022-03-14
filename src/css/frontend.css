@@ -11699,6 +11699,7 @@ section.Form-block:before {
 
 
 
+
 .subcourses_courseBox__3deGG {
   min-height: 250px;
   padding: 24px 24px 16px;
@@ -11845,10 +11846,7 @@ div#img-video .blog-img a img {
 a.frontend-main-search {
   color: #101010 !important;
 }
-.custom-modal{
-  width: 100VW;
-  height: 100VH;
- }
+
  div#front-search-modal {
     max-width: 59% !important;
 }

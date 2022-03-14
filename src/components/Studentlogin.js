@@ -133,12 +133,13 @@ export default function Studentlogin() {
                 {/*Full width header Start*/}
                 <div className="full-width-header">
                     <Header />
-                    <section className="Form-block">
+                    <section className="Form-block" >
+                    
 
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-6">
-                                    <img src={images["login.png"]} alt="login" />
+                                    <img src={images["studentlogin.svg"]} alt="login" />
 
                                 </div>
                                 <div className="col-lg-6">
