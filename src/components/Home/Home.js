@@ -27,71 +27,7 @@ export default function Home() {
           {/*Header Start*/}
           <Header />
           {/*Header End*/}
-          {/* Canvas Menu start */}
-          <nav className="right_menu_togle hidden-md">
-            <div className="close-btn">
-              <div className="nav-link">
-                <a id="nav-close" className="humburger nav-expander" href="#">
-                  <span className="dot1" />
-                  <span className="dot2" />
-                  <span className="dot3" />
-                  <span className="dot4" />
-                  <span className="dot5" />
-                  <span className="dot6" />
-                  <span className="dot7" />
-                  <span className="dot8" />
-                  <span className="dot9" />
-                </a>
-              </div>
-            </div>
-            <div className="canvas-logo">
-              <a href="index.html">
-                <img src={images["logofirst-1.png"]} alt="logo" /></a>
-
-            </div>
-            <div className="offcanvas-text">
-              <p> Coursementor.com is a 24*7 Online Tutoring Platform. Get online tutoring on-demand on hundreds
-                of subjects or topics, whenever you need it.
-              </p>
-            </div>
-            <div className="canvas-contact">
-              <div className="address-area">
-                <div className="address-list">
-                  <div className="info-icon">
-                    <i className="flaticon-location" />
-                  </div>
-                  <div className="info-content">
-                    <h4 className="title">Address</h4>
-                    <em>#211 P,Sector7 Kurukshetra,haryana 136118</em>
-                  </div>
-                </div>
-                <div className="address-list">
-                  <div className="info-icon">
-                    <i className="flaticon-email" />
-                  </div>
-                  <div className="info-content">
-                    <h4 className="title">Email</h4>
-                    <em><a href="mailto:hello@coursementor.com/">hello@coursementor.com</a></em>
-                  </div>
-                </div>
-                <div className="address-list">
-                  <div className="info-icon">
-                    <i className="flaticon-call" />
-                  </div>
-                  <div className="info-content">
-                    <h4 className="title">Phone</h4>
-                    <em>1800-890-6477</em>
-                  </div>
-                </div>
-              </div>
-              <ul className="social">
-                <li><a href="#"><i className="fa fa-facebook" /></a></li>
-                <li><a href="#"><i className="fa fa-twitter" /></a></li>
-                <li><a href="#"><i className="fa fa-instagram" /></a></li>
-              </ul>
-            </div>
-          </nav>
-          {/* Canvas Menu end */}
+          
         </div>
         {/*Full width header End*/}
         {/* Banner Section Start */}
@@ -235,7 +171,8 @@ export default function Home() {
                           </p>
                         </div>
                         <div className="front-btn-part">
-                          <a className="readon view-more" href="#">Student Registration</a>
+                          {/* <a className="readon view-more" href="#">Student Registration</a> */}
+                          <Link to={'/StudentRegister'} className="readon view-more" href="#">Student Registration</Link>
                         </div>
                       </div>
                     </div>
@@ -262,7 +199,9 @@ export default function Home() {
                           </p>
                         </div>
                         <div className="front-btn-part">
-                          <a className="readon view-more" href="#">Recruiter Registration</a>
+                          {/* <a className="readon view-more" href="#">Recruiter Registration</a> */}
+                          <Link to={'/AgentRegister'} className="readon view-more" href="#">Recruiter Registration</Link>
+                      
                         </div>
                       </div>
                     </div>
@@ -289,7 +228,9 @@ export default function Home() {
                           </p>
                         </div>
                         <div className="front-btn-part">
-                          <a className="readon view-more" href="#">Partner Inquiry</a>
+                          {/* <a className="readon view-more" href="#">Partner Inquiry</a> */}
+                          <Link to={'/Universitylogin'} className="readon view-more" href="#">University Registration</Link>
+                          
                         </div>
                       </div>
                     </div>
@@ -324,7 +265,10 @@ export default function Home() {
                 <div className="rs-skillbar style1 home4">
                   <div className="cl-skill-bar">
                     <div className="btn-part mt-45">
-                      <a className="readon started" href="course_finder_select_country.html">Get Started</a>
+                      {/* <a className="readon started" href="course_finder_select_country.html">Get Started</a> */}
+                      <Link to={'/country'} className="readon started" href="#">
+
+Get Started</Link>
                     </div>
                   </div>
                 </div>
@@ -600,8 +544,8 @@ export default function Home() {
         <div id="rs-blog" className="rs-blog pt-50 pb-50 mt-50 mb-50">
           <div className="container">
             <div className="sec-title2 text-center mb-30">
-              <span className="sub-text">Blogs</span>
-              <h2 className="title testi-title">
+              <span className="sub-text gold-color">Blogs</span>
+              <h2 className="title title2">
                 Latest Tips &amp;Tricks
               </h2>
               <div className="desc">
@@ -612,92 +556,92 @@ export default function Home() {
             <div className="rs-carousel owl-carousel" data-loop="true" data-items={3} data-margin={30} data-autoplay="true" data-hoverpause="true" data-autoplay-timeout={5000} data-smart-speed={800} data-dots="false" data-nav="false" data-nav-speed="false" data-center-mode="false" data-mobile-device={1} data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device={2} data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2={2} data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device={3} data-md-device-nav="false" data-md-device-dots="false">
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src={images["bmh-1.jpg"]} alt="" /></a>
+                  <a href="#"><img src={images["bmh-1.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html">Software Development</a></li>
+                    <li><a href="#">Software Development</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Necessity May Give Us Your Best Virtual
+                  <h3 className="blog-title"><a href="#">Necessity May Give Us Your Best Virtual
                     Court System</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src={images["bmh-2.jpg"]} alt="" /></a>
+                  <a href="#"><img src={images["bmh-2.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html"> Web Development</a></li>
+                    <li><a href="#"> Web Development</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Tech Products That Makes Its Easier to
+                  <h3 className="blog-title"><a href="#">Tech Products That Makes Its Easier to
                     Stay at Home</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
                   <a href="blog-details.html"><img src={images["bmh-3.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html">It Services</a></li>
+                    <li><a href="#">It Services</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Open Source Job Report Show More Openings
+                  <h3 className="blog-title"><a href="#">Open Source Job Report Show More Openings
                     Fewer</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src={images["bmh-4.jpg"]} alt="" /></a>
+                  <a href="#"><img src={images["bmh-4.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html">Artifical Intelligence</a></li>
+                    <li><a href="#">Artifical Intelligence</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Types of Social Proof What its Makes Them
+                  <h3 className="blog-title"><a href="#">Types of Social Proof What its Makes Them
                     Effective</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src={images["bmh-5.jpg"]} alt="" /></a>
+                  <a href="#"><img src={images["bmh-5.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html">Digital Technology</a></li>
+                    <li><a href="#">Digital Technology</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Tech Firms Support Huawei Restriction,
+                  <h3 className="blog-title"><a href="#">Tech Firms Support Huawei Restriction,
                     Balk at Cost</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
               <div className="blog-item">
                 <div className="image-wrap">
-                  <a href="blog-details.html"><img src={images["bmh-6.jpg"]} alt="" /></a>
+                  <a href="#"><img src={images["bmh-6.jpg"]} alt="" /></a>
                   <ul className="post-categories">
-                    <li><a href="blog-details.html">It Services</a></li>
+                    <li><a href="#">It Services</a></li>
                   </ul>
                 </div>
                 <div className="blog-content">
-                  <h3 className="blog-title"><a href="blog-details.html">Servo Project Joins The Linux Foundation
+                  <h3 className="blog-title"><a href="#">Servo Project Joins The Linux Foundation
                     Fold Desco</a></h3>
                   <p className="desc">We denounce with righteous indige nation and dislike men who are so
                     beguiled...</p>
-                  <div className="blog-button"><a href="blog-details.html">Learn More</a></div>
+                  <div className="blog-button"><a href="#">Learn More</a></div>
                 </div>
               </div>
             </div>
@@ -706,24 +650,20 @@ export default function Home() {
         {/* Blog Section End */}
         {/* Testimonial Section Start */}
         <div className="rs-testimonial main-home style4 modify1 pt-120 pb-120 md-pt-80 md-pb-80">
-          <div className="container-fluid">
+          <div className="container">
             <div className="row">
               <div className="col-lg-6">
                 <div className="testi-img">
                   <img src={images["testimonial-3.png"]} alt="" />
                 </div>
               </div>
-              <div className="col-lg-6 md-pt-50 modify-gap">
-                <div className="sec-title mb-50">
+              <div className="col-lg-6">
+                <div className="sec-title">
                   <div className="sub-text style4-bg left testi">Testimonials</div>
-                  <h2 className="title pb-20">
+                  <h2 className="title mb-20">
                     What Our Students Have To Say
                   </h2>
-                  <div className="desc">
-                    "It's a great course. The starting can be a bit tough if you're not from a programming
-                    background, but later, you start to understand everything because they will explain
-                    everything step by step.".
-                  </div>
+                 
                 </div>
                 <Slider {...settings}>
                   <div>
