@@ -392,30 +392,7 @@ export default function AdminStudentApplication() {
             });
 
     }
-    function download10thdmc() {
-
-        var id = '61d9176d3ccf1bfc23b1ebee';
-        var url = process.env.REACT_APP_SERVER_URL + 'admin/students/' + id + '/educationDocument';
-        axios.get(url, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                if (res.data.success === true) {
-
-
-                    saveFile(res.data?.studentEducationDocument?.marksheet10, "10th");
-                    saveFile(res.data?.studentEducationDocument?.marksheet12, "");
-                    saveFile(res.data?.studentEducationDocument?.ugDegree, "cv");
-
-                }
-                else {
-
-                }
-
-            })
-            .catch(error => {
-
-            });
-
-    }
+   
     function handleFormSubmit(event) {
         event.preventDefault();
         setmyloader("true")
