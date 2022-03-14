@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import Loader from '../Home/Loader';
+
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import JSZip from 'jszip';
 import { saveAs } from "file-saver";
@@ -52,6 +54,9 @@ export default function AdminStudentApplication() {
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [firstviewWidth, setfirstviewWidth] = useState("0px");
+    const [loader, setmyloader] = useState("false");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [successMessage, setsuccessMessage] = useState("");
     const [viewId, setviewId] = useState("0px");
     const [thirdviewWidth, setthirdviewWidth] = useState("0px");
     const [universityApplication, setuniversityApplication] = useState(
@@ -110,6 +115,10 @@ export default function AdminStudentApplication() {
 
         _id: "null"
     }])
+    const [FormValues, setFormValues] = useState([{
+        message: "", type: ""
+    }])
+    const [message, setmessage] = useState();
     useEffect(() => {
         if (localStorage.getItem("adminData")) {
             var a = localStorage.getItem('adminData');
@@ -127,6 +136,24 @@ export default function AdminStudentApplication() {
             .then(data => {
                 setdata(data.applications)
             })
+
+
+        axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                console.log("res")
+                console.log(res.data.notifications)
+                if (res.data.success === true) {
+
+                    var myresults = res.data.notifications;
+
+                    if (Object.keys(myresults).length === 0) {
+
+                    }
+                    setFormValues(myresults)
+                }
+            })
+            .catch(error => {
+            });
 
     }, [])
     function handleCloseView() {
@@ -389,8 +416,53 @@ export default function AdminStudentApplication() {
             });
 
     }
+    function handleFormSubmit(event) {
+        event.preventDefault();
+        setmyloader("true")
+        const obj = {
+            message: message,
+            studentID: "61d9176d3ccf1bfc23b1ebee",
+            type: 0,
+
+        };
+        axios.post(process.env.REACT_APP_SERVER_URL + 'admin/messages/61d9176d3ccf1bfc23b1ebee', obj, { headers: { 'Authorization': mounted } })
+            .then(function (res) {
+                setmyloader("false")
+                if (res.data.success === true) {
+                    setsuccessMessage("Message Sent")
+                    setTimeout(() => setsubmitSuccess(""), 3000);
+                    setsubmitSuccess(1)
+                    setmessage("")
+                    axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            console.log("res")
+                            console.log(res.data.notifications)
+                            if (res.data.success === true) {
+
+                                var myresults = res.data.notifications;
+
+                                if (Object.keys(myresults).length === 0) {
+
+                                }
+                                setFormValues(myresults)
+                            }
+                        })
+                        .catch(error => {
+                        });
+
+                }
+            })
+            .catch(error => {
+
+            });
+
+    }
     return (
         <div className="container-fluid admin-dashboard admin-icon" >
+            {loader === "true" ?
+                <Loader />
+                : null}
+
 
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
@@ -478,6 +550,9 @@ export default function AdminStudentApplication() {
                                         <div className="page-header-title">
                                             <h5 className="m-b-10">Student Application Profile </h5>
                                         </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -494,8 +569,9 @@ export default function AdminStudentApplication() {
                                                 <h5>Student Application ID <span className="badge badge-info">5540</span></h5>
                                             </div>
                                             <div className="col-md-4">
-                                                <span className="badge badge-secondary">Application Initiated</span>
+                                                <span className="badge badge-secondary">Applicaggggggtion Initiated</span>
                                             </div>
+
                                             <div className="col-md-3 text-right">
 
                                                 <button title="Applied Application" className="btn btn-primary" onClick={() => handleAppliedView()}>   Applied Application <span className="badge badge-light">3</span></button>
@@ -1028,6 +1104,10 @@ export default function AdminStudentApplication() {
                                                 <div className="btn-block"><button type="button" className="btn btn-success">Application
                                                     Initiated</button></div>
                                             </div>
+                                            {submitSuccess === 1 ? <div className="Show_success_message">
+                                                <strong>Success!</strong> {successMessage}
+                                            </div> : null}
+
                                             <div className="col-md-4 text-right">
                                                 <div className="btn-block "><button type="button" className="btn btn-outline-primary btn-download"><span>
 
@@ -1530,237 +1610,103 @@ export default function AdminStudentApplication() {
                                                 {/* [ Hover-table ] end */}
                                             </div>
                                         </div>
-                                        <div className="chat-message msg_list">
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <div className="anw-block">
-                                                        <div className="row">
-                                                            <div className="col-md-1">
-                                                                <div className="us-img us-letter">
-                                                                    <h6>A</h6>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-11">
-                                                                <div className="anw-content-rightblock  border-gray">
-                                                                    <div className="des-title">
-                                                                        <h6><strong>Agent:</strong> (Satnam Singh)
-                                                                            You Sent a Message </h6>
-                                                                        <span className="date-block">Sep 23, 2020, 9:37 PM</span>
-                                                                    </div>
-                                                                    <div className="reply-content ">
-                                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                                                            Mauris condimentum sem non augue gravida sodales.
-                                                                            Maecenas ullamcorper, erat at consectetur tristique,
-                                                                            quam diam ultrices lacus, et maximus mi urna id dolor.
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="anw-block">
-                                                        <div className="row">
-                                                            <div className="col-md-1">
-                                                                <div className="us-img us-letter">
-                                                                    <h6>VFO</h6>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-11">
-                                                                <div className="anw-content-rightblock  light-blue">
-                                                                    <div className="des-title">
-                                                                        <h6><strong>Visa Filling officer:</strong> (Aman) Sent a
-                                                                            Message </h6>
-                                                                        <span className="date-block">Sep 25, 2020, 10:31 PM</span>
-                                                                    </div>
-                                                                    <div className="reply-content ">
-                                                                        <p>Sed consectetur rutrum nunc, sed iaculis nibh tristique
-                                                                            eu. Nulla arcu lacus, euismod vitae magna eu, porttitor
-                                                                            luctus libero. Phasellus eleifend finibus velit nec
-                                                                            mollis.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="anw-block">
-                                                        <div className="row">
-                                                            <div className="col-md-1">
-                                                                <div className="us-img us-letter">
-                                                                    <h6>A</h6>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-11">
-                                                                <div className="anw-content-rightblock  drak-blue">
-                                                                    <div className="des-title">
-                                                                        <h6><strong>Visa Team:</strong>
-                                                                            (admin) Sent a Message </h6>
-                                                                        <span className="date-block">Sep 25, 2020, 10:31 PM</span>
-                                                                    </div>
-                                                                    <div className="reply-content ">
-                                                                        <p>In eget tortor eget tellus varius consectetur ut vel
-                                                                            ipsum. Aliquam ullamcorper lectus vel pulvinar lobortis.
-                                                                            Morbi faucibus lacus eget venenatis vestibulum.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="anw-block">
-                                                        <div className="row">
-                                                            <div className="col-md-1">
-                                                                <div className="us-img us-letter">
-                                                                    <h6>S</h6>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-11">
-                                                                <div className="anw-content-rightblock  light-greenish">
-                                                                    <div className="des-title">
-                                                                        <h6>
-                                                                            <strong>Student:</strong> (Parveen) Sent a Message
-                                                                        </h6>
-                                                                        <span className="date-block">Apr 8, 2021, 4:03 PM</span>
-                                                                    </div>
-                                                                    <div className="reply-content ">
-                                                                        <p>Aliquam molestie gravida feugiat. Praesent a nisl mi.
-                                                                            Vivamus eget metus nunc. Nunc maximus elit iaculis ex
-                                                                            suscipit, faucibus pharetra nulla lacinia. Nunc nibh
-                                                                            diam, accumsan eget vehicula sollicitudin, volutpat sed
-                                                                            odio.</p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        {/* start for msg */}
+                                        <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                                            <h1 className="h3 mb-0 text-gray-800">Message</h1>
                                         </div>
-                                        <div className="row mt-3">
-                                            <div className="col-md-12">
-                                                <div className="refresh-sednmsg refresh-sednmsg2">
-                                                    <span style={{ cursor: 'pointer' }} onclick="window.location.reload();" className="btn-refersh" title="Reload the Chat conversation">
-                                                        <FontAwesomeIcon icon={faRedo} />
-
-
-                                                        Refresh</span>
-                                                    <a href="javascript:void(0)" id="send_reply" className="btn-send-msg" title="chat conversation"><span><i className="far fa-comments" /></span>Chat
-                                                        Conversation</a>
-                                                    <style dangerouslySetInnerHTML={{ __html: "\n\t\t\t\t\t\t\t\t\t\t\t#sendmsg {\n\t\t\t\t\t\t\t\t\t\t\t\tdisplay: none;\n\t\t\t\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\t\t\t" }} />
-                                                    <div className="btn-accept-reject">
-                                                        <button title="Accept solution" className="accept"><span>
-                                                            <FontAwesomeIcon icon={faCheckCircle} />
-
-                                                        </span>Accept</button>
-                                                        <button title="Reject solution" id="reject_solution" className="reject"><span>
-                                                            <FontAwesomeIcon icon={faTimesCircle} />
-
-                                                        </span>Reject</button>
-                                                    </div>
-                                                    {/* accept solution form*/}
-                                                    <div className="send-msg-block" style={{ display: 'none' }}>
-                                                        <form id="accept_feedback">
-                                                            <input type="hidden" name="_token" defaultValue="YhnyhUkzshfSXKpJJmkYlYdaePFBlnJ0p6pQBTMm" /> <input type="hidden" id="order_id" name="order_id" defaultValue="CA-5559-4" />
-                                                            <input type="hidden" id="expert_id" name="expert_id" defaultValue={0} />
-                                                            <span id="feedback_cdt" />
-                                                            <div className="row">
-                                                                <div className="col-md-12">
-                                                                    <div className="outer-border">
-                                                                        <div className="form-group">
-                                                                            <textarea className="form-control" id="feedback_msg" name="feedback_msg" rows={2} col={2} required placeholder="Type Your Message Here.." defaultValue={""} />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="row">
-                                                                <div className="col-md-6">
-                                                                    <div className="posted-check text-left">
-                                                                        <label htmlFor="msg">Leave Star Rating:</label>
-                                                                        <select id="sol_rating" name="sol_rating">
-                                                                            <option>5</option>
-                                                                            <option>4</option>
-                                                                            <option>3</option>
-                                                                            <option>2</option>
-                                                                            <option>1</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-md-6">
-                                                                    <div className="form-group btn-send sndmsgs-btn ">
-                                                                        <button style={{ cursor: 'pointer' }} name="send_feedback" id="send_feedback" value="submit" className="btn-send-msg pull-right end-button">
-                                                                            <i className="fa fa-paper-plane" aria-hidden="true" style={{ marginRight: '6px' }} />Submit
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                        {/* reject solution form*/}
-                                                        <form id="reject_sol" method="post" action="#" className="mt-3" style={{ display: 'none' }}>
-                                                            <input type="hidden" name="_token" defaultValue="YhnyhUkzshfSXKpJJmkYlYdaePFBlnJ0p6pQBTMm" /> <input type="hidden" id="order_id" name="order_id" defaultValue="CA-5559-4" />
-                                                            <span id="reject_cdt" />
-                                                            <div className="row">
-                                                                <div className="col-md-12">
-                                                                    <div className="outer-border">
-                                                                        <div className="form-group">
-                                                                            <textarea className="form-control" id="reject_reason" name="reject_reason" rows={2} col={2} required placeholder="Type Your Reject Message Here.." defaultValue={""} />
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="row mb-5">
-                                                                <div className="col-md-12">
-                                                                    <div className="form-group btn-send sndmsgs-btn ">
-                                                                        <button style={{ cursor: 'pointer' }} name="send_feedback" id="send_feedback" value="submit" className="btn-send-msg">
-                                                                            <i className="fa fa-paper-plane" aria-hidden="true" style={{ marginRight: '6px' }} />Send
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {/* Content Row */}
                                         <div className="row">
-                                            <div className="col-md-12">
-                                                <div className="msg-form">
-                                                    <form>
-                                                        <div className="form-group">
-                                                            <label>Send Message</label>
-                                                            <textarea rows={5} cols={7} className="form-control" defaultValue={""} />
+                                            {/* Area Chart */}
+                                            <div className="col-xl-12 col-lg-7">
+                                                <div className="card shadow mb-4">
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="chat-message msg_list">
+                                                                <div className="row">
+                                                                    <div className="col-md-12">
+                                                                        {/* start for message  */}
+                                                                        {FormValues.map((element, index) => {
+                                                                            return (
+
+                                                                                <div className="anw-block" key={index}>
+
+                                                                                    {element.type === 0 ?
+
+
+                                                                                        <div className="anw-block">
+                                                                                            <div className="row">
+                                                                                                <div className="col-md-1">
+                                                                                                    <div className="us-img us-letter">
+                                                                                                        <h6>S</h6>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div className="col-md-11">
+                                                                                                    <div className="anw-content-rightblock  light-greenish">
+                                                                                                        <div className="des-title">
+                                                                                                            <h6><strong>Student:</strong> (Parveen) Sent a Message</h6><span className="date-block">Apr 8, 2021, 4:03 PM</span>
+                                                                                                        </div>
+                                                                                                        <div className="reply-content ">
+                                                                                                            <p>{element.message}</p>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        :
+
+                                                                                        <div className="row">
+                                                                                            <div className="col-md-1">
+                                                                                                <div className="us-img us-letter">
+                                                                                                    <h6>A</h6>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div className="col-md-11">
+                                                                                                <div className="anw-content-rightblock  drak-blue">
+                                                                                                    <div className="des-title">
+                                                                                                        <h6><strong>Visa Team:</strong>(admin) Sent a Message </h6><span className="date-block">Sep 25, 2020, 10:31 PM</span>
+                                                                                                    </div>
+                                                                                                    <div className="reply-content ">
+                                                                                                        <p>{element.message}</p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                    }
+                                                                                </div>
+                                                                            )
+                                                                        })}
+                                                                        {/* end for message */}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                        <div className="form-group">
-                                                            <div className="dr-section" id="drop_section">
-                                                                <input type="file" name="file[]" id="files" multiple onchange="get_files(this.files);" />
-                                                                <div id="drag" className="drop_upper">
+                                                    </div>
+                                                    <div className="row">
+                                                        <div className="col-md-12">
+                                                            <div className="msg-form">
+                                                                <form onSubmit={handleFormSubmit}>
+
                                                                     <div className="row">
                                                                         <div className="col-md-12">
-                                                                            <label className="open" htmlFor="files">
-                                                                                <div className="droped_data">
-                                                                                    <div className="drop_img">
+                                                                            <div className="form-group">
+                                                                                <label className="form-label">Message
+                                                                                    <span className="req-star">*</span></label>
+                                                                                <textarea rows={5} cols={7} className="form-control" value={message}
+                                                                                    onChange={(e) => setmessage(e.target.value)} />
 
-                                                                                        <FontAwesomeIcon icon={faCloudUpload} />
-
-
-                                                                                    </div>
-                                                                                    <div className="drag_dropsection">
-                                                                                        <div id="drag_h3" className="drop_text">
-                                                                                            <p> Drop Files Here Or Click to Upload
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </label>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                    <div className="drop_lower" id="gallery">
-                                                                    </div>
-                                                                </div>
+                                                                    <button type="submit" className="btn-send-msg"><i className="fa fa-paper-plane" aria-hidden="true" style={{ marginRight: '6px' }} /> Send</button>
+                                                                </form>
                                                             </div>
                                                         </div>
-                                                        <button type="submit" className="btn-send-msg"><i className="fa fa-paper-plane" aria-hidden="true" style={{ marginRight: '6px' }} /> Send</button>
-                                                    </form>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        {/* end for msg */}
                                     </div>
                                 </div>
                             </div>

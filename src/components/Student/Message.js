@@ -5,6 +5,7 @@ import Loader from '../Home/Loader';
 export default function Message() {
     const [mounted, setMounted] = useState();
     const [message, setmessage] = useState();
+    const [studentId, setstudentId] = useState();
 
     const [loader, setmyloader] = useState("false");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -15,7 +16,10 @@ export default function Message() {
 
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
+        var studentId = localStorage.getItem("studentId")
+
         setMounted(mounted)
+        setstudentId(studentId)
         var myurl = process.env.REACT_APP_SERVER_URL;
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
             .then(function (res) {
@@ -41,7 +45,7 @@ export default function Message() {
         setmyloader("true")
         const obj = {
             message: message,
-            studentID: "61d9176d3ccf1bfc23b1ebee",
+            studentID: studentId,
             type: 0,
 
         };
@@ -49,7 +53,7 @@ export default function Message() {
             .then(function (res) {
                 setmyloader("false")
                 if (res.data.success === true) {
-                    setsuccessMessage("Primary Information Updated")
+                    setsuccessMessage("Message Sent")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
                     setmessage("")
