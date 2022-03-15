@@ -347,7 +347,7 @@ const Document = () => {
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
-                                    <div className="student-view">
+                                    <div className="student-view container-fluid">
                                         <div className="row">
                                             <div className="col-md-6">
                                             </div>
@@ -425,7 +425,7 @@ const Document = () => {
                                 <div className="card-body course-sidenav" id="mycourse-sidenav"
                                     style={{ width: width }}
                                 >
-                                    <div className="student-view">
+                                    <div className="student-view container-fluid">
                                         <div className="row">
                                             <div className="col-md-6">
 

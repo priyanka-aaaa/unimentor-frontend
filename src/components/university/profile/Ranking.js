@@ -383,7 +383,7 @@ const Ranking = () => {
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
-                                    <div className="student-view">
+                                    <div className="student-view container-fluid">
                                         <div className="row">
                                             <div className="col-md-6">
 
@@ -397,7 +397,7 @@ const Ranking = () => {
                                                 <strong></strong> File extension not supported
                                             </div> : null}
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Add Ranking</h3>
+                                                <h3>Add New Ranking</h3>
                                             </div>
 
                                             <form onSubmit={handleFormSubmit}>
@@ -488,7 +488,7 @@ const Ranking = () => {
                              
                                 <div className="card-body course-sidenav" id="mySidenav" style={{ width: width }}>
 
-                                    <div className="student-view">
+                                    <div className="student-view container-fluid">
                                         <div className="row">
                                             <div className="col-md-6">
 
@@ -546,7 +546,7 @@ const Ranking = () => {
 
                                                             {/* <p>File extensions supported  .jpeg, .jpg, .png</p> */}
 
-                                                            <img src={certificate} alt="certificate" class="edit-certificate" />
+                                                           <div className="ranking-certif"> <img src={certificate} alt="certificate" class="edit-certificate" /></div>
                                                             <Dropzone onDrop={(acceptedFiles) => {
 
                                                                 setcertificate(acceptedFiles[0])

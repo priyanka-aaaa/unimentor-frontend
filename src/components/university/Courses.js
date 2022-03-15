@@ -418,7 +418,7 @@ const Courses = () => {
                         <div className="card-body course-sidenav" id="mySidenav"
                             style={{ width: width }}
                         >
-                            <div className="student-view">
+                            <div className="student-view container-fluid">
                                 <div className="row">
                                     <div className="col-md-6">
                                     </div>
@@ -664,7 +664,7 @@ const Courses = () => {
                         <div className="card-body course-sidenav" id="mySideAdd"
                             style={{ width: addWidth }}
                         >
-                            <div className="student-view">
+                            <div className="student-view container-fluid">
                                 <div className="row">
                                     <div className="col-md-6">
 
@@ -831,7 +831,7 @@ const Courses = () => {
                                                                     </div>
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                                         <div className="form-group">
-                                                                            <label>Course website *</label><input
+                                                                            <label>Course website <span className="req-star">*</span></label><input
                                                                                 type="text" className="form-control" id="cour-web"
                                                                                 name="website" required placeholder="Course website "
                                                                                 value={website}
@@ -928,7 +928,7 @@ const Courses = () => {
                             style={{ width: viewWidth }}
                         >
 
-                            <div className="student-view">
+                            <div className="student-view container-fluid">
                                 <div className="row">
                                     <div className="col-md-6">
                                         <h3>Course Detail</h3>

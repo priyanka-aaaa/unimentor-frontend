@@ -4410,11 +4410,16 @@ a.cursor-pointer {
 .navbar-expand .navbar-nav {
   flex-direction: row;
 }
-
+ul.navbar-nav li a svg {
+  margin-right: 10px;
+}
 .navbar-expand .navbar-nav .dropdown-menu {
   position: absolute;
+  z-index: 1;
 }
-
+button.btn {
+  margin-bottom: 4px;
+}
 .navbar-expand .navbar-nav .nav-link {
   padding-right: 0.5rem;
   padding-left: 0.5rem;
@@ -12328,7 +12333,7 @@ a.card-header strong {
   position: fixed;
   z-index: 2;
   top: 0;
-  right:0px;
+  right:-65px;
   background-color: #F1F1F1;
   overflow-x: hidden;
   transition: 0.5s;
@@ -12342,7 +12347,7 @@ a.card-header strong {
   position: fixed;
   z-index: 2;
   top: 0;
-  right:-40px;
+  right:-65px;
   background-color: #F1F1F1;
   overflow-x: hidden;
   transition: 0.5s;
@@ -12369,6 +12374,9 @@ a.card-header strong {
 .sidenav a:hover {
   color: #f1f1f1;
 }
+a.closebtn:hover {
+  color: #000;
+}
 
 .sidenav .closebtn {
   position: absolute;
@@ -12385,9 +12393,9 @@ a.card-header strong {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
-.student-view {
+/* .student-view {
   padding-right: 30px !important;
-}
+} */
 td.img-table {
   width: 140px;
   /* border: 1px solid #ccc; */
@@ -12406,18 +12414,45 @@ trix-editor.form-control.editarea {
 }
 
 /* end priyanka */
+.dropzone {
+  border: 1px dotted black;
+  padding: 10px 0px;
+  text-align: center;
+  width: 87%;
+  margin-left: 13px;
+}
+.btn span {
+  margin-right: 8px;
+}
 
-img.edit-certificate {
+ul.site-map {
+  list-style-type: none !important;
+}
+ul.address-widget {
+  list-style-type: none !important;
+}
+ul.navbar-nav.ml-auto {
+  list-style-type: none !important;
+}
 
-  width:
-  95px
-  
-  ;
-  height:
-  54px
-  
-  ;
-  }
+
+.ranking-certif{
+  width: 300px;
+  height: 300px;
+}
+.ranking-certif img {
+  max-width: 100%;
+}
+.ranking-certif {
+  width: 250px;
+  height: 250px;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-bottom: 50px;
+}
   p.selected-certificate {
 
     text-align: center;

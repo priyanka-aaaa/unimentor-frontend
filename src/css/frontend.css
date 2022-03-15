@@ -2855,6 +2855,9 @@ blockquote cite:before {
   margin-right: 30px;
   list-style: none;
 }
+li.sidebarmenu-search {
+  margin-left: 50px;
+}
 .full-width-header .rs-header.style3.modify1 .expand-btn-inner ul li .humburger span {
   background: #101010;
 }
@@ -3309,11 +3312,11 @@ blockquote cite:before {
   background: #ff7045;
 }
 body .search-modal {
-  background: #0B70E1;
+  background: #E1F1FE;
   position: fixed;
   top: 0;
   bottom: 0;
-  background: rgba(16, 110, 234, 0.98);
+  background: #E1F1FE;
   width: 100%;
   height: 100%;
   z-index: 9999;
@@ -3328,7 +3331,7 @@ body .search-modal .search-block input {
   height: 60px;
   line-height: 60px;
   padding: 0 15px;
-  background: transparent;
+  background:#067393;
   border-width: 0 0 1px 0;
   border-radius: 0;
   border-color: rgba(255, 255, 255, 0.4);
@@ -4065,9 +4068,13 @@ span.sub-text.contact {
 .process-img {
   margin: 0 auto;
   width: 150px;
+  display: flex;
   height: 150px;
-  background-color:#f3efec;
+  background-color: #fffffff5;
   border-radius: 100px;
+  align-items: center;
+  justify-content: center;
+
 }
 .grd-level ul.nav {
   display: flex;

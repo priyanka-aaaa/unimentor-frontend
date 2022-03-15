@@ -200,7 +200,7 @@ export default function Overview() {
                                     </div>
                                 </div>
                                 <div className="col-12 col-sm-6 col-md-6 col-lg-4">
-                                    <div className="form-group"><label htmlFor="City/Town">International Student Rate *</label>
+                                    <div className="form-group"><label htmlFor="City/Town">International Student Rate <span className="req-star">*</span></label>
                                         <select
                                             value={rate}
                                             onChange={(e) => setrate(e.target.value)}

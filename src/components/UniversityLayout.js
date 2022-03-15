@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import routes from "./university/UniversityRoutes.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {   faUniversity,faBook,faDollarSign,faClock,faCog, faBars, faAngleLeft ,faSignOutAlt} from '@fortawesome/free-solid-svg-icons'
+import { faUniversity, faBook, faDollarSign, faClock, faCog, faBars, faAngleLeft, faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
 function importAll(r) {
     let images = {};
@@ -76,21 +76,29 @@ function UniversityLayout(props) {
                 {/* start for sidebar */}
                 <ul className={width} id="accordionSidebar">
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                    {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
+                                <Link to={'/university/dashboard'}  >
+                                    <img src={images["small-dash-logo.png"]} alt="" />
+                                </Link>
+                                :
+                                <Link to={'/university/dashboard'}  >
+                                    <img src={images["dash-logo.png"]} alt="" />
+                                </Link>
+
+                            }
                         <div className="sidebar-brand-text mx-3">
-                            <Link to={'/university/dashboard'}  >
-                                <img src={images["dash-logo.png"]} alt="" />
-                            </Link>
+                           
                         </div>
                     </a>
                     <hr className="sidebar-divider my-0" />
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="University">
                         <Link to={'/university/dashboard'} className="nav-link" >
-                        <FontAwesomeIcon icon={faUniversity} />
+                            <FontAwesomeIcon icon={faUniversity} />
                             <span>University</span></Link>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Coures Listingn">
                         <Link to={'/university/courses'} className="nav-link" data-toggle="tooltip" data-placement="right" title="Coures Listing">
-                        <FontAwesomeIcon icon={faBook} />
+                            <FontAwesomeIcon icon={faBook} />
                             <span>Courses Listing</span></Link>
                     </li>
                     <li className="nav-item " data-toggle="tooltip" data-placement="right" title="Set Commission">
@@ -103,12 +111,12 @@ function UniversityLayout(props) {
                     >
                         <Link to={'/university/summary'} className="nav-link" href="#"
                         >
-                           <FontAwesomeIcon icon={faClock} />
+                            <FontAwesomeIcon icon={faClock} />
                             <span >Summary Information</span></Link>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Setting">
                         <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                        <FontAwesomeIcon icon={faCog} />
+                            <FontAwesomeIcon icon={faCog} />
                             <span>Settings </span>
                         </a>
                         <div id="collapseTen" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >
@@ -273,7 +281,7 @@ function UniversityLayout(props) {
                                             </li>
 
 
-                                         
+
                                             <li className="nav-item dropdown no-arrow">
 
                                                 <a className="nav-link dropdown-toggle" href="#collapseEleven" id="userDropdown" role="button" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">
@@ -289,7 +297,7 @@ function UniversityLayout(props) {
                                                         onClick={(e) => logout()}
 
                                                         href="" data-toggle="modal" data-target="#logoutModal">
-                                                         <FontAwesomeIcon icon={faSignOutAlt} />
+                                                        <FontAwesomeIcon icon={faSignOutAlt} />
                                                         Logout
                                                     </a>
                                                 </div>

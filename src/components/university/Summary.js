@@ -174,15 +174,17 @@ export default function Summary() {
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col">
-                                                    <label className="form-label">Campus name *
+                                                <div className="form-group">
+                                                    <label className="form-label">Campus name <span className="req-star">*</span>
                                                     </label>
                                                     <input type="text" className="form-control"
                                                         value={campus} required
                                                         onChange={(e) => setChangecampus(e.target.value)}
                                                         placeholder="Course name" name="cname" />
                                                 </div>
+                                                </div>
                                                 <div className="col">
-                                                    <div className="form-group"><label>Eligibility Year for UG *</label>
+                                                    <div className="form-group"><label>Eligibility Year for UG <span className="req-star">*</span></label>
                                                         <input type="number" className="form-control"
                                                             value={ugYear} required
                                                             onChange={(e) => setugYear(e.target.value)}
@@ -193,7 +195,7 @@ export default function Summary() {
                                                 </div>
                                                 <div className="col">
                                                     <div className="form-group">
-                                                        <label className="form-label">Eligibility Year for PG *</label>
+                                                        <label className="form-label">Eligibility Year for PG <span className="req-star">*</span></label>
                                                         <input type="number" className="form-control"
                                                             value={pgYear} required
                                                             onChange={(e) => setpgYear(e.target.value)}
@@ -207,54 +209,64 @@ export default function Summary() {
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-md-4">
-                                                    <label className="form-label">CAS Deposit *</label>
+                                                <div className="form-group">
+                                                    <label className="form-label">CAS Deposit <span className="req-star">*</span></label>
                                                     <input type="text" className="form-control"
                                                         value={deposit} required
                                                         onChange={(e) => setdeposit(e.target.value)}
                                                         placeholder="CAS Deposit" name="tuitionfee" />
                                                 </div>
+                                                </div>
                                                 <div className="col-md-4">
-                                                    <label className="form-label">Undergraduate Score Requirements(%) *</label>
+                                                <div className="form-group">
+                                                    <label className="form-label">Undergraduate Score Requirements(%) <span className="req-star">*</span></label>
                                                     <input type="number" required className="form-control"
                                                         value={graduateScore}
                                                         onChange={(e) => setgraduateScore(e.target.value)}
                                                         placeholder="Undergraduate Score Requirements(%)" />
                                                     <div style={{ color: "red" }}> {graduateScoreNoError}</div>
                                                 </div>
+                                                </div>
                                                 <div className="col-md-4">
-                                                    <label className="form-label"> Postgraduate Score Requirements(%) *</label>
+                                                <div className="form-group">
+                                                    <label className="form-label"> Postgraduate Score Requirements(%) <span className="req-star">*</span></label>
                                                     <input type="number" required
                                                         value={postGraduateScore}
                                                         onChange={(e) => setpostGraduateScore(e.target.value)}
                                                         className="form-control" placeholder="Postgraduate Score Requirements" name=" courselevel" />
                                                     <div style={{ color: "red" }}> {postGraduateScoreNoError}</div>
                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-md-6">
-                                                    <label className="form-label">IELTS for UG *</label>
+                                                <div className="form-group">
+                                                    <label className="form-label">IELTS for UG <span className="req-star">*</span></label>
                                                     <input type="number" required
                                                         value={ugIelts}
                                                         onChange={(e) => setugIelts(e.target.value)}
                                                         className="form-control" placeholder="IELTS for UG" name=" cgpa" />
                                                     <div style={{ color: "red" }}> {ugIeltsNoError}</div>
                                                 </div>
+                                                </div>
                                                 <div className="col-md-6">
-                                                    <label className="form-label">IELTS for PG *</label>
+                                                <div className="form-group">
+                                                    <label className="form-label">IELTS for PG <span className="req-star">*</span></label>
                                                     <input type="number" required
                                                         value={pgIelts}
                                                         onChange={(e) => setpgIelts(e.target.value)}
                                                         className="form-control" placeholder="IELTS for PG" name=" eligibility" />
                                                     <div style={{ color: "red" }}> {pgIeltsNoError}</div>
                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div className="mb-3">
                                             <div className="row">
                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div className="form-group"><label>PTE for UG *
+                                                    <div className="form-group"><label>PTE for UG <span className="req-star">*</span>
                                                     </label><input type="number" required
                                                         value={ugPTE}
                                                         onChange={(e) => setugPTE(e.target.value)}
@@ -265,7 +277,7 @@ export default function Summary() {
                                                 </div>
                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
                                                     <div className="form-group">
-                                                        <label>PTE for PG *</label><input type="number" required
+                                                        <label>PTE for PG <span className="req-star">*</span></label><input type="number" required
                                                             value={pgPTE}
                                                             onChange={(e) => setpgPTE(e.target.value)}
                                                             className="form-control" id="cour-web" name="mobile" placeholder="PTE for PG" />
@@ -279,7 +291,7 @@ export default function Summary() {
 
                                             <div className="row">
                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                    <div className="form-group"><label>Intake Available *</label>
+                                                    <div className="form-group"><label>Intake Available <span className="req-star">*</span></label>
 
                                                         <select
                                                             type="text" className="form-control" required

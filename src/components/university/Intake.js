@@ -252,7 +252,7 @@ const Intake = () => {
                     <div className="card-body sidenav" id="mySidenav"
                         style={{ width: width }}
                     >
-                        <div className="student-view">
+                        <div className="student-view container-fluid">
                             <div className="row">
                                 <div className="col-md-6">
                                 </div>
@@ -271,8 +271,9 @@ const Intake = () => {
                                                 <div className="from-block" >
                                                     <div className="row">
                                                         <div className="col">
+                                                        <div className="form-group ">
                                                             <label className="form-label">Year
-                                                                *</label>
+                                                            <span class="req-star">*</span></label>
         
                                                             <select required
                                                                 className="form-control"
@@ -289,10 +290,11 @@ const Intake = () => {
                                                             </select>
                                                             <div style={{ color: "red" }}> {yearaddError}</div>
         
-        
+        </div>
                                                         </div>
                                                         <div className="col">
-                                                            <label className="form-label">Month *
+                                                        <div className="form-group ">
+                                                            <label className="form-label">Month <span class="req-star">*</span>
                                                             </label>
         
                                                             <select
@@ -317,9 +319,10 @@ const Intake = () => {
                                                             </select>
                                                             <div style={{ color: "red" }}> {monthaddError}</div>
                                                         </div>
+                                                        </div>
                                                     </div>
         
-                                                    <div className="mb-3">
+                                                    <div className="mb-3 mt-3">
                                                         <div className="row">
                                                             <div className="col-md-6"></div>
                                                             <div className="col-md-6 text-right">
@@ -340,7 +343,7 @@ const Intake = () => {
                     <div className="card-body sidenav" id="mySideAdd"
                         style={{ width: addWidth }}
                     >
-                        <div className="student-view">
+                        <div className="student-view container-fluid">
                             <div className="row">
                                 <div className="col-md-6">
         
@@ -362,8 +365,9 @@ const Intake = () => {
                                                 <div className="from-block" >
                                                     <div className="row">
                                                         <div className="col">
+                                                        <div className="form-group ">
                                                             <label className="form-label">Year
-                                                                *</label>
+                                                            <span class="req-star">*</span></label>
                                                             <select required
                                                                 className="form-control"
                                                                 placeholder="Year" name="year"
@@ -378,10 +382,11 @@ const Intake = () => {
         
                                                             </select>
                                                             <div style={{ color: "red" }}> {yearaddError}</div>
-        
+                                                        </div>
                                                         </div>
                                                         <div className="col">
-                                                            <label className="form-label">Month *
+                                                        <div className="form-group ">
+                                                            <label className="form-label">Month <span class="req-star">*</span>
                                                             </label>
                                                             <select
                                                                 required
@@ -406,6 +411,7 @@ const Intake = () => {
                                                             </select>
                                                             <div style={{ color: "red" }}> {monthaddError}</div>
                                                         </div>
+                                                        </div>
                                                     </div>
                                                     <div className="mb-3 mt-3">
                                                         <div className="row">
@@ -429,7 +435,7 @@ const Intake = () => {
                     <div className="card-body sidenav" id="mySideview"
                         style={{ width: viewWidth }}
                     >
-                        <div className="student-view">
+                        <div className="student-view container-fluid">
                             <div className="row">
                                 <div className="col-md-6">
                                     <h6 className="mt-2 font-weight-bold text-primary"></h6>

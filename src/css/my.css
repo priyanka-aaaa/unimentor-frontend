@@ -29,19 +29,3 @@ ul {
 
 
 }
-.dropzone {
-  border: 1px dotted black;
-  padding: 10px 0px;
-  text-align: center;
-  width: 67%;
-} 
-
-ul.site-map {
-  list-style-type: none !important;
-}
-ul.address-widget {
-  list-style-type: none !important;
-}
-ul.navbar-nav.ml-auto {
-  list-style-type: none !important;
-}
