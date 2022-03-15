@@ -116,8 +116,7 @@ const Application = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-        console.log("jj")
-        var element = document.querySelector(".applicationTrixAdd")
+       var element = document.querySelector(".applicationTrixAdd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }

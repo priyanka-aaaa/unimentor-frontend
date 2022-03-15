@@ -23,9 +23,7 @@ export default function Message() {
         var myurl = process.env.REACT_APP_SERVER_URL;
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log("res")
-                console.log(res.data.notifications)
-                if (res.data.success === true) {
+               if (res.data.success === true) {
 
                     var myresults = res.data.notifications;
 
@@ -60,9 +58,7 @@ export default function Message() {
                     var myurl = process.env.REACT_APP_SERVER_URL;
                     axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
                         .then(function (res) {
-                            console.log("res")
-                            console.log(res.data.notifications)
-                            if (res.data.success === true) {
+                          if (res.data.success === true) {
 
                                 var myresults = res.data.notifications;
 

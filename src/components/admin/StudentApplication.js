@@ -140,9 +140,7 @@ export default function AdminStudentApplication() {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-                console.log("res")
-                console.log(res.data.notifications)
-                if (res.data.success === true) {
+              if (res.data.success === true) {
 
                     var myresults = res.data.notifications;
 
@@ -450,8 +448,8 @@ export default function AdminStudentApplication() {
                     setmessage("")
                     axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
                         .then(function (res) {
-                            console.log("res")
-                            console.log(res.data.notifications)
+                          
+                            
                             if (res.data.success === true) {
 
                                 var myresults = res.data.notifications;

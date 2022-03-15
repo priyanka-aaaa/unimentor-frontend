@@ -249,21 +249,6 @@ export default function UniversityPage() {
         }
     }
     function handleApplyNow(universityID, courseID, session, applicationProgress, mycountry) {
-        // console.log("universityID")
-        // console.log(universityID)
-        // console.log("courseID")
-        // console.log(courseID)
-
-        // console.log("session")
-        // console.log(session)
-
-        // console.log("applicationProgress")
-
-        // console.log(applicationProgress)
-        // console.log("mycountry")
-
-        // console.log(mycountry)
-        // return;
         if (!localStorage.getItem("studentId")) {
             alert("Please login first")
         }
