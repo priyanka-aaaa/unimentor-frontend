@@ -88,7 +88,7 @@ export default function AgentRegisterForm() {
                         setshowSweetAlert("0")
                     }}
                 >
-                    You Are Register Successfully. Please Check Your Mail For Password
+                   You are registered successfully. Please check your email for password.
                 </SweetAlert>
                 : null
             }
