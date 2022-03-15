@@ -365,7 +365,7 @@ export default function UniversityPage() {
                                         <div className="university-widget mb-50">
                                             <div className="cover"><img src={universityImageValues.coverPic} /></div>
                                             <div className="univer-logo"><img src={universityImageValues.logo} /></div>
-                                            <h4>{FormuniversitiesValues.name}</h4>
+                                            <h4>{FormPrimaryInformationValues.name}</h4>
                                             <p>{FormPrimaryInformationValues.country}<br />
                                                 {FormPrimaryInformationValues.type} | Estd. {FormOverviewValues.foundedYear}</p>
                                             <button type="button" className="btn btn-primary btn-lg">Talk to an Expert for FREE</button>

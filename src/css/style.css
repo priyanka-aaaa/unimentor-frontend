@@ -10155,7 +10155,7 @@ span.icon {
   margin-right: 10px;
 }
 a.card-header.card-link:before {
-  content: "\f078";
+  /* content: "\f078"; */
   color: #000;
   position: absolute;
   font-family: "Font Awesome";
@@ -10168,7 +10168,7 @@ a.card-header.card-link:before {
   right: 20px;
 }
 a.card-header.card-link.collapsed:after {
-  content: "\f077";
+  /* content: "\f077"; */
   color: #000;
   position: absolute;
   font-family: "Font Awesome";
