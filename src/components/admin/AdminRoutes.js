@@ -10,10 +10,6 @@ import ApplicationStep from './ApplicationStep';
 import ViewApplication from './ViewStudentApplication'
 import ApplicationView from './StudentApplicationView';
 
-
-
-
-
 const AdminRoutes = [
   {
     upgrade: true,
