@@ -67,7 +67,25 @@ export default function PrimaryInfo() {
                     setwebsite(student_universityPrimaryInformation.website);
                     setphone(student_universityPrimaryInformation.phone);
                     setorganization(student_universityPrimaryInformation.organization);
+                    axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + res.data.universityPrimaryInformation.country + '/')
+                        .then(function (res) {
+                            if (res.data.success === true) {
+                                setstates(res.data.result);
+                            }
+                        })
+                        .catch(error => {
+                        })
+                        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + res.data.universityPrimaryInformation.state + '/')
+                        .then(function (res) {
+                            if (res.data.success === true) {
+                                setcities(res.data.result);
+                            }
+                        })
+                        .catch(error => {
+            
+                        });
                 }
+
             })
             .catch(error => {
             });
@@ -80,12 +98,8 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-        axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
-            .then(function (res) {
-            })
-            .catch(error => {
 
-            });
+
 
 
     }, [])
@@ -292,7 +306,7 @@ export default function PrimaryInfo() {
                                             <select className="form-control" name="country" required
                                                 value={country}
                                                 onChange={(e) => handlecountry(e.target.value)}
-                                                
+
                                             >
                                                 <option
                                                     value="" >Select country</option>
@@ -316,7 +330,7 @@ export default function PrimaryInfo() {
                                                 required
                                                 value={state}
                                             >
-                                                {CheckState === "0" ? <option value={state}>{state}</option> : <option>Please select state</option>}
+ {CheckState === "0" ? <option value={state}>{state}</option> : <option value="">Please select state</option>}
                                                 {states.map((element, index) => {
                                                     return (
                                                         <option
