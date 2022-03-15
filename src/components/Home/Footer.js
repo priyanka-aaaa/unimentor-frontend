@@ -62,7 +62,7 @@ function Footer(props) {
                   Home</Link></li>
                 <li> <Link to={'/About'} href="#">
                   About Us</Link></li>
-                <li><a href="#">Blog</a></li>
+            
                 <li>  <Link to={'/contact'} href="#">
                   Contact Us</Link>  </li>
               </ul>
@@ -76,8 +76,7 @@ function Footer(props) {
                 <li><a href="#">Privacy Policy</a></li>
                 <li><a href="#">Refund Policy</a></li>
                 <li><a href="#">Honor Code</a></li>
-                <li><a href="#">Mentors</a></li>
-                <li><a href="#">Blog</a></li>
+         
               </ul>
             </div>
 
