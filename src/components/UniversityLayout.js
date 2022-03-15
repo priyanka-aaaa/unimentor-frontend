@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Topbar from "./university/Topbar";
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import routes from "./university/UniversityRoutes.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
