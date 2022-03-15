@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen, faEye
 } from '@fortawesome/free-solid-svg-icons';
+import { Modal, Button } from 'react-bootstrap';
 const Courses = () => {
     const [courseName, setcourseName] = useState("");
     const [duration, setduration] = useState("");
@@ -40,6 +41,13 @@ const Courses = () => {
     const [intakemonth, setintakemonth] = useState("jan");
     const [loader, setmyloader] = useState("false");
     const [tuitionFeeNoError, settuitionFeeNoError] = useState("");
+    const [showModal, setshowModal] = useState(false);
+    function open() {
+        setshowModal(true)
+    }
+    function close() {
+        setshowModal(false)
+    }
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
@@ -71,7 +79,7 @@ const Courses = () => {
             })
     }, [])
     let handleIntakeSubmit = (event) => {
-     
+
         event.preventDefault();
         const obj = {
             year: intakeyear,
@@ -85,6 +93,7 @@ const Courses = () => {
                     setsuccessIntakeMessage(1)
                     setyear("");
                     setmonth("");
+                    setshowModal(false)
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -860,9 +869,9 @@ const Courses = () => {
                                                             <div className="mb-3">
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                                                                        <button data-bs-toggle="modal" data-bs-target="#intakeModel" type="button" className="btn btn-outline-success">
 
-                                                                            Add Intake</button>
+                                                                        <button onClick={() => open()} className="btn btn-outline-success">Add Intake</button>
+
                                                                         <br />
                                                                         <div className="form-group mt-3">
                                                                             Intakes <span className="req-star">*</span>
@@ -975,13 +984,22 @@ const Courses = () => {
                     </div>
                 </div>
             </div>
-            <div className="modal" id="intakeModel">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h4 className="modal-title">Add Intake </h4>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" />
-                        </div>
+            <div>
+
+
+                <div>
+                    <Modal className="modal-container"
+                        show={showModal}
+                        onHide={() => close()}
+
+                        animation={true}
+                        bsSize="small">
+
+                        <Modal.Header closeButton>
+                            <Modal.Title>Add Intake</Modal.Title>
+                        </Modal.Header>
+
+
                         <form onSubmit={handleIntakeSubmit}>
                             <div className="modal-body">
                                 <div className="row">
@@ -1037,7 +1055,10 @@ const Courses = () => {
                                 <button type="submit" className="btn btn-primary" title="Submit">Submit</button>
                             </div>
                         </form>
-                    </div>
+
+
+
+                    </Modal>
                 </div>
             </div>
         </div>
