@@ -5,7 +5,7 @@ import { faAngleLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faEye, faUser, faFile, faFileUpload, faUserTie,faDashboard,faUserCircle,faAddressBook,faBookmark,faCog,faEnvelope
+    faSignOutAlt, faFile,faDashboard, faUserCircle, faAddressBook, faBookmark, faCog, faEnvelope
 
 
 
@@ -406,7 +406,8 @@ function UniversityLayout(props) {
                                                         onClick={(e) => logout()}
 
                                                         href="" data-toggle="modal" data-target="#logoutModal">
-                                                        <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        <FontAwesomeIcon icon={faSignOutAlt} />
+
                                                         Logout
                                                     </a>
                                                 </div>
