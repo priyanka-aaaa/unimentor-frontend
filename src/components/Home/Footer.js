@@ -72,10 +72,14 @@ function Footer(props) {
             <div className="col-lg-3 col-md-12 col-sm-12 pl-45 md-pl-15 md-mb-30">
               <h3 className="widget-title">Policy</h3>
               <ul className="site-map">
-                <li><a href="#">Terms and Conditions</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Refund Policy</a></li>
-                <li><a href="#">Honor Code</a></li>
+                <li> <Link to={'/terms-condition'} href="#">
+                Terms and Conditions</Link>   </li>
+                <li><Link to={'/privacy-policy'} href="#">
+                Privacy Policy</Link></li>
+                <li><Link to={'/refund-policy'} href="#">
+                Refund Policy</Link></li>
+                <li><Link to={'/honor-code'} href="#">
+                Honor Code</Link></li>
          
               </ul>
             </div>

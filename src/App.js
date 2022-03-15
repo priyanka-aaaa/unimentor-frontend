@@ -43,6 +43,12 @@ import Student from './components/Home/Student';
 import Error from './components/Home/Error';
 import StudyAustralia from './components/Home/StudyAustralia';
 import Dummy from './components/Home/Dummy';
+import TermCondition from './components/Home/TermCondition';
+import PrivacyPolicy from './components/Home/PrivacyPolicy';
+import RefundPolicy from './components/Home/RefundPolicy';
+import HonorCode from './components/Home/HonorCode';
+
+
 
 function App() {
   return (
@@ -81,7 +87,12 @@ function App() {
         <Route path='/Studentregister' component={Studentregister} />
         <Route path='/study-in-australia' component={StudyAustralia} />
         <Route path='/Dummy' component={Dummy} />
+        <Route path='/terms-condition' component={TermCondition} />
+        <Route path='/privacy-policy' component={PrivacyPolicy} />
+        <Route path='/refund-policy' component={RefundPolicy} />
+        <Route path='/honor-code' component={HonorCode} />
 
+       
         
         <Route component={Error} />
       </Switch>
