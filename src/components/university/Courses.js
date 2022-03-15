@@ -932,7 +932,7 @@ const Courses = () => {
                                                         <th rowSpan="1" colSpan="1">Duration</th>
                                                         <th rowSpan="1" colSpan="1">Tuition fee</th>
                                                         <th rowSpan="1" colSpan="1">Study</th>
-                                                        <th rowSpan="1" colSpan="1">Fee</th>
+                                                        <th rowSpan="1" colSpan="1">Currency</th>
                                                         <th rowSpan="1" colSpan="1">Course level</th>
                                                         <th rowSpan="1" colSpan="1">Cgpa</th>
                                                         <th rowSpan="1" colSpan="1">Eligibilit</th>

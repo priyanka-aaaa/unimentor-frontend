@@ -97,7 +97,7 @@ const Intake = () => {
                     setmyloader("false")
                     if (res.data.success === true) {
                         setwidth(0)
-                        setsuccessMessage("course update")
+                        setsuccessMessage("Intake Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
                         setyear("")
@@ -138,7 +138,7 @@ const Intake = () => {
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
-                        setsuccessMessage("course add")
+                        setsuccessMessage("Intake Added")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
                         setyear("");
@@ -182,7 +182,7 @@ const Intake = () => {
                             setmyloader("false")
                             var myuniversityCourse = res.data.intakes;
                             if (res.data.success === true) {
-                                setsuccessMessage("course delete")
+                                setsuccessMessage("Intake Deleted")
                                 setTimeout(() => setsubmitSuccess(""), 3000);
                                 setsubmitSuccess(1)
                                 const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';

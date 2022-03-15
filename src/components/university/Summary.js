@@ -136,7 +136,7 @@ export default function Summary() {
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
-                        setsuccessMessage("course delete")
+                        setsuccessMessage("Summary Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
                     }
