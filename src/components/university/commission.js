@@ -129,9 +129,11 @@ const UniversitySetcommission = () => {
         })
             .then(response => response.json())
             .then(data => {
+                
+
                 setEditid(data.universityCommission._id)
                 setcourseName(data.universityCommission.courseName)
-                settuitionFee(data.universityCommission.tuitionFee)
+                settuitionFee(data.universityCommission.fee)
                 setEditcommissionType(data.universityCommission.commissionType)
                 setcommissionValue(data.universityCommission.commissionValue)
                 setEdittimeType(data.universityCommission.timeType)
@@ -419,9 +421,9 @@ const UniversitySetcommission = () => {
                                                                         </div>
 
                                                                         <div className="col-md-6">
-                                                                            <label className="form-label">Select tuitionFee *</label>
+                                                                            <label className="form-label">Select Tuition Fee *</label>
                                                                             <select className="form-control">
-                                                                                <option> {tuitionFee}</option>
+                                                                                <option value={tuitionFee}> {tuitionFee}</option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
@@ -594,9 +596,9 @@ const UniversitySetcommission = () => {
                                                                             </div>
 
                                                                             <div className="col-md-6">
-                                                                                <label className="form-label">Select tuitionFee *</label>
+                                                                                <label className="form-label">Select Tuition Fee *</label>
                                                                                 <select className="form-control" >
-                                                                                    <option> {tuitionFee}</option>
+                                                                                    <option value={tuitionFee}> {tuitionFee}</option>
 
                                                                                 </select>
                                                                             </div>
