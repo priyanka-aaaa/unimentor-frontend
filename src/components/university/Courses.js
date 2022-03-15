@@ -81,19 +81,23 @@ const Courses = () => {
     let handleIntakeSubmit = (event) => {
 
         event.preventDefault();
+        setshowModal(false)
+        setmyloader("true")
         const obj = {
             year: intakeyear,
             month: intakemonth,
         };
         axios.post(process.env.REACT_APP_SERVER_URL + 'university/intakes/', obj, { headers: { 'Authorization': mounted } })
             .then(function (res) {
+                setmyloader("false")
                 if (res.data.success === true) {
+
                     setsuccessIntakeMessage("Intake add")
                     setTimeout(() => setsuccessIntakeMessage(""), 3000);
                     setsuccessIntakeMessage(1)
                     setyear("");
                     setmonth("");
-                    setshowModal(false)
+
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
                     fetch(url, {
                         method: 'GET',
@@ -615,7 +619,11 @@ const Courses = () => {
                                                         <div className="mb-3">
                                                             <div className="row">
                                                                 <div className="col-12 col-sm-6 col-md-6 col-lg-6">
+                                                                    <button type="button" onClick={() => open()} className="btn btn-outline-success">Add Intake</button>
+
+                                                                    <br />
                                                                     <div className="form-group">
+
                                                                         Intakes <span className="req-star">*</span>
                                                                         <select
                                                                             type="text" className="form-control" value="hii"
@@ -870,7 +878,7 @@ const Courses = () => {
                                                                 <div className="row">
                                                                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
 
-                                                                        <button onClick={() => open()} className="btn btn-outline-success">Add Intake</button>
+                                                                        <button type="button" onClick={() => open()} className="btn btn-outline-success">Add Intake</button>
 
                                                                         <br />
                                                                         <div className="form-group mt-3">
