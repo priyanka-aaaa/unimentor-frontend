@@ -563,17 +563,18 @@ export default function UniversityPage() {
 
                                                                 </div>
                                                                 <div className="blog-meta">
-                                                                    <h5> Fee/Year</h5>
-                                                                    {element.fee}
+                                                                    <h5> Fee</h5>
+                                                                    {element.fee} {" "}
+                                                                    {element.tuitionFee}
                                                                 </div>
                                                                 <div className="blog-meta">
 
-                                                                    <h5> Cgpa</h5>
+                                                                    <h5> CGPA</h5>
                                                                     {element.cgpa}
 
                                                                 </div>
                                                                 <div className="blog-meta">
-                                                                    <h5>Eligibilit</h5>
+                                                                    <h5>Eligibility</h5>
                                                                     {element.eligibility}
                                                                 </div>
                                                                 <div className="blog-meta">
@@ -796,7 +797,7 @@ export default function UniversityPage() {
                                                                         <div className="col-6 col-sm-4 clearfix">
                                                                             <div className="subcourses_details__3g8AB">
                                                                                 <h3 className="subcourses_c-desc__Dzhnk">
-                                                                                    {element.fee}
+                                                                                    {element.tuitionFee}{" "}  {element.fee}
                                                                                 </h3>
                                                                                 <p className="subcourses_c-title__2MKAy">Fee</p>
                                                                             </div>
