@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import routes from "./student/StudentRoutes.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faEye, faUser, faFile, faFileUpload, faUserTie,faDashboard,faUserCircle,faAddressBook,faBookmark,faCog,faEnvelope
+
+
+
+} from '@fortawesome/free-solid-svg-icons';
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -88,39 +94,39 @@ function UniversityLayout(props) {
                     <li className="nav-item active">
                         <Link to={'/student/dashboard'} className="nav-link" title="Dashboard" >
                             <i className="fas fa-fw fa-tachometer-alt"></i>
-                            <span>Dashboard          </span></Link>
+                            <span> <FontAwesomeIcon icon={faDashboard} />Dashboard          </span></Link>
                     </li>
                     <li className="nav-item">
                         <Link to={'/student/profile'} className="nav-link" href="#" title="Profile">
                             <i className="fas fa-user"></i>
-                            <span>Profile</span></Link>
+                            <span><FontAwesomeIcon icon={faUserCircle} />Profile</span></Link>
 
                     </li>
                     <li className="nav-item">
 
                         <Link to={'/student/applicationProfile'} className="nav-link" tiele="Application Profile">
                             <i className="fas fa-file-alt"></i>
-                            <span>Application Profile</span></Link>
+                            <span><FontAwesomeIcon icon={faAddressBook} />Application Profile</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/student/document'} className="nav-link" href="#" tiele="My Documents" >
                             <i className="fas fa-file-upload"></i>
-                            <span>My Documents</span></Link>
+                            <span><FontAwesomeIcon icon={faFile} />My Documents</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/student/bookmark'} className="nav-link" href="#" title="Bookmark">
                             <i className="fas fa-bookmark"></i>
-                            <span>Bookmark</span></Link>
+                            <span><FontAwesomeIcon icon={faBookmark} />Bookmark</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/student/message'} className="nav-link" href="#" title="Settings">
                             <i className="fas fa-bookmark"></i>
-                            <span>Message</span></Link>
+                            <span><FontAwesomeIcon icon={faEnvelope} />Message</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/student/setting'} className="nav-link" href="#" title="Settings">
                             <i className="fas fa-bookmark"></i>
-                            <span>Settings</span></Link>
+                            <span><FontAwesomeIcon icon={faCog} /> Settings</span></Link>
                     </li>
                     <div className="text-center d-none d-md-inline">
                         <button title="Sidenar-toggle" className="rounded-circle border-0" id="sidebarToggle" onClick={() => handletoogleClick()}>

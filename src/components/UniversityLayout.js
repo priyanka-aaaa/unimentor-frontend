@@ -3,7 +3,7 @@ import Topbar from "./university/Topbar";
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 import routes from "./university/UniversityRoutes.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faFile, faFileUpload, faUserTie, faBars, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
+import {   faUniversity,faBook,faDollarSign,faClock,faCog, faBars, faAngleLeft } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
 function importAll(r) {
     let images = {};
@@ -86,17 +86,17 @@ function UniversityLayout(props) {
                     <hr className="sidebar-divider my-0" />
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="University">
                         <Link to={'/university/dashboard'} className="nav-link" >
-                            <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon icon={faUniversity} />
                             <span>University</span></Link>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Coures Listingn">
                         <Link to={'/university/courses'} className="nav-link" data-toggle="tooltip" data-placement="right" title="Coures Listing">
-                            <FontAwesomeIcon icon={faFile} />
+                        <FontAwesomeIcon icon={faBook} />
                             <span>Courses Listing</span></Link>
                     </li>
                     <li className="nav-item " data-toggle="tooltip" data-placement="right" title="Set Commission">
                         <Link to={'/university/commission'} className="nav-link" href="#">
-                            <FontAwesomeIcon icon={faFile} />
+                            <FontAwesomeIcon icon={faDollarSign} />
                             <span>Set Commission</span></Link>
                     </li>
 
@@ -104,12 +104,12 @@ function UniversityLayout(props) {
                     >
                         <Link to={'/university/summary'} className="nav-link" href="#"
                         >
-                            <FontAwesomeIcon icon={faFileUpload} />
+                           <FontAwesomeIcon icon={faClock} />
                             <span >Summary Information</span></Link>
                     </li>
                     <li className="nav-item" data-toggle="tooltip" data-placement="right" title="Setting">
                         <a className="nav-link collapsed" data-bs-toggle="collapse" href="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
-                            <FontAwesomeIcon icon={faUserTie} />
+                        <FontAwesomeIcon icon={faCog} />
                             <span>Settings </span>
                         </a>
                         <div id="collapseTen" className="collapse" data-bs-parent="#accordion" data-parent="#accordionSidebar" >

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import Loader from '../Home/Loader';
 export default function Summary() {
     const [mounted, setMounted] = useState();

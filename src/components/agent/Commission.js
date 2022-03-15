@@ -1,8 +1,4 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
-
-import Footer from './Footer';
 function AddStudent(props) {
   return (
     <div className="container-fluid">

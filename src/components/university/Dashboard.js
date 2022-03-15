@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import Application from './profile/Application';
 import CoursesFee from './profile/CoursesFee';
 import PrimaryInfo from './profile/PrimaryInfo';
