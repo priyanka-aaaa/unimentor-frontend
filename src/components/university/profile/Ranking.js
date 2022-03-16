@@ -40,7 +40,7 @@ const Ranking = () => {
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
 
-    const [universityid, setuniversityid] = useState("");
+    const [universityId, setuniversityId] = useState("");
     const [MYpoint, setMYpoint] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -56,17 +56,11 @@ const Ranking = () => {
     const [submitError, setsubmitError] = useState("0");
 
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var universityid = mydata.data.university._id;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
-        setuniversityid(universityid)
-
-
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
+        setuniversityId(universityId);
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
         fetch(url1, {
             method: 'GET'
         })
@@ -87,7 +81,7 @@ const Ranking = () => {
         setaddWidth("1600px");
         setaddnewcomponent(1);
     }
-  
+
     function closeaddbox(value) {
         setaddWidth("0px");
         setwidth("0PX")
@@ -132,7 +126,7 @@ const Ranking = () => {
                     setrank("")
                     setyear("")
                     setcertificate("")
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -153,7 +147,7 @@ const Ranking = () => {
         setwidth("1600px");
         seteditnewcomponent(1)
 
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings/' + value;
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings/' + value;
         fetch(url1, {
             method: 'GET',
 
@@ -179,15 +173,15 @@ const Ranking = () => {
         event.preventDefault();
         setcertificateError("")
         setshowCertificate("")
-      
+
         if (certificate === "") {
             setcertificateError("Certificate Is Required")
-        
+
 
         }
 
         else {
-          
+
 
             setwidth(0)
 
@@ -217,7 +211,7 @@ const Ranking = () => {
                     // setrank("")
                     // setyear("")
                     // setcertificate("")
-                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
                     fetch(url1, {
                         method: 'GET'
                     })
@@ -259,7 +253,7 @@ const Ranking = () => {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/rankings';
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
@@ -335,7 +329,7 @@ const Ranking = () => {
 
                                         </span>Add New Ranking</button></div>
                                 </div>
-                  
+
                                 <div className="card shadow mb-4 mt-3">
 
                                     {myTable === "true" ?
@@ -379,7 +373,7 @@ const Ranking = () => {
                                             </table>
                                         </div>}
                                 </div>
-                   
+
                                 <div className="card-body course-sidenav" id="mySideAdd"
                                     style={{ width: addWidth }}
                                 >
@@ -485,7 +479,7 @@ const Ranking = () => {
 
                                     </div>
                                 </div>
-                             
+
                                 <div className="card-body course-sidenav" id="mySidenav" style={{ width: width }}>
 
                                     <div className="student-view container-fluid">
@@ -546,7 +540,7 @@ const Ranking = () => {
 
                                                             {/* <p>File extensions supported  .jpeg, .jpg, .png</p> */}
 
-                                                           <div className="ranking-certif"> <img src={certificate} alt="certificate" class="edit-certificate" /></div>
+                                                            <div className="ranking-certif"> <img src={certificate} alt="certificate" class="edit-certificate" /></div>
                                                             <Dropzone onDrop={(acceptedFiles) => {
 
                                                                 setcertificate(acceptedFiles[0])
@@ -592,7 +586,7 @@ const Ranking = () => {
 
                                     </div>
                                 </div>
-                             
+
                             </div>
                         </div>
                     </div>
