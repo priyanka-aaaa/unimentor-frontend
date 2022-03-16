@@ -55,32 +55,22 @@ export default function Universitylogin() {
                     let responseJson = result;
                     setmyloader("false")
                     if (responseJson.data.success === true) {
-
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
-
-
                         localStorage.setItem('universityId', responseJson.data.university._id);
                         localStorage.setItem('universityToken', responseJson.data.token);
                         localStorage.setItem('universityName', responseJson.data.university.name);
                         localStorage.setItem('universityEmail', responseJson.data.university.email);
-
-
-
-
                         setredirectToReferrer(true)
                     }
                     else {
                         if (responseJson.data.message === "Password not matched") {
                             setwrongPassword(" Please enter a correct password")
-
                         }
                         else {
 
                             setwrongUsername("Please enter a correct email")
                         }
-
                     }
-
                 }
                 )
                 .catch(error => {
