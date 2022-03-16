@@ -13,7 +13,6 @@ function PersonalInformationProfile(props) {
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
-        var myurl = process.env.REACT_APP_SERVER_URL;
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/score', { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 if (res.data.success === true) {
