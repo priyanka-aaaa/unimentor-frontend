@@ -79,10 +79,7 @@ function AdminLayout(props) {
         <div id="page-top">
             <div id="wrapper">
                 <ul className={width} id="accordionSidebar">
-                    <div className="sidebar-brand-icon ">
-                        CM
-                    </div>
-                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                   <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                         {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
                             <Link to={'/admin/dashboard'}  >
                                 <img src={images["small-dash-logo.png"]} alt="" />
