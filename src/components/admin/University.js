@@ -11,11 +11,11 @@ export default function AdminUniversity() {
     const [data, setdata] = useState([]);
     const [foundedYear, setfoundedYear] = useState("");
     const [formValues, setFormValues] = useState([{
-        name: "",email:"",phone:"",_id:""
+        name: "", email: "", phone: "", _id: ""
     }])
 
     useEffect(() => {
-     var mounted = localStorage.getItem("adminToken")
+        var mounted = localStorage.getItem("adminToken")
         setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + "universities";
         fetch(url, {
@@ -68,24 +68,10 @@ export default function AdminUniversity() {
                                                     <td>
                                                         <button className="btn btn-danger btn-sm" >
                                                             <FontAwesomeIcon icon={faTrash} />
-
-
                                                         </button>
-                                                        <button className="btn btn-success btn-sm">
-                                                            <FontAwesomeIcon icon={faPen} />
-
-
-                                                        </button>
-                                                        <button className="btn btn-primary btn-sm vbtn" ><Link to={'/institute/' + object._id} className="nav-link" >
+                                                        <button className="btn btn-primary btn-sm vbtn" ><Link to={'/institute/' + object.slug} className="nav-link" >
                                                             <FontAwesomeIcon icon={faEye} />
-
-
                                                         </Link></button>
-                                                        <button className="btn btn-info  btn-sm ml-2" >
-                                                            <FontAwesomeIcon icon={faUserSlash} />
-
-
-                                                        </button>
                                                     </td>
                                                 </tr>
                                             )

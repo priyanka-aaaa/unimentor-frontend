@@ -44,6 +44,9 @@ export default function AdminUniversity() {
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Students</h1>
             </div>
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
             {loader === "true" ?
                 <Loader />
                 : null}
