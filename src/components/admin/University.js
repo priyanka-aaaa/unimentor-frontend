@@ -15,18 +15,12 @@ export default function AdminUniversity() {
     }])
 
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+     var mounted = localStorage.getItem("adminToken")
+        setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + "universities";
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {

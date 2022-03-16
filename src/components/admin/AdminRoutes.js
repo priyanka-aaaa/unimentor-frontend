@@ -2,14 +2,8 @@ import Dashboard from './Dashboard';
 import Student from './Student';
 import Agent from './Agent';
 import University from './University';
-import Application from './Application';
-import Document from './Document';
-import Scholarship from './Scholarship';
 import StudentApplication from './StudentApplication';
 import ApplicationStep from './ApplicationStep';
-import ViewApplication from './ViewStudentApplication'
-import ApplicationView from './StudentApplicationView';
-
 const AdminRoutes = [
   {
     upgrade: true,
@@ -47,28 +41,7 @@ const AdminRoutes = [
     component: University,
     layout: "/admin",
   },
-  {
-    path: "/application",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: Application,
-    layout: "/admin",
-  },
-  {
-    path: "/document",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: Document,
-    layout: "/admin",
-  },
-  {
-    path: "/scholarship",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: Scholarship,
-    layout: "/admin",
-  },
-
+ 
   {
     path: "/applicationStep",
     name: "Typography",
@@ -76,20 +49,7 @@ const AdminRoutes = [
     component: ApplicationStep,
     layout: "/admin",
   }, 
-  {
-    path: "/viewApplication",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: ViewApplication,
-    layout: "/admin",
-  }, 
-  {
-    path: "/applicationView",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: ApplicationView,
-    layout: "/admin",
-  }, 
+
 
 ];
 export default AdminRoutes;

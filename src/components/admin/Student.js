@@ -12,6 +12,7 @@ export default function AdminUniversity() {
         name: "", email: "", phone: "", _id: ""
     }])
     useEffect(() => {
+        var mounted = localStorage.getItem("adminToken")
         setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + "students";
         fetch(url, {

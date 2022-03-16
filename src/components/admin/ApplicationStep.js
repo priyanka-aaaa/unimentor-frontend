@@ -105,125 +105,125 @@ export default function ApplicationStep() {
 
     return (
         <div className="container admin-dashboard">
-                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                                <h1 class="h3 mb-0 text-gray-800">Application Step</h1>
-                                {submitSuccess === 1 ? <div className="Show_success_message">
-                                    <strong>Success!</strong> {successMessage}
-                                </div> : null}
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Application Step</h1>
+                {submitSuccess === 1 ? <div className="Show_success_message">
+                    <strong>Success!</strong> {successMessage}
+                </div> : null}
 
-                            </div>
-                            <div class="row">
-                                <table className="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Country Name</th>
+            </div>
+            <div class="row">
+                <table className="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Country Name</th>
 
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {data.map((object, i) => {
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((object, i) => {
 
-                                            return (
+                            return (
 
-                                                <tr key={i}>
-                                                    <td>{i + 1}</td>
-                                                    <td>{object.country}</td>
-
-
-                                                    <td>
+                                <tr key={i}>
+                                    <td>{i + 1}</td>
+                                    <td>{object.country}</td>
 
 
-
-                                                        <button className="btn btn-success btn-sm" onClick={() => handleEdit(object._id)}>
-                                                            <FontAwesomeIcon icon={faPen} />
-
-
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            )
-                                        })}
-
-                                    </tbody>
-
-
-                                </table>
-                                {/* start for sideview */}
-                                <div id="mySidenav" className="sidenav" style={{ width: viewWidth }}>
-
-                                    
-
-                                    <div class="card-body">
-                                        <div class="form-block">
-                                            <div class="card-body">
-                                            <a onClick={() => handleCloseView()} className="closebtn mt-50" >×</a>
-                                                <h1 class="h3 mb-3 text-gray-800">Add Application Step</h1>
-                                                <div class="col-sm-12">
-
-
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <form onSubmit={handleSubmit}>
-
-                                                                <div class="row">
-                                                                    <div class="col-sm-12 ">
-
-                                                                        {universityApplication.map((object, i) => {
-
-                                                                            return (
-                                                                                <div class="form-group" key={i}>
-                                                                                    <label for="password"> Steps</label>
-                                                                                    <input required="" name="countrySteps"
-                                                                                        type="text"
-                                                                                        class="form-control"
-                                                                                        value={object}
-                                                                                        onChange={e => handleChange(i, e)}
-
-                                                                                    />
-                                                                                </div>
+                                    <td>
 
 
 
-
-                                                                            )
-                                                                        })}
-
+                                        <button className="btn btn-success btn-sm" onClick={() => handleEdit(object._id)}>
+                                            <FontAwesomeIcon icon={faPen} />
 
 
-                                                                    </div>
+                                        </button>
+                                    </td>
+                                </tr>
 
-                                                                    <div class="col-sm-12 text-danger"></div>
+                            )
+                        })}
 
+                    </tbody>
+
+
+                </table>
+                {/* start for sideview */}
+                <div id="mySidenav" className="sidenav" style={{ width: viewWidth }}>
+
+
+
+                    <div class="card-body">
+                        <div class="form-block">
+                            <div class="card-body">
+                                <a onClick={() => handleCloseView()} className="closebtn mt-50" >×</a>
+                                <h1 class="h3 mb-3 text-gray-800">Add Application Step</h1>
+                                <div class="col-sm-12">
+
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <form onSubmit={handleSubmit}>
+
+                                                <div class="row">
+                                                    <div class="col-sm-12 ">
+
+                                                        {universityApplication.map((object, i) => {
+
+                                                            return (
+                                                                <div class="form-group" key={i}>
+                                                                    <label for="password"> Steps</label>
+                                                                    <input required="" name="countrySteps"
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        value={object}
+                                                                        onChange={e => handleChange(i, e)}
+
+                                                                    />
                                                                 </div>
-                                                                <div className="mb-3">
-                                                                    <div className="row">
-                                                                        <div className="col-md-6"></div>
-                                                                        <div className="col-md-6 text-right">
 
-                                                                            <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                                                            <button type="submit" className="btn btn-secondary ml-2">Save
-                                                                            </button>
 
-                                                                        </div>
 
-                                                                    </div>
+                                                            )
+                                                        })}
 
-                                                                </div>
-                                                            </form>
-                                                        </div>
+
+
                                                     </div>
+
+                                                    <div class="col-sm-12 text-danger"></div>
+
                                                 </div>
+                                                <div className="mb-3">
+                                                    <div className="row">
+                                                        <div className="col-md-6"></div>
+                                                        <div className="col-md-6 text-right">
 
+                                                            <button type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
 
-                                            </div>
+                                                            <button type="submit" className="btn btn-secondary ml-2">Save
+                                                            </button>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
