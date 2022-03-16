@@ -12468,3 +12468,9 @@ ul.navbar-nav.ml-auto {
       width: 99%;
     
     }
+    /* start priyanka */
+    ul.pagination {
+
+      list-style-type: none !important;
+      }
+    /* end priyanka */

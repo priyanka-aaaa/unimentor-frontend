@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import { TableHeader, Pagination, Search } from "./DataTable";
 import axios from 'axios';
 import Loader from '../Home/Loader';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -42,6 +43,33 @@ const Courses = () => {
     const [loader, setmyloader] = useState("false");
     const [tuitionFeeNoError, settuitionFeeNoError] = useState("");
     const [showModal, setshowModal] = useState(false);
+    // start for pagination
+    const [comments, setComments] = useState([]);
+
+    const [totalItems, setTotalItems] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const [sorting, setSorting] = useState({ field: "", order: "" });
+    const ITEMS_PER_PAGE = 5;
+
+    const tableHeaders = [
+        { name: "No#", field: "_id", sortable: false },
+        { name: "Course Name", field: "courseName", sortable: true },
+        { name: "Duration", field: "duration", sortable: true },
+        { name: "Tuition Fee", field: "tuitionFee", sortable: false },
+        { name: "Action", field: "", sortable: false },
+
+
+
+
+
+
+
+
+
+    ];
+
+    // end for pagination
     function open() {
         setshowModal(true)
     }
@@ -60,7 +88,8 @@ const Courses = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setdata(data.universityCourses)
+                setComments(data.universityCourses);
+                // setdata(data.universityCourses)
             })
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
@@ -78,6 +107,37 @@ const Courses = () => {
                 }
             })
     }, [])
+    // start for pagination
+    const commentsData = useMemo(() => {
+        let computedComments = comments;
+
+        if (search) {
+            computedComments = computedComments.filter(
+                comment =>
+                    comment.courseName.toLowerCase().includes(search.toLowerCase()) ||
+                    comment.duration.toLowerCase().includes(search.toLowerCase()) ||
+                    comment._id.toLowerCase().includes(search.toLowerCase()) 
+            );
+        }
+
+        setTotalItems(computedComments.length);
+
+        //Sorting comments
+        if (sorting.field) {
+            const reversed = sorting.order === "asc" ? 1 : -1;
+            computedComments = computedComments.sort(
+                (a, b) =>
+                    reversed * a[sorting.field].localeCompare(b[sorting.field])
+            );
+        }
+
+        //Current Page slice
+        return computedComments.slice(
+            (currentPage - 1) * ITEMS_PER_PAGE,
+            (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+        );
+    }, [comments, currentPage, search, sorting]);
+    // end for pagination
     let handleIntakeSubmit = (event) => {
 
         event.preventDefault();
@@ -371,49 +431,64 @@ const Courses = () => {
             </div>
             <div className="row">
                 <div className="col-xl-12 col-lg-7">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h4>Courses Table</h4>
+                        </div>
+                        <div className="col-md-6 d-flex flex-row-reverse">
+                            <Search
+                                onSearch={value => {
+                                    setSearch(value);
+                                    setCurrentPage(1);
+                                }}
+                            />
+                        </div>
+                    </div>
                     <div className="card shadow mb-4">
                         <div className="card shadow mb-4">
                             <div className="table-responsive-sm">
+
+
                                 <table className="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Course Name</th>
-                                            <th>Duration</th>
-                                            <th>Tuition Fee</th>
-                                            <th>Action</th>
+                                    <TableHeader
 
-                                        </tr>
-                                    </thead>
+                                        headers={tableHeaders}
+                                        onSorting={(field, order) =>
+                                            setSorting({ field, order })
+                                        }
+                                    />
                                     <tbody>
-                                        {data.map((object, i) => {
+                                        {commentsData.map(comment => (
+                                            <tr>
+                                                <td>{comment._id}</td>
+                                                <td>{comment.courseName}</td>
+                                                <td>{comment.duration}</td>
+                                                <td>{comment.tuitionFee}</td>
+                                                <td>
 
-                                            return (
-                                                <tr key={i}>
-                                                    <td>{i + 1}</td>
-                                                    <td>{object.courseName}</td>
-                                                    <td>{object.duration}</td>
-                                                    <td>{object.tuitionFee}</td>
-                                                    <td>
+                                                    <button data-toggle="tooltip" data-placement="right" title="Delete" className="btn btn-danger btn-sm" onClick={() => handleDelete(comment._id)}>
+                                                        <FontAwesomeIcon icon={faTrash} />
+                                                    </button>
+                                                    <button data-toggle="tooltip" data-placement="right" title="Edit" className="btn btn-success btn-sm" onClick={() => handleClick(comment._id)}>
+                                                        <FontAwesomeIcon icon={faPen} />
 
-                                                        <button data-toggle="tooltip" data-placement="right" title="Delete" className="btn btn-danger btn-sm" onClick={() => handleDelete(object._id)}>
-                                                            <FontAwesomeIcon icon={faTrash} />
-                                                        </button>
-                                                        <button data-toggle="tooltip" data-placement="right" title="Edit" className="btn btn-success btn-sm" onClick={() => handleClick(object._id)}>
-                                                            <FontAwesomeIcon icon={faPen} />
-
-                                                        </button>
-                                                        <button data-toggle="tooltip" data-placement="right" title="View" className="btn btn-primary btn-sm vbtn" onClick={() => handleView(object._id)}>
-                                                            <FontAwesomeIcon icon={faEye} />
-                                                        </button>
-                                                    </td>
-                                                </tr>
-
-                                            )
-                                        })}
+                                                    </button>
+                                                    <button data-toggle="tooltip" data-placement="right" title="View" className="btn btn-primary btn-sm vbtn" onClick={() => handleView(comment._id)}>
+                                                        <FontAwesomeIcon icon={faEye} />
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        ))}
                                     </tbody>
                                 </table>
+
                             </div>
+                            <Pagination
+                                total={totalItems}
+                                itemsPerPage={ITEMS_PER_PAGE}
+                                currentPage={currentPage}
+                                onPageChange={page => setCurrentPage(page)}
+                            />
                         </div>
                         <div className="card-body course-sidenav" id="mySidenav"
                             style={{ width: width }}
