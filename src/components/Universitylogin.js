@@ -55,8 +55,7 @@ export default function Universitylogin() {
                     let responseJson = result;
                     setmyloader("false")
                     if (responseJson.data.success === true) {
-                        localStorage.setItem('universityData', JSON.stringify(responseJson));
-                        localStorage.setItem('universityId', responseJson.data.university._id);
+                       localStorage.setItem('universityId', responseJson.data.university._id);
                         localStorage.setItem('universityToken', responseJson.data.token);
                         localStorage.setItem('universityName', responseJson.data.university.name);
                         localStorage.setItem('universityEmail', responseJson.data.university.email);
@@ -77,7 +76,7 @@ export default function Universitylogin() {
                 });
         }
     }
-    if (redirectToReferrer === true || localStorage.getItem('universityData')) {
+    if (redirectToReferrer === true || localStorage.getItem('universityId')) {
         return (<Redirect to={'/university/dashboard'} />)
     }
     function onChangeresetEmail(e) {
