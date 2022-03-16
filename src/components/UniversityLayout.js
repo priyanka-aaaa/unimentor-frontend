@@ -22,7 +22,8 @@ function UniversityLayout(props) {
     const [redirectToReferrer, setredirectToReferrer] = useState("false");
     const [mounted, setMounted] = useState();
     const [email, setemail] = useState();
-    function handletoogleClick() {
+    const [universityEmail, setuniversityEmail] = useState();
+  function handletoogleClick() {
         if (width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion") {
             setwidth("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled")
         }
@@ -31,18 +32,20 @@ function UniversityLayout(props) {
         }
     }
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var user_email = localStorage.getItem('universityEmail');
-            var mytoken = localStorage.getItem('universityToken');
+
+
+        if (localStorage.getItem('universityId')) {
+            var universityId = localStorage.getItem('universityId');
+            var mounted = localStorage.getItem('universityToken');
+            var universityEmail = localStorage.getItem('universityEmail');
+            setMounted(mounted)
+           setuniversityEmail(universityEmail);
         }
         else {
-            var user_email = "";
+            var universityEmail = "";
             setredirectToReferrer("true")
         }
-        setMounted(mytoken)
-        setemail(user_email)
+
     }, [])
 
     function logout() {
@@ -76,18 +79,18 @@ function UniversityLayout(props) {
                 {/* start for sidebar */}
                 <ul className={width} id="accordionSidebar">
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-                    {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
-                                <Link to={'/university/dashboard'}  >
-                                    <img src={images["small-dash-logo.png"]} alt="" />
-                                </Link>
-                                :
-                                <Link to={'/university/dashboard'}  >
-                                    <img src={images["dash-logo.png"]} alt="" />
-                                </Link>
+                        {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
+                            <Link to={'/university/dashboard'}  >
+                                <img src={images["small-dash-logo.png"]} alt="" />
+                            </Link>
+                            :
+                            <Link to={'/university/dashboard'}  >
+                                <img src={images["dash-logo.png"]} alt="" />
+                            </Link>
 
-                            }
+                        }
                         <div className="sidebar-brand-text mx-3">
-                           
+
                         </div>
                     </a>
                     <hr className="sidebar-divider my-0" />
@@ -285,7 +288,7 @@ function UniversityLayout(props) {
                                             <li className="nav-item dropdown no-arrow">
 
                                                 <a className="nav-link dropdown-toggle" href="#collapseEleven" id="userDropdown" role="button" data-bs-toggle="collapse" aria-haspopup="true" aria-expanded="false">
-                                                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">{email}</span>
+                                                    <span className="mr-2 d-none d-lg-inline text-gray-600 small">{universityEmail}</span>
 
                                                     <img className="img-profile rounded-circle" src={undraw_profile}
                                                     />
