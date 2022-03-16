@@ -6,7 +6,7 @@ function PersonalInformation(props) {
   useEffect(() => {
     var mounted = localStorage.getItem("studentToken")
     setMounted(mounted)
-    var myurl = process.env.REACT_APP_SERVER_URL;
+    if(mounted!==null){
     axios.get(process.env.REACT_APP_SERVER_URL + 'student/applications', { headers: { 'Authorization': mounted } })
       .then(function (res) {
         if (res.data.success === true) {
@@ -15,6 +15,7 @@ function PersonalInformation(props) {
       })
       .catch(error => {
       });
+    }
   }, [])
   return (
     <div className="container">
