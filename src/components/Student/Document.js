@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import EducationDocument from './Mydocument/EducationDocument'
 import WorkExperienceDocument from './Mydocument/WorkExperienceDocument';
 import RecommendationDocuments from './Mydocument/RecommendationDocuments';

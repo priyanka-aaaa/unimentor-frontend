@@ -6,36 +6,29 @@ export default function Message() {
     const [mounted, setMounted] = useState();
     const [message, setmessage] = useState();
     const [studentId, setstudentId] = useState();
-
     const [loader, setmyloader] = useState("false");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [successMessage, setsuccessMessage] = useState("");
     const [FormValues, setFormValues] = useState([{
         message: "", type: ""
     }])
-
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         var studentId = localStorage.getItem("studentId")
-
         setMounted(mounted)
         setstudentId(studentId)
         var myurl = process.env.REACT_APP_SERVER_URL;
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-               if (res.data.success === true) {
-
+                if (res.data.success === true) {
                     var myresults = res.data.notifications;
-
                     if (Object.keys(myresults).length === 0) {
-
                     }
                     setFormValues(myresults)
                 }
             })
             .catch(error => {
             });
-
     }, [])
 
     function handleFormSubmit(event) {
@@ -58,12 +51,9 @@ export default function Message() {
                     var myurl = process.env.REACT_APP_SERVER_URL;
                     axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
                         .then(function (res) {
-                          if (res.data.success === true) {
-
+                            if (res.data.success === true) {
                                 var myresults = res.data.notifications;
-
                                 if (Object.keys(myresults).length === 0) {
-
                                 }
                                 setFormValues(myresults)
                             }
@@ -73,14 +63,9 @@ export default function Message() {
                 }
             })
             .catch(error => {
-
             });
-
     }
-
-
     return (
-
         <div className="container-fluid">
             {loader === "true" ?
                 <Loader />
@@ -88,13 +73,10 @@ export default function Message() {
             {submitSuccess === 1 ? <div className="Show_success_message">
                 <strong>Success!</strong> {successMessage}
             </div> : null}
-            {/* Page Heading */}
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">Message</h1>
             </div>
-            {/* Content Row */}
             <div className="row">
-                {/* Area Chart */}
                 <div className="col-xl-12 col-lg-7">
                     <div className="card shadow mb-4">
                         <div className="row">
@@ -102,15 +84,10 @@ export default function Message() {
                                 <div className="chat-message msg_list">
                                     <div className="row">
                                         <div className="col-md-12">
-                                            {/* start for message  */}
                                             {FormValues.map((element, index) => {
                                                 return (
-
                                                     <div className="anw-block" key={index}>
-
                                                         {element.type === 0 ?
-
-
                                                             <div className="anw-block">
                                                                 <div className="row">
                                                                     <div className="col-md-1">
@@ -154,8 +131,7 @@ export default function Message() {
                                                     </div>
                                                 )
                                             })}
-                                            {/* end for message */}
-                                        </div>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
