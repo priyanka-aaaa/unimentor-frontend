@@ -5,10 +5,7 @@ import { faAngleLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faSignOutAlt, faFile,faDashboard, faUserCircle, faAddressBook, faBookmark, faCog, faEnvelope
-
-
-
+    faSignOutAlt, faFile, faDashboard, faUserCircle, faAddressBook, faBookmark, faCog, faEnvelope
 } from '@fortawesome/free-solid-svg-icons';
 function importAll(r) {
     let images = {};
@@ -24,11 +21,12 @@ const settings = {
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
 
 function UniversityLayout(props) {
-    // start for sidebar
     const [width, setwidth] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
     const [redirectToReferrer, setredirectToReferrer] = useState("false");
     const [mounted, setMounted] = useState();
     const [email, setemail] = useState();
+    const [studentEmail, setstudentEmail] = useState();
+    const [studentId, setstudentId] = useState();
     function handletoogleClick() {
         if (width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion") {
             setwidth("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled")
@@ -37,21 +35,27 @@ function UniversityLayout(props) {
             setwidth("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion")
         }
     }
-    // end for sidebar
     useEffect(() => {
-        if (localStorage.getItem("studentData")) {
-            var a = localStorage.getItem('studentData');
-            var mydata = JSON.parse(a);
-            var user_email = localStorage.getItem('studentEmail');
-            var mytoken = localStorage.getItem('studentToken');
+        var mounted = localStorage.getItem("studentToken")
+        var studentEmail = localStorage.getItem("studentEmail")
+        var studentId = localStorage.getItem("studentId")
+        setMounted(mounted)
+        setstudentEmail(studentEmail)
+        setstudentId(studentId)
+
+        if (localStorage.getItem("studentId")) {
+            var mounted = localStorage.getItem("studentToken")
+            var studentEmail = localStorage.getItem("studentEmail")
+            var studentId = localStorage.getItem("studentId")
+            setMounted(mounted)
+            setstudentEmail(studentEmail)
+            setstudentId(studentId)
         }
         else {
-            var user_email = "";
+            var studentEmail = "";
             setredirectToReferrer("true")
         }
-        setMounted(mytoken)
-        setemail(user_email)
-    }, [])
+   }, [])
 
     function logout() {
         localStorage.clear();

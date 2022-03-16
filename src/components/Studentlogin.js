@@ -59,7 +59,6 @@ export default function Studentlogin() {
                     let responseJson = result;
 
                     if (responseJson.data.success === true) {
-                        localStorage.setItem('studentData', JSON.stringify(responseJson));
                         localStorage.setItem('studentId', responseJson.data.student._id);
                         localStorage.setItem('studentToken', responseJson.data.token);
                         localStorage.setItem('studentName', responseJson.data.student.name);

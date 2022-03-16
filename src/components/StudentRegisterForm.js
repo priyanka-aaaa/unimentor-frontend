@@ -1,17 +1,10 @@
 import React, { useState } from "react";
-import Footer from './Home/Footer'
-import Header from './Home/Header'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LoaderRegister from './Home/LoaderRegister';
-
-import logo from '../img/logo.png';
-
 import axios from 'axios';
-
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 import SweetAlert from 'react-bootstrap-sweetalert';
-
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -83,13 +76,10 @@ export default function StudentRegisterForm() {
     }
     return (
         <div className="form-centerblock">
-            {/* <LoaderRegister /> */}
-
             {loader === "true" ?
                 <LoaderRegister />
                 : null}
             {showSweetAlert === "1" ?
-
                 <SweetAlert
                     success
                     title="Success!"
@@ -97,7 +87,7 @@ export default function StudentRegisterForm() {
                         setshowSweetAlert("0")
                     }}
                 >
-                   You are registered successfully. Please check your email for password.
+                    You are registered successfully. Please check your email for password.
                 </SweetAlert>
                 : null
             }

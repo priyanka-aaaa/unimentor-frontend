@@ -1,12 +1,8 @@
-
-
 import React from 'react';
 import logo from '../img/logo.png';
 import { Component } from 'react';
 import axios from 'axios';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
-
 class StudentForgotPassword extends Component {
 
     constructor(props) {
