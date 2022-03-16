@@ -20,7 +20,7 @@ const settings = {
 };
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
 
-function UniversityLayout(props) {
+function StudentLayout(props) {
     const [width, setwidth] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
     const [redirectToReferrer, setredirectToReferrer] = useState("false");
     const [mounted, setMounted] = useState();
@@ -462,4 +462,4 @@ function UniversityLayout(props) {
     );
 }
 
-export default UniversityLayout;
+export default StudentLayout;
