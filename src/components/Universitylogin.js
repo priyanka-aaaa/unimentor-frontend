@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import logo from '../img/logo.png';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import axios from 'axios';
 import LoaderFrontend from './Home/LoaderFrontend';
 import SweetAlert from 'react-bootstrap-sweetalert';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 function importAll(r) {
     let images = {};
@@ -47,20 +45,15 @@ export default function Universitylogin() {
         }
         else {
             setmyloader("true")
-
             const obj = {
                 email: email,
                 password: password
             };
             var myurl = process.env.REACT_APP_SERVER_URL;
-
             axios.post(myurl + 'university/login', obj)
                 .then(result => {
-
                     let responseJson = result;
                     setmyloader("false")
-
-
                     if (responseJson.data.success === true) {
 
                         localStorage.setItem('universityData', JSON.stringify(responseJson));
@@ -111,7 +104,7 @@ export default function Universitylogin() {
         })
             .then(response => response.json())
             .then(data => {
-            
+
                 if (data.success === true) {
                     setshowSweetAlert("1")
 

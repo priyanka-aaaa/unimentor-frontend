@@ -1,12 +1,6 @@
 import React, { useState } from "react";
-
-import Footer from './Home/Footer'
-import Header from './Home/Header'
-import logo from '../img/logo.png';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import axios from 'axios';
-
 import { isValidPhoneNumber } from 'react-phone-number-input'
 import PhoneInput from 'react-phone-number-input'
 import SweetAlert from 'react-bootstrap-sweetalert';

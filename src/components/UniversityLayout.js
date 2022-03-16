@@ -17,13 +17,12 @@ const settings = {
 };
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
 function UniversityLayout(props) {
-    // start for sidebar
     const [width, setwidth] = useState("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion");
     const [redirectToReferrer, setredirectToReferrer] = useState("false");
     const [mounted, setMounted] = useState();
     const [email, setemail] = useState();
     const [universityEmail, setuniversityEmail] = useState();
-  function handletoogleClick() {
+    function handletoogleClick() {
         if (width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion") {
             setwidth("navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled")
         }
@@ -32,14 +31,12 @@ function UniversityLayout(props) {
         }
     }
     useEffect(() => {
-
-
         if (localStorage.getItem('universityId')) {
             var universityId = localStorage.getItem('universityId');
             var mounted = localStorage.getItem('universityToken');
             var universityEmail = localStorage.getItem('universityEmail');
             setMounted(mounted)
-           setuniversityEmail(universityEmail);
+            setuniversityEmail(universityEmail);
         }
         else {
             var universityEmail = "";
@@ -52,17 +49,11 @@ function UniversityLayout(props) {
         localStorage.clear();
         window.location.href = "/universitylogin";
     }
-
-    // end for sidebar
     const getRoutes = (routes) => {
-
-
         return routes.map((prop, key) => {
             if (prop.layout === "/university") {
                 return (
-
                     <Route
-
                         path={prop.layout + prop.path}
                         render={(props) => <prop.component {...props} />}
                         key={key}
@@ -76,7 +67,6 @@ function UniversityLayout(props) {
     return (
         <div id="page-top">
             <div id="wrapper">
-                {/* start for sidebar */}
                 <ul className={width} id="accordionSidebar">
                     <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                         {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
@@ -145,8 +135,7 @@ function UniversityLayout(props) {
                 {/* end for sidebar */}
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        {/* start for topbar */}
-                        <div>
+                       <div>
                             {redirectToReferrer === "true" ?
                                 <Redirect to={'/universitylogin'} />
                                 : <div>
@@ -329,7 +318,6 @@ function UniversityLayout(props) {
                                     </nav>
                                 </div>}
                         </div>
-                        {/* end for topbar */}
                         <Switch>{getRoutes(routes)}</Switch>
                     </div>
                 </div>

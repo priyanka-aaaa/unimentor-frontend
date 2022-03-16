@@ -21,14 +21,7 @@ const settings = {
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg)$/));
 export default function StudyAustralia() {
   useEffect(() => {
-    // if (localStorage.getItem("universityData")) {
-    //     var a = localStorage.getItem('universityData');
-    //     var mydata = JSON.parse(a);
-    //     var universityid = mydata.data.university._id;
-    //     var mytoken = mydata.data.token;
-    // }
-    // setMounted(mytoken)
-    // setuniversityid(universityid)
+ 
     const url1 = process.env.REACT_APP_SERVER_URL + 'universitysCountry/Australia';
     fetch(url1, {
       method: 'GET'
