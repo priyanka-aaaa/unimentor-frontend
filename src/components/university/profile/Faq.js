@@ -118,7 +118,7 @@ const Faq = () => {
                                 .then(data => {
                                     var myresults = data.universityFaqs;
                                     if (Object.keys(myresults).length === 0) {
-                                    }
+                                     }
                                     else {
                                         setFormValues(data.universityFaqs)
                                     }
@@ -200,7 +200,6 @@ const Faq = () => {
                                             setsuccessMessage("faq deleted")
                                             setTimeout(() => setsubmitSuccess(""), 3000);
                                             setsubmitSuccess(1)
-
                                             const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
                                             fetch(url, {
                                                 method: 'GET',
@@ -208,7 +207,16 @@ const Faq = () => {
                                             })
                                                 .then(response => response.json())
                                                 .then(data => {
-                                                    setFormValues(data.universityFaqs)
+                                                    var myresults = data.universityFaqs;
+                                                    if (Object.keys(myresults).length === 0) {
+                                                        setFormValues([{
+                                                            question: "", answer: "",
+                                                            _id: "null"
+                                                        }])
+                                                    }
+                                                    else {
+                                                        setFormValues(data.universityFaqs)
+                                                    }
                                                 })
 
                                         }
@@ -267,12 +275,12 @@ const Faq = () => {
                                                                                 </div>
                                                                             </div>
                                                                             <div className="col-md-1 text-left">
-                                                                                <div className="btn deleteFamily btn btn-danger btn-sm mt-4" onClick={() => handleDeleteClick(element._id)}
+                                                                                {element._id !== "null" ?
+                                                                                    <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
+                                                                                        <FontAwesomeIcon icon={faTrash} />
+                                                                                    </a>
+                                                                                    : null}
 
-                                                                                    data-toggle="tooltip" data-placement="right" title="Delete"
-                                                                                >
-                                                                                    <FontAwesomeIcon icon={faTrash} />
-                                                                                </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
