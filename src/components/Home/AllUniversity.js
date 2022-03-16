@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 export default function AllUniversity() {
-    const [mounted, setMounted] = useState();
-    const [data, setdata] = useState([]);
-    const [foundedYear, setfoundedYear] = useState("");
-    const [formValues, setFormValues] = useState([{
+   const [formValues, setFormValues] = useState([{
         name: ""
     }])
     useEffect(() => {
@@ -14,8 +11,7 @@ export default function AllUniversity() {
         })
             .then(response => response.json())
             .then(data => {
-                setdata(data.universities);
-                setFormValues(data.universities)
+               setFormValues(data.universities)
             })
     }, [])
     return (
