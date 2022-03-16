@@ -14,7 +14,7 @@ import {
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [mylogo, setmylogo] = useState();
-    const [mycoverPic, setmycoverPic] = useState([]);
+    const [mycoverPic, setmycoverPic] = useState();
     const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -41,9 +41,7 @@ import {
             .then(data => {
                 setmylogo(data.universityImage.logo)
                 setmycoverPic(data.universityImage.coverPic)
-                console.log("data.universityImage.coverPic");
-                console.log(data)
-            })
+             })
         fetch(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/imageVideos ', {
             method: 'get',
             headers: { 'Authorization': mounted },
@@ -203,8 +201,6 @@ import {
                                         <div className="ant-upload-list ant-upload-list-picture-card">
                                         </div>
                                         <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                            {console.log("mycoverPic")}
-                                            {console.log(mylogo)}
                                             {mylogo === "" || mylogo === "*" || mylogo === null || mylogo === undefined ?
 
                                                 <Dropzone onDrop={(acceptedFiles) => {
@@ -226,7 +222,7 @@ import {
                                                                 .then(response => response.json())
                                                                 .then(data => {
                                                                     setmylogo(data.universityImage.logo)
-                                                                    mycoverPic(data.universityImage.coverPic)
+                                                                    setmycoverPic(data.universityImage.coverPic)
 
                                                                 })
                                                         })
@@ -247,7 +243,7 @@ import {
                                                 <div>
                                                     <div className="upload_doc d-flex flex-wrap align-items-center row mb-3">
                                                         <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                            <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModallogo1">
+                                                            <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModallogo">
                                                                 View
                                                             </button>
                                                         </div>
@@ -258,7 +254,7 @@ import {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div className="modal" id="myModallogo1">
+                                                    <div className="modal" id="myModallogo">
                                                         <div className="modal-dialog">
                                                             <div className="modal-content">
                                                                 <div className="modal-header">
@@ -280,14 +276,13 @@ import {
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label><b>Cover Pict(size 1920*377px) </b></label><br />
+                                    <label><b>Cover Picture(size 1920*377px)</b></label><br />
                                     <div className="documentUpload ant-upload-picture-card-wrapper" >
                                         <div className="ant-upload-list ant-upload-list-picture-card">
                                         </div>
                                         <div className="upload_doc d-flex flex-wrap align-items-center row">
-                                            mycoverPicmycoverPicmycoverPic {mycoverPic}
-                                            {console.log(mycoverPic)}
-                                            {mycoverPic === "" || mycoverPic === "*" || mycoverPic === null || mycoverPic === undefined ?
+                                           {mycoverPic === "" || mycoverPic === "*" || mycoverPic === null || mycoverPic === undefined ?
+
                                                 <Dropzone onDrop={(acceptedFiles) => {
                                                     setmyloader("true")
                                                     const obj5 = new FormData();
@@ -328,22 +323,22 @@ import {
                                                 <div>
                                                     <div className="upload_doc d-flex flex-wrap align-items-center row mb-3">
                                                         <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
-                                                            <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModalcoverpik">
+                                                            <button type="button" className="btn btn-outline-primary btn-view" data-bs-toggle="modal" data-bs-target="#myModalcoverPik">
                                                                 View
                                                             </button>
                                                         </div>
                                                         <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
-                                                            <button type="button" onClick={() => onDeletecoverPikHandle("logo")} className="btn btn-outline-danger">
+                                                            <button type="button" onClick={() => onDeletecoverPikHandle("coverPic")} className="btn btn-outline-danger">
                                                                 <FontAwesomeIcon icon={faTrash} />
 
                                                             </button>
                                                         </div>
                                                     </div>
-                                                    <div className="modal" id="myModalcoverpik">
+                                                    <div className="modal" id="myModalcoverPik">
                                                         <div className="modal-dialog">
                                                             <div className="modal-content">
                                                                 <div className="modal-header">
-                                                                    <h4 className="modal-title">Cover Pik </h4>
+                                                                    <h4 className="modal-title">Cover Picture </h4>
                                                                     <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                                 </div>
 
