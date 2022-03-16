@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
-function RecommendationDocuments(props) {
-    const [successMessage, setsuccessMessage] = useState("");
+
+export default function RecommendationDocuments() {
+ const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [name, setname] = useState("");
@@ -243,5 +244,3 @@ function RecommendationDocuments(props) {
         </div>
     );
 }
-
-export default RecommendationDocuments;

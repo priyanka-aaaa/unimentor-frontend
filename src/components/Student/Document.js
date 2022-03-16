@@ -6,8 +6,8 @@ import ExtraCurricularDocument from './Mydocument/ExtraCurricularDocument';
 import OtherDocument from './Mydocument/OtherDocument';
 import EnglishProficiencyDocument from './Mydocument/EnglishProficiencyDocument';
 import IdentityDocument from './Mydocument/IdentityDocument';
+export default function Document() {
 
-function Document(props) {
     return (
         <div className="container">
         <div className=" align-items-center justify-content-between mb-4">
@@ -32,5 +32,3 @@ function Document(props) {
     </div>
     );
 }
-
-export default Document;

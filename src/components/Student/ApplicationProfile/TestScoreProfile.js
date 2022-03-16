@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
 import axios from 'axios';
-function PersonalInformationProfile(props) {
+
+export default function TestScoreProfile() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
@@ -125,5 +126,3 @@ function PersonalInformationProfile(props) {
         </div>
     );
 }
-
-export default PersonalInformationProfile;

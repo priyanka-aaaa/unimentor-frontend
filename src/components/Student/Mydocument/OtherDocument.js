@@ -6,8 +6,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
-const EnglishProficiencyDocument = () => {
-    const [heroFiles, setHeroFiles] = useState([]);
+
+export default function OtherDocument() {
+ const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [firstName, setfirstName] = useState("");
@@ -205,5 +206,3 @@ const EnglishProficiencyDocument = () => {
 
     );
 }
-
-export default EnglishProficiencyDocument;

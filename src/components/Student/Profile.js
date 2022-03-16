@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
 import Loader from '../Home/Loader';
-export default function Studentregister() {
+export default function Profile() {
     const [mounted, setMounted] = useState();
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [citizenship, setcitizenship] = useState("");

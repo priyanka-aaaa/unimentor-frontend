@@ -7,8 +7,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
-const ExtraCurricultarActivityProfile = () => {
-    const [successMessage, setsuccessMessage] = useState("");
+export default function ExtraCurricultarActivityProfile() {
+ const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
         Activitiestatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
@@ -378,4 +378,3 @@ const ExtraCurricultarActivityProfile = () => {
     );
 }
 
-export default ExtraCurricultarActivityProfile

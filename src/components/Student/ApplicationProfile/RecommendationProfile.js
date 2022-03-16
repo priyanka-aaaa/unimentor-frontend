@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash
 } from '@fortawesome/free-solid-svg-icons';
-const WorkExperienceProfile = () => {
+
+export default function RecommendationProfile() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -364,5 +365,3 @@ const WorkExperienceProfile = () => {
         </div>
     );
 }
-
-export default WorkExperienceProfile

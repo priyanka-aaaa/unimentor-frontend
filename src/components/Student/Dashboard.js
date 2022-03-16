@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-function PersonalInformation(props) {
-  const [data, setdata] = useState([]);
+
+export default function Dashboard() {
+ const [data, setdata] = useState([]);
   const [mounted, setMounted] = useState();
   useEffect(() => {
     var mounted = localStorage.getItem("studentToken")
@@ -163,5 +164,3 @@ function PersonalInformation(props) {
   </div>
   );
 }
-
-export default PersonalInformation;

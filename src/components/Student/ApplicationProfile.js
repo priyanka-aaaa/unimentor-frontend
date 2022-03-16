@@ -7,7 +7,7 @@ import TestScoreProfile from './ApplicationProfile/TestScoreProfile';
 import WorkExperienceProfile from './ApplicationProfile/WorkExperienceProfile';
 import ExtraCurricultarActivityProfile from './ApplicationProfile/ExtraCurricultarActivityProfile';
 import RecommendationProfile from './ApplicationProfile/RecommendationProfile';
-export default function Studentregister() {
+export default function ApplicationProfile() {
  return (
         <div className="container">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">

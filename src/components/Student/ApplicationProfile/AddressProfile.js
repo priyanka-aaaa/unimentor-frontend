@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
 import axios from 'axios';
-function PersonalInformation(props) {
-    const [successMessage, setsuccessMessage] = useState("");
+
+export default function AddressProfile() {
+ const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [country, setcountry] = useState();
@@ -228,5 +229,3 @@ function PersonalInformation(props) {
         </div>
     );
 }
-
-export default PersonalInformation;

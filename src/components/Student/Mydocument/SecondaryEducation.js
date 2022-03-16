@@ -4,8 +4,9 @@ import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-const SecondaryEducation = () => {
-    const [heroFiles, setHeroFiles] = useState([]);
+
+export default function SecondaryEducation() {
+ const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [mymarksheet10, setmymarksheet10] = useState();
@@ -274,5 +275,3 @@ const SecondaryEducation = () => {
         </div>
     );
 }
-
-export default SecondaryEducation;

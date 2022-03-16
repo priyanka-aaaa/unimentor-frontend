@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
-function Bookmark(props) {
-  const [deleteId, setdeleteId] = useState();
+export default function Bookmark() {
+ const [deleteId, setdeleteId] = useState();
   const [mounted, setMounted] = useState();
   const [UniveristyId, setUniveristyId] = useState("");
   const [firstName, setfirstName] = useState("");
@@ -96,5 +96,3 @@ function Bookmark(props) {
 
   );
 }
-
-export default Bookmark;

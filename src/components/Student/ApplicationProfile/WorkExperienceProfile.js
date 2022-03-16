@@ -8,8 +8,8 @@ import {
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
 
-const WorkExperienceProfile = () => {
-    const [successMessage, setsuccessMessage] = useState("");
+export default function WorkExperienceProfile() {
+  const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
         status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
@@ -314,5 +314,3 @@ const WorkExperienceProfile = () => {
         </div>
     );
 }
-
-export default WorkExperienceProfile

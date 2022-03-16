@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
-export default function StudentSetting() {
+export default function Setting() {
     const [mounted, setMounted] = useState();
     const [studentEmail, setstudentEmail] = useState();
     const [password, setpassword] = useState("");

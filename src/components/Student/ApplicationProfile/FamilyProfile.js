@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
-const FamilyProfile = () => {
+
+    export default function FamilyProfile() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -322,5 +323,3 @@ const FamilyProfile = () => {
         </div>
     );
 }
-
-export default FamilyProfile

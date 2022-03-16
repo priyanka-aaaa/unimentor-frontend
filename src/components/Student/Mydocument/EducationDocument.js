@@ -3,8 +3,8 @@ import SecondaryEducation from './SecondaryEducation';
 import Ug from './Ug';
 import Pg from './Pg';
 
-function NewEducationDocument() {
-    return (
+export default function EducationDocument() {
+ return (
         <div>
             <div className="card">
                 <a className="card-header" data-bs-toggle="collapse" href="#collapse2">
@@ -27,5 +27,3 @@ function NewEducationDocument() {
         </div>
     );
 }
-
-export default NewEducationDocument;

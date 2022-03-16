@@ -5,8 +5,8 @@ import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const NewIdentityDocument = () => {
-    const [heroFiles, setHeroFiles] = useState([]);
+export default function Ug() {
+ const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [myugDegree, setmyugDegree] = useState();
@@ -353,5 +353,3 @@ const NewIdentityDocument = () => {
         </div>
  );
 }
-
-export default NewIdentityDocument;

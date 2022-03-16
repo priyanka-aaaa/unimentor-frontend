@@ -7,8 +7,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../../Home/Loader';
-const EducationProfile = () => {
-    const [deleteId, setdeleteId] = useState("");
+
+export default function EducationProfile() {
+ const [deleteId, setdeleteId] = useState("");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [formValues, setFormValues] = useState([{
@@ -438,5 +439,3 @@ const EducationProfile = () => {
         </div>
     );
 }
-
-export default EducationProfile

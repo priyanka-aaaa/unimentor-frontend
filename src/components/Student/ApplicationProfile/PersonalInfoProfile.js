@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Loader from '../../Home/Loader';
 import axios from 'axios';
-function PersonalInformationProfile(props) {
-    const [successMessage, setsuccessMessage] = useState("");
+
+export default function PersonalInfoProfile() {
+ const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [salutation, setsalutation] = useState("");
@@ -385,5 +386,3 @@ function PersonalInformationProfile(props) {
         </div>
     );
 }
-
-export default PersonalInformationProfile;
