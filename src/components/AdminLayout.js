@@ -89,10 +89,19 @@ function AdminLayout(props) {
                     <div className="sidebar-brand-icon ">
                         CM
                     </div>
-                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                        <div className="sidebar-brand-text mx-3"> <Link to={'/admin/dashboard'}  >
-                            <img src={images["dash-logo.png"]} alt="" />
-                        </Link> </div>
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                        {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
+                            <Link to={'/admin/dashboard'}  >
+                                <img src={images["small-dash-logo.png"]} alt="" />
+                            </Link>
+                            :
+                            <Link to={'/admin/dashboard'}  >
+                                <img src={images["dash-logo.png"]} alt="" />
+                            </Link>
+
+                        }
+                        <div className="sidebar-brand-text mx-3">
+                        </div>
                     </a>
                     <hr className="sidebar-divider my-0" />
                     <li className="nav-item ">
