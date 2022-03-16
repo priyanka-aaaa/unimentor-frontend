@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
+import SweetAlert from 'react-bootstrap-sweetalert';
 import axios from 'axios';
+import Loader from '../Home/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp
+} from '@fortawesome/free-solid-svg-icons';
 const AdminApplication = () => {
     const [formValues, setFormValues] = useState([{
         application: "",
@@ -8,6 +14,11 @@ const AdminApplication = () => {
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
+    const [loader, setmyloader] = useState("false");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [deleteId, setdeleteId] = useState("");
+    const [successMessage, setsuccessMessage] = useState("");
+    const [submitSuccess, setsubmitSuccess] = useState("0");
     useEffect(() => {
         var mounted = localStorage.getItem("adminToken")
         setMounted(mounted)
@@ -33,11 +44,16 @@ const AdminApplication = () => {
     }
     let handleSubmit = (event) => {
         event.preventDefault();
+        setmyloader("true")
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'admin/applications', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
+                        setmyloader("false")
                         if (res.data.success === true) {
+                            setsuccessMessage("Application Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
                     })
                     .catch(error => {
@@ -46,7 +62,11 @@ const AdminApplication = () => {
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'admin/applications/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
+                        setmyloader("false")
                         if (res.data.success === true) {
+                            setsuccessMessage("Application Updated")
+                            setTimeout(() => setsubmitSuccess(""), 3000);
+                            setsubmitSuccess(1)
                         }
                     })
                     .catch(error => {
@@ -56,20 +76,75 @@ const AdminApplication = () => {
         })
 
     }
+    function handleDeleteClick(value) {
+        setshowSweetAlert("1")
+        setdeleteId(value)
+    }
     return (
         <div className="card">
             <a className="card-header" data-bs-toggle="collapse" href="#collapse1"><strong>1</strong>
                 Application
             </a>
+            {loader === "true" ?
+                <Loader />
+                : null}
+            {submitSuccess === 1 ? <div className="Show_success_message">
+                <strong>Success!</strong> {successMessage}
+            </div> : null}
+            {showSweetAlert === "1" ? <SweetAlert
+                warning
+                showCancel
+                confirmBtnText="Yes, delete it!"
+                confirmBtnBsStyle="danger"
+                title="Are you sure?"
+                onConfirm={(value) => {
+                    setshowSweetAlert("0");
+                    setmyloader("true")
+
+                    axios.delete(process.env.REACT_APP_SERVER_URL + 'admin/applications/' + deleteId, { headers: { 'Authorization': mounted } })
+                        .then(function (res) {
+                            setmyloader("false")
+                            if (res.data.success === true) {
+                                setsuccessMessage("Application deleted")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+                                const url = process.env.REACT_APP_SERVER_URL + "admin/applications/";
+                                fetch(url, {
+                                    method: 'GET',
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        setFormValues(data.adminApplications)
+                                    })
+                            }
+                            else {
+                            }
+                        })
+                        .catch(error => {
+                        });
+                }}
+                onCancel={() =>
+                    setshowSweetAlert("0")
+                }
+                focusCancelBtn  >
+            </SweetAlert>
+                : null
+            }
             <div id="collapse1" className="collapse" data-bs-parent="#accordion">
                 <div className="card-body">
                     <div className="form-block">
                         <form onSubmit={handleSubmit}>
                             <div className="card-body" >
                                 <div className="from-block" >
+
                                     {formValues.map((element, index) => (
                                         <div className="row" key={index}>
                                             <div className="mb-3">
+
+                                                <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </a>
+
                                                 <div className="row">
                                                     <div className="col">
                                                         <div className="form-group">
