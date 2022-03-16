@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 export default function AdminStudentApplication() {
 
@@ -249,10 +247,10 @@ export default function AdminStudentApplication() {
   return (
     <div id="page-top">
  <div id="wrapper">
-        <Sidebar />
+       
      <div id="content-wrapper" className="d-flex flex-column">
  <div id="content">
-   <Topbar />
+
          <div class="d-sm-flex align-items-center justify-content-between mb-4">
               <h1 class="h3 mb-0 text-gray-800">Student Application</h1>
   </div>

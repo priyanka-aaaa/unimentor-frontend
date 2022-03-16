@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 export default function AdminStudentApplicationView() {
     return (
         <div id="page-top">
             <div id="wrapper">
-                <Sidebar />
+            
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div className="container-fluid">
                         <div className="d-sm-flex align-items-center justify-content-between mb-4">

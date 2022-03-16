@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
-
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import JSZip from 'jszip';
 import { saveAs } from "file-saver";

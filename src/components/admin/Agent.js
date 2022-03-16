@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faTrash, faPen, faEye, faUserSlash,faCloudDownload
