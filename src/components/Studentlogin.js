@@ -83,7 +83,7 @@ export default function Studentlogin() {
         }
     }
 
-    if (redirectToReferrer === true || localStorage.getItem('userData')) {
+    if (redirectToReferrer === true || localStorage.getItem('studentId')) {
         return (<Redirect to={'/student/dashboard'} />)
     }
     function onChangeresetEmail(e) {
