@@ -18,7 +18,6 @@ const Faq = () => {
     const [universityId, setuniversityId] = useState([]);
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-
     const [display, setdisplay] = useState("none");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [deleteId, setdeleteId] = useState("");

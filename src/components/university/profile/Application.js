@@ -4,8 +4,8 @@ import axios from 'axios';
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faPlus, faTrash, faPen, faAngleDown, faAngleUp , 
-  
+    faPlus, faTrash, faPen, faAngleDown, faAngleUp,
+
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
 
@@ -27,7 +27,7 @@ const Application = () => {
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
     const [editPoint, seteditPoint] = useState("");
-    const [universityid, setuniversityid] = useState("");
+    const [universityId, setuniversityId] = useState("");
     const [MYpoint, setMYpoint] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -39,15 +39,11 @@ const Application = () => {
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var universityid = mydata.data.university._id;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
-        setuniversityid(universityid)
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
+        setuniversityId(universityId);
+        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions';
         fetch(url1, {
             method: 'GET'
         })
@@ -96,7 +92,7 @@ const Application = () => {
         seteditId(value);
         setwidth("1600px");
         seteditnewcomponent(1)
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions/' + value, { headers: { 'Authorization': mounted } })
+        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions/' + value, { headers: { 'Authorization': mounted } })
             .then(function (res) {
                 var myuniversityAdmission = res.data.universityAdmission;
                 if (res.data.success === true) {
@@ -108,7 +104,7 @@ const Application = () => {
     }
 
     let clickAddHandler = (datum) => {
-     
+
         if (tempp !== 1) {
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
@@ -116,7 +112,7 @@ const Application = () => {
         else {
             var datum = "<ul><li></li><li>" + datum + "</li></ul>";
         }
-       var element = document.querySelector(".applicationTrixAdd")
+        var element = document.querySelector(".applicationTrixAdd")
         element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
@@ -143,7 +139,7 @@ const Application = () => {
                         setsuccessMessage("Admission Added")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions';
                         fetch(url1, {
                             method: 'GET'
                         })
@@ -159,7 +155,7 @@ const Application = () => {
         }
     }
     let clickEditHandler = (datum) => {
-       
+
         if (tempp !== 1) {
             var datum = "<ul><li>" + datum + "</li></ul>";
             settempp(1);
@@ -193,7 +189,7 @@ const Application = () => {
                         setsuccessMessage("Admission Updated")
                         setTimeout(() => setsubmitSuccess(""), 3000);
                         setsubmitSuccess(1)
-                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions';
                         fetch(url1, {
                             method: 'GET'
                         })
@@ -234,7 +230,7 @@ const Application = () => {
                                     setsuccessMessage("Document deleted")
                                     setTimeout(() => setsubmitSuccess(""), 3000);
                                     setsubmitSuccess(1)
-                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityid + '/admissions';
+                                    const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions';
                                     fetch(url1, {
                                         method: 'GET'
                                     })
@@ -258,8 +254,8 @@ const Application = () => {
                 </SweetAlert>
                     : null
                 }
-                <a className="card-header" data-bs-toggle="collapse" href="#collapse4" 
-                onClick={() => handleClick()}><strong>4</strong>
+                <a className="card-header" data-bs-toggle="collapse" href="#collapse4"
+                    onClick={() => handleClick()}><strong>4</strong>
                     Application Process
                     {down === "0" ?
                         null
