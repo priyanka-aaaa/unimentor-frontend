@@ -25,7 +25,6 @@ function RecommendationDocuments(props) {
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
-        var myurl = process.env.REACT_APP_SERVER_URL;
         function recommendationAllDetails() {
             fetch(process.env.REACT_APP_SERVER_URL + 'student/recommendationDocument', {
                 method: 'get',
