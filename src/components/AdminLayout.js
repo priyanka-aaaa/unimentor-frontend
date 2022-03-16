@@ -5,7 +5,8 @@ import { faAngleLeft, faBars } from '@fortawesome/free-solid-svg-icons'
 import undraw_profile from '../img/undraw_profile.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faSignOutAlt, faFile, faDashboard, faUserCircle, faAddressBook, faBookmark, faCog, faEnvelope
+    faSignOutAlt, faFile, faDashboard, faUserCircle, faAddressBook,
+    faBookmark, faCog, faEnvelope, faGraduationCap, faUserSecret, faUniversity, faStepForward
 } from '@fortawesome/free-solid-svg-icons';
 function importAll(r) {
     let images = {};
@@ -79,7 +80,7 @@ function AdminLayout(props) {
         <div id="page-top">
             <div id="wrapper">
                 <ul className={width} id="accordionSidebar">
-                   <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
+                    <a className="sidebar-brand d-flex align-items-center justify-content-center" href="#">
                         {width === "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion toggled" ?
                             <Link to={'/admin/dashboard'}  >
                                 <img src={images["small-dash-logo.png"]} alt="" />
@@ -96,37 +97,37 @@ function AdminLayout(props) {
                     <hr className="sidebar-divider my-0" />
                     <li className="nav-item ">
                         <Link to={'/admin/dashboard'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                            <FontAwesomeIcon icon={faDashboard} />
                             <span>Dashboard</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/admin/studentApplication'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                            <FontAwesomeIcon icon={faAddressBook} />
                             <span>New Application</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/admin/studentApplication'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                            <FontAwesomeIcon icon={faAddressBook} />
                             <span>Old Application</span></Link>
                     </li>
                     <li className="nav-item">
                         <Link to={'/admin/student'} className="nav-link" >
-                            <i className="fas fa-file-alt"></i>
+                        <FontAwesomeIcon icon={faGraduationCap} />
                             <span>Student</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/admin/agent'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                        <FontAwesomeIcon icon={faUserSecret} />
                             <span>Agent</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/admin/university'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                        <FontAwesomeIcon icon={faUniversity} />
                             <span>University</span></Link>
                     </li>
                     <li className="nav-item ">
                         <Link to={'/admin/applicationStep'} className="nav-link" href="#">
-                            <i className="fas fa-file-upload"></i>
+                        <FontAwesomeIcon icon={faStepForward} />
                             <span>Application Step</span></Link>
                     </li>
                     <div className="text-center d-none d-md-inline">
@@ -140,9 +141,9 @@ function AdminLayout(props) {
                         </button>
                     </div>
                 </ul>
-               <div id="content-wrapper" className="d-flex flex-column">
+                <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                       <div>
+                        <div>
                             {redirectToReferrer === "true" ?
                                 <Redirect to={'/adminlogin'} />
                                 : <div>
