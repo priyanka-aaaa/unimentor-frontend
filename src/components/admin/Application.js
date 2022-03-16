@@ -26,7 +26,12 @@ const AdminApplication = () => {
         })
             .then(response => response.json())
             .then(data => {
-                setFormValues(data.adminApplications)
+                var myresults = data.adminApplications;
+                if (Object.keys(myresults).length === 0) {
+                }
+                else {
+                    setFormValues(data.adminApplications)
+                }
             })
     }, [])
     let handleChange = (i, e) => {
@@ -52,6 +57,19 @@ const AdminApplication = () => {
                             setsuccessMessage("Application Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + "admin/applications/";
+                            fetch(url, {
+                                method: 'GET',
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.adminApplications;
+                                    if (Object.keys(myresults).length === 0) {
+                                    }
+                                    else {
+                                        setFormValues(data.adminApplications)
+                                    }
+                                })
                         }
                     })
                     .catch(error => {
@@ -65,6 +83,19 @@ const AdminApplication = () => {
                             setsuccessMessage("Application Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
                             setsubmitSuccess(1)
+                            const url = process.env.REACT_APP_SERVER_URL + "admin/applications/";
+                            fetch(url, {
+                                method: 'GET',
+                            })
+                                .then(response => response.json())
+                                .then(data => {
+                                    var myresults = data.adminApplications;
+                                    if (Object.keys(myresults).length === 0) {
+                                    }
+                                    else {
+                                        setFormValues(data.adminApplications)
+                                    }
+                                })
                         }
                     })
                     .catch(error => {
@@ -109,7 +140,16 @@ const AdminApplication = () => {
                                 })
                                     .then(response => response.json())
                                     .then(data => {
-                                        setFormValues(data.adminApplications)
+                                        var myresults = data.adminApplications;
+                                        if (Object.keys(myresults).length === 0) {
+                                            setFormValues([{
+                                                application: "",
+                                                _id: "null"
+                                            }])
+                                         }
+                                        else {
+                                            setFormValues(data.adminApplications)
+                                        }
                                     })
                             }
                         })
@@ -132,9 +172,11 @@ const AdminApplication = () => {
                                     {formValues.map((element, index) => (
                                         <div className="row" key={index}>
                                             <div className="mb-3">
+                                            {element._id !== "null" ?
                                                 <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
                                                     <FontAwesomeIcon icon={faTrash} />
                                                 </a>
+                                                : null}
                                                 <div className="row">
                                                     <div className="col">
                                                         <div className="form-group">
