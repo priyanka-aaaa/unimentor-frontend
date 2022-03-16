@@ -357,7 +357,7 @@ const Document = () => {
                                                         <div className="row">
                                                             <div className="col-xl-6 col-md-12 " >
                                                                 <div className="form-group ">
-                                                                    <label htmlFor="comment">Edit Scholarship:</label>
+                                                                    <label htmlFor="comment">Add Scholarship:</label>
                                                                     <input id="addx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
@@ -446,7 +446,7 @@ const Document = () => {
                                                         <div className="row">
                                                             <div className="col-xl-6 col-md-12 " >
                                                                 <div className="form-group ">
-                                                                    <label htmlFor="comment">Edit Document:</label>
+                                                                    <label htmlFor="comment">Edit Scholarship:</label>
                                                                     <input id="editx" type="hidden" />
                                                                     <trix-editor
                                                                         name="universityApplication"
