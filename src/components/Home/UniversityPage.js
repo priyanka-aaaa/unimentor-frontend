@@ -2,28 +2,21 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoaderFrontend from './LoaderFrontend';
 import SweetAlert from 'react-bootstrap-sweetalert';
-
-
 import {
-    faStar, faBiking, faHome, faGraduationCap, faCalendarCheck, faPhone,
+    faStar,faGraduationCap, faCalendarCheck, faPhone,
     faEnvelope, faGlobe, faCheckCircle, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
-
 import Footer from './Footer'
 import Header from './Header'
-
-
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
     return images
 }
-
 const images = importAll(require.context('../../images', false, /\.(png|jpe?g|svg|webp)$/));
-
 
 export default function UniversityPage() {
     let { slug } = useParams();
@@ -34,141 +27,98 @@ export default function UniversityPage() {
     const [loader, setmyloader] = useState("false");
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
-
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-
     const [formValues, setFormValues] = useState([{
         question: "", answer: ""
-
     }])
-
     const [FormAdmissionValues, setFormAdmissionValues] = useState([{
         point: ""
-
     }])
     const [FormuniversitiesValues, setFormuniversitiesValues] = useState([{
         name: "", email: ""
-
     }])
     const [FormDocumentValues, setFormDocumentValues] = useState([{
         document: ""
-
     }])
     const [FormOverviewValues, setFormOverviewValues] = useState([{
         english: "", acceptanceRate: "", cgpa: "", course: "", courseNo: "", foundedYear: "", month: "",
         ranking: "", rate: "", year: ""
-
     }])
     const [FormPrimaryInformationValues, setFormPrimaryInformationValues] = useState([{
         website: "", country: "", phone: "", type: ""
-
     }])
     const [universityImageValues, setuniversityImageValues] = useState([{
         logo: "", coverPic: ""
-
     }])
     const [coursesValues, setcoursesValues] = useState([{
         courseName: "", duration: "", tuitionFee: "", studyField: "", fee: "", courseLevel: "", cgpa: "",
         eligibility: "", english: "", coursewebsite: "", description: "", exam: ""
-
     }])
-
     const [rankingValues, setrankingValues] = useState([])
     const [imageVideoValues, setimageVideoValues] = useState([])
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
-
-
-            var mytoken = mydata.data.token;
-
-        }
-        setMounted(mytoken)
-
-
         const urlMain = process.env.REACT_APP_SERVER_URL + 'universitySlug/' + slug;
         fetch(urlMain, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
         })
             .then(response => response.json())
             .then(data => {
-
-
                 var id = data.universities[0]._id;
                 setuniversityId(id)
-                //start for calling all other api
                 const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/faqs';
                 fetch(url1, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
-
                         setFormValues(data.universityFaqs)
                     })
 
                 const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/admissions';
                 fetch(url2, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         setFormAdmissionValues(data.universityAdmissions)
                     })
-
                 const url3 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/documents';
                 fetch(url3, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         setFormDocumentValues(data.universityDocuments)
                     })
-
                 const url4 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/overview';
                 fetch(url4, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         var myResult = data.universityOverview
-
                         if (myResult !== undefined) {
                             setFormOverviewValues(data.universityOverview)
                         }
-
                     })
-
                 const url5 = process.env.REACT_APP_SERVER_URL + 'universities';
                 fetch(url5, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         var myuniversitiesResult = data.universities
                         myuniversitiesResult.map((element) => {
-
                             if (element._id === id) {
-
                                 setFormuniversitiesValues(element)
                             }
                         })
                     })
-
                 const url6 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/primaryInformation';
                 fetch(url6, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -176,12 +126,10 @@ export default function UniversityPage() {
                         if (Object.keys(myresults).length !== 0) {
                             setFormPrimaryInformationValues(data.universityPrimaryInformation)
                         }
-
                     })
                 const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
                 fetch(url7, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
@@ -189,51 +137,32 @@ export default function UniversityPage() {
                         if (myuniversityImage !== undefined) {
                             setuniversityImageValues(myuniversityImage)
                         }
-
-
                     })
-
                 const url8 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/courses';
                 fetch(url8, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         setcoursesValues(data.universityCourses)
-
                     })
-
                 const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
-
                 fetch(url9, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         setrankingValues(data.universityRankings)
-
                     })
-
                 const url10 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/imageVideos';
-
                 fetch(url10, {
                     method: 'GET',
-                    headers: { 'Authorization': mytoken }
                 })
                     .then(response => response.json())
                     .then(data => {
                         setimageVideoValues(data.universityImageVideos)
-
                     })
-
-                //end for calling all other ap0i
-
             })
-
-
-
     }, [])
     var divStyle = {
         backgroundImage: 'url(' + universityImageValues.coverPic + ')'
@@ -255,25 +184,17 @@ export default function UniversityPage() {
         else {
             var studentToken = localStorage.getItem("studentToken")
             setmyloader("true")
-
             const obj = {
                 universityID: universityID,
                 courseID: courseID,
                 session: session,
                 applicationProgress: applicationProgress,
                 country: mycountry,
-
-
-
             };
             axios.post(process.env.REACT_APP_SERVER_URL + 'student/applications', obj, { headers: { 'Authorization': studentToken } })
                 .then(function (res) {
                     setmyloader("false")
                     if (res.data.success === true) {
-
-                        // setsuccessMessage("Admission Added")
-                        // setTimeout(() => setsubmitSuccess(""), 3000);
-                        // setsubmitSuccess(1)
                         setshowSweetAlert("1")
                     }
                 })
@@ -309,25 +230,7 @@ export default function UniversityPage() {
                 </div>
             </div>
             <div className="defult-home">
-
-                {/* <!--Preloader area start here--> */}
-                {/* <div id="loader" className="loader">
-                    <div className="loader-container"></div>
-                </div> */}
-                {/* <!--Preloader area End here--> */}
-
-                {/* <!-- Main content Start --> */}
-
                 <div className="main-content">
-
-                    {/* start for header */}
-
-                    {/* end for header */}
-
-
-
-
-                    {/* <!-- Breadcrumbs Start --> */}
                     <div className="rs-breadcrumbs img4 cover-pict" style={divStyle} >
                         <div className="breadcrumbs-inner text-center">
                             <h1 className="page-title">{FormuniversitiesValues.name}</h1>
@@ -339,9 +242,6 @@ export default function UniversityPage() {
                             </ul>
                         </div>
                     </div>
-                    {/* <!-- Breadcrumbs End --> */}
-
-                    {/* <!-- Blog Section Start --> */}
                     <div className="rs-inner-blog pt-120 pb-120 md-pt-90 md-pb-90">
                         <div className="container-fluid">
                             <div className="row">
@@ -363,15 +263,11 @@ export default function UniversityPage() {
                                                 <div className="post-img">
                                                     <span>
                                                         <FontAwesomeIcon icon={faPhone} />
-
-
                                                     </span>
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
                                                         <FontAwesomeIcon icon={faPhone} />
-
-
                                                         Call Now
                                                     </span>
                                                     <a href="tel:4401915153000">{FormPrimaryInformationValues.phone}</a>
@@ -382,8 +278,6 @@ export default function UniversityPage() {
                                                 <div className="post-img">
                                                     <span>
                                                         <FontAwesomeIcon icon={faEnvelope} />
-
-
                                                     </span>
                                                 </div>
                                                 <div className="post-desc">
@@ -401,8 +295,6 @@ export default function UniversityPage() {
                                                 <div className="post-img">
                                                     <span>
                                                         <FontAwesomeIcon icon={faGlobe} />
-
-
                                                     </span>
                                                 </div>
                                                 <div className="post-desc">
@@ -436,25 +328,18 @@ export default function UniversityPage() {
                                                     <li><a href="#ranking">Ranking</a></li>
                                                     <li><a href="#courses-fees">Courses & Fees</a></li>
                                                     <li><a href="#admission-requirements">Admissions Requirements </a></li>
-
                                                     <li><a href="#images-video"> Images/Video</a></li>
                                                     <li><a href="#courses"> Browse Courses</a></li>
-
                                                 </ul>
-
                                                 <div className="overviewblock">
                                                     <div className="overview-box blue-light">
                                                         <span className="icon">
                                                             <FontAwesomeIcon icon={faGraduationCap} />
-                                                            {/* <i className="fa fa-graduation-cap"></i> */}
                                                         </span>
                                                         <h3>{FormOverviewValues.courseNo} +<br /><span>Courses</span></h3>
                                                     </div>
-
                                                     <div className="overview-box green-light">
-
                                                         <span className="icon">
-
                                                             <FontAwesomeIcon icon={faCalendarCheck} /></span>
                                                         <h3>{FormOverviewValues.foundedYear}<br /><span>Founded year </span></h3>
                                                     </div>
@@ -466,8 +351,6 @@ export default function UniversityPage() {
                                                         </span>
                                                         <h3>{FormOverviewValues.ranking}<br /><span>Global Rankings</span></h3>
                                                     </div>
-
-
                                                 </div>
                                             </div>
                                         </div>
@@ -527,25 +410,17 @@ export default function UniversityPage() {
                                             <div className="blog-item" id="courses-fees">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Courses & Fees</a></h3>
-
-
-                                                    {/* start for courses */}
                                                     {coursesValues.map((element, index) => (
                                                         <div key={index}>
-
                                                             <h5>   <a
-
-                                                                data-bs-toggle="collapse" href={"#collapseCourse" + index}
-                                                            >
+                                                                data-bs-toggle="collapse" href={"#collapseCourse" + index}>
                                                                 {element.courseName || ""}
                                                             </a>
                                                             </h5>
                                                             <div id={"collapseCourse" + index} className="collapse" data-bs-parent="#accordion">
                                                                 <div className="blog-meta">
-
                                                                     <h5> Duration</h5>
                                                                     {element.duration}
-
                                                                 </div>
                                                                 <div className="blog-meta">
                                                                     <h5> Fee</h5>
@@ -576,31 +451,13 @@ export default function UniversityPage() {
                                                                     {element.description}
                                                                 </div>
                                                             </div>
-
-
-
                                                         </div>
                                                     ))}
-                                                    {/* end for courses */}
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="col-lg-12 mb-50">
                                             <div className="blog-item" id="ranking">
-
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="blog-details.html">Ranking</a></h3>
                                                     <div className="blog-meta">
@@ -608,7 +465,6 @@ export default function UniversityPage() {
                                                             <ul className="btm-cate" key={index}>
                                                                 <li>
                                                                     <div className="blog-date">
-
                                                                         <span>  <FontAwesomeIcon icon={faGlobe} /></span>
                                                                         {element.agencyName}
                                                                     </div>
@@ -640,8 +496,6 @@ export default function UniversityPage() {
                                                                 </div>
                                                             ))}
                                                         </div>
-
-
                                                     </div>
                                                 </div>
                                             </div>
@@ -674,30 +528,21 @@ export default function UniversityPage() {
                                                                 <a className="nav-link" data-bs-toggle="tab" href="#menu1">Documents</a>
                                                             </li>
                                                         </ul>
-
-                                                        {/* <!-- Tab panes --> */}
                                                         <div className="tab-content">
                                                             <div id="home" className="container tab-pane active"><br />
                                                                 <h5>Application</h5>
-                                                                {/* start for fetching admission */}
                                                                 {FormAdmissionValues.map((element, index) => (
-
                                                                     <ul key={index}>
                                                                         <li><span>
-
                                                                             <FontAwesomeIcon icon={faCheckCircle} />
-
                                                                         </span>{element.point || ""}</li>
 
                                                                     </ul>
                                                                 ))}
-                                                                {/* start for fetching admission */}
                                                             </div>
                                                             <div id="menu1" className="container tab-pane fade"><br />
                                                                 <h5>Documents</h5>
-                                                                {/* start for fetching admission */}
                                                                 {FormDocumentValues.map((element, index) => (
-
                                                                     <ul key={index}>
                                                                         <li><span>
                                                                             <FontAwesomeIcon icon={faCheckCircle} />
@@ -705,12 +550,9 @@ export default function UniversityPage() {
 
                                                                     </ul>
                                                                 ))}
-                                                                {/* start for fetching admission */}
-
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -718,57 +560,36 @@ export default function UniversityPage() {
                                             <div className="blog-item" id="images-video">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title"><a href="#">Images/Video </a></h3>
-
-
                                                     <div className="row" >
                                                         {imageVideoValues.map((element, index) => (
                                                             <div className="col-md-6" key={index}>
                                                                 <div className="blog-img">
-
                                                                     {element.type === "image" ?
                                                                         <a href="blog-details.html">
                                                                             <img src={element.link} alt="image" />
                                                                         </a>
                                                                         :
                                                                         <a href="blog-details.html">
-
-
                                                                             <video width="320" height="240" controls>
                                                                                 <source src={element.link} type="video/ogg" />
                                                                             </video>
                                                                         </a>
                                                                     }
-
-
-
                                                                 </div>
                                                             </div>
                                                         ))}
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
-
-
 
                                         <div className="col-lg-12">
                                             <div className="blog-item" id="courses">
                                                 <div className="blog-content">
                                                     <h3 className="blog-title">Browse Courses</h3>
-
-
-
-
-
-
-
                                                     <div className="row mb-3" >
                                                         {coursesValues.map((element, index) => (
-
-
-
-                                                            < div className="col-sm-6 mb-4" key={index} >
+                                                            <div className="col-sm-6 mb-4" key={index} >
                                                                 <div className="subcourses_courseBox__3deGG">
                                                                     <div className="subcourses_program__3pkFj col-sm-12 p-0">
                                                                         <img src={images["project-management.png"]} alt="" />
@@ -828,63 +649,38 @@ export default function UniversityPage() {
                                                                     </div>
                                                                 </div>
                                                                 <div className="text-right w-100">
-                                                                    {/* universityID,courseID,session,applicationProgress,country */}
-
                                                                     <button className="btn btn-primary  w-100" onClick={() => handleApplyNow(universityId, element._id, element.year + element.month, "first", FormPrimaryInformationValues.country)}>Apply Now
                                                                         <img
                                                                             src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                                     </button>
                                                                 </div>
-
-                                                                {/* THIS WILL REPEAT */}
-
-
-
-
                                                             </div>
                                                         ))}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div className="col-lg-12 mb-3 mt-5">
-
-
-
                                             <div id="accordion" className="blog-item">
                                                 <div className=" blog-content">
                                                     <h3 className="blog-title">FAQ</h3>
                                                     {formValues.map((element, index) => (
-
                                                         <div key={index}>
-
                                                             <div className="card">
                                                                 <a className="card-header  card-link" onClick={() => handleClick()}
-
-                                                                    data-bs-toggle="collapse" href={"#collapsefaq" + index}
-                                                                >
+                                                                    data-bs-toggle="collapse" href={"#collapsefaq" + index}>
                                                                     {down === "0" ?
                                                                         null
                                                                         :
                                                                         <FontAwesomeIcon icon={faAngleDown} style={{
 
-
                                                                             color: "#000",
                                                                             position: "absolute",
-
-
                                                                             display: "inline-block",
 
                                                                             fontSize: "inherit",
                                                                             textRendering: "auto",
-
                                                                             right: "20px"
-
-
-
-
-
                                                                         }} />
                                                                     }
                                                                     {up === "0" ?
@@ -906,16 +702,11 @@ export default function UniversityPage() {
                                                                     </div>
                                                                 </div>
                                                             </div>
-
-
                                                         </div>
                                                     ))}
                                                 </div>
                                             </div>
-
-
                                         </div>
-
 
                                         <div className="col-lg-12 mb-5">
                                             <div id="Similar" className="blog-item">
@@ -1070,13 +861,6 @@ export default function UniversityPage() {
 
                                                                     </div>
                                                                 </div>
-
-
-
-
-
-
-
                                                             </div>
                                                         </div>
 
@@ -1084,50 +868,18 @@ export default function UniversityPage() {
                                                 </div>
                                             </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {/* <!-- Blog Section End --> */}
                 </div>
-                {/* <!-- Main content End --> */}
-
-                {/* <!-- Footer Start --> */}
                 <Footer />
-                {/* <!-- Footer End --> */}
-
-                {/* <!-- start scrollUp  --> */}
                 <div id="scrollUp" className="orange-color">
                     <i className="fa fa-angle-up"></i>
                 </div>
-                {/* <!-- End scrollUp  -->
-
-<!-- Search Modal Start --> */}
-                <div aria-hidden="true" className="modal fade search-modal" role="dialog" tabIndex="-1">
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span className="flaticon-cross"></span>
-                    </button>
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="search-block clearfix">
-                                <form>
-                                    <div className="form-group">
-                                        <input className="form-control" placeholder="Search Here..." type="text" />
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div >
         </div >
-
-
     );
 };
 
