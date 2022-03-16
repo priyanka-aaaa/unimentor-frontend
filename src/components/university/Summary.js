@@ -35,6 +35,8 @@ export default function Summary() {
         setMounted(mounted)
         setuniversityId(universityId)
         var currentYear = (new Date()).getFullYear();
+        if(universityId!==null){
+
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
             method: 'GET',
@@ -71,6 +73,7 @@ export default function Summary() {
             })
             .catch(error => {
             });
+        }
     }, [])
     function Summary(event) {
         event.preventDefault();

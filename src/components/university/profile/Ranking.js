@@ -10,27 +10,21 @@ import {
     faAngleDown, faAngleUp, faTrash, faPlus, faPen
 } from '@fortawesome/free-solid-svg-icons';
 const Ranking = () => {
-
-
-    const [agencyName, setagencyName] = useState("");
+  const [agencyName, setagencyName] = useState("");
     const [rank, setrank] = useState("");
     const [year, setyear] = useState("");
     const [certificate, setcertificate] = useState("");
     const [showCertificate, setshowCertificate] = useState("");
     const [certificateError, setcertificateError] = useState("");
-
-
-    const [editdata, seteditdata] = useState([]);
+ const [editdata, seteditdata] = useState([]);
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
     }])
-
-    const [editPoint, seteditPoint] = useState([{
+ const [editPoint, seteditPoint] = useState([{
         agencyName: "", rank: "", year: "", certificate: ""
     }])
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
-
-    const [editnewcomponent, seteditnewcomponent] = useState(0);
+ const [editnewcomponent, seteditnewcomponent] = useState(0);
     const [addnewcomponent, setaddnewcomponent] = useState(0);
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -39,8 +33,7 @@ const Ranking = () => {
     const [addWidth, setaddWidth] = useState("");
     const [editId, seteditId] = useState([]);
     const [width, setwidth] = useState("");
-
-    const [universityId, setuniversityId] = useState("");
+ const [universityId, setuniversityId] = useState("");
     const [MYpoint, setMYpoint] = useState();
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
@@ -52,14 +45,14 @@ const Ranking = () => {
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
     const [extensionError, setextensionError] = useState("0");
-
-    const [submitError, setsubmitError] = useState("0");
+ const [submitError, setsubmitError] = useState("0");
 
     useEffect(() => {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId);
+        if(universityId!==null){
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/rankings';
         fetch(url1, {
             method: 'GET'
@@ -72,7 +65,7 @@ const Ranking = () => {
                 }
                 setdata(data.universityRankings)
             })
-
+        }
     }, [])
 
 

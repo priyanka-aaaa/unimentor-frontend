@@ -69,7 +69,8 @@ const Courses = () => {
         var mounted = localStorage.getItem('universityToken');
         setmounted(mounted)
         setuniversityId(universityId)
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+        if(universityId!==null){
+  const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -93,6 +94,7 @@ const Courses = () => {
                     setIntakedata(data.universityIntakes)
                 }
             })
+        }
     }, [])
     // start for pagination
     const commentsData = useMemo(() => {

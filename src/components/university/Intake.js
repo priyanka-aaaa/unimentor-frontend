@@ -31,7 +31,8 @@ const Intake = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+        if(universityId!==null){
+ const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -40,6 +41,7 @@ const Intake = () => {
             .then(data => {
                 setdata(data.universityIntakes)
             })
+        }
     }, [])
     function handleClick(value) {
         setyearaddError("")

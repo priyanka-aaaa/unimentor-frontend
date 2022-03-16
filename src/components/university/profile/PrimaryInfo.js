@@ -52,6 +52,7 @@ export default function PrimaryInfo() {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId);
+        if(universityId!==null){
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
             .then(function (res) {
                 if (res.data.success === true) {
@@ -75,14 +76,14 @@ export default function PrimaryInfo() {
                         })
                         .catch(error => {
                         })
-                        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + res.data.universityPrimaryInformation.state + '/')
+                    axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + res.data.universityPrimaryInformation.state + '/')
                         .then(function (res) {
                             if (res.data.success === true) {
                                 setcities(res.data.result);
                             }
                         })
                         .catch(error => {
-            
+
                         });
                 }
 
@@ -98,7 +99,7 @@ export default function PrimaryInfo() {
             .catch(error => {
 
             });
-
+        }
 
 
 
@@ -330,7 +331,7 @@ export default function PrimaryInfo() {
                                                 required
                                                 value={state}
                                             >
- {CheckState === "0" ? <option value={state}>{state}</option> : <option value="">Please select state</option>}
+                                                {CheckState === "0" ? <option value={state}>{state}</option> : <option value="">Please select state</option>}
                                                 {states.map((element, index) => {
                                                     return (
                                                         <option

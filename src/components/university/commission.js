@@ -80,7 +80,8 @@ const UniversitySetcommission = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+        if(universityId!==null){
+  const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
         fetch(url, {
             method: 'GET',
             headers: { 'Authorization': mounted }
@@ -98,7 +99,7 @@ const UniversitySetcommission = () => {
             .then(data => {
                 setdata(data.universityCourses)
             })
-
+        }
     }, [])
     function handleClick(value) {
     }

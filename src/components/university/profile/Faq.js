@@ -30,6 +30,7 @@ const Faq = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
+        if(universityId!==null){
         const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
         fetch(url, {
             method: 'GET',
@@ -44,6 +45,7 @@ const Faq = () => {
                     setFormValues(data.universityFaqs)
                 }
             })
+        }
     }, [])
     function handleClick() {
         if (down === "1") {

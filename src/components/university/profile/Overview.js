@@ -41,6 +41,7 @@ export default function Overview() {
         var universityId = localStorage.getItem('universityId');
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
+        if(universityId!==null){
         axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/overview')
             .then(function (res) {
                 if (res.data.success === true) {
@@ -59,6 +60,7 @@ export default function Overview() {
             })
             .catch(error => {
             });
+        }
     }, [])
     function handleClick() {
         if (down === "1") {

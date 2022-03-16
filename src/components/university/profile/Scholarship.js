@@ -53,6 +53,7 @@ const Document = () => {
             })
         setMounted(mounted)
         setuniversityId(universityId)
+        if(universityId!==null){
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/scholarships';
         fetch(url1, {
             method: 'GET'
@@ -61,7 +62,7 @@ const Document = () => {
             .then(data => {
                 setFormValues(data.universityScholarships)
             })
-
+        }
     }, [])
     function handleClick() {
         if (down === "1") {

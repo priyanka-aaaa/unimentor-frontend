@@ -41,6 +41,7 @@ const Document = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
+        if(universityId!==null){
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
         fetch(url1, {
             method: 'GET'
@@ -54,6 +55,7 @@ const Document = () => {
                 }
                 setFormValues(data.universityDocuments)
             })
+        }
         const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/';
         fetch(url, {
             method: 'GET'

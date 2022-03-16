@@ -43,6 +43,7 @@ const Application = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId);
+        if(universityId!==null){
         const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/admissions';
         fetch(url1, {
             method: 'GET'
@@ -55,6 +56,7 @@ const Application = () => {
                 }
                 setFormValues(data.universityAdmissions)
             })
+        }
         const url = process.env.REACT_APP_SERVER_URL + 'admin/applications/';
         fetch(url, {
             method: 'GET'
@@ -63,6 +65,7 @@ const Application = () => {
             .then(data => {
                 setformAdminValues(data.adminApplications)
             })
+        
     }, [])
     function handleClick() {
         if (down === "1") {
