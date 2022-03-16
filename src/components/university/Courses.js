@@ -45,30 +45,18 @@ const Courses = () => {
     const [showModal, setshowModal] = useState(false);
     // start for pagination
     const [comments, setComments] = useState([]);
-
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [search, setSearch] = useState("");
     const [sorting, setSorting] = useState({ field: "", order: "" });
     const ITEMS_PER_PAGE = 5;
-
     const tableHeaders = [
         { name: "No#", field: "_id", sortable: false },
         { name: "Course Name", field: "courseName", sortable: true },
         { name: "Duration", field: "duration", sortable: true },
         { name: "Tuition Fee", field: "tuitionFee", sortable: false },
         { name: "Action", field: "", sortable: false },
-
-
-
-
-
-
-
-
-
     ];
-
     // end for pagination
     function open() {
         setshowModal(true)
@@ -89,7 +77,6 @@ const Courses = () => {
             .then(response => response.json())
             .then(data => {
                 setComments(data.universityCourses);
-                // setdata(data.universityCourses)
             })
         const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
         fetch(url2, {
@@ -116,7 +103,7 @@ const Courses = () => {
                 comment =>
                     comment.courseName.toLowerCase().includes(search.toLowerCase()) ||
                     comment.duration.toLowerCase().includes(search.toLowerCase()) ||
-                    comment._id.toLowerCase().includes(search.toLowerCase()) 
+                    comment._id.toLowerCase().includes(search.toLowerCase())
             );
         }
 

@@ -9,14 +9,7 @@ import Scholarship from './profile/Scholarship';
 import Faq from './profile/Faq';
 import Document from './profile/Document';
 function UniversityProfile(props) {
-    useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-
-        }
-    }, [])
-    return (
+   return (
         <div className="container">
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 className="h3 mb-0 text-gray-800">University/School </h1>
