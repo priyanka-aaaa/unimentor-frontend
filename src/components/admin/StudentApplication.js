@@ -12,44 +12,6 @@ import {
 
 } from '@fortawesome/free-solid-svg-icons';
 export default function AdminStudentApplication() {
-
-    // const saveFile = (url) => {
-    //     var zip = new JSZip();
-    //     var count = 0;
-    //     var zipFilename = "zipFilename.zip";
-    //     var urls = [
-    //         {
-    //             link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-    //             name: 'image1'
-    //         },
-    //         {
-    //             link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-    //             name: 'image2'
-    //         },
-    //         {
-    //             link: 'https://cdn.filestackcontent.com/16iECrZSLVefcyXnLTAm',
-    //             name: 'image3'
-    //         },
-
-    //     ];
-
-    //     urls.forEach(function (url) {
-    //         JSZipUtils.getBinaryContent(url.link, function (err, data) {
-    //             if (err) {
-    //                 throw err;
-    //             }
-    //             zip.file(url.name, data, { binary: true });
-    //             count++;
-    //             if (count == urls.length) {
-    //                 zip.generateAsync({ type: 'blob' }).then(function (content) {
-    //                     saveAs(content, zipFilename);
-    //                     return
-    //                 });
-    //             }
-    //         });
-    //     });
-    // };
-
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
     const [firstviewWidth, setfirstviewWidth] = useState("0px");
@@ -119,12 +81,7 @@ export default function AdminStudentApplication() {
     }])
     const [message, setmessage] = useState();
     useEffect(() => {
-        if (localStorage.getItem("adminData")) {
-            var a = localStorage.getItem('adminData');
-            var mydata = JSON.parse(a);
-            var mounted = mydata.data.token;
-            var adminId = mydata.data.admin._id;
-        }
+        var mounted = localStorage.getItem("adminToken")
         setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + 'admin/studentApplications';
         fetch(url, {
@@ -139,7 +96,7 @@ export default function AdminStudentApplication() {
 
         axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
             .then(function (res) {
-              if (res.data.success === true) {
+                if (res.data.success === true) {
 
                     var myresults = res.data.notifications;
 
@@ -447,8 +404,8 @@ export default function AdminStudentApplication() {
                     setmessage("")
                     axios.get(process.env.REACT_APP_SERVER_URL + 'student/messages', { headers: { 'Authorization': mounted } })
                         .then(function (res) {
-                          
-                            
+
+
                             if (res.data.success === true) {
 
                                 var myresults = res.data.notifications;

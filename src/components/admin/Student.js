@@ -8,24 +8,15 @@ import {
 export default function AdminUniversity() {
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
-    const [foundedYear, setfoundedYear] = useState("");
     const [formValues, setFormValues] = useState([{
-        name: "",email:"",phone:"",_id:""
+        name: "", email: "", phone: "", _id: ""
     }])
-
     useEffect(() => {
-        if (localStorage.getItem("universityData")) {
-            var a = localStorage.getItem('universityData');
-            var mydata = JSON.parse(a);
-            var myuniversityid = mydata.data.university._id;
-            var user_email = mydata.data.university.email;
-            var mytoken = mydata.data.token;
-        }
-        setMounted(mytoken)
+        setMounted(mounted)
         const url = process.env.REACT_APP_SERVER_URL + "students";
         fetch(url, {
             method: 'GET',
-            headers: { 'Authorization': mytoken }
+            headers: { 'Authorization': mounted }
         })
             .then(response => response.json())
             .then(data => {

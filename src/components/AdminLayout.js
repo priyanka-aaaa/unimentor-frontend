@@ -143,20 +143,15 @@ function AdminLayout(props) {
                         </button>
                     </div>
                 </ul>
-                {/* end for sidebar */}
-                <div id="content-wrapper" className="d-flex flex-column">
+               <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
-                        {/* start for topbar */}
-                        <div>
+                       <div>
                             {redirectToReferrer === "true" ?
                                 <Redirect to={'/adminlogin'} />
                                 : <div>
                                     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                                         <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3"
-                                            onClick={() => handletoogleClick()}
-                                        >
-
-
+                                            onClick={() => handletoogleClick()} >
                                             <FontAwesomeIcon icon={faBars} />
 
                                         </button>

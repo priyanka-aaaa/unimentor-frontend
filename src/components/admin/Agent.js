@@ -1,141 +1,101 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faTrash, faPen, faEye, faUserSlash,faCloudDownload
+    faTrash, faPen, faEye, faUserSlash
 
 } from '@fortawesome/free-solid-svg-icons';
-
-export default function AdminAgent() {
+export default function AdminUniversity() {
+    const [mounted, setMounted] = useState();
+    const [data, setdata] = useState([]);
+    const [formValues, setFormValues] = useState([{
+        name: "", email: "", phone: "", _id: ""
+    }])
+    useEffect(() => {
+        setMounted(mounted)
+        const url = process.env.REACT_APP_SERVER_URL + "students";
+        fetch(url, {
+            method: 'GET',
+            headers: { 'Authorization': mounted }
+        })
+            .then(response => response.json())
+            .then(data => {
+                setdata(data.students);
+                setFormValues(data.students)
+            })
+    }, [])
     return (
         <div className="container">
-        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Agent</h1>
-        </div>
-        <div class="row">
-            <div class="col-xl-12 col-lg-7">
-                <div class="card shadow mb-4">
-                    <div class="card shadow mb-4">
-                        <div class="table-responsive-sm">
-                        <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                 
-                                        <th>ID</th>
-                                        <th> Name</th>
-                                        <th>Email</th>
-                                        <th>Phone</th>
-                                        <th>Action</th>
+            <div className="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 className="h3 mb-0 text-gray-800">Students</h1>
+            </div>
+            <div className="row">
+                <div className="col-xl-12 col-lg-7">
+                    <div className="card shadow mb-4">
+                        <div className="card shadow mb-4">
+                            <div className="table-responsive-sm">
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>priyanka</td>
-                                        <td>priyanka.calinfo500@gmail.com</td>
-                                        <td>9817961998</td>
 
-                                        <td>
-                                            <button className="btn btn-danger btn-sm " >
-                                                <FontAwesomeIcon icon={faTrash} />
+                                <table className="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Id</th>
+                                            <th>Name</th>
 
-                                            </button>
-                                            <button className="btn btn-success btn-sm">
-                                                <FontAwesomeIcon icon={faPen} />
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Action</th>
 
-                                            </button>
-                                            <button className="btn btn-primary btn-sm vbtn" >
-                                                <FontAwesomeIcon icon={faEye} />
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            </button>
-                                            <button className="btn btn-info  btn-sm ml-2" >
-                                                <FontAwesomeIcon icon={faUserSlash} />
+                                        {formValues.map((object, i) => {
+                                            return (
+                                                <tr key={i}>
+                                                    <td>{i + 1}</td>
+                                                    <td>{object._id}</td>
+                                                    <td> {object.name}</td>
+                                                    <td>{object.email}</td>
+                                                    <td>{object.phone}</td>
 
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>priyanka</td>
-                                        <td>priyanka.calinfo500@gmail.com</td>
-                                        <td>9817961998</td>
 
-                                        <td>
-                                            <button className="btn btn-danger btn-sm " >
-                                                <FontAwesomeIcon icon={faTrash} />
+                                                    <td>
+                                                        <button className="btn btn-danger btn-sm" >
+                                                            <FontAwesomeIcon icon={faTrash} />
 
-                                            </button>
-                                            <button className="btn btn-success btn-sm">
-                                                <FontAwesomeIcon icon={faPen} />
 
-                                            </button>
-                                            <button className="btn btn-primary btn-sm vbtn" >
-                                                <FontAwesomeIcon icon={faEye} />
+                                                        </button>
+                                                        <button className="btn btn-success btn-sm">
+                                                            <FontAwesomeIcon icon={faPen} />
 
-                                            </button>
-                                            <button className="btn btn-info  btn-sm ml-2" >
-                                                <FontAwesomeIcon icon={faUserSlash} />
 
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>priyanka</td>
-                                        <td>priyanka.calinfo500@gmail.com</td>
-                                        <td>9817961998</td>
+                                                        </button>
+                                                        <button className="btn btn-primary btn-sm vbtn" ><Link to={'/institute/' + object._id} className="nav-link" >
+                                                            <FontAwesomeIcon icon={faEye} />
 
-                                        <td>
-                                            <button className="btn btn-danger btn-sm " >
-                                                <FontAwesomeIcon icon={faTrash} />
 
-                                            </button>
-                                            <button className="btn btn-success btn-sm">
-                                                <FontAwesomeIcon icon={faPen} />
+                                                        </Link></button>
+                                                        <button className="btn btn-info  btn-sm ml-2" >
+                                                            <FontAwesomeIcon icon={faUserSlash} />
 
-                                            </button>
-                                            <button className="btn btn-primary btn-sm vbtn" >
-                                                <FontAwesomeIcon icon={faEye} />
 
-                                            </button>
-                                            <button className="btn btn-info  btn-sm ml-2" >
-                                                <FontAwesomeIcon icon={faUserSlash} />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            )
 
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>priyanka</td>
-                                        <td>priyanka.calinfo500@gmail.com</td>
-                                        <td>9817961998</td>
+                                        })}
 
-                                        <td>
-                                            <button className="btn btn-danger btn-sm " >
-                                                <FontAwesomeIcon icon={faTrash} />
 
-                                            </button>
-                                            <button className="btn btn-success btn-sm">
-                                                <FontAwesomeIcon icon={faPen} />
-
-                                            </button>
-                                            <button className="btn btn-primary btn-sm vbtn" >
-                                                <FontAwesomeIcon icon={faEye} />
-
-                                            </button>
-                                            <button className="btn btn-info  btn-sm ml-2" >
-                                                <FontAwesomeIcon icon={faUserSlash} />
-
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                 </div>
+                </div>
             </div>
-</div>
-     </div>
+        </div>
     );
 }

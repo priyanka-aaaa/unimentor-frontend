@@ -19,7 +19,13 @@ const AdminRoutes = [
     component: Dashboard,
     layout: "/admin",
   },
-
+  {
+    path: "/studentApplication",
+    name: "Typography",
+    icon: "nc-icon nc-paper-2",
+    component: StudentApplication,
+    layout: "/admin",
+  }, 
   {
     path: "/student",
     name: "Typography",
@@ -62,13 +68,7 @@ const AdminRoutes = [
     component: Scholarship,
     layout: "/admin",
   },
-  {
-    path: "/studentApplication",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: StudentApplication,
-    layout: "/admin",
-  }, 
+
   {
     path: "/applicationStep",
     name: "Typography",
