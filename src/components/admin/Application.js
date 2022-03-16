@@ -8,9 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 const AdminApplication = () => {
     const [formValues, setFormValues] = useState([{
-        application: "",
-        _id: "null"
-
+        application: "", _id: "null"
     }])
     const [mounted, setMounted] = useState();
     const [data, setdata] = useState([]);
@@ -70,11 +68,9 @@ const AdminApplication = () => {
                         }
                     })
                     .catch(error => {
-
                     });
             }
         })
-
     }
     function handleDeleteClick(value) {
         setshowSweetAlert("1")
@@ -100,7 +96,6 @@ const AdminApplication = () => {
                 onConfirm={(value) => {
                     setshowSweetAlert("0");
                     setmyloader("true")
-
                     axios.delete(process.env.REACT_APP_SERVER_URL + 'admin/applications/' + deleteId, { headers: { 'Authorization': mounted } })
                         .then(function (res) {
                             setmyloader("false")
@@ -116,8 +111,6 @@ const AdminApplication = () => {
                                     .then(data => {
                                         setFormValues(data.adminApplications)
                                     })
-                            }
-                            else {
                             }
                         })
                         .catch(error => {
@@ -136,15 +129,12 @@ const AdminApplication = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="card-body" >
                                 <div className="from-block" >
-
                                     {formValues.map((element, index) => (
                                         <div className="row" key={index}>
                                             <div className="mb-3">
-
                                                 <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
                                                     <FontAwesomeIcon icon={faTrash} />
                                                 </a>
-
                                                 <div className="row">
                                                     <div className="col">
                                                         <div className="form-group">
@@ -159,22 +149,17 @@ const AdminApplication = () => {
                                             </div>
                                         </div>
                                     ))}
-
                                     <div className="mb-3">
                                         <div className="row">
                                             <div className="col-md-6"></div>
                                             <div className="col-md-6 text-right">
-
                                                 <button title="Add New" type="button" className="btn btn-success " onClick={() => addFormFields()}>Add New</button>
-
                                                 <button title="Save" type="submit" className="btn btn-secondary ml-2">Save
                                                 </button>
                                                 <button title="Save & Next" type="submit" data-bs-toggle="collapse" href="#collapse4" className="btn btn-success ">Save &
                                                     Next</button>
                                             </div>
-
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

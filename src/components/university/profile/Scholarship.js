@@ -46,11 +46,9 @@ const Document = () => {
             .then(response => response.json())
             .then(data => {
                 var myresults = data.adminScholarships;
-
                 if (Object.keys(myresults).length === 0) {
                     setTable("true");
                 }
-
                 setformAdminValues(data.adminScholarships)
             })
         setMounted(mounted)
