@@ -42,7 +42,6 @@ function AdminLayout(props) {
         setMounted(mounted)
         setadminEmail(adminEmail)
         setadminId(adminId)
-
         if (localStorage.getItem("adminId")) {
             var mounted = localStorage.getItem("adminToken")
             var adminEmail = localStorage.getItem("adminEmail")
@@ -63,13 +62,9 @@ function AdminLayout(props) {
     }
     function getRoutes(routes) {
         return routes.map((prop, key) => {
-
             if (prop.layout === "/admin") {
-
                 return (
-
                     <Route
-
                         path={prop.layout + prop.path}
                         render={(props) => <prop.component {...props} />}
                         key={key}
@@ -83,9 +78,7 @@ function AdminLayout(props) {
     return (
         <div id="page-top">
             <div id="wrapper">
-                {/* start for sidebar */}
                 <ul className={width} id="accordionSidebar">
-
                     <div className="sidebar-brand-icon ">
                         CM
                     </div>
