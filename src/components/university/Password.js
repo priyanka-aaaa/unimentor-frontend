@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Loader from '../Home/Loader';
 
-export default function UniversityPassword() {
+export default function Password() {
     const [mounted, setMounted] = useState();
     const [universityEmail, setuniversityEmail] = useState();
     const [password, setpassword] = useState("");

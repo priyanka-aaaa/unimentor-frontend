@@ -8,7 +8,7 @@ import {
     faPlus, faTrash, faPen, faEye
 
 } from '@fortawesome/free-solid-svg-icons';
-const Intake = () => {
+export default function Intake() {
     const [year, setyear] = useState("");
     const [month, setmonth] = useState("");
     const [IntakeId, setIntakeId] = useState("");
@@ -482,4 +482,3 @@ const Intake = () => {
     );
 }
 
-export default Intake;

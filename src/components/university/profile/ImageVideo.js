@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleDown, faAngleUp, faTrash
 } from '@fortawesome/free-solid-svg-icons';
-const ImageVideo = () => {
+  export default function ImageVideo() {
     const [universityId, setuniversityId] = useState([]);
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
@@ -506,4 +506,3 @@ const ImageVideo = () => {
     );
 }
 
-export default ImageVideo

@@ -7,7 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
-const Document = () => {
+
+    export default function Document() {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
     }])
@@ -518,5 +519,3 @@ const Document = () => {
         </div >
     );
 }
-
-export default Document

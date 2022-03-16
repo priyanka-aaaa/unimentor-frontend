@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleDown, faAngleUp, faTrash, faPlus, faPen
 } from '@fortawesome/free-solid-svg-icons';
-const Ranking = () => {
+export default function Ranking() {
   const [agencyName, setagencyName] = useState("");
     const [rank, setrank] = useState("");
     const [year, setyear] = useState("");
@@ -588,4 +588,3 @@ const Ranking = () => {
     );
 }
 
-export default Ranking

@@ -8,7 +8,7 @@ import ImageVideo from './profile/ImageVideo';
 import Scholarship from './profile/Scholarship';
 import Faq from './profile/Faq';
 import Document from './profile/Document';
-function UniversityProfile(props) {
+export default function Dashboard() {
    return (
         <div className="container">
         <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -32,4 +32,3 @@ function UniversityProfile(props) {
     </div>
   );
 }
-export default UniversityProfile;

@@ -8,7 +8,7 @@ import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
-const Document = () => {
+export default function Scholarship() {
     const [FormValues, setFormValues] = useState([{
         point: ""
     }])
@@ -513,4 +513,3 @@ const Document = () => {
     );
 }
 
-export default Document

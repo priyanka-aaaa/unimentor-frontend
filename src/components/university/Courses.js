@@ -9,7 +9,7 @@ import {
     faPlus, faTrash, faPen, faEye
 } from '@fortawesome/free-solid-svg-icons';
 import { Modal, Button } from 'react-bootstrap';
-const Courses = () => {
+export default function Courses() {
     const [courseName, setcourseName] = useState("");
     const [duration, setduration] = useState("");
     const [tuitionFee, settuitionFee] = useState("");
@@ -1137,4 +1137,3 @@ const Courses = () => {
     );
 }
 
-export default Courses;

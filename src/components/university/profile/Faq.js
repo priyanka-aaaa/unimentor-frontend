@@ -8,7 +8,7 @@ import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
-const Faq = () => {
+export default function Faq() {
     const [formValues, setFormValues] = useState([{
         question: "", answer: "",
         _id: "null"
@@ -30,21 +30,21 @@ const Faq = () => {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        if(universityId!==null){
-        const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myresults = data.universityFaqs;
-                if (Object.keys(myresults).length === 0) {
-                }
-                else {
-                    setFormValues(data.universityFaqs)
-                }
+        if (universityId !== null) {
+            const url = process.env.REACT_APP_SERVER_URL + "university/" + universityId + "/faqs";
+            fetch(url, {
+                method: 'GET',
+                headers: { 'Authorization': mounted }
             })
+                .then(response => response.json())
+                .then(data => {
+                    var myresults = data.universityFaqs;
+                    if (Object.keys(myresults).length === 0) {
+                    }
+                    else {
+                        setFormValues(data.universityFaqs)
+                    }
+                })
         }
     }, [])
     function handleClick() {
@@ -120,7 +120,7 @@ const Faq = () => {
                                 .then(data => {
                                     var myresults = data.universityFaqs;
                                     if (Object.keys(myresults).length === 0) {
-                                     }
+                                    }
                                     else {
                                         setFormValues(data.universityFaqs)
                                     }
@@ -335,4 +335,3 @@ const Faq = () => {
     );
 }
 
-export default Faq

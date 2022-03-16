@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faAngleDown, faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
-const CoursesFee = () => {
+export default function CoursesFee() {
     const [down, setdown] = useState("1");
     const [up, setup] = useState("0");
     function handleClick() {
@@ -55,4 +55,3 @@ const CoursesFee = () => {
         </div>
     );
 }
-export default CoursesFee;

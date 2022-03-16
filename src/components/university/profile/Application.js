@@ -8,8 +8,7 @@ import {
 
 } from '@fortawesome/free-solid-svg-icons';
 import SweetAlert from 'react-bootstrap-sweetalert';
-
-const Application = () => {
+export default function Application() {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
     }])
@@ -512,4 +511,3 @@ const Application = () => {
     );
 }
 
-export default Application
