@@ -160,6 +160,11 @@ const EducationProfile = () => {
                                     .then(data => {
                                         var myresults = data.studentEducations;
                                         if (Object.keys(myresults).length === 0) {
+                                            setFormValues([{
+                                                highestEducation: "", status: "", specialization: "", degree: "", gradePercentage: "", marks: "", attendedForm: "",
+                                                institution: "", affiliationUniversity: "", language: "", country: "", state: "", city: "", address: "", zipcode: "",
+                                                _id: "null"
+                                            }])
                                         }
                                         else {
                                             setFormValues(data.studentEducations)
@@ -226,9 +231,13 @@ const EducationProfile = () => {
                                                 </div>
                                             </div>
                                             <div className="col-12 col-sm-2 col-md-2 col-lg-2 text-right mt-2">
-                                                <a title="Delet" className="btn btn-danger" onClick={() => handleDeleteClick(element._id)}>
+                                            {element._id !== "null" ?
+                                                <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
                                                     <FontAwesomeIcon icon={faTrash} />
                                                 </a>
+                                                : null}
+                                                
+                                              
                                             </div>
                                         </div>
                                         <div className="row">

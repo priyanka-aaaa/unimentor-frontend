@@ -154,6 +154,10 @@ const FamilyProfile = () => {
                                     .then(data => {
                                         var myresults = data.studentFamilies;
                                         if (Object.keys(myresults).length === 0) {
+                                            setFormValues([ {
+                                                relationship: "", salutation: "", firstName: "", middleName: "", lastName: "", email: "",
+                                                mobile: "", occupation: "", qualification: "", _id: "null"
+                                            }])
                                         }
                                         else {
                                             setFormValues(data.studentFamilies)
@@ -204,9 +208,12 @@ const FamilyProfile = () => {
                                             </select>
                                         </div>
                                         <div className="col-md-1">
-                                            <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
-                                                <FontAwesomeIcon icon={faTrash} />
-                                            </a>
+                                            {element._id !== "null" ?
+                                                <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </a>
+                                                : null}
+
                                         </div>
                                     </div>
                                     <div className="row mb-3">

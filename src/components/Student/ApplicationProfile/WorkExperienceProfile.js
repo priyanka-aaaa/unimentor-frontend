@@ -158,6 +158,10 @@ const WorkExperienceProfile = () => {
                                     .then(data => {
                                         var myresults = data.studentExperiences;
                                         if (Object.keys(myresults).length === 0) {
+                                            setFormValues([{
+                                                status: '', type: "", organization: "", designation: "", role: "", started: '', ended: "", country: "", city: "",
+                                                _id: "null"
+                                            }])
                                         }
                                         else {
                                             setFormValues(data.studentExperiences)
@@ -225,10 +229,12 @@ const WorkExperienceProfile = () => {
                                                     type="text" className="form-control" id="company_name" name="organization" placeholder="Name of Organization" /></div>
                                         </div>
                                         <div className="col-12 col-sm-1 col-md-1 col-lg-1 text-right mt-4">
-                                            <a className="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
-                                                <FontAwesomeIcon icon={faTrash} />
-                                            </a>
-                                        </div>
+                                        {element._id !== "null" ?
+                                                <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </a>
+                                                : null}
+                                         </div>
                                     </div>
                                     <div className="row">
                                         <div className="col-12 col-sm-6 col-md-6 col-lg-6">

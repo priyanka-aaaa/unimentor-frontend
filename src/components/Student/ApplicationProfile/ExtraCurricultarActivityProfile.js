@@ -58,17 +58,19 @@ const ExtraCurricultarActivityProfile = () => {
     let addFormFields = () => {
         setFormValues([...formValues, {
             Activitiestatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
-
             _id: "null"
         }])
     }
     let handleSubmit = (event) => {
         event.preventDefault();
+        setmyloader("true")
         var myvalues = JSON.stringify(formValues);
         formValues.map(async (item) => {
             if (item._id === "null") {
                 await axios.post(process.env.REACT_APP_SERVER_URL + 'student/activities', item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
+                        setmyloader("false")
+
                         if (res.data.success === true) {
                             setsuccessMessage("ExtraCurricultural Activity Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
@@ -97,6 +99,8 @@ const ExtraCurricultarActivityProfile = () => {
             else {
                 await axios.put(process.env.REACT_APP_SERVER_URL + 'student/activities/' + item._id, item, { headers: { 'Authorization': mounted } })
                     .then(function (res) {
+                        setmyloader("false")
+
                         if (res.data.success === true) {
                             setsuccessMessage("ExtraCurricultural Activity Updated")
                             setTimeout(() => setsubmitSuccess(""), 3000);
@@ -165,7 +169,10 @@ const ExtraCurricultarActivityProfile = () => {
                                     .then(data => {
                                         var myresults = data.studentActivities;
                                         if (Object.keys(myresults).length === 0) {
-
+                                            setFormValues([{
+                                                Activitiestatus: "", activity: "", position: "", description: "", started: "", ended: "", apply: "",
+                                                _id: "null"
+                                            }])
                                         }
                                         else {
                                             setFormValues(data.studentActivities)
@@ -264,9 +271,11 @@ const ExtraCurricultarActivityProfile = () => {
                                             </div>
                                         </div>
                                         <div className="col-12 col-sm-1 col-md-1 col-lg-1 text-right mt-4">
-                                            <a className="btn btn-danger" title="Delet" onClick={() => handleDeleteClick(element._id)}>
-                                                <FontAwesomeIcon icon={faTrash} />
-                                            </a>
+                                            {element._id !== "null" ?
+                                                <a title="Delet" className="btn  btn-danger deleteFamily" onClick={() => handleDeleteClick(element._id)}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </a>
+                                                : null}
                                         </div>
 
                                     </div>
