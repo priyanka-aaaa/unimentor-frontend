@@ -12473,4 +12473,7 @@ ul.navbar-nav.ml-auto {
 
       list-style-type: none !important;
       }
+      ul.pagination {
+        z-index: 0;
+    }
     /* end priyanka */
