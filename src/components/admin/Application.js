@@ -182,7 +182,7 @@ const AdminApplication = () => {
                                                         <div className="form-group">
                                                             <label className="form-label">Application
                                                                 <span className="text-danger"> *</span></label>
-                                                            <input type="text" className="form-control"
+                                                            <input type="text" className="form-control" required
                                                                 placeholder="application" name="application"
                                                                 value={element.application || ""} onChange={e => handleChange(index, e)} />
                                                         </div>
