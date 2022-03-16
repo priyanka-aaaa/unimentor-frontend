@@ -351,7 +351,7 @@ const Application = () => {
                                         </div>
                                         <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Add Application Process</h3>
+                                                <h3>Add Application</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">

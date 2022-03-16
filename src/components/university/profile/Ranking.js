@@ -96,7 +96,7 @@ const Ranking = () => {
         if (certificate === "") {
             setcertificateError("Certificate Is Required")
         }
-        else if (fileExtension !== "jpeg" && fileExtension !== "jpg" && fileExtension !== "png"
+        else if (fileExtension !== "jpeg" && fileExtension !== "jpg" && fileExtension !== "png" && fileExtension !== "webp"
         ) {
             setTimeout(() => setsubmitError(""), 3000);
             setsubmitError(1)
@@ -324,9 +324,7 @@ const Ranking = () => {
                                     <div className='col-md-6 text-right'> <button type="button" onClick={() => handleAdd()} className="btn btn-outline-success"
                                         data-toggle="tooltip" data-placement="right" title="Add New Ranking"
                                     ><span>
-
                                             <FontAwesomeIcon icon={faPlus} />
-
                                         </span>Add New Ranking</button></div>
                                 </div>
 

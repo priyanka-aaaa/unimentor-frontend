@@ -436,7 +436,7 @@ const Document = () => {
                                         </div>
                                         <div className="row mt-3">
                                             <div className="col-lg-12 col-12 ">
-                                                <h3>Edit Document Process</h3>
+                                                <h3>Edit Document</h3>
                                             </div>
                                             <div className="trix_form_adjustement" >
                                                 <div className="row">

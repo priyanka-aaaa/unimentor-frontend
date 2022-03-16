@@ -12302,17 +12302,12 @@ textarea.form-control.editarea {
   padding-left: 10px;
   padding-top: 10px;
 }
-.form-control.editarea.help ul li{
-  list-style: none;
-}
 
 .form-control.editarea ul {
   padding-left: 10px;
   padding-top: 10px;
 }
-.form-control.editarea ul li{
-  list-style: none;
-}
+
 a.card-header strong {
   background-color: #e3e6f0;
   padding: 5px;
