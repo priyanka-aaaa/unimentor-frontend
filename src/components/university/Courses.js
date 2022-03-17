@@ -69,31 +69,31 @@ export default function Courses() {
         var mounted = localStorage.getItem('universityToken');
         setmounted(mounted)
         setuniversityId(universityId)
-        if(universityId!==null){
-  const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-        fetch(url, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                setComments(data.universityCourses);
+        if (universityId !== null) {
+            const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+            fetch(url, {
+                method: 'GET',
+                headers: { 'Authorization': mounted }
             })
-        const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
-        fetch(url2, {
-            method: 'GET',
-            headers: { 'Authorization': mounted }
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myresults = data.universityIntakes
-                if (Object.keys(myresults).length === 0) {
+                .then(response => response.json())
+                .then(data => {
+                    setComments(data.universityCourses);
+                })
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/intakes';
+            fetch(url2, {
+                method: 'GET',
+                headers: { 'Authorization': mounted }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    var myresults = data.universityIntakes
+                    if (Object.keys(myresults).length === 0) {
 
-                }
-                else {
-                    setIntakedata(data.universityIntakes)
-                }
-            })
+                    }
+                    else {
+                        setIntakedata(data.universityIntakes)
+                    }
+                })
         }
     }, [])
     // start for pagination
@@ -238,6 +238,7 @@ export default function Courses() {
             settuitionFeeNoError("Please Enter Only Number")
         }
         else {
+            setmyloader("true")
             const obj = {
                 courseName: courseName,
                 duration: duration,
@@ -256,6 +257,7 @@ export default function Courses() {
             };
             axios.put(process.env.REACT_APP_SERVER_URL + 'university/courses/' + editId, obj, { headers: { 'Authorization': mounted } })
                 .then(function (res) {
+                    setmyloader("false")
                     if (res.data.success === true) {
                         setwidth(0)
                         setsuccessMessage("course update")
@@ -268,7 +270,7 @@ export default function Courses() {
                         })
                             .then(response => response.json())
                             .then(data => {
-                                setdata(data.universityCourses)
+                                setComments(data.universityCourses)
                             })
                     }
                 })
@@ -329,7 +331,7 @@ export default function Courses() {
                         })
                             .then(response => response.json())
                             .then(data => {
-                                setdata(data.universityCourses)
+                                setComments(data.universityCourses)
                             })
 
                     }
@@ -402,7 +404,7 @@ export default function Courses() {
                                     })
                                         .then(response => response.json())
                                         .then(data => {
-                                            setdata(data.universityCourses)
+                                            setComments(data.universityCourses)
                                         })
                                 }
                             })
