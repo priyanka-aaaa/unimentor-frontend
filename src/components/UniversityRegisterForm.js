@@ -57,6 +57,9 @@ export default function UniversityRegisterForm() {
                     else if (res.data.message === "university already exist") {
                         setemailError("Email already exist");
                     }
+                    else if (res.data.message === "university name already exist") {
+                        setnameError("Name already exist");
+                    }
                     else {
 
                     }

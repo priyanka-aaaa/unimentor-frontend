@@ -76,7 +76,7 @@ function App() {
         <Route path='/Contact' component={Contact} />
         <Route path='/School' component={School} />
         <Route path='/AllUniversity' component={AllUniversity} />
-        <Route path='/college/:slug' component={UniversityPage} />
+        <Route path='/schools/:slug' component={UniversityPage} />
         <Route path='/Universitylogin' component={Universitylogin} />
         <Route path='/Universityregister' component={Universityregister} />
         <Route path='/AdminLogin' component={AdminLogin} />
