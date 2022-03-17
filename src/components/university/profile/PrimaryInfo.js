@@ -52,53 +52,53 @@ export default function PrimaryInfo() {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId);
-        if(universityId!==null){
-        axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
-            .then(function (res) {
-                if (res.data.success === true) {
-                    var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
-                    setname(student_universityPrimaryInformation.name);
-                    setaddress(student_universityPrimaryInformation.address);
-                    setcountry(student_universityPrimaryInformation.country);
-                    setstate(student_universityPrimaryInformation.state);
-                    setcity(student_universityPrimaryInformation.city);
-                    setpincode(student_universityPrimaryInformation.pincode);
-                    settype(student_universityPrimaryInformation.type);
-                    setdescription(student_universityPrimaryInformation.description);
-                    setwebsite(student_universityPrimaryInformation.website);
-                    setphone(student_universityPrimaryInformation.phone);
-                    setorganization(student_universityPrimaryInformation.organization);
-                    axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + res.data.universityPrimaryInformation.country + '/')
-                        .then(function (res) {
-                            if (res.data.success === true) {
-                                setstates(res.data.result);
-                            }
-                        })
-                        .catch(error => {
-                        })
-                    axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + res.data.universityPrimaryInformation.state + '/')
-                        .then(function (res) {
-                            if (res.data.success === true) {
-                                setcities(res.data.result);
-                            }
-                        })
-                        .catch(error => {
+        if (universityId !== null) {
+            axios.get(process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/primaryInformation')
+                .then(function (res) {
+                    if (res.data.success === true) {
+                        var student_universityPrimaryInformation = res.data.universityPrimaryInformation;
+                        setname(student_universityPrimaryInformation.name);
+                        setaddress(student_universityPrimaryInformation.address);
+                        setcountry(student_universityPrimaryInformation.country);
+                        setstate(student_universityPrimaryInformation.state);
+                        setcity(student_universityPrimaryInformation.city);
+                        setpincode(student_universityPrimaryInformation.pincode);
+                        settype(student_universityPrimaryInformation.type);
+                        setdescription(student_universityPrimaryInformation.description);
+                        setwebsite(student_universityPrimaryInformation.website);
+                        setphone(student_universityPrimaryInformation.phone);
+                        setorganization(student_universityPrimaryInformation.organization);
+                        axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + res.data.universityPrimaryInformation.country + '/')
+                            .then(function (res) {
+                                if (res.data.success === true) {
+                                    setstates(res.data.result);
+                                }
+                            })
+                            .catch(error => {
+                            })
+                        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + res.data.universityPrimaryInformation.state + '/')
+                            .then(function (res) {
+                                if (res.data.success === true) {
+                                    setcities(res.data.result);
+                                }
+                            })
+                            .catch(error => {
 
-                        });
-                }
+                            });
+                    }
 
-            })
-            .catch(error => {
-            });
-        axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
-            .then(function (res) {
-                if (res.data.success === true) {
-                    setcountries(res.data.result);
-                }
-            })
-            .catch(error => {
+                })
+                .catch(error => {
+                });
+            axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
+                .then(function (res) {
+                    if (res.data.success === true) {
+                        setcountries(res.data.result);
+                    }
+                })
+                .catch(error => {
 
-            });
+                });
         }
 
 
@@ -304,7 +304,7 @@ export default function PrimaryInfo() {
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label>Country  <span className="req-star">*</span></label>
-                                            <select className="form-control" name="country" required
+                                            {/* <select className="form-control" name="country" required
                                                 value={country}
                                                 onChange={(e) => handlecountry(e.target.value)}
 
@@ -317,7 +317,26 @@ export default function PrimaryInfo() {
                                                             value={element.country_name} key={index}>{element.country_name}</option>
                                                     )
                                                 })}
+                                            </select> */}
+
+
+                                            <select className="form-control" name="country" required
+                                                value={country}
+                                                onChange={(e) => handlecountry(e.target.value)}
+
+                                            >
+                                                <option value="">Select Country</option>
+                                                <option value="United States">USA</option>
+                                                <option value="United Kingdom">UK</option>
+                                                <option value="Australia">Australia</option>
+                                                <option value="New Zealand" >New Zealand</option>
+                                                <option value="Germany" >Germany</option>
+                                                <option value="Canada" >Canada</option>
+                                                <option value="Cyprus" >Cyprus</option>
+
+
                                             </select>
+
                                         </div>
                                     </div>
                                 </div>
