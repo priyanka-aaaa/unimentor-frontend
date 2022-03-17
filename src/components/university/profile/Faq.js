@@ -243,7 +243,7 @@ export default function Faq() {
 
                             <div className="row mt-3">
                                 <div className="col-md-8">
-                                    <p style={{ display: completedHeading }}>I haven't have any FAQ</p>
+                                    <p style={{ display: completedHeading }}>I haven’t had any FAQ</p>
                                 </div>
                                 <div className=" col-md-4 text-right">
                                     <label className="switch">
