@@ -9,7 +9,7 @@ import {
     faPlus, faTrash, faPen, faAngleDown, faAngleUp
 } from '@fortawesome/free-solid-svg-icons';
 
-    export default function Document() {
+export default function Document() {
     const [formAdminValues, setformAdminValues] = useState([{
         application: ""
     }])
@@ -43,20 +43,20 @@ import {
         var mounted = localStorage.getItem('universityToken');
         setMounted(mounted)
         setuniversityId(universityId)
-        if(universityId!==null){
-        const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
-        fetch(url1, {
-            method: 'GET'
-        })
-            .then(response => response.json())
-            .then(data => {
-                var myresults = data.universityDocuments;
-
-                if (Object.keys(myresults).length === 0) {
-                    setTable("true");
-                }
-                setFormValues(data.universityDocuments)
+        if (universityId !== null) {
+            const url1 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/documents';
+            fetch(url1, {
+                method: 'GET'
             })
+                .then(response => response.json())
+                .then(data => {
+                    var myresults = data.universityDocuments;
+
+                    if (Object.keys(myresults).length === 0) {
+                        setTable("true");
+                    }
+                    setFormValues(data.universityDocuments)
+                })
         }
         const url = process.env.REACT_APP_SERVER_URL + 'admin/documents/';
         fetch(url, {
@@ -107,15 +107,17 @@ import {
         editId: editId,
     }
     let clickAddHandler = (datum) => {
+
         if (tempp !== 1) {
-            var datum = "<ul><li>" + datum + "</li></ul>";
+
+            var datum = "<ul><li>" + datum + "</li></ul><br/>";
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".helpadd")
-        element.editor.insertHTML(datum);
+        element.editor.insertHTML("<li>" + datum + "<li>");
         setmyapplication(datum)
     }
     let handleAddSubmit = () => {
@@ -164,7 +166,7 @@ import {
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".helpedit")
         element.editor.insertHTML(datum);

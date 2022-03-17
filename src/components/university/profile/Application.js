@@ -113,7 +113,7 @@ export default function Application() {
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".applicationTrixAdd")
         element.editor.insertHTML(datum);
@@ -164,7 +164,7 @@ export default function Application() {
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".applicationTrixEdit")
         element.editor.insertHTML(datum);

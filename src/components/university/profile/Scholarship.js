@@ -105,7 +105,7 @@ export default function Scholarship() {
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".scholarshipTrixAdd")
         element.editor.insertHTML(datum);
@@ -155,7 +155,7 @@ export default function Scholarship() {
             settempp(1);
         }
         else {
-            var datum = "<ul><li></li><li>" + datum + "</li></ul>";
+            var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".scholarshipTrixEdit")
         element.editor.insertHTML(datum);
