@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
+import "trix/dist/trix";
 import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
