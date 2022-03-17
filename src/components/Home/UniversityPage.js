@@ -233,7 +233,7 @@ export default function UniversityPage() {
                 <div className="main-content">
                     <div className="rs-breadcrumbs img4 cover-pict" style={divStyle} >
                         <div className="breadcrumbs-inner text-center">
-                            <h1 className="page-title">{FormuniversitiesValues.name}</h1>
+                            <h1 className="page-title">{FormPrimaryInformationValues.name}</h1>
                             <ul>
                                 <li title="Braintech - IT Solutions and Technology Startup HTML Template">
                                     <a className="active" href="index.html">Home</a>
