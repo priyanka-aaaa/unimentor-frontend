@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LoaderFrontend from './LoaderFrontend';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import {
-    faStar,faGraduationCap, faCalendarCheck, faPhone,
+    faStar, faGraduationCap, faCalendarCheck, faPhone,
     faEnvelope, faGlobe, faCheckCircle, faAngleDown, faAngleUp
 
 } from '@fortawesome/free-solid-svg-icons';
@@ -54,6 +54,12 @@ export default function UniversityPage() {
         courseName: "", duration: "", tuitionFee: "", studyField: "", fee: "", courseLevel: "", cgpa: "",
         eligibility: "", english: "", coursewebsite: "", description: "", exam: ""
     }])
+    const [similarUniveristyValues, setsimilarUniveristyValues] = useState([{
+        universityPrimaryInformation: "", universityOverview: "", universityImage: "", _id: ""
+        // universityPrimaryInformation: "", duration: "", tuitionFee: "", studyField: "", fee: "", courseLevel: "", cgpa: "",
+        // eligibility: "", english: "", coursewebsite: "", description: "", exam: ""
+    }])
+
     const [rankingValues, setrankingValues] = useState([])
     const [imageVideoValues, setimageVideoValues] = useState([])
     const [down, setdown] = useState("1");
@@ -125,6 +131,8 @@ export default function UniversityPage() {
                         var myresults = data.universityPrimaryInformation;
                         if (Object.keys(myresults).length !== 0) {
                             setFormPrimaryInformationValues(data.universityPrimaryInformation)
+
+
                         }
                     })
                 const url7 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/image';
@@ -162,6 +170,14 @@ export default function UniversityPage() {
                     .then(data => {
                         setimageVideoValues(data.universityImageVideos)
                     })
+                const url11 = process.env.REACT_APP_SERVER_URL + 'universitySimilar';
+                fetch(url11, {
+                    method: 'GET',
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        setsimilarUniveristyValues(data.universities)
+                   })
             })
     }, [])
     var divStyle = {
@@ -717,149 +733,55 @@ export default function UniversityPage() {
                                                         <div className="slick-list">
                                                             <div className="slick-track">
                                                                 <div className="row">
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="0" className="slick-slide slick-active slick-current"
-                                                                            tabIndex="-1" aria-hidden="false">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08">
-                                                                                        <img src={images["notredameuniversity.jpg"]} alt="" />
+                                                                
+                                                                    {similarUniveristyValues.map((element, index) =>
 
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                University of Notre Dame</h1>
+                                                                      
+                                                                    (
 
-                                                                                            <h2 className="similar_unidesc__10ic3">University of
-                                                                                                Notre Dame, United States</h2>
-                                                                                        </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Private
-                                                                                            | Estd. 1832
-                                                                                            | 10+ Courses
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="1" className="slick-slide slick-active" tabIndex="-1"
-                                                                            aria-hidden="false">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08"> <img src={images["standrewsuniversity.jpg"]} alt="" />
+                                                                        <div key={index}>
 
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                University of St Andrews</h1>
-                                                                                            <div className="col-2 mt-3">
+
+                                                                            {
+                                                                                element._id !== universityId ?
+                                                                                    <div className="col-md-4" key={index}>
+                                                                                        <div data-index="0" className="slick-slide slick-active slick-current"
+                                                                                            tabIndex="-1" aria-hidden="false">
+                                                                                            <div>
+                                                                                                <div tabIndex="-1">
+                                                                                                    <div className="similar_box__2Lq08">
+
+                                                                                                        <img src={element.universityImage.coverPic} alt="university coverPik" />
+
+
+                                                                                                        <div className="similar_footerText__2go-e w-100 row">
+                                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
+
+
+
+
+                                                                                                                {element.universityPrimaryInformation.name}
+
+                                                                                                            </h1>
+
+                                                                                                            <h2 className="similar_unidesc__10ic3"> {element.universityPrimaryInformation.name},  {element.universityPrimaryInformation.country}</h2>
+                                                                                                        </div>
+                                                                                                        <h2 className="similar_facts__1i5bJ"> {element.universityPrimaryInformation.type}
+                                                                                                            | Estd.{element.universityOverview.foundedYear}
+
+                                                                                                            | {element.universityOverview.courseNo}+ Courses
+                                                                                                        </h2>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             </div>
-                                                                                            <h2 className="similar_unidesc__10ic3">University of
-                                                                                                St Andrews, United Kingdom</h2>
                                                                                         </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Public
-                                                                                            | Estd. 1413
-                                                                                            | 20+ Courses
-                                                                                        </h2>
                                                                                     </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="2" className="slick-slide slick-active" tabIndex="-1"
-                                                                            aria-hidden="false">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08"><img src={images["dalhousie.jpg"]} alt="" />
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                Dalhousie University</h1>
-                                                                                            <div className="col-2 mt-3">
-                                                                                            </div>
-                                                                                            <h2 className="similar_unidesc__10ic3">Dalhousie
-                                                                                                University, Canada</h2>
-                                                                                        </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Public
-                                                                                            | Estd. 1818
-                                                                                            | 1 Courses
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="3" className="slick-slide" tabIndex="-1"
-                                                                            aria-hidden="true">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08">
-                                                                                        <img src={images["StaffordshireUniversity-cover.jpg"]} alt="" />
+                                                                                    : null
+                                                                            }
 
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                Staffordshire University</h1>
-
-                                                                                            <h2 className="similar_unidesc__10ic3">Staffordshire
-                                                                                                University, United Kingdom</h2>
-                                                                                        </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Public
-                                                                                            | Estd. 1971
-                                                                                            | 190+ Courses
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="4" className="slick-slide" tabIndex="-1"
-                                                                            aria-hidden="true">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08">  <img src={images["universityofreading.jpg"]} alt="" />
-
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                University of Reading</h1>
-
-                                                                                            <h2 className="similar_unidesc__10ic3">University of
-                                                                                                Reading, United Kingdom</h2>
-                                                                                        </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Public
-                                                                                            | Estd. 1892
-                                                                                            | 130+ Courses
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="col-md-4">
-                                                                        <div data-index="5" className="slick-slide" tabIndex="-1"
-                                                                            aria-hidden="true">
-                                                                            <div>
-                                                                                <div tabIndex="-1">
-                                                                                    <div className="similar_box__2Lq08">
-                                                                                        <img src={images["uow211846.jpg"]} alt="" />
-
-                                                                                        <div className="similar_footerText__2go-e w-100 row">
-                                                                                            <h1 className="similar_unidata__1lxt7 col-10">
-                                                                                                University of Wollongong College</h1>
-
-                                                                                            <h2 className="similar_unidesc__10ic3">University of
-                                                                                                Wollongong College, Australia</h2>
-                                                                                        </div>
-                                                                                        <h2 className="similar_facts__1i5bJ">Public
-                                                                                            | Estd. 1951
-                                                                                            | 4 Courses
-                                                                                        </h2>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
+</div>
+                                                                        ))}
+                                                                   
                                                                 </div>
                                                             </div>
                                                         </div>
