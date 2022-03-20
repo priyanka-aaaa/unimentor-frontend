@@ -8448,6 +8448,17 @@ span.sub-text.contact {
   padding: 15px;
   transition: 0.3s;
 }
+div#courses-fees h5 a {
+  color: #059ac7;
+  font-weight: 400;
+  border-bottom: 1px solid #edebeb;
+  width: 100%;
+  line-height: 54px;
+  float: left;
+}
+div#courses-fees h5 a:hover {
+  color: #ff800f;
+}
 .rs-inner-blog .blog-item .blog-img {
   position: relative;
 }
@@ -8490,9 +8501,10 @@ span.sub-text.contact {
   font-size: 26px;
   line-height: 35px;
   font-weight: 700;
+  color: #005b74;
 }
 .rs-inner-blog .blog-item .blog-content .blog-title a {
-  color: #0a0a0a;
+  color: #005b74;
 }
 .rs-inner-blog .blog-item .blog-content .blog-title a:hover {
   color: #106eea;
@@ -8544,7 +8556,7 @@ span.sub-text.contact {
   margin-bottom: 20px;
 }
 .rs-inner-blog .widget-area .widget-title .title {
-  color: #101010;
+  color: #005b74;
   font-size: 20px;
   line-height: 26px;
   font-weight: 600;
@@ -8559,7 +8571,7 @@ span.sub-text.contact {
   border: 0;
   width: 50px;
   height: 2px;
-  background: #106eea;
+  background: #ff7f0e;
   z-index: 1;
   margin-left: 0;
   bottom: 0;
@@ -8581,7 +8593,7 @@ span.sub-text.contact {
 .rs-inner-blog .widget-area .recent-posts .recent-post-widget {
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  /* border-top: 1px solid rgba(0, 0, 0, 0.06); */
 }
 .rs-inner-blog .widget-area .recent-posts .recent-post-widget .post-img {
   width: 100px;
@@ -8590,12 +8602,12 @@ span.sub-text.contact {
 }
 .rs-inner-blog .widget-area .recent-posts .recent-post-widget .post-desc {
   display: block;
-  font-size: 12px;
+  font-size: 16px;
   color: #888;
   overflow: hidden;
 }
 .rs-inner-blog .widget-area .recent-posts .recent-post-widget .post-desc a {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 22px;
   font-weight: 500;
   color: #0a0a0a;
@@ -8617,6 +8629,11 @@ span.sub-text.contact {
   box-shadow: 0 6px 25px rgb(0 0 0 / 7%);
   padding: 40px 30px;
   text-align: center;
+}
+.university-widget p {
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #798589;
 }
 span.icon:before {
   display: none;
@@ -8651,14 +8668,13 @@ span.icon {
 .blog-item ul li a:hover {
   background-color: #fe7f0e;
 }
-.overviewblock {
- 
+.overviewblock { 
   border-radius: 4px;
   margin-top: 40px;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+ 
 }
 .blog-item ul {
   margin-top: 10px;
@@ -8671,14 +8687,29 @@ span.icon {
   margin-bottom: 0;
   font-weight: 400;
   font-size: 16px;
+    color: #888;
 }
 .blog-meta p {
-  font-size: 22px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 400;
   color: #000;
+  margin-bottom: 0;
+}
+.talk-btn {
+  width: 100%;
+  border-radius: 100px;
+}
+.talk-btn:hover {
+  background-color: transparent !important;
+  color: #ff7f0e !IMPORTANT;
 }
 .university-widget h4 {
   text-transform: capitalize;
+  color: #005b74;
+}
+.university-widget h6 {
+  color: #005b74;
+  font-weight: 400;
 }
 div#ranking .blog-date span {
   margin-right: 6px;
@@ -8716,9 +8747,10 @@ p.selected-certificate {
 .overview-box {
   /* border: 1px solid #ccc; */
   padding: 18px;
-  width: 258px;
+  width: 200px;
   border-radius: 4px;
   box-shadow: 0 6px 25px rgb(0 0 0 / 7%);
+  margin-right: 20px;
 }
 .blue-light {
   background-color: #A3D2FA;
@@ -11497,22 +11529,22 @@ section.Form-block:before {
   font-size: 33px;
   color: #ff7f0e;
 }
-.cta_cta__3nhLf {
-  background-image: url(assets/images/university/webcta.svg);
-  background-repeat: no-repeat!important;
-  background-size: cover;
+.cta_cta__3nhLf {  
+  background: linear-gradient(90deg, rgb(6 115 146) 0%, rgb(6 115 147) 35%, rgb(9 94 118) 100%);
+  padding-bottom: 21px;
+  
  
   border-radius: 8px;
   margin-bottom: 2em;
 }
 .cta_text__1LaHh {
-  color: #002147;
+  color: #ffffff;
   font-size: 24px;
   font-weight: 800;
   margin: 20px 30px 15px;
 }
 .cta_subtext__1eM4M {
-  color: #5c7189;
+  color: #ffffff;
   font-size: 16px;
   line-height: 24px;
   margin-bottom: 25px;
@@ -11529,11 +11561,15 @@ section.Form-block:before {
 }
 .cta_bluetext__2B7BK, .cta_bluetexts__3qwps {
   cursor: pointer;
-  font-weight: 400;
+  font-weight: 700;
   font-size: 16px;
   line-height: 20px;
   margin-left: 30px;
-  color: #0487f3;
+  color: #ffffff;
+  padding: 6px 10px;
+  background-color: #ff800f;
+  border-radius: 4px;
+  display: inline-block;
 }
 .rs-rain-animate .line-inner .line:nth-child(1) {
   left: 2px !important;

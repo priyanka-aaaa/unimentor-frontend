@@ -28,6 +28,7 @@ export default function UniversityPage() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [coursesNoValues, setcoursesNoValues] = useState("0");
     const [formValues, setFormValues] = useState([{
         question: "", answer: ""
     }])
@@ -153,6 +154,14 @@ export default function UniversityPage() {
                     .then(response => response.json())
                     .then(data => {
                         setcoursesValues(data.universityCourses)
+                        var myresults = data.universityCourses
+                        if (Object.keys(myresults).length > 3) {
+                            setcoursesNoValues(1);
+                        }
+                        else {
+                            setcoursesNoValues(0);
+
+                        }
                     })
                 const url9 = process.env.REACT_APP_SERVER_URL + 'university/' + id + '/rankings';
                 fetch(url9, {
@@ -177,7 +186,7 @@ export default function UniversityPage() {
                     .then(response => response.json())
                     .then(data => {
                         setsimilarUniveristyValues(data.universities)
-                   })
+                    })
             })
     }, [])
     var divStyle = {
@@ -252,7 +261,7 @@ export default function UniversityPage() {
                             <h1 className="page-title">{FormPrimaryInformationValues.name}</h1>
                             <ul>
                                 <li title="Braintech - IT Solutions and Technology Startup HTML Template">
-                                    <a className="active" href="index.html">Home</a>
+                                    <a className="active" >Home</a>
                                 </li>
                                 <li>University</li>
                             </ul>
@@ -267,9 +276,9 @@ export default function UniversityPage() {
                                             <div className="cover"><img src={universityImageValues.coverPic} /></div>
                                             <div className="univer-logo"><img src={universityImageValues.logo} /></div>
                                             <h4>{FormPrimaryInformationValues.name}</h4>
-                                            <p>{FormPrimaryInformationValues.country}<br />
-                                                {FormPrimaryInformationValues.type} | Estd. {FormOverviewValues.foundedYear}</p>
-                                            <button type="button" className="btn btn-primary btn-lg">Talk to an Expert for FREE</button>
+                                            <p>{FormPrimaryInformationValues.country}</p>
+                                            <h6> {FormPrimaryInformationValues.type} | Estd. {FormOverviewValues.foundedYear}</h6>
+                                            <button type="button" className="btn website-btn talk-btn">Talk to an Expert for FREE</button>
                                         </div>
                                         <div className="recent-posts mb-50">
                                             <div className="widget-title">
@@ -283,7 +292,6 @@ export default function UniversityPage() {
                                                 </div>
                                                 <div className="post-desc">
                                                     <span className="date">
-                                                        <FontAwesomeIcon icon={faPhone} />
                                                         Call Now
                                                     </span>
                                                     <a href="tel:4401915153000">{FormPrimaryInformationValues.phone}</a>
@@ -428,6 +436,7 @@ export default function UniversityPage() {
                                                     <h3 className="blog-title"><a href="#">Courses & Fees</a></h3>
                                                     {coursesValues.map((element, index) => (
                                                         <div key={index}>
+
                                                             <h5>   <a
                                                                 data-bs-toggle="collapse" href={"#collapseCourse" + index}>
                                                                 {element.courseName || ""}
@@ -475,7 +484,7 @@ export default function UniversityPage() {
                                         <div className="col-lg-12 mb-50">
                                             <div className="blog-item" id="ranking">
                                                 <div className="blog-content">
-                                                    <h3 className="blog-title"><a href="blog-details.html">Ranking</a></h3>
+                                                    <h3 className="blog-title"><a >Ranking</a></h3>
                                                     <div className="blog-meta">
                                                         {rankingValues.map((element, index) => (
                                                             <ul className="btm-cate" key={index}>
@@ -581,11 +590,11 @@ export default function UniversityPage() {
                                                             <div className="col-md-6" key={index}>
                                                                 <div className="blog-img">
                                                                     {element.type === "image" ?
-                                                                        <a href="blog-details.html">
+                                                                        <a >
                                                                             <img src={element.link} alt="image" />
                                                                         </a>
                                                                         :
-                                                                        <a href="blog-details.html">
+                                                                        <a >
                                                                             <video width="320" height="240" controls>
                                                                                 <source src={element.link} type="video/ogg" />
                                                                             </video>
@@ -605,7 +614,10 @@ export default function UniversityPage() {
                                                     <h3 className="blog-title">Browse Courses</h3>
                                                     <div className="row mb-3" >
                                                         {coursesValues.map((element, index) => (
+                                                             
                                                             <div className="col-sm-6 mb-4" key={index} >
+                                                                  {index < 4 ?
+                                                                <div>
                                                                 <div className="subcourses_courseBox__3deGG">
                                                                     <div className="subcourses_program__3pkFj col-sm-12 p-0">
                                                                         <img src={images["project-management.png"]} alt="" />
@@ -670,9 +682,20 @@ export default function UniversityPage() {
                                                                             src="https://images.leverageedu.com/university/whitearrow.svg" />
                                                                     </button>
                                                                 </div>
+                                                                </div>
+
+                                                                :
+                                                                null
+                                                            }
+
                                                             </div>
                                                         ))}
                                                     </div>
+                                                    {coursesNoValues === 1 ?
+                                                                <div>
+                                                                    <button> <Link to={'/schools/' + slug + '/courses'} className="nav-link" >View All Courses</Link></button>
+                                                                </div>
+                                                                : null}
                                                 </div>
                                             </div>
                                         </div>
@@ -733,10 +756,10 @@ export default function UniversityPage() {
                                                         <div className="slick-list">
                                                             <div className="slick-track">
                                                                 <div className="row">
-                                                                
+
                                                                     {similarUniveristyValues.map((element, index) =>
 
-                                                                      
+
                                                                     (
 
                                                                         <div key={index}>
@@ -779,9 +802,9 @@ export default function UniversityPage() {
                                                                                     : null
                                                                             }
 
-</div>
-                                                                        ))}
-                                                                   
+                                                                        </div>
+                                                                    ))}
+
                                                                 </div>
                                                             </div>
                                                         </div>

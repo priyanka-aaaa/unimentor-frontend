@@ -46,6 +46,7 @@ import TermCondition from './components/Home/TermCondition';
 import PrivacyPolicy from './components/Home/PrivacyPolicy';
 import RefundPolicy from './components/Home/RefundPolicy';
 import HonorCode from './components/Home/HonorCode';
+import UniversityCourse from './components/Home/UniversityCourse';
 
 
 
@@ -76,7 +77,9 @@ function App() {
         <Route path='/Contact' component={Contact} />
         <Route path='/School' component={School} />
         <Route path='/AllUniversity' component={AllUniversity} />
-        <Route path='/schools/:slug' component={UniversityPage} />
+        <Route exact path='/schools/:slug' component={UniversityPage} />
+        <Route exact path='/schools/:slug/courses' component={UniversityCourse} />
+
         <Route path='/Universitylogin' component={Universitylogin} />
         <Route path='/Universityregister' component={Universityregister} />
         <Route path='/AdminLogin' component={AdminLogin} />
@@ -85,13 +88,13 @@ function App() {
         <Route path='/Studentlogin' component={Studentlogin} />
         <Route path='/Studentregister' component={Studentregister} />
         <Route path='/study-in-australia' component={StudyAustralia} />
-     <Route path='/terms-condition' component={TermCondition} />
+        <Route path='/terms-condition' component={TermCondition} />
         <Route path='/privacy-policy' component={PrivacyPolicy} />
         <Route path='/refund-policy' component={RefundPolicy} />
         <Route path='/honor-code' component={HonorCode} />
 
-       
-        
+
+
         <Route component={Error} />
       </Switch>
     </BrowserRouter>
