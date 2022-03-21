@@ -1,7 +1,8 @@
 import React from 'react';
 import Footer from './Footer'
 import Header from './Header'
-import StudentRegisterForm from '../StudentRegisterForm'
+
+import StudentloginForm from '../StudentloginForm';
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
@@ -113,7 +114,7 @@ function Student(props) {
                     <div className="container">
                       <div className="row">
                         <div className="col-lg-12">
-                          <StudentRegisterForm />
+                          <StudentloginForm />
                         </div>
                       </div>
                     </div>

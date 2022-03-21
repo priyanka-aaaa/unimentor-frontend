@@ -4,7 +4,7 @@ import Header from './Header'
 import "slick-carousel/slick/slick.css";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick-theme.css";
-import AgentRegisterForm from '../AgentRegisterForm'
+import AgentLoginForm from '../AgentLoginForm';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -106,8 +106,8 @@ function Recruitment(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <AgentRegisterForm/>
-                
+                  <AgentLoginForm/>
+               
                 </div>
               </div>
               <div className="col-lg-6">

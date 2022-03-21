@@ -92,11 +92,7 @@ export default function AgentRegisterForm() {
                 </SweetAlert>
                 : null
             }
-            <section className="Form-block">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-12">
-                            <div className="form-centerblock">
+          <div className="form-centerblock">
                                 <h2>Recruitment Partners</h2>
 
                                 <div className="from-start">
@@ -142,11 +138,6 @@ export default function AgentRegisterForm() {
                                 </div>
 
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
 
         </div>
     );

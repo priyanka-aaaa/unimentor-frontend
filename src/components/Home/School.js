@@ -11,7 +11,7 @@ import {
 
 } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import UniversityRegisterForm from '../UniversityRegisterForm';
+import UniversityloginForm from '../UniversityloginForm';
 function importAll(r) {
   let images = {};
   r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -118,8 +118,9 @@ function School(props) {
             <div className="row align-items-center">
               <div className="col-lg-6  order-last">
                 <div className="banner-img">
-                  <UniversityRegisterForm />
-                 
+                  {/* <UniversityRegisterForm /> */}
+                  <UniversityloginForm />
+
                 </div>
               </div>
               <div className="col-lg-6">
