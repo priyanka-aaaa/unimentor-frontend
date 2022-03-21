@@ -552,148 +552,218 @@ export default function AdminStudentApplication() {
                                     <div className="card-body ">
                                         <h5>Personal Information</h5>
                                         <hr />
+
                                         <div className="row">
-                                            <div className="col-md-3">
-                                                <h5>Salutation </h5>
-                                                <p>{salutation}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>First Name</h5>
-                                                <p>{firstName}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Middle Name</h5>
-                                                <p>{middleName}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Last Name</h5>
-                                                <p>{lastName}</p>
-                                            </div>
+                                            {salutation != "" && salutation != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Salutation </h5>
+                                                    <p>{salutation}</p>
+                                                </div>
+                                                : null}
+                                            {firstName != "" && firstName != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>First Name</h5>
+                                                    <p>{firstName}</p>
+                                                </div>
+                                                : null}
+                                            {middleName != "" && middleName != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Middle Name</h5>
+                                                    <p>{middleName}</p>
+                                                </div>
+                                                : null}
+                                            {lastName != "" && lastName != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Last Name</h5>
+                                                    <p>{lastName}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         <div className="row mt-3">
-                                            <div className="col-md-3">
-                                                <h5>Other Name</h5>
-                                                <p>{otherName}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Gender</h5>
-                                                <p>{gender}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Date of Birth</h5>
-                                                <p>{dateOfBirth}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Country of Birth</h5>
-                                                <p>{countryOfBirth}</p>
-                                            </div>
+
+                                            {otherName != "" && otherName != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Other Name</h5>
+                                                    <p>{otherName}</p>
+                                                </div>
+                                                : null}
+                                            {gender != "" && gender != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Gender</h5>
+                                                    <p>{gender}</p>
+                                                </div>
+                                                : null}
+                                            {dateOfBirth != "" && dateOfBirth != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Date of Birth</h5>
+                                                    <p>{dateOfBirth}</p>
+                                                </div>
+                                                : null}
+                                            {countryOfBirth != "" && countryOfBirth != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Country of Birth</h5>
+                                                    <p>{countryOfBirth}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         <div className="row mt-3">
-                                            <div className="col-md-3">
-                                                <h5>Nationality</h5>
-                                                <p>{nationality}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5> Dual Nationality</h5>
-                                                <p>{dualNationality}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Marital Status</h5>
-                                                <p>{maritalStatus}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>differently abled</h5>
-                                                <p>{differentlyAble}</p>
-                                            </div>
+
+                                            {nationality != "" && nationality != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Nationality</h5>
+                                                    <p>{nationality}</p>
+                                                </div>
+                                                : null}
+                                            {dualNationality != "" && dualNationality != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5> Dual Nationality</h5>
+                                                    <p>{dualNationality}</p>
+                                                </div>
+                                                : null}
+                                            {maritalStatus != "" && maritalStatus != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Marital Status</h5>
+                                                    <p>{maritalStatus}</p>
+                                                </div>
+                                                : null}
+                                            {differentlyAble != "" && differentlyAble != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>differently abled</h5>
+                                                    <p>{differentlyAble}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         {/* start for new row   */}
                                         <div className="row mt-3">
-                                            <div className="col-md-3">
-                                                <h5>valid passport</h5>
-                                                <p>{passport}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5> valid Aadhar Card</h5>
-                                                <p>{aadharCard}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>First Language</h5>
-                                                <p>{firstLanguage}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5> valid study visa</h5>
-                                                <p>{visa}</p>
-                                            </div>
+                                            {passport != "" && passport != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>valid passport</h5>
+                                                    <p>{passport}</p>
+                                                </div>
+                                                : null}
+                                            {aadharCard != "" && aadharCard != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5> valid Aadhar Card</h5>
+                                                    <p>{aadharCard}</p>
+                                                </div>
+                                                : null}
+                                            {firstLanguage != "" && firstLanguage != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>First Language</h5>
+                                                    <p>{firstLanguage}</p>
+                                                </div>
+                                                : null}
+                                            {visa != "" && visa != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5> valid study visa</h5>
+                                                    <p>{visa}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         <div className="row mt-3">
-                                            <div className="col-md-3">
-                                                <h5> Refused Visa</h5>
-                                                <p>{refusedVisa}</p>
-                                            </div>
+                                            {refusedVisa != "" && refusedVisa != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5> Refused Visa</h5>
+                                                    <p>{refusedVisa}</p>
+                                                </div>
+                                                : null}
                                         </div>
                                         {/* end for new row */}
                                         <h5 className="mt-5">Address &amp; Contact</h5>
                                         <hr />
                                         <div className="row">
-                                            <div className="col-md-3">
-                                                <h5>Country</h5>
-                                                <p>{country}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>State/Province</h5>
-                                                <p>{state}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>City</h5>
-                                                <p>{city}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Address</h5>
-                                                <p>{address}</p>
-                                            </div>
+
+                                            {country != "" && country != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Country</h5>
+                                                    <p>{country}</p>
+                                                </div>
+                                                : null}
+                                            {state != "" && state != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>State/Province</h5>
+                                                    <p>{state}</p>
+                                                </div>
+                                                : null}
+                                            {city != "" && city != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>City</h5>
+                                                    <p>{city}</p>
+                                                </div>
+                                                : null}
+                                            {address != "" && address != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Address</h5>
+                                                    <p>{address}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         <div className="row">
-                                            <div className="col-md-3">
-                                                <h5>Zipcode</h5>
-                                                <p>{zipcode}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>   Communication Address</h5>
-                                                <p>{communication_address}</p>
-                                            </div>
 
+                                            {zipcode != "" && zipcode != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Zipcode</h5>
+                                                    <p>{zipcode}</p>
+                                                </div>
+                                                : null}
+                                            {communication_address != "" && communication_address != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>   Communication Address</h5>
+                                                    <p>{communication_address}</p>
+                                                </div>
+                                                : null}
                                         </div>
                                         <h5 className="mt-5">Family Information</h5>
                                         <hr />
                                         {FormFamilyValues.map((element, index) => (
                                             <div key={index}>
                                                 <div className="row">
-                                                    <div className="col-md-3">
-                                                        <h5>Relationship</h5>
-                                                        <p>{element.relationship}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Full Name</h5>
-                                                        <p>{element.salutation}{element.firstName} {element.middleName} {element.lastName}  </p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Email</h5>
-                                                        <p>{element.email}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Mobile</h5>
-                                                        <p>{element.mobile}</p>
-                                                    </div>
+
+                                                    {element.relationship != "" && element.relationship != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Relationship</h5>
+                                                            <p>{element.relationship}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.firstName != "" && element.firstName != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Full Name</h5>
+                                                            <p>{element.salutation}{element.firstName} {element.middleName} {element.lastName}  </p>
+                                                        </div>
+                                                        : null}
+                                                    {element.email != "" && element.email != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Email</h5>
+                                                            <p>{element.email}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.mobile != "" && element.mobile != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Mobile</h5>
+                                                            <p>{element.mobile}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Occupation</h5>
-                                                        <p>{element.occupation}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Highest Qualification</h5>
-                                                        <p>{element.qualification}</p>
-                                                    </div>
+                                                    {element.occupation != "" && element.occupation != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Occupation</h5>
+                                                            <p>{element.occupation}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.qualification != "" && element.qualification != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Highest Qualification</h5>
+                                                            <p>{element.qualification}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                             </div>
                                         ))}
@@ -703,149 +773,213 @@ export default function AdminStudentApplication() {
                                             <div key={index}>
 
                                                 <div className="row">
-                                                    <div className="col-md-3">
-                                                        <h5>Highest Level of Education</h5>
-                                                        <p>{element.highestEducation}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Education Status</h5>
-                                                        <p>{element.status}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Specialization</h5>
-                                                        <p>{element.specialization}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Degree</h5>
-                                                        <p>{element.degree}</p>
-                                                    </div>
 
+                                                    {element.highestEducation != "" && element.highestEducation != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Highest Level of Education</h5>
+                                                            <p>{element.highestEducation}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.status != "" && element.status != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Education Status</h5>
+                                                            <p>{element.status}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.specialization != "" && element.specialization != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Specialization</h5>
+                                                            <p>{element.specialization}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.degree != "" && element.degree != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Degree</h5>
+                                                            <p>{element.degree}</p>
+                                                        </div>
+
+                                                        : null}
 
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Grade Scheme(GPA/Percentage)</h5>
-                                                        <p>{element.gradePercentage}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Grade Average/Marks Obtained</h5>
-                                                        <p>{element.marks}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Attended From</h5>
-                                                        <p>{element.attendedForm}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Name of Institution</h5>
-                                                        <p>{element.institution}</p>
-                                                    </div>
+                                                    {element.gradePercentage != "" && element.gradePercentage != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Grade Scheme(GPA/Percentage)</h5>
+                                                            <p>{element.gradePercentage}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.marks != "" && element.marks != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Grade Average/Marks Obtained</h5>
+                                                            <p>{element.marks}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.attendedForm != "" && element.attendedForm != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Attended From</h5>
+                                                            <p>{element.attendedForm}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.institution != "" && element.institution != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Name of Institution</h5>
+                                                            <p>{element.institution}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Affiliating University/Board of Education</h5>
-                                                        <p>{element.affiliationUniversity}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Language of Instruction</h5>
-                                                        <p>{element.language}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Country</h5>
-                                                        <p>{element.country}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>State/Province</h5>
-                                                        <p>{element.state}</p>
-                                                    </div>
+                                                    {element.affiliationUniversity != "" && element.affiliationUniversity != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Affiliating University/Board of Education</h5>
+                                                            <p>{element.affiliationUniversity}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.language != "" && element.language != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Language of Instruction</h5>
+                                                            <p>{element.language}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.country != "" && element.country != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Country</h5>
+                                                            <p>{element.country}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.state != "" && element.state != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>State/Province</h5>
+                                                            <p>{element.state}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>City/Town</h5>
-                                                        <p>{element.city}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Address</h5>
-                                                        <p>{element.address}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Zipcode</h5>
-                                                        <p>{element.zipcode}</p>
-                                                    </div>
-                                                    {/* <div class="col-md-3">
-            
-        </div> */}
+                                                    {element.city != "" && element.city != undefined ?
+
+                                                        <div className="col-md-3">
+                                                            <h5>City/Town</h5>
+                                                            <p>{element.city}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.address != "" && element.address != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Address</h5>
+                                                            <p>{element.address}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.zipcode != "" && element.zipcode != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Zipcode</h5>
+                                                            <p>{element.zipcode}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                             </div>
                                         ))}
                                         <h5 className="mt-5">Test Score</h5>
                                         <hr />
                                         <div className="row">
-                                            <div className="col-md-3">
-                                                <h5>Marks in English in Class 12</h5>
-                                                <p>{scoremarks}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Have you taken any English Proficiency Test?</h5>
-                                                <p>{scoreenglishProficiency}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Have you taken IELTS/PTE/GRE/GMAT ?</h5>
-                                                <p>{scoregre}</p>
-                                            </div>
-                                            <div className="col-md-3">
-                                                <h5>Have you taken SAT/ACT?</h5>
-                                                <p>{scoresat}</p>
-                                            </div>
+                                            {scoremarks != "" && scoremarks != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Marks in English in Class 12</h5>
+                                                    <p>{scoremarks}</p>
+                                                </div>
+                                                : null}
+                                            {scoreenglishProficiency != "" && scoreenglishProficiency != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Have you taken any English Proficiency Test?</h5>
+                                                    <p>{scoreenglishProficiency}</p>
+                                                </div>
+                                                : null}
+                                            {scoregre != "" && scoregre != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Have you taken IELTS/PTE/GRE/GMAT ?</h5>
+                                                    <p>{scoregre}</p>
+                                                </div>
+                                                : null}
+                                            {scoresat != "" && scoresat != undefined ?
+                                                <div className="col-md-3">
+                                                    <h5>Have you taken SAT/ACT?</h5>
+                                                    <p>{scoresat}</p>
+                                                </div>
+                                                : null}
+
                                         </div>
                                         <h5 className="mt-5">Work Experience</h5>
                                         <hr />
                                         {FormExperienceValues.map((element, index) => (
                                             <div key={index}>
                                                 <div className="row">
-                                                    <div className="col-md-3">
-                                                        <h5>Work Status</h5>
-                                                        <p>{element.status}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Work Type</h5>
-                                                        <p>{element.type}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Name of Organization*</h5>
-                                                        <p>{element.organization}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Designation</h5>
-                                                        <p>{element.designation}</p>
-                                                    </div>
+                                                    {element.status != "" && element.status != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Work Status</h5>
+                                                            <p>{element.status}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.type != "" && element.type != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Work Type</h5>
+                                                            <p>{element.type}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.organization != "" && element.organization != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Name of Organization*</h5>
+                                                            <p>{element.organization}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.designation != "" && element.designation != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Designation</h5>
+                                                            <p>{element.designation}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Job Role</h5>
-                                                        <p>{element.role}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Work Type</h5>
-                                                        <p>{element.started}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Started Date</h5>
-                                                        <p>{element.type}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>End Date</h5>
-                                                        <p>{element.ended}</p>
-                                                    </div>
+                                                    {element.role != "" && element.role != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Job Role</h5>
+                                                            <p>{element.role}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.started != "" && element.started != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Work Type</h5>
+                                                            <p>{element.started}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.type != "" && element.type != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Started Date</h5>
+                                                            <p>{element.type}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.ended != "" && element.ended != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>End Date</h5>
+                                                            <p>{element.ended}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Country</h5>
-                                                        <p>{element.country}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>City/Town</h5>
-                                                        <p>{element.city}</p>
-                                                    </div>
+                                                    {element.country != "" && element.country != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Country</h5>
+                                                            <p>{element.country}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.city != "" && element.city != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>City/Town</h5>
+                                                            <p>{element.city}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                             </div>
                                         ))}
@@ -854,36 +988,52 @@ export default function AdminStudentApplication() {
                                         {formActivityValues.map((element, index) => (
                                             <div key={index}>
                                                 <div className="row">
-                                                    <div className="col-md-3">
-                                                        <h5>Acitvity Status</h5>
-                                                        <p>{element.activityStatus}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Activity</h5>
-                                                        <p>{element.activity}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Position/Designation</h5>
-                                                        <p>{element.position}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>Description</h5>
-                                                        <p>{element.description}</p>
-                                                    </div>
+                                                    {element.activityStatus != "" && element.activityStatus != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Acitvity Status</h5>
+                                                            <p>{element.activityStatus}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.activity != "" && element.activity != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Activity</h5>
+                                                            <p>{element.activity}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.position != "" && element.position != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Position/Designation</h5>
+                                                            <p>{element.position}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.description != "" && element.description != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Description</h5>
+                                                            <p>{element.description}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                                 <div className="row mt-3">
-                                                    <div className="col-md-3">
-                                                        <h5>Started Date</h5>
-                                                        <p>{element.started}</p>
-                                                    </div>
-                                                    <div className="col-md-3">
-                                                        <h5>End Date</h5>
-                                                        <p>{element.ended}</p>
-                                                    </div>
-                                                    <div className="col-md-6">
-                                                        <h5>Would you be interested in participating in similar activities at university</h5>
-                                                        <p>{element.apply}</p>
-                                                    </div>
+                                                    {element.started != "" && element.started != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>Started Date</h5>
+                                                            <p>{element.started}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.ended != "" && element.ended != undefined ?
+                                                        <div className="col-md-3">
+                                                            <h5>End Date</h5>
+                                                            <p>{element.ended}</p>
+                                                        </div>
+                                                        : null}
+                                                    {element.apply != "" && element.apply != undefined ?
+                                                        <div className="col-md-6">
+                                                            <h5>Would you be interested in participating in similar activities at university</h5>
+                                                            <p>{element.apply}</p>
+                                                        </div>
+                                                        : null}
+
                                                 </div>
                                             </div>
                                         ))}
@@ -892,58 +1042,78 @@ export default function AdminStudentApplication() {
                                         {FormRecommendationValues.map((element, index) => (
                                             <div key={index}>
                                                 <div className="row mt-3">
+                                                {element.type != "" && element.type != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Reference Type</h5>
                                                         <p>{element.type}</p>
 
                                                     </div>
+                                                       : null}
+                                                       {element.organization != "" && element.organization != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Name of Organisation/Institution</h5>
                                                         <p>{element.organization}</p>
 
                                                     </div>
+                                                       : null}
+                                                       {element.recommenderName != "" && element.recommenderName != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Recommender Name</h5>
                                                         <p>{element.recommenderName}</p>
 
                                                     </div>
+                                                       : null}
+                                                       {element.email != "" && element.email != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Official Email ID</h5>
                                                         <p>{element.email}</p>
 
                                                     </div>
+                                                       : null}
+                                                     
                                                 </div>
                                                 <div className="row mt-3">
-
+                                                {element.relation != "" && element.relation != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Relation with Recommender</h5>
                                                         <p>{element.relation}</p>
 
                                                     </div>
+                                                      : null}
+                                                      {element.designation != "" && element.designation != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Recommender Designation</h5>
                                                         <p>{element.designation}</p>
 
                                                     </div>
+                                                      : null}
+                                                      {element.number != "" && element.number != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Contact Number</h5>
                                                         <p>{element.number}</p>
 
                                                     </div>
+                                                      : null}
+                                                      {element.address != "" && element.address != undefined ?
                                                     <div className="col-md-3">
                                                         <h5>Address of Organisation/Institution</h5>
 
                                                         <p>{element.address}</p>
 
                                                     </div>
-                                                </div>
+                                                      : null}
+                                                    
                                                 <div className="row mt-3">
+                                              
+                                                </div>
+                                                {element.letter != "" && element.letter != undefined ?
                                                     <div className="col-md-6">
                                                         <h5>Do you have letter of recommendation?</h5>
                                                         <p>{element.letter}</p>
 
                                                     </div>
-
+                                                    : null}
+                                                      
                                                 </div>
                                             </div>
                                         ))}
