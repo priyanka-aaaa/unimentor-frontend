@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Modal, Button } from 'react-bootstrap';
-
 import logo from '../img/logo.png';
 import axios from 'axios';
 import Footer from './Home/Footer'
 import Header from './Home/Header'
 import LoaderFrontend from './Home/LoaderFrontend';
 import SweetAlert from 'react-bootstrap-sweetalert';
-
 import { BrowserRouter as Router, Switch, Redirect, Route, Link } from 'react-router-dom';
 
 function importAll(r) {
@@ -31,7 +29,7 @@ export default function StudentloginForm() {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [showModal, setshowModal] = useState(false);
     const [EmailExistError, setEmailExistError] = useState(false);
-  useEffect(() => {
+    useEffect(() => {
         if (localStorage.getItem('studentId')) {
             setredirectToReferrer(true)
         }
@@ -74,6 +72,7 @@ export default function StudentloginForm() {
                         localStorage.setItem('studentName', responseJson.data.student.name);
                         localStorage.setItem('studentEmail', responseJson.data.student.email);
                         setredirectToReferrer(true)
+
                     }
                     else {
                         if (responseJson.data.message === "Password not matched") {
@@ -113,17 +112,11 @@ export default function StudentloginForm() {
 
                 if (data.success === true) {
                     setshowSweetAlert("1")
-
+                    setshowModal(false)
                 }
                 if (data.success === false) {
-                   
                     setEmailExistError(data.messages)
-                    console.log("data.messages")
-                    console.log(data.messages)
-
                 }
-                
-
             })
     }
     return (
@@ -183,7 +176,7 @@ export default function StudentloginForm() {
                 onHide={() => close()}
 
                 animation={true}
-               >
+            >
 
                 <Modal.Header closeButton>
                     <Modal.Title>Forgot Password</Modal.Title>
@@ -200,8 +193,8 @@ export default function StudentloginForm() {
                                 onChange={(e) => onChangeresetEmail(e.target.value)}
                                 required
                             />
-                            EmailExistError
-                        <div style={{ color: "red" }}> {wrongUsername}</div>
+
+                            <div style={{ color: "red" }}> {EmailExistError}</div>
 
                         </div>
 
@@ -210,9 +203,6 @@ export default function StudentloginForm() {
                     </form>
                 </div>
             </Modal>
-
-
         </div>
-
     );
 }
