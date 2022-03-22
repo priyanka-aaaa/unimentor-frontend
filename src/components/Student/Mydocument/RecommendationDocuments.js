@@ -23,6 +23,14 @@ export default function RecommendationDocuments() {
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
+
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -36,6 +44,14 @@ export default function RecommendationDocuments() {
                     setname(data.studentRecommendationDocument.name)
                     setmydocument(data.studentRecommendationDocument.document)
                     setsubmitname(data.studentRecommendationDocument.name)
+                    if (data.studentRecommendationDocument.document != null) {
+                        var fetchPassport = data.studentRecommendationDocument.document
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
                 })
         }
         recommendationAllDetails()
@@ -50,7 +66,18 @@ export default function RecommendationDocuments() {
                 setname(data.studentRecommendationDocument.name)
                 setmydocument(data.studentRecommendationDocument.document)
                 setsubmitname(data.studentRecommendationDocument.name)
+                if (data.studentRecommendationDocument.document != null) {
+                    var fetchPassport = data.studentRecommendationDocument.document
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
             })
+    }
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
     }
     function onDeletefileHandle(value) {
         setdeleteId(value)
@@ -210,9 +237,15 @@ export default function RecommendationDocuments() {
                                                         </div>
                                                         :
                                                         <div>
-                                                            <button title="View Recommendation Documents" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalRecommendation">
-                                                                View
-                                                            </button>
+                                                            
+                                                            {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalRecommendation">
+                                                View
+                                            </button>
+                                        }
                                                             <button title="Delet Entry" type="button"
                                                                 onClick={() => onDeletefileHandle()}
                                                                 className="btn btn-outline-danger">
@@ -241,6 +274,11 @@ export default function RecommendationDocuments() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={mydocument} class="DocsFrame"></iframe>
+
+                : null
+            }
         </div>
     );
 }
