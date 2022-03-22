@@ -6,7 +6,7 @@ import Loader from '../../Home/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-    export default function IdentityDocument() {
+export default function IdentityDocument() {
     const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
@@ -19,6 +19,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
     const [submitError, setsubmitError] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [myDocx, setmyDocx] = useState("0");
+
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -30,12 +33,19 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
                 .then(response => response.json())
                 .then(data => {
                     setmypassport(data.studentIdentityDocument.passport)
+                    var fetchPassport = data.studentIdentityDocument.passport
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
                     setmypassportBack(data.studentIdentityDocument.passportBack)
                     setmycv(data.studentIdentityDocument.cv)
                 })
         }
         identityDocumentAllDetails()
     }, [])
+    function viewMyDocument() {
+        setmyDocx("1")
+  
+    }
     function identityDocumentAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
             method: 'get',
@@ -44,6 +54,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
             .then(response => response.json())
             .then(data => {
                 setmypassport(data.studentIdentityDocument.passport)
+                var fetchPassport = data.studentIdentityDocument.passport
+                var completePassport = fetchPassport.split(".")
+                setpassportExtenstion(completePassport[3]);
                 setmypassportBack(data.studentIdentityDocument.passportBack)
                 setmycv(data.studentIdentityDocument.cv)
             })
@@ -160,7 +173,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
+                                        <button onClick={() => viewMyDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
                                             View
                                         </button>
                                         <button title="Delet Entry" type="button"
@@ -173,9 +186,26 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
                                                 <div className="modal-content">
                                                     <div className="modal-header">
                                                         <h4 className="modal-title">Passport </h4>
+
                                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
-                                                    <img src={mypassport} alt="passportback" />
+
+
+
+                                                    {myDocx === "1" && (passportExtenstion === "doc" ||passportExtenstion === "docx") ?
+                                                        <iframe src={mypassport} width="100%" height="500px"></iframe>
+                                                        : null}
+
+
+                                                    {passportExtenstion === "jpeg" || passportExtenstion === "jpg" || passportExtenstion === "png" ?
+                                                        <img src={mypassport} alt="passportback" />
+                                                        : passportExtenstion === "pdf" ?
+                                                            <div>
+                                                                <iframe src={mypassport} width="100%" height="500px"></iframe>
+                                                            </div>
+                                                            : null
+                                                    }
+
                                                 </div>
                                             </div>
                                         </div>
@@ -294,6 +324,9 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
                                                         .then(response => response.json())
                                                         .then(data => {
                                                             setmypassport(data.studentIdentityDocument.passport)
+                                                            var fetchPassport = data.studentIdentityDocument.passport
+                                                            var completePassport = fetchPassport.split(".")
+                                                            setpassportExtenstion(completePassport[3]);
                                                             setmypassportBack(data.studentIdentityDocument.passportBack)
                                                             setmycv(data.studentIdentityDocument.cv)
 
