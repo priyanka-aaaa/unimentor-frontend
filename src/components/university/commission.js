@@ -42,6 +42,8 @@ export default function Commission() {
     const [commissionValueError, setcommissionValueError] = useState("");
     const [timeTypeError, settimeTypeError] = useState("");
     const [timeValueError, settimeValueError] = useState("");
+    const [alreadySetCommission, setalreadySetCommission] = useState("");
+
     function changecommissionChecked(value) {
         setcommissionChecked(value)
         if (value === "fixed") {
@@ -160,6 +162,13 @@ export default function Commission() {
     }
     function handleAdd() {
         setaddWidth("1600px");
+        setalreadySetCommission("")
+        setcourseName("")
+        settuitionFee("")
+        setcommissionChecked("")
+        setcommissionValue("")
+        setcommissionTimeChecked("")
+        settimeValue("")
     }
     function handleDelete(value) {
         setshowSweetAlert("1")
@@ -180,6 +189,7 @@ export default function Commission() {
         setcommissionValueError("")
         settimeTypeError("")
         settimeValueError("")
+        setalreadySetCommission("")
         event.preventDefault();
         if (commissionChecked === "" || commissionChecked === undefined) {
             setcommissionCheckedError("Please Check Commission Type")
@@ -194,7 +204,7 @@ export default function Commission() {
             settimeValueError("Please Enter Commission Time Value")
         }
         else {
-            setaddWidth("0");
+
             setmyloader("true")
             const obj1 = new FormData();
             obj1.append("courseName", courseName);
@@ -212,25 +222,33 @@ export default function Commission() {
                 .then(response => response.json())
                 .then(data => {
                     setmyloader("false")
-                    setsuccessMessage("Commisssion Added")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
-                    setcourseName("")
-                    settuitionFee("")
-                    setcommissionChecked("")
-                    setcommissionValue("")
-                    setcommissionTimeChecked("")
-                    settimeValue("")
-                    const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
-                    fetch(url, {
-                        method: 'GET',
-                        headers: { 'Authorization': mounted }
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            setcommissionData(data.universityCommissions)
+                    if (data.success === true) {
+                        setaddWidth("0");
+                        setsuccessMessage("Commisssion Added")
+                        setTimeout(() => setsubmitSuccess(""), 3000);
+                        setsubmitSuccess(1)
+                        setcourseName("")
+                        settuitionFee("")
+                        setcommissionChecked("")
+                        setcommissionValue("")
+                        setcommissionTimeChecked("")
+                        settimeValue("")
+                        const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+                        fetch(url, {
+                            method: 'GET',
+                            headers: { 'Authorization': mounted }
                         })
+                            .then(response => response.json())
+                            .then(data => {
+                                setcommissionData(data.universityCommissions)
+                            })
+                    }
+                    if (data.success === false) {
+                        setalreadySetCommission(data.message)
+
+                    }
                 })
+
         }
     }
     let handleEditSubmit = (event) => {
@@ -425,6 +443,8 @@ export default function Commission() {
                                                                                         )
                                                                                     })}
                                                                                 </select>
+                                                                                <div style={{ color: "red" }}> {alreadySetCommission}</div>
+
                                                                             </div>
 
                                                                             <div className="col-md-6">
