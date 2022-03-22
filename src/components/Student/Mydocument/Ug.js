@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function Ug() {
- const [heroFiles, setHeroFiles] = useState([]);
+    const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [myugDegree, setmyugDegree] = useState();
@@ -20,6 +20,15 @@ export default function Ug() {
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
+    const [mymarksheet12Docx, setmymarksheet12Docx] = useState("0");
+
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -33,10 +42,43 @@ export default function Ug() {
                     setmyugDegree(data.studentEducationDocument.ugDegree)
                     setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
                     setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
+                    if (data.studentEducationDocument.ugDegree != null) {
+                        var fetchPassport = data.studentEducationDocument.ugDegree
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+                    if (data.studentEducationDocument.ugConsolidate != null) {
+                        var fetchPassportBack = data.studentEducationDocument.ugConsolidate
+                        var completePassportBack = fetchPassportBack.split(".")
+                        setpassportBackExtenstion(completePassportBack[3]);
+                    }
+                    else {
+                        setpassportBackExtenstion("");
+                    }
+                    if (data.studentEducationDocument.ugMarksheet != null) {
+                        var fetchcvBack = data.studentEducationDocument.ugMarksheet
+                        var completecv = fetchcvBack.split(".")
+                        setcvExtenstion(completecv[3]);
+                    }
+                    else {
+                        setcvExtenstion("")
+                    }
                 })
         }
         ugAllDetails();
     }, [])
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+    function viewMyPassportBackDocument() {
+        setmyPassportBackDocx("1")
+    }
+    function viewMycvDocument() {
+        setmycvDocx("1")
+    }
     function ugAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
@@ -47,6 +89,30 @@ export default function Ug() {
                 setmyugDegree(data.studentEducationDocument.ugDegree)
                 setmyugConsolidate(data.studentEducationDocument.ugConsolidate)
                 setmyUGMarksheet(data.studentEducationDocument.ugMarksheet)
+                if (data.studentEducationDocument.ugDegree != null) {
+                    var fetchPassport = data.studentEducationDocument.ugDegree
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+                if (data.studentEducationDocument.ugConsolidate != null) {
+                    var fetchPassportBack = data.studentEducationDocument.ugConsolidate
+                    var completePassportBack = fetchPassportBack.split(".")
+                    setpassportBackExtenstion(completePassportBack[3]);
+                }
+                else {
+                    setpassportBackExtenstion("");
+                }
+                if (data.studentEducationDocument.ugMarksheet != null) {
+                    var fetchcvBack = data.studentEducationDocument.ugMarksheet
+                    var completecv = fetchcvBack.split(".")
+                    setcvExtenstion(completecv[3]);
+                }
+                else {
+                    setcvExtenstion("")
+                }
             })
     }
     function onDeleteugDegreeHandle(value) {
@@ -142,6 +208,7 @@ export default function Ug() {
                                     if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                         || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                     ) {
+                                        setmyPassportDocx("0")
                                         const obj5 = new FormData();
                                         obj5.append("ugDegree", acceptedFiles[0]);
                                         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
@@ -176,9 +243,15 @@ export default function Ug() {
                                 </Dropzone>
                                 :
                                 <div>
-                                    <button title=" View UG Degree Certificate" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalugDegree1">
-                                        View
-                                    </button>
+                                    {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                        </button>
+                                        :
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalugDegree1">
+                                            View
+                                        </button>
+                                    }
+
                                     <button title="Delet Entry" type="button"
                                         onClick={() => onDeleteugDegreeHandle("ugDegree")}
                                         className="btn btn-outline-danger">
@@ -210,6 +283,7 @@ export default function Ug() {
                                 {myugConsolidate === "" || myugConsolidate === "*" || myugConsolidate === null || myugConsolidate === undefined ?
                                     <Dropzone onDrop={(acceptedFiles) => {
                                         setmyloader("true")
+                                        setmyPassportBackDocx("0")
                                         var fileName = acceptedFiles[0].path;
                                         var fileExtension = fileName.split('.').pop();
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
@@ -248,9 +322,19 @@ export default function Ug() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalugConsolidate1">
-                                            View
-                                        </button>
+
+                                        {passportBackExtenstion === "docx" || passportBackExtenstion === "doc" ?
+
+                                            <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                view
+
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalugConsolidate1">
+                                                View
+                                            </button>
+                                        }
+
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeleteugConsolidateHandle("ugConsolidate")}
                                             className="btn btn-outline-danger">
@@ -288,6 +372,8 @@ export default function Ug() {
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                             || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                         ) {
+                                            setmycvDocx("0")
+
                                             const obj5 = new FormData();
                                             obj5.append("ugMarksheet", acceptedFiles[0]);
                                             fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
@@ -321,9 +407,18 @@ export default function Ug() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalUGMarksheetConsolidate1">
-                                            View
-                                        </button>
+                                        {cvExtenstion === "docx" || cvExtenstion === "doc" ?
+
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                view
+
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalUGMarksheetConsolidate1">
+                                                View
+                                            </button>
+                                        }
+
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeleteUGMarksheetHandle("ugMarksheet")}
                                             className="btn btn-outline-danger">
@@ -350,6 +445,19 @@ export default function Ug() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={myugDegree} className="DocsFrame"></iframe>
+
+                : null
+            }
+            {(passportBackExtenstion === "docx" || passportBackExtenstion === "doc") && myPassportBackDocx === "1" ?
+                <iframe src={myugConsolidate} className="DocsFrame"></iframe>
+                : null
+            }
+            {(cvExtenstion === "docx" || cvExtenstion === "doc") && mycvDocx === "1" ?
+                <iframe src={myUGMarksheet} className="DocsFrame"></iframe>
+                : null
+            }
         </div>
- );
+    );
 }

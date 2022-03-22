@@ -321,7 +321,7 @@ export default function IdentityDocument() {
                                         :
                                         <div>
 
-                                            {passportBackExtenstion === "docx" || passportBackExtenstion === "doc"?
+                                            {passportBackExtenstion === "docx" || passportBackExtenstion === "doc" ?
 
                                                 <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
                                                     view
