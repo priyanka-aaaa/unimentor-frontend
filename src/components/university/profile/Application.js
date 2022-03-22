@@ -109,10 +109,13 @@ export default function Application() {
     let clickAddHandler = (datum) => {
 
         if (tempp !== 1) {
-            var datum = "<ul><li>" + datum + "</li></ul>";
+            console.log("ff")
+            // var datum = "<ul><li>" + datum + "</li></ul>";
+            var datum = "<ul><li>" + datum + "</li></ul><br/>";
             settempp(1);
         }
         else {
+            console.log("gg")
             var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".applicationTrixAdd")

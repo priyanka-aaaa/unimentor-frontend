@@ -106,10 +106,9 @@ export default function Document() {
     let props = {
         editId: editId,
     }
+
     let clickAddHandler = (datum) => {
-
         if (tempp !== 1) {
-
             var datum = "<ul><li>" + datum + "</li></ul><br/>";
             settempp(1);
         }
@@ -117,7 +116,7 @@ export default function Document() {
             var datum = "<br/><ul><li>" + datum + "</li></ul><br/>";
         }
         var element = document.querySelector(".helpadd")
-        element.editor.insertHTML("<li>" + datum + "<li>");
+        element.editor.insertHTML(datum);
         setmyapplication(datum)
     }
     let handleAddSubmit = () => {

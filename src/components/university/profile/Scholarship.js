@@ -101,7 +101,7 @@ export default function Scholarship() {
     }
     let clickAddHandler = (datum) => {
         if (tempp !== 1) {
-            var datum = "<ul><li>" + datum + "</li></ul>";
+            var datum = "<ul><li>" + datum + "</li></ul><br/>";
             settempp(1);
         }
         else {
