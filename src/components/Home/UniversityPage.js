@@ -614,9 +614,10 @@ export default function UniversityPage() {
                                                     <h3 className="blog-title">Browse Courses</h3>
                                                     <div className="row mb-3" >
                                                         {coursesValues.map((element, index) => (
-                                                             
-                                                            <div className="col-sm-6 mb-4" key={index} >
-                                                                  {index < 4 ?
+                                                             <>
+                                                               {index < 4 ?
+                                                            <div className="col-sm-6 mb-4" >
+                                                                
                                                                 <div>
                                                                 <div className="subcourses_courseBox__3deGG">
                                                                     <div className="subcourses_program__3pkFj col-sm-12 p-0">
@@ -684,11 +685,13 @@ export default function UniversityPage() {
                                                                 </div>
                                                                 </div>
 
-                                                                :
-                                                                null
-                                                            }
+                                                             
 
                                                             </div>
+                                                               :
+                                                               null
+                                                           }
+                                                            </>
                                                         ))}
                                                     </div>
                                                     {coursesNoValues === 1 ?
