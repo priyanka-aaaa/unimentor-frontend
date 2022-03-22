@@ -30,6 +30,13 @@ export default function EnglishProficiencyDocument() {
     const [englishProficiencyDuolingo, setenglishProficiencyDuolingo] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -43,6 +50,15 @@ export default function EnglishProficiencyDocument() {
                     settest(data.studentEnglishProficiencyDocument.test)
                     setmyfile(data.studentEnglishProficiencyDocument.file)
                     setsubmittest(data.studentEnglishProficiencyDocument.test)
+                    if (data.studentEnglishProficiencyDocument.file != null) {
+                        var fetchPassport = data.studentEnglishProficiencyDocument.file
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+
                 })
         }
         englishProficiencyAllDetails();
@@ -57,6 +73,15 @@ export default function EnglishProficiencyDocument() {
                 settest(data.studentEnglishProficiencyDocument.test)
                 setmyfile(data.studentEnglishProficiencyDocument.file)
                 setsubmittest(data.studentEnglishProficiencyDocument.test)
+                if (data.studentEnglishProficiencyDocument.file != null) {
+                    var fetchPassport = data.studentEnglishProficiencyDocument.file
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+
             })
     }
     function onChangeIelts(e) {
@@ -104,6 +129,9 @@ export default function EnglishProficiencyDocument() {
     function onDeletefileHandle(value) {
         setdeleteId(value)
         setshowSweetAlert("1")
+    }
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
     }
     return (
         <div className="card">
@@ -233,9 +261,15 @@ export default function EnglishProficiencyDocument() {
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button title="Test View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalEnglishProficiecny">
+                                               {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalEnglishProficiecny">
                                                 View
                                             </button>
+                                        }
+
                                             <button title="Delet Entry" type="button"
                                                 onClick={() => onDeletefileHandle("file")}
                                                 className="btn btn-outline-danger">
@@ -262,6 +296,11 @@ export default function EnglishProficiencyDocument() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={myfile} class="DocsFrame"></iframe>
+
+                : null
+            }
         </div>
 
     );
