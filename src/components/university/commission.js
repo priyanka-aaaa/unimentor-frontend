@@ -169,6 +169,10 @@ export default function Commission() {
         setcommissionValue("")
         setcommissionTimeChecked("")
         settimeValue("")
+        setdisplaymyAmount("none")
+        setdisplayPercentage("none")
+        setdisplaymany("none")
+        setdisplayone("none")
     }
     function handleDelete(value) {
         setshowSweetAlert("1")
@@ -430,7 +434,10 @@ export default function Commission() {
 
                                                                                 <select className="form-control"
                                                                                     required
-                                                                                    onChange={(e) => handleChange(e.target.value)}>
+                                                                                    onChange={(e) => handleChange(e.target.value)}
+                                                                                    
+                                                                                    
+                                                                                    >
 
                                                                                     <option value="" >Select Course Name</option>
                                                                                     {data.map((object, i) => {
