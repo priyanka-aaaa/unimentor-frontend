@@ -12481,4 +12481,7 @@ ul.navbar-nav.ml-auto {
       ul.pagination {
         z-index: 0;
     }
+    iframe.DocsFrame {
+      height: 1px;
+  }
     /* end priyanka */

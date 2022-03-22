@@ -30,6 +30,7 @@ export default function IdentityDocument() {
 
     useEffect(() => {
         setmyPassportDocx("0")
+        setmycvDocx("0")
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         function identityDocumentAllDetails() {
@@ -370,6 +371,7 @@ export default function IdentityDocument() {
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                             || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                         ) {
+                                            setmycvDocx("0")
                                             const obj5 = new FormData();
                                             obj5.append("cv", acceptedFiles[0]);
                                             fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
@@ -417,9 +419,19 @@ export default function IdentityDocument() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="View CV" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalcv1">
-                                            View
-                                        </button>
+                                        {cvExtenstion === "docx" ?
+
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                view
+
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalcv1">
+                                                View
+                                            </button>
+                                        }
+
+
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeletecvHandle("cv")}
                                             className="btn btn-outline-danger">
@@ -447,12 +459,16 @@ export default function IdentityDocument() {
                 </div>
             </div>
             {passportExtenstion === "docx" && myPassportDocx === "1" ?
-                <iframe src={mypassport} class="showDocsFrame"></iframe>
+                <iframe src={mypassport} class="DocsFrame"></iframe>
 
                 : null
             }
             {passportBackExtenstion === "docx" && myPassportBackDocx === "1" ?
-                <iframe src={mypassportBack} ></iframe>
+                <iframe src={mypassportBack} class="DocsFrame"></iframe>
+                : null
+            }
+            {cvExtenstion === "docx" && mycvDocx === "1" ?
+                <iframe src={mycv} class="DocsFrame"></iframe>
                 : null
             }
         </div>
