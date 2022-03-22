@@ -215,6 +215,12 @@ export default function Commission() {
                     setsuccessMessage("Commisssion Added")
                     setTimeout(() => setsubmitSuccess(""), 3000);
                     setsubmitSuccess(1)
+                    setcourseName("")
+                    settuitionFee("")
+                    setcommissionChecked("")
+                    setcommissionValue("")
+                    setcommissionTimeChecked("")
+                    settimeValue("")
                     const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
                     fetch(url, {
                         method: 'GET',
