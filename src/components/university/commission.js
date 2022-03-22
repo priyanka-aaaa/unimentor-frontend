@@ -151,6 +151,8 @@ export default function Commission() {
                     setdisplayEditAmount("none");
                 }
                 if (data.universityCommission.timeType === "one time") {
+              
+
                     setdisplayEditone("inline");
                     setdisplayEditmany("none");
                 }
@@ -702,7 +704,8 @@ export default function Commission() {
                                                                                     <fieldset
                                                                                     >
                                                                                         <label className="form-label">Commision Set is *</label><br />
-                                                                                        <div className="form-check form-check-inline">
+                                                                                        <div className="form-check form-check-inline"   >
+
                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
 
                                                                                                 checked={commissionTimeChecked === "one time"}
@@ -712,7 +715,7 @@ export default function Commission() {
                                                                                                 Only One time
                                                                                             </label>
                                                                                         </div>
-                                                                                        <div className="form-check form-check-inline">
+                                                                                        <div className="form-check form-check-inline" >
                                                                                             <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
 
                                                                                                 checked={commissionTimeChecked === "every time"}
@@ -727,14 +730,14 @@ export default function Commission() {
 
                                                                                 </div>
                                                                                 <div className="col-md-6">
-                                                                                    <div style={{ display: displayone }}>
+                                                                                    <div style={{ display: displayEditone }}>
                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For One Time</label>
                                                                                         <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
                                                                                             value={timeValue}
                                                                                             onChange={(e) => settimeValue(e.target.value)}
                                                                                         />
                                                                                     </div>
-                                                                                    <div style={{ display: displaymany }}>
+                                                                                    <div style={{ display: displayEditmany }}>
                                                                                         <label htmlFor="lname" className="form-label">Enter Commission For Every Semester </label>
                                                                                         <input type="number" className="form-control" placeholder="Enter tuitionFee" name="percentage "
                                                                                             value={timeValue}
