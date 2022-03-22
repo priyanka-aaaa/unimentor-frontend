@@ -20,9 +20,19 @@ export default function IdentityDocument() {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
-    const [myDocx, setmyDocx] = useState("0");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBDocx, setmyPassportBDocx] = useState("0");
+
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+
+    const [mycvDocx, setmycvDocx] = useState("0");
+
 
     useEffect(() => {
+        setmyPassportDocx("0")
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         function identityDocumentAllDetails() {
@@ -33,18 +43,44 @@ export default function IdentityDocument() {
                 .then(response => response.json())
                 .then(data => {
                     setmypassport(data.studentIdentityDocument.passport)
-                    var fetchPassport = data.studentIdentityDocument.passport
-                    var completePassport = fetchPassport.split(".")
-                    setpassportExtenstion(completePassport[3]);
                     setmypassportBack(data.studentIdentityDocument.passportBack)
                     setmycv(data.studentIdentityDocument.cv)
+                    if (data.studentIdentityDocument.passport != null) {
+                        var fetchPassport = data.studentIdentityDocument.passport
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+                    if (data.studentIdentityDocument.passportBack != null) {
+                        var fetchPassportBack = data.studentIdentityDocument.passportBack
+                        var completePassportBack = fetchPassportBack.split(".")
+                        setpassportBackExtenstion(completePassportBack[3]);
+                    }
+                    else {
+                        setpassportBackExtenstion("");
+                    }
+                    if (data.studentIdentityDocument.cv != null) {
+                        var fetchcvBack = data.studentIdentityDocument.cv
+                        var completecv = fetchcvBack.split(".")
+                        setcvExtenstion(completecv[3]);
+                    }
+                    else {
+                        setcvExtenstion("")
+                    }
                 })
         }
         identityDocumentAllDetails()
     }, [])
-    function viewMyDocument() {
-        setmyDocx("1")
-  
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+    function viewMyPassportBackDocument() {
+        setmyPassportBDocx("1")
+    }
+    function viewMycvDocument() {
+        setmycvDocx("1")
     }
     function identityDocumentAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
@@ -54,11 +90,32 @@ export default function IdentityDocument() {
             .then(response => response.json())
             .then(data => {
                 setmypassport(data.studentIdentityDocument.passport)
-                var fetchPassport = data.studentIdentityDocument.passport
-                var completePassport = fetchPassport.split(".")
-                setpassportExtenstion(completePassport[3]);
                 setmypassportBack(data.studentIdentityDocument.passportBack)
                 setmycv(data.studentIdentityDocument.cv)
+                if (data.studentIdentityDocument.passport != null) {
+                    var fetchPassport = data.studentIdentityDocument.passport
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+                if (data.studentIdentityDocument.passportBack != null) {
+                    var fetchPassportBack = data.studentIdentityDocument.passportBack
+                    var completePassportBack = fetchPassportBack.split(".")
+                    setpassportBackExtenstion(completePassportBack[3]);
+                }
+                else {
+                    setpassportBackExtenstion("");
+                }
+                if (data.studentIdentityDocument.cv != null) {
+                    var fetchcvBack = data.studentIdentityDocument.cv
+                    var completecv = fetchcvBack.split(".")
+                    setcvExtenstion(completecv[3]);
+                }
+                else {
+                    setcvExtenstion("")
+                }
             })
     }
     function onDeletePassportHandle(value) {
@@ -139,6 +196,7 @@ export default function IdentityDocument() {
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                             || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                         ) {
+                                            setmyPassportDocx("0")
                                             const obj5 = new FormData();
                                             obj5.append("passport", acceptedFiles[0]);
                                             fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
@@ -173,15 +231,21 @@ export default function IdentityDocument() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button onClick={() => viewMyDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
-                                            View
-                                        </button>
+
+                                        {passportExtenstion === "docx" ?
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
+                                                View
+                                            </button>
+                                        }
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeletePassportHandle("passport")}
                                             className="btn btn-outline-danger">
                                             <FontAwesomeIcon icon={faTrash} />
                                         </button>
-                                        <div className="modal" id="myModalPassport1">
+                                        <div className="modal" id="myModalPassport1" >
                                             <div className="modal-dialog">
                                                 <div className="modal-content">
                                                     <div className="modal-header">
@@ -189,14 +253,6 @@ export default function IdentityDocument() {
 
                                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
-
-
-
-                                                    {myDocx === "1" && (passportExtenstion === "doc" ||passportExtenstion === "docx") ?
-                                                        <iframe src={mypassport} width="100%" height="500px"></iframe>
-                                                        : null}
-
-
                                                     {passportExtenstion === "jpeg" || passportExtenstion === "jpg" || passportExtenstion === "png" ?
                                                         <img src={mypassport} alt="passportback" />
                                                         : passportExtenstion === "pdf" ?
@@ -231,6 +287,7 @@ export default function IdentityDocument() {
                                             if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                                 || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                             ) {
+                                                setmyPassportBDocx("0")
                                                 const obj5 = new FormData();
                                                 obj5.append("passportBack", acceptedFiles[0]);
                                                 fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
@@ -265,9 +322,18 @@ export default function IdentityDocument() {
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button title="Passport Back View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassportback1">
-                                                View
-                                            </button>
+
+                                            {passportBackExtenstion === "docx" ?
+
+                                                <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                    view
+
+                                                </button>
+                                                :
+                                                <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassportback1">
+                                                    View
+                                                </button>
+                                            }
                                             <button title="Delet Entry" type="button"
                                                 onClick={() => onDeletePassportBackHandle("passportBack")}
                                                 className="btn btn-outline-danger">
@@ -383,6 +449,15 @@ export default function IdentityDocument() {
                     </div>
                 </div>
             </div>
+            {passportExtenstion === "docx" && myPassportDocx === "1" ?
+                <iframe src={mypassport} class="showDocsFrame"></iframe>
+                
+                : null
+            }
+            {passportBackExtenstion === "docx" && myPassportBDocx === "1" ?
+                <iframe src={mypassportBack} ></iframe>
+                : null
+            }
         </div>
     );
 }

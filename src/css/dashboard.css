@@ -4545,10 +4545,13 @@ button.btn {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid #e3e6f0;
-  border-radius: 0.35rem;
+  -webkit-box-shadow: 0 16px 32px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 2%);
+  box-shadow: 0 16px 32px rgb(0 0 0 / 4%), 0 4px 8px rgb(0 0 0 / 2%);
+  border-radius: 12px;
+  border: 0;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 10px 10px 10px;
+  margin-bottom: 10px;
 }
 
 .card > hr {
@@ -4582,8 +4585,13 @@ button.btn {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+  font-size: 14px;
+  color: #8594a7;
 }
-
+.similar_box__2Lq08 img {
+  height: 160px;
+  width: 100%;
+}
 .card-title {
   margin-bottom: 0.75rem;
 }
@@ -4608,8 +4616,10 @@ button.btn {
 .card-header {
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
-  background-color: #f8f9fc;
-  border-bottom: 1px solid #e3e6f0;
+  background-color: transparent;
+    border-bottom: none;
+    color: #067393;
+
 }
 
 .card-header:first-child {

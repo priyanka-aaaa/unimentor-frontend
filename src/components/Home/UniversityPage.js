@@ -472,7 +472,7 @@ export default function UniversityPage() {
                                                                 </div>
 
                                                                 <div className="blog-desc">
-                                                                    <h5 className="mt-5">Course Description</h5>
+                                                                    <h5 className="mt-3">Course Description</h5>
                                                                     {element.description}
                                                                 </div>
                                                             </div>
@@ -514,7 +514,7 @@ export default function UniversityPage() {
                                                         <h5>Ranking Agencies</h5>
                                                         <div className="row">
                                                             {rankingValues.map((element, index) => (
-                                                                <div className="col-md-6">
+                                                                <div className="col-md-3">
                                                                     <div className="ranking-img">
                                                                         <a href="#" key={index}><img src={element.certificate} alt="" /></a>
                                                                     </div>
@@ -532,7 +532,7 @@ export default function UniversityPage() {
                                                     <div className="col-9 p-0">
                                                         <h1 className="cta_text__1LaHh">Start your journey</h1>
                                                         <h2 className="cta_subtext__1eM4M">Realise your study abroad dream</h2>
-                                                        <h2 className="cta_bluetext__2B7BK">Talk to an Expert for FREE</h2>
+                                                        <a href="#" className="cta_bluetext__2B7BK">Talk to an Expert for FREE</a>
                                                     </div>
                                                     <div className="col-3"><img className="cta_image__3Oih8" src={images["Group1169.webp"]} alt="" /></div>
                                                 </div>
@@ -587,8 +587,8 @@ export default function UniversityPage() {
                                                     <h3 className="blog-title"><a href="#">Images/Video </a></h3>
                                                     <div className="row" >
                                                         {imageVideoValues.map((element, index) => (
-                                                            <div className="col-md-6" key={index}>
-                                                                <div className="blog-img">
+                                                            <div className="col-md-4" key={index}>
+                                                                <div className="blog-img mb-3">
                                                                     {element.type === "image" ?
                                                                         <a >
                                                                             <img src={element.link} alt="image" />
@@ -693,7 +693,7 @@ export default function UniversityPage() {
                                                     </div>
                                                     {coursesNoValues === 1 ?
                                                                 <div>
-                                                                    <button> <Link to={'/schools/' + slug + '/courses'} className="nav-link" >View All Courses</Link></button>
+                                                                  <Link to={'/schools/' + slug + '/courses'} className="nav-link btn-view-all" >View All Courses</Link>
                                                                 </div>
                                                                 : null}
                                                 </div>
@@ -762,12 +762,12 @@ export default function UniversityPage() {
 
                                                                     (
 
-                                                                        <div key={index}>
+                                                                        <div className="col-md-4" key={index}>
 
 
                                                                             {
                                                                                 element._id !== universityId ?
-                                                                                    <div className="col-md-4" key={index}>
+                                                                                    <div  key={index}>
                                                                                         <div data-index="0" className="slick-slide slick-active slick-current"
                                                                                             tabIndex="-1" aria-hidden="false">
                                                                                             <div>
@@ -827,5 +827,4 @@ export default function UniversityPage() {
         </div >
     );
 };
-
 
