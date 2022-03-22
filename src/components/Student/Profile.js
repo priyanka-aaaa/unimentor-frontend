@@ -201,25 +201,7 @@ export default function Profile() {
                                                             name="text"
                                                             placeholder="Tell us about yourself"></textarea>
                                                     </div>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="fname" className="form-label">First
-                                                                    Name</label>
-                                                                <input
-                                                                    type="text" className="form-control"
-                                                                    placeholder="" name="fname" />
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor="lname" className="form-label">Last
-                                                                    Name</label>
-                                                                <input type="text"
-
-                                                                    className="form-control"
-                                                                    placeholder="" name="lname" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                   
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
@@ -283,36 +265,7 @@ export default function Profile() {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="state" className="form-label">Country of
-                                                                    citizenship</label>
-                                                                <select
-                                                                    value={citizenship}
-                                                                    onChange={(e) => handlecountry(e.target.value)}
-                                                                    className="form-control" name="country" required>
-                                                                    {countries.map((element, index) => {
-                                                                        return (
-                                                                            <option
-                                                                                value={element.country_name} key={index}>{element.country_name}</option>
-                                                                        )
-                                                                    })}
-                                                                </select>
-
-
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor="city" className="form-label">Date of
-                                                                    birth</label>
-                                                                <input max="2012-01-03" name="user_dob"
-                                                                    value={dateOfBirth}
-                                                                    onChange={(e) => setdateOfBirth(e.target.value)}
-                                                                    className="form-control" type="date" id="dob"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                 
                                                     <div className="mb-3">
                                                         <div className="row">
                                                             <div className="col">
