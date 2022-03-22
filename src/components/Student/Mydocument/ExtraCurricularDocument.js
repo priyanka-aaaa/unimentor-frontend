@@ -25,6 +25,13 @@ const [heroFiles, setHeroFiles] = useState([]);
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -38,6 +45,14 @@ const [heroFiles, setHeroFiles] = useState([]);
                     setactivity(data.studentExtraCurricularDocument.activity)
                     setmyfile(data.studentExtraCurricularDocument.file)
                     setsubmitactivity(data.studentExtraCurricularDocument.activity)
+                    if (data.studentExtraCurricularDocument.file != null) {
+                        var fetchPassport = data.studentExtraCurricularDocument.file
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
                 })
         }
         extraCurricularAllDetails()
@@ -52,8 +67,20 @@ const [heroFiles, setHeroFiles] = useState([]);
                 setactivity(data.studentExtraCurricularDocument.activity)
                 setmyfile(data.studentExtraCurricularDocument.file)
                 setsubmitactivity(data.studentExtraCurricularDocument.activity)
+                if (data.studentExtraCurricularDocument.file != null) {
+                    var fetchPassport = data.studentExtraCurricularDocument.file
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
             })
     }
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+
     function handleChange(e) {
         setactivity(e.target.value)
     }
@@ -199,9 +226,14 @@ const [heroFiles, setHeroFiles] = useState([]);
                                         </Dropzone>
                                         :
                                         <div>
-                                            <button title="View activites" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalExtraDocument">
+                                       {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalExtraDocument">
                                                 View
                                             </button>
+                                        }
                                             <button title="Delet Entry" type="button"
                                                 onClick={() => onDeletefileHandle("activity")}
                                                 className="btn btn-outline-danger">
@@ -227,6 +259,11 @@ const [heroFiles, setHeroFiles] = useState([]);
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={myfile} class="DocsFrame"></iframe>
+
+                : null
+            }
         </div>
 
     );
