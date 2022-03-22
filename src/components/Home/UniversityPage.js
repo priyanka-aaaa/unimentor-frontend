@@ -332,15 +332,7 @@ export default function UniversityPage() {
                                             </div>
 
                                         </div>
-                                        <div className="categories mb-50">
-                                            <div className="widget-title">
-                                                <h3 className="title">Location</h3>
-                                            </div>
-                                            <iframe
-                                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2369.8351609729093!2d-113.44840898415342!3d53.56070998002452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x53a022e091c0b0f7%3A0xe88f7efea9cde181!2sConcordia%20University%20of%20Edmonton!5e0!3m2!1sen!2sin!4v1642487984751!5m2!1sen!2sin"
-                                                width="100%" height="450" allowFullScreen=""
-                                                loading="lazy"></iframe>
-                                        </div>
+                                     
                                     </div>
                                 </div>
                                 <div className="col-lg-8 pr-35 md-pr-15">
