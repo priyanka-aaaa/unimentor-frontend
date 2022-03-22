@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Modal, Button } from 'react-bootstrap';
 
 import logo from '../img/logo.png';
 import axios from 'axios';
@@ -28,16 +29,25 @@ export default function StudentloginForm() {
     const [wrongUsername, setwrongUsername] = useState("")
     const [resetEmail, setresetEmail] = useState("");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
-    useEffect(() => {
+    const [showModal, setshowModal] = useState(false);
+    const [EmailExistError, setEmailExistError] = useState(false);
+  useEffect(() => {
         if (localStorage.getItem('studentId')) {
             setredirectToReferrer(true)
         }
     }, [])
+    function open() {
+        setshowModal(true)
+    }
+    function close() {
+        setshowModal(false)
+    }
     function handleSubmit(event) {
         setemailError("");
         setpasswordError("");
         setwrongUsername("")
         setwrongPassword("")
+        setEmailExistError("")
         event.preventDefault();
         if (email === "") {
             setemailError("Please enter email");
@@ -105,6 +115,14 @@ export default function StudentloginForm() {
                     setshowSweetAlert("1")
 
                 }
+                if (data.success === false) {
+                   
+                    setEmailExistError(data.messages)
+                    console.log("data.messages")
+                    console.log(data.messages)
+
+                }
+                
 
             })
     }
@@ -153,47 +171,47 @@ export default function StudentloginForm() {
                     <span style={{ color: "red" }}> {passwordError}</span>
                     <button type="submit" className="btn btn-website">Login</button>
                 </form>
-                <p data-bs-toggle="modal" data-bs-target="#forgotStudentModal">
-                    Forgot your Password?
-                </p>
+                <a onClick={() => open()} >     Forgot your Password?</a>
+
                 <p>Don't have an account? Click here to
                     <Link to={'/Studentregister'} className="" href="#">
                         Register</Link></p>
 
             </div>
-            <div class="modal" id="forgotStudentModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
+            <Modal className="modal-container"
+                show={showModal}
+                onHide={() => close()}
+
+                animation={true}
+               >
+
+                <Modal.Header closeButton>
+                    <Modal.Title>Forgot Password</Modal.Title>
+                </Modal.Header>
 
 
-                        <div class="modal-header">
-                            <h4 class="modal-title">Forgot Password</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                <div className="modal-body">
+                    <form onSubmit={handleforgotPasswordSubmit}>
+
+                        <div className="mb-3 mt-3">
+                            <label htmlFor="email">Email Address:</label>
+                            <input type="email" className="form-control" id="email" placeholder="Enter email" name="email"
+                                value={resetEmail}
+                                onChange={(e) => onChangeresetEmail(e.target.value)}
+                                required
+                            />
+                            EmailExistError
+                        <div style={{ color: "red" }}> {wrongUsername}</div>
+
                         </div>
 
 
-                        <div class="modal-body">
-                            <form onSubmit={handleforgotPasswordSubmit}>
-
-                                <div class="mb-3 mt-3">
-                                    <label for="email">Email Address:</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"
-                                        value={resetEmail}
-                                        onChange={(e) => onChangeresetEmail(e.target.value)}
-                                        required
-                                    />
-                                </div>
-
-
-                                <button type="submit" class="btn btn-primary" >Send Password Reset Link</button>
-                            </form>
-                        </div>
-
-
-
-                    </div>
+                        <button type="submit" className="btn btn-primary" >Send Password Reset Link</button>
+                    </form>
                 </div>
-            </div>
+            </Modal>
+
+
         </div>
 
     );
