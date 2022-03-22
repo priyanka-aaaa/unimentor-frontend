@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function SecondaryEducation() {
- const [heroFiles, setHeroFiles] = useState([]);
+    const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [mymarksheet10, setmymarksheet10] = useState();
@@ -19,6 +19,16 @@ export default function SecondaryEducation() {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
+    const [mymarksheet12Docx, setmymarksheet12Docx] = useState("0");
+
+
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -31,10 +41,35 @@ export default function SecondaryEducation() {
                 .then(data => {
                     setmymarksheet10(data.studentEducationDocument.marksheet10)
                     setmymarksheet12(data.studentEducationDocument.marksheet12)
+                    if (data.studentEducationDocument.marksheet10 != null) {
+                        var fetchPassport = data.studentEducationDocument.marksheet10
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+                    if (data.studentEducationDocument.marksheet12 != null) {
+                        var fetchcvBack = data.studentEducationDocument.marksheet12
+                        var completecv = fetchcvBack.split(".")
+                        console.log("completecv[3]completecv[3]");
+                        console.log(completecv[3])
+                        setcvExtenstion(completecv[3]);
+                    }
+                    else {
+                        setcvExtenstion("")
+                    }
                 })
         }
         secondaryEducationAllDetails();
     }, [])
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+
+    function viewMycvDocument() {
+        setmymarksheet12Docx("1")
+    }
     function secondaryEducationAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
@@ -44,6 +79,22 @@ export default function SecondaryEducation() {
             .then(data => {
                 setmymarksheet10(data.studentEducationDocument.marksheet10)
                 setmymarksheet12(data.studentEducationDocument.marksheet12)
+                if (data.studentEducationDocument.marksheet10 != null) {
+                    var fetchPassport = data.studentEducationDocument.marksheet10
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+                if (data.studentEducationDocument.marksheet12 != null) {
+                    var fetchcvBack = data.studentEducationDocument.marksheet12
+                    var completecv = fetchcvBack.split(".")
+                    setcvExtenstion(completecv[3]);
+                }
+                else {
+                    setcvExtenstion("")
+                }
             })
     }
     function onDeletemarksheet10Handle(value) {
@@ -135,6 +186,7 @@ export default function SecondaryEducation() {
                                     if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                         || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                     ) {
+                                        setmyPassportDocx("0")
                                         const obj5 = new FormData();
                                         obj5.append("marksheet10", acceptedFiles[0]);
                                         //start for calling first api
@@ -171,9 +223,15 @@ export default function SecondaryEducation() {
                                 </Dropzone>
                                 :
                                 <div>
-                                    <button title="View Mark sheet" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalmarksheet101">
-                                        View
-                                    </button>
+
+                                    {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                        </button>
+                                        :
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalmarksheet101">
+                                            View
+                                        </button>
+                                    }
                                     <button title="Entry Delet" type="button"
                                         onClick={() => onDeletemarksheet10Handle("marksheet10")}
                                         className="btn btn-outline-danger">
@@ -211,6 +269,7 @@ export default function SecondaryEducation() {
                                         if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                             || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                         ) {
+                                            setmycvDocx("0")
                                             const obj5 = new FormData();
                                             obj5.append("marksheet12", acceptedFiles[0]);
                                             fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
@@ -244,9 +303,16 @@ export default function SecondaryEducation() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="View Narksheet" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalmarksheet121">
-                                            View
-                                        </button>
+                                        {cvExtenstion === "docx" || cvExtenstion === "doc" ?
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalmarksheet121">
+                                                View
+                                            </button>
+                                        }
+
+
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeletemarksheet12Handle("marksheet12")}
                                             className="btn btn-outline-danger">
@@ -272,6 +338,15 @@ export default function SecondaryEducation() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={mymarksheet10} class="DocsFrame"></iframe>
+
+                : null
+            }
+            {(cvExtenstion === "docx" || cvExtenstion === "doc") && mymarksheet12Docx === "1" ?
+                <iframe src={mymarksheet12} class="DocsFrame"></iframe>
+                : null
+            }
         </div>
     );
 }
