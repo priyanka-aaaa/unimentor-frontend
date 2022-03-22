@@ -124,7 +124,7 @@ export default function SecondaryEducation() {
                 <div style={{ display: textflag }}>
                     <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <p className="pl-4 pr-4 pt-0 pb-0">marksheet 10th Front <span className="text-danger"> *</span></p>
+                            <p className="pl-4 pr-4 pt-0 pb-0">10th Marksheet  <span className="text-danger"> *</span></p>
                         </div>
                         <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                             {mymarksheet10 === "" || mymarksheet10 === "*" || mymarksheet10 === null || mymarksheet10 === undefined ?
@@ -183,7 +183,7 @@ export default function SecondaryEducation() {
                                         <div className="modal-dialog">
                                             <div className="modal-content">
                                                 <div className="modal-header">
-                                                    <h4 className="modal-title">marksheet 10th </h4>
+                                                    <h4 className="modal-title"> 12th Marksheet</h4>
                                                     <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
                                                 <img src={mymarksheet10} alt="marksheet12" />
@@ -199,7 +199,7 @@ export default function SecondaryEducation() {
                     </div>
                     <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
                         <div className="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <p className="pl-4 pr-4 pt-0 pb-0">marksheet 10th Back <span className="text-danger"> *</span></p>
+                            <p className="pl-4 pr-4 pt-0 pb-0">12th Marksheet <span className="text-danger"> *</span></p>
                         </div>
                         <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
                             <div>
@@ -256,7 +256,7 @@ export default function SecondaryEducation() {
                                             <div className="modal-dialog">
                                                 <div className="modal-content">
                                                     <div className="modal-header">
-                                                        <h4 className="modal-title">marksheet 10th Back</h4>
+                                                        <h4 className="modal-title">12th Marksheet</h4>
                                                         <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
                                                     </div>
                                                     <img src={mymarksheet12} alt="marksheet12" />
