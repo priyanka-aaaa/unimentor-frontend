@@ -24,10 +24,7 @@ export default function IdentityDocument() {
     const [cvExtenstion, setcvExtenstion] = useState(".jpg");
 
     const [myPassportDocx, setmyPassportDocx] = useState("0");
-    const [myPassportBDocx, setmyPassportBDocx] = useState("0");
-
     const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
-
     const [mycvDocx, setmycvDocx] = useState("0");
 
 
@@ -77,7 +74,7 @@ export default function IdentityDocument() {
         setmyPassportDocx("1")
     }
     function viewMyPassportBackDocument() {
-        setmyPassportBDocx("1")
+        setmyPassportBackDocx("1")
     }
     function viewMycvDocument() {
         setmycvDocx("1")
@@ -287,7 +284,7 @@ export default function IdentityDocument() {
                                             if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
                                                 || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
                                             ) {
-                                                setmyPassportBDocx("0")
+                                                setmyPassportBackDocx("0")
                                                 const obj5 = new FormData();
                                                 obj5.append("passportBack", acceptedFiles[0]);
                                                 fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
@@ -451,10 +448,10 @@ export default function IdentityDocument() {
             </div>
             {passportExtenstion === "docx" && myPassportDocx === "1" ?
                 <iframe src={mypassport} class="showDocsFrame"></iframe>
-                
+
                 : null
             }
-            {passportBackExtenstion === "docx" && myPassportBDocx === "1" ?
+            {passportBackExtenstion === "docx" && myPassportBackDocx === "1" ?
                 <iframe src={mypassportBack} ></iframe>
                 : null
             }

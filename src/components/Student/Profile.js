@@ -1,357 +1,288 @@
 import React, { useState, useEffect } from "react";
 import Dropzone from "react-dropzone";
 import axios from 'axios';
+import SweetAlert from 'react-bootstrap-sweetalert';
 import Loader from '../Home/Loader';
-export default function Profile() {
-    const [mounted, setMounted] = useState();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+
+export default function IdentityDocument() {
+    const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
-    const [citizenship, setcitizenship] = useState("");
-    const [aboutMe, setaboutMe] = useState("");
-    const [email, setemail] = useState("");
-    const [location, setlocation] = useState("");
-    const [state, setstate] = useState("");
-    const [city, setcity] = useState("");
-    const [country, setcountry] = useState("");
-    const [dateOfBirth, setdateOfBirth] = useState("");
-    const [countryCode, setcountryCode] = useState("");
-    const [mobile, setmobile] = useState("");
-    const [gender, setgender] = useState("");
-    const [picture, setpicture] = useState("");
-    const [loader, setmyloader] = useState("false");
-    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [mounted, setMounted] = useState();
+    const [mypassport, setmypassport] = useState();
+    const [mypassportBack, setmypassportBack] = useState();
+    const [mycv, setmycv] = useState();
+    const [deleteId, setdeleteId] = useState();
     const [successMessage, setsuccessMessage] = useState("");
-    const [countries, setcountries] = useState([{
-        country_name: ""
-    }]);
-    const [states, setstates] = useState([{
-        state_name: ""
-    }])
-    const [cities, setcities] = useState([{
-        city_name: ""
-    }])
+    const [submitSuccess, setsubmitSuccess] = useState("0");
+    const [submitError, setsubmitError] = useState("0");
+    const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [loader, setmyloader] = useState("false");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBDocx, setmyPassportBDocx] = useState("0");
+
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+
+    const [mycvDocx, setmycvDocx] = useState("0");
+
+
     useEffect(() => {
+        setmyPassportDocx("0")
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
-        axios.get(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                if (res.data.success === true) {
-                    var student_personal = res.data.studentPersonalDetails;
-                    setpicture(student_personal.picture);
-                    setaboutMe(student_personal.aboutMe);
-                    setemail(student_personal.email);
-                    setlocation(student_personal.location);
-                    setstate(student_personal.state);
-                    setcity(student_personal.city);
-                    setcountry(student_personal.country);
-                    setdateOfBirth(student_personal.dateOfBirth);
-                    setcountryCode(student_personal.countryCode);
-                    setmobile(student_personal.phone);
-                    setgender(student_personal.gender);
-                }
+        function identityDocumentAllDetails() {
+            fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                method: 'get',
+                headers: { 'Authorization': mounted },
             })
-            .catch(error => {
-            });
-        axios.get(process.env.REACT_APP_SERVER_URL + 'countries/')
-            .then(function (res) {
-                if (res.data.success === true) {
-                    setcountries(res.data.result);
-                }
-            })
-            .catch(error => {
-            });
-        axios.get(process.env.REACT_APP_SERVER_URL + 'states/india')
-            .then(function (res) {
-                if (res.data.success === true) {
-                }
-            })
-            .catch(error => {
-            });
+                .then(response => response.json())
+                .then(data => {
+                    setmypassport(data.studentIdentityDocument.passport)
+                    setmypassportBack(data.studentIdentityDocument.passportBack)
+                    setmycv(data.studentIdentityDocument.cv)
+                    if (data.studentIdentityDocument.passport != null) {
+                        var fetchPassport = data.studentIdentityDocument.passport
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+                    if (data.studentIdentityDocument.passportBack != null) {
+                        var fetchPassportBack = data.studentIdentityDocument.passportBack
+                        var completePassportBack = fetchPassportBack.split(".")
+                        setpassportBackExtenstion(completePassportBack[3]);
+                    }
+                    else {
+                        setpassportBackExtenstion("");
+                    }
+                    if (data.studentIdentityDocument.cv != null) {
+                        var fetchcvBack = data.studentIdentityDocument.cv
+                        var completecv = fetchcvBack.split(".")
+                        setcvExtenstion(completecv[3]);
+                    }
+                    else {
+                        setcvExtenstion("")
+                    }
+                })
+        }
+        identityDocumentAllDetails()
     }, [])
-    function personalDetails(event) {
-        setmyloader("true")
-        event.preventDefault();
-        const obj = {
-            picture: picture,
-            aboutMe: aboutMe,
-            email: email,
-            location: location,
-            state: state,
-            city: city,
-            country: citizenship,
-            dateOfBirth: dateOfBirth,
-            countryCode: country,
-            phone: mobile,
-            gender: gender
-        };
-        axios.put(process.env.REACT_APP_SERVER_URL + 'student/personalDetails', obj, { headers: { 'Authorization': mounted } })
-            .then(function (res) {
-                setmyloader("false")
-
-                if (res.data.success === true) {
-                    setsuccessMessage("Profile Updated")
-                    setTimeout(() => setsubmitSuccess(""), 3000);
-                    setsubmitSuccess(1)
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+    function viewMyPassportBackDocument() {
+        setmyPassportBDocx("1")
+    }
+    function viewMycvDocument() {
+        setmycvDocx("1")
+    }
+    function identityDocumentAll() {
+        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+            method: 'get',
+            headers: { 'Authorization': mounted },
+        })
+            .then(response => response.json())
+            .then(data => {
+                setmypassport(data.studentIdentityDocument.passport)
+                setmypassportBack(data.studentIdentityDocument.passportBack)
+                setmycv(data.studentIdentityDocument.cv)
+                if (data.studentIdentityDocument.passport != null) {
+                    var fetchPassport = data.studentIdentityDocument.passport
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+                if (data.studentIdentityDocument.passportBack != null) {
+                    var fetchPassportBack = data.studentIdentityDocument.passportBack
+                    var completePassportBack = fetchPassportBack.split(".")
+                    setpassportBackExtenstion(completePassportBack[3]);
+                }
+                else {
+                    setpassportBackExtenstion("");
+                }
+                if (data.studentIdentityDocument.cv != null) {
+                    var fetchcvBack = data.studentIdentityDocument.cv
+                    var completecv = fetchcvBack.split(".")
+                    setcvExtenstion(completecv[3]);
+                }
+                else {
+                    setcvExtenstion("")
                 }
             })
-            .catch(error => {
-            });
     }
-    function handlecountry(e) {
-        setcitizenship(e)
-        axios.get(process.env.REACT_APP_SERVER_URL + 'states/' + e + '/')
-            .then(function (res) {
-                if (res.data.success === true) {
-                    setstates(res.data.result);
-                }
-            })
-            .catch(error => {
-            });
+    function onDeletePassportHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-    function handlestate(e) {
-        setstate(e)
-        axios.get(process.env.REACT_APP_SERVER_URL + 'cities/' + e + '/')
-            .then(function (res) {
-                if (res.data.success === true) {
-                    setcities(res.data.result);
-                }
-            })
-            .catch(error => {
-            });
+    function onDeletecvHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-    function setstudentGender(value) {
-        setgender(value);
-
+    function onDeletePassportBackHandle(value) {
+        setdeleteId(value)
+        setshowSweetAlert("1")
     }
-
-
     return (
-        <div className="container">
-            <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">Personal Details</h1>
-            </div>
-
-            <div className="row">
-                <div className="col-xl-12 col-lg-7">
-                    <div className="card shadow mb-4">
-                        <div className="card shadow mb-4">
-                            <div id="accordion">
-                                <div className="card">
-                                    {loader === "true" ?
-                                        <Loader />
-                                        : null}
-                                    {submitSuccess === 1 ? <div className="Show_success_message">
-                                        <strong>Success!</strong> {successMessage}
-                                    </div> : null}
-                                    <a className="card-header" data-bs-toggle="collapse" href="#collapseOne">
-                                        Personal Details
-                                    </a>
-                                    <div id="collapseOne" className="collapse show" data-bs-parent="#accordion">
-                                        <div className="card-body">
-                                            <div className="from-block">
-                                                <form onSubmit={personalDetails}>
-
-                                                    <div className="mb-3">
-                                                        <div className="row">
-
-                                                            <div className="col-md-6">
-
-                                                                <div className="drag-drop">
-                                                                    <h6>Profile Pict</h6>
-                                                                    <label htmlFor="profile-picture" className="uploader"><input
-
-                                                                    />
-
-                                                                        <img src={picture} alt="picture" className="dummy-img" />
-
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            <div className="col-md-6">
-                                                                <label> Profile Picture Edit</label>
-                                                                <Dropzone onDrop={(acceptedFiles) => {
-                                                                    setpicture(acceptedFiles[0])
-                                                                    var fileName = acceptedFiles[0].path;
-                                                                    var fileExtension = fileName.split('.').pop();
-
-                                                                    setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
-                                                                        preview: URL.createObjectURL(file)
-                                                                    })));
-                                                                }} name="heroImage" multiple={false}>
-                                                                    {({ getRootProps, getInputProps }) => (
-                                                                        <div {...getRootProps({ className: 'dropzone' })}>
-                                                                            <input {...getInputProps()} />
-                                                                            <div style={{ fontSize: ".8rem" }}>
-                                                                                Upload/Drag & Drop Profile Picture
-                                                                            </div>
-                                                                        </div>
-                                                                    )}
-                                                                </Dropzone>
-
-                                                            </div>
+        <>
+            {loader === "true" ?
+                <Loader />
+                : null}
 
 
+            <div className="card-body">
+                {submitSuccess === 1 ? <div className="Show_success_message">
+                    <strong></strong> {successMessage}
+                </div> : null}
+                {submitError === 1 ? <div className="Show_error_message">
+                    <strong></strong> File extension not supported
+                </div> : null}
+                {showSweetAlert === "1" ? <SweetAlert
+                    warning
+                    showCancel
+                    confirmBtnText="Yes, delete it!"
+                    confirmBtnBsStyle="danger"
+
+                    title="Are you sure?"
+                    onConfirm={(value) => {
+                        setshowSweetAlert("0");
+                        setmyloader("true")
+                        const obj5 = new FormData();
+                        obj5.append(deleteId, "*");
+                        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                            method: 'put',
+                            body: obj5,
+                            headers: { 'Authorization': mounted },
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                setmyloader("false")
+
+                                setsuccessMessage("Deleted Successfully")
+                                setTimeout(() => setsubmitSuccess(""), 3000);
+                                setsubmitSuccess(1)
+
+                                identityDocumentAll()
+                            })
+                    }}
+                    onCancel={() =>
+                        setshowSweetAlert("0")
+                    }
+                    focusCancelBtn
+                >
+                </SweetAlert>
+                    : null
+                }
+                <div className="form form_doc">
+                    <div className="upload_doc d-flex flex-wrap align-items-center row mt-3">
+                        <div className="col-6 col-sm-6 col-md-6 col-lg-6">
+                            <p className="pl-4 pr-4 pt-0 pb-0">Passport Front <span className="text-danger"> *</span></p>
+                        </div>
+                        <div className="col-4 col-sm-4 col-md-4 col-lg-4 text-center">
+                            {mypassport === "" || mypassport === "*" || mypassport === null || mypassport === undefined ?
+                                <Dropzone onDrop={(acceptedFiles) => {
+                                    setmyloader("true")
+                                    var fileName = acceptedFiles[0].path;
+                                    var fileExtension = fileName.split('.').pop();
+                                    if (fileExtension === "pdf" || fileExtension === "doc" || fileExtension === "docx"
+                                        || fileExtension === "jpeg" || fileExtension === "jpg" || fileExtension === "png"
+                                    ) {
+                                        setmyPassportDocx("0")
+                                        const obj5 = new FormData();
+                                        obj5.append("passport", acceptedFiles[0]);
+                                        fetch(process.env.REACT_APP_SERVER_URL + 'student/identityDocument', {
+                                            method: 'put',
+                                            body: obj5,
+                                            headers: { 'Authorization': mounted },
+                                        })
+                                            .then(response => response.json())
+                                            .then(data => {
+                                                setmyloader("false")
+                                                identityDocumentAll()
+                                            })
+                                    }
+                                    else {
+                                        setmyloader("false")
+                                        setTimeout(() => setsubmitError(""), 3000);
+                                        setsubmitError(1)
+                                    }
+                                    setThumbnailFiles(acceptedFiles.map(file => Object.assign(file, {
+                                        preview: URL.createObjectURL(file)
+
+                                    })));
+                                }} name="heroImage" multiple={false}>
+                                    {({ getRootProps, getInputProps }) => (
+                                        <div {...getRootProps({ className: 'dropzone' })}>
+                                            <input {...getInputProps()} />
+                                            <div style={{ fontSize: ".8rem" }}>
+                                                Upload/Drag & Drop here
+                                            </div>
+                                        </div>
+                                    )}
+                                </Dropzone>
+                                :
+                                <div>
+
+                                    {passportExtenstion === "docx" ?
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                        </button>
+                                        :
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalPassport1">
+                                            View
+                                        </button>
+                                    }
+                                    <button title="Delet Entry" type="button"
+                                        onClick={() => onDeletePassportHandle("passport")}
+                                        className="btn btn-outline-danger">
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </button>
+                                    <div className="modal" id="myModalPassport1" >
+                                        <div className="modal-dialog">
+                                            <div className="modal-content">
+                                                <div className="modal-header">
+                                                    <h4 className="modal-title">Passport </h4>
+
+                                                    <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                {passportExtenstion === "jpeg" || passportExtenstion === "jpg" || passportExtenstion === "png" ?
+                                                    <img src={mypassport} alt="passportback" />
+                                                    : passportExtenstion === "pdf" ?
+                                                        <div>
+                                                            <iframe src={mypassport} width="100%" height="500px"></iframe>
                                                         </div>
-                                                    </div>
-                                                    <div className="mb-3 mt-5">
-                                                        <label htmlFor="msg">About Me</label>
-                                                        <textarea
-                                                            value={aboutMe}
-                                                            onChange={(e) => setaboutMe(e.target.value)}
-                                                            className="form-control" rows="5" id="comment"
-                                                            name="text"
-                                                            placeholder="Tell us about yourself"></textarea>
-                                                    </div>
-                                                   
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="email"
-                                                                    className="form-label">Email</label>
-                                                                <input type="email"
-                                                                    readonly
-                                                                    value={email}
-                                                                    onChange={(e) => setemail(e.target.value)}
-                                                                    className="form-control"
-                                                                    id="email" placeholder="" name="email" />
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor="clocation"
-                                                                    className="form-label">Current Location</label>
-                                                                <input
-                                                                    value={location}
-                                                                    onChange={(e) => setlocation(e.target.value)}
-                                                                    type="text" className="form-control"
-                                                                    placeholder="" name="lname" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="state"
-                                                                    className="form-label">State</label>
-                                                                <select
-                                                                    value={state}
-                                                                    onChange={(e) => handlestate(e.target.value)}
-                                                                    className="form-control" name="state" required>
-                                                                    <option value={state}>{state}</option>
-                                                                    {states.map((element, index) => {
-                                                                        if (element.state_name !== state) {
-                                                                            return (
-                                                                                <option
-                                                                                    value={element.state_name} key={index}>{element.state_name}</option>
-                                                                            )
-                                                                        }
-                                                                    })}
-                                                                </select>
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor="city"
-                                                                    className="form-label">City</label>
-                                                                <select
-                                                                    value={city}
-                                                                    onChange={(e) => setcity(e.target.value)}
-                                                                    className="form-control" name="city" required>
-                                                                    <option value={city}>{city}</option>
-                                                                    {cities.map((element, index) => {
-                                                                        if (element.city_name !== city) {
-                                                                            return (
-                                                                                <option
-                                                                                    value={element.city_name} key={index}>{element.city_name}</option>
-                                                                            )
-                                                                        }
-                                                                    })}
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                 
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="state" className="form-label">Country
-                                                                    Code</label>
-                                                                <input name="countryCode"
-                                                                    value={countryCode}
-                                                                    onChange={(e) => setcountryCode(e.target.value)}
-                                                                    className="form-control" type="number"
-                                                                />
+                                                        : null
+                                                }
 
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor="city" className="form-label">Mobile
-                                                                    Number</label>
-                                                                <input
-                                                                    value={mobile}
-                                                                    onChange={(e) => setmobile(e.target.value)}
-                                                                    name="mobile" className="form-control"
-                                                                    type="tel" id="mobile" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mb-3">
-                                                        <div className="row">
-                                                            <div className="col">
-                                                                <label htmlFor="Gender"
-                                                                    className="form-label">Gender</label><br />
-                                                                <div className="form-check form-check-inline">
-                                                                    <input
-                                                                        checked={gender === "male"}
-                                                                        onChange={(e) => setstudentGender("male")}
-
-                                                                        className="form-check-input" type="radio"
-                                                                        name="flexRadioDefault"
-                                                                        id="flexRadioDefault1" />
-                                                                    <label className="form-check-label"
-                                                                        htmlFor="flexRadioDefault1">
-                                                                        Male
-                                                                    </label>
-                                                                </div>
-                                                                <div className="form-check form-check-inline">
-                                                                    <input
-                                                                        checked={gender === "female"}
-                                                                        onChange={(e) => setstudentGender("female")}
-                                                                        className="form-check-input" type="radio"
-                                                                        name="flexRadioDefault"
-                                                                        id="flexRadioDefault2" />
-                                                                    <label className="form-check-label"
-                                                                        htmlFor="flexRadioDefault2">
-                                                                        Female
-                                                                    </label>
-                                                                </div>
-                                                                <div className="form-check form-check-inline">
-                                                                    <input
-                                                                        checked={gender === "other"}
-                                                                        onChange={(e) => setstudentGender("other")}
-
-
-                                                                        className="form-check-input" type="radio"
-                                                                        name="flexRadioDefault"
-                                                                        id="flexRadioDefault3" />
-                                                                    <label className="form-check-label"
-                                                                        htmlFor="flexRadioDefault3">
-                                                                        Other
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div className="mb-3">
-                                                        <button type="submit"
-                                                            className="btn btn-success " title="Save Changes">Save Changes</button>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                            </div>
+                            }
+                        </div>
+                        <div className="col-2 col-sm-2 col-md-2 col-lg-2 p-0 text-center">
                         </div>
                     </div>
+                  
                 </div>
             </div>
-        </div>
+
+            {passportExtenstion === "docx" && myPassportDocx === "1" ?
+                <iframe src={mypassport} class="showDocsFrame"></iframe>
+
+                : null
+            }
+            {passportBackExtenstion === "docx" && myPassportBDocx === "1" ?
+                <iframe src={mypassportBack} ></iframe>
+                : null
+            }
+        </>
     );
 }

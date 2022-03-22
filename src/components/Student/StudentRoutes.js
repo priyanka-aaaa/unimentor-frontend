@@ -24,14 +24,7 @@ const StudentRoutes = [
     layout: "/student",
   },
  
-  {
-    path: "/profile",
-    name: "Typography",
-    icon: "nc-icon nc-paper-2",
-    component: Profile,
-    layout: "/student",
-  },
-  {
+ {
     path: "/document",
     name: "Typography",
     icon: "nc-icon nc-paper-2",

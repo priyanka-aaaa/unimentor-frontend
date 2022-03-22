@@ -109,12 +109,7 @@ function StudentLayout(props) {
                             <i className="fas fa-fw fa-tachometer-alt"></i>
                             <span> <FontAwesomeIcon icon={faDashboard} />Dashboard          </span></Link>
                     </li>
-                    <li className="nav-item">
-                        <Link to={'/student/profile'} className="nav-link" href="#" title="Profile">
-                            <i className="fas fa-user"></i>
-                            <span><FontAwesomeIcon icon={faUserCircle} />Profile</span></Link>
-
-                    </li>
+                  
                     <li className="nav-item">
 
                         <Link to={'/student/applicationProfile'} className="nav-link" tiele="Application Profile">
