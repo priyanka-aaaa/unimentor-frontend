@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function WorkExperienceDocument() {
- const [successMessage, setsuccessMessage] = useState("");
+    const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [mounted, setMounted] = useState();
     const [companyName, setcompanyName] = useState("");
@@ -21,7 +21,17 @@ export default function WorkExperienceDocument() {
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+   
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
+
     useEffect(() => {
+        setmyPassportDocx("0")
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
         var myurl = process.env.REACT_APP_SERVER_URL;
@@ -35,10 +45,21 @@ export default function WorkExperienceDocument() {
                     setcompanyName(data.studentExperienceDocument.companyName)
                     setmydocument(data.studentExperienceDocument.document)
                     setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                    if (data.studentExperienceDocument.document != null) {
+                        var fetchPassport = data.studentExperienceDocument.document
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
                 })
         }
         workRexperienceAllDetails();
     }, [])
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
     function workRexperienceAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/experienceDocument', {
             method: 'get',
@@ -49,6 +70,14 @@ export default function WorkExperienceDocument() {
                 setcompanyName(data.studentExperienceDocument.companyName)
                 setmydocument(data.studentExperienceDocument.document)
                 setsubmitcompanyName(data.studentExperienceDocument.companyName)
+                if (data.studentExperienceDocument.document != null) {
+                    var fetchPassport = data.studentExperienceDocument.document
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
             })
     }
     function onDeletefileHandle(value) {
@@ -191,9 +220,16 @@ export default function WorkExperienceDocument() {
                                                         </div>
                                                         :
                                                         <div>
-                                                            <button title="View Work Experience" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalWorkExperience">
-                                                                View
-                                                            </button>
+                                                           
+                                                            {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                                                <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                                                </button>
+                                                                :
+                                                                <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalWorkExperience">
+                                                                    View
+                                                                </button>
+                                                            }
+
                                                             <button title="Delet Entry" type="button"
                                                                 onClick={() => onDeletefileHandle("document")}
                                                                 className="btn btn-outline-danger">
@@ -222,6 +258,11 @@ export default function WorkExperienceDocument() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={mydocument} class="DocsFrame"></iframe>
+
+                : null
+            }
         </div>
     );
 }
