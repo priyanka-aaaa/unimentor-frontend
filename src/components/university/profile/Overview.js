@@ -312,7 +312,7 @@ export default function Overview() {
                                         </div>
                                         <div className="col-md-4">
                                             <div className="form-group">
-                                                <label htmlFor="State/Province">  Acceptance rate <span className="req-star">*</span> </label>
+                                                <label htmlFor="State/Province">  Acceptance rate(%) <span className="req-star">*</span> </label>
                                                 <input type="number" className="form-control" placholder=" acceptance rate"
                                                     required value={acceptanceRate}
                                                     onChange={(e) => setacceptanceRate(e.target.value)}
