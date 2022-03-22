@@ -213,7 +213,7 @@ export default function Summary() {
                                             <div className="row">
                                                 <div className="col-md-4">
                                                 <div className="form-group">
-                                                    <label className="form-label">CAS Deposit <span className="req-star">*</span></label>
+                                                    <label className="form-label">Cash Deposit <span className="req-star">*</span></label>
                                                     <input type="text" className="form-control"
                                                         value={deposit} required
                                                         onChange={(e) => setdeposit(e.target.value)}
