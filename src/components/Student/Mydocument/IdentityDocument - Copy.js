@@ -230,7 +230,7 @@ export default function IdentityDocument() {
                                     :
                                     <div>
 
-                                        {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                        {passportExtenstion === "docx" ?
                                             <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
                                             </button>
                                             :
@@ -321,7 +321,7 @@ export default function IdentityDocument() {
                                         :
                                         <div>
 
-                                            {passportBackExtenstion === "docx" || passportBackExtenstion === "doc"?
+                                            {passportBackExtenstion === "docx" ?
 
                                                 <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
                                                     view
@@ -419,7 +419,7 @@ export default function IdentityDocument() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        {cvExtenstion === "docx" || cvExtenstion === "doc" ?
+                                        {cvExtenstion === "docx" ?
 
                                             <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
                                                 view
@@ -458,16 +458,16 @@ export default function IdentityDocument() {
                     </div>
                 </div>
             </div>
-            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+            {passportExtenstion === "docx" && myPassportDocx === "1" ?
                 <iframe src={mypassport} class="DocsFrame"></iframe>
 
                 : null
             }
-            {(passportBackExtenstion === "docx" || passportBackExtenstion === "doc") && myPassportBackDocx === "1" ?
+            {passportBackExtenstion === "docx" && myPassportBackDocx === "1" ?
                 <iframe src={mypassportBack} class="DocsFrame"></iframe>
                 : null
             }
-            {(cvExtenstion === "docx" || cvExtenstion === "doc") && mycvDocx === "1" ?
+            {cvExtenstion === "docx" && mycvDocx === "1" ?
                 <iframe src={mycv} class="DocsFrame"></iframe>
                 : null
             }
