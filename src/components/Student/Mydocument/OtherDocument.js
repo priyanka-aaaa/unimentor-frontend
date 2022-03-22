@@ -26,6 +26,13 @@ export default function OtherDocument() {
     const [showSweetAlert, setshowSweetAlert] = useState("0");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -39,6 +46,14 @@ export default function OtherDocument() {
                     setname(data.studentOtherDocument.name)
                     setmyfile(data.studentOtherDocument.file)
                     setsubmitname(data.studentOtherDocument.name)
+                    if (data.studentOtherDocument.file != null) {
+                        var fetchPassport = data.studentOtherDocument.file
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
                 })
         }
         otherAllDetails()
@@ -53,7 +68,18 @@ export default function OtherDocument() {
                 setname(data.studentOtherDocument.name)
                 setmyfile(data.studentOtherDocument.file)
                 setsubmitname(data.studentOtherDocument.name)
+                if (data.studentOtherDocument.file != null) {
+                    var fetchPassport = data.studentOtherDocument.file
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
             })
+    }
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
     }
     function onDeletefileHandle(value) {
         setdeleteId(value)
@@ -176,9 +202,15 @@ export default function OtherDocument() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="View Other Document" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalOtherDocument">
-                                            View
-                                        </button>
+                                       
+                                        {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalOtherDocument">
+                                                View
+                                            </button>
+                                        }
                                         <button title="Delet Entry" type="button"
                                             onClick={() => onDeletefileHandle()}
                                             className="btn btn-outline-danger">
@@ -202,6 +234,11 @@ export default function OtherDocument() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={myfile} class="DocsFrame"></iframe>
+
+                : null
+            }
         </div>
 
     );
