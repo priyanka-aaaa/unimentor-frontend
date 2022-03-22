@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function Pg() {
-  const [heroFiles, setHeroFiles] = useState([]);
+    const [heroFiles, setHeroFiles] = useState([]);
     const [thumbnailFiles, setThumbnailFiles] = useState([]);
     const [mounted, setMounted] = useState();
     const [mypgDegree, setmypgDegree] = useState();
@@ -22,6 +22,13 @@ export default function Pg() {
     const [completedHeading, setcompletedHeading] = useState("inline");
     const [loader, setmyloader] = useState("false");
     const [submitError, setsubmitError] = useState("0");
+    const [passportExtenstion, setpassportExtenstion] = useState(".jpg");
+    const [passportBackExtenstion, setpassportBackExtenstion] = useState(".jpg");
+    const [cvExtenstion, setcvExtenstion] = useState(".jpg");
+
+    const [myPassportDocx, setmyPassportDocx] = useState("0");
+    const [myPassportBackDocx, setmyPassportBackDocx] = useState("0");
+    const [mycvDocx, setmycvDocx] = useState("0");
     useEffect(() => {
         var mounted = localStorage.getItem("studentToken")
         setMounted(mounted)
@@ -35,10 +42,43 @@ export default function Pg() {
                     setmypgDegree(data.studentEducationDocument.pgDegree)
                     setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
                     setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
+                    if (data.studentEducationDocument.pgDegree != null) {
+                        var fetchPassport = data.studentEducationDocument.pgDegree
+                        var completePassport = fetchPassport.split(".")
+                        setpassportExtenstion(completePassport[3]);
+                    }
+                    else {
+                        setpassportExtenstion("");
+                    }
+                    if (data.studentEducationDocument.pgDegreeConsolidatedMarksheet != null) {
+                        var fetchPassportBack = data.studentEducationDocument.pgDegreeConsolidatedMarksheet
+                        var completePassportBack = fetchPassportBack.split(".")
+                        setpassportBackExtenstion(completePassportBack[3]);
+                    }
+                    else {
+                        setpassportBackExtenstion("");
+                    }
+                    if (data.studentEducationDocument.pgMarksheet != null) {
+                        var fetchcvBack = data.studentEducationDocument.pgMarksheet
+                        var completecv = fetchcvBack.split(".")
+                        setcvExtenstion(completecv[3]);
+                    }
+                    else {
+                        setcvExtenstion("")
+                    }
                 })
         }
         pgAllDetails()
     }, [])
+    function viewMyPassportDocument() {
+        setmyPassportDocx("1")
+    }
+    function viewMyPassportBackDocument() {
+        setmyPassportBackDocx("1")
+    }
+    function viewMycvDocument() {
+        setmycvDocx("1")
+    }
     function pgAll() {
         fetch(process.env.REACT_APP_SERVER_URL + 'student/educationDocument', {
             method: 'get',
@@ -49,6 +89,30 @@ export default function Pg() {
                 setmypgDegree(data.studentEducationDocument.pgDegree)
                 setmypgDegreeConsolidatedMarksheet(data.studentEducationDocument.pgDegreeConsolidatedMarksheet)
                 setmypgMarksheet(data.studentEducationDocument.pgMarksheet)
+                if (data.studentEducationDocument.pgDegree != null) {
+                    var fetchPassport = data.studentEducationDocument.pgDegree
+                    var completePassport = fetchPassport.split(".")
+                    setpassportExtenstion(completePassport[3]);
+                }
+                else {
+                    setpassportExtenstion("");
+                }
+                if (data.studentEducationDocument.pgDegreeConsolidatedMarksheet != null) {
+                    var fetchPassportBack = data.studentEducationDocument.pgDegreeConsolidatedMarksheet
+                    var completePassportBack = fetchPassportBack.split(".")
+                    setpassportBackExtenstion(completePassportBack[3]);
+                }
+                else {
+                    setpassportBackExtenstion("");
+                }
+                if (data.studentEducationDocument.pgMarksheet != null) {
+                    var fetchcvBack = data.studentEducationDocument.pgMarksheet
+                    var completecv = fetchcvBack.split(".")
+                    setcvExtenstion(completecv[3]);
+                }
+                else {
+                    setcvExtenstion("")
+                }
             })
     }
     function onDeletepgDegreeHandle(value) {
@@ -180,9 +244,15 @@ export default function Pg() {
                                 </Dropzone>
                                 :
                                 <div>
-                                    <button title="PG Degree Certificate View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegree1">
-                                        View
-                                    </button>
+                                    {passportExtenstion === "docx" || passportExtenstion === "doc" ?
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >View
+                                        </button>
+                                        :
+                                        <button onClick={() => viewMyPassportDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegree1">
+                                            View
+                                        </button>
+                                    }
+
                                     <button title="Delet Entry" type="button"
                                         onClick={() => onDeletepgDegreeHandle("pgDegree")}
                                         className="btn btn-outline-danger">
@@ -252,9 +322,18 @@ export default function Pg() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegreeConsolidatedMarksheet1">
-                                            View
-                                        </button>
+                                        {passportBackExtenstion === "docx" || passportBackExtenstion === "doc" ?
+
+                                            <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                view
+
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMyPassportBackDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgDegreeConsolidatedMarksheet1">
+                                                View
+                                            </button>
+                                        }
+
                                         <button title="Marksheet Delet" type="button"
                                             onClick={() => onDeletepgDegreeConsolidatedMarksheetHandle("pgDegreeConsolidatedMarksheet")}
                                             className="btn btn-outline-danger">
@@ -325,9 +404,18 @@ export default function Pg() {
                                     </Dropzone>
                                     :
                                     <div>
-                                        <button title="Marksheet View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgMarksheetConsolidate1">
-                                            View
-                                        </button>
+                                          {cvExtenstion === "docx" || cvExtenstion === "doc" ?
+
+                                        <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" >
+                                                view
+
+                                            </button>
+                                            :
+                                            <button onClick={() => viewMycvDocument()} title="Passport View" type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModalpgMarksheetConsolidate1">
+                                                View
+                                            </button>
+}
+                         
                                         <button title="Delet Entry " type="button"
                                             onClick={() => onDeletepgMarksheetConsolidateHandle("pgMarksheet")}
                                             className="btn btn-outline-danger">
@@ -353,6 +441,19 @@ export default function Pg() {
                     </div>
                 </div>
             </div>
+            {(passportExtenstion === "docx" || passportExtenstion === "doc") && myPassportDocx === "1" ?
+                <iframe src={mypgDegree} class="DocsFrame"></iframe>
+
+                : null
+            }
+            {(passportBackExtenstion === "docx" || passportBackExtenstion === "doc") && myPassportBackDocx === "1" ?
+                <iframe src={mypgDegreeConsolidatedMarksheet} class="DocsFrame"></iframe>
+                : null
+            }
+            {(cvExtenstion === "docx" || cvExtenstion === "doc") && mycvDocx === "1" ?
+                <iframe src={mypgMarksheet} class="DocsFrame"></iframe>
+                : null
+            }
         </div>
     );
 }
