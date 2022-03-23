@@ -44,6 +44,33 @@ export default function Commission() {
     const [timeValueError, settimeValueError] = useState("");
     const [alreadySetCommission, setalreadySetCommission] = useState("");
 
+    useEffect(() => {
+        var universityId = localStorage.getItem('universityId');
+        var mounted = localStorage.getItem('universityToken');
+        setMounted(mounted)
+        setuniversityId(universityId)
+        if (universityId !== null) {
+            const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
+            fetch(url, {
+                method: 'GET',
+                headers: { 'Authorization': mounted }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setcommissionData(data.universityCommissions)
+                })
+            const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
+            fetch(url2, {
+                method: 'GET',
+                headers: { 'Authorization': mounted }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    setdata(data.universityCourses)
+                })
+        }
+    }, [])
+    
     function changecommissionChecked(value) {
         setcommissionChecked(value)
         if (value === "fixed") {
@@ -77,32 +104,6 @@ export default function Commission() {
             setdisplayEditAmount("none");
         }
     }
-    useEffect(() => {
-        var universityId = localStorage.getItem('universityId');
-        var mounted = localStorage.getItem('universityToken');
-        setMounted(mounted)
-        setuniversityId(universityId)
-        if (universityId !== null) {
-            const url = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/commissions';
-            fetch(url, {
-                method: 'GET',
-                headers: { 'Authorization': mounted }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    setcommissionData(data.universityCommissions)
-                })
-            const url2 = process.env.REACT_APP_SERVER_URL + 'university/' + universityId + '/courses';
-            fetch(url2, {
-                method: 'GET',
-                headers: { 'Authorization': mounted }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    setdata(data.universityCourses)
-                })
-        }
-    }, [])
     function handleClick(value) {
     }
     function percentagecommissionValue(percentageValue) {
@@ -137,6 +138,9 @@ export default function Commission() {
                 setEditid(data.universityCommission._id)
                 setcourseName(data.universityCommission.courseName)
                 settuitionFee(data.universityCommission.fee)
+                console.log("data.universityCommission.commissionType")
+                console.log(data.universityCommission.commissionType)
+
                 setEditcommissionType(data.universityCommission.commissionType)
                 setcommissionValue(data.universityCommission.commissionValue)
                 setEdittimeType(data.universityCommission.timeType)
@@ -175,20 +179,6 @@ export default function Commission() {
         setdisplayPercentage("none")
         setdisplaymany("none")
         setdisplayone("none")
-    }
-    function handleDelete(value) {
-        setshowSweetAlert("1")
-        setdeleteId(value)
-    }
-    function closebox(value) {
-        setwidth("0px");
-    }
-    function closeviewbox(value) {
-        setviewWidth("0px");
-    }
-    function closeaddbox(value) {
-        setaddWidth("0px");
-        setwidth("0px");
     }
     let handleAddSubmit = (event) => {
         setcommissionCheckedError("")
@@ -257,6 +247,21 @@ export default function Commission() {
 
         }
     }
+    function handleDelete(value) {
+        setshowSweetAlert("1")
+        setdeleteId(value)
+    }
+    function closebox(value) {
+        setwidth("0px");
+    }
+    function closeviewbox(value) {
+        setviewWidth("0px");
+    }
+    function closeaddbox(value) {
+        setaddWidth("0px");
+        setwidth("0px");
+    }
+ 
     let handleEditSubmit = (event) => {
         event.preventDefault();
         setwidth("0");
@@ -264,7 +269,7 @@ export default function Commission() {
         const obj1 = new FormData();
         obj1.append("courseName", courseName);
         obj1.append("fee", tuitionFee);
-        obj1.append("commissionType", commissionTimeChecked);
+        obj1.append("commissionType", EditcommissionType);
         obj1.append("commissionValue", commissionValue);
         obj1.append("timeType", commissionTimeChecked);
         obj1.append("timeValue", timeValue);
@@ -647,7 +652,7 @@ export default function Commission() {
                                                                                     }
 
                                                                                     >
-                                                                                        <label className="form-label">Commision *</label><br />
+                                                                                        <label className="form-label">Commisionhhh{EditcommissionType} *</label><br />
 
 
                                                                                         <div className="form-check form-check-inline">
