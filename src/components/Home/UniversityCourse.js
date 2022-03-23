@@ -28,6 +28,8 @@ export default function UniversityCourse() {
     const [successMessage, setsuccessMessage] = useState("");
     const [submitSuccess, setsubmitSuccess] = useState("0");
     const [showSweetAlert, setshowSweetAlert] = useState("0");
+    const [showErrorSweetAlert, setshowErrorSweetAlert] = useState("0");
+
     const [coursesNoValues, setcoursesNoValues] = useState("0");
     // const [myslug, setmyslug] = useState();
 
@@ -228,6 +230,9 @@ export default function UniversityCourse() {
                     if (res.data.success === true) {
                         setshowSweetAlert("1")
                     }
+                    else {
+                        setshowErrorSweetAlert("1")
+                    }
                 })
                 .catch(error => {
 
@@ -250,6 +255,19 @@ export default function UniversityCourse() {
                     }}
                 >
                     You Are Apply Successfully
+                </SweetAlert>
+                : null
+            }
+            {showErrorSweetAlert === "1" ?
+
+                <SweetAlert
+                    warning
+                    title="Failure!"
+                    onConfirm={(value) => {
+                        setshowErrorSweetAlert("0")
+                    }}
+                >
+                    Already Applied
                 </SweetAlert>
                 : null
             }
@@ -339,7 +357,7 @@ export default function UniversityCourse() {
                                             </div>
 
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                                 <div className="col-lg-8 pr-35 md-pr-15">
@@ -347,24 +365,24 @@ export default function UniversityCourse() {
                                         <div className="col-lg-12 mb-50">
                                             <div className="blog-item">
                                                 <ul>
-                                              
-                                                
+
+
                                                     <li>
-                                                        
-                                                    <Link to={'/schools/' + slug} className="nav-link" >Overview</Link>
-                                                        
-                                                        
-                                                      </li>
+
+                                                        <Link to={'/schools/' + slug} className="nav-link" >Overview</Link>
+
+
+                                                    </li>
                                                     <li><a href="#ranking">Ranking</a></li>
                                                     <li><a href="#courses-fees">Courses & Fees</a></li>
                                                     <li><a href="#admission-requirements">Admissions Requirements </a></li>
                                                     <li><a href="#images-video"> Images/Video</a></li>
                                                     <li><a href="#courses"> Browse Courses</a></li>
                                                 </ul>
-                                                
+
                                             </div>
                                         </div>
-                                     
+
 
                                         <div className="col-lg-12">
                                             <div className="blog-item" id="courses">
@@ -374,87 +392,87 @@ export default function UniversityCourse() {
                                                         {coursesValues.map((element, index) => (
 
                                                             <div key={index} className="col-sm-6 mb-4">
-                                                           
-                                                                    <div >
-                                                                        <div className="subcourses_courseBox__3deGG">
-                                                                            <div className="subcourses_program__3pkFj col-sm-12 p-0">
-                                                                                <img src={images["project-management.png"]} alt="" />
 
-                                                                                <div><span className="subcourses_h-title__sLV10">{element.courseName}</span><span
-                                                                                    className="subcourses_subHeading__zdEIg">{element.studyField}</span>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div className="subcourses_line__T3g-V"></div>
-                                                                            <div className="row align-items-center">
-                                                                                <div className="col-6 col-sm-4 clearfix">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">
-                                                                                            {element.tuitionFee}{" "} {element.fee}
-                                                                                        </h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Fee</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-6 col-sm-4">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">{element.duration}
-                                                                                        </h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Duration</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-6 col-sm-4">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">{element.exam}</h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Qualification</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-6 col-sm-4 mt-2">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">{element.courseLevel}</h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Course level</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-6 col-sm-4 mt-2">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">On Campus </h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Mode of Degree</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-6 col-sm-4 mt-2">
-                                                                                    <div className="subcourses_details__3g8AB">
-                                                                                        <h3 className="subcourses_c-desc__Dzhnk">{element.year}{' '}{element.month}</h3>
-                                                                                        <p className="subcourses_c-title__2MKAy">Intakes</p>
-                                                                                    </div>
-                                                                                </div>
-                                                                                <div className="col-sm-12">
-                                                                                    <div className="subcourses_line__T3g-V">
-                                                                                    </div>
-                                                                                    <p className="subcourses_description__1v-2y">{element.description}<a
-                                                                                        className="text-primary cursor-pointer">Read More</a>
-                                                                                    </p>
-                                                                                </div>
+                                                                <div >
+                                                                    <div className="subcourses_courseBox__3deGG">
+                                                                        <div className="subcourses_program__3pkFj col-sm-12 p-0">
+                                                                            <img src={images["project-management.png"]} alt="" />
+
+                                                                            <div><span className="subcourses_h-title__sLV10">{element.courseName}</span><span
+                                                                                className="subcourses_subHeading__zdEIg">{element.studyField}</span>
                                                                             </div>
                                                                         </div>
-                                                                        <div className="text-right w-100">
-                                                                            <button className="btn btn-primary  w-100" onClick={() => handleApplyNow(universityId, element._id, element.year +
-                                                                                element.month, "first", FormPrimaryInformationValues.country)}>Apply Now
-                                                                                <img src="https://images.leverageedu.com/university/whitearrow.svg" />
-                                                                            </button>
+                                                                        <div className="subcourses_line__T3g-V"></div>
+                                                                        <div className="row align-items-center">
+                                                                            <div className="col-6 col-sm-4 clearfix">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">
+                                                                                        {element.tuitionFee}{" "} {element.fee}
+                                                                                    </h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Fee</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-6 col-sm-4">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">{element.duration}
+                                                                                    </h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Duration</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-6 col-sm-4">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">{element.exam}</h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Qualification</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-6 col-sm-4 mt-2">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">{element.courseLevel}</h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Course level</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-6 col-sm-4 mt-2">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">On Campus </h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Mode of Degree</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-6 col-sm-4 mt-2">
+                                                                                <div className="subcourses_details__3g8AB">
+                                                                                    <h3 className="subcourses_c-desc__Dzhnk">{element.year}{' '}{element.month}</h3>
+                                                                                    <p className="subcourses_c-title__2MKAy">Intakes</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="col-sm-12">
+                                                                                <div className="subcourses_line__T3g-V">
+                                                                                </div>
+                                                                                <p className="subcourses_description__1v-2y">{element.description}<a
+                                                                                    className="text-primary cursor-pointer">Read More</a>
+                                                                                </p>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div className="text-right w-100">
+                                                                        <button className="btn btn-primary  w-100" onClick={() => handleApplyNow(universityId, element._id, element.year +
+                                                                            element.month, "first", FormPrimaryInformationValues.country)}>Apply Now
+                                                                            <img src="https://images.leverageedu.com/university/whitearrow.svg" />
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
 
-                          
+
 
                                                             </div>
 
                                                         ))}
                                                         <div>
-                                                           
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
                                     </div>
                                 </div>
                             </div>
@@ -462,7 +480,7 @@ export default function UniversityCourse() {
                     </div>
                 </div>
                 <Footer />
-            
+
             </div >
         </div >
     );
