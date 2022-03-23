@@ -11,6 +11,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from 'react-router-dom';
 import Footer from './Footer'
 import Header from './Header'
+import ReadMore from './ReadMore';
 function importAll(r) {
     let images = {};
     r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -663,10 +664,8 @@ export default function UniversityPage() {
                                                                         <div className="col-sm-12">
                                                                             <div className="subcourses_line__T3g-V">
                                                                             </div>
-                                                                            <p className="subcourses_description__1v-2y">{element.description}<a
-                                                                                className="text-primary cursor-pointer">Read More</a>
-                                                                            </p>
-                                                                        </div>
+                                                                            <ReadMore>{element.description}</ReadMore>
+                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div className="text-right w-100">
